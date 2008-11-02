@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="net.sf.rcer.conn.ui.preferences.TopLevelPreferencePage"
+            id="net.sf.rcer.conn.ui.preferences.TopLevelPreferencePage"
+            name="SAP R/3 Connector">
+      </page>
+      <page
+            category="net.sf.rcer.conn.ui.preferences.TopLevelPreferencePage"
+            class="net.sf.rcer.conn.ui.preferences.ConnectionsPreferencePage"
+            id="net.sf.rcer.conn.ui.preferences.ConnectionPreferencePage"
+            name="Connections">
+      </page>
+   </extension>
+
+</plugin>
