@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="net.sf.rcer.conn" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="net.sf.rcer.conn" id="net.sf.rcer.conn.connections" name="SAP R/3 System Connection Data"/>
+      </appinfo>
+      <documentation>
+         This extension point can be used to define SAP R/3 Connections declaratively or to specify classes that provide a list of connections at runtime.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <choice minOccurs="1" maxOccurs="unbounded">
+            <element ref="provider"/>
+            <element ref="connection"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The ID of the extension. Must be unique within the application. It is recommended to use the ID of the plug-in for this.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="connection">
+      <annotation>
+         <documentation>
+            A set of connection data.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The ID of the connection. This value is used to store references to this connection (like the logon credentials), so it must be unique within the plug-in.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A human-readable description of the system connection.
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="systemID" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The system ID (SID) of the SAP R/3 system.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="connectionType" use="required">
+            <annotation>
+               <documentation>
+                  Whether to use a direct connection or a message server for load balancing. If a direct connection is used, an application server and a system number must be provided. If a messages server is used, the message server, the port and the group name must be provided.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="direct">
+                  </enumeration>
+                  <enumeration value="load balancing">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="router" type="string">
+            <annotation>
+               <documentation>
+                  The SAP router string.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="applicationServer" type="string">
+            <annotation>
+               <documentation>
+                  The address or name of the application server to use for direct connections.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="systemNumber" type="string">
+            <annotation>
+               <documentation>
+                  The system number to use for direct connections.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="messageServer" type="string">
+            <annotation>
+               <documentation>
+                  The address or name of the message server to use for load balancing.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="messageServerPort" type="string">
+            <annotation>
+               <documentation>
+                  The port of the message server to use for load balancing.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="loadBalancingGroup" type="string">
+            <annotation>
+               <documentation>
+                  The name of the group used for load balancing.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultUser" type="string">
+            <annotation>
+               <documentation>
+                  The default user name to use for logon.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultUserEditable" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  Whether the user may change the default user name during logon.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultClient" type="string">
+            <annotation>
+               <documentation>
+                  The default client to use for logon.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultClientEditable" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  Whether the user may change the default client during logon.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultLocale" type="string">
+            <annotation>
+               <documentation>
+                  The default locale to use during logon.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="net.sf.rcer.conn.saplocales/locale/@iso"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="defaultLocaleEditable" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  Whether the user may change the default locale during logon.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="provider">
+      <annotation>
+         <documentation>
+            A reference to a class that provides connection data at runtime.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The ID of the provider. This value is used to store references to the connections provided by the implementation (like the logon credentials), so it must be unique within the plug-in.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="provider" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":net.sf.rcer.conn.connections.IConnectionProvider"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         1.0.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

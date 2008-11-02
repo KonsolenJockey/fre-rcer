@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="net.sf.rcer.conn.saplocales" name="SAP R/3 Locales" schema="schema/net.sf.rcer.conn.saplocales.exsd"/>
+   <extension-point id="net.sf.rcer.conn.connections" name="SAP R/3 System Connection Data" schema="schema/net.sf.rcer.conn.connections.exsd"/>
+   <extension point="net.sf.rcer.conn.saplocales">
+      <locale id="0" iso="SR" description="%locale.description.sr" />
+      <locale id="1" iso="ZH" description="%locale.description.zh" />
+      <locale id="2" iso="TH" description="%locale.description.th" />
+      <locale id="3" iso="KO" description="%locale.description.ko" />
+      <locale id="4" iso="RO" description="%locale.description.ro" />
+      <locale id="5" iso="SL" description="%locale.description.sl" />
+      <locale id="6" iso="HR" description="%locale.description.hr" />
+      <locale id="7" iso="MS" description="%locale.description.ms" />
+      <locale id="8" iso="UK" description="%locale.description.uk" />
+      <locale id="9" iso="ET" description="%locale.description.et" />
+      <locale id="A" iso="AR" description="%locale.description.ar" />
+      <locale id="B" iso="HE" description="%locale.description.he" />
+      <locale id="C" iso="CS" description="%locale.description.cs" />
+      <locale id="D" iso="DE" description="%locale.description.de" />
+      <locale id="E" iso="EN" description="%locale.description.en" />
+      <locale id="F" iso="FR" description="%locale.description.fr" />
+      <locale id="G" iso="EL" description="%locale.description.el" />
+      <locale id="H" iso="HU" description="%locale.description.hu" />
+      <locale id="I" iso="IT" description="%locale.description.it" />
+      <locale id="J" iso="JA" description="%locale.description.ja" />
+      <locale id="K" iso="DA" description="%locale.description.da" />
+      <locale id="L" iso="PL" description="%locale.description.pl" />
+      <locale id="M" iso="ZF" description="%locale.description.zf" />
+      <locale id="N" iso="NL" description="%locale.description.nl" />
+      <locale id="O" iso="NO" description="%locale.description.no" />
+      <locale id="P" iso="PT" description="%locale.description.pt" />
+      <locale id="Q" iso="SK" description="%locale.description.sk" />
+      <locale id="R" iso="RU" description="%locale.description.ru" />
+      <locale id="S" iso="ES" description="%locale.description.es" />
+      <locale id="T" iso="TR" description="%locale.description.tr" />
+      <locale id="U" iso="FI" description="%locale.description.fi" />
+      <locale id="V" iso="SV" description="%locale.description.sv" />
+      <locale id="W" iso="BG" description="%locale.description.bg" />
+      <locale id="X" iso="LT" description="%locale.description.lt" />
+      <locale id="Y" iso="LV" description="%locale.description.lv" />
+      <locale id="a" iso="AF" description="%locale.description.af" />
+      <locale id="b" iso="IS" description="%locale.description.is" />
+      <locale id="c" iso="CA" description="%locale.description.ca" />
+      <locale id="d" iso="SH" description="%locale.description.sh" />
+      <locale id="i" iso="ID" description="%locale.description.id" />
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="net.sf.rcer.conn.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="net.sf.rcer.conn.connections">
+      <provider
+            id="preferences"
+            provider="net.sf.rcer.conn.preferences.PreferencesConnectionProvider">
+      </provider>
+   </extension>
+
+</plugin>
