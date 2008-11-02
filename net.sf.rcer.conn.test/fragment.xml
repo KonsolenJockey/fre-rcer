@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<fragment>
+   <extension
+         point="net.sf.rcer.conn.connections">
+      <provider
+            id="valid_provider_1"
+            provider="net.sf.rcer.conn.connections.TestConnectionProvider">
+      </provider>
+      <provider
+            id="valid_provider_2"
+            provider="net.sf.rcer.conn.connections.TestConnectionProvider">
+      </provider>
+      <provider
+            id="invalid_provider_class_missing"
+            provider="net.sf.rcer.conn.test.DoesNotExist">
+      </provider>
+      <connection
+            applicationServer="appserv1"
+            connectionType="direct"
+            defaultClient="123"
+            defaultClientEditable="true"
+            defaultLocale="DE"
+            defaultLocaleEditable="true"
+            defaultUser="foo"
+            defaultUserEditable="true"
+            description="Direct Connection 1"
+            id="direct_connection_1"
+            router="router1"
+            systemID="D01"
+            systemNumber="01">
+      </connection>
+      <connection
+            connectionType="load balancing"
+            defaultClient="123"
+            defaultClientEditable="true"
+            defaultLocale="EN"
+            defaultLocaleEditable="true"
+            defaultUser="foo"
+            defaultUserEditable="true"
+            description="Load-Balancing Connection 1"
+            id="balanced_connection_1"
+            loadBalancingGroup="PUBLIC"
+            messageServer="messageserv1"
+            messageServerPort="3456"
+            router="router1"
+            systemID="L01">
+      </connection>
+      <connection
+            applicationServer="appserv1"
+            connectionType="direct"
+            defaultClient="123"
+            defaultClientEditable="true"
+            defaultLocale="DE"
+            defaultLocaleEditable="true"
+            defaultUser="foo"
+            defaultUserEditable="true"
+            description="Invalid Direct Connection (invalid system number)"
+            id="invalid_direct_connection_1"
+            router="router1"
+            systemID="D01"
+            systemNumber="aabbcc">
+      </connection>
+      <connection
+            applicationServer="appserv1"
+            connectionType="direct"
+            defaultClient="123"
+            defaultClientEditable="true"
+            defaultLocale="ZZ_INVALID"
+            defaultLocaleEditable="true"
+            defaultUser="foo"
+            defaultUserEditable="true"
+            description="Invalid Direct Connection (invalid locale)"
+            id="invalid_direct_connection_2"
+            router="router1"
+            systemID="D01"
+            systemNumber="2">
+      </connection>
+      <connection
+            connectionType="load balancing"
+            defaultClient="123"
+            defaultClientEditable="true"
+            defaultLocale="EN"
+            defaultLocaleEditable="true"
+            defaultUser="foo"
+            defaultUserEditable="true"
+            description="Invalid Load-Balancing Connection (invalid message server port)"
+            id="invalid_balanced_connection_1"
+            loadBalancingGroup="PUBLIC"
+            messageServer="messageserv1"
+            messageServerPort="aabbcc"
+            router="router1"
+            systemID="L01">
+      </connection>
+   </extension>
+
+</fragment>
