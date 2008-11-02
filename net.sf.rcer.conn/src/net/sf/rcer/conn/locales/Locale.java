@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,
  * this entire header must remain intact.
  *
- * $$Id$$
+ * $Id$
  */
 package net.sf.rcer.conn.locales;
 
