@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="net.sf.rcer.jcogen.sampleCategory"
+            name="SAP R/3 Connector">
+      </category>
+      <wizard
+            category="net.sf.rcer.jcogen.sampleCategory"
+            class="net.sf.rcer.jcogen.JCoImportWizard"
+            id="net.sf.rcer.jcogen.JCoImportWizard"
+            name="Create SAP Java Connector Plug-ins">
+         <description>
+            Import the SAP Java Connector and create the plug-ins to use it in OSGi projects.
+         </description>
+      </wizard>
+   </extension>
+
+</plugin>
