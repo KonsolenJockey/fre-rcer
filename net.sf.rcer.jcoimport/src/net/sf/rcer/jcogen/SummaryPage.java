@@ -27,6 +27,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 
 /**
  * A wizard page that presents a summary before the actual actions are performed.
@@ -51,6 +52,8 @@ public class SummaryPage extends WizardPage {
 
 	private DataBindingContext context;
 
+	private Button checkboxExportBundles;
+
 
 	/**
 	 * Default constructor.
@@ -71,11 +74,10 @@ public class SummaryPage extends WizardPage {
 	 */
 	public void createControl(Composite parent) {
 		Composite top = new Composite(parent, SWT.NONE);
-		GridLayoutFactory.swtDefaults().numColumns(1).applyTo(top);
+		GridLayoutFactory.swtDefaults().applyTo(top);
 		
 		Label info = new Label(top, SWT.NONE);
 		info.setText("Review the actions you want the wizard to perform:");
-		GridDataFactory.swtDefaults().applyTo(info);
 		
 		checkboxPlugin = new Button(top, SWT.CHECK);
 		context.bindValue(SWTObservables.observeSelection(checkboxPlugin), 
@@ -98,7 +100,7 @@ public class SummaryPage extends WizardPage {
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
 		checkboxFragmentLinux32 = new Button(top, SWT.CHECK);
-		context.bindValue(SWTObservables.observeSelection(checkboxFragmentLinux32), 
+		context.bindValue(SWTObservables.observeSelection(checkboxFragmentWin64x86), 
 				BeansObservables.observeValue(generatorSettings, "linux32FragmentSelected"),
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
@@ -121,6 +123,29 @@ public class SummaryPage extends WizardPage {
 		context.bindValue(SWTObservables.observeSelection(checkboxFragmentDarwinIntel), 
 				BeansObservables.observeValue(generatorSettings, "darwinIntelFragmentSelected"),
 				new UpdateValueStrategy(), new UpdateValueStrategy());
+
+		@SuppressWarnings("unused")
+		Label spacer = new Label(top, SWT.NONE);
+		
+		Composite export = new Composite(top, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(export);
+		
+		checkboxExportBundles = new Button(export, SWT.CHECK);
+		GridDataFactory.swtDefaults().span(2, 1).applyTo(checkboxExportBundles);
+		checkboxExportBundles.setText("Export plug-ins and fragments to dropins folder of current installation.");
+		context.bindValue(SWTObservables.observeSelection(checkboxExportBundles), 
+				BeansObservables.observeValue(generatorSettings, "bundleExportSelected"),
+				new UpdateValueStrategy(), new UpdateValueStrategy());
+		
+		Label exportLabel = new Label(export, SWT.NONE);
+		exportLabel.setText("Target Path:");
+		
+		Text exportPathText = new Text(export, SWT.SINGLE | SWT.BORDER);
+		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.CENTER).applyTo(exportPathText);
+		context.bindValue(SWTObservables.observeText(exportPathText, SWT.Modify), 
+				BeansObservables.observeValue(generatorSettings, "exportPath"),
+				new UpdateValueStrategy(), new UpdateValueStrategy());
+		// TODO validate the target path
 		
 		updateCheckboxes();
 		setControl(top);

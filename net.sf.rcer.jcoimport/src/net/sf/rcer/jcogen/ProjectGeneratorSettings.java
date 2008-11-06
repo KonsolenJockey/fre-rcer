@@ -42,6 +42,9 @@ public class ProjectGeneratorSettings {
 	private boolean linux64x86FragmentSelected;
 	private boolean darwinPowerPCFragmentSelected;
 	private boolean darwinIntelFragmentSelected;
+	
+	private boolean bundleExportSelected;
+	private String exportPath;
 
 	/**
 	 * @return the name of the archive file for the Windows 32-bit platform, or
@@ -360,6 +363,39 @@ public class ProjectGeneratorSettings {
 				darwinIntelFragmentSelected);
 	}
 
+	/**
+	 * @return whether bundle export was selected
+	 */
+	public boolean isBundleExportSelected() {
+		return bundleExportSelected;
+	}
+	
+	/**
+	 * @param bundleExportSelected the bundleExportSelected to set
+	 */
+	public void setBundleExportSelected(boolean bundleExportSelected) {
+		boolean oldValue = bundleExportSelected;
+		this.bundleExportSelected = bundleExportSelected;
+		propertyChangeSupport.firePropertyChange("bundleExportSelected", oldValue,
+				bundleExportSelected);
+	}
+	
+	/**
+	 * @return the export path
+	 */
+	public String getExportPath() {
+		return exportPath;
+	}
+	
+	/**
+	 * @param exportPath the exportPath to set
+	 */
+	public void setExportPath(String exportPath) {
+		String oldValue = exportPath;
+		this.exportPath = exportPath;
+		propertyChangeSupport.firePropertyChange("exportPath", oldValue, exportPath);
+	}
+	
 	/**
 	 * @param listener
 	 * @see java.beans.PropertyChangeSupport#addPropertyChangeListener(java.beans.PropertyChangeListener)

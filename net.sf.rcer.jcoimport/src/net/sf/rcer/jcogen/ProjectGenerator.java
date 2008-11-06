@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,16 +44,26 @@ import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.eclipse.pde.internal.core.PDECore;
+import org.eclipse.pde.internal.core.PluginModelManager;
+import org.eclipse.pde.internal.core.exports.FeatureExportInfo;
+import org.eclipse.pde.internal.ui.PDEPluginImages;
+import org.eclipse.pde.internal.ui.build.PluginExportJob;
+import org.eclipse.ui.progress.IProgressConstants;
 
 /**
  * The runnable that performs the actual project generation.
  * @author vwegert
  *
  */
+@SuppressWarnings("restriction")
 public class ProjectGenerator implements IRunnableWithProgress {
 
 	private ProjectGeneratorSettings settings;
 	private IWorkspaceRoot workspaceRoot;
+	private ArrayList<IPluginModelBase> exportableBundles = new ArrayList<IPluginModelBase>();
+	private PluginModelManager modelManager;
 
 	/**
 	 * Default constructor.
@@ -61,6 +72,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 	public ProjectGenerator(ProjectGeneratorSettings generatorSettings) {
 		this.settings = generatorSettings;
 		workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
+		modelManager = PDECore.getDefault().getModelManager();
 	}
 
 	/* (non-Javadoc)
@@ -68,6 +80,8 @@ public class ProjectGenerator implements IRunnableWithProgress {
 	 */
 	public void run(IProgressMonitor monitor) throws InvocationTargetException,	InterruptedException {
 
+		exportableBundles.clear();
+		
 		monitor.beginTask("Importing the SAP Java Connector", getNumberOfSteps());
 
 		try {
@@ -155,6 +169,11 @@ public class ProjectGenerator implements IRunnableWithProgress {
 						"libsapjco3.jnilib", "OS X (Intel)", "(& (osgi.os=macosx) (osgi.arch=x86))");
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
+			
+			if (settings.isBundleExportSelected()) {
+				exportPlugins(monitor);
+			}
+			
 		} catch (CoreException e) {
 			throw new InvocationTargetException(e);
 		} catch (IOException e) {
@@ -248,6 +267,8 @@ public class ProjectGenerator implements IRunnableWithProgress {
 		buildProperties.append("               .\n");
 		writeTextFile(monitor, buildProperties, project.getFile("build.properties"));
 		
+		// collect the plug-in for export
+		exportableBundles.add(modelManager.findModel(project));
 	}
 
 	/**
@@ -319,8 +340,27 @@ public class ProjectGenerator implements IRunnableWithProgress {
 		buildProperties.append("               jni/\n");
 		writeTextFile(monitor, buildProperties, project.getFile("build.properties"));
 
+		// collect the fragment for export
+		exportableBundles.add(modelManager.findModel(project));
 	}
 
+	/**
+	 * Exports the generated plug-ins and fragments to the selected location.
+	 * @param monitor
+	 */
+	private void exportPlugins(IProgressMonitor monitor) {
+		FeatureExportInfo info = new FeatureExportInfo();
+		info.toDirectory = true;
+		info.useJarFormat = true;
+		info.exportSource = false;
+		info.destinationDirectory = settings.getExportPath();
+		info.items = exportableBundles.toArray();
+		PluginExportJob job = new PluginExportJob(info);
+		job.setUser(true);
+		job.schedule();
+		job.setProperty(IProgressConstants.ICON_PROPERTY, PDEPluginImages.DESC_PLUGIN_OBJ);
+	}
+	
 	/**
 	 * Auxiliary method to dump a {@link StringBuilder} to a file. 
 	 * @param monitor

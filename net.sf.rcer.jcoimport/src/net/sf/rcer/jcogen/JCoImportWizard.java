@@ -15,6 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -44,32 +45,19 @@ public class JCoImportWizard extends Wizard implements IImportWizard {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.jface.wizard.Wizard#performFinish()
-	 */
-	@Override
-	public boolean performFinish() {
-		context.updateModels();
-		try {
-			getContainer().run(true, true, new ProjectGenerator(generatorSettings));
-			return true;
-		} catch (InvocationTargetException e) {
-			ErrorDialog.openError(getShell(), "SAP JCo Import", e.getLocalizedMessage(), 
-					new Status(IStatus.ERROR, "net.sf.rcer.jcoimport", "Error importing the SAP Java Connector.", e));
-			return false;
-		} catch (InterruptedException e) {
-			MessageDialog.openWarning(getShell(), "SAP JCo Import", "The import was cancelled. You may have to remove incomplete plug-in projects manually.");
-			return false;
-		}
-	}
-	 
-	/* (non-Javadoc)
 	 * @see org.eclipse.ui.IWorkbenchWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		setWindowTitle("Java Connector Import Wizard");
 		setNeedsProgressMonitor(true);
-		context = new DataBindingContext();
+		
 		generatorSettings = new ProjectGeneratorSettings();
+		if (Platform.getInstallLocation() != null) {
+			generatorSettings.setBundleExportSelected(true);
+			generatorSettings.setExportPath(Platform.getInstallLocation().getURL().getFile() + "dropins");
+		}
+		
+		context = new DataBindingContext();
 		downloadPage = new DownloadPage();
 		archiveFilesPage = new ArchiveFilesPage(context, generatorSettings);
 		summaryPage = new SummaryPage(context, generatorSettings);
@@ -93,5 +81,24 @@ public class JCoImportWizard extends Wizard implements IImportWizard {
     public boolean canFinish() {
     	return super.canFinish() && getContainer().getCurrentPage() == summaryPage;
     }
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.wizard.Wizard#performFinish()
+	 */
+	@Override
+	public boolean performFinish() {
+		context.updateModels();
+		try {
+			getContainer().run(true, true, new ProjectGenerator(generatorSettings));
+			return true;
+		} catch (InvocationTargetException e) {
+			ErrorDialog.openError(getShell(), "SAP JCo Import", e.getLocalizedMessage(), 
+					new Status(IStatus.ERROR, "net.sf.rcer.jcoimport", "Error importing the SAP Java Connector.", e));
+			return false;
+		} catch (InterruptedException e) {
+			MessageDialog.openWarning(getShell(), "SAP JCo Import", "The import was cancelled. You may have to remove incomplete plug-in projects manually.");
+			return false;
+		}
+	}
 
 }
