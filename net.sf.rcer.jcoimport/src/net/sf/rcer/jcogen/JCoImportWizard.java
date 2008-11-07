@@ -54,6 +54,7 @@ public class JCoImportWizard extends Wizard implements IImportWizard {
 		generatorSettings = new ProjectGeneratorSettings();
 		if (Platform.getInstallLocation() != null) {
 			generatorSettings.setBundleExportSelected(true);
+			// TODO use some API to locate the dropins folder
 			generatorSettings.setExportPath(Platform.getInstallLocation().getURL().getFile() + "dropins");
 		}
 		

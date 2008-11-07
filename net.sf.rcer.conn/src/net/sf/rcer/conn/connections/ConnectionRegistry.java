@@ -32,7 +32,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 
 /**
- * The central registry for connections to the SAP R/3 systems.
+ * The central registry for definitions of connections to the SAP R/3 systems.
  * @author vwegert
  *
  */
