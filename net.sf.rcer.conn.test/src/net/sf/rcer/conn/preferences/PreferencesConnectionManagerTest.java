@@ -220,6 +220,15 @@ public class PreferencesConnectionManagerTest implements IPreferenceConstants {
 	 * @throws Exception
 	 */
 	@Test(expected=ConnectionNotFoundException.class)
+	public void testInvalidConnectionIDZero() throws Exception {
+		PreferencesConnectionManager.getInstance().getConnectionData("0");
+	}
+
+	/**
+	 * Tests whether an invalid connection ID is handled correctly.
+	 * @throws Exception
+	 */
+	@Test(expected=ConnectionNotFoundException.class)
 	public void testInvalidConnectionIDMaxExceeded() throws Exception {
 		PreferencesConnectionManager.getInstance().getConnectionData("9999");
 	}

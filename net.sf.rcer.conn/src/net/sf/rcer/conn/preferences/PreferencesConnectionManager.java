@@ -256,7 +256,7 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 			throw new ConnectionNotFoundException(MessageFormat.format("The connection ID {0} is not numeric.",
 					connectionID), e);
 		}
-		if ((position < 0) || (position >= number)) {
+		if ((position <= 0) || (position > number)) {
 			throw new ConnectionNotFoundException(MessageFormat.format(
 					"The connection ID {0} exceeds the maximum number of stored connections (0..{1})",
 					connectionID, number));
