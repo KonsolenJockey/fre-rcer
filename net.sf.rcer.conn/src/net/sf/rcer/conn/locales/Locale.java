@@ -128,8 +128,13 @@ public class Locale {
 				}
 				try {
 					return LocaleRegistry.getInstance().getLocaleByISO(isoCode);
-				} catch (LocaleNotFoundException e) {
-					throw new IllegalArgumentException(e);
+				} catch (LocaleNotFoundException e1) {
+					// maybe this was a string that begins with the locale code (see FromStringConverter)
+					try {
+						return LocaleRegistry.getInstance().getLocaleByISO(isoCode.substring(0, isoCode.indexOf(' ')));
+					} catch (LocaleNotFoundException e) {
+						throw new IllegalArgumentException(e);
+					}
 				}
 			}
 			throw new IllegalArgumentException(MessageFormat.format("Unsupported value {0}", fromObject));
@@ -143,11 +148,15 @@ public class Locale {
 	 */
 	public static class FromStringConverter extends Converter  {
 
+		private boolean includeDescription;
+
 		/**
 		 * Default constructor.
+		 * @param includeDescription whether to include the description in the output text. 
 		 */
-		public FromStringConverter() {
+		public FromStringConverter(boolean includeDescription) {
 			super(Locale.class, String.class);
+			this.includeDescription = includeDescription;
 		}
 
 		/* (non-Javadoc)
@@ -157,6 +166,10 @@ public class Locale {
 			if (fromObject == null) {
 				return "";
 			} else if (fromObject instanceof Locale) {
+				if (includeDescription) {
+					final Locale locale = (Locale) fromObject; 
+					return MessageFormat.format("{0} ({1})", locale.getISOCode(), locale.getDescription());
+				}
 				return ((Locale) fromObject).getISOCode();
 			}
 			throw new IllegalArgumentException(MessageFormat.format("Unsupported class {0}", fromObject.getClass().getName()));

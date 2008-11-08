@@ -678,7 +678,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 		context.bindValue(SWTObservables.observeSelection(defaultLocaleCombo), 
 				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "defaultLocale", Locale.class), 
 				new UpdateValueStrategy().setConverter(new Locale.ToStringConverter()), 
-				new UpdateValueStrategy().setConverter(new Locale.FromStringConverter()));
+				new UpdateValueStrategy().setConverter(new Locale.FromStringConverter(false)));
 
 		// supply the error label with the aggregated status
 		context.bindValue(SWTObservables.observeText(errorDisplayLabel),
