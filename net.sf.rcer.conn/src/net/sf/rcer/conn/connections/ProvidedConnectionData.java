@@ -167,4 +167,12 @@ public class ProvidedConnectionData implements IConnectionData {
 		return connection.getConnectionType();
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return connection.toString();
+	}
+	
 }
