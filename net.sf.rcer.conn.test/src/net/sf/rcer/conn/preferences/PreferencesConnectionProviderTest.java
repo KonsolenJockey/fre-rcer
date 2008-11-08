@@ -66,30 +66,27 @@ public class PreferencesConnectionProviderTest implements IPreferenceConstants {
 		prefs.setValue(CONNECTION_NUMBER, 4);
 		
 		// a valid direct connection
-		prefs.setValue(CONNECTION_TYPE                 + ".0", CONNECTION_TYPE_DIRECT);
-		prefs.setValue(CONNECTION_DESCRIPTION          + ".0", DESCRIPTION);
-		prefs.setValue(CONNECTION_SYSTEM_ID            + ".0", SYSTEM_ID);
-		prefs.setValue(CONNECTION_ROUTER               + ".0", ROUTER);
-		prefs.setValue(CONNECTION_APPLICATION_SERVER   + ".0", APP_SERVER);
-		prefs.setValue(CONNECTION_SYSTEM_NUMBER        + ".0", SYSTEM_NUMBER);
-		prefs.setValue(CONNECTION_DEFAULT_USER         + ".0", DEFAULT_USER);
-		prefs.setValue(CONNECTION_DEFAULT_CLIENT       + ".0", DEFAULT_CLIENT);
-		prefs.setValue(CONNECTION_DEFAULT_LOCALE       + ".0", DEFAULT_LOCALE);
-
-		// a valid load-balancing connection 
-		prefs.setValue(CONNECTION_TYPE                 + ".1", CONNECTION_TYPE_LOAD_BALANCING);
+		prefs.setValue(CONNECTION_TYPE                 + ".1", CONNECTION_TYPE_DIRECT);
 		prefs.setValue(CONNECTION_DESCRIPTION          + ".1", DESCRIPTION);
 		prefs.setValue(CONNECTION_SYSTEM_ID            + ".1", SYSTEM_ID);
 		prefs.setValue(CONNECTION_ROUTER               + ".1", ROUTER);
-		prefs.setValue(CONNECTION_MESSAGE_SERVER       + ".1", MSG_SERVER);
-		prefs.setValue(CONNECTION_MESSAGE_SERVER_PORT  + ".1", MSG_SERVER_PORT);
-		prefs.setValue(CONNECTION_LOAD_BALANCING_GROUP + ".1", LB_GROUP);
+		prefs.setValue(CONNECTION_APPLICATION_SERVER   + ".1", APP_SERVER);
+		prefs.setValue(CONNECTION_SYSTEM_NUMBER        + ".1", SYSTEM_NUMBER);
 		prefs.setValue(CONNECTION_DEFAULT_USER         + ".1", DEFAULT_USER);
 		prefs.setValue(CONNECTION_DEFAULT_CLIENT       + ".1", DEFAULT_CLIENT);
 		prefs.setValue(CONNECTION_DEFAULT_LOCALE       + ".1", DEFAULT_LOCALE);
-		
-		// an invalid connection (invalid type)
-		prefs.setValue(CONNECTION_TYPE                 + ".2", "foobar");
+
+		// a valid load-balancing connection 
+		prefs.setValue(CONNECTION_TYPE                 + ".2", CONNECTION_TYPE_LOAD_BALANCING);
+		prefs.setValue(CONNECTION_DESCRIPTION          + ".2", DESCRIPTION);
+		prefs.setValue(CONNECTION_SYSTEM_ID            + ".2", SYSTEM_ID);
+		prefs.setValue(CONNECTION_ROUTER               + ".2", ROUTER);
+		prefs.setValue(CONNECTION_MESSAGE_SERVER       + ".2", MSG_SERVER);
+		prefs.setValue(CONNECTION_MESSAGE_SERVER_PORT  + ".2", MSG_SERVER_PORT);
+		prefs.setValue(CONNECTION_LOAD_BALANCING_GROUP + ".2", LB_GROUP);
+		prefs.setValue(CONNECTION_DEFAULT_USER         + ".2", DEFAULT_USER);
+		prefs.setValue(CONNECTION_DEFAULT_CLIENT       + ".2", DEFAULT_CLIENT);
+		prefs.setValue(CONNECTION_DEFAULT_LOCALE       + ".2", DEFAULT_LOCALE);
 		
 		// a semi-valid connection (wrong default locale, should be ignored) 
 		prefs.setValue(CONNECTION_TYPE                 + ".3", CONNECTION_TYPE_DIRECT);
@@ -102,6 +99,9 @@ public class PreferencesConnectionProviderTest implements IPreferenceConstants {
 		prefs.setValue(CONNECTION_DEFAULT_CLIENT       + ".3", DEFAULT_CLIENT);
 		prefs.setValue(CONNECTION_DEFAULT_LOCALE       + ".3", "ZZZ_INVALID");
 		
+		// an invalid connection (invalid type)
+		prefs.setValue(CONNECTION_TYPE                 + ".4", "foobar");
+		
 	}
 	
 	/**
@@ -112,7 +112,7 @@ public class PreferencesConnectionProviderTest implements IPreferenceConstants {
 	public void testDirectConnection() throws Exception {
 		
 		final ConnectionRegistry registry = ConnectionRegistry.getInstance();
-		final String CONNECTION_ID = "net.sf.rcer.conn.preferences#0";
+		final String CONNECTION_ID = "net.sf.rcer.conn.preferences#1";
 		
 		final Set<String> connectionIDs = registry.getConnectionIDs();
 		assertTrue("Direct connection ID is missing", 
@@ -157,7 +157,7 @@ public class PreferencesConnectionProviderTest implements IPreferenceConstants {
 	public void testLoadBalancingConnection() throws Exception {
 		
 		final ConnectionRegistry registry = ConnectionRegistry.getInstance();
-		final String CONNECTION_ID = "net.sf.rcer.conn.preferences#1";
+		final String CONNECTION_ID = "net.sf.rcer.conn.preferences#2";
 		
 		final Set<String> connectionIDs = registry.getConnectionIDs();
 		assertTrue("Load-balanced connection ID is missing", 
@@ -224,15 +224,6 @@ public class PreferencesConnectionProviderTest implements IPreferenceConstants {
 	}
 	
 	/**
-	 * Tests whether a connection with an invalid type is handled correctly.
-	 * @throws Exception
-	 */
-	@Test(expected=ConnectionNotFoundException.class)
-	public void testInvalidConnectionInvalidType() throws Exception {
-		ConnectionRegistry.getInstance().getConnectionData("net.sf.rcer.conn.preferences#2");
-	}
-	
-	/**
 	 * Tests whether a connection with an invalid locale is handled correctly (that is, whether the locale is ignored).
 	 * @throws Exception
 	 */
@@ -241,6 +232,15 @@ public class PreferencesConnectionProviderTest implements IPreferenceConstants {
 		IConnectionData conn = ConnectionRegistry.getInstance().getConnectionData("net.sf.rcer.conn.preferences#3");
 		assertNotNull("Connection with invalid locale not loaded", conn);
 		assertNull("Default locale should not be set", conn.getDefaultLocale());
+	}
+	
+	/**
+	 * Tests whether a connection with an invalid type is handled correctly.
+	 * @throws Exception
+	 */
+	@Test(expected=ConnectionNotFoundException.class)
+	public void testInvalidConnectionInvalidType() throws Exception {
+		ConnectionRegistry.getInstance().getConnectionData("net.sf.rcer.conn.preferences#4");
 	}
 	
 

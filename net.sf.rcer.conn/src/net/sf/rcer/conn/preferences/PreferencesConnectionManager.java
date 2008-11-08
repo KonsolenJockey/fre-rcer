@@ -66,7 +66,7 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	public Set<String> getConnectionIDs() {
 		Set<String> connectionIDs = new HashSet<String>();
 		final int num = getPreferences().getInt(CONNECTION_NUMBER);
-		for (int i = 0; i < num; i++) {
+		for (int i = 1; i <= num; i++) {
 			connectionIDs.add(Integer.toString(i));
 		}
 		return connectionIDs;

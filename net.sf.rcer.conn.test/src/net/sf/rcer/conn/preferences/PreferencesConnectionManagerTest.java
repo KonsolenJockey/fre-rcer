@@ -18,6 +18,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Set;
 
@@ -49,23 +50,23 @@ public class PreferencesConnectionManagerTest implements IPreferenceConstants {
 	private final static String DEFAULT_USER    = "foo";
 	private final static String DEFAULT_CLIENT  = "123";
 	private final static String DEFAULT_LOCALE  = "DE";
-	
+
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		
+
 		final Preferences prefs = Activator.getDefault().getPluginPreferences();
-		
+
 		// remove all connection preferences
 		final String[] properties = prefs.propertyNames();
 		for (int i = 0; i < properties.length; i++) {
 			prefs.setToDefault(properties[i]);
 		}
-		
+
 		prefs.setValue(CONNECTION_NUMBER, 4);
-		
+
 		// a valid direct connection
 		prefs.setValue(CONNECTION_TYPE                 + ".1", CONNECTION_TYPE_DIRECT);
 		prefs.setValue(CONNECTION_DESCRIPTION          + ".1", DESCRIPTION);
@@ -88,7 +89,7 @@ public class PreferencesConnectionManagerTest implements IPreferenceConstants {
 		prefs.setValue(CONNECTION_DEFAULT_USER         + ".2", DEFAULT_USER);
 		prefs.setValue(CONNECTION_DEFAULT_CLIENT       + ".2", DEFAULT_CLIENT);
 		prefs.setValue(CONNECTION_DEFAULT_LOCALE       + ".2", DEFAULT_LOCALE);
-		
+
 		// a semi-valid connection (wrong default locale, should be ignored) 
 		prefs.setValue(CONNECTION_TYPE                 + ".3", CONNECTION_TYPE_DIRECT);
 		prefs.setValue(CONNECTION_DESCRIPTION          + ".3", DESCRIPTION);
@@ -103,21 +104,21 @@ public class PreferencesConnectionManagerTest implements IPreferenceConstants {
 		// an invalid connection (invalid type) that should not be loaded
 		prefs.setValue(CONNECTION_TYPE                 + ".4", "foobar");
 	}
-	
+
 	/**
 	 * Tests the direct connection.
 	 * @throws Exception
 	 */
 	@Test
 	public void testDirectConnection() throws Exception {
-		
+
 		final PreferencesConnectionManager manager = PreferencesConnectionManager.getInstance();
 		final String CONNECTION_ID = "1";
-		
+
 		final Set<String> connectionIDs = manager.getConnectionIDs();
 		assertTrue("Direct connection ID is missing", 
 				connectionIDs.contains(CONNECTION_ID));
-		
+
 		IConnectionData conn = manager.getConnectionData(CONNECTION_ID);
 		assertNotNull("Direct connection is missing", conn);
 		assertEquals("Connection ID of direct connection",      
@@ -148,21 +149,21 @@ public class PreferencesConnectionManagerTest implements IPreferenceConstants {
 				conn.isDefaultLocaleEditable());
 
 	}
-	
+
 	/**
 	 * Tests the load-balancing connection.
 	 * @throws Exception
 	 */
 	@Test
 	public void testLoadBalancingConnection() throws Exception {
-		
+
 		final PreferencesConnectionManager manager = PreferencesConnectionManager.getInstance();
 		final String CONNECTION_ID = "2";
-		
+
 		final Set<String> connectionIDs = manager.getConnectionIDs();
 		assertTrue("Load-balanced connection ID is missing", 
 				connectionIDs.contains(CONNECTION_ID));
-		
+
 		IConnectionData conn = manager.getConnectionData(CONNECTION_ID);
 		assertNotNull("Load-balanced connection is missing", conn);
 		assertEquals("Connection ID of load-balanced connection", 
@@ -193,9 +194,9 @@ public class PreferencesConnectionManagerTest implements IPreferenceConstants {
 				LocaleRegistry.getInstance().getLocaleByISO(DEFAULT_LOCALE), conn.getDefaultLocale());
 		assertTrue("Default locale changeability of load-balanced connection",         
 				conn.isDefaultLocaleEditable());
-		
+
 	}
-	
+
 	/**
 	 * Tests whether an invalid connection ID is handled correctly.
 	 * @throws Exception
@@ -204,7 +205,7 @@ public class PreferencesConnectionManagerTest implements IPreferenceConstants {
 	public void testInvalidConnectionIDNonNumeric() throws Exception {
 		PreferencesConnectionManager.getInstance().getConnectionData("may_only_contain_numbers");
 	}
-	
+
 	/**
 	 * Tests whether an invalid connection ID is handled correctly.
 	 * @throws Exception
@@ -213,7 +214,7 @@ public class PreferencesConnectionManagerTest implements IPreferenceConstants {
 	public void testInvalidConnectionIDBelowZero() throws Exception {
 		PreferencesConnectionManager.getInstance().getConnectionData("-1");
 	}
-	
+
 	/**
 	 * Tests whether an invalid connection ID is handled correctly.
 	 * @throws Exception
@@ -222,7 +223,7 @@ public class PreferencesConnectionManagerTest implements IPreferenceConstants {
 	public void testInvalidConnectionIDMaxExceeded() throws Exception {
 		PreferencesConnectionManager.getInstance().getConnectionData("9999");
 	}
-	
+
 	/**
 	 * Tests whether a connection with an invalid type is handled correctly.
 	 * @throws Exception
@@ -231,7 +232,7 @@ public class PreferencesConnectionManagerTest implements IPreferenceConstants {
 	public void testInvalidConnectionInvalidType() throws Exception {
 		PreferencesConnectionManager.getInstance().getConnectionData("4");
 	}
-	
+
 	/**
 	 * Tests whether a connection with an invalid locale is handled correctly (that is, whether the locale is ignored).
 	 * @throws Exception
@@ -242,7 +243,7 @@ public class PreferencesConnectionManagerTest implements IPreferenceConstants {
 		assertNotNull("Connection with invalid locale not loaded", conn);
 		assertNull("Default locale should not be set", conn.getDefaultLocale());
 	}
-	
+
 	/**
 	 * Test whether the read method for all connections works.
 	 * @throws Exception
@@ -252,4 +253,17 @@ public class PreferencesConnectionManagerTest implements IPreferenceConstants {
 		final Collection<ConnectionData> connections = PreferencesConnectionManager.getInstance().getConnectionData();
 		assertEquals("Number of connections", 3, connections.size());
 	}
+
+	/**
+	 * Test for {@link PreferencesConnectionManager#getConnectionIDs()}
+	 * @throws Exception
+	 */
+	@Test
+	public void testGetConnectionIDs() throws Exception {
+		final Set<String> ids = PreferencesConnectionManager.getInstance().getConnectionIDs();
+		for(int i = 1; i <= 4; i++) {
+			assertTrue(MessageFormat.format("Connection {0} is missing.", i), ids.contains(Integer.toString(i)));
+		}
+	}
+
 }
