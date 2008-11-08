@@ -106,12 +106,12 @@ public class Locale {
 	 * A {@link Converter} that implements the {@link String} to {@link Locale} conversion.
 	 * @author vwegert
 	 */
-	public static class ToStringConverter extends Converter {
+	public static class FromStringConverter extends Converter {
 
 		/**
 		 * Default constructor.
 		 */
-		public ToStringConverter() {
+		public FromStringConverter() {
 			super(String.class, Locale.class);
 		}
 
@@ -129,7 +129,7 @@ public class Locale {
 				try {
 					return LocaleRegistry.getInstance().getLocaleByISO(isoCode);
 				} catch (LocaleNotFoundException e1) {
-					// maybe this was a string that begins with the locale code (see FromStringConverter)
+					// maybe this was a string that begins with the locale code (see ToStringConverter)
 					try {
 						return LocaleRegistry.getInstance().getLocaleByISO(isoCode.substring(0, isoCode.indexOf(' ')));
 					} catch (LocaleNotFoundException e) {
@@ -146,7 +146,7 @@ public class Locale {
 	 * @author vwegert
 	 *
 	 */
-	public static class FromStringConverter extends Converter  {
+	public static class ToStringConverter extends Converter  {
 
 		private boolean includeDescription;
 
@@ -154,7 +154,7 @@ public class Locale {
 		 * Default constructor.
 		 * @param includeDescription whether to include the description in the output text. 
 		 */
-		public FromStringConverter(boolean includeDescription) {
+		public ToStringConverter(boolean includeDescription) {
 			super(Locale.class, String.class);
 			this.includeDescription = includeDescription;
 		}

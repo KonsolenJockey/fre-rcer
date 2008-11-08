@@ -124,6 +124,11 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 	private Label defaultLocaleLabel;
 	private Combo defaultLocaleCombo;
 
+	/**
+	 * The {@link DataBindingContext} used.
+	 */
+	private DataBindingContext context;
+
 
 	/**
 	 * A {@link ControlUpdater} that will hide or show controls depending on an {@link IObservableValue}.
@@ -581,7 +586,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		UpdateValueStrategy targetToModel;
 
-		DataBindingContext context = new DataBindingContext();
+		context = new DataBindingContext();
 
 		// observe changes in the selection of the connection list
 		IObservableValue selection = ViewersObservables.observeSingleSelection(connectionViewer);
@@ -677,8 +682,8 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 		// bind the default locale 
 		context.bindValue(SWTObservables.observeSelection(defaultLocaleCombo), 
 				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "defaultLocale", Locale.class), 
-				new UpdateValueStrategy().setConverter(new Locale.ToStringConverter()), 
-				new UpdateValueStrategy().setConverter(new Locale.FromStringConverter(false)));
+				new UpdateValueStrategy().setConverter(new Locale.FromStringConverter()), 
+				new UpdateValueStrategy().setConverter(new Locale.ToStringConverter(false)));
 
 		// supply the error label with the aggregated status
 		context.bindValue(SWTObservables.observeText(errorDisplayLabel),
@@ -702,6 +707,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean performOk() {
+		context.updateModels();
 		PreferencesConnectionManager.getInstance().saveConnectionData(connections);
 		return super.performOk();
 	}
