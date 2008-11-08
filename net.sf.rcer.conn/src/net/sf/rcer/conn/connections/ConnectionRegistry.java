@@ -297,7 +297,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 	}
 	
 	/**
-	 * @return a list of all connections IDs, whether the connections are statically defined or dynamically provided.
+	 * @return a list of all connections IDs, whether the connections are statically defined or dynamically provided
 	 */
 	public Set<String> getConnectionIDs() {
 		Set<String> connectionIDs = new HashSet<String>();
@@ -342,5 +342,24 @@ public class ConnectionRegistry implements IRegistryEventListener {
 			}
 			return staticConnections.get(connectionID);
 		}
+	}
+	
+	/**
+	 * @return a set of all connections, whether they are statically defined or dynamically provided
+	 */
+	public Set<IConnectionData> getConnectionData() {
+		Set<IConnectionData> connections = new HashSet<IConnectionData>();
+		for (final String id: getConnectionIDs()) {
+			try {
+				connections.add(getConnectionData(id));
+			} catch (ConnectionNotFoundException e) {
+				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
+						MessageFormat.format("Exception occurred retrieving details of connection {0}.", id), e));
+			} catch (ProviderNotFoundException e) {
+				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
+						MessageFormat.format("Exception occurred retrieving details of connection {0}.", id), e));
+			}
+		}
+		return connections;
 	}
 }

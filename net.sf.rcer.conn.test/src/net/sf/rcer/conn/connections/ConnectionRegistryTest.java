@@ -31,6 +31,11 @@ import org.junit.Test;
  */
 public class ConnectionRegistryTest {
 
+	private final String CONNECTION_ID_DIRECT_STATIC = "net.sf.rcer.conn.direct_connection_1";
+	private final String CONNECTION_ID_LB_STATIC = "net.sf.rcer.conn.balanced_connection_1";
+	private final String CONNECTION_ID_DIRECT_DYNAMIC = "net.sf.rcer.conn.valid_provider_1#CONN_DIRECT";
+	private final String CONNECTION_ID_LB_DYNAMIC = "net.sf.rcer.conn.valid_provider_1#CONN_LOAD_BALANCED";
+	
 	private ConnectionRegistry registry;
 	
 	/**
@@ -152,17 +157,14 @@ public class ConnectionRegistryTest {
 	 */
 	@Test
 	public void testStaticDirectConnection() throws Exception {
-		
-		final String CONNECTION_ID = "net.sf.rcer.conn.direct_connection_1";
-		
 		final Set<String> connectionIDs = registry.getConnectionIDs();
 		assertTrue("Direct static connection ID is missing", 
-				connectionIDs.contains(CONNECTION_ID));
+				connectionIDs.contains(CONNECTION_ID_DIRECT_STATIC));
 		
-		IConnectionData conn = registry.getConnectionData(CONNECTION_ID);
+		IConnectionData conn = registry.getConnectionData(CONNECTION_ID_DIRECT_STATIC);
 		assertNotNull("Direct static connection is missing", conn);
 		assertEquals("Connection ID of static direct connection", 
-				CONNECTION_ID, conn.getConnectionID());
+				CONNECTION_ID_DIRECT_STATIC, conn.getConnectionID());
 		assertEquals("Description of static direct connection", 
 				"Direct Connection 1", conn.getDescription());
 		assertEquals("System ID of static direct connection", 
@@ -216,17 +218,14 @@ public class ConnectionRegistryTest {
 	 */
 	@Test
 	public void testStaticLoadBalancingConnection() throws Exception {
-		
-		final String CONNECTION_ID = "net.sf.rcer.conn.balanced_connection_1";
-		
 		final Set<String> connectionIDs = registry.getConnectionIDs();
 		assertTrue("Load-balanced static connection ID is missing", 
-				connectionIDs.contains(CONNECTION_ID));
+				connectionIDs.contains(CONNECTION_ID_LB_STATIC));
 		
-		IConnectionData conn = registry.getConnectionData(CONNECTION_ID);
+		IConnectionData conn = registry.getConnectionData(CONNECTION_ID_LB_STATIC);
 		assertNotNull("Load-balanced static connection is missing", conn);
 		assertEquals("Connection ID of static load-balanced connection", 
-				CONNECTION_ID, conn.getConnectionID());
+				CONNECTION_ID_LB_STATIC, conn.getConnectionID());
 		assertEquals("Description of static load-balanced connection", 
 				"Load-Balancing Connection 1", conn.getDescription());
 		assertEquals("System ID of static load-balanced connection", 
@@ -271,17 +270,14 @@ public class ConnectionRegistryTest {
 	 */
 	@Test
 	public void testDynamicDirectConnection() throws Exception {
-		
-		final String CONNECTION_ID = "net.sf.rcer.conn.valid_provider_1#CONN_DIRECT";
-		
 		final Set<String> connectionIDs = registry.getConnectionIDs();
 		assertTrue("Direct dynamic connection ID is missing", 
-				connectionIDs.contains(CONNECTION_ID));
+				connectionIDs.contains(CONNECTION_ID_DIRECT_DYNAMIC));
 		
-		IConnectionData conn = registry.getConnectionData(CONNECTION_ID);
+		IConnectionData conn = registry.getConnectionData(CONNECTION_ID_DIRECT_DYNAMIC);
 		assertNotNull("Direct dynamic connection is missing", conn);
 		assertEquals("Connection ID of dynamic direct connection", 
-				CONNECTION_ID, conn.getConnectionID());
+				CONNECTION_ID_DIRECT_DYNAMIC, conn.getConnectionID());
 		assertEquals("Description of dynamic direct connection", 
 				"Direct Connection", conn.getDescription());
 		assertEquals("System ID of dynamic direct connection", 
@@ -315,17 +311,14 @@ public class ConnectionRegistryTest {
 	 */
 	@Test
 	public void testDynamicLoadBalancingConnection() throws Exception {
-		
-		final String CONNECTION_ID = "net.sf.rcer.conn.valid_provider_1#CONN_LOAD_BALANCED";
-		
 		final Set<String> connectionIDs = registry.getConnectionIDs();
 		assertTrue("Load-balanced dynamic connection ID is missing", 
-				connectionIDs.contains(CONNECTION_ID));
+				connectionIDs.contains(CONNECTION_ID_LB_DYNAMIC));
 		
-		IConnectionData conn = registry.getConnectionData(CONNECTION_ID);
+		IConnectionData conn = registry.getConnectionData(CONNECTION_ID_LB_DYNAMIC);
 		assertNotNull("Load-balanced dynamic connection is missing", conn);
 		assertEquals("Connection ID of dynamic load-balanced connection", 
-				CONNECTION_ID, conn.getConnectionID());
+				CONNECTION_ID_LB_DYNAMIC, conn.getConnectionID());
 		assertEquals("Description of dynamic load-balanced connection", 
 				"Load-Balancing Connection", conn.getDescription());
 		assertEquals("System ID of dynamic load-balanced connection", 
@@ -355,8 +348,17 @@ public class ConnectionRegistryTest {
 		
 	}
 	
-
-	
-	
+	/**
+	 * Test for {@link ConnectionRegistry#getConnectionData()} 
+	 * @throws Exception
+	 */
+	@Test
+	public void testGetConnectionData() throws Exception {
+		final Set<IConnectionData> connections = registry.getConnectionData();
+		assertTrue("Direct static connection is missing", 
+				connections.contains(registry.getConnectionData(CONNECTION_ID_DIRECT_STATIC)));
+		assertTrue("Load-balanced static connection is missing", 
+				connections.contains(registry.getConnectionData(CONNECTION_ID_LB_STATIC)));
+	}
 
 }
