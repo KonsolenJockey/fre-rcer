@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="net.sf.rcer.conn.saplocales" name="SAP R/3 Locales" schema="schema/net.sf.rcer.conn.saplocales.exsd"/>
    <extension-point id="net.sf.rcer.conn.connections" name="SAP R/3 System Connection Data" schema="schema/net.sf.rcer.conn.connections.exsd"/>
+   <extension-point id="net.sf.rcer.conn.credentials" name="SAP R/3 Logon Credentials Provider" schema="schema/net.sf.rcer.conn.credentials.exsd"/>
    <extension point="net.sf.rcer.conn.saplocales">
       <locale id="0" iso="SR" description="%locale.description.sr" />
       <locale id="1" iso="ZH" description="%locale.description.zh" />
