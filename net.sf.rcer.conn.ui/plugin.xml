@@ -15,5 +15,31 @@
             name="Connections">
       </page>
    </extension>
+   <extension
+         point="net.sf.rcer.conn.credentials">
+      <credentialsProviderWithSelection
+            class="net.sf.rcer.conn.ui.login.LoginProvider"
+            id="net.sf.rcer.conn.ui.loginDialog"
+            priority="5000">
+      </credentialsProviderWithSelection>
+      <credentialsProviderWithoutSelection
+            class="net.sf.rcer.conn.ui.login.LoginProvider"
+            id="net.sf.rcer.conn.ui.loginDialog"
+            priority="5000">
+      </credentialsProviderWithoutSelection>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.trim.status">
+         <toolbar
+               id="net.sf.rcer.conn.ui.connectionStatusToolbar">
+            <control
+                  class="net.sf.rcer.conn.ui.status.ConnectionStatusDisplay"
+                  id="net.sf.rcer.conn.ui.connectionStatusDisplay">
+            </control>
+         </toolbar>
+      </menuContribution>
+   </extension>
 
 </plugin>
