@@ -10,7 +10,7 @@ import net.sf.rcer.conn.locales.Locale;
  * @author vwegert
  *
  */
-public class Credentials {
+public class Credentials implements IDestinationData {
 
 	/**
 	 * Auxiliary class to manage the property change listeners.
@@ -68,8 +68,8 @@ public class Credentials {
 		return connectionData;
 	}
 
-	/**
-	 * @return the client
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IDestinationData#getClient()
 	 */
 	public String getClient() {
 		return client;
@@ -87,8 +87,8 @@ public class Credentials {
 		propertyChangeSupport.firePropertyChange("client", oldValue, client);
 	}
 
-	/**
-	 * @return the user name
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IDestinationData#getUserName()
 	 */
 	public String getUserName() {
 		return userName;
@@ -122,8 +122,8 @@ public class Credentials {
 		propertyChangeSupport.firePropertyChange("password", oldValue, password);
 	}
 
-	/**
-	 * @return the locale
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IDestinationData#getLocale()
 	 */
 	public Locale getLocale() {
 		return locale;
@@ -235,6 +235,125 @@ public class Credentials {
 	@Override
 	public String toString() {
 		return connectionData.toString();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#getApplicationServer()
+	 */
+	public String getApplicationServer() {
+		return connectionData.getApplicationServer();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#getConnectionType()
+	 */
+	public ConnectionType getConnectionType() {
+		return connectionData.getConnectionType();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#getDefaultClient()
+	 */
+	public String getDefaultClient() {
+		return connectionData.getDefaultClient();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#getDefaultLocale()
+	 */
+	public Locale getDefaultLocale() {
+		return connectionData.getDefaultLocale();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#getDefaultUser()
+	 */
+	public String getDefaultUser() {
+		return connectionData.getDefaultUser();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#getDescription()
+	 */
+	public String getDescription() {
+		return connectionData.getDescription();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#getLoadBalancingGroup()
+	 */
+	public String getLoadBalancingGroup() {
+		return connectionData.getLoadBalancingGroup();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#getMessageServer()
+	 */
+	public String getMessageServer() {
+		return connectionData.getMessageServer();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#getMessageServerPort()
+	 */
+	public int getMessageServerPort() {
+		return connectionData.getMessageServerPort();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#getRouter()
+	 */
+	public String getRouter() {
+		return connectionData.getRouter();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#getSystemID()
+	 */
+	public String getSystemID() {
+		return connectionData.getSystemID();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#getSystemNumber()
+	 */
+	public int getSystemNumber() {
+		return connectionData.getSystemNumber();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#isDefaultClientEditable()
+	 */
+	public boolean isDefaultClientEditable() {
+		return connectionData.isDefaultClientEditable();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#isDefaultLocaleEditable()
+	 */
+	public boolean isDefaultLocaleEditable() {
+		return connectionData.isDefaultLocaleEditable();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#isDefaultUserEditable()
+	 */
+	public boolean isDefaultUserEditable() {
+		return connectionData.isDefaultUserEditable();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#isDirectConnection()
+	 */
+	public boolean isDirectConnection() {
+		return connectionData.isDirectConnection();
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.connections.IConnectionData#isLoadBalancedConnection()
+	 */
+	public boolean isLoadBalancedConnection() {
+		return connectionData.isLoadBalancedConnection();
 	}
 
 }
