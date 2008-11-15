@@ -52,7 +52,7 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 	private Label label;
 
 	/**
-	 * TODO Write documentation for constructor.
+	 * Default constructor.
 	 */
 	public ConnectionStatusDisplay() {
 		ConnectionManager.getInstance().addConnectionStateListener(this);
@@ -253,12 +253,11 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 	}
 
 	/**
-	 * TODO Write documentation for method. 
+	 * Displays the details of the primary connection and the system behind it. 
 	 * @param connection
 	 */
 	protected void displaySystemInformation(IConnectionData connection) {
-		// TODO Auto-generated method stub
-
+		// TODO Implement the system information display.
 	}
 
 	/* (non-Javadoc)
