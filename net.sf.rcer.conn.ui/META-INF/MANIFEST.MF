@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: RCR Connection UI Plug-in
+Bundle-Name: SAP R/3 Connection Management (UI)
 Bundle-SymbolicName: net.sf.rcer.conn.ui;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -12,3 +12,4 @@ Require-Bundle: net.sf.rcer.conn;bundle-version="1.0.0",
  org.eclipse.core.databinding.beans;bundle-version="1.1.1"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: net.sf.rcer.conn.ui.Activator
+Bundle-Vendor: http://www.sf.net/projects/rcer
