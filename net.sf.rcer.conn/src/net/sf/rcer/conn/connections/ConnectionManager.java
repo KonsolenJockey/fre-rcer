@@ -49,6 +49,8 @@ import com.sap.conn.jco.ext.Environment;
  */
 public class ConnectionManager  {
 
+	// TODO add some unit tests for this class
+	
 	/**
 	 * The internal implementation of the {@link DestinationDataProvider} interface.
 	 * @author vwegert

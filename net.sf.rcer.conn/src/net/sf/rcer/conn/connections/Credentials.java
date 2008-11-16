@@ -10,6 +10,8 @@ import java.beans.PropertyChangeSupport;
  */
 public class Credentials implements ICredentials {
 
+	// TODO add some unit tests for this class
+	
 	/**
 	 * Auxiliary class to manage the property change listeners.
 	 */

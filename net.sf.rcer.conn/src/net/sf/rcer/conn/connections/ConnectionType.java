@@ -78,7 +78,9 @@ public enum ConnectionType {
 		 * @see org.eclipse.core.databinding.conversion.IConverter#convert(java.lang.Object)
 		 */
 		public Object convert(Object fromObject) {
-			if (ConnectionType.DIRECT.toString().equals(fromObject)) {
+			if ((fromObject == null) || ("".equals(fromObject))) {
+				return null;
+			} else if (ConnectionType.DIRECT.toString().equals(fromObject)) {
 				return ConnectionType.DIRECT;
 			} else if (ConnectionType.LOAD_BALANCED.toString().equals(fromObject)) {
 				return ConnectionType.LOAD_BALANCED;
@@ -106,7 +108,13 @@ public enum ConnectionType {
 		 * @see org.eclipse.core.databinding.conversion.IConverter#convert(java.lang.Object)
 		 */
 		public Object convert(Object fromObject) {
-			return fromObject.toString();
+			if (fromObject == null) {
+				return "";
+			} else if (fromObject instanceof ConnectionType) {
+				return fromObject.toString();
+			} else {
+				throw new IllegalArgumentException(MessageFormat.format("Unsupported value {0}", fromObject));
+			}
 		}
 
 	}

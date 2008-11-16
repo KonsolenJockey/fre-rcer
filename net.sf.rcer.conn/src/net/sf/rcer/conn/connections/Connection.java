@@ -23,6 +23,8 @@ import net.sf.rcer.conn.locales.Locale;
  */
 public class Connection extends ConnectionData implements IConnection {
 
+	// TODO add some unit tests for this class
+	
 	/**
 	 * The actual client to log on to.
 	 */
