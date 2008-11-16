@@ -17,9 +17,9 @@ import java.util.Set;
 import net.sf.rcer.conn.connections.ConnectionException;
 import net.sf.rcer.conn.connections.ConnectionManager;
 import net.sf.rcer.conn.connections.ConnectionRegistry;
+import net.sf.rcer.conn.connections.IConnection;
 import net.sf.rcer.conn.connections.IConnectionData;
 import net.sf.rcer.conn.connections.IConnectionStateListener;
-import net.sf.rcer.conn.connections.IDestinationData;
 import net.sf.rcer.conn.ui.Activator;
 
 import org.eclipse.core.runtime.IStatus;
@@ -263,21 +263,21 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.connections.IConnectionStateListener#connectionActivated(net.sf.rcer.conn.connections.IDestinationData)
 	 */
-	public void connectionActivated(IDestinationData connection) {
+	public void connectionActivated(IConnection connection) {
 		// not required
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.connections.IConnectionStateListener#connectionDeactivated(net.sf.rcer.conn.connections.IDestinationData)
 	 */
-	public void connectionDeactivated(IDestinationData connection) {
+	public void connectionDeactivated(IConnection connection) {
 		// not required
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.connections.IConnectionStateListener#primaryConnectionChanged(net.sf.rcer.conn.connections.IDestinationData)
 	 */
-	public void primaryConnectionChanged(IDestinationData newPrimaryConnection) {
+	public void primaryConnectionChanged(IConnection newPrimaryConnection) {
 		if (label != null) {
 			final Display display = getWorkbenchWindow().getShell().getDisplay();
 			if (newPrimaryConnection == null) {

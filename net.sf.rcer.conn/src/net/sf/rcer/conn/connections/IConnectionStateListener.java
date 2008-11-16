@@ -24,18 +24,18 @@ public interface IConnectionStateListener {
 	 * This method is called after a connection was activated successfully.
 	 * @param connection
 	 */
-	public void connectionActivated(IDestinationData connection);
+	public void connectionActivated(IConnection connection);
 	
 	/**
 	 * This method is called after a connection was deactivated.
 	 * @param connection
 	 */
-	public void connectionDeactivated(IDestinationData connection);
+	public void connectionDeactivated(IConnection connection);
 	
 	/**
 	 * This method is called after the primary connection has changed. 
 	 * @param newPrimaryConnection the new primary connection, or <code>null</code> if no primary connection is active
 	 */
-	public void primaryConnectionChanged(IDestinationData newPrimaryConnection);
+	public void primaryConnectionChanged(IConnection newPrimaryConnection);
 	
 }

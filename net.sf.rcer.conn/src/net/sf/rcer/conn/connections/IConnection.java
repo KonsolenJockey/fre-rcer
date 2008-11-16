@@ -14,12 +14,12 @@ package net.sf.rcer.conn.connections;
 import net.sf.rcer.conn.locales.Locale;
 
 /**
- * The actual data of a destination at runtime. This interface comprises the connection data represented by 
+ * The actual data of a connection at runtime. This interface comprises the connection data represented by 
  * {@link IConnectionData} and adds the actual client, user name and locale.
  * @author vwegert
  *
  */
-public interface IDestinationData extends IConnectionData {
+public interface IConnection extends IConnectionData {
 
 	/**
 	 * @return the actual client

@@ -10,7 +10,7 @@ import net.sf.rcer.conn.locales.Locale;
  * @author vwegert
  *
  */
-public class Credentials implements IDestinationData {
+public class Credentials implements IConnection {
 
 	/**
 	 * Auxiliary class to manage the property change listeners.
@@ -69,7 +69,7 @@ public class Credentials implements IDestinationData {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IDestinationData#getClient()
+	 * @see net.sf.rcer.conn.connections.IConnection#getClient()
 	 */
 	public String getClient() {
 		return client;
@@ -88,7 +88,7 @@ public class Credentials implements IDestinationData {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IDestinationData#getUserName()
+	 * @see net.sf.rcer.conn.connections.IConnection#getUserName()
 	 */
 	public String getUserName() {
 		return userName;
@@ -123,7 +123,7 @@ public class Credentials implements IDestinationData {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IDestinationData#getLocale()
+	 * @see net.sf.rcer.conn.connections.IConnection#getLocale()
 	 */
 	public Locale getLocale() {
 		return locale;

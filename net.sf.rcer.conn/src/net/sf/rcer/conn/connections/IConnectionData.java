@@ -16,8 +16,8 @@ import net.sf.rcer.conn.locales.Locale;
 /**
  * A set of connection data used to connect to a SAP R/3 system. Objects implementing this interface usually 
  * describe the way to connect to a SAP R/3 system. If you're looking for an established connection, 
- * see {@link IDestinationData}.
- * @see IDestinationData
+ * see {@link IConnection}.
+ * @see IConnection
  * @author vwegert
  *
  */
