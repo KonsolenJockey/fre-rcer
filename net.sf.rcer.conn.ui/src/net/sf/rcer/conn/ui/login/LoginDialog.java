@@ -146,8 +146,8 @@ public class LoginDialog extends TitleAreaDialog {
 	private WritableList createCredentials(Set<IConnectionData> connections) {
 		assert(connections.size() > 0);
 		Map<String, Credentials> map = new TreeMap<String, Credentials>();
-		for (IConnectionData conn: connections) {
-			map.put(conn.getDescription(), new Credentials(conn));
+		for (IConnectionData connectionData: connections) {
+			map.put(connectionData.getDescription(), new Credentials(connectionData));
 		}
 		WritableList result = new WritableList();
 		result.addAll(map.values());

@@ -29,7 +29,7 @@ public class ProvidedConnectionData implements IConnectionData {
 	/**
 	 * The wrapped connection. 
 	 */
-	private IConnectionData connection;
+	private IConnectionData connectionData;
 
 	/**
 	 * @param providerID
@@ -38,133 +38,133 @@ public class ProvidedConnectionData implements IConnectionData {
 	public ProvidedConnectionData(String providerID, IConnectionData connection) {
 		super();
 		this.providerID = providerID;
-		this.connection = connection;
+		this.connectionData = connection;
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#getApplicationServer()
 	 */
 	public String getApplicationServer() {
-		return connection.getApplicationServer();
+		return connectionData.getApplicationServer();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#getConnectionID()
 	 */
 	public String getConnectionID() {
-		return providerID + "#" + connection.getConnectionID();
+		return providerID + "#" + connectionData.getConnectionID();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#getDefaultClient()
 	 */
 	public String getDefaultClient() {
-		return connection.getDefaultClient();
+		return connectionData.getDefaultClient();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#getDefaultLocale()
 	 */
 	public Locale getDefaultLocale() {
-		return connection.getDefaultLocale();
+		return connectionData.getDefaultLocale();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#getDefaultUser()
 	 */
 	public String getDefaultUser() {
-		return connection.getDefaultUser();
+		return connectionData.getDefaultUser();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#getDescription()
 	 */
 	public String getDescription() {
-		return connection.getDescription();
+		return connectionData.getDescription();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#getLoadBalancingGroup()
 	 */
 	public String getLoadBalancingGroup() {
-		return connection.getLoadBalancingGroup();
+		return connectionData.getLoadBalancingGroup();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#getMessageServer()
 	 */
 	public String getMessageServer() {
-		return connection.getMessageServer();
+		return connectionData.getMessageServer();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#getMessageServerPort()
 	 */
 	public int getMessageServerPort() {
-		return connection.getMessageServerPort();
+		return connectionData.getMessageServerPort();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#getRouter()
 	 */
 	public String getRouter() {
-		return connection.getRouter();
+		return connectionData.getRouter();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#getSystemID()
 	 */
 	public String getSystemID() {
-		return connection.getSystemID();
+		return connectionData.getSystemID();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#getSystemNumber()
 	 */
 	public int getSystemNumber() {
-		return connection.getSystemNumber();
+		return connectionData.getSystemNumber();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#isDefaultClientEditable()
 	 */
 	public boolean isDefaultClientEditable() {
-		return connection.isDefaultClientEditable();
+		return connectionData.isDefaultClientEditable();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#isDefaultLocaleEditable()
 	 */
 	public boolean isDefaultLocaleEditable() {
-		return connection.isDefaultLocaleEditable();
+		return connectionData.isDefaultLocaleEditable();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#isDefaultUserEditable()
 	 */
 	public boolean isDefaultUserEditable() {
-		return connection.isDefaultUserEditable();
+		return connectionData.isDefaultUserEditable();
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#isDirectConnection()
 	 */
 	public boolean isDirectConnection() {
-		return connection.isDirectConnection();
+		return connectionData.isDirectConnection();
 	}
 	
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.connections.IConnectionData#isLoadBalancedConnection()
 	 */
 	public boolean isLoadBalancedConnection() {
-		return connection.isLoadBalancedConnection();
+		return connectionData.isLoadBalancedConnection();
 	}
 	
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.connections.IConnectionData#getConnectionType()
 	 */
 	public ConnectionType getConnectionType() {
-		return connection.getConnectionType();
+		return connectionData.getConnectionType();
 	}
 	
 	/* (non-Javadoc)
@@ -172,7 +172,7 @@ public class ProvidedConnectionData implements IConnectionData {
 	 */
 	@Override
 	public String toString() {
-		return connection.toString();
+		return connectionData.toString();
 	}
 	
 }

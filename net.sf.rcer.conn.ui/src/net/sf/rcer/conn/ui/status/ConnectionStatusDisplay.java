@@ -99,12 +99,12 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 		} else {
 			if (connections.size() == 1) {
 				// only one connection available - create a very simple menu
-				IConnectionData connection = connections.iterator().next();
+				IConnectionData connectionData = connections.iterator().next();
 
 				MenuItem itemConnectSingle = new MenuItem(menu, SWT.PUSH);
-				itemConnectSingle.setText(MessageFormat.format("Connect to {0}...", connection.getDescription()));
-				itemConnectSingle.setData(connection);
-				itemConnectSingle.setEnabled(!manager.isActive(connection));
+				itemConnectSingle.setText(MessageFormat.format("Connect to {0}...", connectionData.getDescription()));
+				itemConnectSingle.setData(connectionData);
+				itemConnectSingle.setEnabled(!manager.isActive(connectionData));
 				itemConnectSingle.addSelectionListener(new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
@@ -115,9 +115,9 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 				});
 
 				MenuItem itemDisconnectSingle = new MenuItem(menu, SWT.PUSH);
-				itemDisconnectSingle.setText(MessageFormat.format("Disconnect from {0}", connection.getDescription()));
-				itemDisconnectSingle.setData(connection);
-				itemDisconnectSingle.setEnabled(manager.isActive(connection));
+				itemDisconnectSingle.setText(MessageFormat.format("Disconnect from {0}", connectionData.getDescription()));
+				itemDisconnectSingle.setData(connectionData);
+				itemDisconnectSingle.setEnabled(manager.isActive(connectionData));
 				itemDisconnectSingle.addSelectionListener(new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
@@ -134,11 +134,11 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 				MenuItem itemConnectMultiple = new MenuItem(menu, SWT.CASCADE);
 				itemConnectMultiple.setText("Connect");
 				Menu menuConnectMultiple = new Menu(getWorkbenchWindow().getShell(), SWT.DROP_DOWN);
-				for (IConnectionData connection: connections) {
+				for (IConnectionData connectionData: connections) {
 					MenuItem itemConnectSingle = new MenuItem(menuConnectMultiple, SWT.PUSH);
-					itemConnectSingle.setText(connection.getDescription());
-					itemConnectSingle.setData(connection);
-					itemConnectSingle.setEnabled(!manager.isActive(connection));
+					itemConnectSingle.setText(connectionData.getDescription());
+					itemConnectSingle.setData(connectionData);
+					itemConnectSingle.setEnabled(!manager.isActive(connectionData));
 					itemConnectSingle.addSelectionListener(new SelectionAdapter() {
 						@Override
 						public void widgetSelected(SelectionEvent e) {
@@ -154,11 +154,11 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 				MenuItem itemSelectPrimary = new MenuItem(menu, SWT.CASCADE);
 				itemSelectPrimary.setText("Select Primary Connection");
 				Menu menuSelectPrimary = new Menu(getWorkbenchWindow().getShell(), SWT.DROP_DOWN);
-				for (IConnectionData connection: connections) {
+				for (IConnectionData connectionData: connections) {
 					MenuItem itemConnectSingle = new MenuItem(menuSelectPrimary, SWT.PUSH);
-					itemConnectSingle.setText(connection.getDescription());
-					itemConnectSingle.setData(connection);
-					itemConnectSingle.setEnabled(!manager.isPrimaryConnection(connection));
+					itemConnectSingle.setText(connectionData.getDescription());
+					itemConnectSingle.setData(connectionData);
+					itemConnectSingle.setEnabled(!manager.isPrimaryConnection(connectionData));
 					itemConnectSingle.addSelectionListener(new SelectionAdapter() {
 						@Override
 						public void widgetSelected(SelectionEvent e) {
@@ -210,11 +210,11 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 
 	/**
 	 * Activates a connection. 
-	 * @param connection 
+	 * @param connectionData 
 	 */
-	protected void connect(IConnectionData connection) {
+	protected void connect(IConnectionData connectionData) {
 		try {
-			ConnectionManager.getInstance().getDestination(connection);
+			ConnectionManager.getInstance().getDestination(connectionData);
 		} catch (JCoException e) {
 			ErrorDialog.openError(getWorkbenchWindow().getShell(), "SAP R/3 Connection", 
 					"Unable to connect to the SAP R/3 system.", 
@@ -228,11 +228,11 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 
 	/**
 	 * Changes the primary connection. 
-	 * @param connection
+	 * @param connectionData
 	 */
-	protected void setPrimaryConnection(IConnectionData connection) {
+	protected void setPrimaryConnection(IConnectionData connectionData) {
 		try {
-			ConnectionManager.getInstance().setPrimaryDestination(connection);
+			ConnectionManager.getInstance().setPrimaryDestination(connectionData);
 		} catch (JCoException e) {
 			ErrorDialog.openError(getWorkbenchWindow().getShell(), "SAP R/3 Connection", 
 					"Unable to connect to the SAP R/3 system.", 
@@ -246,17 +246,17 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 
 	/**
 	 * Deactivates a connection. 
-	 * @param connection
+	 * @param connectionData
 	 */
-	protected void disconnect(IConnectionData connection) {
-		ConnectionManager.getInstance().closeDestination(connection);
+	protected void disconnect(IConnectionData connectionData) {
+		ConnectionManager.getInstance().closeDestination(connectionData);
 	}
 
 	/**
 	 * Displays the details of the primary connection and the system behind it. 
-	 * @param connection
+	 * @param connectionData
 	 */
-	protected void displaySystemInformation(IConnectionData connection) {
+	protected void displaySystemInformation(IConnectionData connectionData) {
 		// TODO Implement the system information display.
 	}
 

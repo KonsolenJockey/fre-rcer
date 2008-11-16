@@ -51,7 +51,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 	/**
 	 * A map of all the connections that were defined using the extension point only.
 	 */
-	private Map<String, IConnectionData> staticConnections = new HashMap<String, IConnectionData>();
+	private Map<String, IConnectionData> staticConnectionData = new HashMap<String, IConnectionData>();
 	
 	/**
 	 * A map of all the connection providers can supply dynamic connection data.
@@ -125,7 +125,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 					// add or modify a static connection
 					final String localID = element.getAttribute("id");
 					final String globalID = pluginID + "." + localID;
-					if (staticConnections.containsKey(globalID)) {
+					if (staticConnectionData.containsKey(globalID)) {
 						updateStaticConnection(element, globalID);
 					} else {
 						addStaticConnection(element, globalID);
@@ -173,8 +173,8 @@ public class ConnectionRegistry implements IRegistryEventListener {
 					// remove a static connection
 					final String localID = element.getAttribute("id");
 					final String globalID = pluginID + "." + localID;
-					if (staticConnections.containsKey(globalID)) {
-						staticConnections.remove(globalID);
+					if (staticConnectionData.containsKey(globalID)) {
+						staticConnectionData.remove(globalID);
 					}
 					
 				} else if (element.getName().equals("provider")) {
@@ -247,7 +247,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 			}
 		}
 		
-		staticConnections.put(connectionID, connection);
+		staticConnectionData.put(connectionID, connection);
 		
 	}
 
@@ -303,7 +303,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 		Set<String> connectionIDs = new HashSet<String>();
 		
 		// add the static connections
-		connectionIDs.addAll(staticConnections.keySet());
+		connectionIDs.addAll(staticConnectionData.keySet());
 		
 		// add the connections provided by all connection providers
 		for(final String providerID: connectionProviders.keySet()) {
@@ -337,10 +337,10 @@ public class ConnectionRegistry implements IRegistryEventListener {
 			}
 			return new ProvidedConnectionData(parts[0], connectionProviders.get(parts[0]).getConnectionData(parts[1]));
 		} else {
-			if (!staticConnections.containsKey(connectionID)) {
+			if (!staticConnectionData.containsKey(connectionID)) {
 				throw new ConnectionNotFoundException(connectionID);
 			}
-			return staticConnections.get(connectionID);
+			return staticConnectionData.get(connectionID);
 		}
 	}
 	
@@ -348,10 +348,10 @@ public class ConnectionRegistry implements IRegistryEventListener {
 	 * @return a set of all connections, whether they are statically defined or dynamically provided
 	 */
 	public Set<IConnectionData> getConnectionData() {
-		Set<IConnectionData> connections = new HashSet<IConnectionData>();
+		Set<IConnectionData> connectionData = new HashSet<IConnectionData>();
 		for (final String id: getConnectionIDs()) {
 			try {
-				connections.add(getConnectionData(id));
+				connectionData.add(getConnectionData(id));
 			} catch (ConnectionNotFoundException e) {
 				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
 						MessageFormat.format("Exception occurred retrieving details of connection {0}.", id), e));
@@ -360,6 +360,6 @@ public class ConnectionRegistry implements IRegistryEventListener {
 						MessageFormat.format("Exception occurred retrieving details of connection {0}.", id), e));
 			}
 		}
-		return connections;
+		return connectionData;
 	}
 }

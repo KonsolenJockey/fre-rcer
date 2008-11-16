@@ -74,7 +74,7 @@ public class ConnectionManager  {
 			if (credentials == null) {
 				return null;
 			}
-			final IConnectionData connection = credentials.getConnectionData();
+			final IConnectionData connectionData = credentials.getConnectionData();
 			Properties p = new Properties();
 
 			p.setProperty(JCO_CLIENT, credentials.getClient());
@@ -82,19 +82,19 @@ public class ConnectionManager  {
 			p.setProperty(JCO_PASSWD, credentials.getPassword());
 			p.setProperty(JCO_LANG,   credentials.getLocale().getID());
 
-			switch(connection.getConnectionType()) {
+			switch(connectionData.getConnectionType()) {
 			case DIRECT:
-				p.setProperty(JCO_ASHOST, connection.getApplicationServer());
-				p.setProperty(JCO_SYSNR,  Integer.toString(connection.getSystemNumber()));
+				p.setProperty(JCO_ASHOST, connectionData.getApplicationServer());
+				p.setProperty(JCO_SYSNR,  Integer.toString(connectionData.getSystemNumber()));
 				break;
 			case LOAD_BALANCED:
-				p.setProperty(JCO_R3NAME, connection.getSystemID());
-				p.setProperty(JCO_MSHOST, connection.getMessageServer());
-				p.setProperty(JCO_MSSERV, Integer.toString(connection.getMessageServerPort()));
-				p.setProperty(JCO_GROUP,  connection.getLoadBalancingGroup());
+				p.setProperty(JCO_R3NAME, connectionData.getSystemID());
+				p.setProperty(JCO_MSHOST, connectionData.getMessageServer());
+				p.setProperty(JCO_MSSERV, Integer.toString(connectionData.getMessageServerPort()));
+				p.setProperty(JCO_GROUP,  connectionData.getLoadBalancingGroup());
 				break;
 			} 
-			p.setProperty(JCO_SAPROUTER, connection.getRouter());
+			p.setProperty(JCO_SAPROUTER, connectionData.getRouter());
 
 			// TODO Make these values configurable.
 			p.setProperty(JCO_PEAK_LIMIT, "5");    // Maximum number of active connections that can be created for a destination simultaneously
