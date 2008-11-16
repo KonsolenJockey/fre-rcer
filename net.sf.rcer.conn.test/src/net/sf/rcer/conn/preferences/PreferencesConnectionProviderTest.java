@@ -114,7 +114,7 @@ public class PreferencesConnectionProviderTest implements IPreferenceConstants {
 		final ConnectionRegistry registry = ConnectionRegistry.getInstance();
 		final String CONNECTION_DATA_ID = "net.sf.rcer.conn.preferences#1";
 		
-		final Set<String> connectionIDs = registry.getConnectionIDs();
+		final Set<String> connectionIDs = registry.getConnectionDataIDs();
 		assertTrue("Direct connection ID is missing", 
 				connectionIDs.contains(CONNECTION_DATA_ID));
 		
@@ -159,7 +159,7 @@ public class PreferencesConnectionProviderTest implements IPreferenceConstants {
 		final ConnectionRegistry registry = ConnectionRegistry.getInstance();
 		final String CONNECTION_ID = "net.sf.rcer.conn.preferences#2";
 		
-		final Set<String> connectionIDs = registry.getConnectionIDs();
+		final Set<String> connectionIDs = registry.getConnectionDataIDs();
 		assertTrue("Load-balanced connection ID is missing", 
 				connectionIDs.contains(CONNECTION_ID));
 		

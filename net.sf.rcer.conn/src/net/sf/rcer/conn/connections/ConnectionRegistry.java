@@ -282,9 +282,9 @@ public class ConnectionRegistry implements IRegistryEventListener {
 	 * @return a list of connection IDs supplied by the provider
 	 * @throws ProviderNotFoundException 
 	 */
-	public Set<String> getConnectionIDs(String providerID) throws ProviderNotFoundException {
+	public Set<String> getConnectionDataIDs(String providerID) throws ProviderNotFoundException {
 		if ((providerID == null) || (providerID.equals(""))) {
-			return getConnectionIDs();
+			return getConnectionDataIDs();
 		} else if (!connectionProviders.containsKey(providerID)) {
 			throw new ProviderNotFoundException(providerID);
 		} else { 
@@ -299,7 +299,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 	/**
 	 * @return a list of all connections IDs, whether the connections are statically defined or dynamically provided
 	 */
-	public Set<String> getConnectionIDs() {
+	public Set<String> getConnectionDataIDs() {
 		Set<String> connectionIDs = new HashSet<String>();
 		
 		// add the static connections
@@ -349,7 +349,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 	 */
 	public Set<IConnectionData> getConnectionData() {
 		Set<IConnectionData> connectionData = new HashSet<IConnectionData>();
-		for (final String id: getConnectionIDs()) {
+		for (final String id: getConnectionDataIDs()) {
 			try {
 				connectionData.add(getConnectionData(id));
 			} catch (ConnectionNotFoundException e) {

@@ -18,7 +18,9 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import net.sf.rcer.conn.connections.Credentials;
+import net.sf.rcer.conn.connections.IConnection;
 import net.sf.rcer.conn.connections.IConnectionData;
+import net.sf.rcer.conn.connections.ICredentials;
 import net.sf.rcer.conn.locales.Locale;
 import net.sf.rcer.conn.locales.LocaleRegistry;
 import net.sf.rcer.conn.locales.Locale.ToStringConverter;
@@ -78,7 +80,7 @@ public class LoginDialog extends TitleAreaDialog {
 	/**
 	 * The selected connection.
 	 */
-	private Credentials selectedCredentials;
+	private ICredentials selectedCredentials;
 
 	/**
 	 * Default constructor.
@@ -132,9 +134,9 @@ public class LoginDialog extends TitleAreaDialog {
 	}
 
 	/**
-	 * @return the selected {@link Credentials} instance, or <code>null</code> if the dialog was aborted
+	 * @return the selected {@link ICredentials} instance, or <code>null</code> if the dialog was aborted
 	 */
-	public Credentials getSelectedCredentials() {
+	public ICredentials getSelectedCredentials() {
 		return selectedCredentials;
 	}
 	
@@ -219,23 +221,25 @@ public class LoginDialog extends TitleAreaDialog {
 
 		// observe changes in the selection of the connection combo
 		IObservableValue selection = ViewersObservables.observeSingleSelection(connectionComboViewer);
+		IObservableValue connection = BeansObservables.observeDetailValue(Realm.getDefault(), selection, 
+				"connection", IConnection.class);
 
 		// bind the client 
 		context.bindValue(SWTObservables.observeText(clientText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "client", String.class), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), connection, "client", String.class), 
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 		context.bindValue(SWTObservables.observeEnabled(clientText), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "clientEditable", boolean.class), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), connection, "clientEditable", boolean.class), 
 				null, new UpdateValueStrategy());
 
 		// bind the user name
 		context.bindValue(SWTObservables.observeText(userText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "userName", String.class), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), connection, "userName", String.class), 
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 		context.bindValue(SWTObservables.observeEnabled(userText), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "userEditable", boolean.class), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), connection, "userEditable", boolean.class), 
 				null, new UpdateValueStrategy());
 
 		// bind the password
@@ -246,11 +250,11 @@ public class LoginDialog extends TitleAreaDialog {
 
 		// bind the locale 
 		context.bindValue(SWTObservables.observeSelection(localeCombo), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "locale", Locale.class), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), connection, "locale", Locale.class), 
 				new UpdateValueStrategy().setConverter(new Locale.FromStringConverter()), 
 				new UpdateValueStrategy().setConverter(new Locale.ToStringConverter(true)));
 		context.bindValue(SWTObservables.observeEnabled(localeCombo), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "localeEditable", boolean.class), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), connection, "localeEditable", boolean.class), 
 				null, new UpdateValueStrategy());
 
 		// provide the connection list with input data

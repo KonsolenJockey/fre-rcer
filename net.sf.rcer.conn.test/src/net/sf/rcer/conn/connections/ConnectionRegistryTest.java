@@ -74,7 +74,7 @@ public class ConnectionRegistryTest {
 	 */
 	@Test
 	public void testValidProviderIDs() throws Exception {
-		final Set<String> connectionIDs = registry.getConnectionIDs("net.sf.rcer.conn.valid_provider_1");
+		final Set<String> connectionIDs = registry.getConnectionDataIDs("net.sf.rcer.conn.valid_provider_1");
 		assertTrue("Dynamic direct connection ID is missing", 
 				connectionIDs.contains("net.sf.rcer.conn.valid_provider_1#CONN_DIRECT"));
 		assertTrue("Dynamic load-balancinb connection ID is missing", 
@@ -99,7 +99,7 @@ public class ConnectionRegistryTest {
 	 */
 	@Test(expected=ProviderNotFoundException.class)
 	public void testInvalidProviderConnectionID() throws Exception {
-		registry.getConnectionIDs("net.sf.rcer.conn.invalid_provider_class_missing");
+		registry.getConnectionDataIDs("net.sf.rcer.conn.invalid_provider_class_missing");
 	}
 	
 	/**
@@ -144,9 +144,9 @@ public class ConnectionRegistryTest {
 	 */
 	@Test
 	public void testEmptyProviderIDConnectionList() throws Exception {
-		final Set<String> list1 = registry.getConnectionIDs();
-		final Set<String> list2 = registry.getConnectionIDs(null);
-		final Set<String> list3 = registry.getConnectionIDs("");
+		final Set<String> list1 = registry.getConnectionDataIDs();
+		final Set<String> list2 = registry.getConnectionDataIDs(null);
+		final Set<String> list3 = registry.getConnectionDataIDs("");
 		assertEquals("Connection ID list obtained with null provider", list1, list2);
 		assertEquals("Connection ID list obtained with empty provider", list1, list3);
 	}
@@ -157,7 +157,7 @@ public class ConnectionRegistryTest {
 	 */
 	@Test
 	public void testStaticDirectConnection() throws Exception {
-		final Set<String> connectionIDs = registry.getConnectionIDs();
+		final Set<String> connectionIDs = registry.getConnectionDataIDs();
 		assertTrue("Direct static connection ID is missing", 
 				connectionIDs.contains(CONNECTION_ID_DIRECT_STATIC));
 		
@@ -218,7 +218,7 @@ public class ConnectionRegistryTest {
 	 */
 	@Test
 	public void testStaticLoadBalancingConnection() throws Exception {
-		final Set<String> connectionIDs = registry.getConnectionIDs();
+		final Set<String> connectionIDs = registry.getConnectionDataIDs();
 		assertTrue("Load-balanced static connection ID is missing", 
 				connectionIDs.contains(CONNECTION_ID_LB_STATIC));
 		
@@ -270,7 +270,7 @@ public class ConnectionRegistryTest {
 	 */
 	@Test
 	public void testDynamicDirectConnection() throws Exception {
-		final Set<String> connectionIDs = registry.getConnectionIDs();
+		final Set<String> connectionIDs = registry.getConnectionDataIDs();
 		assertTrue("Direct dynamic connection ID is missing", 
 				connectionIDs.contains(CONNECTION_ID_DIRECT_DYNAMIC));
 		
@@ -311,7 +311,7 @@ public class ConnectionRegistryTest {
 	 */
 	@Test
 	public void testDynamicLoadBalancingConnection() throws Exception {
-		final Set<String> connectionIDs = registry.getConnectionIDs();
+		final Set<String> connectionIDs = registry.getConnectionDataIDs();
 		assertTrue("Load-balanced dynamic connection ID is missing", 
 				connectionIDs.contains(CONNECTION_ID_LB_DYNAMIC));
 		

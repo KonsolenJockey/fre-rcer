@@ -15,8 +15,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.sf.rcer.conn.connections.ConnectionRegistry;
-import net.sf.rcer.conn.connections.Credentials;
 import net.sf.rcer.conn.connections.IConnectionData;
+import net.sf.rcer.conn.connections.ICredentials;
 import net.sf.rcer.conn.connections.ICredentialsProviderWithSelection;
 import net.sf.rcer.conn.connections.ICredentialsProviderWithoutSelection;
 
@@ -37,7 +37,7 @@ public class LoginProvider implements ICredentialsProviderWithSelection, ICreden
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.connections.ICredentialsProviderWithSelection#getCredentials()
 	 */
-	public Credentials getCredentials() {
+	public ICredentials getCredentials() {
 		LoginDialog loginDialog = new LoginDialog(ConnectionRegistry.getInstance().getConnectionData());
 		loginDialog.open();
 		return loginDialog.getSelectedCredentials();
@@ -46,7 +46,7 @@ public class LoginProvider implements ICredentialsProviderWithSelection, ICreden
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.connections.ICredentialsProviderWithoutSelection#getCredentials(net.sf.rcer.conn.connections.IConnectionData)
 	 */
-	public Credentials getCredentials(IConnectionData connectionData) {
+	public ICredentials getCredentials(IConnectionData connectionData) {
 		Set<IConnectionData> set = new HashSet<IConnectionData>();
 		set.add(connectionData);
 		LoginDialog loginDialog = new LoginDialog(set);

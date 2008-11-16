@@ -23,6 +23,6 @@ public interface ICredentialsProviderWithoutSelection {
 	 * @param connectionData
 	 * @return the credentials, or <code>null</code> if the credentials can not be provided
 	 */
-	public Credentials getCredentials(IConnectionData connectionData);
+	public ICredentials getCredentials(IConnectionData connectionData);
 
 }

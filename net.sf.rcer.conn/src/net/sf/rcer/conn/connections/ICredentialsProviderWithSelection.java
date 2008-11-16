@@ -22,6 +22,6 @@ public interface ICredentialsProviderWithSelection {
 	 * Select a connection and determine the credentials to use.
 	 * @return the credentials, or <code>null</code> if the credentials can not be provided
 	 */
-	public Credentials getCredentials();
+	public ICredentials getCredentials();
 
 }

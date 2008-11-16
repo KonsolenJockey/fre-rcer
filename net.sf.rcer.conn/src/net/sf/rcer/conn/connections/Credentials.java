@@ -3,14 +3,12 @@ package net.sf.rcer.conn.connections;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import net.sf.rcer.conn.locales.Locale;
-
 /**
  * A class to transport the connection data and the logon credentials.
  * @author vwegert
  *
  */
-public class Credentials implements IConnection {
+public class Credentials implements ICredentials {
 
 	/**
 	 * Auxiliary class to manage the property change listeners.
@@ -18,101 +16,60 @@ public class Credentials implements IConnection {
 	private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
 	/**
-	 * The connection data instance.
+	 * The connection instance.
 	 */
-	private IConnectionData connectionData;
+	private IConnection connection;
 
-	/**
-	 * The actual client to log on to.
-	 */
-	private String client;
-	
-	/**
-	 * The actual user name to use for logon.
-	 */
-	private String userName;
-	
 	/**
 	 * The actual password to use for logon.
 	 */
 	private String password;
 	
 	/**
-	 * The actual locale to use for logon.
+	 * Default constructor, based on an {@link IConnection} instance.
+	 * @param connection
 	 */
-	private Locale locale;
-	
+	public Credentials(IConnection connection) {
+		this.connection = connection;
+	}
+
 	/**
-	 * Default constructor.
+	 * Default constructor, based on an {@link IConnectionData} instance.
 	 * @param connectionData
 	 */
 	public Credentials(IConnectionData connectionData) {
-		this.connectionData = connectionData;
-		this.client = connectionData.getDefaultClient();
-		this.userName = connectionData.getDefaultUser();
-		this.locale = connectionData.getDefaultLocale();
-	}
-
-	/**
-	 * @return the ID of the connection (the name of the destination)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#getConnectionID()
-	 */
-	public String getConnectionDataID() {
-		return connectionData.getConnectionDataID();
+		this.connection = new Connection(connectionData);
 	}
 	
 	/**
-	 * @return the connection data
+	 * @return the connection
 	 */
-	public IConnectionData getConnectionData() {
-		return connectionData;
+	public IConnection getConnection() {
+		return connection;
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnection#getClient()
+	 * @see net.sf.rcer.conn.connections.ICredentials#getConnectionID()
 	 */
-	public String getClient() {
-		return client;
-	}
-
-	/**
-	 * @param client the client to set
-	 */
-	public void setClient(String client) {
-		if (!connectionData.isDefaultClientEditable()) {
-			throw new UnsupportedOperationException("The default client may not be changed.");
-		}
-		final String oldValue = this.client;
-		this.client = client;
-		propertyChangeSupport.firePropertyChange("client", oldValue, client);
+	public String getConnectionID() {
+		return connection.getConnectionID();
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnection#getUserName()
-	 */
-	public String getUserName() {
-		return userName;
-	}
-
-	/**
-	 * @param userName the user name to set
-	 */
-	public void setUserName(String userName) {
-		if (!connectionData.isDefaultUserEditable()) {
-			throw new UnsupportedOperationException("The default user name may not be changed.");
-		}
-		final String oldValue = this.userName;
-		this.userName = userName;
-		propertyChangeSupport.firePropertyChange("userName", oldValue, userName);
-	}
-
-	/**
-	 * @return the password
+	 * @see net.sf.rcer.conn.connections.ICredentials#getPassword()
 	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return connection.toString();
+	}
+	
 	/**
 	 * @param password the password to set
 	 */
@@ -120,25 +77,6 @@ public class Credentials implements IConnection {
 		final String oldValue = this.password;
 		this.password = password;
 		propertyChangeSupport.firePropertyChange("password", oldValue, password);
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnection#getLocale()
-	 */
-	public Locale getLocale() {
-		return locale;
-	}
-
-	/**
-	 * @param locale the locale to set
-	 */
-	public void setLocale(Locale locale) {
-		if (!connectionData.isDefaultLocaleEditable()) {
-			throw new UnsupportedOperationException("The default locale may not be changed.");
-		}
-		final Locale oldValue = this.locale;
-		this.locale = locale;
-		propertyChangeSupport.firePropertyChange("locale", oldValue, locale);
 	}
 
 	/**
@@ -203,157 +141,6 @@ public class Credentials implements IConnection {
 	 */
 	public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
 		propertyChangeSupport.removePropertyChangeListener(propertyName, listener);
-	}
-
-	/**
-	 * @return whether the client may be changed during logon
-	 * @see net.sf.rcer.conn.connections.IConnectionData#isDefaultClientEditable()
-	 */
-	public boolean isClientEditable() {
-		return connectionData.isDefaultClientEditable();
-	}
-	
-	/**
-	 * @return whether the user name may be changed during logon
-	 * @see net.sf.rcer.conn.connections.IConnectionData#isDefaultUserEditable()
-	 */
-	public boolean isUserEditable() {
-		return connectionData.isDefaultUserEditable();
-	}
-
-	/**
-	 * @return whether the locale may be changed during logon
-	 * @see net.sf.rcer.conn.connections.IConnectionData#isDefaultLocaleEditable()
-	 */
-	public boolean isLocaleEditable() {
-		return connectionData.isDefaultLocaleEditable();
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return connectionData.toString();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#getApplicationServer()
-	 */
-	public String getApplicationServer() {
-		return connectionData.getApplicationServer();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#getConnectionType()
-	 */
-	public ConnectionType getConnectionType() {
-		return connectionData.getConnectionType();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#getDefaultClient()
-	 */
-	public String getDefaultClient() {
-		return connectionData.getDefaultClient();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#getDefaultLocale()
-	 */
-	public Locale getDefaultLocale() {
-		return connectionData.getDefaultLocale();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#getDefaultUser()
-	 */
-	public String getDefaultUser() {
-		return connectionData.getDefaultUser();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#getDescription()
-	 */
-	public String getDescription() {
-		return connectionData.getDescription();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#getLoadBalancingGroup()
-	 */
-	public String getLoadBalancingGroup() {
-		return connectionData.getLoadBalancingGroup();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#getMessageServer()
-	 */
-	public String getMessageServer() {
-		return connectionData.getMessageServer();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#getMessageServerPort()
-	 */
-	public int getMessageServerPort() {
-		return connectionData.getMessageServerPort();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#getRouter()
-	 */
-	public String getRouter() {
-		return connectionData.getRouter();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#getSystemID()
-	 */
-	public String getSystemID() {
-		return connectionData.getSystemID();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#getSystemNumber()
-	 */
-	public int getSystemNumber() {
-		return connectionData.getSystemNumber();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#isDefaultClientEditable()
-	 */
-	public boolean isDefaultClientEditable() {
-		return connectionData.isDefaultClientEditable();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#isDefaultLocaleEditable()
-	 */
-	public boolean isDefaultLocaleEditable() {
-		return connectionData.isDefaultLocaleEditable();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#isDefaultUserEditable()
-	 */
-	public boolean isDefaultUserEditable() {
-		return connectionData.isDefaultUserEditable();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#isDirectConnection()
-	 */
-	public boolean isDirectConnection() {
-		return connectionData.isDirectConnection();
-	}
-
-	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.connections.IConnectionData#isLoadBalancedConnection()
-	 */
-	public boolean isLoadBalancedConnection() {
-		return connectionData.isLoadBalancedConnection();
 	}
 
 }

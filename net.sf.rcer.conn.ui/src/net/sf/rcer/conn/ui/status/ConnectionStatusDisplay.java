@@ -12,6 +12,7 @@
 package net.sf.rcer.conn.ui.status;
 
 import java.text.MessageFormat;
+import java.util.Collection;
 import java.util.Set;
 
 import net.sf.rcer.conn.connections.ConnectionException;
@@ -72,7 +73,10 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 		composite.setLayout(layout);
 
 		label = new Label(composite, SWT.BORDER | SWT.CENTER);
-		primaryConnectionChanged(null);
+		label.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_GRAY));
+		label.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_WHITE));
+		label.setText("  ---.---  ");
+		label.setToolTipText("not connected");
 
 		composite.addMenuDetectListener(this);
 		label.addMenuDetectListener(this);
@@ -84,28 +88,67 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 	 * @see org.eclipse.swt.events.MenuDetectListener#menuDetected(org.eclipse.swt.events.MenuDetectEvent)
 	 */
 	public void menuDetected(MenuDetectEvent event) {
-
-		final Set<IConnectionData> connections = ConnectionRegistry.getInstance().getConnectionData(); 
-		final ConnectionManager manager = ConnectionManager.getInstance();
-
 		Menu menu = new Menu(getWorkbenchWindow().getShell());
 		menu.setLocation(event.x, event.y);
+		createConnectMenuEntries(menu);
+		createSelectPrimaryConnectionMenuEntries(menu);
+		createDisconnectMenuEntries(menu);
 
-		if (connections.isEmpty()) {
-			// no connections available - doesn't make sense to populate this menu
-			MenuItem itemNoConnections = new MenuItem(menu, SWT.PUSH);
-			itemNoConnections.setEnabled(false);
-			itemNoConnections.setText("No Connections defined");
-		} else {
-			if (connections.size() == 1) {
-				// only one connection available - create a very simple menu
-				IConnectionData connectionData = connections.iterator().next();
+		MenuItem itemSystemStatus = new MenuItem(menu, SWT.PUSH);
+		itemSystemStatus.setText("Display System Information...");
+		itemSystemStatus.setEnabled(ConnectionManager.getInstance().isConnected());
+		itemSystemStatus.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if (e.widget.getData() instanceof IConnectionData) {
+					displaySystemInformation();
+				}
+			}
+		});
 
-				MenuItem itemConnectSingle = new MenuItem(menu, SWT.PUSH);
-				itemConnectSingle.setText(MessageFormat.format("Connect to {0}...", connectionData.getDescription()));
-				itemConnectSingle.setData(connectionData);
-				itemConnectSingle.setEnabled(!manager.isActive(connectionData));
-				itemConnectSingle.addSelectionListener(new SelectionAdapter() {
+		menu.setVisible(true);
+	}
+
+	/**
+	 * Creates the menu items to connect to a system.
+	 * @param menu
+	 */
+	private void createConnectMenuEntries(Menu menu) {
+		final Set<IConnectionData> registeredConnections = ConnectionRegistry.getInstance().getConnectionData(); 
+
+		switch(registeredConnections.size()) {
+		case 0: {
+			MenuItem itemConnect = new MenuItem(menu, SWT.PUSH);
+			itemConnect.setText("Connect: no connections available");
+			itemConnect.setEnabled(false);
+			break;
+		}
+		case 1: {
+			// only one connection available - create a very simple menu
+			IConnectionData connectionData = registeredConnections.iterator().next();
+			MenuItem itemConnect = new MenuItem(menu, SWT.PUSH);
+			itemConnect.setText(MessageFormat.format("Connect to {0}...", connectionData.getDescription()));
+			itemConnect.setData(connectionData);
+			itemConnect.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					if (e.widget.getData() instanceof IConnectionData) {
+						connect((IConnectionData) e.widget.getData());
+					}
+				}
+			});
+			break;
+		}
+		default: {
+			// more than one connection available - menu gets a bit more complex...
+			MenuItem itemConnect = new MenuItem(menu, SWT.CASCADE);
+			itemConnect.setText("Connect");
+			Menu menuConnect = new Menu(getWorkbenchWindow().getShell(), SWT.DROP_DOWN);
+			for (IConnectionData connectionData: registeredConnections) {
+				MenuItem item = new MenuItem(menuConnect, SWT.PUSH);
+				item.setText(connectionData.toString());
+				item.setData(connectionData);
+				item.addSelectionListener(new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
 						if (e.widget.getData() instanceof IConnectionData) {
@@ -113,99 +156,89 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 						}
 					}
 				});
-
-				MenuItem itemDisconnectSingle = new MenuItem(menu, SWT.PUSH);
-				itemDisconnectSingle.setText(MessageFormat.format("Disconnect from {0}", connectionData.getDescription()));
-				itemDisconnectSingle.setData(connectionData);
-				itemDisconnectSingle.setEnabled(manager.isActive(connectionData));
-				itemDisconnectSingle.addSelectionListener(new SelectionAdapter() {
-					@Override
-					public void widgetSelected(SelectionEvent e) {
-						if (e.widget.getData() instanceof IConnectionData) {
-							disconnect((IConnectionData) e.widget.getData());
-						}
-					}
-				});
-
-			} else {
-				// more than one connection available - menu gets a bit more complex...
-
-				// submenu to connect
-				MenuItem itemConnectMultiple = new MenuItem(menu, SWT.CASCADE);
-				itemConnectMultiple.setText("Connect");
-				Menu menuConnectMultiple = new Menu(getWorkbenchWindow().getShell(), SWT.DROP_DOWN);
-				for (IConnectionData connectionData: connections) {
-					MenuItem itemConnectSingle = new MenuItem(menuConnectMultiple, SWT.PUSH);
-					itemConnectSingle.setText(connectionData.getDescription());
-					itemConnectSingle.setData(connectionData);
-					itemConnectSingle.setEnabled(!manager.isActive(connectionData));
-					itemConnectSingle.addSelectionListener(new SelectionAdapter() {
-						@Override
-						public void widgetSelected(SelectionEvent e) {
-							if (e.widget.getData() instanceof IConnectionData) {
-								connect((IConnectionData) e.widget.getData());
-							}
-						}
-					});
-				}
-				itemConnectMultiple.setMenu(menuConnectMultiple);
-
-				// submenu to select the primary connection
-				MenuItem itemSelectPrimary = new MenuItem(menu, SWT.CASCADE);
-				itemSelectPrimary.setText("Select Primary Connection");
-				Menu menuSelectPrimary = new Menu(getWorkbenchWindow().getShell(), SWT.DROP_DOWN);
-				for (IConnectionData connectionData: connections) {
-					MenuItem itemConnectSingle = new MenuItem(menuSelectPrimary, SWT.PUSH);
-					itemConnectSingle.setText(connectionData.getDescription());
-					itemConnectSingle.setData(connectionData);
-					itemConnectSingle.setEnabled(!manager.isPrimaryConnection(connectionData));
-					itemConnectSingle.addSelectionListener(new SelectionAdapter() {
-						@Override
-						public void widgetSelected(SelectionEvent e) {
-							if (e.widget.getData() instanceof IConnectionData) {
-								setPrimaryConnection((IConnectionData) e.widget.getData());
-							}
-						}
-					});
-				}
-				itemSelectPrimary.setMenu(menuSelectPrimary);
-
-				// submenu to disconnect
-				MenuItem itemDisconnectMultiple = new MenuItem(menu, SWT.CASCADE);
-				itemDisconnectMultiple.setText("Disconnect");
-				Menu menuDisconnectMultiple = new Menu(getWorkbenchWindow().getShell(), SWT.DROP_DOWN);
-				for (IConnectionData connection: connections) {
-					MenuItem itemDisconnectSingle = new MenuItem(menuDisconnectMultiple, SWT.PUSH);
-					itemDisconnectSingle.setText(connection.getDescription());
-					itemDisconnectSingle.setData(connection);
-					itemDisconnectSingle.setEnabled(manager.isActive(connection));
-					itemDisconnectSingle.addSelectionListener(new SelectionAdapter() {
-						@Override
-						public void widgetSelected(SelectionEvent e) {
-							if (e.widget.getData() instanceof IConnectionData) {
-								disconnect((IConnectionData) e.widget.getData());
-							}
-						}
-					});
-				}
-				itemDisconnectMultiple.setMenu(menuDisconnectMultiple);
 			}
+			itemConnect.setMenu(menuConnect);
+			break;
+		}
+		}
+	}
 
-			MenuItem itemSystemStatus = new MenuItem(menu, SWT.PUSH);
-			itemSystemStatus.setText("Display System Information...");
-			itemSystemStatus.addSelectionListener(new SelectionAdapter() {
+	/**
+	 * Creates the menu items to select the primary connection. 
+	 * @param menu
+	 */
+	private void createSelectPrimaryConnectionMenuEntries(Menu menu) {
+		final Collection<IConnection> activeConnections = ConnectionManager.getInstance().getActiveConnections();
+		if (activeConnections.size() > 1) {
+			// submenu to select the primary connection
+			MenuItem itemSelectPrimary = new MenuItem(menu, SWT.CASCADE);
+			itemSelectPrimary.setText("Select Primary Connection");
+			Menu menuSelectPrimary = new Menu(getWorkbenchWindow().getShell(), SWT.DROP_DOWN);
+			for (IConnection connection: activeConnections) {
+				if (!ConnectionManager.getInstance().isPrimaryConnection(connection)) { 
+					MenuItem itemConnectSingle = new MenuItem(menuSelectPrimary, SWT.PUSH);
+					itemConnectSingle.setText(connection.toString());
+					itemConnectSingle.setData(connection);
+					itemConnectSingle.addSelectionListener(new SelectionAdapter() {
+						@Override
+						public void widgetSelected(SelectionEvent e) {
+							if (e.widget.getData() instanceof IConnection) {
+								setPrimaryConnection((IConnection) e.widget.getData());
+							}
+						}
+					});
+				}
+			}
+			itemSelectPrimary.setMenu(menuSelectPrimary);
+		}
+	}
+
+	/**
+	 * Creates the menu items to disconnect from a system.
+	 * @param menu
+	 */
+	private void createDisconnectMenuEntries(Menu menu) {
+		final Collection<IConnection> activeConnections = ConnectionManager.getInstance().getActiveConnections();
+		switch(activeConnections.size()) {
+		case 0: 
+			// no item
+			break;
+		case 1: {
+			final IConnection connection = activeConnections.iterator().next();
+			MenuItem itemDisconnectSingle = new MenuItem(menu, SWT.PUSH);
+			itemDisconnectSingle.setText(MessageFormat.format("Disconnect from {0}", connection.toString()));
+			itemDisconnectSingle.setData(connection);
+			itemDisconnectSingle.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
-					if (e.widget.getData() instanceof IConnectionData) {
-						displaySystemInformation((IConnectionData) e.widget.getData());
+					if (e.widget.getData() instanceof IConnection) {
+						disconnect((IConnection) e.widget.getData());
 					}
 				}
 			});
-
+			break;	
 		}
-
-		menu.setVisible(true);
-
+		default: {
+			// submenu to disconnect
+			MenuItem itemDisconnectMultiple = new MenuItem(menu, SWT.CASCADE);
+			itemDisconnectMultiple.setText("Disconnect");
+			Menu menuDisconnectMultiple = new Menu(getWorkbenchWindow().getShell(), SWT.DROP_DOWN);
+			for (IConnectionData connection: activeConnections) {
+				MenuItem itemDisconnectSingle = new MenuItem(menuDisconnectMultiple, SWT.PUSH);
+				itemDisconnectSingle.setText(connection.toString());
+				itemDisconnectSingle.setData(connection);
+				itemDisconnectSingle.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						if (e.widget.getData() instanceof IConnection) {
+							disconnect((IConnection) e.widget.getData());
+						}
+					}
+				});
+			}
+			itemDisconnectMultiple.setMenu(menuDisconnectMultiple);
+		}
+		}
 	}
 
 	/**
@@ -214,7 +247,7 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 	 */
 	protected void connect(IConnectionData connectionData) {
 		try {
-			ConnectionManager.getInstance().getDestination(connectionData);
+			ConnectionManager.getInstance().getDestination(connectionData, false);
 		} catch (JCoException e) {
 			ErrorDialog.openError(getWorkbenchWindow().getShell(), "SAP R/3 Connection", 
 					"Unable to connect to the SAP R/3 system.", 
@@ -228,11 +261,11 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 
 	/**
 	 * Changes the primary connection. 
-	 * @param connectionData
+	 * @param connection
 	 */
-	protected void setPrimaryConnection(IConnectionData connectionData) {
+	protected void setPrimaryConnection(IConnection connection) {
 		try {
-			ConnectionManager.getInstance().setPrimaryDestination(connectionData);
+			ConnectionManager.getInstance().setPrimaryConnection(connection);
 		} catch (JCoException e) {
 			ErrorDialog.openError(getWorkbenchWindow().getShell(), "SAP R/3 Connection", 
 					"Unable to connect to the SAP R/3 system.", 
@@ -246,17 +279,16 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 
 	/**
 	 * Deactivates a connection. 
-	 * @param connectionData
+	 * @param connection
 	 */
-	protected void disconnect(IConnectionData connectionData) {
-		ConnectionManager.getInstance().closeDestination(connectionData);
+	protected void disconnect(IConnection connection) {
+		ConnectionManager.getInstance().closeConnection(connection);
 	}
 
 	/**
 	 * Displays the details of the primary connection and the system behind it. 
-	 * @param connectionData
 	 */
-	protected void displaySystemInformation(IConnectionData connectionData) {
+	protected void displaySystemInformation() {
 		// TODO Implement the system information display.
 	}
 
@@ -277,20 +309,29 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.connections.IConnectionStateListener#primaryConnectionChanged(net.sf.rcer.conn.connections.IDestinationData)
 	 */
-	public void primaryConnectionChanged(IConnection newPrimaryConnection) {
-		if (label != null) {
+	public void primaryConnectionChanged(final IConnection newPrimaryConnection) {
+		if (label != null && !label.isDisposed()) {
 			final Display display = getWorkbenchWindow().getShell().getDisplay();
-			if (newPrimaryConnection == null) {
-				label.setBackground(display.getSystemColor(SWT.COLOR_GRAY));
-				label.setForeground(display.getSystemColor(SWT.COLOR_WHITE));
-				label.setText(" ---.--- ");
-				label.setToolTipText("not connected");
-			} else {
-				label.setBackground(display.getSystemColor(SWT.COLOR_DARK_GREEN));
-				label.setForeground(display.getSystemColor(SWT.COLOR_WHITE));
-				label.setText(MessageFormat.format(" {0}.{1} ", newPrimaryConnection.getSystemID(), newPrimaryConnection.getClient()));
-				label.setToolTipText(newPrimaryConnection.getDescription());
-			}
+			display.asyncExec(new Runnable() {
+				/* (non-Javadoc)
+				 * @see java.lang.Runnable#run()
+				 */
+				public void run() {
+					if (newPrimaryConnection == null) {
+						label.setBackground(display.getSystemColor(SWT.COLOR_GRAY));
+						label.setForeground(display.getSystemColor(SWT.COLOR_WHITE));
+						label.setText("  ---.---  ");
+						label.setToolTipText("not connected");
+					} else {
+						label.setBackground(display.getSystemColor(SWT.COLOR_DARK_GREEN));
+						label.setForeground(display.getSystemColor(SWT.COLOR_WHITE));
+						label.setText(MessageFormat.format("  {0}.{1}  ", 
+								newPrimaryConnection.getSystemID(), newPrimaryConnection.getClient()));
+						label.setToolTipText(newPrimaryConnection.toString());
+					}
+				}
+			});
+
 		}
 	}
 

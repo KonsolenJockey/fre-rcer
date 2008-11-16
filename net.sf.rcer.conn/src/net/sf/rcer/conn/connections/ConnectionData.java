@@ -27,7 +27,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	/**
 	 * Auxiliary class to manage the property change listeners.
 	 */
-	private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+	protected PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
 	/**
 	 * The ID of the connection. This value is used to store references to this connection 

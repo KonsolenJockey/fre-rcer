@@ -13,6 +13,7 @@ package net.sf.rcer.conn.connections;
 
 import java.security.InvalidParameterException;
 import java.text.MessageFormat;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -70,31 +71,31 @@ public class ConnectionManager  {
 		 * @see com.sap.conn.jco.ext.DestinationDataProvider#getDestinationProperties(java.lang.String)
 		 */
 		public Properties getDestinationProperties(String destinationId) {
-			final Credentials credentials = parent.getCredentials(destinationId);
+			final ICredentials credentials = parent.getCredentials(destinationId);
 			if (credentials == null) {
 				return null;
 			}
-			final IConnectionData connectionData = credentials.getConnectionData();
+			final IConnection connection = credentials.getConnection();
 			Properties p = new Properties();
 
-			p.setProperty(JCO_CLIENT, credentials.getClient());
-			p.setProperty(JCO_USER,   credentials.getUserName());
+			p.setProperty(JCO_CLIENT, connection.getClient());
+			p.setProperty(JCO_USER,   connection.getUserName());
 			p.setProperty(JCO_PASSWD, credentials.getPassword());
-			p.setProperty(JCO_LANG,   credentials.getLocale().getID());
+			p.setProperty(JCO_LANG,   connection.getLocale().getID());
 
-			switch(connectionData.getConnectionType()) {
+			switch(connection.getConnectionType()) {
 			case DIRECT:
-				p.setProperty(JCO_ASHOST, connectionData.getApplicationServer());
-				p.setProperty(JCO_SYSNR,  Integer.toString(connectionData.getSystemNumber()));
+				p.setProperty(JCO_ASHOST, connection.getApplicationServer());
+				p.setProperty(JCO_SYSNR,  Integer.toString(connection.getSystemNumber()));
 				break;
 			case LOAD_BALANCED:
-				p.setProperty(JCO_R3NAME, connectionData.getSystemID());
-				p.setProperty(JCO_MSHOST, connectionData.getMessageServer());
-				p.setProperty(JCO_MSSERV, Integer.toString(connectionData.getMessageServerPort()));
-				p.setProperty(JCO_GROUP,  connectionData.getLoadBalancingGroup());
+				p.setProperty(JCO_R3NAME, connection.getSystemID());
+				p.setProperty(JCO_MSHOST, connection.getMessageServer());
+				p.setProperty(JCO_MSSERV, Integer.toString(connection.getMessageServerPort()));
+				p.setProperty(JCO_GROUP,  connection.getLoadBalancingGroup());
 				break;
 			} 
-			p.setProperty(JCO_SAPROUTER, connectionData.getRouter());
+			p.setProperty(JCO_SAPROUTER, connection.getRouter());
 
 			// TODO Make these values configurable.
 			p.setProperty(JCO_PEAK_LIMIT, "5");    // Maximum number of active connections that can be created for a destination simultaneously
@@ -151,12 +152,18 @@ public class ConnectionManager  {
 	private Provider provider;
 
 	/**
-	 * The active destinations, including the primary destination.
+	 * The active connections (including the primary connection), ordered by the connection ID.
 	 */
-	private Map<String, Credentials> destinations = new HashMap<String, Credentials>();
+	private Map<String, ICredentials> connections = new HashMap<String, ICredentials>();
 
 	/**
-	 * The ID of the primary destination, or <code>null</code> if none.
+	 * A map that contains the active connections ordered by connection <b>data</b> ID. There may be
+	 * more than one active connection for a single connection data ID (think of using different users or clients)!
+	 */
+	private Map<String, Collection<ICredentials>> connectionLists = new HashMap<String, Collection<ICredentials>>();
+
+	/**
+	 * The ID of the primary connection, or <code>null</code> if none.
 	 */
 	private String primaryConnectionID;
 
@@ -164,7 +171,7 @@ public class ConnectionManager  {
 	 * The list of {@link IConnectionStateListener} instances.
 	 */
 	private Set<IConnectionStateListener> listeners = new HashSet<IConnectionStateListener>();
-	
+
 	static {
 		Environment.registerDestinationDataProvider(getInstance().getProvider());
 	}
@@ -188,28 +195,28 @@ public class ConnectionManager  {
 
 	/**
 	 * Obtains the primary connection. If no connection is active, this method tries to deduce the connection to open:
-	 * If the {@link ConnectionRegistry} only contains one connection, this connection is activated.
-	 * If the {@link ConnectionRegistry} contains more than one connection, an {@link ICredentialsProviderWithSelection}
-	 * is used to determine which connection to activate.
+	 * If the {@link ConnectionRegistry} only contains one connection, this connection is activated using 
+	 * an {@link ICredentialsProviderWithoutSelection}. If the {@link ConnectionRegistry} contains more than one 
+	 * connection, an {@link ICredentialsProviderWithSelection} is used to determine which connection to activate.
 	 * @return the primary connection
 	 * @throws ConnectionException 
 	 * @throws JCoException 
-	 * @see #closeDestination()
+	 * @see #closeConnection()
 	 * @see #setPrimaryDestination(String)
 	 */
 	public JCoDestination getDestination() throws ConnectionException, JCoException {
 		if (primaryConnectionID != null) {
 			getCheckedDestination(primaryConnectionID);
 		}
-		final Set<String> registeredConnections = ConnectionRegistry.getInstance().getConnectionIDs();
-		switch(registeredConnections.size()) {
+		final Set<String> registeredConnectionData = ConnectionRegistry.getInstance().getConnectionDataIDs();
+		switch(registeredConnectionData.size()) {
 		case 0:
 			throw new ConnectionException("Unable to find connection data.");
 		case 1:
-			return getDestination(registeredConnections.iterator().next());
+			return getDestination(registeredConnectionData.iterator().next());
 		default: {
 			// query the credentials providers in order of priority
-			Credentials credentials = null;
+			ICredentials credentials = null;
 			Iterator<ICredentialsProviderWithSelection> it = getCredentialsProvidersWithSelection().iterator();
 			while (it.hasNext() && credentials == null) {
 				try {
@@ -222,11 +229,11 @@ public class ConnectionManager  {
 			if (credentials == null) {
 				throw new ConnectionException("Unable to select a connection and determine the credentials.");
 			}
-			addDestinationInternal(credentials);
+			addConnectionInternal(credentials);
 			try {
-				return getCheckedDestination(credentials.getConnectionDataID());
+				return getCheckedDestination(credentials.getConnectionID());
 			} catch (JCoException e) {
-				removeDestinationInternal(credentials);
+				removeConnectionInternal(credentials);
 				throw e;
 			}
 		}
@@ -234,20 +241,31 @@ public class ConnectionManager  {
 	}
 
 	/**
-	 * Obtains the connection designated. If the connection is not active, it is activated. If it is the first 
-	 * connection that is activated, it automatically becomes the primary connection.
+	 * Obtains the connection designated by the connection data. Reuses an existing connection if 
+	 * <code>reuseConnection</code> is set, forces the creation of a new connection otherwise.
+	 * If no connection for the connection data ID is active, 
+	 * a new connection is activated. If it is the first connection that is activated, it automatically becomes the 
+	 * primary connection. Note that more than one connection may be active for a set of connection data - if this is 
+	 * the case, any of the connections is chosen arbitrarily.
 	 * @param connectionData
+	 * @param reuseConnection if <code>true</code>, an existing connection is reused 
 	 * @return the connection
 	 * @throws JCoException 
 	 * @throws ConnectionException 
 	 */
-	public JCoDestination getDestination(IConnectionData connectionData) throws JCoException, ConnectionException {
-		if (destinations.containsKey(connectionData.getConnectionDataID())) {
-			return getCheckedDestination(connectionData.getConnectionDataID());
-
+	public JCoDestination getDestination(IConnectionData connectionData, boolean reuseConnection) throws JCoException, ConnectionException {
+		if (reuseConnection) {
+			// see whether a connection for the connection data ID already exists
+			if (connectionLists.containsKey(connectionData.getConnectionDataID())) {
+				final Collection<ICredentials> coll = connectionLists.get(connectionData.getConnectionDataID());
+				if (!coll.isEmpty()) {
+					return getCheckedDestination(coll.iterator().next().getConnectionID());
+				}
+			}
 		}
+
 		// query the credentials providers in order of priority
-		Credentials credentials = null;
+		ICredentials credentials = null;
 		Iterator<ICredentialsProviderWithoutSelection> it = getCredentialsProvidersWithoutSelection().iterator();
 		while (it.hasNext() && credentials == null) {
 			try {
@@ -264,36 +282,41 @@ public class ConnectionManager  {
 					"Unable to determine the credentials for connection {0}.",
 					connectionData.getConnectionDataID()));
 		}
-		addDestinationInternal(credentials);
+		addConnectionInternal(credentials);
 		try {
-			return getCheckedDestination(credentials.getConnectionDataID());
+			return getCheckedDestination(credentials.getConnectionID());
 		} catch (JCoException e) {
-			removeDestinationInternal(credentials);
+			removeConnectionInternal(credentials);
 			throw e;			
 		}
 	}
 
 	/**
-	 * Obtains the connection designated. If the connection is not active, it is activated. If it is the first 
-	 * connection that is activated, it automatically becomes the primary connection.
+	 * Obtains the connection designated by the connection data. If no connection for the connection data ID is active, 
+	 * a new connection is activated. If it is the first connection that is activated, it automatically becomes the 
+	 * primary connection. Note that more than one connection may be active for a set of connection data - if this is 
+	 * the case, any of the connections is chosen arbitrarily.
+	 * @param connectionData
+	 * @return the connection
+	 * @throws JCoException 
+	 * @throws ConnectionException 
+	 */
+	public JCoDestination getDestination(IConnectionData connectionData) throws JCoException, ConnectionException {
+		return getDestination(connectionData, true);
+	}
+
+	/**
+	 * Obtains the connection designated. If the connection is not active, a {@link ConnectionException} is thrown.
 	 * @param connectionID
 	 * @return the connection
 	 * @throws ConnectionException 
 	 * @throws JCoException 
 	 */
 	public JCoDestination getDestination(String connectionID) throws ConnectionException, JCoException {
-		try {
-			if (destinations.containsKey(connectionID)) {
-				return getCheckedDestination(connectionID);
-			}
-			return getDestination(ConnectionRegistry.getInstance().getConnectionData(connectionID));
-		} catch (ConnectionNotFoundException e) {
-			throw new ConnectionException(MessageFormat.format("Unable to load connection data for ID {0}.",
-					connectionID), e); 
-		} catch (ProviderNotFoundException e) {
-			throw new ConnectionException(MessageFormat.format("Unable to load connection data for ID {0}.",
-					connectionID), e); 
+		if (!connections.containsKey(connectionID)) { 
+			throw new ConnectionException(MessageFormat.format("No connection with ID {0} is active.", connectionID)); 
 		}
+		return getCheckedDestination(connectionID);
 	}
 
 	/**
@@ -305,7 +328,8 @@ public class ConnectionManager  {
 	}
 
 	/**
-	 * @return a list of all secondary connections ({@link #getActiveConnectionIDs()} without {@link #getPrimaryConnectionID()})
+	 * @return a list of all secondary connections ({@link #getActiveConnectionIDs()} 
+	 * without {@link #getPrimaryConnectionID()})
 	 */
 	public Set<String> getSecondaryConnectionIDs() {
 		Set<String> connIDs = getActiveConnectionIDs();
@@ -314,34 +338,38 @@ public class ConnectionManager  {
 	}
 
 	/**
-	 * @return a list of all active connection IDs (destination names)
+	 * @return a list of all active connection IDs 
 	 */
 	public Set<String> getActiveConnectionIDs() {
-		return new HashSet<String>(destinations.keySet());
+		return new HashSet<String>(connections.keySet());
+	}
+
+	/**
+	 * @return a list of all active connections
+	 */
+	public Collection<IConnection> getActiveConnections() {
+		Vector<IConnection> result = new Vector<IConnection>();
+		for(ICredentials credentials: connections.values()) {
+			result.add(credentials.getConnection());
+		}
+		return result;
 	}
 
 	/**
 	 * @param connectionData
-	 * @return <code>true</code> if the connection is active
+	 * @return <code>true</code> if the connection is active (that is, if one or more connections for the connection 
+	 * data are active)
 	 */
 	public boolean isActive(IConnectionData connectionData) {
-		return destinations.containsKey(connectionData.getConnectionDataID());
+		return connectionLists.containsKey(connectionData.getConnectionDataID());
 	}
 
 	/**
 	 * @param connectionID
-	 * @return <code>true</code> if the connection is active
+	 * @return <code>true</code> if the connection with this connection ID is active
 	 */
 	public boolean isActive(String connectionID) {
-		return destinations.containsKey(connectionID);
-	}
-
-	/**
-	 * @param connectionData
-	 * @return <code>true</code> if the connection is the primary connection
-	 */
-	public boolean isPrimaryConnection(IConnectionData connectionData) {
-		return (primaryConnectionID != null) && primaryConnectionID.equals(connectionData.getConnectionDataID());
+		return connections.containsKey(connectionID);
 	}
 
 	/**
@@ -353,27 +381,43 @@ public class ConnectionManager  {
 	}
 
 	/**
-	 * Makes the destination the primary destination.
+	 * @param connection
+	 * @return <code>true</code> if the connection is the primary connection
+	 */
+	public boolean isPrimaryConnection(IConnection connection) {
+		return isPrimaryConnection(connection.getConnectionID());
+	}
+
+	/**
+	 * @return <code>true</code> if at least one connection is active
+	 */
+	public boolean isConnected() {
+		return primaryConnectionID != null;
+	}
+
+
+	/**
+	 * Makes the connection the primary connection.
 	 * @param destination
 	 * @throws JCoException 
 	 * @throws ConnectionException 
 	 */
-	public void setPrimaryDestination(JCoDestination destination) throws ConnectionException, JCoException {
+	public void setPrimaryConnection(JCoDestination destination) throws ConnectionException, JCoException {
 		setPrimaryDestination(destination.getDestinationName());
 	}
 
 	/**
-	 * Makes the destination the primary destination.
-	 * @param connectionData
+	 * Makes the connection the primary connection.
+	 * @param connection
 	 * @throws JCoException 
 	 * @throws ConnectionException 
 	 */
-	public void setPrimaryDestination(IConnectionData connectionData) throws ConnectionException, JCoException {
-		setPrimaryDestination(connectionData.getConnectionDataID());
+	public void setPrimaryConnection(IConnection connection) throws ConnectionException, JCoException {
+		setPrimaryDestination(connection.getConnectionID());
 	}
 
 	/**
-	 * Makes the destination the primary destination. If the destination is not active yet, it is activated.
+	 * Makes the connection the primary connection. 
 	 * @param connectionID
 	 * @throws JCoException 
 	 * @throws ConnectionException 
@@ -382,22 +426,21 @@ public class ConnectionManager  {
 		if (connectionID == null) {
 			throw new InvalidParameterException("The connection ID may not be null."); 
 		}
-		if (!destinations.containsKey(connectionID)) {
-			getDestination(connectionID);
+		if (!connections.containsKey(connectionID)) {
+			throw new ConnectionException(MessageFormat.format("No connection with ID {0} is active.", connectionID)); 
 		}
-		final Credentials dest = destinations.get(connectionID);
-		setPrimaryConnectionInternal(dest);
+		setPrimaryConnectionInternal(connections.get(connectionID));
 	}
 
 	/**
-	 * Makes the destination the primary destination. If the destination is not active yet, it is activated.
+	 * Makes the connection the primary connection. 
 	 * @param connectionID
 	 */
-	private void setPrimaryConnectionInternal(Credentials dest) {
-		primaryConnectionID = dest == null ? null : dest.getConnectionDataID();
+	private void setPrimaryConnectionInternal(ICredentials credentials) {
+		primaryConnectionID = credentials == null ? null : credentials.getConnectionID();
 		// notify listeners that the primary connection has changed
 		for (final IConnectionStateListener listener: listeners) {
-			listener.primaryConnectionChanged(dest);
+			listener.primaryConnectionChanged(credentials == null ? null : credentials.getConnection());
 		}
 	}
 
@@ -406,9 +449,9 @@ public class ConnectionManager  {
 	 * is active, the primary connection is closed and any of the secondary connections becomes the new primary 
 	 * connection. 
 	 */
-	public void closeDestination() {
+	public void closeConnection() {
 		if (primaryConnectionID != null) {
-			closeDestination(primaryConnectionID);
+			closeConnection(primaryConnectionID);
 		}
 	}
 
@@ -418,18 +461,18 @@ public class ConnectionManager  {
 	 * connections becomes the new primary connection. 
 	 * @param destination
 	 */
-	public void closeDestination(JCoDestination destination) {
-		closeDestination(destination.getDestinationName());
+	public void closeConnection(JCoDestination destination) {
+		closeConnection(destination.getDestinationName());
 	}
 
 	/**
 	 * Closes the designated connection. If the connection is not active, nothing happens. If more than one connection
 	 * is active and the designated connection is the primary connection, it is closed and any of the secondary 
 	 * connections becomes the new primary connection. 
-	 * @param connectionData
+	 * @param connection
 	 */
-	public void closeDestination(IConnectionData connectionData) {
-		closeDestination(connectionData.getConnectionDataID());
+	public void closeConnection(IConnection connection) {
+		closeConnection(connection.getConnectionID());
 	}
 
 	/**
@@ -438,10 +481,10 @@ public class ConnectionManager  {
 	 * connections becomes the new primary connection. 
 	 * @param connectionID
 	 */
-	public void closeDestination(String connectionID) {
-		if (destinations.containsKey(connectionID)) {
-			final Credentials dest = destinations.get(connectionID);
-			removeDestinationInternal(dest);
+	public void closeConnection(String connectionID) {
+		if (connections.containsKey(connectionID)) {
+			final ICredentials credentials = connections.get(connectionID);
+			removeConnectionInternal(credentials);
 		}
 	}
 
@@ -455,7 +498,7 @@ public class ConnectionManager  {
 			listeners.add(listener);
 		}
 	}
-	
+
 	/**
 	 * Removes an object from the list of listeners to be notified when the state of a connection changes.
 	 * @param listener
@@ -465,39 +508,48 @@ public class ConnectionManager  {
 			listeners.remove(listener);
 		}
 	}
-	
+
 	/**
 	 * Adds the destination to the list of active destinations. Also sets the primary connection if not set.
-	 * @param dest
+	 * @param credentials
 	 */
-	private void addDestinationInternal(Credentials dest) {
-		destinations.put(dest.getConnectionDataID(), dest);
-		provider.fireDestinationUpdated(dest.getConnectionDataID());
+	private void addConnectionInternal(ICredentials credentials) {
+		// store the connection in the internal maps
+		connections.put(credentials.getConnectionID(), credentials);
+		if (!connectionLists.containsKey(credentials.getConnection().getConnectionDataID())) {
+			connectionLists.put(credentials.getConnection().getConnectionDataID(), new HashSet<ICredentials>());
+		}
+		connectionLists.get(credentials.getConnection().getConnectionDataID()).add(credentials);
+		// notify the JCo that a new connection is available
+		provider.fireDestinationUpdated(credentials.getConnectionID());
 		// notify listeners that a new connection was opened
 		for (final IConnectionStateListener listener: listeners) {
-			listener.connectionActivated(dest);
+			listener.connectionActivated(credentials.getConnection());
 		}
 		// set the primary connection if it is not set
 		if (primaryConnectionID == null) {
-			setPrimaryConnectionInternal(dest);
+			setPrimaryConnectionInternal(credentials);
 		}
 	}
 
 	/**
 	 * Removes a connection from the list of active connections. Also chooses a new primary connection if required.
-	 * @param dest
+	 * @param credentials
 	 */
-	private void removeDestinationInternal(Credentials dest) {
-		provider.fireDestinationDeleted(dest.getConnectionDataID());
-		destinations.remove(dest.getConnectionDataID());
+	private void removeConnectionInternal(ICredentials credentials) {
+		// notify the JCo that the connection will be removed
+		provider.fireDestinationDeleted(credentials.getConnectionID());
+		// remove the connection from the internal lists
+		connections.remove(credentials.getConnectionID());
+		connectionLists.get(credentials.getConnection().getConnectionDataID()).remove(credentials);
 		// notify listeners that the connection has been closed
 		for (final IConnectionStateListener listener: listeners) {
-			listener.connectionActivated(dest);
+			listener.connectionActivated(credentials.getConnection());
 		}
 		// was this the primary connection?
-		if (primaryConnectionID.equals(dest.getConnectionDataID())) {
+		if (primaryConnectionID.equals(credentials.getConnectionID())) {
 			// yes - choose another, if any are left
-			setPrimaryConnectionInternal(destinations.isEmpty() ? null : destinations.values().iterator().next());
+			setPrimaryConnectionInternal(connections.isEmpty() ? null : connections.values().iterator().next());
 		}
 	}
 
@@ -512,28 +564,30 @@ public class ConnectionManager  {
 	}
 
 	/**
-	 * @param destinationId
+	 * @param connectionID
 	 * @return the credentials for the connection, or <code>null</code> if the connection is not active
 	 */
-	private Credentials getCredentials(String destinationId) {
-		if (!destinations.containsKey(destinationId)) {
+	private ICredentials getCredentials(String connectionID) {
+		if (!connections.containsKey(connectionID)) {
 			return null;
 		}
-		return destinations.get(destinationId);
+		return connections.get(connectionID);
 	}
 
 	/**
 	 * @return a list of all reachable {@link ICredentialsProviderWithoutSelection}, sorted by priority
 	 */
 	private List<ICredentialsProviderWithoutSelection> getCredentialsProvidersWithoutSelection() {
-		Map<String, ICredentialsProviderWithoutSelection> providers = new TreeMap<String, ICredentialsProviderWithoutSelection>();
+		Map<String, ICredentialsProviderWithoutSelection> providers = 
+			new TreeMap<String, ICredentialsProviderWithoutSelection>();
 		for (final IConfigurationElement element: 
 			Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, "credentials")) {
 			if (element.getName().equals("credentialsProviderWithoutSelection")) {
 				final String id = element.getAttribute("id");
 				try {
 					final String prio = element.getAttribute("priority");
-					final ICredentialsProviderWithoutSelection prov = (ICredentialsProviderWithoutSelection) element.createExecutableExtension("class");
+					final ICredentialsProviderWithoutSelection prov = 
+						(ICredentialsProviderWithoutSelection) element.createExecutableExtension("class");
 					providers.put(prio, prov);
 				} catch (CoreException e) {
 					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
@@ -550,14 +604,16 @@ public class ConnectionManager  {
 	 * @return a list of all reachable {@link ICredentialsProviderWithSelection}, sorted by priority
 	 */
 	private List<ICredentialsProviderWithSelection> getCredentialsProvidersWithSelection() {
-		Map<String, ICredentialsProviderWithSelection> providers = new TreeMap<String, ICredentialsProviderWithSelection>();
+		Map<String, ICredentialsProviderWithSelection> providers = 
+			new TreeMap<String, ICredentialsProviderWithSelection>();
 		for (final IConfigurationElement element: 
 			Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, "credentials")) {
 			if (element.getName().equals("credentialsProviderWithSelection")) {
 				final String id = element.getAttribute("id");
 				try {
 					final String prio = element.getAttribute("priority");
-					final ICredentialsProviderWithSelection prov = (ICredentialsProviderWithSelection) element.createExecutableExtension("class");
+					final ICredentialsProviderWithSelection prov = 
+						(ICredentialsProviderWithSelection) element.createExecutableExtension("class");
 					providers.put(prio, prov);
 				} catch (CoreException e) {
 					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 

@@ -22,9 +22,20 @@ import net.sf.rcer.conn.locales.Locale;
 public interface IConnection extends IConnectionData {
 
 	/**
+	 * @return the ID of the actual connection. This ID should contain the {@link #getConnectionID() connection ID}, 
+	 * the {@link #getClient() client} and the {@link #getUserName() user name}.
+	 */
+	public String getConnectionID();
+	
+	/**
 	 * @return the actual client
 	 */
 	public String getClient();
+
+	/**
+	 * @return whether the user may change the client during logon
+	 */
+	public boolean isClientEditable();
 
 	/**
 	 * @return the actual user name
@@ -32,8 +43,20 @@ public interface IConnection extends IConnectionData {
 	public String getUserName();
 
 	/**
+	 * @return whether the user may change the user name during logon
+	 */
+	public boolean isUserEditable();
+
+	/**
 	 * @return the actual locale
 	 */
 	public Locale getLocale();
 
+	/**
+	 * @return whether the user may change the locale during logon
+	 */
+	public boolean isLocaleEditable();
+
+	
+	
 }
