@@ -602,8 +602,8 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 				selection, "connectionType", ConnectionType.class);
 		context.bindValue(SWTObservables.observeSelection(connectionTypeCombo), 
 				connectionTypeObservable, 
-				new UpdateValueStrategy().setConverter(new ConnectionType.ToStringConverter()), 
-				new UpdateValueStrategy().setConverter(new ConnectionType.FromStringConverter()));
+				new UpdateValueStrategy().setConverter(new ConnectionType.FromStringConverter()), 
+				new UpdateValueStrategy().setConverter(new ConnectionType.ToStringConverter()));
 
 		// bind the system ID
 		context.bindValue(SWTObservables.observeText(sidText, SWT.Modify), 

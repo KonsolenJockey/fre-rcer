@@ -65,12 +65,12 @@ public enum ConnectionType {
 	 * A {@link Converter} that implements the {@link String} to {@link ConnectionType} conversion.
 	 * @author vwegert
 	 */
-	public static class ToStringConverter extends Converter {
+	public static class FromStringConverter extends Converter {
 
 		/**
 		 * Default constructor.
 		 */
-		public ToStringConverter() {
+		public FromStringConverter() {
 			super(String.class, ConnectionType.class);
 		}
 
@@ -93,12 +93,12 @@ public enum ConnectionType {
 	 * @author vwegert
 	 *
 	 */
-	public static class FromStringConverter extends Converter  {
+	public static class ToStringConverter extends Converter  {
 
 		/**
 		 * Default constructor.
 		 */
-		public FromStringConverter() {
+		public ToStringConverter() {
 			super(ConnectionType.class, String.class);
 		}
 
