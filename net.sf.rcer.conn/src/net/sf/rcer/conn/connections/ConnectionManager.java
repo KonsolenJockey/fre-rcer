@@ -224,7 +224,7 @@ public class ConnectionManager  {
 			}
 			addDestinationInternal(credentials);
 			try {
-				return getCheckedDestination(credentials.getConnectionID());
+				return getCheckedDestination(credentials.getConnectionDataID());
 			} catch (JCoException e) {
 				removeDestinationInternal(credentials);
 				throw e;
@@ -242,8 +242,8 @@ public class ConnectionManager  {
 	 * @throws ConnectionException 
 	 */
 	public JCoDestination getDestination(IConnectionData connectionData) throws JCoException, ConnectionException {
-		if (destinations.containsKey(connectionData.getConnectionID())) {
-			return getCheckedDestination(connectionData.getConnectionID());
+		if (destinations.containsKey(connectionData.getConnectionDataID())) {
+			return getCheckedDestination(connectionData.getConnectionDataID());
 
 		}
 		// query the credentials providers in order of priority
@@ -256,17 +256,17 @@ public class ConnectionManager  {
 				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
 						MessageFormat.format(
 								"Exception occurred trying to determine the credentials for connection {0}.",
-								connectionData.getConnectionID()), e));
+								connectionData.getConnectionDataID()), e));
 			}
 		}
 		if (credentials == null) {
 			throw new ConnectionException(MessageFormat.format(
 					"Unable to determine the credentials for connection {0}.",
-					connectionData.getConnectionID()));
+					connectionData.getConnectionDataID()));
 		}
 		addDestinationInternal(credentials);
 		try {
-			return getCheckedDestination(credentials.getConnectionID());
+			return getCheckedDestination(credentials.getConnectionDataID());
 		} catch (JCoException e) {
 			removeDestinationInternal(credentials);
 			throw e;			
@@ -325,7 +325,7 @@ public class ConnectionManager  {
 	 * @return <code>true</code> if the connection is active
 	 */
 	public boolean isActive(IConnectionData connectionData) {
-		return destinations.containsKey(connectionData.getConnectionID());
+		return destinations.containsKey(connectionData.getConnectionDataID());
 	}
 
 	/**
@@ -341,7 +341,7 @@ public class ConnectionManager  {
 	 * @return <code>true</code> if the connection is the primary connection
 	 */
 	public boolean isPrimaryConnection(IConnectionData connectionData) {
-		return (primaryConnectionID != null) && primaryConnectionID.equals(connectionData.getConnectionID());
+		return (primaryConnectionID != null) && primaryConnectionID.equals(connectionData.getConnectionDataID());
 	}
 
 	/**
@@ -369,7 +369,7 @@ public class ConnectionManager  {
 	 * @throws ConnectionException 
 	 */
 	public void setPrimaryDestination(IConnectionData connectionData) throws ConnectionException, JCoException {
-		setPrimaryDestination(connectionData.getConnectionID());
+		setPrimaryDestination(connectionData.getConnectionDataID());
 	}
 
 	/**
@@ -394,7 +394,7 @@ public class ConnectionManager  {
 	 * @param connectionID
 	 */
 	private void setPrimaryConnectionInternal(Credentials dest) {
-		primaryConnectionID = dest == null ? null : dest.getConnectionID();
+		primaryConnectionID = dest == null ? null : dest.getConnectionDataID();
 		// notify listeners that the primary connection has changed
 		for (final IConnectionStateListener listener: listeners) {
 			listener.primaryConnectionChanged(dest);
@@ -429,7 +429,7 @@ public class ConnectionManager  {
 	 * @param connectionData
 	 */
 	public void closeDestination(IConnectionData connectionData) {
-		closeDestination(connectionData.getConnectionID());
+		closeDestination(connectionData.getConnectionDataID());
 	}
 
 	/**
@@ -471,8 +471,8 @@ public class ConnectionManager  {
 	 * @param dest
 	 */
 	private void addDestinationInternal(Credentials dest) {
-		destinations.put(dest.getConnectionID(), dest);
-		provider.fireDestinationUpdated(dest.getConnectionID());
+		destinations.put(dest.getConnectionDataID(), dest);
+		provider.fireDestinationUpdated(dest.getConnectionDataID());
 		// notify listeners that a new connection was opened
 		for (final IConnectionStateListener listener: listeners) {
 			listener.connectionActivated(dest);
@@ -488,14 +488,14 @@ public class ConnectionManager  {
 	 * @param dest
 	 */
 	private void removeDestinationInternal(Credentials dest) {
-		provider.fireDestinationDeleted(dest.getConnectionID());
-		destinations.remove(dest.getConnectionID());
+		provider.fireDestinationDeleted(dest.getConnectionDataID());
+		destinations.remove(dest.getConnectionDataID());
 		// notify listeners that the connection has been closed
 		for (final IConnectionStateListener listener: listeners) {
 			listener.connectionActivated(dest);
 		}
 		// was this the primary connection?
-		if (primaryConnectionID.equals(dest.getConnectionID())) {
+		if (primaryConnectionID.equals(dest.getConnectionDataID())) {
 			// yes - choose another, if any are left
 			setPrimaryConnectionInternal(destinations.isEmpty() ? null : destinations.values().iterator().next());
 		}

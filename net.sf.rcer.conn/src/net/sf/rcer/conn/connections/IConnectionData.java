@@ -24,9 +24,9 @@ import net.sf.rcer.conn.locales.Locale;
 public interface IConnectionData {
 
 	/**
-	 * @return the ID of the connection
+	 * @return the ID of the connection data set. Note that this is <b>NOT</b> the ID of the actual connection.
 	 */
-	public String getConnectionID();
+	public String getConnectionDataID();
 
 	/**
 	 * @return the human-readable description of the system connection

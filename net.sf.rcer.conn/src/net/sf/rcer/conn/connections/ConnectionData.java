@@ -32,8 +32,9 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	/**
 	 * The ID of the connection. This value is used to store references to this connection 
 	 * (like the logon credentials), so it must be unique within the plug-in defining the connection. 
+	 * Note that this is <b>NOT</b> the ID of the actual connection.
 	 */
-	private String connectionID;
+	private String connectionDataID;
 	
 	/**
 	 * A human-readable description of the system connection.
@@ -121,18 +122,18 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	
 	/**
 	 * A constructor to create a direct connection.
-	 * @param connectionID the ID of the connection
+	 * @param connectionDataID the ID of the connection
 	 * @param description a human-readable description of the system connection
 	 * @param systemID the system ID (SID) of the SAP R/3 system
 	 * @param router the SAP router string
 	 * @param applicationServer the address or name of the application server to use
 	 * @param systemNumber the system number to use
 	 */
-	public ConnectionData(String connectionID, String description,
+	public ConnectionData(String connectionDataID, String description,
 			String systemID, String router, String applicationServer,
 			int systemNumber) {
 		super();
-		this.connectionID = connectionID;
+		this.connectionDataID = connectionDataID;
 		this.description = description;
 		this.systemID = systemID;
 		this.connectionType = ConnectionType.DIRECT;
@@ -146,7 +147,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 
 	/**
 	 * A constructor to create a connection that uses load balancing.
-	 * @param connectionID the ID of the connection
+	 * @param connectionDataID the ID of the connection
 	 * @param description a human-readable description of the system connection
 	 * @param systemID the system ID (SID) of the SAP R/3 system
 	 * @param router the SAP router string
@@ -154,11 +155,11 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	 * @param messageServerPort the port of the message server to use
 	 * @param loadBalancingGroup the name of the group used for load balancing
 	 */
-	public ConnectionData(String connectionID, String description,
+	public ConnectionData(String connectionDataID, String description,
 			String systemID, String router, String messageServer,
 			int messageServerPort, String loadBalancingGroup) {
 		super();
-		this.connectionID = connectionID;
+		this.connectionDataID = connectionDataID;
 		this.description = description;
 		this.systemID = systemID;
 		this.connectionType = ConnectionType.LOAD_BALANCED;
@@ -199,17 +200,17 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.IConnectionData#getConnectionID()
 	 */
-	public String getConnectionID() {
-		return connectionID;
+	public String getConnectionDataID() {
+		return connectionDataID;
 	}
 	
 	/**
-	 * @param connectionID the connectionID to set
+	 * @param connectionDataID the connectionID to set
 	 */
-	public void setConnectionID(String connectionID) {
-		final String oldValue = this.connectionID;
-		this.connectionID = connectionID;
-		propertyChangeSupport.firePropertyChange("connectionID", oldValue, connectionID);
+	public void setConnectionDataID(String connectionDataID) {
+		final String oldValue = this.connectionDataID;
+		this.connectionDataID = connectionDataID;
+		propertyChangeSupport.firePropertyChange("connectionDataID", oldValue, connectionDataID);
 	}
 		
 	/* (non-Javadoc)

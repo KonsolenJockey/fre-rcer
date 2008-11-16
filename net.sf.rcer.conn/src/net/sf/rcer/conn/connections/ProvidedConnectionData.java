@@ -49,10 +49,10 @@ public class ProvidedConnectionData implements IConnectionData {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.rcer.conn.IConnectionData#getConnectionID()
+	 * @see net.sf.rcer.conn.IConnectionData#getConnectionDataID()
 	 */
-	public String getConnectionID() {
-		return providerID + "#" + connectionData.getConnectionID();
+	public String getConnectionDataID() {
+		return providerID + "#" + connectionData.getConnectionDataID();
 	}
 
 	/* (non-Javadoc)

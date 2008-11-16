@@ -154,7 +154,7 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 		// examine the connections and try to determine the ones with a reusable connection ID
 		for (final IConnectionData connection: connections) {
 			try {
-				final Integer id = Integer.parseInt(connection.getConnectionID());
+				final Integer id = Integer.parseInt(connection.getConnectionDataID());
 				if (id <= 0) {
 					// we can't use values <= 0
 					remainingConnections.add(connection);

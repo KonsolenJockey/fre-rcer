@@ -112,16 +112,16 @@ public class PreferencesConnectionProviderTest implements IPreferenceConstants {
 	public void testDirectConnection() throws Exception {
 		
 		final ConnectionRegistry registry = ConnectionRegistry.getInstance();
-		final String CONNECTION_ID = "net.sf.rcer.conn.preferences#1";
+		final String CONNECTION_DATA_ID = "net.sf.rcer.conn.preferences#1";
 		
 		final Set<String> connectionIDs = registry.getConnectionIDs();
 		assertTrue("Direct connection ID is missing", 
-				connectionIDs.contains(CONNECTION_ID));
+				connectionIDs.contains(CONNECTION_DATA_ID));
 		
-		IConnectionData conn = registry.getConnectionData(CONNECTION_ID);
+		IConnectionData conn = registry.getConnectionData(CONNECTION_DATA_ID);
 		assertNotNull("Direct connection is missing", conn);
 		assertEquals("Connection ID of direct connection",      
-				CONNECTION_ID, conn.getConnectionID());
+				CONNECTION_DATA_ID, conn.getConnectionDataID());
 		assertEquals("Description of direct connection", 
 				DESCRIPTION, conn.getDescription());
 		assertEquals("System ID of direct connection", 
@@ -166,7 +166,7 @@ public class PreferencesConnectionProviderTest implements IPreferenceConstants {
 		IConnectionData conn = registry.getConnectionData(CONNECTION_ID);
 		assertNotNull("Load-balanced connection is missing", conn);
 		assertEquals("Connection ID of load-balanced connection", 
-				CONNECTION_ID, conn.getConnectionID());
+				CONNECTION_ID, conn.getConnectionDataID());
 		assertEquals("Description of load-balanced connection", 
 				DESCRIPTION, conn.getDescription());
 		assertEquals("System ID of load-balanced connection", 

@@ -57,8 +57,8 @@ public class Credentials implements IConnection {
 	 * @return the ID of the connection (the name of the destination)
 	 * @see net.sf.rcer.conn.connections.IConnectionData#getConnectionID()
 	 */
-	public String getConnectionID() {
-		return connectionData.getConnectionID();
+	public String getConnectionDataID() {
+		return connectionData.getConnectionDataID();
 	}
 	
 	/**

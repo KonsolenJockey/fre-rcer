@@ -113,16 +113,16 @@ public class PreferencesConnectionManagerTest implements IPreferenceConstants {
 	public void testDirectConnection() throws Exception {
 
 		final PreferencesConnectionManager manager = PreferencesConnectionManager.getInstance();
-		final String CONNECTION_ID = "1";
+		final String CONNECTION_DATA_ID = "1";
 
 		final Set<String> connectionIDs = manager.getConnectionIDs();
 		assertTrue("Direct connection ID is missing", 
-				connectionIDs.contains(CONNECTION_ID));
+				connectionIDs.contains(CONNECTION_DATA_ID));
 
-		IConnectionData conn = manager.getConnectionData(CONNECTION_ID);
+		IConnectionData conn = manager.getConnectionData(CONNECTION_DATA_ID);
 		assertNotNull("Direct connection is missing", conn);
 		assertEquals("Connection ID of direct connection",      
-				CONNECTION_ID, conn.getConnectionID());
+				CONNECTION_DATA_ID, conn.getConnectionDataID());
 		assertEquals("Description of direct connection", 
 				DESCRIPTION, conn.getDescription());
 		assertEquals("System ID of direct connection", 
@@ -158,16 +158,16 @@ public class PreferencesConnectionManagerTest implements IPreferenceConstants {
 	public void testLoadBalancingConnection() throws Exception {
 
 		final PreferencesConnectionManager manager = PreferencesConnectionManager.getInstance();
-		final String CONNECTION_ID = "2";
+		final String CONNECTION_DATA_ID = "2";
 
 		final Set<String> connectionIDs = manager.getConnectionIDs();
 		assertTrue("Load-balanced connection ID is missing", 
-				connectionIDs.contains(CONNECTION_ID));
+				connectionIDs.contains(CONNECTION_DATA_ID));
 
-		IConnectionData conn = manager.getConnectionData(CONNECTION_ID);
+		IConnectionData conn = manager.getConnectionData(CONNECTION_DATA_ID);
 		assertNotNull("Load-balanced connection is missing", conn);
 		assertEquals("Connection ID of load-balanced connection", 
-				CONNECTION_ID, conn.getConnectionID());
+				CONNECTION_DATA_ID, conn.getConnectionDataID());
 		assertEquals("Description of load-balanced connection", 
 				DESCRIPTION, conn.getDescription());
 		assertEquals("System ID of load-balanced connection", 

@@ -23,7 +23,7 @@ import org.junit.Test;
  */
 public class ConnectionDataTest {
 
-	private final static String CONNECTION_ID   = "foobar";
+	private final static String CONNECTION_DATA_ID   = "foobar";
 	private final static String DESCRIPTION     = "Connection Description";
 	private final static String SYSTEM_ID       = "SID";
 	private final static String ROUTER          = "/H/foo/H/";
@@ -41,9 +41,9 @@ public class ConnectionDataTest {
 	 */
 	@Before
 	public void setUp() {
-		directConnection = new ConnectionData(CONNECTION_ID, DESCRIPTION, 
+		directConnection = new ConnectionData(CONNECTION_DATA_ID, DESCRIPTION, 
 				SYSTEM_ID, ROUTER, APP_SERVER, SYSTEM_NUMBER);
-		loadBalancedConnection = new ConnectionData(CONNECTION_ID, DESCRIPTION,
+		loadBalancedConnection = new ConnectionData(CONNECTION_DATA_ID, DESCRIPTION,
 				SYSTEM_ID, ROUTER, MSG_SERVER, MSG_SERVER_PORT, LB_GROUP);
 	}
 	
@@ -52,7 +52,7 @@ public class ConnectionDataTest {
 	 */
 	@Test
 	public void testConnectionDataConstructorDirect() {
-		assertEquals("Connection ID", CONNECTION_ID, directConnection.getConnectionID());
+		assertEquals("Connection ID", CONNECTION_DATA_ID, directConnection.getConnectionDataID());
 		assertEquals("Description", DESCRIPTION, directConnection.getDescription());
 		assertEquals("Connection Type", ConnectionType.DIRECT, directConnection.getConnectionType());
 		assertEquals("System ID", SYSTEM_ID, directConnection.getSystemID());
@@ -66,7 +66,7 @@ public class ConnectionDataTest {
 	 */
 	@Test
 	public void testConnectionDataConstructorLoadBalanced() {
-		assertEquals("Connection ID", CONNECTION_ID, loadBalancedConnection.getConnectionID());
+		assertEquals("Connection ID", CONNECTION_DATA_ID, loadBalancedConnection.getConnectionDataID());
 		assertEquals("Description", DESCRIPTION, loadBalancedConnection.getDescription());
 		assertEquals("Connection Type", ConnectionType.LOAD_BALANCED, loadBalancedConnection.getConnectionType());
 		assertEquals("System ID", SYSTEM_ID, loadBalancedConnection.getSystemID());

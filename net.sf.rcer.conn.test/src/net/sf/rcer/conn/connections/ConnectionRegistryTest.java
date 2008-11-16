@@ -164,7 +164,7 @@ public class ConnectionRegistryTest {
 		IConnectionData conn = registry.getConnectionData(CONNECTION_ID_DIRECT_STATIC);
 		assertNotNull("Direct static connection is missing", conn);
 		assertEquals("Connection ID of static direct connection", 
-				CONNECTION_ID_DIRECT_STATIC, conn.getConnectionID());
+				CONNECTION_ID_DIRECT_STATIC, conn.getConnectionDataID());
 		assertEquals("Description of static direct connection", 
 				"Direct Connection 1", conn.getDescription());
 		assertEquals("System ID of static direct connection", 
@@ -225,7 +225,7 @@ public class ConnectionRegistryTest {
 		IConnectionData conn = registry.getConnectionData(CONNECTION_ID_LB_STATIC);
 		assertNotNull("Load-balanced static connection is missing", conn);
 		assertEquals("Connection ID of static load-balanced connection", 
-				CONNECTION_ID_LB_STATIC, conn.getConnectionID());
+				CONNECTION_ID_LB_STATIC, conn.getConnectionDataID());
 		assertEquals("Description of static load-balanced connection", 
 				"Load-Balancing Connection 1", conn.getDescription());
 		assertEquals("System ID of static load-balanced connection", 
@@ -277,7 +277,7 @@ public class ConnectionRegistryTest {
 		IConnectionData conn = registry.getConnectionData(CONNECTION_ID_DIRECT_DYNAMIC);
 		assertNotNull("Direct dynamic connection is missing", conn);
 		assertEquals("Connection ID of dynamic direct connection", 
-				CONNECTION_ID_DIRECT_DYNAMIC, conn.getConnectionID());
+				CONNECTION_ID_DIRECT_DYNAMIC, conn.getConnectionDataID());
 		assertEquals("Description of dynamic direct connection", 
 				"Direct Connection", conn.getDescription());
 		assertEquals("System ID of dynamic direct connection", 
@@ -318,7 +318,7 @@ public class ConnectionRegistryTest {
 		IConnectionData conn = registry.getConnectionData(CONNECTION_ID_LB_DYNAMIC);
 		assertNotNull("Load-balanced dynamic connection is missing", conn);
 		assertEquals("Connection ID of dynamic load-balanced connection", 
-				CONNECTION_ID_LB_DYNAMIC, conn.getConnectionID());
+				CONNECTION_ID_LB_DYNAMIC, conn.getConnectionDataID());
 		assertEquals("Description of dynamic load-balanced connection", 
 				"Load-Balancing Connection", conn.getDescription());
 		assertEquals("System ID of dynamic load-balanced connection", 
