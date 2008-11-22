@@ -24,7 +24,7 @@ import net.sf.rcer.conn.locales.Locale;
 public class Connection extends ConnectionData implements IConnection {
 
 	// TODO add some unit tests for this class
-	
+
 	/**
 	 * The actual client to log on to.
 	 */
@@ -143,6 +143,9 @@ public class Connection extends ConnectionData implements IConnection {
 	 */
 	@Override
 	public String toString() {
+		if (getClient().equals("")) {
+			return MessageFormat.format("{0} {1} ({2})", getSystemID(), getUserName(), getDescription());
+		}
 		return MessageFormat.format("{0}.{1} {2} ({3})", getSystemID(), getClient(), getUserName(), getDescription());
 	}
 
