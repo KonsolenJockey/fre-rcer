@@ -2,7 +2,7 @@
 <feature
       id="net.sf.rcer.import"
       label="Import Wizard for SAP Java Connector"
-      version="1.0.0"
+      version="0.1.0"
       provider-name="http://www.sf.net/projects/rcer">
 
    <description>
