@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SAP R/3-enabled RCP Application using traditiona RFC calls
+Bundle-SymbolicName: net.sf.rcer.example.traditional; singleton:=true
+Bundle-Version: 1.0.0
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ com.sap.conn.jco,
+ org.eclipse.core.databinding,
+ org.eclipse.core.databinding.beans,
+ org.eclipse.jface.databinding,
+ net.sf.rcer.conn
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: http://www.sf.net/projects/rcer
+Bundle-Activator: net.sf.rcer.example.traditional.Activator
