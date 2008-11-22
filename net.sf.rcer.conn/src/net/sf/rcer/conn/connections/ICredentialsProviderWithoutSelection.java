@@ -11,6 +11,8 @@
  */
 package net.sf.rcer.conn.connections;
 
+import org.eclipse.core.runtime.OperationCanceledException;
+
 /**
  * An interface for a class that is able to provide logon credentials for a connection.
  * @author vwegert
@@ -22,7 +24,8 @@ public interface ICredentialsProviderWithoutSelection {
 	 * Determines the credentials for the connection.
 	 * @param connectionData
 	 * @return the credentials, or <code>null</code> if the credentials can not be provided
+	 * @throws OperationCanceledException if the user cancelled the logon
 	 */
-	public ICredentials getCredentials(IConnectionData connectionData);
+	public ICredentials getCredentials(IConnectionData connectionData) throws OperationCanceledException;
 
 }

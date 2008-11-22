@@ -29,6 +29,7 @@ import net.sf.rcer.conn.Activator;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 
@@ -50,7 +51,7 @@ import com.sap.conn.jco.ext.Environment;
 public class ConnectionManager  {
 
 	// TODO add some unit tests for this class
-	
+
 	/**
 	 * The internal implementation of the {@link DestinationDataProvider} interface.
 	 * @author vwegert
@@ -223,6 +224,8 @@ public class ConnectionManager  {
 			while (it.hasNext() && credentials == null) {
 				try {
 					credentials = it.next().getCredentials();
+				} catch (OperationCanceledException e) {
+					throw new ConnectionException("Logon cancelled by the user.", e);
 				} catch (Exception e) {
 					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
 							"Exception occurred trying to select a connection and determine the credentials.", e));
@@ -272,6 +275,8 @@ public class ConnectionManager  {
 		while (it.hasNext() && credentials == null) {
 			try {
 				credentials = it.next().getCredentials(connectionData);
+			} catch (OperationCanceledException e) {
+				throw new ConnectionException("Logon cancelled by the user.", e);
 			} catch (Exception e) {
 				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
 						MessageFormat.format(

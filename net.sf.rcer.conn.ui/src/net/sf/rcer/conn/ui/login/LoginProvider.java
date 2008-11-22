@@ -20,6 +20,9 @@ import net.sf.rcer.conn.connections.ICredentials;
 import net.sf.rcer.conn.connections.ICredentialsProviderWithSelection;
 import net.sf.rcer.conn.connections.ICredentialsProviderWithoutSelection;
 
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.jface.dialogs.Dialog;
+
 /**
  * A login provider that uses the {@link LoginDialog} to query the user for credentials.
  * @author vwegert
@@ -39,8 +42,13 @@ public class LoginProvider implements ICredentialsProviderWithSelection, ICreden
 	 */
 	public ICredentials getCredentials() {
 		LoginDialog loginDialog = new LoginDialog(ConnectionRegistry.getInstance().getConnectionData());
-		loginDialog.open();
-		return loginDialog.getSelectedCredentials();
+		switch(loginDialog.open()) { 
+		case Dialog.OK:
+			return loginDialog.getSelectedCredentials();
+		case Dialog.CANCEL:
+			throw new OperationCanceledException();
+		}
+		return null;
 	}
 
 	/* (non-Javadoc)
@@ -50,8 +58,13 @@ public class LoginProvider implements ICredentialsProviderWithSelection, ICreden
 		Set<IConnectionData> set = new HashSet<IConnectionData>();
 		set.add(connectionData);
 		LoginDialog loginDialog = new LoginDialog(set);
-		loginDialog.open();
-		return loginDialog.getSelectedCredentials();
+		switch(loginDialog.open()) {
+		case Dialog.OK: 
+			return loginDialog.getSelectedCredentials();
+		case Dialog.CANCEL:
+			throw new OperationCanceledException();
+		}
+		return null;
 	}
 
 }
