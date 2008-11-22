@@ -30,8 +30,8 @@ public class ProjectGeneratorSettings {
 	private String linux32FileName = "";
 	private String linux64IAFileName = "";
 	private String linux64x86FileName = "";
-	private String darwinPowerPCFileName = "";
-	private String darwinIntelFileName = "";
+	private String darwin32FileName = "";
+	private String darwin64FileName = "";
 
 	private boolean pluginProjectSelected;
 	private boolean win32FragmentSelected;
@@ -40,8 +40,8 @@ public class ProjectGeneratorSettings {
 	private boolean linux32FragmentSelected;
 	private boolean linux64IAFragmentSelected;
 	private boolean linux64x86FragmentSelected;
-	private boolean darwinPowerPCFragmentSelected;
-	private boolean darwinIntelFragmentSelected;
+	private boolean darwin32FragmentSelected;
+	private boolean darwin64FragmentSelected;
 	
 	private boolean bundleExportSelected;
 	private String exportPath;
@@ -162,43 +162,43 @@ public class ProjectGeneratorSettings {
 	}
 
 	/**
-	 * @return the name of the archive file for the Darwin PowerPC platform, or
+	 * @return the name of the archive file for the Darwin x86 platform, or
 	 *         an empty string if none was selected
 	 */
-	public String getDarwinPowerPCFileName() {
-		return darwinPowerPCFileName;
+	public String getDarwin32FileName() {
+		return darwin32FileName;
 	}
 
 	/**
-	 * @param darwinPowerPCFileName
+	 * @param darwin32FileName
 	 *            the file name to set
-	 * @see #getDarwinPowerPCFileName()
+	 * @see #getDarwin32FileName()
 	 */
-	public void setDarwinPowerPCFileName(String darwinPowerPCFileName) {
-		String oldValue = darwinPowerPCFileName;
-		this.darwinPowerPCFileName = darwinPowerPCFileName;
-		propertyChangeSupport.firePropertyChange("darwinPowerPCFileName", oldValue,
-				darwinPowerPCFileName);
+	public void setDarwin32FileName(String darwin32FileName) {
+		String oldValue = darwin32FileName;
+		this.darwin32FileName = darwin32FileName;
+		propertyChangeSupport.firePropertyChange("darwin32FileName", oldValue,
+				darwin32FileName);
 	}
 
 	/**
-	 * @return the name of the archive file for the Darwin Intel platform, or an
+	 * @return the name of the archive file for the Darwin x86-64 platform, or an
 	 *         empty string if none was selected
 	 */
-	public String getDarwinIntelFileName() {
-		return darwinIntelFileName;
+	public String getDarwin64FileName() {
+		return darwin64FileName;
 	}
 
 	/**
-	 * @param darwinIntelFileName
+	 * @param darwin64FileName
 	 *            the file name to set
-	 * @see #getDarwinIntelFileName()
+	 * @see #getDarwin64FileName()
 	 */
-	public void setDarwinIntelFileName(String darwinIntelFileName) {
-		String oldValue = darwinIntelFileName;
-		this.darwinIntelFileName = darwinIntelFileName;
-		propertyChangeSupport.firePropertyChange("darwinIntelFileName", oldValue,
-				darwinIntelFileName);
+	public void setDarwin64FileName(String darwin64FileName) {
+		String oldValue = darwin64FileName;
+		this.darwin64FileName = darwin64FileName;
+		propertyChangeSupport.firePropertyChange("darwin64FileName", oldValue,
+				darwin64FileName);
 	}
 
 	/**
@@ -328,39 +328,39 @@ public class ProjectGeneratorSettings {
 	}
 
 	/**
-	 * @return whether the darwinPowerPC fragment is selected
+	 * @return whether the darwin32 fragment is selected
 	 */
-	public boolean isDarwinPowerPCFragmentSelected() {
-		return darwinPowerPCFragmentSelected;
+	public boolean isDarwin32FragmentSelected() {
+		return darwin32FragmentSelected;
 	}
 
 	/**
-	 * @param darwinPowerPCFragmentSelected
-	 *            whether the darwinPowerPC fragment is selected to set
+	 * @param darwin32FragmentSelected
+	 *            whether the darwin32 fragment is selected to set
 	 */
-	public void setDarwinPowerPCFragmentSelected(boolean darwinPowerPCFragmentSelected) {
-		boolean oldValue = darwinPowerPCFragmentSelected;
-		this.darwinPowerPCFragmentSelected = darwinPowerPCFragmentSelected;
-		propertyChangeSupport.firePropertyChange("darwinPowerPCFragmentSelected", oldValue,
-				darwinPowerPCFragmentSelected);
+	public void setDarwin32FragmentSelected(boolean darwin32FragmentSelected) {
+		boolean oldValue = darwin32FragmentSelected;
+		this.darwin32FragmentSelected = darwin32FragmentSelected;
+		propertyChangeSupport.firePropertyChange("darwin32FragmentSelected", oldValue,
+				darwin32FragmentSelected);
 	}
 
 	/**
-	 * @return whether the darwinIntel fragment is selected
+	 * @return whether the darwin64 fragment is selected
 	 */
-	public boolean isDarwinIntelFragmentSelected() {
-		return darwinIntelFragmentSelected;
+	public boolean isDarwin64FragmentSelected() {
+		return darwin64FragmentSelected;
 	}
 
 	/**
-	 * @param darwinIntelFragmentSelected
-	 *            whether the darwinIntel fragment is selected to set
+	 * @param darwin64FragmentSelected
+	 *            whether the darwin64 fragment is selected to set
 	 */
-	public void setDarwinIntelFragmentSelected(boolean darwinIntelFragmentSelected) {
-		boolean oldValue = darwinIntelFragmentSelected;
-		this.darwinIntelFragmentSelected = darwinIntelFragmentSelected;
-		propertyChangeSupport.firePropertyChange("darwinIntelFragmentSelected", oldValue,
-				darwinIntelFragmentSelected);
+	public void setDarwin64FragmentSelected(boolean darwin64FragmentSelected) {
+		boolean oldValue = darwin64FragmentSelected;
+		this.darwin64FragmentSelected = darwin64FragmentSelected;
+		propertyChangeSupport.firePropertyChange("darwin64FragmentSelected", oldValue,
+				darwin64FragmentSelected);
 	}
 
 	/**

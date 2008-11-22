@@ -47,8 +47,8 @@ public class SummaryPage extends WizardPage {
 	private Button checkboxFragmentLinux32;
 	private Button checkboxFragmentLinux64IA;
 	private Button checkboxFragmentLinux64x86;
-	private Button checkboxFragmentDarwinPowerPC;
-	private Button checkboxFragmentDarwinIntel;
+	private Button checkboxFragmentDarwin32;
+	private Button checkboxFragmentDarwin64;
 
 	private DataBindingContext context;
 
@@ -114,14 +114,14 @@ public class SummaryPage extends WizardPage {
 				BeansObservables.observeValue(generatorSettings, "linux64x86FragmentSelected"),
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
-		checkboxFragmentDarwinPowerPC = new Button(top, SWT.CHECK);
-		context.bindValue(SWTObservables.observeSelection(checkboxFragmentDarwinPowerPC), 
-				BeansObservables.observeValue(generatorSettings, "darwinPowerPCFragmentSelected"),
+		checkboxFragmentDarwin32 = new Button(top, SWT.CHECK);
+		context.bindValue(SWTObservables.observeSelection(checkboxFragmentDarwin32), 
+				BeansObservables.observeValue(generatorSettings, "darwin32FragmentSelected"),
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
-		checkboxFragmentDarwinIntel = new Button(top, SWT.CHECK);
-		context.bindValue(SWTObservables.observeSelection(checkboxFragmentDarwinIntel), 
-				BeansObservables.observeValue(generatorSettings, "darwinIntelFragmentSelected"),
+		checkboxFragmentDarwin64 = new Button(top, SWT.CHECK);
+		context.bindValue(SWTObservables.observeSelection(checkboxFragmentDarwin64), 
+				BeansObservables.observeValue(generatorSettings, "darwin64FragmentSelected"),
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 
 		@SuppressWarnings("unused")
@@ -176,12 +176,12 @@ public class SummaryPage extends WizardPage {
 		updateCheckbox(checkboxFragmentLinux64x86,   
 				generatorSettings.getLinux64x86FileName(), 
 				IProjectNames.FRAGMENT_LINUX_64X86);
-		updateCheckbox(checkboxFragmentDarwinPowerPC, 
-				generatorSettings.getDarwinPowerPCFileName(), 
-				IProjectNames.FRAGMENT_DARWIN_POWERPC);
-		updateCheckbox(checkboxFragmentDarwinIntel,  
-				generatorSettings.getDarwinIntelFileName(), 
-				IProjectNames.FRAGMENT_DARWIN_INTEL);
+		updateCheckbox(checkboxFragmentDarwin32, 
+				generatorSettings.getDarwin32FileName(), 
+				IProjectNames.FRAGMENT_DARWIN_32);
+		updateCheckbox(checkboxFragmentDarwin64,  
+				generatorSettings.getDarwin64FileName(), 
+				IProjectNames.FRAGMENT_DARWIN_64);
 	}
 
 	/**

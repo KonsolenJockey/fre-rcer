@@ -54,13 +54,13 @@ public interface IProjectNames {
 	public static final String FRAGMENT_LINUX_64X86 = "com.sap.conn.jco.linux.x86_64";
 	
 	/**
-	 * The name of the fragment that contains the native libraries for the Linux 64-bit Itanium platform. 
+	 * The name of the fragment that contains the native libraries for the Darwin 32-bit x86 platform. 
 	 */
-	public static final String FRAGMENT_DARWIN_POWERPC = "com.sap.conn.jco.osx.powerpc";
+	public static final String FRAGMENT_DARWIN_32 = "com.sap.conn.jco.osx.x86";
 	
 	/**
-	 * The name of the fragment that contains the native libraries for the Linux 64-bit x86 platform. 
+	 * The name of the fragment that contains the native libraries for the Darwin 64-bit Itanium platform. 
 	 */
-	public static final String FRAGMENT_DARWIN_INTEL = "com.sap.conn.jco.osx.intel";
+	public static final String FRAGMENT_DARWIN_64 = "com.sap.conn.jco.osx.x86_64";
 	
 }

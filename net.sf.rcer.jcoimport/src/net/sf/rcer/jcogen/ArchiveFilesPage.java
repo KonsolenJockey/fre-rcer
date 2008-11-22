@@ -48,8 +48,8 @@ public class ArchiveFilesPage extends WizardPage {
 	private Text linux32FilenameText;
 	private Text linux64IAFilenameText;
 	private Text linux64x86FilenameText;
-	private Text darwinPowerFilenameText;
-	private Text darwinIntelFilenameText;
+	private Text darwin32FilenameText;
+	private Text darwin64FilenameText;
 
 	private ModifyListener filenameModifyListener;
 
@@ -91,8 +91,8 @@ public class ArchiveFilesPage extends WizardPage {
 						(linux32FilenameText.getText().length() == 0) && 
 						(linux64IAFilenameText.getText().length() == 0) && 
 						(linux64x86FilenameText.getText().length() == 0) && 
-						(darwinPowerFilenameText.getText().length() == 0) && 
-						(darwinIntelFilenameText.getText().length() == 0)) {
+						(darwin32FilenameText.getText().length() == 0) && 
+						(darwin64FilenameText.getText().length() == 0)) {
 					setErrorMessage("You must specify at least one package file.");
 					setPageComplete(false);
 				} else {
@@ -104,8 +104,8 @@ public class ArchiveFilesPage extends WizardPage {
 					checkFile(linux32FilenameText.getText()); 
 					checkFile(linux64IAFilenameText.getText());
 					checkFile(linux64x86FilenameText.getText()); 
-					checkFile(darwinPowerFilenameText.getText()); 
-					checkFile(darwinIntelFilenameText.getText());
+					checkFile(darwin32FilenameText.getText()); 
+					checkFile(darwin64FilenameText.getText());
 				}
 			}
 
@@ -138,10 +138,10 @@ public class ArchiveFilesPage extends WizardPage {
 		linux64x86FilenameText = addFileRow(top, "linux64x86FileName",
 				"Linux (64-bit x86)", "sapjco3-linuxx86_64-3.x.x.tgz", "*.tgz");
 
-		darwinPowerFilenameText = addFileRow(top, "darwinPowerPCFileName",
-				"Max OS X (PowerPC)", "sapjco3-darwin-3.x.x.zip", "*.zip");
-		darwinIntelFilenameText = addFileRow(top, "darwinIntelFileName",
-				"Mac OS X (Intel)", "sapjco3-darwinintel-3.x.x.zip", "*.zip");
+		darwin32FilenameText = addFileRow(top, "darwin32FileName",
+				"Max OS X (32-bit Intel)", "sapjco3-darwinintel-3.x.x.zip", "*.zip");
+		darwin64FilenameText = addFileRow(top, "darwin64FileName",
+				"Mac OS X (64-bit Intel)", "sapjco3-darwinx64-3.x.x.zip", "*.zip");
 
 		setControl(top);
 		Dialog.applyDialogFont(top);

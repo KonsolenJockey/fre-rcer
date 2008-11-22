@@ -99,10 +99,10 @@ public class ProjectGenerator implements IRunnableWithProgress {
 					createPluginProject(monitor, settings.getLinux64IAFileName(), IProjectNames.PLUGIN_JCO);
 				} else if (settings.isLinux64x86FragmentSelected())  {
 					createPluginProject(monitor, settings.getLinux64x86FileName(), IProjectNames.PLUGIN_JCO);
-				} else if (settings.isDarwinPowerPCFragmentSelected())  {
-					createPluginProject(monitor, settings.getDarwinPowerPCFileName(), IProjectNames.PLUGIN_JCO);
-				} else if (settings.isDarwinIntelFragmentSelected())  {
-					createPluginProject(monitor, settings.getDarwinIntelFileName(), IProjectNames.PLUGIN_JCO);
+				} else if (settings.isDarwin32FragmentSelected())  {
+					createPluginProject(monitor, settings.getDarwin32FileName(), IProjectNames.PLUGIN_JCO);
+				} else if (settings.isDarwin64FragmentSelected())  {
+					createPluginProject(monitor, settings.getDarwin64FileName(), IProjectNames.PLUGIN_JCO);
 				} else {
 					throw new InvocationTargetException(null, "No input file was selected - should never have happened.");
 				}
@@ -156,17 +156,17 @@ public class ProjectGenerator implements IRunnableWithProgress {
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
-			if (settings.isDarwinPowerPCFragmentSelected())  {
-				createFragmentProject(monitor, settings.getDarwinPowerPCFileName(), 
-						IProjectNames.FRAGMENT_DARWIN_POWERPC,
-						"libsapjco3.jnilib", "OS X (PowerPC)", "(& (osgi.os=macosx) (osgi.arch=powerpc))");
+			if (settings.isDarwin32FragmentSelected())  {
+				createFragmentProject(monitor, settings.getDarwin32FileName(), 
+						IProjectNames.FRAGMENT_DARWIN_32,
+						"libsapjco3.jnilib", "OS X (32-bit Intel)", "(& (osgi.os=macosx) (osgi.arch=x86))");
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
-			if (settings.isDarwinIntelFragmentSelected())  {
-				createFragmentProject(monitor, settings.getDarwinIntelFileName(), 
-						IProjectNames.FRAGMENT_DARWIN_INTEL,
-						"libsapjco3.jnilib", "OS X (Intel)", "(& (osgi.os=macosx) (osgi.arch=x86))");
+			if (settings.isDarwin64FragmentSelected())  {
+				createFragmentProject(monitor, settings.getDarwin64FileName(), 
+						IProjectNames.FRAGMENT_DARWIN_64,
+						"libsapjco3.jnilib", "OS X (64-bit Intel)", "(& (osgi.os=macosx) (osgi.arch=x86-64))");
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 			
@@ -386,8 +386,8 @@ public class ProjectGenerator implements IRunnableWithProgress {
 		if (settings.isLinux32FragmentSelected())       steps += FRAGMENT_STEPS;
 		if (settings.isLinux64IAFragmentSelected())     steps += FRAGMENT_STEPS;
 		if (settings.isLinux64x86FragmentSelected())    steps += FRAGMENT_STEPS;
-		if (settings.isDarwinPowerPCFragmentSelected()) steps += FRAGMENT_STEPS;
-		if (settings.isDarwinIntelFragmentSelected())   steps += FRAGMENT_STEPS;
+		if (settings.isDarwin32FragmentSelected())      steps += FRAGMENT_STEPS;
+		if (settings.isDarwin64FragmentSelected())      steps += FRAGMENT_STEPS;
 		return steps;
 	}
 
