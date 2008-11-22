@@ -9,7 +9,7 @@
  *
  * $Id$
  */
-package net.sf.rcer.jcogen;
+package net.sf.rcer.jcoimport;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

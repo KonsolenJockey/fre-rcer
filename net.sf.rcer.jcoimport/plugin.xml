@@ -9,7 +9,7 @@
       </category>
       <wizard
             category="net.sf.rcer.jcogen.sampleCategory"
-            class="net.sf.rcer.jcogen.JCoImportWizard"
+            class="net.sf.rcer.jcoimport.JCoImportWizard"
             id="net.sf.rcer.jcogen.JCoImportWizard"
             name="Create SAP Java Connector Plug-ins">
          <description>

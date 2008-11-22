@@ -9,7 +9,7 @@
  *
  * $Id$
  */
-package net.sf.rcer.jcogen;
+package net.sf.rcer.jcoimport;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;

@@ -9,7 +9,7 @@
  *
  * $Id$
  */
-package net.sf.rcer.jcogen;
+package net.sf.rcer.jcoimport;
 
 /**
  * An interface providing the names of the projects to be created as constants.
