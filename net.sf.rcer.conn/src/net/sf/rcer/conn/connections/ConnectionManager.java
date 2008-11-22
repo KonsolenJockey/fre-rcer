@@ -210,7 +210,7 @@ public class ConnectionManager  {
 		if (primaryConnectionID != null) {
 			getCheckedDestination(primaryConnectionID);
 		}
-		final Set<String> registeredConnectionData = ConnectionRegistry.getInstance().getConnectionDataIDs();
+		final Set<IConnectionData> registeredConnectionData = ConnectionRegistry.getInstance().getConnectionData();
 		switch(registeredConnectionData.size()) {
 		case 0:
 			throw new ConnectionException("Unable to find connection data.");
