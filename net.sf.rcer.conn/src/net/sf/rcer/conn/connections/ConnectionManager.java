@@ -84,7 +84,9 @@ public class ConnectionManager  {
 			p.setProperty(JCO_CLIENT, connection.getClient());
 			p.setProperty(JCO_USER,   connection.getUserName());
 			p.setProperty(JCO_PASSWD, credentials.getPassword());
-			p.setProperty(JCO_LANG,   connection.getLocale().getID());
+			if (connection.getLocale() != null) {
+				p.setProperty(JCO_LANG,   connection.getLocale().getID());
+			}
 
 			switch(connection.getConnectionType()) {
 			case DIRECT:

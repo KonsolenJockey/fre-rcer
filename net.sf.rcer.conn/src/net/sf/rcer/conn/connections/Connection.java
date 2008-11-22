@@ -71,7 +71,7 @@ public class Connection extends ConnectionData implements IConnection {
 		setDefaultLocale(connectionData.getDefaultLocale(), connectionData.isDefaultLocaleEditable());
 		setClient(getDefaultClient());
 		setUserName(getDefaultUser());
-		setLocale(getDefaultLocale());
+		setLocale(getDefaultLocale()); // TODO set the locale matching the user language if no default locale is set
 	}
 
 	/* (non-Javadoc)
