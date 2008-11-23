@@ -315,17 +315,35 @@ public class ConnectionManager  {
 	}
 
 	/**
-	 * Obtains the connection designated. If the connection is not active, a {@link ConnectionException} is thrown.
+	 * Obtains the connection designated. If the connection is not active, it is activated. If the connection is active
+	 * and <code>reuseConnection</code> is <code>true</code>, the active conneciton is returned. Otherwise a new 
+	 * connection is opened 
+	 * @param connectionID
+	 * @param reuseConnection if <code>true</code>, an existing connection is reused 
+	 * @return the connection
+	 * @throws ConnectionException 
+	 * @throws JCoException 
+	 * @throws ProviderNotFoundException 
+	 * @throws ConnectionNotFoundException 
+	 */
+	public JCoDestination getDestination(String connectionID, boolean reuseConnection) 
+	  throws ConnectionException, JCoException, ConnectionNotFoundException, ProviderNotFoundException {
+		return getDestination(ConnectionRegistry.getInstance().getConnectionData(connectionID), reuseConnection);
+	}
+
+	/**
+	 * Obtains the connection designated. If the connection is not active, it is activated. If the connection is active,
+	 * the current connection is returned. 
 	 * @param connectionID
 	 * @return the connection
 	 * @throws ConnectionException 
 	 * @throws JCoException 
+	 * @throws ProviderNotFoundException 
+	 * @throws ConnectionNotFoundException 
 	 */
-	public JCoDestination getDestination(String connectionID) throws ConnectionException, JCoException {
-		if (!connections.containsKey(connectionID)) { 
-			throw new ConnectionException(MessageFormat.format("No connection with ID {0} is active.", connectionID)); 
-		}
-		return getCheckedDestination(connectionID);
+	public JCoDestination getDestination(String connectionID) 
+	  throws ConnectionException, JCoException, ConnectionNotFoundException, ProviderNotFoundException {
+		return getDestination(connectionID, true);
 	}
 
 	/**
@@ -497,6 +515,15 @@ public class ConnectionManager  {
 		}
 	}
 
+	/**
+	 * Closes all active connections. 
+	 */
+	public void closeConnections() {
+		while (isConnected()) {
+			closeConnection();
+		}
+	}
+	
 	/**
 	 * Adds an object to the list of listeners to be notified when the state of a connection changes.
 	 * @see {@link IConnectionStateListener} 
