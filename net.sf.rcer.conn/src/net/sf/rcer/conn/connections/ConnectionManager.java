@@ -580,7 +580,7 @@ public class ConnectionManager  {
 		connectionLists.get(credentials.getConnection().getConnectionDataID()).remove(credentials);
 		// notify listeners that the connection has been closed
 		for (final IConnectionStateListener listener: listeners) {
-			listener.connectionActivated(credentials.getConnection());
+			listener.connectionDeactivated(credentials.getConnection());
 		}
 		// was this the primary connection?
 		if (primaryConnectionID.equals(credentials.getConnectionID())) {
