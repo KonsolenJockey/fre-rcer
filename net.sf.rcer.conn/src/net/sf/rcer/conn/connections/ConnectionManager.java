@@ -50,7 +50,7 @@ import com.sap.conn.jco.ext.Environment;
  */
 public class ConnectionManager  {
 
-	// TODO add some unit tests for this class
+	// TODO add a test for the primary connection handling
 
 	/**
 	 * The internal implementation of the {@link DestinationDataProvider} interface.
@@ -290,8 +290,10 @@ public class ConnectionManager  {
 			throw new ConnectionException(MessageFormat.format(
 					"Unable to determine the credentials for connection {0}.",
 					connectionData.getConnectionDataID()));
+		} 
+		if (!connections.containsKey(credentials.getConnectionID())) {
+			addConnectionInternal(credentials);
 		}
-		addConnectionInternal(credentials);
 		try {
 			return getCheckedDestination(credentials.getConnectionID());
 		} catch (JCoException e) {
@@ -419,7 +421,7 @@ public class ConnectionManager  {
 	 * @return <code>true</code> if at least one connection is active
 	 */
 	public boolean isConnected() {
-		return primaryConnectionID != null;
+		return !connections.isEmpty();
 	}
 
 
