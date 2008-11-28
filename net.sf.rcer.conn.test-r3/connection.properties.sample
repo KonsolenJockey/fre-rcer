@@ -1,0 +1,20 @@
+#
+# Copy this file to connection.properties and enter your logon data here.
+#
+
+1.type = direct
+1.system_id = WAS
+1.application_server = 192.168.1.1
+1.system_number = 18
+1.client = 000
+1.user = TESTUSER
+1.password = SSSECRETT
+
+2.type = direct
+2.system_id = WAS
+2.application_server = 192.168.1.1
+2.system_number = 18
+2.client = 100
+2.user = TESTUSER
+2.password = SSSECRETT
+ 
