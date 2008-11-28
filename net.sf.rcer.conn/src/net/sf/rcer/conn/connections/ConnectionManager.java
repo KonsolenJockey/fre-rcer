@@ -390,7 +390,8 @@ public class ConnectionManager  {
 	 * data are active)
 	 */
 	public boolean isActive(IConnectionData connectionData) {
-		return connectionLists.containsKey(connectionData.getConnectionDataID());
+		return connectionLists.containsKey(connectionData.getConnectionDataID()) &&
+		       !connectionLists.get(connectionData.getConnectionDataID()).isEmpty();
 	}
 
 	/**
