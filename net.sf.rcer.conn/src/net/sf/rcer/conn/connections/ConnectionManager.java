@@ -425,7 +425,6 @@ public class ConnectionManager  {
 		return !connections.isEmpty();
 	}
 
-
 	/**
 	 * Makes the connection the primary connection.
 	 * @param destination
@@ -433,7 +432,7 @@ public class ConnectionManager  {
 	 * @throws ConnectionException 
 	 */
 	public void setPrimaryConnection(JCoDestination destination) throws ConnectionException, JCoException {
-		setPrimaryDestination(destination.getDestinationName());
+		setPrimaryConnection(destination.getDestinationName());
 	}
 
 	/**
@@ -443,7 +442,7 @@ public class ConnectionManager  {
 	 * @throws ConnectionException 
 	 */
 	public void setPrimaryConnection(IConnection connection) throws ConnectionException, JCoException {
-		setPrimaryDestination(connection.getConnectionID());
+		setPrimaryConnection(connection.getConnectionID());
 	}
 
 	/**
@@ -452,7 +451,7 @@ public class ConnectionManager  {
 	 * @throws JCoException 
 	 * @throws ConnectionException 
 	 */
-	public void setPrimaryDestination(String connectionID) throws ConnectionException, JCoException {
+	public void setPrimaryConnection(String connectionID) throws ConnectionException, JCoException {
 		if (connectionID == null) {
 			throw new InvalidParameterException("The connection ID may not be null."); 
 		}
