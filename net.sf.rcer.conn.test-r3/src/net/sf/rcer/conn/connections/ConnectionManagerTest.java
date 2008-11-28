@@ -19,7 +19,7 @@ import org.junit.Before;
 
 
 /**
- * TODO Write documentation for type ConnectionManagerTest.
+ * Abstract super-class to test the {@link ConnectionManager}. Defines minimal common behaviour.
  * @author vwegert
  *
  */
@@ -53,6 +53,14 @@ public abstract class ConnectionManagerTest {
 
 
 //	/**
+//	 * Test method for {@link net.sf.rcer.conn.connections.ConnectionManager#closeConnection()}.
+//	 */
+//	@Test
+//	public void testCloseConnection() throws Exception {
+//		fail("Not yet implemented");
+//	}
+//
+//	/**
 //	 * Test method for {@link net.sf.rcer.conn.connections.ConnectionManager#getPrimaryConnectionID()}.
 //	 * @throws Exception 
 //	 */
@@ -71,39 +79,6 @@ public abstract class ConnectionManagerTest {
 //	}
 //
 //	/**
-//	 * Test method for {@link net.sf.rcer.conn.connections.ConnectionManager#getActiveConnectionIDs()}.
-//	 * @throws Exception 
-//	 */
-//	@Test
-//	public void testGetActiveConnectionIDs() throws Exception {
-//		fail("Not yet implemented");
-//	}
-//
-//	/**
-//	 * Test method for {@link net.sf.rcer.conn.connections.ConnectionManager#getActiveConnections()}.
-//	 */
-//	@Test
-//	public void testGetActiveConnections() throws Exception {
-//		fail("Not yet implemented");
-//	}
-//
-//	/**
-//	 * Test method for {@link net.sf.rcer.conn.connections.ConnectionManager#isActive(net.sf.rcer.conn.connections.IConnectionData)}.
-//	 */
-//	@Test
-//	public void testIsActiveIConnectionData() throws Exception {
-//		fail("Not yet implemented");
-//	}
-//
-//	/**
-//	 * Test method for {@link net.sf.rcer.conn.connections.ConnectionManager#isActive(java.lang.String)}.
-//	 */
-//	@Test
-//	public void testIsActiveString() throws Exception {
-//		fail("Not yet implemented");
-//	}
-//
-//	/**
 //	 * Test method for {@link net.sf.rcer.conn.connections.ConnectionManager#isPrimaryConnection(java.lang.String)}.
 //	 */
 //	@Test
@@ -116,14 +91,6 @@ public abstract class ConnectionManagerTest {
 //	 */
 //	@Test
 //	public void testIsPrimaryConnectionIConnection() throws Exception {
-//		fail("Not yet implemented");
-//	}
-//
-//	/**
-//	 * Test method for {@link net.sf.rcer.conn.connections.ConnectionManager#isConnected()}.
-//	 */
-//	@Test
-//	public void testIsConnected() throws Exception {
 //		fail("Not yet implemented");
 //	}
 //
@@ -148,38 +115,6 @@ public abstract class ConnectionManagerTest {
 //	 */
 //	@Test
 //	public void testSetPrimaryDestination() throws Exception {
-//		fail("Not yet implemented");
-//	}
-//
-//	/**
-//	 * Test method for {@link net.sf.rcer.conn.connections.ConnectionManager#closeConnection()}.
-//	 */
-//	@Test
-//	public void testCloseConnection() throws Exception {
-//		fail("Not yet implemented");
-//	}
-//
-//	/**
-//	 * Test method for {@link net.sf.rcer.conn.connections.ConnectionManager#closeConnection(com.sap.conn.jco.JCoDestination)}.
-//	 */
-//	@Test
-//	public void testCloseConnectionJCoDestination() throws Exception {
-//		fail("Not yet implemented");
-//	}
-//
-//	/**
-//	 * Test method for {@link net.sf.rcer.conn.connections.ConnectionManager#closeConnection(net.sf.rcer.conn.connections.IConnection)}.
-//	 */
-//	@Test
-//	public void testCloseConnectionIConnection() throws Exception {
-//		fail("Not yet implemented");
-//	}
-//
-//	/**
-//	 * Test method for {@link net.sf.rcer.conn.connections.ConnectionManager#closeConnection(java.lang.String)}.
-//	 */
-//	@Test
-//	public void testCloseConnectionString() throws Exception {
 //		fail("Not yet implemented");
 //	}
 //

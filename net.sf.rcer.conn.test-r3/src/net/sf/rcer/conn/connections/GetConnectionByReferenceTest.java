@@ -23,7 +23,7 @@ import org.junit.Test;
 import com.sap.conn.jco.JCoDestination;
 
 /**
- * TODO Write documentation for type GetConnectionByIDTest.
+ * A test class for the various ways to get a connection using an {@link IConnectionData} reference.
  * @author vwegert
  *
  */
