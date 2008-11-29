@@ -50,8 +50,6 @@ import com.sap.conn.jco.ext.Environment;
  */
 public class ConnectionManager  {
 
-	// TODO add a test for the primary connection handling
-
 	/**
 	 * The internal implementation of the {@link DestinationDataProvider} interface.
 	 * @author vwegert
