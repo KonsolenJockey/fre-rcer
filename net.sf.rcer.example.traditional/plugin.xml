@@ -14,7 +14,7 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="Perspective"
+            name="%perspective.name"
             class="net.sf.rcer.example.traditional.Perspective"
             id="net.sf.rcer.example.traditional.perspective">
       </perspective>
@@ -22,7 +22,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            name="View"
+            name="%view.name"
             class="net.sf.rcer.example.traditional.View"
             id="net.sf.rcer.example.traditional.view">
       </view>
