@@ -419,6 +419,14 @@ public class ConnectionManager  {
 	}
 
 	/**
+	 * @param destination
+	 * @return <code>true</code> if the connection is the primary connection
+	 */
+	public boolean isPrimaryConnection(JCoDestination destination) {
+		return isPrimaryConnection(destination.getDestinationName());
+	}
+
+	/**
 	 * @return <code>true</code> if at least one connection is active
 	 */
 	public boolean isConnected() {
