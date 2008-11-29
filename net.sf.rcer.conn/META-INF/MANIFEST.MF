@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: SAP R/3 Connection Management
+Bundle-Name: %bundle.name
 Bundle-SymbolicName: net.sf.rcer.conn;singleton:=true
 Bundle-Version: 0.1.0
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -14,4 +14,4 @@ Export-Package: net.sf.rcer.conn,
  net.sf.rcer.conn.preferences
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: net.sf.rcer.conn.Activator
-Bundle-Vendor: http://www.sf.net/projects/rcer
+Bundle-Vendor: %bundle.vendor
