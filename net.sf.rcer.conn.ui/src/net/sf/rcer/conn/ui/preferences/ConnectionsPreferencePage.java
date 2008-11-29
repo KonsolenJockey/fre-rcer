@@ -70,6 +70,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 public class ConnectionsPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 
 	// TODO The label in the connection table viewer is not updated when the values are changed.
+	// TODO The preference page looks really bad on screens with low resolution (e. g. during presentations).
 	
 	/**
 	 * The connections displayed.
