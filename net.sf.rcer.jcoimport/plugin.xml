@@ -5,15 +5,15 @@
          point="org.eclipse.ui.importWizards">
       <category
             id="net.sf.rcer.jcogen.sampleCategory"
-            name="SAP R/3 Connector">
+            name="%wizard.category">
       </category>
       <wizard
             category="net.sf.rcer.jcogen.sampleCategory"
             class="net.sf.rcer.jcoimport.JCoImportWizard"
             id="net.sf.rcer.jcogen.JCoImportWizard"
-            name="Create SAP Java Connector Plug-ins">
+            name="%wizard.name">
          <description>
-            Import the SAP Java Connector and create the plug-ins to use it in OSGi projects.
+            %wizard.description
          </description>
       </wizard>
    </extension>
