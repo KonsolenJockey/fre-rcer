@@ -6,13 +6,13 @@
       <page
             class="net.sf.rcer.conn.ui.preferences.TopLevelPreferencePage"
             id="net.sf.rcer.conn.ui.preferences.TopLevelPreferencePage"
-            name="SAP R/3 Connector">
+            name="%preferences.topLevelPage.name">
       </page>
       <page
             category="net.sf.rcer.conn.ui.preferences.TopLevelPreferencePage"
             class="net.sf.rcer.conn.ui.preferences.ConnectionsPreferencePage"
             id="net.sf.rcer.conn.ui.preferences.ConnectionPreferencePage"
-            name="Connections">
+            name="%preferences.connectionsPage.name">
       </page>
    </extension>
    <extension
