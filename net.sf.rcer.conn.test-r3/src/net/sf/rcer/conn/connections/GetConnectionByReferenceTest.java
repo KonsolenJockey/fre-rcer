@@ -63,7 +63,6 @@ public class GetConnectionByReferenceTest extends ConnectionManagerTest {
 		JCoDestination dest = manager.getDestination(connectionData);
 		assertNotNull("Destination access by ID", dest);
 		assertTrue("Connection ID does not match", dest.getDestinationID().startsWith(connectionData.getConnectionDataID()));
-		CredentialsProvider.getInstance();
 		assertTrue("Should have called the credentials provider without selection", 
 				CredentialsProvider.wasGetCredentialsWithoutSelectionCalled());
 		assertFalse("Should not have called the credentials provider with selection", 

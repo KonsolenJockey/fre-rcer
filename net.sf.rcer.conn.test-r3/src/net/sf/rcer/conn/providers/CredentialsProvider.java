@@ -32,17 +32,9 @@ import org.eclipse.core.runtime.OperationCanceledException;
  */
 public class CredentialsProvider implements ICredentialsProviderWithSelection, ICredentialsProviderWithoutSelection {
 
-	private static CredentialsProvider instance;
 	private static boolean simulateCancel;
 	private static boolean getCredentialsWithSelectionCalled;
 	private static boolean getCredentialsWithoutSelectionCalled;
-
-	/**
-	 * Default constructor.
-	 */
-	public CredentialsProvider() {
-		instance = this;
-	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.connections.ICredentialsProviderWithSelection#getCredentials()
@@ -93,13 +85,6 @@ public class CredentialsProvider implements ICredentialsProviderWithSelection, I
 		Credentials cred = new Credentials(conn);
 		cred.setPassword(src.getPassword());
 		return cred;
-	}
-
-	/**
-	 * @return the instance
-	 */
-	public static CredentialsProvider getInstance() {
-		return instance;
 	}
 
 	/**
