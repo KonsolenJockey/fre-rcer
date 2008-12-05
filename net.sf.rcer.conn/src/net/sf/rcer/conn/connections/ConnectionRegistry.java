@@ -42,44 +42,48 @@ public class ConnectionRegistry implements IRegistryEventListener {
 	 * The name of the extension point used to define the connections and connection providers.
 	 */
 	public static final String CONNECTIONS_EXTENSION_POINT = "net.sf.rcer.conn.connections";
-	
+
 	/**
 	 * The singleton instance.
 	 */
-	private static ConnectionRegistry instance;
-	
+	private static volatile ConnectionRegistry instance;
+
 	/**
 	 * A map of all the connections that were defined using the extension point only.
 	 */
 	private Map<String, IConnectionData> staticConnectionData = new HashMap<String, IConnectionData>();
-	
+
 	/**
 	 * A map of all the connection providers can supply dynamic connection data.
 	 */
 	private Map<String, IConnectionProvider> connectionProviders = new HashMap<String, IConnectionProvider>();
-	
+
 	/**
 	 * Private constructor to prevent secondary instantiation.
 	 */
 	private ConnectionRegistry() {
-		
+
 		// load all connections and connection providers that are currently defined
 		addConnections(Platform.getExtensionRegistry().getExtensionPoint(CONNECTIONS_EXTENSION_POINT).getExtensions());
-		
+
 		// register a listener so that the registry is notified of changes
 		Platform.getExtensionRegistry().addListener(this, CONNECTIONS_EXTENSION_POINT);
 	}
-	
+
 	/**
 	 * @return the singleton instance.
 	 */
 	public static ConnectionRegistry getInstance() {
 		if (instance == null) {
-			instance = new ConnectionRegistry();
+			synchronized (ConnectionRegistry.class) {
+				if (instance == null) {
+					instance = new ConnectionRegistry();
+				}
+			}
 		}
 		return instance;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.core.runtime.IRegistryEventListener#added(org.eclipse.core.runtime.IExtension[])
 	 */
@@ -100,14 +104,14 @@ public class ConnectionRegistry implements IRegistryEventListener {
 	public void added(IExtensionPoint[] extensionPoints) {
 		// This class does not react to extension point changes.
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.core.runtime.IRegistryEventListener#removed(org.eclipse.core.runtime.IExtensionPoint[])
 	 */
 	public void removed(IExtensionPoint[] extensionPoints) {
 		// This class does not react to extension point changes.
 	}
-	
+
 	/**
 	 * Examine the extensions provided and either insert new connections and connection providers 
 	 * or update the existing connections.
@@ -117,10 +121,10 @@ public class ConnectionRegistry implements IRegistryEventListener {
 		for(final IExtension extension: extensions) {
 			assert extension.getExtensionPointUniqueIdentifier().equals(CONNECTIONS_EXTENSION_POINT);
 			final String pluginID = extension.getContributor().getName();
-			
+
 			final IConfigurationElement[] elements = extension.getConfigurationElements();
 			for(final IConfigurationElement element: elements) {
-				
+
 				if (element.getName().equals("connection")) {
 					// add or modify a static connection
 					final String localID = element.getAttribute("id");
@@ -130,7 +134,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 					} else {
 						addStaticConnection(element, globalID);
 					}
-					
+
 				} else if (element.getName().equals("provider")) {
 					// add a connection provider (can't modify it if it already exists)
 					final String localID = element.getAttribute("id");
@@ -140,7 +144,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 						final String actualClass  = connectionProviders.get(globalID).getClass().getName();
 						if (!actualClass.equals(nominalClass)) {
 							logError(MessageFormat.format("Unable to replace the current implementation {0} of connection provider {1} with new implementation {2}",
-											actualClass, globalID, nominalClass), null);
+									actualClass, globalID, nominalClass), null);
 						}
 					} else {
 						try {
@@ -148,10 +152,10 @@ public class ConnectionRegistry implements IRegistryEventListener {
 							connectionProviders.put(globalID, provider);
 						} catch (CoreException e) {
 							logError(MessageFormat.format("Unable to instantiate the connection provider {0} (implementation class {1})",
-											globalID, element.getAttribute("provider")), e);
+									globalID, element.getAttribute("provider")), e);
 						}
 					}
-					
+
 				}
 			}
 		}
@@ -168,7 +172,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 
 			final IConfigurationElement[] elements = extension.getConfigurationElements();
 			for(final IConfigurationElement element: elements) {
-				
+
 				if (element.getName().equals("connection")) {
 					// remove a static connection
 					final String localID = element.getAttribute("id");
@@ -176,7 +180,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 					if (staticConnectionData.containsKey(globalID)) {
 						staticConnectionData.remove(globalID);
 					}
-					
+
 				} else if (element.getName().equals("provider")) {
 					// remove a connection provider
 					final String localID = element.getAttribute("id");
@@ -184,7 +188,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 					if (connectionProviders.containsKey(globalID)) {
 						connectionProviders.remove(globalID);
 					}
-					
+
 				}
 			}
 		}
@@ -234,7 +238,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 				configurationElement.getAttribute("defaultUserEditable").equalsIgnoreCase("true"));
 		connection.setDefaultClient(configurationElement.getAttribute("defaultClient"), 
 				configurationElement.getAttribute("defaultClientEditable").equalsIgnoreCase("true"));
-		
+
 		final String localeISOCode = configurationElement.getAttribute("defaultLocale");
 		if ((localeISOCode != null) && (!localeISOCode.equals(""))) {
 			try {
@@ -246,9 +250,9 @@ public class ConnectionRegistry implements IRegistryEventListener {
 						connectionID), e);
 			}
 		}
-		
+
 		staticConnectionData.put(connectionID, connection);
-		
+
 	}
 
 	/**
@@ -260,7 +264,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 		assert false;
 		// TODO implement this method
 	}
-	
+
 	/**
 	 * Auxiliary method to log an error message
 	 * @param message the message to log
@@ -276,7 +280,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 	public Set<String> getProviderIDs() {
 		return connectionProviders.keySet();
 	}
-	
+
 	/**
 	 * @param providerID the ID of the connection provider
 	 * @return a list of connection IDs supplied by the provider
@@ -295,16 +299,16 @@ public class ConnectionRegistry implements IRegistryEventListener {
 			return connectionIDs;
 		}
 	}
-	
+
 	/**
 	 * @return a list of all connections IDs, whether the connections are statically defined or dynamically provided
 	 */
 	public Set<String> getConnectionDataIDs() {
 		Set<String> connectionIDs = new HashSet<String>();
-		
+
 		// add the static connections
 		connectionIDs.addAll(staticConnectionData.keySet());
-		
+
 		// add the connections provided by all connection providers
 		for(final String providerID: connectionProviders.keySet()) {
 			final IConnectionProvider provider = connectionProviders.get(providerID);
@@ -312,10 +316,10 @@ public class ConnectionRegistry implements IRegistryEventListener {
 				connectionIDs.add(providerID + "#" + connectionID);
 			}
 		}
-		
+
 		return connectionIDs;			
 	}
-	
+
 	/**
 	 * @param connectionID
 	 * @return the connection data for a given connection ID
@@ -343,7 +347,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 			return staticConnectionData.get(connectionID);
 		}
 	}
-	
+
 	/**
 	 * @return a set of all connections, whether they are statically defined or dynamically provided
 	 */

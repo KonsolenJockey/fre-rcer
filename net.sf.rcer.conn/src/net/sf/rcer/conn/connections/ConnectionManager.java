@@ -147,7 +147,7 @@ public class ConnectionManager  {
 	/**
 	 * The singleton instance.
 	 */
-	private static ConnectionManager instance;
+	private static volatile ConnectionManager instance;
 
 	/**
 	 * The actual {@link DestinationDataProvider} implementation.
@@ -191,7 +191,11 @@ public class ConnectionManager  {
 	 */
 	public static ConnectionManager getInstance() {
 		if (instance == null) {
-			instance = new ConnectionManager();
+			synchronized (ConnectionManager.class) {
+				if (instance == null) {
+					instance = new ConnectionManager();
+				}
+			}
 		}
 		return instance;
 	}
@@ -327,7 +331,7 @@ public class ConnectionManager  {
 	 * @throws ConnectionNotFoundException 
 	 */
 	public JCoDestination getDestination(String connectionID, boolean reuseConnection) 
-	  throws ConnectionException, JCoException, ConnectionNotFoundException, ProviderNotFoundException {
+	throws ConnectionException, JCoException, ConnectionNotFoundException, ProviderNotFoundException {
 		return getDestination(ConnectionRegistry.getInstance().getConnectionData(connectionID), reuseConnection);
 	}
 
@@ -342,7 +346,7 @@ public class ConnectionManager  {
 	 * @throws ConnectionNotFoundException 
 	 */
 	public JCoDestination getDestination(String connectionID) 
-	  throws ConnectionException, JCoException, ConnectionNotFoundException, ProviderNotFoundException {
+	throws ConnectionException, JCoException, ConnectionNotFoundException, ProviderNotFoundException {
 		return getDestination(connectionID, true);
 	}
 
@@ -389,7 +393,7 @@ public class ConnectionManager  {
 	 */
 	public boolean isActive(IConnectionData connectionData) {
 		return connectionLists.containsKey(connectionData.getConnectionDataID()) &&
-		       !connectionLists.get(connectionData.getConnectionDataID()).isEmpty();
+		!connectionLists.get(connectionData.getConnectionDataID()).isEmpty();
 	}
 
 	/**
@@ -531,7 +535,7 @@ public class ConnectionManager  {
 			closeConnection();
 		}
 	}
-	
+
 	/**
 	 * Adds an object to the list of listeners to be notified when the state of a connection changes.
 	 * @see {@link IConnectionStateListener} 

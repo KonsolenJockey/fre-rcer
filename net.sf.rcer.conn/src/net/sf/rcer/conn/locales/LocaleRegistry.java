@@ -33,53 +33,57 @@ public class LocaleRegistry implements IRegistryEventListener {
 	 * The name of the extension point used to define the locales.
 	 */
 	public static final String SAPLOCALES_EXTENSION_POINT = "net.sf.rcer.conn.saplocales";
-	
+
 	/**
 	 * The singleton instance.
 	 */
-	private static LocaleRegistry instance;
-	
+	private static volatile LocaleRegistry instance;
+
 	/**
 	 * A sorted map that contains the locale objects, ordered by ISO codes.
 	 */
 	private SortedMap<String, Locale> localesByISO = new TreeMap<String, Locale>();
-	
+
 	/**
 	 * Private constructor to prevent secondary instantiation.
 	 */
 	private LocaleRegistry() {
-		
+
 		// load all locales that are currently defined
 		addLocales(Platform.getExtensionRegistry().getExtensionPoint(SAPLOCALES_EXTENSION_POINT).getExtensions());
-		
+
 		// register a listener so that the registry is notified of changes
 		Platform.getExtensionRegistry().addListener(this, SAPLOCALES_EXTENSION_POINT);
 	}
-	
+
 	/**
 	 * @return the singleton instance.
 	 */
 	public static LocaleRegistry getInstance() {
 		if (instance == null) {
-			instance = new LocaleRegistry();
+			synchronized (LocaleRegistry.class) {
+				if (instance == null) {
+					instance = new LocaleRegistry();
+				}
+			}
 		}
 		return instance;
 	}
-	
+
 	/**
 	 * @return the list of locales that are currently registered
 	 */
 	public Collection<Locale> getLocales() {
 		return localesByISO.values();
 	}
-	
+
 	/**
 	 * @return the list of ISO codes that are currently registered
 	 */
 	public Collection<String> getISOCodes() {
 		return localesByISO.keySet();
 	}
-	
+
 	/**
 	 * @param isoCode the ISO code of the locale to retrieve
 	 * @return the {@link Locale} object
@@ -91,7 +95,7 @@ public class LocaleRegistry implements IRegistryEventListener {
 		}
 		throw new LocaleNotFoundException(isoCode);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.core.runtime.IRegistryEventListener#added(org.eclipse.core.runtime.IExtension[])
 	 */
@@ -112,14 +116,14 @@ public class LocaleRegistry implements IRegistryEventListener {
 	public void added(IExtensionPoint[] extensionPoints) {
 		// This class does not react to extension point changes.
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.core.runtime.IRegistryEventListener#removed(org.eclipse.core.runtime.IExtensionPoint[])
 	 */
 	public void removed(IExtensionPoint[] extensionPoints) {
 		// This class does not react to extension point changes.
 	}
-	
+
 	/**
 	 * Examine the extensions provided and either insert new locale objects or update the existing ones.
 	 * @param extensions

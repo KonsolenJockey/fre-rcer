@@ -41,7 +41,7 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	/**
 	 * The singleton instance.
 	 */
-	private static PreferencesConnectionManager instance;
+	private static volatile PreferencesConnectionManager instance;
 
 	/**
 	 * Private constructor to prevent secondary instantiation.
@@ -55,7 +55,11 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 */
 	public static PreferencesConnectionManager getInstance() {
 		if (instance == null) {
-			instance = new PreferencesConnectionManager();
+			synchronized (PreferencesConnectionManager.class) {
+				if (instance == null) {
+					instance = new PreferencesConnectionManager();
+				}
+			}
 		}
 		return instance;
 	}
