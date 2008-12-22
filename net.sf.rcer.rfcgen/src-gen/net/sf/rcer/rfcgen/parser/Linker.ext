@@ -1,0 +1,12 @@
+
+extension net::sf::rcer::rfcgen::Extensions;
+extension net::sf::rcer::rfcgen::Linking;
+
+link(emf::EObject this) :
+	this.allVisibleElements().internalLink();
+
+private Void internalLink(emf::EObject this) :
+	null;
+
+
+

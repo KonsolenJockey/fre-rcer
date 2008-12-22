@@ -1,0 +1,70 @@
+/**
+ * Copyright (c) 2008 The RCER Development Team.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,
+ * this entire header must remain intact.
+ *
+ * $Id$
+ */
+GenSpec:
+	"package" packageName=STRING
+	(structures += Structure)*
+	(functionModules += FunctionModule)*;
+
+Structure:
+	"structure" name=STRING "class" className=ID "{"
+		(fields += StructureFieldMapping)*
+	"}";
+
+StructureFieldMapping:
+	"field" name=STRING "<->" type=ID attribute=ID ("comment" comment=STRING)? ";";
+
+FunctionModule: 
+	"function" "module" name=STRING "{"
+		mapping=FunctionModuleMapping
+	"}";
+	
+FunctionModuleMapping: FunctionModuleCallMapping | FunctionModuleRequestResponseMapping;
+
+FunctionModuleCallMapping: 
+	"class" className=ID "{"
+		(parameters += FunctionModuleParameterMapping)*
+	"}";
+
+FunctionModuleRequestResponseMapping: 
+	"request" "class" requestClassName=ID "{"
+		(requestParameters += FunctionModuleParameterMapping)*
+	"}"
+	"response" "class" responseClassName=ID "{"
+		(responseParameters += FunctionModuleParameterMapping)*
+	"}";
+
+FunctionModuleParameterMapping: 
+	FunctionModuleImportingParameter | 
+	FunctionModuleExportingParameter | 
+	FunctionModuleChangingParameter  | 
+	FunctionModuleTablesParameter; 
+
+FunctionModuleImportingParameter: 
+	"import" ("field"                  name=STRING "<--" (isInactive?="inactive" | type=ID attribute=ID) | 
+	          isStructure?="structure" name=STRING "<--" (isInactive?="inactive" | type=ID attribute=ID) |
+	          isTable?="table"         name=STRING "<--" (isInactive?="inactive" | type=ID attribute=ID ))
+	          ("comment" comment=STRING)? ";";
+
+FunctionModuleExportingParameter: 
+	"export" ("field"                  name=STRING "-->" (isInactive?="inactive" | type=ID attribute=ID) | 
+	          isStructure?="structure" name=STRING "-->" (isInactive?="inactive" | type=ID attribute=ID) |
+	          isTable?="table"         name=STRING "-->" (isInactive?="inactive" | type=ID attribute=ID))
+	          ("comment" comment=STRING)? ";";
+
+FunctionModuleChangingParameter: 
+	"change" ("field"                  name=STRING "<->" (isInactive?="inactive" | type=ID attribute=ID) | 
+	          isStructure?="structure" name=STRING "<->" (isInactive?="inactive" | type=ID attribute=ID) |
+	          isTable?="table"         name=STRING "<->" (isInactive?="inactive" | type=ID attribute=ID))
+	          ("comment" comment=STRING)? ";";
+
+FunctionModuleTablesParameter:
+	"table" name=STRING "<->" (isInactive?="inactive" | type=ID attribute=ID) ("comment" comment=STRING)? ";";

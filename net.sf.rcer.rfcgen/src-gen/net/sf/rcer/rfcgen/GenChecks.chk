@@ -1,0 +1,13 @@
+import rfcgen;
+
+extension org::openarchitectureware::xtext::parser::LinkerUtils;
+
+extension net::sf::rcer::rfcgen::Extensions;
+
+/*
+ * check linking
+ */
+
+
+
+
