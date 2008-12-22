@@ -1,0 +1,28 @@
+/**
+ * Copyright (c) 2008 The RCER Development Team.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,
+ * this entire header must remain intact.
+ *
+ * $Id$
+ */
+import rfcgen;
+import codeassist;
+
+extension net::sf::rcer::rfcgen::Extensions;
+extension net::sf::rcer::rfcgen::GenContentAssist reexport;
+
+/*
+ * There are two types of extensions one can define
+ *
+ * completeMetaType_feature(ModelElement ele, String prefix)
+ * This one is called for assignments only. It gets the underlying Modelelement and the current prefix passed in.
+ *
+ * Note that only proposals with 'Proposal.toInsert.toLowerCase().startsWith(prefix.toLowerCase())' will be proposed in the editor
+ * 
+ * you can sort and/or filter the proposals by overwriting 'List[Proposal] sortProposals(List[Proposal] proposalsToSort)'
+ */
+

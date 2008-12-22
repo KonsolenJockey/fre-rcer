@@ -1,0 +1,29 @@
+/**
+ * Copyright (c) 2008 The RCER Development Team.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,
+ * this entire header must remain intact.
+ *
+ * $Id$
+ */
+import rfcgen;
+import tree;
+
+extension net::sf::rcer::rfcgen::EditorExtensions;
+extension net::sf::rcer::rfcgen::GenOutline reexport;
+
+/*
+ * overwrite the extension
+ * ''create UIContentNode outlineTree(emf::EObject model)''
+ * from net::sf::rcer::rfcgen::GenOutline.ext in order to control the construction of the default outline tree
+ *
+ * overwrite the extension
+ * 'List[String] viewpoints()'
+ * from net::sf::rcer::rfcgen::GenOutline.ext in order to add other viewPoints to your Outline. 
+ * For each given name there must be a 'outlineTree_NAME(emf::EObject model)' which is called then.
+ * Whitespaces in the name are replaced by '_'
+ */
+

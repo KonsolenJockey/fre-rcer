@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="net.sf.rcer.rfcgen.editor.RfcgenEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            extensions="rfc"
+            icon="icons/file.gif"
+            id="net.sf.rcer.rfcgen.editor.RfcgenEditor"
+            name="%editor.name">
+      </editor>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.newWizards">
+         
+		<wizard
+			category="net.sf.rcer"
+			class="net.sf.rcer.rfcgen.wizards.NewRfcgenProjectWizard"
+			icon="icons/template.gif"
+			id="net.sf.rcer.rfcgen.wizards.NewRfcgenProjectWizard"
+			name="%project.wizard.name"
+			project="true">
+		</wizard>
+         
+		<wizard
+			category="net.sf.rcer"
+			class="net.sf.rcer.rfcgen.wizards.NewRfcgenFileWizard"
+			icon="icons/file.gif"
+			id="net.sf.rcer.rfcgen.wizards.NewRfcgenFileWizard"
+			name="%file.wizard.name">
+		</wizard>
+  <category
+        id="net.sf.rcer"
+        name="%category.name">
+  </category>
+	</extension>
+</plugin>
