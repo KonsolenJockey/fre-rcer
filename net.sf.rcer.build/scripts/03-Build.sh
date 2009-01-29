@@ -15,6 +15,11 @@ rm -rf ${RCER_BUILD_HOME}/build/*
 echo "Copying projects to build directory..."
 cp -R ${RCER_BUILD_HOME}/export/* ${RCER_BUILD_HOME}/build/ 
 
+echo "Adding JCo..."
+mkdir ${RCER_BUILD_HOME}/build/plugins/com.sap.conn.jco
+cd ${RCER_BUILD_HOME}/build/plugins/com.sap.conn.jco
+jar xf ${RCER_BUILD_HOME}/distfiles/com.sap.*.jar
+
 echo "Launching antRunner..."
 cd ${RCER_BUILD_HOME}/build
 java -jar ${RCER_BUILD_HOME}/base/eclipse/plugins/org.eclipse.equinox.launcher_1.0.101.R34x_v20080819.jar \
