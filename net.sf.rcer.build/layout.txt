@@ -1,0 +1,11 @@
+This file describes the layout of the build system
+
+  scripts   contains the shell scripts to drive the build system.
+
+  distfiles contains the 3rd party packages required for the build - Eclipse, oAW and so on. 
+            These files are not kept in the repository - download them manually and put them there.
+
+  base      contains the Eclipse installation that is used as the "host" system for the build.
+            This is where baseLocation points to. The contents of this folder can be recreated using
+            the script 01-RecreateBase.sh
+  
