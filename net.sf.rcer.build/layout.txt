@@ -9,3 +9,8 @@ This file describes the layout of the build system
             This is where baseLocation points to. The contents of this folder can be recreated using
             the script 01-RecreateBase.sh
   
+  export    contains the project contents that were exported from the repository. We use a staged 
+            approach here - export the contents from the repository into checkout, then copy them over
+            to the build directory. The reason for this is the incredibly poor performance of the 
+            SourceForge subversion servers. The contents of this folder can be fetched using 
+            the script 02-ExportProjects.sh

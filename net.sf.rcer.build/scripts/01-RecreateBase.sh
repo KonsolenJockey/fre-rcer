@@ -30,6 +30,6 @@ echo "Extracting Eclipse SDK..."
 tar xzf ${RCER_BUILD_HOME}/distfiles/${ECLIPSE}
 
 echo "Extracting openArchitectureWare SDK..."
-unzip -q ${RCER_BUILD_HOME}/distfiles/${OAW}
+unzip -q -f ${RCER_BUILD_HOME}/distfiles/${OAW}
 
 echo "OK."
