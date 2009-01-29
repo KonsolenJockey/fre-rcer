@@ -1,0 +1,1 @@
+This is where the build-process gets recursive - you need a working installation of RCER to create a JCo plug-in that is required by the build process.
