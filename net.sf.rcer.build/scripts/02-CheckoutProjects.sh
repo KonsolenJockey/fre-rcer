@@ -20,6 +20,7 @@ rm -rf ${RCER_BUILD_HOME}/export/features/*
 rm -rf ${RCER_BUILD_HOME}/export/plugins/*
 
 cd ${RCER_BUILD_HOME}/export/features
+svn_export net.sf.rcer
 svn_export net.sf.rcer.sdk
 svn_export net.sf.rcer.import
 
