@@ -36,8 +36,8 @@ echo "Extracting Eclipse SDK..."
 tar xzf ${RCER_BUILD_HOME}/distfiles/${ECLIPSE}
 
 echo "Extracting openArchitectureWare SDK..."
-unzip -q -f ${RCER_BUILD_HOME}/distfiles/${OAW}
+unzip -q -o ${RCER_BUILD_HOME}/distfiles/${OAW}
 
 echo "Adding JCo..."
-cp ${RCER_BUILD_HOME}/distfiles/${JCO} ${RCER_BUILD_HOME}/base/plugins/
+cp ${RCER_BUILD_HOME}/distfiles/${JCO} ${RCER_BUILD_HOME}/base/eclipse/plugins/
 echo "OK."
