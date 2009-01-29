@@ -14,3 +14,7 @@ This file describes the layout of the build system
             to the build directory. The reason for this is the incredibly poor performance of the 
             SourceForge subversion servers. The contents of this folder can be fetched using 
             the script 02-ExportProjects.sh
+            
+  config    contains the configuration files that control the build. See the PDE docs for more information.
+  
+  build     is the actual working directory where the build takes place. 
