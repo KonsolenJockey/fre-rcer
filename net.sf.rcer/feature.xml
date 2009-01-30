@@ -2,7 +2,7 @@
 <feature
       id="net.sf.rcer"
       label="SAP R/3 Connector"
-      version="0.1.0.qualifier"
+      version="0.1.0"
       provider-name="http://www.sf.net/projects/rcer">
 
    <description url="http://www.sf.net/projects/rcer">
@@ -29,5 +29,9 @@ http://www.eclipse.org/legal/epl-v10.html.
    <includes
          id="net.sf.rcer.sdk"
          version="0.1.0"/>
+
+	<includes
+		id="net.sf.rcer.source"
+		version="0.1.0"/>
 
 </feature>
