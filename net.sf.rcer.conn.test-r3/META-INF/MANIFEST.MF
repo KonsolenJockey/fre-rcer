@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Unit Tests for net.sf.rcer.conn that require a SAP R/3 system
 Bundle-SymbolicName: net.sf.rcer.conn.test-r3;singleton:=true
-Bundle-Version: 0.1.0
+Bundle-Version: 0.1.0.qualifier
 Fragment-Host: net.sf.rcer.conn;bundle-version="0.1.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: http://www.sf.net/projects/rcer

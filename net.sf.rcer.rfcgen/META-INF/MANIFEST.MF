@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: net.sf.rcer.rfcgen;singleton:=true
-Bundle-Version: 0.1.0
+Bundle-Version: 0.1.0.qualifier
 Require-Bundle: org.openarchitectureware.dependencies;bundle-version="4.3.0";visibility:=reexport,
  org.antlr;bundle-version="3.0.0";visibility:=reexport,
  org.openarchitectureware.xtext.core.base;bundle-version="4.3.0";visibility:=reexport,

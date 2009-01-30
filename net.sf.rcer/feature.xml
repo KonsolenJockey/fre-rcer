@@ -2,7 +2,7 @@
 <feature
       id="net.sf.rcer"
       label="SAP R/3 Connector"
-      version="0.1.0"
+      version="0.1.0.qualifier"
       provider-name="http://www.sf.net/projects/rcer">
 
    <description url="http://www.sf.net/projects/rcer">
