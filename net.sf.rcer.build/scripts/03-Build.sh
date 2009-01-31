@@ -2,6 +2,8 @@
 #
 # Script to run the PDE build.
 #
+# $Id$
+#
 
 if [ "x${RCER_BUILD_HOME}" = "x" ] ; then
   echo Environment variable RCER_BUILD_HOME is not set.

@@ -2,6 +2,8 @@
 #
 # Script to (re)create the contents of the base installation.
 #
+# $Id$
+#
 
 export ECLIPSE="eclipse-SDK-3.4.1-linux-gtk.tar.gz"
 export EMF="emf-sdo-xsd-SDK-2.4.1.zip"

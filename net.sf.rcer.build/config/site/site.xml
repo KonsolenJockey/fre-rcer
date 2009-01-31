@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id$ -->
+<site>
+	<category-def name="net.sf.rcer" label="SAP R/3 Connector">
+		<description>
+			RCER is a SAP R/3 Connector for Eclipse Rich Client Platform applications. It wraps up the SAP Java
+			Connector (JCo) in a reusable way and provides additional common functions like connection definition, 
+			login dialog and status monitoring. Note that the installation process is more complex than for other 
+			plug-in projects you might know. Please take a look at the documentation before installing these 
+			plug-ins (or at least after you have run into the first error messages).  
+      </description>
+	</category-def>
+	<feature url="features/net.sf.rcer.import_$IMPORT_VERSION$.jar" id="net.sf.rcer.import" version="$IMPORT_VERSION$">
+		<category name="net.sf.rcer" />
+	</feature>
+	<feature url="features/net.sf.rcer.sdk_$SDK_VERSION$.jar" id="net.sf.rcer.sdk" version="$SDK_VERSION$">
+		<category name="net.sf.rcer" />
+	</feature>
+</site>

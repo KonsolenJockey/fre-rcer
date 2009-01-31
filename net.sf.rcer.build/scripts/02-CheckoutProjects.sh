@@ -2,6 +2,8 @@
 #
 # Script to export the projects from the source code repository.
 #
+# $Id$
+#
 
 svn_export() {
 	echo "Exporting project ${1}..."
