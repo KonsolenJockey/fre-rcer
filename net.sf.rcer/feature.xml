@@ -6,7 +6,7 @@
       provider-name="http://www.sf.net/projects/rcer">
 
    <description url="http://www.sf.net/projects/rcer">
-      SAP R/3 Connector.
+      Top-level feature for the SAP R/3 connector. This feature is only used for the build process - do not try to install or deliver it.
    </description>
 
    <copyright>

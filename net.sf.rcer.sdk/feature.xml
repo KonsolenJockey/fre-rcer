@@ -6,8 +6,7 @@
       provider-name="http://www.sf.net/projects/rcer">
 
    <description>
-      SAP R/3 Connector SDK. Note that this SDK requires a working copy of the SAP Java Connector (JCo) plug-ins.
-      You&apos;ll have to install the import feature first, generate the plug-ins and only then install this SDK.
+     %description
    </description>
 
    <copyright>
@@ -87,8 +86,11 @@ http://www.eclipse.org/legal/epl-v10.html.
          version="0.0.0"
          unpack="false"/>
 
-	<includes
+	<plugin
 		id="net.sf.rcer.source"
-		version="0.1.0"/>
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

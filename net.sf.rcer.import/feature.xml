@@ -6,9 +6,7 @@
       provider-name="http://www.sf.net/projects/rcer">
 
    <description>
-      Import Wizard for the SAP Java Connector (JCo) plug-ins.
-      Install this feature first, then generate the plug-ins and install the SDK.
-      [Enter Feature Description here.]
+     %description
    </description>
 
    <copyright>
