@@ -30,8 +30,4 @@ http://www.eclipse.org/legal/epl-v10.html.
          id="net.sf.rcer.sdk"
          version="0.1.0"/>
 
-	<includes
-		id="net.sf.rcer.source"
-		version="0.1.0"/>
-
 </feature>
