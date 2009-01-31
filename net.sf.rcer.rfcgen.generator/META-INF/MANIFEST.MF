@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: net.sf.rcer.rfcgen.generator; singleton:=true
-Bundle-Version: 0.1.0
+Bundle-Version: 0.1.0.qualifier
 Require-Bundle: net.sf.rcer.rfcgen;bundle-version="0.1.0",
  org.openarchitectureware.xtext.core.base;bundle-version="4.3.0",
  org.openarchitectureware.xtext.editor.base;bundle-version="4.3.0",
