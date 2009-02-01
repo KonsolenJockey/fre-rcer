@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<!-- $Id$ -->
+<toc link_to="../net.sf.rcer.doc/toc.xml#gettingstarted" label="Getting Started">
+	<topic label="Installation Overview" href="html/gettingstarted/installoverview.html" /> 
+</toc>
