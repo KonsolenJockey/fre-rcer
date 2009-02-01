@@ -29,6 +29,8 @@ svn_export net.sf.rcer.import
 cd ${RCER_BUILD_HOME}/export/plugins
 svn_export net.sf.rcer.conn
 svn_export net.sf.rcer.conn.ui
+svn_export net.sf.rcer.example.rfcgen.call
+svn_export net.sf.rcer.example.rfcgen.rr
 svn_export net.sf.rcer.example.traditional
 svn_export net.sf.rcer.jcoimport
 svn_export net.sf.rcer.rfcgen
