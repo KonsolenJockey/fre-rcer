@@ -178,10 +178,12 @@ public class «className» {
 	 */
 	public static List<«className»> fromTable(JCoTable source) {
 		List<«className»> list = new ArrayList<«className»>();
-		source.firstRow();
-		{
-			list.add(new «className»(source));
-		} while (source.nextRow());
+		if (!source.isEmpty()) {
+			for (int i = 1; i <= source.getNumRows(); i++) {
+				source.setRow(i);
+				list.add(new «className»(source));
+			} 
+		}
 		return list;
 	}
 	
