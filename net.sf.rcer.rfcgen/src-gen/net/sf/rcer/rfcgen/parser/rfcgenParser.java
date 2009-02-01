@@ -1,14 +1,15 @@
-// $ANTLR 3.0 ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g 2008-12-22 20:52:19
+// $ANTLR 3.0 ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g 2009-02-01 17:11:01
 
 package net.sf.rcer.rfcgen.parser;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 
 import org.openarchitectureware.xtext.parser.impl.AntlrUtil;
 import org.openarchitectureware.xtext.XtextFile;
 import org.openarchitectureware.xtext.parser.impl.EcoreModelFactory;
 import org.openarchitectureware.xtext.parser.ErrorMsg;
-import org.openarchitectureware.xtext.parser.model.ParseTreeManager;
+import org.openarchitectureware.xtext.parser.model.ParseTreeManagerNeu;
 import org.openarchitectureware.xtext.parser.parsetree.Node;
 
 import net.sf.rcer.rfcgen.MetaModelRegistration;
@@ -23,7 +24,7 @@ import java.util.Map;
 import java.util.HashMap;
 public class rfcgenParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "'package'", "'structure'", "'class'", "'{'", "'}'", "'field'", "'<->'", "'comment'", "';'", "'function'", "'module'", "'request'", "'response'", "'import'", "'<--'", "'inactive'", "'table'", "'export'", "'-->'", "'change'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "'package'", "'structure'", "'class'", "'{'", "'}'", "'field'", "'='", "'comment'", "';'", "'function'", "'module'", "'request'", "'response'", "'import'", "'inactive'", "'table'", "'export'", "'change'"
     };
     public static final int RULE_ML_COMMENT=8;
     public static final int RULE_ID=5;
@@ -40,42 +41,12 @@ public class rfcgenParser extends Parser {
         
 
     public String[] getTokenNames() { return tokenNames; }
-    public String getGrammarFileName() { return "..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g"; }
+    public String getGrammarFileName() { return "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g"; }
 
 
 
     	private Token getLastToken() {
     		return input.LT(-1);
-    	}
-    	private Token getNextToken() {
-    		return input.LT(1);
-    	}
-
-    	private int line() {
-    		Token t = getNextToken();
-    		if (t==null)
-    			return 1;
-    		return t.getLine();
-    	}
-
-    	private int start() {
-    		Token t = getNextToken();
-    		if (t==null)
-    			return 0;
-    		if (t instanceof CommonToken) {
-    			return ((CommonToken)t).getStartIndex();
-    		}
-    		return t.getTokenIndex();
-    	}
-
-    	private int end() {
-    		Token t = getLastToken();
-    		if (t==null)
-    			return 1;
-    		if (t instanceof CommonToken) {
-    			return ((CommonToken)t).getStopIndex()+1;
-    		}
-    		return t.getTokenIndex();
     	}
 
     	protected Object convert(Object arg) {
@@ -96,14 +67,14 @@ public class rfcgenParser extends Parser {
 
 
     	private EcoreModelFactory factory = new EcoreModelFactory(MetaModelRegistration.getEPackage());
-        private ParseTreeManager ptm = new ParseTreeManager();
+        private ParseTreeManagerNeu ptm = new ParseTreeManagerNeu();
     	private XtextFile xtextfile = MetaModelRegistration.getXtextFile();
     	
     	{
     		
     	}
 
-    	public ParseTreeManager getResult() {
+    	public ParseTreeManagerNeu getResult() {
     		return ptm;
     	}
 
@@ -113,18 +84,27 @@ public class rfcgenParser extends Parser {
     	}
 
     	@Override
-    		public void reportError(RecognitionException e) {
+    	public void reportError(RecognitionException e) {
     		String msg = super.getErrorMessage(e,tokenNames);
     		errors.add(AntlrUtil.create(msg,e,tokenNames));
-    			ptm.addError(msg, e);
-    			ptm.ruleFinished(null, end());
-    		}
+    		ptm.addError(msg, e);
+    		// This doesn't work. ANTLR may simply report an superfluous token. In that case,
+    		// two nodes will be finished instead of one.
+    		// ptm.ruleFinished(null, end());
+    	}
 
+        private boolean skipCurrentToken;
+        
+    	@Override
+    	protected boolean recoverFromMismatchedElement(IntStream arg0, RecognitionException arg1, BitSet arg2) {
+    		skipCurrentToken = true;
+    		return super.recoverFromMismatchedElement(arg0, arg1, arg2);
+    	}
 
 
 
     // $ANTLR start parse
-    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:121:1: parse returns [Node r] : result= ruleGenSpec EOF ;
+    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:101:1: parse returns [Node r] : result= ruleGenSpec EOF ;
     public Node parse() throws RecognitionException {
         Node r = null;
         int parse_StartIndex = input.index();
@@ -133,17 +113,21 @@ public class rfcgenParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 1) ) { return r; }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:122:3: (result= ruleGenSpec EOF )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:122:3: result= ruleGenSpec EOF
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:102:3: (result= ruleGenSpec EOF )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:102:3: result= ruleGenSpec EOF
             {
             pushFollow(FOLLOW_ruleGenSpec_in_parse67);
             result=ruleGenSpec();
             _fsp--;
             if (failed) return r;
-            match(input,EOF,FOLLOW_EOF_in_parse69); if (failed) return r;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(result,end());r = ptm.getCurrent();
+
+              if (result != null)
+                ptm.setModelElement(result);
+              r = ptm.getCurrent();
+              ptm.ruleFinished(result);
             }
+            match(input,EOF,FOLLOW_EOF_in_parse78); if (failed) return r;
 
             }
 
@@ -161,58 +145,66 @@ public class rfcgenParser extends Parser {
 
 
     // $ANTLR start ruleGenSpec
-    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:125:1: ruleGenSpec returns [EObject result] : ( ( 'package' ) (temp_packageName= RULE_STRING ) (temp_structures= ruleStructure )* (temp_functionModules= ruleFunctionModule )* ) ;
+    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:112:1: ruleGenSpec returns [EObject result] : ( ( 'package' ) ( RULE_STRING ) (temp_Structure= ruleStructure )* (temp_FunctionModule= ruleFunctionModule )* ) ;
     public EObject ruleGenSpec() throws RecognitionException {
         EObject result = null;
         int ruleGenSpec_StartIndex = input.index();
-        Token temp_packageName=null;
-        EObject temp_structures = null;
+        EObject temp_Structure = null;
 
-        EObject temp_functionModules = null;
+        EObject temp_FunctionModule = null;
 
 
+        boolean hasContent = false;
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 2) ) { return result; }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:126:4: ( ( ( 'package' ) (temp_packageName= RULE_STRING ) (temp_structures= ruleStructure )* (temp_functionModules= ruleFunctionModule )* ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:126:4: ( ( 'package' ) (temp_packageName= RULE_STRING ) (temp_structures= ruleStructure )* (temp_functionModules= ruleFunctionModule )* )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:115:4: ( ( ( 'package' ) ( RULE_STRING ) (temp_Structure= ruleStructure )* (temp_FunctionModule= ruleFunctionModule )* ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:115:4: ( ( 'package' ) ( RULE_STRING ) (temp_Structure= ruleStructure )* (temp_FunctionModule= ruleFunctionModule )* )
             {
             if ( backtracking==0 ) {
 
               				result = factory.create("", "GenSpec");
-              				ptm.setModelElement(result);
               			 
             }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:130:1: ( ( 'package' ) (temp_packageName= RULE_STRING ) (temp_structures= ruleStructure )* (temp_functionModules= ruleFunctionModule )* )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:130:2: ( 'package' ) (temp_packageName= RULE_STRING ) (temp_structures= ruleStructure )* (temp_functionModules= ruleFunctionModule )*
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:118:1: ( ( 'package' ) ( RULE_STRING ) (temp_Structure= ruleStructure )* (temp_FunctionModule= ruleFunctionModule )* )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:118:2: ( 'package' ) ( RULE_STRING ) (temp_Structure= ruleStructure )* (temp_FunctionModule= ruleFunctionModule )*
             {
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:130:2: ( 'package' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:130:3: 'package'
-            {
-            if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(0)).eContents().get(1)).eContents().get(0)),line(),start());
-            }
-            match(input,10,FOLLOW_10_in_ruleGenSpec91); if (failed) return result;
-            if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
-            }
-
-            }
-
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:132:1: (temp_packageName= RULE_STRING )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:132:2: temp_packageName= RULE_STRING
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:118:2: ( 'package' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:118:3: 'package'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(0)).eContents().get(1)).eContents().get(1)),line(),start());
+              skipCurrentToken = false;
             }
-            temp_packageName=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleGenSpec100); if (failed) return result;
+            match(input,10,FOLLOW_10_in_ruleGenSpec104); if (failed) return result;
             if ( backtracking==0 ) {
-              factory.set(result,"packageName",convert(temp_packageName),false); ptm.ruleFinished(temp_packageName,end()); 
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(0)).eContents().get(1)).eContents().get(0)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:135:1: (temp_structures= ruleStructure )*
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:124:1: ( RULE_STRING )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:124:2: RULE_STRING
+            {
+            if ( backtracking==0 ) {
+              skipCurrentToken = false;
+            }
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleGenSpec112); if (failed) return result;
+            if ( backtracking==0 ) {
+              if (!skipCurrentToken) {
+                hasContent = true;
+                Token temp = getLastToken();
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(0)).eContents().get(1)).eContents().get(1)));
+                factory.set(result,"packageName",convert(temp),false);
+                ptm.ruleFinished(temp);
+              }
+            }
+
+            }
+
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:134:1: (temp_Structure= ruleStructure )*
             loop1:
             do {
                 int alt1=2;
@@ -225,17 +217,25 @@ public class rfcgenParser extends Parser {
 
                 switch (alt1) {
             	case 1 :
-            	    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:135:2: temp_structures= ruleStructure
+            	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:134:2: temp_Structure= ruleStructure
             	    {
             	    if ( backtracking==0 ) {
-            	      ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(0)).eContents().get(1)).eContents().get(2)),line(),start());
+            	      ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(0)).eContents().get(1)).eContents().get(2)));
             	    }
-            	    pushFollow(FOLLOW_ruleStructure_in_ruleGenSpec111);
-            	    temp_structures=ruleStructure();
+            	    pushFollow(FOLLOW_ruleStructure_in_ruleGenSpec123);
+            	    temp_Structure=ruleStructure();
             	    _fsp--;
             	    if (failed) return result;
             	    if ( backtracking==0 ) {
-            	      factory.add(result,"structures",convert(temp_structures),false); ptm.ruleFinished(temp_structures,end()); 
+            	      if (temp_Structure != null) {
+            	        hasContent = true;
+            	        ptm.setModelElement(temp_Structure);
+            	        factory.add(result,"structures",convert(temp_Structure),false);
+            	        ptm.ruleFinished(temp_Structure);
+            	      } else {
+            	        ptm.destroyNode();
+            	      }
+
             	    }
 
             	    }
@@ -246,7 +246,7 @@ public class rfcgenParser extends Parser {
                 }
             } while (true);
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:138:1: (temp_functionModules= ruleFunctionModule )*
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:146:1: (temp_FunctionModule= ruleFunctionModule )*
             loop2:
             do {
                 int alt2=2;
@@ -259,17 +259,25 @@ public class rfcgenParser extends Parser {
 
                 switch (alt2) {
             	case 1 :
-            	    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:138:2: temp_functionModules= ruleFunctionModule
+            	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:146:2: temp_FunctionModule= ruleFunctionModule
             	    {
             	    if ( backtracking==0 ) {
-            	      ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(0)).eContents().get(1)).eContents().get(3)),line(),start());
+            	      ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(0)).eContents().get(1)).eContents().get(3)));
             	    }
-            	    pushFollow(FOLLOW_ruleFunctionModule_in_ruleGenSpec123);
-            	    temp_functionModules=ruleFunctionModule();
+            	    pushFollow(FOLLOW_ruleFunctionModule_in_ruleGenSpec135);
+            	    temp_FunctionModule=ruleFunctionModule();
             	    _fsp--;
             	    if (failed) return result;
             	    if ( backtracking==0 ) {
-            	      factory.add(result,"functionModules",convert(temp_functionModules),false); ptm.ruleFinished(temp_functionModules,end()); 
+            	      if (temp_FunctionModule != null) {
+            	        hasContent = true;
+            	        ptm.setModelElement(temp_FunctionModule);
+            	        factory.add(result,"functionModules",convert(temp_FunctionModule),false);
+            	        ptm.ruleFinished(temp_FunctionModule);
+            	      } else {
+            	        ptm.destroyNode();
+            	      }
+
             	    }
 
             	    }
@@ -283,11 +291,17 @@ public class rfcgenParser extends Parser {
 
             }
 
+            if ( backtracking==0 ) {
+              if (!hasContent)
+                result = null;
+            }
 
             }
 
         }
         catch (RecognitionException re) {
+            if (!hasContent)
+                result = null;
             reportError(re);
             recover(input,re);
         }
@@ -300,97 +314,117 @@ public class rfcgenParser extends Parser {
 
 
     // $ANTLR start ruleStructure
-    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:143:1: ruleStructure returns [EObject result] : ( ( 'structure' ) (temp_name= RULE_STRING ) ( 'class' ) (temp_className= RULE_ID ) ( '{' ) (temp_fields= ruleStructureFieldMapping )* ( '}' ) ) ;
+    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:165:1: ruleStructure returns [EObject result] : ( ( 'structure' ) ( RULE_STRING ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_StructureFieldMapping= ruleStructureFieldMapping )* ( '}' ) ) ;
     public EObject ruleStructure() throws RecognitionException {
         EObject result = null;
         int ruleStructure_StartIndex = input.index();
-        Token temp_name=null;
-        Token temp_className=null;
-        EObject temp_fields = null;
+        EObject temp_StructureFieldMapping = null;
 
 
+        boolean hasContent = false;
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 3) ) { return result; }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:144:4: ( ( ( 'structure' ) (temp_name= RULE_STRING ) ( 'class' ) (temp_className= RULE_ID ) ( '{' ) (temp_fields= ruleStructureFieldMapping )* ( '}' ) ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:144:4: ( ( 'structure' ) (temp_name= RULE_STRING ) ( 'class' ) (temp_className= RULE_ID ) ( '{' ) (temp_fields= ruleStructureFieldMapping )* ( '}' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:168:4: ( ( ( 'structure' ) ( RULE_STRING ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_StructureFieldMapping= ruleStructureFieldMapping )* ( '}' ) ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:168:4: ( ( 'structure' ) ( RULE_STRING ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_StructureFieldMapping= ruleStructureFieldMapping )* ( '}' ) )
             {
             if ( backtracking==0 ) {
 
               				result = factory.create("", "Structure");
-              				ptm.setModelElement(result);
               			 
             }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:148:1: ( ( 'structure' ) (temp_name= RULE_STRING ) ( 'class' ) (temp_className= RULE_ID ) ( '{' ) (temp_fields= ruleStructureFieldMapping )* ( '}' ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:148:2: ( 'structure' ) (temp_name= RULE_STRING ) ( 'class' ) (temp_className= RULE_ID ) ( '{' ) (temp_fields= ruleStructureFieldMapping )* ( '}' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:171:1: ( ( 'structure' ) ( RULE_STRING ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_StructureFieldMapping= ruleStructureFieldMapping )* ( '}' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:171:2: ( 'structure' ) ( RULE_STRING ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_StructureFieldMapping= ruleStructureFieldMapping )* ( '}' )
             {
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:148:2: ( 'structure' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:148:3: 'structure'
-            {
-            if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(0)),line(),start());
-            }
-            match(input,11,FOLLOW_11_in_ruleStructure151); if (failed) return result;
-            if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
-            }
-
-            }
-
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:150:1: (temp_name= RULE_STRING )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:150:2: temp_name= RULE_STRING
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:171:2: ( 'structure' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:171:3: 'structure'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(1)),line(),start());
+              skipCurrentToken = false;
             }
-            temp_name=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStructure160); if (failed) return result;
+            match(input,11,FOLLOW_11_in_ruleStructure175); if (failed) return result;
             if ( backtracking==0 ) {
-              factory.set(result,"name",convert(temp_name),false); ptm.ruleFinished(temp_name,end()); 
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(0)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:153:1: ( 'class' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:153:2: 'class'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:177:1: ( RULE_STRING )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:177:2: RULE_STRING
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(2)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,12,FOLLOW_12_in_ruleStructure169); if (failed) return result;
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStructure183); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                Token temp = getLastToken();
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(1)));
+                factory.set(result,"name",convert(temp),false);
+                ptm.ruleFinished(temp);
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:155:1: (temp_className= RULE_ID )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:155:2: temp_className= RULE_ID
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:187:1: ( 'class' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:187:2: 'class'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(3)),line(),start());
+              skipCurrentToken = false;
             }
-            temp_className=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleStructure178); if (failed) return result;
+            match(input,12,FOLLOW_12_in_ruleStructure191); if (failed) return result;
             if ( backtracking==0 ) {
-              factory.set(result,"className",convert(temp_className),false); ptm.ruleFinished(temp_className,end()); 
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(2)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:158:1: ( '{' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:158:2: '{'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:193:1: ( RULE_ID )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:193:2: RULE_ID
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(4)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,13,FOLLOW_13_in_ruleStructure187); if (failed) return result;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleStructure199); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                Token temp = getLastToken();
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(3)));
+                factory.set(result,"className",convert(temp),false);
+                ptm.ruleFinished(temp);
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:160:1: (temp_fields= ruleStructureFieldMapping )*
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:203:1: ( '{' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:203:2: '{'
+            {
+            if ( backtracking==0 ) {
+              skipCurrentToken = false;
+            }
+            match(input,13,FOLLOW_13_in_ruleStructure207); if (failed) return result;
+            if ( backtracking==0 ) {
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(4)));
+                ptm.ruleFinished(getLastToken());
+              }
+            }
+
+            }
+
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:209:1: (temp_StructureFieldMapping= ruleStructureFieldMapping )*
             loop3:
             do {
                 int alt3=2;
@@ -403,17 +437,25 @@ public class rfcgenParser extends Parser {
 
                 switch (alt3) {
             	case 1 :
-            	    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:160:2: temp_fields= ruleStructureFieldMapping
+            	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:209:2: temp_StructureFieldMapping= ruleStructureFieldMapping
             	    {
             	    if ( backtracking==0 ) {
-            	      ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(5)),line(),start());
+            	      ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(5)));
             	    }
-            	    pushFollow(FOLLOW_ruleStructureFieldMapping_in_ruleStructure196);
-            	    temp_fields=ruleStructureFieldMapping();
+            	    pushFollow(FOLLOW_ruleStructureFieldMapping_in_ruleStructure217);
+            	    temp_StructureFieldMapping=ruleStructureFieldMapping();
             	    _fsp--;
             	    if (failed) return result;
             	    if ( backtracking==0 ) {
-            	      factory.add(result,"fields",convert(temp_fields),false); ptm.ruleFinished(temp_fields,end()); 
+            	      if (temp_StructureFieldMapping != null) {
+            	        hasContent = true;
+            	        ptm.setModelElement(temp_StructureFieldMapping);
+            	        factory.add(result,"fields",convert(temp_StructureFieldMapping),false);
+            	        ptm.ruleFinished(temp_StructureFieldMapping);
+            	      } else {
+            	        ptm.destroyNode();
+            	      }
+
             	    }
 
             	    }
@@ -424,15 +466,19 @@ public class rfcgenParser extends Parser {
                 }
             } while (true);
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:163:1: ( '}' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:163:2: '}'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:221:1: ( '}' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:221:2: '}'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(6)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,14,FOLLOW_14_in_ruleStructure206); if (failed) return result;
+            match(input,14,FOLLOW_14_in_ruleStructure226); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(6)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
@@ -440,11 +486,17 @@ public class rfcgenParser extends Parser {
 
             }
 
+            if ( backtracking==0 ) {
+              if (!hasContent)
+                result = null;
+            }
 
             }
 
         }
         catch (RecognitionException re) {
+            if (!hasContent)
+                result = null;
             reportError(re);
             recover(input,re);
         }
@@ -457,98 +509,116 @@ public class rfcgenParser extends Parser {
 
 
     // $ANTLR start ruleStructureFieldMapping
-    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:167:1: ruleStructureFieldMapping returns [EObject result] : ( ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) ) ;
+    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:234:1: ruleStructureFieldMapping returns [EObject result] : ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( RULE_ID ) ( RULE_ID ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) ) ;
     public EObject ruleStructureFieldMapping() throws RecognitionException {
         EObject result = null;
         int ruleStructureFieldMapping_StartIndex = input.index();
-        Token temp_name=null;
-        Token temp_type=null;
-        Token temp_attribute=null;
-        Token temp_comment=null;
-
+        boolean hasContent = false;
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 4) ) { return result; }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:168:4: ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:168:4: ( ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:237:4: ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( RULE_ID ) ( RULE_ID ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:237:4: ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( RULE_ID ) ( RULE_ID ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) )
             {
             if ( backtracking==0 ) {
 
               				result = factory.create("", "StructureFieldMapping");
-              				ptm.setModelElement(result);
               			 
             }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:172:1: ( ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:172:2: ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:240:1: ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( RULE_ID ) ( RULE_ID ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:240:2: ( 'field' ) ( RULE_STRING ) ( '=' ) ( RULE_ID ) ( RULE_ID ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' )
             {
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:172:2: ( 'field' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:172:3: 'field'
-            {
-            if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(0)),line(),start());
-            }
-            match(input,15,FOLLOW_15_in_ruleStructureFieldMapping231); if (failed) return result;
-            if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
-            }
-
-            }
-
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:174:1: (temp_name= RULE_STRING )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:174:2: temp_name= RULE_STRING
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:240:2: ( 'field' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:240:3: 'field'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(1)),line(),start());
+              skipCurrentToken = false;
             }
-            temp_name=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStructureFieldMapping240); if (failed) return result;
+            match(input,15,FOLLOW_15_in_ruleStructureFieldMapping264); if (failed) return result;
             if ( backtracking==0 ) {
-              factory.set(result,"name",convert(temp_name),false); ptm.ruleFinished(temp_name,end()); 
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(0)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:177:1: ( '<->' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:177:2: '<->'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:246:1: ( RULE_STRING )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:246:2: RULE_STRING
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(2)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,16,FOLLOW_16_in_ruleStructureFieldMapping249); if (failed) return result;
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStructureFieldMapping272); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                Token temp = getLastToken();
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(1)));
+                factory.set(result,"name",convert(temp),false);
+                ptm.ruleFinished(temp);
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:179:1: (temp_type= RULE_ID )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:179:2: temp_type= RULE_ID
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:256:1: ( '=' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:256:2: '='
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(3)),line(),start());
+              skipCurrentToken = false;
             }
-            temp_type=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleStructureFieldMapping258); if (failed) return result;
+            match(input,16,FOLLOW_16_in_ruleStructureFieldMapping280); if (failed) return result;
             if ( backtracking==0 ) {
-              factory.set(result,"type",convert(temp_type),false); ptm.ruleFinished(temp_type,end()); 
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(2)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:182:1: (temp_attribute= RULE_ID )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:182:2: temp_attribute= RULE_ID
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:262:1: ( RULE_ID )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:262:2: RULE_ID
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(4)),line(),start());
+              skipCurrentToken = false;
             }
-            temp_attribute=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleStructureFieldMapping269); if (failed) return result;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleStructureFieldMapping288); if (failed) return result;
             if ( backtracking==0 ) {
-              factory.set(result,"attribute",convert(temp_attribute),false); ptm.ruleFinished(temp_attribute,end()); 
+              if (!skipCurrentToken) {
+                hasContent = true;
+                Token temp = getLastToken();
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(3)));
+                factory.set(result,"type",convert(temp),false);
+                ptm.ruleFinished(temp);
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:185:1: ( ( 'comment' ) (temp_comment= RULE_STRING ) )?
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:272:1: ( RULE_ID )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:272:2: RULE_ID
+            {
+            if ( backtracking==0 ) {
+              skipCurrentToken = false;
+            }
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleStructureFieldMapping297); if (failed) return result;
+            if ( backtracking==0 ) {
+              if (!skipCurrentToken) {
+                hasContent = true;
+                Token temp = getLastToken();
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(4)));
+                factory.set(result,"attribute",convert(temp),false);
+                ptm.ruleFinished(temp);
+              }
+            }
+
+            }
+
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:282:1: ( ( 'comment' ) ( RULE_STRING ) )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -557,31 +627,40 @@ public class rfcgenParser extends Parser {
             }
             switch (alt4) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:185:2: ( 'comment' ) (temp_comment= RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:282:2: ( 'comment' ) ( RULE_STRING )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:185:2: ( 'comment' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:185:3: 'comment'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:282:2: ( 'comment' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:282:3: 'comment'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(5)).eContents().get(0)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    match(input,17,FOLLOW_17_in_ruleStructureFieldMapping279); if (failed) return result;
+                    match(input,17,FOLLOW_17_in_ruleStructureFieldMapping306); if (failed) return result;
                     if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(5)).eContents().get(0)));
+                        ptm.ruleFinished(getLastToken());
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:187:1: (temp_comment= RULE_STRING )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:187:2: temp_comment= RULE_STRING
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:288:1: ( RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:288:2: RULE_STRING
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(5)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_comment=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStructureFieldMapping288); if (failed) return result;
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStructureFieldMapping314); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"comment",convert(temp_comment),false); ptm.ruleFinished(temp_comment,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(5)).eContents().get(1)));
+                        factory.set(result,"comment",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
@@ -592,15 +671,19 @@ public class rfcgenParser extends Parser {
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:191:1: ( ';' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:191:2: ';'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:299:1: ( ';' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:299:2: ';'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(6)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,18,FOLLOW_18_in_ruleStructureFieldMapping300); if (failed) return result;
+            match(input,18,FOLLOW_18_in_ruleStructureFieldMapping325); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(6)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
@@ -608,11 +691,17 @@ public class rfcgenParser extends Parser {
 
             }
 
+            if ( backtracking==0 ) {
+              if (!hasContent)
+                result = null;
+            }
 
             }
 
         }
         catch (RecognitionException re) {
+            if (!hasContent)
+                result = null;
             reportError(re);
             recover(input,re);
         }
@@ -625,106 +714,134 @@ public class rfcgenParser extends Parser {
 
 
     // $ANTLR start ruleFunctionModule
-    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:195:1: ruleFunctionModule returns [EObject result] : ( ( 'function' ) ( 'module' ) (temp_name= RULE_STRING ) ( '{' ) (temp_mapping= ruleFunctionModuleMapping ) ( '}' ) ) ;
+    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:312:1: ruleFunctionModule returns [EObject result] : ( ( 'function' ) ( 'module' ) ( RULE_STRING ) ( '{' ) (temp_FunctionModuleMapping= ruleFunctionModuleMapping ) ( '}' ) ) ;
     public EObject ruleFunctionModule() throws RecognitionException {
         EObject result = null;
         int ruleFunctionModule_StartIndex = input.index();
-        Token temp_name=null;
-        EObject temp_mapping = null;
+        EObject temp_FunctionModuleMapping = null;
 
 
+        boolean hasContent = false;
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 5) ) { return result; }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:196:4: ( ( ( 'function' ) ( 'module' ) (temp_name= RULE_STRING ) ( '{' ) (temp_mapping= ruleFunctionModuleMapping ) ( '}' ) ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:196:4: ( ( 'function' ) ( 'module' ) (temp_name= RULE_STRING ) ( '{' ) (temp_mapping= ruleFunctionModuleMapping ) ( '}' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:315:4: ( ( ( 'function' ) ( 'module' ) ( RULE_STRING ) ( '{' ) (temp_FunctionModuleMapping= ruleFunctionModuleMapping ) ( '}' ) ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:315:4: ( ( 'function' ) ( 'module' ) ( RULE_STRING ) ( '{' ) (temp_FunctionModuleMapping= ruleFunctionModuleMapping ) ( '}' ) )
             {
             if ( backtracking==0 ) {
 
               				result = factory.create("", "FunctionModule");
-              				ptm.setModelElement(result);
               			 
             }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:200:1: ( ( 'function' ) ( 'module' ) (temp_name= RULE_STRING ) ( '{' ) (temp_mapping= ruleFunctionModuleMapping ) ( '}' ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:200:2: ( 'function' ) ( 'module' ) (temp_name= RULE_STRING ) ( '{' ) (temp_mapping= ruleFunctionModuleMapping ) ( '}' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:318:1: ( ( 'function' ) ( 'module' ) ( RULE_STRING ) ( '{' ) (temp_FunctionModuleMapping= ruleFunctionModuleMapping ) ( '}' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:318:2: ( 'function' ) ( 'module' ) ( RULE_STRING ) ( '{' ) (temp_FunctionModuleMapping= ruleFunctionModuleMapping ) ( '}' )
             {
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:200:2: ( 'function' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:200:3: 'function'
-            {
-            if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(0)),line(),start());
-            }
-            match(input,19,FOLLOW_19_in_ruleFunctionModule325); if (failed) return result;
-            if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
-            }
-
-            }
-
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:202:1: ( 'module' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:202:2: 'module'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:318:2: ( 'function' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:318:3: 'function'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(1)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,20,FOLLOW_20_in_ruleFunctionModule332); if (failed) return result;
+            match(input,19,FOLLOW_19_in_ruleFunctionModule363); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(0)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:204:1: (temp_name= RULE_STRING )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:204:2: temp_name= RULE_STRING
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:324:1: ( 'module' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:324:2: 'module'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(2)),line(),start());
+              skipCurrentToken = false;
             }
-            temp_name=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModule341); if (failed) return result;
+            match(input,20,FOLLOW_20_in_ruleFunctionModule370); if (failed) return result;
             if ( backtracking==0 ) {
-              factory.set(result,"name",convert(temp_name),false); ptm.ruleFinished(temp_name,end()); 
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(1)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:207:1: ( '{' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:207:2: '{'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:330:1: ( RULE_STRING )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:330:2: RULE_STRING
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(3)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,13,FOLLOW_13_in_ruleFunctionModule350); if (failed) return result;
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModule378); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                Token temp = getLastToken();
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(2)));
+                factory.set(result,"name",convert(temp),false);
+                ptm.ruleFinished(temp);
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:209:1: (temp_mapping= ruleFunctionModuleMapping )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:209:2: temp_mapping= ruleFunctionModuleMapping
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:340:1: ( '{' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:340:2: '{'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(4)),line(),start());
+              skipCurrentToken = false;
             }
-            pushFollow(FOLLOW_ruleFunctionModuleMapping_in_ruleFunctionModule359);
-            temp_mapping=ruleFunctionModuleMapping();
+            match(input,13,FOLLOW_13_in_ruleFunctionModule386); if (failed) return result;
+            if ( backtracking==0 ) {
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(3)));
+                ptm.ruleFinished(getLastToken());
+              }
+            }
+
+            }
+
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:346:1: (temp_FunctionModuleMapping= ruleFunctionModuleMapping )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:346:2: temp_FunctionModuleMapping= ruleFunctionModuleMapping
+            {
+            if ( backtracking==0 ) {
+              ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(4)));
+            }
+            pushFollow(FOLLOW_ruleFunctionModuleMapping_in_ruleFunctionModule396);
+            temp_FunctionModuleMapping=ruleFunctionModuleMapping();
             _fsp--;
             if (failed) return result;
             if ( backtracking==0 ) {
-              factory.set(result,"mapping",convert(temp_mapping),false); ptm.ruleFinished(temp_mapping,end()); 
-            }
+              if (temp_FunctionModuleMapping != null) {
+                hasContent = true;
+                ptm.setModelElement(temp_FunctionModuleMapping);
+                factory.set(result,"mapping",convert(temp_FunctionModuleMapping),false);
+                ptm.ruleFinished(temp_FunctionModuleMapping);
+              } else {
+                ptm.destroyNode();
+              }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:212:1: ( '}' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:212:2: '}'
+            }
+
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:358:1: ( '}' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:358:2: '}'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(5)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,14,FOLLOW_14_in_ruleFunctionModule368); if (failed) return result;
+            match(input,14,FOLLOW_14_in_ruleFunctionModule404); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(5)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
@@ -732,11 +849,17 @@ public class rfcgenParser extends Parser {
 
             }
 
+            if ( backtracking==0 ) {
+              if (!hasContent)
+                result = null;
+            }
 
             }
 
         }
         catch (RecognitionException re) {
+            if (!hasContent)
+                result = null;
             reportError(re);
             recover(input,re);
         }
@@ -749,7 +872,7 @@ public class rfcgenParser extends Parser {
 
 
     // $ANTLR start ruleFunctionModuleMapping
-    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:216:1: ruleFunctionModuleMapping returns [EObject result] : (temp_functionmodulecallmapping= ruleFunctionModuleCallMapping | temp_functionmodulerequestresponsemapping= ruleFunctionModuleRequestResponseMapping );
+    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:371:1: ruleFunctionModuleMapping returns [EObject result] : (temp_functionmodulecallmapping= ruleFunctionModuleCallMapping | temp_functionmodulerequestresponsemapping= ruleFunctionModuleRequestResponseMapping );
     public EObject ruleFunctionModuleMapping() throws RecognitionException {
         EObject result = null;
         int ruleFunctionModuleMapping_StartIndex = input.index();
@@ -760,7 +883,7 @@ public class rfcgenParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 6) ) { return result; }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:217:9: (temp_functionmodulecallmapping= ruleFunctionModuleCallMapping | temp_functionmodulerequestresponsemapping= ruleFunctionModuleRequestResponseMapping )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:373:9: (temp_functionmodulecallmapping= ruleFunctionModuleCallMapping | temp_functionmodulerequestresponsemapping= ruleFunctionModuleRequestResponseMapping )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -773,15 +896,15 @@ public class rfcgenParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return result;}
                 NoViableAltException nvae =
-                    new NoViableAltException("216:1: ruleFunctionModuleMapping returns [EObject result] : (temp_functionmodulecallmapping= ruleFunctionModuleCallMapping | temp_functionmodulerequestresponsemapping= ruleFunctionModuleRequestResponseMapping );", 5, 0, input);
+                    new NoViableAltException("371:1: ruleFunctionModuleMapping returns [EObject result] : (temp_functionmodulecallmapping= ruleFunctionModuleCallMapping | temp_functionmodulerequestresponsemapping= ruleFunctionModuleRequestResponseMapping );", 5, 0, input);
 
                 throw nvae;
             }
             switch (alt5) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:217:9: temp_functionmodulecallmapping= ruleFunctionModuleCallMapping
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:373:9: temp_functionmodulecallmapping= ruleFunctionModuleCallMapping
                     {
-                    pushFollow(FOLLOW_ruleFunctionModuleCallMapping_in_ruleFunctionModuleMapping395);
+                    pushFollow(FOLLOW_ruleFunctionModuleCallMapping_in_ruleFunctionModuleMapping439);
                     temp_functionmodulecallmapping=ruleFunctionModuleCallMapping();
                     _fsp--;
                     if (failed) return result;
@@ -792,9 +915,9 @@ public class rfcgenParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:217:121: temp_functionmodulerequestresponsemapping= ruleFunctionModuleRequestResponseMapping
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:373:121: temp_functionmodulerequestresponsemapping= ruleFunctionModuleRequestResponseMapping
                     {
-                    pushFollow(FOLLOW_ruleFunctionModuleRequestResponseMapping_in_ruleFunctionModuleMapping410);
+                    pushFollow(FOLLOW_ruleFunctionModuleRequestResponseMapping_in_ruleFunctionModuleMapping454);
                     temp_functionmodulerequestresponsemapping=ruleFunctionModuleRequestResponseMapping();
                     _fsp--;
                     if (failed) return result;
@@ -820,92 +943,112 @@ public class rfcgenParser extends Parser {
 
 
     // $ANTLR start ruleFunctionModuleCallMapping
-    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:219:1: ruleFunctionModuleCallMapping returns [EObject result] : ( ( 'class' ) (temp_className= RULE_ID ) ( '{' ) (temp_parameters= ruleFunctionModuleParameterMapping )* ( '}' ) ) ;
+    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:375:1: ruleFunctionModuleCallMapping returns [EObject result] : ( ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' ) ) ;
     public EObject ruleFunctionModuleCallMapping() throws RecognitionException {
         EObject result = null;
         int ruleFunctionModuleCallMapping_StartIndex = input.index();
-        Token temp_className=null;
-        EObject temp_parameters = null;
+        EObject temp_FunctionModuleParameterMapping = null;
 
 
+        boolean hasContent = false;
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 7) ) { return result; }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:220:4: ( ( ( 'class' ) (temp_className= RULE_ID ) ( '{' ) (temp_parameters= ruleFunctionModuleParameterMapping )* ( '}' ) ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:220:4: ( ( 'class' ) (temp_className= RULE_ID ) ( '{' ) (temp_parameters= ruleFunctionModuleParameterMapping )* ( '}' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:378:4: ( ( ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' ) ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:378:4: ( ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' ) )
             {
             if ( backtracking==0 ) {
 
               				result = factory.create("", "FunctionModuleCallMapping");
-              				ptm.setModelElement(result);
               			 
             }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:224:1: ( ( 'class' ) (temp_className= RULE_ID ) ( '{' ) (temp_parameters= ruleFunctionModuleParameterMapping )* ( '}' ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:224:2: ( 'class' ) (temp_className= RULE_ID ) ( '{' ) (temp_parameters= ruleFunctionModuleParameterMapping )* ( '}' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:381:1: ( ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:381:2: ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' )
             {
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:224:2: ( 'class' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:224:3: 'class'
-            {
-            if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(0)),line(),start());
-            }
-            match(input,12,FOLLOW_12_in_ruleFunctionModuleCallMapping433); if (failed) return result;
-            if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
-            }
-
-            }
-
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:226:1: (temp_className= RULE_ID )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:226:2: temp_className= RULE_ID
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:381:2: ( 'class' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:381:3: 'class'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(1)),line(),start());
+              skipCurrentToken = false;
             }
-            temp_className=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleCallMapping442); if (failed) return result;
+            match(input,12,FOLLOW_12_in_ruleFunctionModuleCallMapping482); if (failed) return result;
             if ( backtracking==0 ) {
-              factory.set(result,"className",convert(temp_className),false); ptm.ruleFinished(temp_className,end()); 
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(0)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:229:1: ( '{' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:229:2: '{'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:387:1: ( RULE_ID )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:387:2: RULE_ID
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(2)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,13,FOLLOW_13_in_ruleFunctionModuleCallMapping451); if (failed) return result;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleCallMapping490); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                Token temp = getLastToken();
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(1)));
+                factory.set(result,"className",convert(temp),false);
+                ptm.ruleFinished(temp);
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:231:1: (temp_parameters= ruleFunctionModuleParameterMapping )*
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:397:1: ( '{' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:397:2: '{'
+            {
+            if ( backtracking==0 ) {
+              skipCurrentToken = false;
+            }
+            match(input,13,FOLLOW_13_in_ruleFunctionModuleCallMapping498); if (failed) return result;
+            if ( backtracking==0 ) {
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(2)));
+                ptm.ruleFinished(getLastToken());
+              }
+            }
+
+            }
+
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:403:1: (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )*
             loop6:
             do {
                 int alt6=2;
                 int LA6_0 = input.LA(1);
 
-                if ( (LA6_0==23||(LA6_0>=26 && LA6_0<=27)||LA6_0==29) ) {
+                if ( (LA6_0==23||(LA6_0>=25 && LA6_0<=27)) ) {
                     alt6=1;
                 }
 
 
                 switch (alt6) {
             	case 1 :
-            	    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:231:2: temp_parameters= ruleFunctionModuleParameterMapping
+            	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:403:2: temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping
             	    {
             	    if ( backtracking==0 ) {
-            	      ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(3)),line(),start());
+            	      ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(3)));
             	    }
-            	    pushFollow(FOLLOW_ruleFunctionModuleParameterMapping_in_ruleFunctionModuleCallMapping460);
-            	    temp_parameters=ruleFunctionModuleParameterMapping();
+            	    pushFollow(FOLLOW_ruleFunctionModuleParameterMapping_in_ruleFunctionModuleCallMapping508);
+            	    temp_FunctionModuleParameterMapping=ruleFunctionModuleParameterMapping();
             	    _fsp--;
             	    if (failed) return result;
             	    if ( backtracking==0 ) {
-            	      factory.add(result,"parameters",convert(temp_parameters),false); ptm.ruleFinished(temp_parameters,end()); 
+            	      if (temp_FunctionModuleParameterMapping != null) {
+            	        hasContent = true;
+            	        ptm.setModelElement(temp_FunctionModuleParameterMapping);
+            	        factory.add(result,"parameters",convert(temp_FunctionModuleParameterMapping),false);
+            	        ptm.ruleFinished(temp_FunctionModuleParameterMapping);
+            	      } else {
+            	        ptm.destroyNode();
+            	      }
+
             	    }
 
             	    }
@@ -916,15 +1059,19 @@ public class rfcgenParser extends Parser {
                 }
             } while (true);
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:234:1: ( '}' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:234:2: '}'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:415:1: ( '}' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:415:2: '}'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(4)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,14,FOLLOW_14_in_ruleFunctionModuleCallMapping470); if (failed) return result;
+            match(input,14,FOLLOW_14_in_ruleFunctionModuleCallMapping517); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(4)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
@@ -932,11 +1079,17 @@ public class rfcgenParser extends Parser {
 
             }
 
+            if ( backtracking==0 ) {
+              if (!hasContent)
+                result = null;
+            }
 
             }
 
         }
         catch (RecognitionException re) {
+            if (!hasContent)
+                result = null;
             reportError(re);
             recover(input,re);
         }
@@ -949,108 +1102,129 @@ public class rfcgenParser extends Parser {
 
 
     // $ANTLR start ruleFunctionModuleRequestResponseMapping
-    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:238:1: ruleFunctionModuleRequestResponseMapping returns [EObject result] : ( ( 'request' ) ( 'class' ) (temp_requestClassName= RULE_ID ) ( '{' ) (temp_requestParameters= ruleFunctionModuleParameterMapping )* ( '}' ) ( 'response' ) ( 'class' ) (temp_responseClassName= RULE_ID ) ( '{' ) (temp_responseParameters= ruleFunctionModuleParameterMapping )* ( '}' ) ) ;
+    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:428:1: ruleFunctionModuleRequestResponseMapping returns [EObject result] : ( ( 'request' ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' ) ( 'response' ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' ) ) ;
     public EObject ruleFunctionModuleRequestResponseMapping() throws RecognitionException {
         EObject result = null;
         int ruleFunctionModuleRequestResponseMapping_StartIndex = input.index();
-        Token temp_requestClassName=null;
-        Token temp_responseClassName=null;
-        EObject temp_requestParameters = null;
-
-        EObject temp_responseParameters = null;
+        EObject temp_FunctionModuleParameterMapping = null;
 
 
+        boolean hasContent = false;
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 8) ) { return result; }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:239:4: ( ( ( 'request' ) ( 'class' ) (temp_requestClassName= RULE_ID ) ( '{' ) (temp_requestParameters= ruleFunctionModuleParameterMapping )* ( '}' ) ( 'response' ) ( 'class' ) (temp_responseClassName= RULE_ID ) ( '{' ) (temp_responseParameters= ruleFunctionModuleParameterMapping )* ( '}' ) ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:239:4: ( ( 'request' ) ( 'class' ) (temp_requestClassName= RULE_ID ) ( '{' ) (temp_requestParameters= ruleFunctionModuleParameterMapping )* ( '}' ) ( 'response' ) ( 'class' ) (temp_responseClassName= RULE_ID ) ( '{' ) (temp_responseParameters= ruleFunctionModuleParameterMapping )* ( '}' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:431:4: ( ( ( 'request' ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' ) ( 'response' ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' ) ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:431:4: ( ( 'request' ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' ) ( 'response' ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' ) )
             {
             if ( backtracking==0 ) {
 
               				result = factory.create("", "FunctionModuleRequestResponseMapping");
-              				ptm.setModelElement(result);
               			 
             }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:243:1: ( ( 'request' ) ( 'class' ) (temp_requestClassName= RULE_ID ) ( '{' ) (temp_requestParameters= ruleFunctionModuleParameterMapping )* ( '}' ) ( 'response' ) ( 'class' ) (temp_responseClassName= RULE_ID ) ( '{' ) (temp_responseParameters= ruleFunctionModuleParameterMapping )* ( '}' ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:243:2: ( 'request' ) ( 'class' ) (temp_requestClassName= RULE_ID ) ( '{' ) (temp_requestParameters= ruleFunctionModuleParameterMapping )* ( '}' ) ( 'response' ) ( 'class' ) (temp_responseClassName= RULE_ID ) ( '{' ) (temp_responseParameters= ruleFunctionModuleParameterMapping )* ( '}' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:434:1: ( ( 'request' ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' ) ( 'response' ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:434:2: ( 'request' ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' ) ( 'response' ) ( 'class' ) ( RULE_ID ) ( '{' ) (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )* ( '}' )
             {
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:243:2: ( 'request' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:243:3: 'request'
-            {
-            if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(0)),line(),start());
-            }
-            match(input,21,FOLLOW_21_in_ruleFunctionModuleRequestResponseMapping495); if (failed) return result;
-            if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
-            }
-
-            }
-
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:245:1: ( 'class' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:245:2: 'class'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:434:2: ( 'request' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:434:3: 'request'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(1)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,12,FOLLOW_12_in_ruleFunctionModuleRequestResponseMapping502); if (failed) return result;
+            match(input,21,FOLLOW_21_in_ruleFunctionModuleRequestResponseMapping555); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(0)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:247:1: (temp_requestClassName= RULE_ID )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:247:2: temp_requestClassName= RULE_ID
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:440:1: ( 'class' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:440:2: 'class'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(2)),line(),start());
+              skipCurrentToken = false;
             }
-            temp_requestClassName=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleRequestResponseMapping511); if (failed) return result;
+            match(input,12,FOLLOW_12_in_ruleFunctionModuleRequestResponseMapping562); if (failed) return result;
             if ( backtracking==0 ) {
-              factory.set(result,"requestClassName",convert(temp_requestClassName),false); ptm.ruleFinished(temp_requestClassName,end()); 
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(1)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:250:1: ( '{' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:250:2: '{'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:446:1: ( RULE_ID )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:446:2: RULE_ID
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(3)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,13,FOLLOW_13_in_ruleFunctionModuleRequestResponseMapping520); if (failed) return result;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleRequestResponseMapping570); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                Token temp = getLastToken();
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(2)));
+                factory.set(result,"requestClassName",convert(temp),false);
+                ptm.ruleFinished(temp);
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:252:1: (temp_requestParameters= ruleFunctionModuleParameterMapping )*
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:456:1: ( '{' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:456:2: '{'
+            {
+            if ( backtracking==0 ) {
+              skipCurrentToken = false;
+            }
+            match(input,13,FOLLOW_13_in_ruleFunctionModuleRequestResponseMapping578); if (failed) return result;
+            if ( backtracking==0 ) {
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(3)));
+                ptm.ruleFinished(getLastToken());
+              }
+            }
+
+            }
+
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:462:1: (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )*
             loop7:
             do {
                 int alt7=2;
                 int LA7_0 = input.LA(1);
 
-                if ( (LA7_0==23||(LA7_0>=26 && LA7_0<=27)||LA7_0==29) ) {
+                if ( (LA7_0==23||(LA7_0>=25 && LA7_0<=27)) ) {
                     alt7=1;
                 }
 
 
                 switch (alt7) {
             	case 1 :
-            	    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:252:2: temp_requestParameters= ruleFunctionModuleParameterMapping
+            	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:462:2: temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping
             	    {
             	    if ( backtracking==0 ) {
-            	      ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(4)),line(),start());
+            	      ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(4)));
             	    }
-            	    pushFollow(FOLLOW_ruleFunctionModuleParameterMapping_in_ruleFunctionModuleRequestResponseMapping529);
-            	    temp_requestParameters=ruleFunctionModuleParameterMapping();
+            	    pushFollow(FOLLOW_ruleFunctionModuleParameterMapping_in_ruleFunctionModuleRequestResponseMapping588);
+            	    temp_FunctionModuleParameterMapping=ruleFunctionModuleParameterMapping();
             	    _fsp--;
             	    if (failed) return result;
             	    if ( backtracking==0 ) {
-            	      factory.add(result,"requestParameters",convert(temp_requestParameters),false); ptm.ruleFinished(temp_requestParameters,end()); 
+            	      if (temp_FunctionModuleParameterMapping != null) {
+            	        hasContent = true;
+            	        ptm.setModelElement(temp_FunctionModuleParameterMapping);
+            	        factory.add(result,"requestParameters",convert(temp_FunctionModuleParameterMapping),false);
+            	        ptm.ruleFinished(temp_FunctionModuleParameterMapping);
+            	      } else {
+            	        ptm.destroyNode();
+            	      }
+
             	    }
 
             	    }
@@ -1061,96 +1235,125 @@ public class rfcgenParser extends Parser {
                 }
             } while (true);
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:255:1: ( '}' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:255:2: '}'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:474:1: ( '}' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:474:2: '}'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(5)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,14,FOLLOW_14_in_ruleFunctionModuleRequestResponseMapping539); if (failed) return result;
+            match(input,14,FOLLOW_14_in_ruleFunctionModuleRequestResponseMapping597); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(5)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:257:1: ( 'response' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:257:2: 'response'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:480:1: ( 'response' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:480:2: 'response'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(6)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,22,FOLLOW_22_in_ruleFunctionModuleRequestResponseMapping546); if (failed) return result;
+            match(input,22,FOLLOW_22_in_ruleFunctionModuleRequestResponseMapping604); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(6)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:259:1: ( 'class' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:259:2: 'class'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:486:1: ( 'class' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:486:2: 'class'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(7)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,12,FOLLOW_12_in_ruleFunctionModuleRequestResponseMapping553); if (failed) return result;
+            match(input,12,FOLLOW_12_in_ruleFunctionModuleRequestResponseMapping611); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(7)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:261:1: (temp_responseClassName= RULE_ID )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:261:2: temp_responseClassName= RULE_ID
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:492:1: ( RULE_ID )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:492:2: RULE_ID
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(8)),line(),start());
+              skipCurrentToken = false;
             }
-            temp_responseClassName=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleRequestResponseMapping562); if (failed) return result;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleRequestResponseMapping619); if (failed) return result;
             if ( backtracking==0 ) {
-              factory.set(result,"responseClassName",convert(temp_responseClassName),false); ptm.ruleFinished(temp_responseClassName,end()); 
+              if (!skipCurrentToken) {
+                hasContent = true;
+                Token temp = getLastToken();
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(8)));
+                factory.set(result,"responseClassName",convert(temp),false);
+                ptm.ruleFinished(temp);
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:264:1: ( '{' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:264:2: '{'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:502:1: ( '{' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:502:2: '{'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(9)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,13,FOLLOW_13_in_ruleFunctionModuleRequestResponseMapping571); if (failed) return result;
+            match(input,13,FOLLOW_13_in_ruleFunctionModuleRequestResponseMapping627); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(9)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:266:1: (temp_responseParameters= ruleFunctionModuleParameterMapping )*
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:508:1: (temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping )*
             loop8:
             do {
                 int alt8=2;
                 int LA8_0 = input.LA(1);
 
-                if ( (LA8_0==23||(LA8_0>=26 && LA8_0<=27)||LA8_0==29) ) {
+                if ( (LA8_0==23||(LA8_0>=25 && LA8_0<=27)) ) {
                     alt8=1;
                 }
 
 
                 switch (alt8) {
             	case 1 :
-            	    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:266:2: temp_responseParameters= ruleFunctionModuleParameterMapping
+            	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:508:2: temp_FunctionModuleParameterMapping= ruleFunctionModuleParameterMapping
             	    {
             	    if ( backtracking==0 ) {
-            	      ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(10)),line(),start());
+            	      ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(10)));
             	    }
-            	    pushFollow(FOLLOW_ruleFunctionModuleParameterMapping_in_ruleFunctionModuleRequestResponseMapping580);
-            	    temp_responseParameters=ruleFunctionModuleParameterMapping();
+            	    pushFollow(FOLLOW_ruleFunctionModuleParameterMapping_in_ruleFunctionModuleRequestResponseMapping637);
+            	    temp_FunctionModuleParameterMapping=ruleFunctionModuleParameterMapping();
             	    _fsp--;
             	    if (failed) return result;
             	    if ( backtracking==0 ) {
-            	      factory.add(result,"responseParameters",convert(temp_responseParameters),false); ptm.ruleFinished(temp_responseParameters,end()); 
+            	      if (temp_FunctionModuleParameterMapping != null) {
+            	        hasContent = true;
+            	        ptm.setModelElement(temp_FunctionModuleParameterMapping);
+            	        factory.add(result,"responseParameters",convert(temp_FunctionModuleParameterMapping),false);
+            	        ptm.ruleFinished(temp_FunctionModuleParameterMapping);
+            	      } else {
+            	        ptm.destroyNode();
+            	      }
+
             	    }
 
             	    }
@@ -1161,15 +1364,19 @@ public class rfcgenParser extends Parser {
                 }
             } while (true);
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:269:1: ( '}' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:269:2: '}'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:520:1: ( '}' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:520:2: '}'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(11)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,14,FOLLOW_14_in_ruleFunctionModuleRequestResponseMapping590); if (failed) return result;
+            match(input,14,FOLLOW_14_in_ruleFunctionModuleRequestResponseMapping646); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(11)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
@@ -1177,11 +1384,17 @@ public class rfcgenParser extends Parser {
 
             }
 
+            if ( backtracking==0 ) {
+              if (!hasContent)
+                result = null;
+            }
 
             }
 
         }
         catch (RecognitionException re) {
+            if (!hasContent)
+                result = null;
             reportError(re);
             recover(input,re);
         }
@@ -1194,7 +1407,7 @@ public class rfcgenParser extends Parser {
 
 
     // $ANTLR start ruleFunctionModuleParameterMapping
-    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:273:1: ruleFunctionModuleParameterMapping returns [EObject result] : (temp_functionmoduleimportingparameter= ruleFunctionModuleImportingParameter | temp_functionmoduleexportingparameter= ruleFunctionModuleExportingParameter | temp_functionmodulechangingparameter= ruleFunctionModuleChangingParameter | temp_functionmoduletablesparameter= ruleFunctionModuleTablesParameter );
+    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:533:1: ruleFunctionModuleParameterMapping returns [EObject result] : (temp_functionmoduleimportingparameter= ruleFunctionModuleImportingParameter | temp_functionmoduleexportingparameter= ruleFunctionModuleExportingParameter | temp_functionmodulechangingparameter= ruleFunctionModuleChangingParameter | temp_functionmoduletablesparameter= ruleFunctionModuleTablesParameter );
     public EObject ruleFunctionModuleParameterMapping() throws RecognitionException {
         EObject result = null;
         int ruleFunctionModuleParameterMapping_StartIndex = input.index();
@@ -1209,7 +1422,7 @@ public class rfcgenParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 9) ) { return result; }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:274:9: (temp_functionmoduleimportingparameter= ruleFunctionModuleImportingParameter | temp_functionmoduleexportingparameter= ruleFunctionModuleExportingParameter | temp_functionmodulechangingparameter= ruleFunctionModuleChangingParameter | temp_functionmoduletablesparameter= ruleFunctionModuleTablesParameter )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:535:9: (temp_functionmoduleimportingparameter= ruleFunctionModuleImportingParameter | temp_functionmoduleexportingparameter= ruleFunctionModuleExportingParameter | temp_functionmodulechangingparameter= ruleFunctionModuleChangingParameter | temp_functionmoduletablesparameter= ruleFunctionModuleTablesParameter )
             int alt9=4;
             switch ( input.LA(1) ) {
             case 23:
@@ -1217,17 +1430,17 @@ public class rfcgenParser extends Parser {
                 alt9=1;
                 }
                 break;
-            case 27:
+            case 26:
                 {
                 alt9=2;
                 }
                 break;
-            case 29:
+            case 27:
                 {
                 alt9=3;
                 }
                 break;
-            case 26:
+            case 25:
                 {
                 alt9=4;
                 }
@@ -1235,16 +1448,16 @@ public class rfcgenParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return result;}
                 NoViableAltException nvae =
-                    new NoViableAltException("273:1: ruleFunctionModuleParameterMapping returns [EObject result] : (temp_functionmoduleimportingparameter= ruleFunctionModuleImportingParameter | temp_functionmoduleexportingparameter= ruleFunctionModuleExportingParameter | temp_functionmodulechangingparameter= ruleFunctionModuleChangingParameter | temp_functionmoduletablesparameter= ruleFunctionModuleTablesParameter );", 9, 0, input);
+                    new NoViableAltException("533:1: ruleFunctionModuleParameterMapping returns [EObject result] : (temp_functionmoduleimportingparameter= ruleFunctionModuleImportingParameter | temp_functionmoduleexportingparameter= ruleFunctionModuleExportingParameter | temp_functionmodulechangingparameter= ruleFunctionModuleChangingParameter | temp_functionmoduletablesparameter= ruleFunctionModuleTablesParameter );", 9, 0, input);
 
                 throw nvae;
             }
 
             switch (alt9) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:274:9: temp_functionmoduleimportingparameter= ruleFunctionModuleImportingParameter
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:535:9: temp_functionmoduleimportingparameter= ruleFunctionModuleImportingParameter
                     {
-                    pushFollow(FOLLOW_ruleFunctionModuleImportingParameter_in_ruleFunctionModuleParameterMapping617);
+                    pushFollow(FOLLOW_ruleFunctionModuleImportingParameter_in_ruleFunctionModuleParameterMapping681);
                     temp_functionmoduleimportingparameter=ruleFunctionModuleImportingParameter();
                     _fsp--;
                     if (failed) return result;
@@ -1255,9 +1468,9 @@ public class rfcgenParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:274:142: temp_functionmoduleexportingparameter= ruleFunctionModuleExportingParameter
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:535:142: temp_functionmoduleexportingparameter= ruleFunctionModuleExportingParameter
                     {
-                    pushFollow(FOLLOW_ruleFunctionModuleExportingParameter_in_ruleFunctionModuleParameterMapping632);
+                    pushFollow(FOLLOW_ruleFunctionModuleExportingParameter_in_ruleFunctionModuleParameterMapping696);
                     temp_functionmoduleexportingparameter=ruleFunctionModuleExportingParameter();
                     _fsp--;
                     if (failed) return result;
@@ -1268,9 +1481,9 @@ public class rfcgenParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:274:275: temp_functionmodulechangingparameter= ruleFunctionModuleChangingParameter
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:535:275: temp_functionmodulechangingparameter= ruleFunctionModuleChangingParameter
                     {
-                    pushFollow(FOLLOW_ruleFunctionModuleChangingParameter_in_ruleFunctionModuleParameterMapping647);
+                    pushFollow(FOLLOW_ruleFunctionModuleChangingParameter_in_ruleFunctionModuleParameterMapping711);
                     temp_functionmodulechangingparameter=ruleFunctionModuleChangingParameter();
                     _fsp--;
                     if (failed) return result;
@@ -1281,9 +1494,9 @@ public class rfcgenParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:274:405: temp_functionmoduletablesparameter= ruleFunctionModuleTablesParameter
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:535:405: temp_functionmoduletablesparameter= ruleFunctionModuleTablesParameter
                     {
-                    pushFollow(FOLLOW_ruleFunctionModuleTablesParameter_in_ruleFunctionModuleParameterMapping662);
+                    pushFollow(FOLLOW_ruleFunctionModuleTablesParameter_in_ruleFunctionModuleParameterMapping726);
                     temp_functionmoduletablesparameter=ruleFunctionModuleTablesParameter();
                     _fsp--;
                     if (failed) return result;
@@ -1309,46 +1522,42 @@ public class rfcgenParser extends Parser {
 
 
     // $ANTLR start ruleFunctionModuleImportingParameter
-    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:276:1: ruleFunctionModuleImportingParameter returns [EObject result] : ( ( 'import' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) ) ;
+    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:537:1: ruleFunctionModuleImportingParameter returns [EObject result] : ( ( 'import' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) ) ;
     public EObject ruleFunctionModuleImportingParameter() throws RecognitionException {
         EObject result = null;
         int ruleFunctionModuleImportingParameter_StartIndex = input.index();
-        Token temp_name=null;
-        Token temp_isInactive=null;
-        Token temp_type=null;
-        Token temp_attribute=null;
-        Token temp_isStructure=null;
-        Token temp_isTable=null;
-        Token temp_comment=null;
-
+        boolean hasContent = false;
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 10) ) { return result; }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:277:4: ( ( ( 'import' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:277:4: ( ( 'import' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:540:4: ( ( ( 'import' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:540:4: ( ( 'import' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) )
             {
             if ( backtracking==0 ) {
 
               				result = factory.create("", "FunctionModuleImportingParameter");
-              				ptm.setModelElement(result);
               			 
             }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:281:1: ( ( 'import' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:281:2: ( 'import' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:543:1: ( ( 'import' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:543:2: ( 'import' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' )
             {
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:281:2: ( 'import' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:281:3: 'import'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:543:2: ( 'import' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:543:3: 'import'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(0)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,23,FOLLOW_23_in_ruleFunctionModuleImportingParameter685); if (failed) return result;
+            match(input,23,FOLLOW_23_in_ruleFunctionModuleImportingParameter754); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(0)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:283:1: ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:549:1: ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) )
             int alt13=3;
             switch ( input.LA(1) ) {
             case 15:
@@ -1361,7 +1570,7 @@ public class rfcgenParser extends Parser {
                 alt13=2;
                 }
                 break;
-            case 26:
+            case 25:
                 {
                 alt13=3;
                 }
@@ -1369,63 +1578,76 @@ public class rfcgenParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return result;}
                 NoViableAltException nvae =
-                    new NoViableAltException("283:1: ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) )", 13, 0, input);
+                    new NoViableAltException("549:1: ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) )", 13, 0, input);
 
                 throw nvae;
             }
 
             switch (alt13) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:283:2: ( ( 'field' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:549:2: ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:283:2: ( ( 'field' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:283:3: ( 'field' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:549:2: ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:549:3: ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:283:3: ( 'field' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:283:4: 'field'
-                    {
-                    if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(0)),line(),start());
-                    }
-                    match(input,15,FOLLOW_15_in_ruleFunctionModuleImportingParameter694); if (failed) return result;
-                    if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
-                    }
-
-                    }
-
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:285:1: (temp_name= RULE_STRING )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:285:2: temp_name= RULE_STRING
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:549:3: ( 'field' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:549:4: 'field'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_name=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter703); if (failed) return result;
+                    match(input,15,FOLLOW_15_in_ruleFunctionModuleImportingParameter763); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"name",convert(temp_name),false); ptm.ruleFinished(temp_name,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(0)));
+                        ptm.ruleFinished(getLastToken());
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:288:1: ( '<--' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:288:2: '<--'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:555:1: ( RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:555:2: RULE_STRING
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(2)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    match(input,24,FOLLOW_24_in_ruleFunctionModuleImportingParameter712); if (failed) return result;
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter771); if (failed) return result;
                     if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(1)));
+                        factory.set(result,"name",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:290:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:565:1: ( '=' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:565:2: '='
+                    {
+                    if ( backtracking==0 ) {
+                      skipCurrentToken = false;
+                    }
+                    match(input,16,FOLLOW_16_in_ruleFunctionModuleImportingParameter779); if (failed) return result;
+                    if ( backtracking==0 ) {
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(2)));
+                        ptm.ruleFinished(getLastToken());
+                      }
+                    }
+
+                    }
+
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:571:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
-                    if ( (LA10_0==25) ) {
+                    if ( (LA10_0==24) ) {
                         alt10=1;
                     }
                     else if ( (LA10_0==RULE_ID) ) {
@@ -1434,24 +1656,29 @@ public class rfcgenParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return result;}
                         NoViableAltException nvae =
-                            new NoViableAltException("290:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )", 10, 0, input);
+                            new NoViableAltException("571:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )", 10, 0, input);
 
                         throw nvae;
                     }
                     switch (alt10) {
                         case 1 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:290:2: (temp_isInactive= 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:571:2: ( 'inactive' )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:290:2: (temp_isInactive= 'inactive' )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:290:3: temp_isInactive= 'inactive'
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:571:2: ( 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:571:3: 'inactive'
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_isInactive=(Token)input.LT(1);
-                            match(input,25,FOLLOW_25_in_ruleFunctionModuleImportingParameter722); if (failed) return result;
+                            match(input,24,FOLLOW_24_in_ruleFunctionModuleImportingParameter788); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"isInactive",true); ptm.ruleFinished(temp_isInactive,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(0)));
+                                factory.set(result,"isInactive",true);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -1460,35 +1687,45 @@ public class rfcgenParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:293:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:581:1: ( ( RULE_ID ) ( RULE_ID ) )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:293:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:293:2: (temp_type= RULE_ID ) (temp_attribute= RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:581:1: ( ( RULE_ID ) ( RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:581:2: ( RULE_ID ) ( RULE_ID )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:293:2: (temp_type= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:293:3: temp_type= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:581:2: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:581:3: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_type=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter736); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter800); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"type",convert(temp_type),false); ptm.ruleFinished(temp_type,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+                                factory.set(result,"type",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
 
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:296:1: (temp_attribute= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:296:2: temp_attribute= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:591:1: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:591:2: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(1)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_attribute=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter747); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter809); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"attribute",convert(temp_attribute),false); ptm.ruleFinished(temp_attribute,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+                                factory.set(result,"attribute",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -1509,57 +1746,71 @@ public class rfcgenParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:302:1: ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:604:1: ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:302:1: ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:302:2: (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:604:1: ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:604:2: ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:302:2: (temp_isStructure= 'structure' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:302:3: temp_isStructure= 'structure'
-                    {
-                    if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(0)),line(),start());
-                    }
-                    temp_isStructure=(Token)input.LT(1);
-                    match(input,11,FOLLOW_11_in_ruleFunctionModuleImportingParameter767); if (failed) return result;
-                    if ( backtracking==0 ) {
-                      factory.set(result,"isStructure",true); ptm.ruleFinished(temp_isStructure,end()); 
-                    }
-
-                    }
-
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:305:1: (temp_name= RULE_STRING )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:305:2: temp_name= RULE_STRING
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:604:2: ( 'structure' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:604:3: 'structure'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_name=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter778); if (failed) return result;
+                    match(input,11,FOLLOW_11_in_ruleFunctionModuleImportingParameter827); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"name",convert(temp_name),false); ptm.ruleFinished(temp_name,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(0)));
+                        factory.set(result,"isStructure",true);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:308:1: ( '<--' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:308:2: '<--'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:614:1: ( RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:614:2: RULE_STRING
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(2)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    match(input,24,FOLLOW_24_in_ruleFunctionModuleImportingParameter787); if (failed) return result;
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter836); if (failed) return result;
                     if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(1)));
+                        factory.set(result,"name",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:310:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:624:1: ( '=' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:624:2: '='
+                    {
+                    if ( backtracking==0 ) {
+                      skipCurrentToken = false;
+                    }
+                    match(input,16,FOLLOW_16_in_ruleFunctionModuleImportingParameter844); if (failed) return result;
+                    if ( backtracking==0 ) {
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(2)));
+                        ptm.ruleFinished(getLastToken());
+                      }
+                    }
+
+                    }
+
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:630:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
-                    if ( (LA11_0==25) ) {
+                    if ( (LA11_0==24) ) {
                         alt11=1;
                     }
                     else if ( (LA11_0==RULE_ID) ) {
@@ -1568,24 +1819,29 @@ public class rfcgenParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return result;}
                         NoViableAltException nvae =
-                            new NoViableAltException("310:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )", 11, 0, input);
+                            new NoViableAltException("630:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )", 11, 0, input);
 
                         throw nvae;
                     }
                     switch (alt11) {
                         case 1 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:310:2: (temp_isInactive= 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:630:2: ( 'inactive' )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:310:2: (temp_isInactive= 'inactive' )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:310:3: temp_isInactive= 'inactive'
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:630:2: ( 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:630:3: 'inactive'
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_isInactive=(Token)input.LT(1);
-                            match(input,25,FOLLOW_25_in_ruleFunctionModuleImportingParameter797); if (failed) return result;
+                            match(input,24,FOLLOW_24_in_ruleFunctionModuleImportingParameter853); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"isInactive",true); ptm.ruleFinished(temp_isInactive,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(0)));
+                                factory.set(result,"isInactive",true);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -1594,35 +1850,45 @@ public class rfcgenParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:313:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:640:1: ( ( RULE_ID ) ( RULE_ID ) )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:313:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:313:2: (temp_type= RULE_ID ) (temp_attribute= RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:640:1: ( ( RULE_ID ) ( RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:640:2: ( RULE_ID ) ( RULE_ID )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:313:2: (temp_type= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:313:3: temp_type= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:640:2: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:640:3: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_type=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter811); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter865); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"type",convert(temp_type),false); ptm.ruleFinished(temp_type,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+                                factory.set(result,"type",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
 
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:316:1: (temp_attribute= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:316:2: temp_attribute= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:650:1: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:650:2: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(1)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_attribute=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter822); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter874); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"attribute",convert(temp_attribute),false); ptm.ruleFinished(temp_attribute,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+                                factory.set(result,"attribute",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -1643,57 +1909,71 @@ public class rfcgenParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:322:1: ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:663:1: ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:322:1: ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:322:2: (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<--' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:663:1: ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:663:2: ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:322:2: (temp_isTable= 'table' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:322:3: temp_isTable= 'table'
-                    {
-                    if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(0)),line(),start());
-                    }
-                    temp_isTable=(Token)input.LT(1);
-                    match(input,26,FOLLOW_26_in_ruleFunctionModuleImportingParameter842); if (failed) return result;
-                    if ( backtracking==0 ) {
-                      factory.set(result,"isTable",true); ptm.ruleFinished(temp_isTable,end()); 
-                    }
-
-                    }
-
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:325:1: (temp_name= RULE_STRING )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:325:2: temp_name= RULE_STRING
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:663:2: ( 'table' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:663:3: 'table'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_name=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter853); if (failed) return result;
+                    match(input,25,FOLLOW_25_in_ruleFunctionModuleImportingParameter892); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"name",convert(temp_name),false); ptm.ruleFinished(temp_name,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(0)));
+                        factory.set(result,"isTable",true);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:328:1: ( '<--' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:328:2: '<--'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:673:1: ( RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:673:2: RULE_STRING
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(2)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    match(input,24,FOLLOW_24_in_ruleFunctionModuleImportingParameter862); if (failed) return result;
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter901); if (failed) return result;
                     if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(1)));
+                        factory.set(result,"name",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:330:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:683:1: ( '=' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:683:2: '='
+                    {
+                    if ( backtracking==0 ) {
+                      skipCurrentToken = false;
+                    }
+                    match(input,16,FOLLOW_16_in_ruleFunctionModuleImportingParameter909); if (failed) return result;
+                    if ( backtracking==0 ) {
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(2)));
+                        ptm.ruleFinished(getLastToken());
+                      }
+                    }
+
+                    }
+
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:689:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
-                    if ( (LA12_0==25) ) {
+                    if ( (LA12_0==24) ) {
                         alt12=1;
                     }
                     else if ( (LA12_0==RULE_ID) ) {
@@ -1702,24 +1982,29 @@ public class rfcgenParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return result;}
                         NoViableAltException nvae =
-                            new NoViableAltException("330:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )", 12, 0, input);
+                            new NoViableAltException("689:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )", 12, 0, input);
 
                         throw nvae;
                     }
                     switch (alt12) {
                         case 1 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:330:2: (temp_isInactive= 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:689:2: ( 'inactive' )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:330:2: (temp_isInactive= 'inactive' )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:330:3: temp_isInactive= 'inactive'
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:689:2: ( 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:689:3: 'inactive'
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_isInactive=(Token)input.LT(1);
-                            match(input,25,FOLLOW_25_in_ruleFunctionModuleImportingParameter872); if (failed) return result;
+                            match(input,24,FOLLOW_24_in_ruleFunctionModuleImportingParameter918); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"isInactive",true); ptm.ruleFinished(temp_isInactive,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(0)));
+                                factory.set(result,"isInactive",true);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -1728,35 +2013,45 @@ public class rfcgenParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:333:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:699:1: ( ( RULE_ID ) ( RULE_ID ) )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:333:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:333:2: (temp_type= RULE_ID ) (temp_attribute= RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:699:1: ( ( RULE_ID ) ( RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:699:2: ( RULE_ID ) ( RULE_ID )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:333:2: (temp_type= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:333:3: temp_type= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:699:2: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:699:3: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_type=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter886); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter930); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"type",convert(temp_type),false); ptm.ruleFinished(temp_type,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+                                factory.set(result,"type",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
 
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:336:1: (temp_attribute= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:336:2: temp_attribute= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:709:1: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:709:2: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(1)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_attribute=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter897); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter939); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"attribute",convert(temp_attribute),false); ptm.ruleFinished(temp_attribute,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+                                factory.set(result,"attribute",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -1779,7 +2074,7 @@ public class rfcgenParser extends Parser {
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:343:1: ( ( 'comment' ) (temp_comment= RULE_STRING ) )?
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:723:1: ( ( 'comment' ) ( RULE_STRING ) )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1788,31 +2083,40 @@ public class rfcgenParser extends Parser {
             }
             switch (alt14) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:343:2: ( 'comment' ) (temp_comment= RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:723:2: ( 'comment' ) ( RULE_STRING )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:343:2: ( 'comment' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:343:3: 'comment'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:723:2: ( 'comment' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:723:3: 'comment'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(2)).eContents().get(0)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    match(input,17,FOLLOW_17_in_ruleFunctionModuleImportingParameter915); if (failed) return result;
+                    match(input,17,FOLLOW_17_in_ruleFunctionModuleImportingParameter956); if (failed) return result;
                     if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(2)).eContents().get(0)));
+                        ptm.ruleFinished(getLastToken());
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:345:1: (temp_comment= RULE_STRING )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:345:2: temp_comment= RULE_STRING
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:729:1: ( RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:729:2: RULE_STRING
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(2)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_comment=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter924); if (failed) return result;
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter964); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"comment",convert(temp_comment),false); ptm.ruleFinished(temp_comment,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(2)).eContents().get(1)));
+                        factory.set(result,"comment",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
@@ -1823,15 +2127,19 @@ public class rfcgenParser extends Parser {
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:349:1: ( ';' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:349:2: ';'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:740:1: ( ';' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:740:2: ';'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(3)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,18,FOLLOW_18_in_ruleFunctionModuleImportingParameter936); if (failed) return result;
+            match(input,18,FOLLOW_18_in_ruleFunctionModuleImportingParameter975); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(3)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
@@ -1839,11 +2147,17 @@ public class rfcgenParser extends Parser {
 
             }
 
+            if ( backtracking==0 ) {
+              if (!hasContent)
+                result = null;
+            }
 
             }
 
         }
         catch (RecognitionException re) {
+            if (!hasContent)
+                result = null;
             reportError(re);
             recover(input,re);
         }
@@ -1856,46 +2170,42 @@ public class rfcgenParser extends Parser {
 
 
     // $ANTLR start ruleFunctionModuleExportingParameter
-    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:353:1: ruleFunctionModuleExportingParameter returns [EObject result] : ( ( 'export' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) ) ;
+    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:753:1: ruleFunctionModuleExportingParameter returns [EObject result] : ( ( 'export' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) ) ;
     public EObject ruleFunctionModuleExportingParameter() throws RecognitionException {
         EObject result = null;
         int ruleFunctionModuleExportingParameter_StartIndex = input.index();
-        Token temp_name=null;
-        Token temp_isInactive=null;
-        Token temp_type=null;
-        Token temp_attribute=null;
-        Token temp_isStructure=null;
-        Token temp_isTable=null;
-        Token temp_comment=null;
-
+        boolean hasContent = false;
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 11) ) { return result; }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:354:4: ( ( ( 'export' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:354:4: ( ( 'export' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:756:4: ( ( ( 'export' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:756:4: ( ( 'export' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) )
             {
             if ( backtracking==0 ) {
 
               				result = factory.create("", "FunctionModuleExportingParameter");
-              				ptm.setModelElement(result);
               			 
             }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:358:1: ( ( 'export' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:358:2: ( 'export' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:759:1: ( ( 'export' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:759:2: ( 'export' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' )
             {
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:358:2: ( 'export' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:358:3: 'export'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:759:2: ( 'export' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:759:3: 'export'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(0)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,27,FOLLOW_27_in_ruleFunctionModuleExportingParameter961); if (failed) return result;
+            match(input,26,FOLLOW_26_in_ruleFunctionModuleExportingParameter1013); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(0)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:360:1: ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:765:1: ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) )
             int alt18=3;
             switch ( input.LA(1) ) {
             case 15:
@@ -1908,7 +2218,7 @@ public class rfcgenParser extends Parser {
                 alt18=2;
                 }
                 break;
-            case 26:
+            case 25:
                 {
                 alt18=3;
                 }
@@ -1916,63 +2226,76 @@ public class rfcgenParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return result;}
                 NoViableAltException nvae =
-                    new NoViableAltException("360:1: ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) )", 18, 0, input);
+                    new NoViableAltException("765:1: ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) )", 18, 0, input);
 
                 throw nvae;
             }
 
             switch (alt18) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:360:2: ( ( 'field' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:765:2: ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:360:2: ( ( 'field' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:360:3: ( 'field' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:765:2: ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:765:3: ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:360:3: ( 'field' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:360:4: 'field'
-                    {
-                    if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(0)),line(),start());
-                    }
-                    match(input,15,FOLLOW_15_in_ruleFunctionModuleExportingParameter970); if (failed) return result;
-                    if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
-                    }
-
-                    }
-
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:362:1: (temp_name= RULE_STRING )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:362:2: temp_name= RULE_STRING
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:765:3: ( 'field' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:765:4: 'field'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_name=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter979); if (failed) return result;
+                    match(input,15,FOLLOW_15_in_ruleFunctionModuleExportingParameter1022); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"name",convert(temp_name),false); ptm.ruleFinished(temp_name,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(0)));
+                        ptm.ruleFinished(getLastToken());
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:365:1: ( '-->' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:365:2: '-->'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:771:1: ( RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:771:2: RULE_STRING
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(2)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    match(input,28,FOLLOW_28_in_ruleFunctionModuleExportingParameter988); if (failed) return result;
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter1030); if (failed) return result;
                     if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(1)));
+                        factory.set(result,"name",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:367:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:781:1: ( '=' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:781:2: '='
+                    {
+                    if ( backtracking==0 ) {
+                      skipCurrentToken = false;
+                    }
+                    match(input,16,FOLLOW_16_in_ruleFunctionModuleExportingParameter1038); if (failed) return result;
+                    if ( backtracking==0 ) {
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(2)));
+                        ptm.ruleFinished(getLastToken());
+                      }
+                    }
+
+                    }
+
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:787:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
-                    if ( (LA15_0==25) ) {
+                    if ( (LA15_0==24) ) {
                         alt15=1;
                     }
                     else if ( (LA15_0==RULE_ID) ) {
@@ -1981,24 +2304,29 @@ public class rfcgenParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return result;}
                         NoViableAltException nvae =
-                            new NoViableAltException("367:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )", 15, 0, input);
+                            new NoViableAltException("787:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )", 15, 0, input);
 
                         throw nvae;
                     }
                     switch (alt15) {
                         case 1 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:367:2: (temp_isInactive= 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:787:2: ( 'inactive' )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:367:2: (temp_isInactive= 'inactive' )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:367:3: temp_isInactive= 'inactive'
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:787:2: ( 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:787:3: 'inactive'
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_isInactive=(Token)input.LT(1);
-                            match(input,25,FOLLOW_25_in_ruleFunctionModuleExportingParameter998); if (failed) return result;
+                            match(input,24,FOLLOW_24_in_ruleFunctionModuleExportingParameter1047); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"isInactive",true); ptm.ruleFinished(temp_isInactive,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(0)));
+                                factory.set(result,"isInactive",true);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -2007,35 +2335,45 @@ public class rfcgenParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:370:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:797:1: ( ( RULE_ID ) ( RULE_ID ) )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:370:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:370:2: (temp_type= RULE_ID ) (temp_attribute= RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:797:1: ( ( RULE_ID ) ( RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:797:2: ( RULE_ID ) ( RULE_ID )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:370:2: (temp_type= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:370:3: temp_type= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:797:2: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:797:3: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_type=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1012); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1059); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"type",convert(temp_type),false); ptm.ruleFinished(temp_type,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+                                factory.set(result,"type",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
 
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:373:1: (temp_attribute= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:373:2: temp_attribute= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:807:1: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:807:2: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(1)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_attribute=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1023); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1068); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"attribute",convert(temp_attribute),false); ptm.ruleFinished(temp_attribute,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+                                factory.set(result,"attribute",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -2056,57 +2394,71 @@ public class rfcgenParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:379:1: ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:820:1: ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:379:1: ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:379:2: (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:820:1: ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:820:2: ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:379:2: (temp_isStructure= 'structure' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:379:3: temp_isStructure= 'structure'
-                    {
-                    if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(0)),line(),start());
-                    }
-                    temp_isStructure=(Token)input.LT(1);
-                    match(input,11,FOLLOW_11_in_ruleFunctionModuleExportingParameter1043); if (failed) return result;
-                    if ( backtracking==0 ) {
-                      factory.set(result,"isStructure",true); ptm.ruleFinished(temp_isStructure,end()); 
-                    }
-
-                    }
-
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:382:1: (temp_name= RULE_STRING )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:382:2: temp_name= RULE_STRING
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:820:2: ( 'structure' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:820:3: 'structure'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_name=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter1054); if (failed) return result;
+                    match(input,11,FOLLOW_11_in_ruleFunctionModuleExportingParameter1086); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"name",convert(temp_name),false); ptm.ruleFinished(temp_name,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(0)));
+                        factory.set(result,"isStructure",true);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:385:1: ( '-->' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:385:2: '-->'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:830:1: ( RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:830:2: RULE_STRING
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(2)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    match(input,28,FOLLOW_28_in_ruleFunctionModuleExportingParameter1063); if (failed) return result;
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter1095); if (failed) return result;
                     if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(1)));
+                        factory.set(result,"name",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:387:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:840:1: ( '=' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:840:2: '='
+                    {
+                    if ( backtracking==0 ) {
+                      skipCurrentToken = false;
+                    }
+                    match(input,16,FOLLOW_16_in_ruleFunctionModuleExportingParameter1103); if (failed) return result;
+                    if ( backtracking==0 ) {
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(2)));
+                        ptm.ruleFinished(getLastToken());
+                      }
+                    }
+
+                    }
+
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:846:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
-                    if ( (LA16_0==25) ) {
+                    if ( (LA16_0==24) ) {
                         alt16=1;
                     }
                     else if ( (LA16_0==RULE_ID) ) {
@@ -2115,24 +2467,29 @@ public class rfcgenParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return result;}
                         NoViableAltException nvae =
-                            new NoViableAltException("387:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )", 16, 0, input);
+                            new NoViableAltException("846:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )", 16, 0, input);
 
                         throw nvae;
                     }
                     switch (alt16) {
                         case 1 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:387:2: (temp_isInactive= 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:846:2: ( 'inactive' )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:387:2: (temp_isInactive= 'inactive' )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:387:3: temp_isInactive= 'inactive'
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:846:2: ( 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:846:3: 'inactive'
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_isInactive=(Token)input.LT(1);
-                            match(input,25,FOLLOW_25_in_ruleFunctionModuleExportingParameter1073); if (failed) return result;
+                            match(input,24,FOLLOW_24_in_ruleFunctionModuleExportingParameter1112); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"isInactive",true); ptm.ruleFinished(temp_isInactive,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(0)));
+                                factory.set(result,"isInactive",true);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -2141,35 +2498,45 @@ public class rfcgenParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:390:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:856:1: ( ( RULE_ID ) ( RULE_ID ) )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:390:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:390:2: (temp_type= RULE_ID ) (temp_attribute= RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:856:1: ( ( RULE_ID ) ( RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:856:2: ( RULE_ID ) ( RULE_ID )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:390:2: (temp_type= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:390:3: temp_type= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:856:2: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:856:3: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_type=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1087); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1124); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"type",convert(temp_type),false); ptm.ruleFinished(temp_type,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+                                factory.set(result,"type",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
 
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:393:1: (temp_attribute= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:393:2: temp_attribute= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:866:1: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:866:2: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(1)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_attribute=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1098); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1133); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"attribute",convert(temp_attribute),false); ptm.ruleFinished(temp_attribute,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+                                factory.set(result,"attribute",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -2190,57 +2557,71 @@ public class rfcgenParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:399:1: ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:879:1: ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:399:1: ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:399:2: (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '-->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:879:1: ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:879:2: ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:399:2: (temp_isTable= 'table' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:399:3: temp_isTable= 'table'
-                    {
-                    if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(0)),line(),start());
-                    }
-                    temp_isTable=(Token)input.LT(1);
-                    match(input,26,FOLLOW_26_in_ruleFunctionModuleExportingParameter1118); if (failed) return result;
-                    if ( backtracking==0 ) {
-                      factory.set(result,"isTable",true); ptm.ruleFinished(temp_isTable,end()); 
-                    }
-
-                    }
-
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:402:1: (temp_name= RULE_STRING )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:402:2: temp_name= RULE_STRING
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:879:2: ( 'table' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:879:3: 'table'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_name=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter1129); if (failed) return result;
+                    match(input,25,FOLLOW_25_in_ruleFunctionModuleExportingParameter1151); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"name",convert(temp_name),false); ptm.ruleFinished(temp_name,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(0)));
+                        factory.set(result,"isTable",true);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:405:1: ( '-->' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:405:2: '-->'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:889:1: ( RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:889:2: RULE_STRING
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(2)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    match(input,28,FOLLOW_28_in_ruleFunctionModuleExportingParameter1138); if (failed) return result;
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter1160); if (failed) return result;
                     if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(1)));
+                        factory.set(result,"name",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:407:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:899:1: ( '=' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:899:2: '='
+                    {
+                    if ( backtracking==0 ) {
+                      skipCurrentToken = false;
+                    }
+                    match(input,16,FOLLOW_16_in_ruleFunctionModuleExportingParameter1168); if (failed) return result;
+                    if ( backtracking==0 ) {
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(2)));
+                        ptm.ruleFinished(getLastToken());
+                      }
+                    }
+
+                    }
+
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:905:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
-                    if ( (LA17_0==25) ) {
+                    if ( (LA17_0==24) ) {
                         alt17=1;
                     }
                     else if ( (LA17_0==RULE_ID) ) {
@@ -2249,24 +2630,29 @@ public class rfcgenParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return result;}
                         NoViableAltException nvae =
-                            new NoViableAltException("407:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )", 17, 0, input);
+                            new NoViableAltException("905:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )", 17, 0, input);
 
                         throw nvae;
                     }
                     switch (alt17) {
                         case 1 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:407:2: (temp_isInactive= 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:905:2: ( 'inactive' )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:407:2: (temp_isInactive= 'inactive' )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:407:3: temp_isInactive= 'inactive'
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:905:2: ( 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:905:3: 'inactive'
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_isInactive=(Token)input.LT(1);
-                            match(input,25,FOLLOW_25_in_ruleFunctionModuleExportingParameter1148); if (failed) return result;
+                            match(input,24,FOLLOW_24_in_ruleFunctionModuleExportingParameter1177); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"isInactive",true); ptm.ruleFinished(temp_isInactive,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(0)));
+                                factory.set(result,"isInactive",true);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -2275,35 +2661,45 @@ public class rfcgenParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:410:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:915:1: ( ( RULE_ID ) ( RULE_ID ) )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:410:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:410:2: (temp_type= RULE_ID ) (temp_attribute= RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:915:1: ( ( RULE_ID ) ( RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:915:2: ( RULE_ID ) ( RULE_ID )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:410:2: (temp_type= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:410:3: temp_type= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:915:2: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:915:3: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_type=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1162); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1189); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"type",convert(temp_type),false); ptm.ruleFinished(temp_type,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+                                factory.set(result,"type",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
 
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:413:1: (temp_attribute= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:413:2: temp_attribute= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:925:1: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:925:2: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(1)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_attribute=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1173); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1198); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"attribute",convert(temp_attribute),false); ptm.ruleFinished(temp_attribute,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+                                factory.set(result,"attribute",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -2326,7 +2722,7 @@ public class rfcgenParser extends Parser {
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:420:1: ( ( 'comment' ) (temp_comment= RULE_STRING ) )?
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:939:1: ( ( 'comment' ) ( RULE_STRING ) )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -2335,31 +2731,40 @@ public class rfcgenParser extends Parser {
             }
             switch (alt19) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:420:2: ( 'comment' ) (temp_comment= RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:939:2: ( 'comment' ) ( RULE_STRING )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:420:2: ( 'comment' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:420:3: 'comment'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:939:2: ( 'comment' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:939:3: 'comment'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(2)).eContents().get(0)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    match(input,17,FOLLOW_17_in_ruleFunctionModuleExportingParameter1191); if (failed) return result;
+                    match(input,17,FOLLOW_17_in_ruleFunctionModuleExportingParameter1215); if (failed) return result;
                     if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(2)).eContents().get(0)));
+                        ptm.ruleFinished(getLastToken());
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:422:1: (temp_comment= RULE_STRING )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:422:2: temp_comment= RULE_STRING
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:945:1: ( RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:945:2: RULE_STRING
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(2)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_comment=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter1200); if (failed) return result;
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter1223); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"comment",convert(temp_comment),false); ptm.ruleFinished(temp_comment,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(2)).eContents().get(1)));
+                        factory.set(result,"comment",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
@@ -2370,15 +2775,19 @@ public class rfcgenParser extends Parser {
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:426:1: ( ';' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:426:2: ';'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:956:1: ( ';' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:956:2: ';'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(3)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,18,FOLLOW_18_in_ruleFunctionModuleExportingParameter1212); if (failed) return result;
+            match(input,18,FOLLOW_18_in_ruleFunctionModuleExportingParameter1234); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(3)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
@@ -2386,11 +2795,17 @@ public class rfcgenParser extends Parser {
 
             }
 
+            if ( backtracking==0 ) {
+              if (!hasContent)
+                result = null;
+            }
 
             }
 
         }
         catch (RecognitionException re) {
+            if (!hasContent)
+                result = null;
             reportError(re);
             recover(input,re);
         }
@@ -2403,46 +2818,42 @@ public class rfcgenParser extends Parser {
 
 
     // $ANTLR start ruleFunctionModuleChangingParameter
-    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:430:1: ruleFunctionModuleChangingParameter returns [EObject result] : ( ( 'change' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) ) ;
+    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:969:1: ruleFunctionModuleChangingParameter returns [EObject result] : ( ( 'change' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) ) ;
     public EObject ruleFunctionModuleChangingParameter() throws RecognitionException {
         EObject result = null;
         int ruleFunctionModuleChangingParameter_StartIndex = input.index();
-        Token temp_name=null;
-        Token temp_isInactive=null;
-        Token temp_type=null;
-        Token temp_attribute=null;
-        Token temp_isStructure=null;
-        Token temp_isTable=null;
-        Token temp_comment=null;
-
+        boolean hasContent = false;
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 12) ) { return result; }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:431:4: ( ( ( 'change' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:431:4: ( ( 'change' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:972:4: ( ( ( 'change' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:972:4: ( ( 'change' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) )
             {
             if ( backtracking==0 ) {
 
               				result = factory.create("", "FunctionModuleChangingParameter");
-              				ptm.setModelElement(result);
               			 
             }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:435:1: ( ( 'change' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:435:2: ( 'change' ) ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:975:1: ( ( 'change' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:975:2: ( 'change' ) ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' )
             {
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:435:2: ( 'change' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:435:3: 'change'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:975:2: ( 'change' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:975:3: 'change'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(0)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,29,FOLLOW_29_in_ruleFunctionModuleChangingParameter1237); if (failed) return result;
+            match(input,27,FOLLOW_27_in_ruleFunctionModuleChangingParameter1272); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(0)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:437:1: ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:981:1: ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) )
             int alt23=3;
             switch ( input.LA(1) ) {
             case 15:
@@ -2455,7 +2866,7 @@ public class rfcgenParser extends Parser {
                 alt23=2;
                 }
                 break;
-            case 26:
+            case 25:
                 {
                 alt23=3;
                 }
@@ -2463,63 +2874,76 @@ public class rfcgenParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return result;}
                 NoViableAltException nvae =
-                    new NoViableAltException("437:1: ( ( ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) | ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ) )", 23, 0, input);
+                    new NoViableAltException("981:1: ( ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) | ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ) )", 23, 0, input);
 
                 throw nvae;
             }
 
             switch (alt23) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:437:2: ( ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:981:2: ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:437:2: ( ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:437:3: ( 'field' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:981:2: ( ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:981:3: ( 'field' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:437:3: ( 'field' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:437:4: 'field'
-                    {
-                    if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(0)),line(),start());
-                    }
-                    match(input,15,FOLLOW_15_in_ruleFunctionModuleChangingParameter1246); if (failed) return result;
-                    if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
-                    }
-
-                    }
-
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:439:1: (temp_name= RULE_STRING )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:439:2: temp_name= RULE_STRING
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:981:3: ( 'field' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:981:4: 'field'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_name=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1255); if (failed) return result;
+                    match(input,15,FOLLOW_15_in_ruleFunctionModuleChangingParameter1281); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"name",convert(temp_name),false); ptm.ruleFinished(temp_name,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(0)));
+                        ptm.ruleFinished(getLastToken());
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:442:1: ( '<->' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:442:2: '<->'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:987:1: ( RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:987:2: RULE_STRING
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(2)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    match(input,16,FOLLOW_16_in_ruleFunctionModuleChangingParameter1264); if (failed) return result;
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1289); if (failed) return result;
                     if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(1)));
+                        factory.set(result,"name",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:444:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:997:1: ( '=' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:997:2: '='
+                    {
+                    if ( backtracking==0 ) {
+                      skipCurrentToken = false;
+                    }
+                    match(input,16,FOLLOW_16_in_ruleFunctionModuleChangingParameter1297); if (failed) return result;
+                    if ( backtracking==0 ) {
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(2)));
+                        ptm.ruleFinished(getLastToken());
+                      }
+                    }
+
+                    }
+
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1003:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
-                    if ( (LA20_0==25) ) {
+                    if ( (LA20_0==24) ) {
                         alt20=1;
                     }
                     else if ( (LA20_0==RULE_ID) ) {
@@ -2528,24 +2952,29 @@ public class rfcgenParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return result;}
                         NoViableAltException nvae =
-                            new NoViableAltException("444:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )", 20, 0, input);
+                            new NoViableAltException("1003:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )", 20, 0, input);
 
                         throw nvae;
                     }
                     switch (alt20) {
                         case 1 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:444:2: (temp_isInactive= 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1003:2: ( 'inactive' )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:444:2: (temp_isInactive= 'inactive' )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:444:3: temp_isInactive= 'inactive'
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1003:2: ( 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1003:3: 'inactive'
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_isInactive=(Token)input.LT(1);
-                            match(input,25,FOLLOW_25_in_ruleFunctionModuleChangingParameter1274); if (failed) return result;
+                            match(input,24,FOLLOW_24_in_ruleFunctionModuleChangingParameter1306); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"isInactive",true); ptm.ruleFinished(temp_isInactive,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(0)));
+                                factory.set(result,"isInactive",true);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -2554,35 +2983,45 @@ public class rfcgenParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:447:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1013:1: ( ( RULE_ID ) ( RULE_ID ) )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:447:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:447:2: (temp_type= RULE_ID ) (temp_attribute= RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1013:1: ( ( RULE_ID ) ( RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1013:2: ( RULE_ID ) ( RULE_ID )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:447:2: (temp_type= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:447:3: temp_type= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1013:2: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1013:3: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_type=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1288); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1318); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"type",convert(temp_type),false); ptm.ruleFinished(temp_type,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+                                factory.set(result,"type",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
 
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:450:1: (temp_attribute= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:450:2: temp_attribute= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1023:1: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1023:2: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(1)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_attribute=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1299); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1327); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"attribute",convert(temp_attribute),false); ptm.ruleFinished(temp_attribute,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+                                factory.set(result,"attribute",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -2603,57 +3042,71 @@ public class rfcgenParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:456:1: ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1036:1: ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:456:1: ( (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:456:2: (temp_isStructure= 'structure' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1036:1: ( ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1036:2: ( 'structure' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:456:2: (temp_isStructure= 'structure' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:456:3: temp_isStructure= 'structure'
-                    {
-                    if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(0)),line(),start());
-                    }
-                    temp_isStructure=(Token)input.LT(1);
-                    match(input,11,FOLLOW_11_in_ruleFunctionModuleChangingParameter1319); if (failed) return result;
-                    if ( backtracking==0 ) {
-                      factory.set(result,"isStructure",true); ptm.ruleFinished(temp_isStructure,end()); 
-                    }
-
-                    }
-
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:459:1: (temp_name= RULE_STRING )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:459:2: temp_name= RULE_STRING
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1036:2: ( 'structure' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1036:3: 'structure'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_name=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1330); if (failed) return result;
+                    match(input,11,FOLLOW_11_in_ruleFunctionModuleChangingParameter1345); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"name",convert(temp_name),false); ptm.ruleFinished(temp_name,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(0)));
+                        factory.set(result,"isStructure",true);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:462:1: ( '<->' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:462:2: '<->'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1046:1: ( RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1046:2: RULE_STRING
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(2)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    match(input,16,FOLLOW_16_in_ruleFunctionModuleChangingParameter1339); if (failed) return result;
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1354); if (failed) return result;
                     if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(1)));
+                        factory.set(result,"name",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:464:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1056:1: ( '=' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1056:2: '='
+                    {
+                    if ( backtracking==0 ) {
+                      skipCurrentToken = false;
+                    }
+                    match(input,16,FOLLOW_16_in_ruleFunctionModuleChangingParameter1362); if (failed) return result;
+                    if ( backtracking==0 ) {
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(2)));
+                        ptm.ruleFinished(getLastToken());
+                      }
+                    }
+
+                    }
+
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1062:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     int alt21=2;
                     int LA21_0 = input.LA(1);
 
-                    if ( (LA21_0==25) ) {
+                    if ( (LA21_0==24) ) {
                         alt21=1;
                     }
                     else if ( (LA21_0==RULE_ID) ) {
@@ -2662,24 +3115,29 @@ public class rfcgenParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return result;}
                         NoViableAltException nvae =
-                            new NoViableAltException("464:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )", 21, 0, input);
+                            new NoViableAltException("1062:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )", 21, 0, input);
 
                         throw nvae;
                     }
                     switch (alt21) {
                         case 1 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:464:2: (temp_isInactive= 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1062:2: ( 'inactive' )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:464:2: (temp_isInactive= 'inactive' )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:464:3: temp_isInactive= 'inactive'
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1062:2: ( 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1062:3: 'inactive'
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_isInactive=(Token)input.LT(1);
-                            match(input,25,FOLLOW_25_in_ruleFunctionModuleChangingParameter1349); if (failed) return result;
+                            match(input,24,FOLLOW_24_in_ruleFunctionModuleChangingParameter1371); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"isInactive",true); ptm.ruleFinished(temp_isInactive,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(0)));
+                                factory.set(result,"isInactive",true);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -2688,35 +3146,45 @@ public class rfcgenParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:467:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1072:1: ( ( RULE_ID ) ( RULE_ID ) )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:467:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:467:2: (temp_type= RULE_ID ) (temp_attribute= RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1072:1: ( ( RULE_ID ) ( RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1072:2: ( RULE_ID ) ( RULE_ID )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:467:2: (temp_type= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:467:3: temp_type= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1072:2: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1072:3: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_type=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1363); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1383); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"type",convert(temp_type),false); ptm.ruleFinished(temp_type,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+                                factory.set(result,"type",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
 
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:470:1: (temp_attribute= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:470:2: temp_attribute= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1082:1: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1082:2: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(1)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_attribute=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1374); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1392); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"attribute",convert(temp_attribute),false); ptm.ruleFinished(temp_attribute,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+                                factory.set(result,"attribute",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -2737,57 +3205,71 @@ public class rfcgenParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:476:1: ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1095:1: ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:476:1: ( (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:476:2: (temp_isTable= 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1095:1: ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1095:2: ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:476:2: (temp_isTable= 'table' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:476:3: temp_isTable= 'table'
-                    {
-                    if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(0)),line(),start());
-                    }
-                    temp_isTable=(Token)input.LT(1);
-                    match(input,26,FOLLOW_26_in_ruleFunctionModuleChangingParameter1394); if (failed) return result;
-                    if ( backtracking==0 ) {
-                      factory.set(result,"isTable",true); ptm.ruleFinished(temp_isTable,end()); 
-                    }
-
-                    }
-
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:479:1: (temp_name= RULE_STRING )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:479:2: temp_name= RULE_STRING
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1095:2: ( 'table' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1095:3: 'table'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_name=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1405); if (failed) return result;
+                    match(input,25,FOLLOW_25_in_ruleFunctionModuleChangingParameter1410); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"name",convert(temp_name),false); ptm.ruleFinished(temp_name,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(0)));
+                        factory.set(result,"isTable",true);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:482:1: ( '<->' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:482:2: '<->'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1105:1: ( RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1105:2: RULE_STRING
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(2)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    match(input,16,FOLLOW_16_in_ruleFunctionModuleChangingParameter1414); if (failed) return result;
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1419); if (failed) return result;
                     if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(1)));
+                        factory.set(result,"name",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:484:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1115:1: ( '=' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1115:2: '='
+                    {
+                    if ( backtracking==0 ) {
+                      skipCurrentToken = false;
+                    }
+                    match(input,16,FOLLOW_16_in_ruleFunctionModuleChangingParameter1427); if (failed) return result;
+                    if ( backtracking==0 ) {
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(2)));
+                        ptm.ruleFinished(getLastToken());
+                      }
+                    }
+
+                    }
+
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1121:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
                     int alt22=2;
                     int LA22_0 = input.LA(1);
 
-                    if ( (LA22_0==25) ) {
+                    if ( (LA22_0==24) ) {
                         alt22=1;
                     }
                     else if ( (LA22_0==RULE_ID) ) {
@@ -2796,24 +3278,29 @@ public class rfcgenParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return result;}
                         NoViableAltException nvae =
-                            new NoViableAltException("484:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )", 22, 0, input);
+                            new NoViableAltException("1121:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )", 22, 0, input);
 
                         throw nvae;
                     }
                     switch (alt22) {
                         case 1 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:484:2: (temp_isInactive= 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1121:2: ( 'inactive' )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:484:2: (temp_isInactive= 'inactive' )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:484:3: temp_isInactive= 'inactive'
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1121:2: ( 'inactive' )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1121:3: 'inactive'
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_isInactive=(Token)input.LT(1);
-                            match(input,25,FOLLOW_25_in_ruleFunctionModuleChangingParameter1424); if (failed) return result;
+                            match(input,24,FOLLOW_24_in_ruleFunctionModuleChangingParameter1436); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"isInactive",true); ptm.ruleFinished(temp_isInactive,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(0)));
+                                factory.set(result,"isInactive",true);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -2822,35 +3309,45 @@ public class rfcgenParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:487:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1131:1: ( ( RULE_ID ) ( RULE_ID ) )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:487:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:487:2: (temp_type= RULE_ID ) (temp_attribute= RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1131:1: ( ( RULE_ID ) ( RULE_ID ) )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1131:2: ( RULE_ID ) ( RULE_ID )
                             {
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:487:2: (temp_type= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:487:3: temp_type= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1131:2: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1131:3: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(0)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_type=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1438); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1448); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"type",convert(temp_type),false); ptm.ruleFinished(temp_type,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+                                factory.set(result,"type",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
 
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:490:1: (temp_attribute= RULE_ID )
-                            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:490:2: temp_attribute= RULE_ID
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1141:1: ( RULE_ID )
+                            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1141:2: RULE_ID
                             {
                             if ( backtracking==0 ) {
-                              ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(1)),line(),start());
+                              skipCurrentToken = false;
                             }
-                            temp_attribute=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1449); if (failed) return result;
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1457); if (failed) return result;
                             if ( backtracking==0 ) {
-                              factory.set(result,"attribute",convert(temp_attribute),false); ptm.ruleFinished(temp_attribute,end()); 
+                              if (!skipCurrentToken) {
+                                hasContent = true;
+                                Token temp = getLastToken();
+                                ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+                                factory.set(result,"attribute",convert(temp),false);
+                                ptm.ruleFinished(temp);
+                              }
                             }
 
                             }
@@ -2873,7 +3370,7 @@ public class rfcgenParser extends Parser {
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:497:1: ( ( 'comment' ) (temp_comment= RULE_STRING ) )?
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1155:1: ( ( 'comment' ) ( RULE_STRING ) )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -2882,31 +3379,40 @@ public class rfcgenParser extends Parser {
             }
             switch (alt24) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:497:2: ( 'comment' ) (temp_comment= RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1155:2: ( 'comment' ) ( RULE_STRING )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:497:2: ( 'comment' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:497:3: 'comment'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1155:2: ( 'comment' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1155:3: 'comment'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(2)).eContents().get(0)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    match(input,17,FOLLOW_17_in_ruleFunctionModuleChangingParameter1467); if (failed) return result;
+                    match(input,17,FOLLOW_17_in_ruleFunctionModuleChangingParameter1474); if (failed) return result;
                     if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(2)).eContents().get(0)));
+                        ptm.ruleFinished(getLastToken());
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:499:1: (temp_comment= RULE_STRING )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:499:2: temp_comment= RULE_STRING
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1161:1: ( RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1161:2: RULE_STRING
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(2)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_comment=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1476); if (failed) return result;
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1482); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"comment",convert(temp_comment),false); ptm.ruleFinished(temp_comment,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(2)).eContents().get(1)));
+                        factory.set(result,"comment",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
@@ -2917,15 +3423,19 @@ public class rfcgenParser extends Parser {
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:503:1: ( ';' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:503:2: ';'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1172:1: ( ';' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1172:2: ';'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(3)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,18,FOLLOW_18_in_ruleFunctionModuleChangingParameter1488); if (failed) return result;
+            match(input,18,FOLLOW_18_in_ruleFunctionModuleChangingParameter1493); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(3)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
@@ -2933,11 +3443,17 @@ public class rfcgenParser extends Parser {
 
             }
 
+            if ( backtracking==0 ) {
+              if (!hasContent)
+                result = null;
+            }
 
             }
 
         }
         catch (RecognitionException re) {
+            if (!hasContent)
+                result = null;
             reportError(re);
             recover(input,re);
         }
@@ -2950,75 +3466,82 @@ public class rfcgenParser extends Parser {
 
 
     // $ANTLR start ruleFunctionModuleTablesParameter
-    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:507:1: ruleFunctionModuleTablesParameter returns [EObject result] : ( ( 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) ) ;
+    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1185:1: ruleFunctionModuleTablesParameter returns [EObject result] : ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) ) ;
     public EObject ruleFunctionModuleTablesParameter() throws RecognitionException {
         EObject result = null;
         int ruleFunctionModuleTablesParameter_StartIndex = input.index();
-        Token temp_name=null;
-        Token temp_isInactive=null;
-        Token temp_type=null;
-        Token temp_attribute=null;
-        Token temp_comment=null;
-
+        boolean hasContent = false;
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 13) ) { return result; }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:508:4: ( ( ( 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:508:4: ( ( 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1188:4: ( ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1188:4: ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) )
             {
             if ( backtracking==0 ) {
 
               				result = factory.create("", "FunctionModuleTablesParameter");
-              				ptm.setModelElement(result);
               			 
             }
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:512:1: ( ( 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' ) )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:512:2: ( 'table' ) (temp_name= RULE_STRING ) ( '<->' ) ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) ) ( ( 'comment' ) (temp_comment= RULE_STRING ) )? ( ';' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1191:1: ( ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1191:2: ( 'table' ) ( RULE_STRING ) ( '=' ) ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) ) ( ( 'comment' ) ( RULE_STRING ) )? ( ';' )
             {
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:512:2: ( 'table' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:512:3: 'table'
-            {
-            if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(0)),line(),start());
-            }
-            match(input,26,FOLLOW_26_in_ruleFunctionModuleTablesParameter1513); if (failed) return result;
-            if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
-            }
-
-            }
-
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:514:1: (temp_name= RULE_STRING )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:514:2: temp_name= RULE_STRING
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1191:2: ( 'table' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1191:3: 'table'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)),line(),start());
+              skipCurrentToken = false;
             }
-            temp_name=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleTablesParameter1522); if (failed) return result;
+            match(input,25,FOLLOW_25_in_ruleFunctionModuleTablesParameter1531); if (failed) return result;
             if ( backtracking==0 ) {
-              factory.set(result,"name",convert(temp_name),false); ptm.ruleFinished(temp_name,end()); 
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(0)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:517:1: ( '<->' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:517:2: '<->'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1197:1: ( RULE_STRING )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1197:2: RULE_STRING
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(2)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,16,FOLLOW_16_in_ruleFunctionModuleTablesParameter1531); if (failed) return result;
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleTablesParameter1539); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                Token temp = getLastToken();
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)));
+                factory.set(result,"name",convert(temp),false);
+                ptm.ruleFinished(temp);
+              }
             }
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:519:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1207:1: ( '=' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1207:2: '='
+            {
+            if ( backtracking==0 ) {
+              skipCurrentToken = false;
+            }
+            match(input,16,FOLLOW_16_in_ruleFunctionModuleTablesParameter1547); if (failed) return result;
+            if ( backtracking==0 ) {
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(2)));
+                ptm.ruleFinished(getLastToken());
+              }
+            }
+
+            }
+
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1213:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )
             int alt25=2;
             int LA25_0 = input.LA(1);
 
-            if ( (LA25_0==25) ) {
+            if ( (LA25_0==24) ) {
                 alt25=1;
             }
             else if ( (LA25_0==RULE_ID) ) {
@@ -3027,24 +3550,29 @@ public class rfcgenParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return result;}
                 NoViableAltException nvae =
-                    new NoViableAltException("519:1: ( (temp_isInactive= 'inactive' ) | ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) ) )", 25, 0, input);
+                    new NoViableAltException("1213:1: ( ( 'inactive' ) | ( ( RULE_ID ) ( RULE_ID ) ) )", 25, 0, input);
 
                 throw nvae;
             }
             switch (alt25) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:519:2: (temp_isInactive= 'inactive' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1213:2: ( 'inactive' )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:519:2: (temp_isInactive= 'inactive' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:519:3: temp_isInactive= 'inactive'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1213:2: ( 'inactive' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1213:3: 'inactive'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(3)).eContents().get(0)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_isInactive=(Token)input.LT(1);
-                    match(input,25,FOLLOW_25_in_ruleFunctionModuleTablesParameter1541); if (failed) return result;
+                    match(input,24,FOLLOW_24_in_ruleFunctionModuleTablesParameter1556); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"isInactive",true); ptm.ruleFinished(temp_isInactive,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(3)).eContents().get(0)));
+                        factory.set(result,"isInactive",true);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
@@ -3053,35 +3581,45 @@ public class rfcgenParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:522:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1223:1: ( ( RULE_ID ) ( RULE_ID ) )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:522:1: ( (temp_type= RULE_ID ) (temp_attribute= RULE_ID ) )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:522:2: (temp_type= RULE_ID ) (temp_attribute= RULE_ID )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1223:1: ( ( RULE_ID ) ( RULE_ID ) )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1223:2: ( RULE_ID ) ( RULE_ID )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:522:2: (temp_type= RULE_ID )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:522:3: temp_type= RULE_ID
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1223:2: ( RULE_ID )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1223:3: RULE_ID
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(0)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_type=(Token)input.LT(1);
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleTablesParameter1555); if (failed) return result;
+                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleTablesParameter1568); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"type",convert(temp_type),false); ptm.ruleFinished(temp_type,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+                        factory.set(result,"type",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:525:1: (temp_attribute= RULE_ID )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:525:2: temp_attribute= RULE_ID
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1233:1: ( RULE_ID )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1233:2: RULE_ID
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_attribute=(Token)input.LT(1);
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleTablesParameter1566); if (failed) return result;
+                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModuleTablesParameter1577); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"attribute",convert(temp_attribute),false); ptm.ruleFinished(temp_attribute,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+                        factory.set(result,"attribute",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
@@ -3095,7 +3633,7 @@ public class rfcgenParser extends Parser {
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:530:1: ( ( 'comment' ) (temp_comment= RULE_STRING ) )?
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1245:1: ( ( 'comment' ) ( RULE_STRING ) )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -3104,31 +3642,40 @@ public class rfcgenParser extends Parser {
             }
             switch (alt26) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:530:2: ( 'comment' ) (temp_comment= RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1245:2: ( 'comment' ) ( RULE_STRING )
                     {
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:530:2: ( 'comment' )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:530:3: 'comment'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1245:2: ( 'comment' )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1245:3: 'comment'
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(4)).eContents().get(0)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    match(input,17,FOLLOW_17_in_ruleFunctionModuleTablesParameter1580); if (failed) return result;
+                    match(input,17,FOLLOW_17_in_ruleFunctionModuleTablesParameter1590); if (failed) return result;
                     if ( backtracking==0 ) {
-                      ptm.ruleFinished(getLastToken(),end());
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(4)).eContents().get(0)));
+                        ptm.ruleFinished(getLastToken());
+                      }
                     }
 
                     }
 
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:532:1: (temp_comment= RULE_STRING )
-                    // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:532:2: temp_comment= RULE_STRING
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1251:1: ( RULE_STRING )
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1251:2: RULE_STRING
                     {
                     if ( backtracking==0 ) {
-                      ptm.invokeRule(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(4)).eContents().get(1)),line(),start());
+                      skipCurrentToken = false;
                     }
-                    temp_comment=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleTablesParameter1589); if (failed) return result;
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModuleTablesParameter1598); if (failed) return result;
                     if ( backtracking==0 ) {
-                      factory.set(result,"comment",convert(temp_comment),false); ptm.ruleFinished(temp_comment,end()); 
+                      if (!skipCurrentToken) {
+                        hasContent = true;
+                        Token temp = getLastToken();
+                        ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(4)).eContents().get(1)));
+                        factory.set(result,"comment",convert(temp),false);
+                        ptm.ruleFinished(temp);
+                      }
                     }
 
                     }
@@ -3139,15 +3686,19 @@ public class rfcgenParser extends Parser {
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:536:1: ( ';' )
-            // ..//net.sf.rcer.rfcgen/src-gen//net/sf/rcer/rfcgen/parser/rfcgen.g:536:2: ';'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1262:1: ( ';' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1262:2: ';'
             {
             if ( backtracking==0 ) {
-              ptm.invokeRule(((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(5)),line(),start());
+              skipCurrentToken = false;
             }
-            match(input,18,FOLLOW_18_in_ruleFunctionModuleTablesParameter1601); if (failed) return result;
+            match(input,18,FOLLOW_18_in_ruleFunctionModuleTablesParameter1609); if (failed) return result;
             if ( backtracking==0 ) {
-              ptm.ruleFinished(getLastToken(),end());
+              if (!skipCurrentToken) {
+                hasContent = true;
+                ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(5)));
+                ptm.ruleFinished(getLastToken());
+              }
             }
 
             }
@@ -3155,11 +3706,17 @@ public class rfcgenParser extends Parser {
 
             }
 
+            if ( backtracking==0 ) {
+              if (!hasContent)
+                result = null;
+            }
 
             }
 
         }
         catch (RecognitionException re) {
+            if (!hasContent)
+                result = null;
             reportError(re);
             recover(input,re);
         }
@@ -3174,129 +3731,129 @@ public class rfcgenParser extends Parser {
  
 
     public static final BitSet FOLLOW_ruleGenSpec_in_parse67 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_parse69 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_10_in_ruleGenSpec91 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleGenSpec100 = new BitSet(new long[]{0x0000000000080802L});
-    public static final BitSet FOLLOW_ruleStructure_in_ruleGenSpec111 = new BitSet(new long[]{0x0000000000080802L});
-    public static final BitSet FOLLOW_ruleFunctionModule_in_ruleGenSpec123 = new BitSet(new long[]{0x0000000000080002L});
-    public static final BitSet FOLLOW_11_in_ruleStructure151 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleStructure160 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_ruleStructure169 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleStructure178 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleStructure187 = new BitSet(new long[]{0x000000000000C000L});
-    public static final BitSet FOLLOW_ruleStructureFieldMapping_in_ruleStructure196 = new BitSet(new long[]{0x000000000000C000L});
-    public static final BitSet FOLLOW_14_in_ruleStructure206 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_ruleStructureFieldMapping231 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleStructureFieldMapping240 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleStructureFieldMapping249 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleStructureFieldMapping258 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleStructureFieldMapping269 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_17_in_ruleStructureFieldMapping279 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleStructureFieldMapping288 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleStructureFieldMapping300 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_ruleFunctionModule325 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleFunctionModule332 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModule341 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleFunctionModule350 = new BitSet(new long[]{0x0000000000201000L});
-    public static final BitSet FOLLOW_ruleFunctionModuleMapping_in_ruleFunctionModule359 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleFunctionModule368 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModuleCallMapping_in_ruleFunctionModuleMapping395 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModuleRequestResponseMapping_in_ruleFunctionModuleMapping410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_ruleFunctionModuleCallMapping433 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleCallMapping442 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleFunctionModuleCallMapping451 = new BitSet(new long[]{0x000000002C804000L});
-    public static final BitSet FOLLOW_ruleFunctionModuleParameterMapping_in_ruleFunctionModuleCallMapping460 = new BitSet(new long[]{0x000000002C804000L});
-    public static final BitSet FOLLOW_14_in_ruleFunctionModuleCallMapping470 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_ruleFunctionModuleRequestResponseMapping495 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_ruleFunctionModuleRequestResponseMapping502 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleRequestResponseMapping511 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleFunctionModuleRequestResponseMapping520 = new BitSet(new long[]{0x000000002C804000L});
-    public static final BitSet FOLLOW_ruleFunctionModuleParameterMapping_in_ruleFunctionModuleRequestResponseMapping529 = new BitSet(new long[]{0x000000002C804000L});
-    public static final BitSet FOLLOW_14_in_ruleFunctionModuleRequestResponseMapping539 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_ruleFunctionModuleRequestResponseMapping546 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_ruleFunctionModuleRequestResponseMapping553 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleRequestResponseMapping562 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleFunctionModuleRequestResponseMapping571 = new BitSet(new long[]{0x000000002C804000L});
-    public static final BitSet FOLLOW_ruleFunctionModuleParameterMapping_in_ruleFunctionModuleRequestResponseMapping580 = new BitSet(new long[]{0x000000002C804000L});
-    public static final BitSet FOLLOW_14_in_ruleFunctionModuleRequestResponseMapping590 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModuleImportingParameter_in_ruleFunctionModuleParameterMapping617 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModuleExportingParameter_in_ruleFunctionModuleParameterMapping632 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModuleChangingParameter_in_ruleFunctionModuleParameterMapping647 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModuleTablesParameter_in_ruleFunctionModuleParameterMapping662 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_ruleFunctionModuleImportingParameter685 = new BitSet(new long[]{0x0000000004008800L});
-    public static final BitSet FOLLOW_15_in_ruleFunctionModuleImportingParameter694 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter703 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_ruleFunctionModuleImportingParameter712 = new BitSet(new long[]{0x0000000002000020L});
-    public static final BitSet FOLLOW_25_in_ruleFunctionModuleImportingParameter722 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter736 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter747 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_11_in_ruleFunctionModuleImportingParameter767 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter778 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_ruleFunctionModuleImportingParameter787 = new BitSet(new long[]{0x0000000002000020L});
-    public static final BitSet FOLLOW_25_in_ruleFunctionModuleImportingParameter797 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter811 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter822 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_26_in_ruleFunctionModuleImportingParameter842 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter853 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_ruleFunctionModuleImportingParameter862 = new BitSet(new long[]{0x0000000002000020L});
-    public static final BitSet FOLLOW_25_in_ruleFunctionModuleImportingParameter872 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter886 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter897 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_17_in_ruleFunctionModuleImportingParameter915 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter924 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleFunctionModuleImportingParameter936 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_ruleFunctionModuleExportingParameter961 = new BitSet(new long[]{0x0000000004008800L});
-    public static final BitSet FOLLOW_15_in_ruleFunctionModuleExportingParameter970 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter979 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_ruleFunctionModuleExportingParameter988 = new BitSet(new long[]{0x0000000002000020L});
-    public static final BitSet FOLLOW_25_in_ruleFunctionModuleExportingParameter998 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1012 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1023 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_11_in_ruleFunctionModuleExportingParameter1043 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter1054 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_ruleFunctionModuleExportingParameter1063 = new BitSet(new long[]{0x0000000002000020L});
-    public static final BitSet FOLLOW_25_in_ruleFunctionModuleExportingParameter1073 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1087 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1098 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_26_in_ruleFunctionModuleExportingParameter1118 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter1129 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_ruleFunctionModuleExportingParameter1138 = new BitSet(new long[]{0x0000000002000020L});
-    public static final BitSet FOLLOW_25_in_ruleFunctionModuleExportingParameter1148 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1162 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1173 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_17_in_ruleFunctionModuleExportingParameter1191 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter1200 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleFunctionModuleExportingParameter1212 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleFunctionModuleChangingParameter1237 = new BitSet(new long[]{0x0000000004008800L});
-    public static final BitSet FOLLOW_15_in_ruleFunctionModuleChangingParameter1246 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1255 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleFunctionModuleChangingParameter1264 = new BitSet(new long[]{0x0000000002000020L});
-    public static final BitSet FOLLOW_25_in_ruleFunctionModuleChangingParameter1274 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1288 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1299 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_11_in_ruleFunctionModuleChangingParameter1319 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1330 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleFunctionModuleChangingParameter1339 = new BitSet(new long[]{0x0000000002000020L});
-    public static final BitSet FOLLOW_25_in_ruleFunctionModuleChangingParameter1349 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1363 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1374 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_26_in_ruleFunctionModuleChangingParameter1394 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1405 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleFunctionModuleChangingParameter1414 = new BitSet(new long[]{0x0000000002000020L});
-    public static final BitSet FOLLOW_25_in_ruleFunctionModuleChangingParameter1424 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1438 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1449 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_17_in_ruleFunctionModuleChangingParameter1467 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1476 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleFunctionModuleChangingParameter1488 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_ruleFunctionModuleTablesParameter1513 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleTablesParameter1522 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleFunctionModuleTablesParameter1531 = new BitSet(new long[]{0x0000000002000020L});
-    public static final BitSet FOLLOW_25_in_ruleFunctionModuleTablesParameter1541 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleTablesParameter1555 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleTablesParameter1566 = new BitSet(new long[]{0x0000000000060000L});
-    public static final BitSet FOLLOW_17_in_ruleFunctionModuleTablesParameter1580 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleTablesParameter1589 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleFunctionModuleTablesParameter1601 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EOF_in_parse78 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_10_in_ruleGenSpec104 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleGenSpec112 = new BitSet(new long[]{0x0000000000080802L});
+    public static final BitSet FOLLOW_ruleStructure_in_ruleGenSpec123 = new BitSet(new long[]{0x0000000000080802L});
+    public static final BitSet FOLLOW_ruleFunctionModule_in_ruleGenSpec135 = new BitSet(new long[]{0x0000000000080002L});
+    public static final BitSet FOLLOW_11_in_ruleStructure175 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleStructure183 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_ruleStructure191 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleStructure199 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleStructure207 = new BitSet(new long[]{0x000000000000C000L});
+    public static final BitSet FOLLOW_ruleStructureFieldMapping_in_ruleStructure217 = new BitSet(new long[]{0x000000000000C000L});
+    public static final BitSet FOLLOW_14_in_ruleStructure226 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_ruleStructureFieldMapping264 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleStructureFieldMapping272 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleStructureFieldMapping280 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleStructureFieldMapping288 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleStructureFieldMapping297 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_17_in_ruleStructureFieldMapping306 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleStructureFieldMapping314 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleStructureFieldMapping325 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_ruleFunctionModule363 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_20_in_ruleFunctionModule370 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModule378 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleFunctionModule386 = new BitSet(new long[]{0x0000000000201000L});
+    public static final BitSet FOLLOW_ruleFunctionModuleMapping_in_ruleFunctionModule396 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_ruleFunctionModule404 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModuleCallMapping_in_ruleFunctionModuleMapping439 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModuleRequestResponseMapping_in_ruleFunctionModuleMapping454 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_ruleFunctionModuleCallMapping482 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleCallMapping490 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleFunctionModuleCallMapping498 = new BitSet(new long[]{0x000000000E804000L});
+    public static final BitSet FOLLOW_ruleFunctionModuleParameterMapping_in_ruleFunctionModuleCallMapping508 = new BitSet(new long[]{0x000000000E804000L});
+    public static final BitSet FOLLOW_14_in_ruleFunctionModuleCallMapping517 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_ruleFunctionModuleRequestResponseMapping555 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_ruleFunctionModuleRequestResponseMapping562 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleRequestResponseMapping570 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleFunctionModuleRequestResponseMapping578 = new BitSet(new long[]{0x000000000E804000L});
+    public static final BitSet FOLLOW_ruleFunctionModuleParameterMapping_in_ruleFunctionModuleRequestResponseMapping588 = new BitSet(new long[]{0x000000000E804000L});
+    public static final BitSet FOLLOW_14_in_ruleFunctionModuleRequestResponseMapping597 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_ruleFunctionModuleRequestResponseMapping604 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_ruleFunctionModuleRequestResponseMapping611 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleRequestResponseMapping619 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleFunctionModuleRequestResponseMapping627 = new BitSet(new long[]{0x000000000E804000L});
+    public static final BitSet FOLLOW_ruleFunctionModuleParameterMapping_in_ruleFunctionModuleRequestResponseMapping637 = new BitSet(new long[]{0x000000000E804000L});
+    public static final BitSet FOLLOW_14_in_ruleFunctionModuleRequestResponseMapping646 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModuleImportingParameter_in_ruleFunctionModuleParameterMapping681 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModuleExportingParameter_in_ruleFunctionModuleParameterMapping696 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModuleChangingParameter_in_ruleFunctionModuleParameterMapping711 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModuleTablesParameter_in_ruleFunctionModuleParameterMapping726 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_ruleFunctionModuleImportingParameter754 = new BitSet(new long[]{0x0000000002008800L});
+    public static final BitSet FOLLOW_15_in_ruleFunctionModuleImportingParameter763 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter771 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleFunctionModuleImportingParameter779 = new BitSet(new long[]{0x0000000001000020L});
+    public static final BitSet FOLLOW_24_in_ruleFunctionModuleImportingParameter788 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter800 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter809 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_11_in_ruleFunctionModuleImportingParameter827 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter836 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleFunctionModuleImportingParameter844 = new BitSet(new long[]{0x0000000001000020L});
+    public static final BitSet FOLLOW_24_in_ruleFunctionModuleImportingParameter853 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter865 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter874 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_25_in_ruleFunctionModuleImportingParameter892 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter901 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleFunctionModuleImportingParameter909 = new BitSet(new long[]{0x0000000001000020L});
+    public static final BitSet FOLLOW_24_in_ruleFunctionModuleImportingParameter918 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter930 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleImportingParameter939 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_17_in_ruleFunctionModuleImportingParameter956 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleImportingParameter964 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleFunctionModuleImportingParameter975 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_ruleFunctionModuleExportingParameter1013 = new BitSet(new long[]{0x0000000002008800L});
+    public static final BitSet FOLLOW_15_in_ruleFunctionModuleExportingParameter1022 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter1030 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleFunctionModuleExportingParameter1038 = new BitSet(new long[]{0x0000000001000020L});
+    public static final BitSet FOLLOW_24_in_ruleFunctionModuleExportingParameter1047 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1059 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1068 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_11_in_ruleFunctionModuleExportingParameter1086 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter1095 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleFunctionModuleExportingParameter1103 = new BitSet(new long[]{0x0000000001000020L});
+    public static final BitSet FOLLOW_24_in_ruleFunctionModuleExportingParameter1112 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1124 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1133 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_25_in_ruleFunctionModuleExportingParameter1151 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter1160 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleFunctionModuleExportingParameter1168 = new BitSet(new long[]{0x0000000001000020L});
+    public static final BitSet FOLLOW_24_in_ruleFunctionModuleExportingParameter1177 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1189 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleExportingParameter1198 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_17_in_ruleFunctionModuleExportingParameter1215 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleExportingParameter1223 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleFunctionModuleExportingParameter1234 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_ruleFunctionModuleChangingParameter1272 = new BitSet(new long[]{0x0000000002008800L});
+    public static final BitSet FOLLOW_15_in_ruleFunctionModuleChangingParameter1281 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1289 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleFunctionModuleChangingParameter1297 = new BitSet(new long[]{0x0000000001000020L});
+    public static final BitSet FOLLOW_24_in_ruleFunctionModuleChangingParameter1306 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1318 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1327 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_11_in_ruleFunctionModuleChangingParameter1345 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1354 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleFunctionModuleChangingParameter1362 = new BitSet(new long[]{0x0000000001000020L});
+    public static final BitSet FOLLOW_24_in_ruleFunctionModuleChangingParameter1371 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1383 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1392 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_25_in_ruleFunctionModuleChangingParameter1410 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1419 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleFunctionModuleChangingParameter1427 = new BitSet(new long[]{0x0000000001000020L});
+    public static final BitSet FOLLOW_24_in_ruleFunctionModuleChangingParameter1436 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1448 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleChangingParameter1457 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_17_in_ruleFunctionModuleChangingParameter1474 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleChangingParameter1482 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleFunctionModuleChangingParameter1493 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_ruleFunctionModuleTablesParameter1531 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleTablesParameter1539 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleFunctionModuleTablesParameter1547 = new BitSet(new long[]{0x0000000001000020L});
+    public static final BitSet FOLLOW_24_in_ruleFunctionModuleTablesParameter1556 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleTablesParameter1568 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModuleTablesParameter1577 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_17_in_ruleFunctionModuleTablesParameter1590 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModuleTablesParameter1598 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleFunctionModuleTablesParameter1609 = new BitSet(new long[]{0x0000000000000002L});
 
 }

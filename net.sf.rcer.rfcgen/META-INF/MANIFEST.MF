@@ -12,4 +12,3 @@ Export-Package: net.sf.rcer.rfcgen,
                 net.sf.rcer.rfcgen.parser
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin
-

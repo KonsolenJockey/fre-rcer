@@ -5,7 +5,7 @@ extension net::sf::rcer::rfcgen::Linking;
 link(emf::EObject this) :
 	this.allVisibleElements().internalLink();
 
-private Void internalLink(emf::EObject this) :
+Void internalLink(emf::EObject this) :
 	null;
 
 

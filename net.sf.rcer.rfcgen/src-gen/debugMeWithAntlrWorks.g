@@ -4,98 +4,114 @@ grammar debugMeWithAntlrWorks;
 
 
 parse :
-	 result=ruleGenSpec EOF
+	 result=ruleGenSpec
+	 // Always return the root node! This prevents that this method is called multiple times
+	 // with interesting side effects.
+	 EOF
 ;
 
-ruleGenSpec  :
+ruleGenSpec 
+
+:
 (('package')
 
-(temp_packageName=RULE_STRING )
+(RULE_STRING)
 
-(temp_structures=ruleStructure )*
+(ruleStructure)*
 
-(temp_functionModules=ruleFunctionModule )*
+(ruleFunctionModule)*
 )
 ;
 
-ruleStructure  :
+ruleStructure 
+
+:
 (('structure')
 
-(temp_name=RULE_STRING )
+(RULE_STRING)
 
 ('class')
 
-(temp_className=RULE_ID )
+(RULE_ID)
 
 ('{')
 
-(temp_fields=ruleStructureFieldMapping )*
+(ruleStructureFieldMapping)*
 
 ('}')
 )
 ;
 
-ruleStructureFieldMapping  :
+ruleStructureFieldMapping 
+
+:
 (('field')
 
-(temp_name=RULE_STRING )
+(RULE_STRING)
 
-('<->')
+('=')
 
-(temp_type=RULE_ID )
+(RULE_ID)
 
-(temp_attribute=RULE_ID )
+(RULE_ID)
 
 (('comment')
 
-(temp_comment=RULE_STRING )
+(RULE_STRING)
 )?
 
 (';')
 )
 ;
 
-ruleFunctionModule  :
+ruleFunctionModule 
+
+:
 (('function')
 
 ('module')
 
-(temp_name=RULE_STRING )
+(RULE_STRING)
 
 ('{')
 
-(temp_mapping=ruleFunctionModuleMapping )
+(ruleFunctionModuleMapping)
 
 ('}')
 )
 ;
 
-ruleFunctionModuleMapping  :
+ruleFunctionModuleMapping 
+:
         temp_functionmodulecallmapping=ruleFunctionModuleCallMapping 	|        temp_functionmodulerequestresponsemapping=ruleFunctionModuleRequestResponseMapping 	;
 
-ruleFunctionModuleCallMapping  :
+ruleFunctionModuleCallMapping 
+
+:
 (('class')
 
-(temp_className=RULE_ID )
+(RULE_ID)
 
 ('{')
 
-(temp_parameters=ruleFunctionModuleParameterMapping )*
+(ruleFunctionModuleParameterMapping)*
 
 ('}')
 )
 ;
 
-ruleFunctionModuleRequestResponseMapping  :
+ruleFunctionModuleRequestResponseMapping 
+
+:
 (('request')
 
 ('class')
 
-(temp_requestClassName=RULE_ID )
+(RULE_ID)
 
 ('{')
 
-(temp_requestParameters=ruleFunctionModuleParameterMapping )*
+(ruleFunctionModuleParameterMapping)*
 
 ('}')
 
@@ -103,63 +119,66 @@ ruleFunctionModuleRequestResponseMapping  :
 
 ('class')
 
-(temp_responseClassName=RULE_ID )
+(RULE_ID)
 
 ('{')
 
-(temp_responseParameters=ruleFunctionModuleParameterMapping )*
+(ruleFunctionModuleParameterMapping)*
 
 ('}')
 )
 ;
 
-ruleFunctionModuleParameterMapping  :
+ruleFunctionModuleParameterMapping 
+:
         temp_functionmoduleimportingparameter=ruleFunctionModuleImportingParameter 	|        temp_functionmoduleexportingparameter=ruleFunctionModuleExportingParameter 	|        temp_functionmodulechangingparameter=ruleFunctionModuleChangingParameter 	|        temp_functionmoduletablesparameter=ruleFunctionModuleTablesParameter 	;
 
-ruleFunctionModuleImportingParameter  :
+ruleFunctionModuleImportingParameter 
+
+:
 (('import')
 
 ((('field')
 
-(temp_name=RULE_STRING )
+(RULE_STRING)
 
-('<--')
+('=')
 
-((temp_isInactive='inactive' )
+(('inactive')
 	|
-((temp_type=RULE_ID )
+((RULE_ID)
 
-(temp_attribute=RULE_ID )
-)
-)
-)
-	|
-((temp_isStructure='structure' )
-
-(temp_name=RULE_STRING )
-
-('<--')
-
-((temp_isInactive='inactive' )
-	|
-((temp_type=RULE_ID )
-
-(temp_attribute=RULE_ID )
+(RULE_ID)
 )
 )
 )
 	|
-((temp_isTable='table' )
+(('structure')
 
-(temp_name=RULE_STRING )
+(RULE_STRING)
 
-('<--')
+('=')
 
-((temp_isInactive='inactive' )
+(('inactive')
 	|
-((temp_type=RULE_ID )
+((RULE_ID)
 
-(temp_attribute=RULE_ID )
+(RULE_ID)
+)
+)
+)
+	|
+(('table')
+
+(RULE_STRING)
+
+('=')
+
+(('inactive')
+	|
+((RULE_ID)
+
+(RULE_ID)
 )
 )
 )
@@ -167,57 +186,59 @@ ruleFunctionModuleImportingParameter  :
 
 (('comment')
 
-(temp_comment=RULE_STRING )
+(RULE_STRING)
 )?
 
 (';')
 )
 ;
 
-ruleFunctionModuleExportingParameter  :
+ruleFunctionModuleExportingParameter 
+
+:
 (('export')
 
 ((('field')
 
-(temp_name=RULE_STRING )
+(RULE_STRING)
 
-('-->')
+('=')
 
-((temp_isInactive='inactive' )
+(('inactive')
 	|
-((temp_type=RULE_ID )
+((RULE_ID)
 
-(temp_attribute=RULE_ID )
-)
-)
-)
-	|
-((temp_isStructure='structure' )
-
-(temp_name=RULE_STRING )
-
-('-->')
-
-((temp_isInactive='inactive' )
-	|
-((temp_type=RULE_ID )
-
-(temp_attribute=RULE_ID )
+(RULE_ID)
 )
 )
 )
 	|
-((temp_isTable='table' )
+(('structure')
 
-(temp_name=RULE_STRING )
+(RULE_STRING)
 
-('-->')
+('=')
 
-((temp_isInactive='inactive' )
+(('inactive')
 	|
-((temp_type=RULE_ID )
+((RULE_ID)
 
-(temp_attribute=RULE_ID )
+(RULE_ID)
+)
+)
+)
+	|
+(('table')
+
+(RULE_STRING)
+
+('=')
+
+(('inactive')
+	|
+((RULE_ID)
+
+(RULE_ID)
 )
 )
 )
@@ -225,57 +246,59 @@ ruleFunctionModuleExportingParameter  :
 
 (('comment')
 
-(temp_comment=RULE_STRING )
+(RULE_STRING)
 )?
 
 (';')
 )
 ;
 
-ruleFunctionModuleChangingParameter  :
+ruleFunctionModuleChangingParameter 
+
+:
 (('change')
 
 ((('field')
 
-(temp_name=RULE_STRING )
+(RULE_STRING)
 
-('<->')
+('=')
 
-((temp_isInactive='inactive' )
+(('inactive')
 	|
-((temp_type=RULE_ID )
+((RULE_ID)
 
-(temp_attribute=RULE_ID )
-)
-)
-)
-	|
-((temp_isStructure='structure' )
-
-(temp_name=RULE_STRING )
-
-('<->')
-
-((temp_isInactive='inactive' )
-	|
-((temp_type=RULE_ID )
-
-(temp_attribute=RULE_ID )
+(RULE_ID)
 )
 )
 )
 	|
-((temp_isTable='table' )
+(('structure')
 
-(temp_name=RULE_STRING )
+(RULE_STRING)
 
-('<->')
+('=')
 
-((temp_isInactive='inactive' )
+(('inactive')
 	|
-((temp_type=RULE_ID )
+((RULE_ID)
 
-(temp_attribute=RULE_ID )
+(RULE_ID)
+)
+)
+)
+	|
+(('table')
+
+(RULE_STRING)
+
+('=')
+
+(('inactive')
+	|
+((RULE_ID)
+
+(RULE_ID)
 )
 )
 )
@@ -283,31 +306,33 @@ ruleFunctionModuleChangingParameter  :
 
 (('comment')
 
-(temp_comment=RULE_STRING )
+(RULE_STRING)
 )?
 
 (';')
 )
 ;
 
-ruleFunctionModuleTablesParameter  :
+ruleFunctionModuleTablesParameter 
+
+:
 (('table')
 
-(temp_name=RULE_STRING )
+(RULE_STRING)
 
-('<->')
+('=')
 
-((temp_isInactive='inactive' )
+(('inactive')
 	|
-((temp_type=RULE_ID )
+((RULE_ID)
 
-(temp_attribute=RULE_ID )
+(RULE_ID)
 )
 )
 
 (('comment')
 
-(temp_comment=RULE_STRING )
+(RULE_STRING)
 )?
 
 (';')
@@ -322,7 +347,7 @@ RULE_ID :
 
 RULE_STRING :
 
-	 '"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\') | ~('\\'|'"') )* '"' |
+	 '\"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\') | ~('\\'|'\"') )* '\"' |
 	 '\'' ( '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\') | ~('\\'|'\'') )* '\''
 	 
 ;

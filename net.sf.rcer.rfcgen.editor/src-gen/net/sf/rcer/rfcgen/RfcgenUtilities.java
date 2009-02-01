@@ -15,6 +15,9 @@ import net.sf.rcer.rfcgen.parser.XtextParser;
 
 public class RfcgenUtilities extends AbstractLanguageUtilities {
 
+	// enforce eager registration of metamodel
+	private static final EPackage EPACKAGE = net.sf.rcer.rfcgen.MetaModelRegistration.getEPackage();
+	
 	@Override
 	protected IXtextParser internalParse(InputStream inputStream) {
 		return new XtextParser(inputStream);
@@ -25,7 +28,7 @@ public class RfcgenUtilities extends AbstractLanguageUtilities {
 	}
 
 	public EPackage getEPackage() {
-		return net.sf.rcer.rfcgen.MetaModelRegistration.getEPackage();
+		return EPACKAGE;
 	}
 
 	List<String> r = new ArrayList<String>();
@@ -34,16 +37,16 @@ public class RfcgenUtilities extends AbstractLanguageUtilities {
 		r.add("function");
 		r.add("comment");
 		r.add("structure");
-		r.add("response");
 		r.add("import");
+		r.add("response");
 		r.add("class");
 		r.add("inactive");
 		r.add("change");
 		r.add("export");
 		r.add("field");
 		r.add("request");
-		r.add("package");
 		r.add("module");
+		r.add("package");
 	}
 	public List<String> allKeywords() {
 		return r;
@@ -70,4 +73,6 @@ public class RfcgenUtilities extends AbstractLanguageUtilities {
 	public XtextFile getXtextFile() {
 		return MetaModelRegistration.getXtextFile();
 	}
+	
+
 }

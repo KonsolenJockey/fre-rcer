@@ -20,7 +20,7 @@ Structure:
 	"}";
 
 StructureFieldMapping:
-	"field" name=STRING "<->" type=ID attribute=ID ("comment" comment=STRING)? ";";
+	"field" name=STRING "=" type=ID attribute=ID ("comment" comment=STRING)? ";";
 
 FunctionModule: 
 	"function" "module" name=STRING "{"
@@ -49,22 +49,22 @@ FunctionModuleParameterMapping:
 	FunctionModuleTablesParameter; 
 
 FunctionModuleImportingParameter: 
-	"import" ("field"                  name=STRING "<--" (isInactive?="inactive" | type=ID attribute=ID) | 
-	          isStructure?="structure" name=STRING "<--" (isInactive?="inactive" | type=ID attribute=ID) |
-	          isTable?="table"         name=STRING "<--" (isInactive?="inactive" | type=ID attribute=ID ))
+	"import" ("field"                  name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) | 
+	          isStructure?="structure" name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) |
+	          isTable?="table"         name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID ))
 	          ("comment" comment=STRING)? ";";
 
 FunctionModuleExportingParameter: 
-	"export" ("field"                  name=STRING "-->" (isInactive?="inactive" | type=ID attribute=ID) | 
-	          isStructure?="structure" name=STRING "-->" (isInactive?="inactive" | type=ID attribute=ID) |
-	          isTable?="table"         name=STRING "-->" (isInactive?="inactive" | type=ID attribute=ID))
+	"export" ("field"                  name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) | 
+	          isStructure?="structure" name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) |
+	          isTable?="table"         name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID))
 	          ("comment" comment=STRING)? ";";
 
 FunctionModuleChangingParameter: 
-	"change" ("field"                  name=STRING "<->" (isInactive?="inactive" | type=ID attribute=ID) | 
-	          isStructure?="structure" name=STRING "<->" (isInactive?="inactive" | type=ID attribute=ID) |
-	          isTable?="table"         name=STRING "<->" (isInactive?="inactive" | type=ID attribute=ID))
+	"change" ("field"                  name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) | 
+	          isStructure?="structure" name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) |
+	          isTable?="table"         name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID))
 	          ("comment" comment=STRING)? ";";
 
 FunctionModuleTablesParameter:
-	"table" name=STRING "<->" (isInactive?="inactive" | type=ID attribute=ID) ("comment" comment=STRING)? ";";
+	"table" name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) ("comment" comment=STRING)? ";";
