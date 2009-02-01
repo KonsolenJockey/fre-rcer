@@ -6,7 +6,7 @@
       provider-name="http://www.sf.net/projects/rcer">
 
    <description>
-     %description
+      %description
    </description>
 
    <copyright>
@@ -21,6 +21,10 @@ http://www.eclipse.org/legal/epl-v10.html.
    <license url="%licenseURL">
       %license
    </license>
+
+   <url>
+      <update label="SAP R/3 Connector Update Site" url="http://rcer.sf.net/update-site"/>
+   </url>
 
    <requires>
       <import plugin="com.sap.conn.jco"/>
@@ -86,8 +90,15 @@ http://www.eclipse.org/legal/epl-v10.html.
          version="0.0.0"
          unpack="false"/>
 
-	<plugin
-		id="net.sf.rcer.source"
+   <plugin
+         id="net.sf.rcer.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.sf.rcer.doc"
          download-size="0"
          install-size="0"
          version="0.0.0"
