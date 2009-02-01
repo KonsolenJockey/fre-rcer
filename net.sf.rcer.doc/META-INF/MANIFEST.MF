@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %bundle.name
+Bundle-SymbolicName: net.sf.rcer.doc; singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-Localization: plugin
+Bundle-Vendor: %bundle.vendor
