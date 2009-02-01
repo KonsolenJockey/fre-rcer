@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %bundle.name
+Bundle-SymbolicName: net.sf.rcer.example.rfcgen.call; singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ com.sap.conn.jco,
+ org.eclipse.core.databinding,
+ org.eclipse.core.databinding.beans,
+ org.eclipse.jface.databinding,
+ net.sf.rcer.conn,
+ net.sf.rcer.conn.ui,
+ net.sf.rcer.rfcgen;resolution:=optional,
+ net.sf.rcer.rfcgen.generator;resolution:=optional,
+ org.openarchitectureware.dependencies;resolution=optional
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %bundle.vendor
+Bundle-Activator: net.sf.rcer.example.rfcgen.call.Activator
+Export-Package: net.sf.rcer.example.rfcgen.call
+Bundle-Localization: plugin

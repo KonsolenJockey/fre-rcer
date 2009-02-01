@@ -1,0 +1,33 @@
+//
+// Copyright (c) 2008 The RCER Development Team.
+//
+// All rights reserved. This program and the accompanying materials
+// are made available under the terms of the Eclipse Public License v1.0
+// which accompanies this distribution, and is available at
+// http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,
+// this entire header must remain intact.
+//
+// $Id$
+//
+package "net.sf.rcer.example.rfcgen.call"
+
+structure "BAPISFLIST" class FlightData { 
+	field "CARRID"   = String carrierID    comment "carrier ID";
+	field "CONNID"   = String connectionID comment "connection ID";
+	field "FLDATE"   = Date flightDate     comment "flight date";
+	field "DEPTIME"  = Date departureTime  comment "departure time";
+	field "AIRPFROM" = String origin       comment "originating airport";
+	field "AIRPTO"   = String destination  comment "destination airport";
+	field "SEATSMAX" = int maximumSeats    comment "maximum number of seats";
+	field "SEATSOCC" = int occupiedSeats   comment "number of seats occupied";
+}
+
+function module "BAPI_SFLIGHT_GETLIST" {
+	class GetFlightListCall {
+		import field "FROMCOUNTRYKEY" = String fromCountry comment "country code of origin";
+		import field "FROMCITY"       = String fromCity    comment "city of origin";
+		import field "TOCOUNTRYKEY"   = String toCountry   comment "country code of destination";
+		import field "TOCITY"         = String toCity      comment "destination city";
+		table "FLIGHTLIST"            = FlightData flights comment "list of flights";
+	}
+}
