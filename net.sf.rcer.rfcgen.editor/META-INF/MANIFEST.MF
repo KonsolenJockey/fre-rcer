@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
+Bundle-Name: %bundle.name
 Bundle-SymbolicName: net.sf.rcer.rfcgen.editor; singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Bundle-Activator: net.sf.rcer.rfcgen.RfcgenEditorPlugin
@@ -19,5 +19,5 @@ Eclipse-LazyStart: true
 Export-Package: net.sf.rcer.rfcgen,
  net.sf.rcer.rfcgen.editor
 Bundle-ClassPath: .
-Bundle-Vendor: %Bundle-Vendor
+Bundle-Vendor: %bundle.vendor
 
