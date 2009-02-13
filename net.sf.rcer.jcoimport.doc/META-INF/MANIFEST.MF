@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Doc Plug-in
+Bundle-Name: Import Wizard for SAP Java Connector Documentation
 Bundle-SymbolicName: net.sf.rcer.jcoimport.doc;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Require-Bundle: net.sf.rcer.doc;bundle-version="0.1.0"
