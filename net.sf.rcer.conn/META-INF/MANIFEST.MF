@@ -11,7 +11,8 @@ Require-Bundle: com.sap.conn.jco;bundle-version="7.11.0";visibility:=reexport,
 Export-Package: net.sf.rcer.conn,
  net.sf.rcer.conn.connections,
  net.sf.rcer.conn.locales,
- net.sf.rcer.conn.preferences
+ net.sf.rcer.conn.preferences,
+ net.sf.rcer.conn.tools
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: net.sf.rcer.conn.Activator
 Bundle-Vendor: %bundle.vendor
