@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<!-- $Id: toc.xml 103 2009-02-01 15:47:29Z vwegert $ -->
+<toc link_to="../net.sf.rcer.doc/toc.xml#tasks" label="Tasks">
+	<topic label="Managing Connections" href="html/tasks/managing_connections.html"> 
+		<topic label="Connection Data" href="html/tasks/connection_data.html" />
+		<topic label="Connection Status" href="html/tasks/connection_status.html" />
+		<topic label="Using Multiple Connections" href="html/tasks/multiple_connections.html" />
+	</topic>
+</toc>
