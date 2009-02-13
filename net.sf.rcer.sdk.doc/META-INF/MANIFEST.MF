@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SAP R/3 Connector SDK Documentation
+Bundle-SymbolicName: net.sf.rcer.sdk.doc;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: http://www.sf.net/projects/rcer
+Require-Bundle: net.sf.rcer.doc;bundle-version="0.1.0"
