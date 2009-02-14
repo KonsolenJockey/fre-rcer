@@ -34,7 +34,7 @@ public class TableLine implements ITableLine {
 		this.structure = structure;
 		for (ITableField field: structure.getFieldList()) {
 			final int startIndex = field.getOffset();
-			final int endIndex = field.getOffset() + field.getLength() - 1;
+			final int endIndex = field.getOffset() + field.getLength();
 			String value;
 			if (startIndex >= rawData.length()) {
 				value = "";
