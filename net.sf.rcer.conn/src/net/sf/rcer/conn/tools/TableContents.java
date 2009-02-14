@@ -37,10 +37,12 @@ class TableContents implements ITableContents{
 	public TableContents(String tableName, JCoTable fields, JCoTable data) {
 		this.tableName = tableName;
 		this.structure = new TableStructure(tableName, fields);
-		data.firstRow();
-		do {
-			lines.add(new TableLine(this.structure, data.getString("WA")));
-		} while (data.nextRow());
+		if (!data.isEmpty()) {
+			data.firstRow();
+			do {
+				lines.add(new TableLine(this.structure, data.getString("WA")));
+			} while (data.nextRow());
+		}
 	}
 
 	/* (non-Javadoc)
@@ -49,7 +51,7 @@ class TableContents implements ITableContents{
 	public String getTableName() {
 		return tableName;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.tools.ITableContents#getStructure()
 	 */

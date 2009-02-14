@@ -27,7 +27,7 @@ import com.sap.conn.jco.JCoTable;
  *
  */
 public class TableReader {
-	
+
 	private JCoDestination destination;
 	private String tableName;
 	private JCoFunctionTemplate template;
@@ -47,7 +47,7 @@ public class TableReader {
 		this.template = destination.getRepository().getFunctionTemplate("RFC_READ_TABLE");
 		loadStructure();
 	}
-	
+
 	/**
 	 * @return the name of the table
 	 */
@@ -81,7 +81,7 @@ public class TableReader {
 		structure.getField(field.getFieldName()); // to ensure that the field exists
 		selectedFields.add(field.getFieldName());
 	}
-	
+
 	/**
 	 * Executes RFC_READ_TABLE with a set of selection criteria specified as strings. 
 	 * @param selectionCriteria
@@ -120,16 +120,74 @@ public class TableReader {
 				readFunction.getTableParameterList().getTable("DATA"));
 
 	}
-	
+
+	/**
+	 * Executes RFC_READ_TABLE with the current set of selected fields and a single selection criterion. 
+	 * @param criterion the selection criterion
+	 * @return the contents read
+	 * @throws JCoException 
+	 */
+	public ITableContents read(String criterion) throws JCoException {
+
+		JCoFunction readFunction = template.getFunction();
+
+		// prepare the import parameters
+		readFunction.getImportParameterList().setValue("QUERY_TABLE", tableName);
+
+		JCoTable options = readFunction.getTableParameterList().getTable("OPTIONS");
+		options.clear();
+		if ((criterion != null) && (criterion.length() > 0)) {
+			options.appendRow();
+			options.setValue("TEXT", criterion);
+		}
+
+		JCoTable fields = readFunction.getTableParameterList().getTable("FIELDS");
+		fields.clear();
+		if (!selectedFields.isEmpty()) {
+			for (final String field: selectedFields) {
+				fields.appendRow();
+				fields.setValue("FIELDNAME", field);
+			}
+		}
+
+		readFunction.execute(destination);
+
+		return new TableContents(tableName, 
+				readFunction.getTableParameterList().getTable("FIELDS"), 
+				readFunction.getTableParameterList().getTable("DATA"));
+	}
+
 	/**
 	 * Executes RFC_READ_TABLE with the current set of selected fields but without selection criteria. 
 	 * @return the contents read
 	 * @throws JCoException 
 	 */
 	public ITableContents read() throws JCoException {
-		return read(null);
+
+		JCoFunction readFunction = template.getFunction();
+
+		// prepare the import parameters
+		readFunction.getImportParameterList().setValue("QUERY_TABLE", tableName);
+
+		JCoTable options = readFunction.getTableParameterList().getTable("OPTIONS");
+		options.clear();
+
+		JCoTable fields = readFunction.getTableParameterList().getTable("FIELDS");
+		fields.clear();
+		if (!selectedFields.isEmpty()) {
+			for (final String field: selectedFields) {
+				fields.appendRow();
+				fields.setValue("FIELDNAME", field);
+			}
+		}
+
+		readFunction.execute(destination);
+
+		return new TableContents(tableName, 
+				readFunction.getTableParameterList().getTable("FIELDS"), 
+				readFunction.getTableParameterList().getTable("DATA"));
 	}
-	
+
 	/**
 	 * Retrieves the table structure from the SAP R/3 system.
 	 * @throws JCoException 
@@ -142,5 +200,5 @@ public class TableReader {
 		readFieldListFunction.execute(destination);
 		structure = new TableStructure(tableName, readFieldListFunction.getTableParameterList().getTable("FIELDS"));
 	}
-	
+
 }
