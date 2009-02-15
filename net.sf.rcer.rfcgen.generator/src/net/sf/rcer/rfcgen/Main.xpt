@@ -179,10 +179,10 @@ public class «className» {
 	public static List<«className»> fromTable(JCoTable source) {
 		List<«className»> list = new ArrayList<«className»>();
 		if (!source.isEmpty()) {
-			for (int i = 1; i <= source.getNumRows(); i++) {
-				source.setRow(i);
+			source.firstRow();
+			do {
 				list.add(new «className»(source));
-			} 
+			} while (source.nextRow());
 		}
 		return list;
 	}
