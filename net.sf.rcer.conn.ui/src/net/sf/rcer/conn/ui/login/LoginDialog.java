@@ -56,8 +56,6 @@ import org.eclipse.ui.PlatformUI;
  */
 public class LoginDialog extends TitleAreaDialog {
 
-	// TODO ensure that client, user name and password are entered
-	
 	/**
 	 * The connections that can be selected.
 	 */
@@ -67,7 +65,7 @@ public class LoginDialog extends TitleAreaDialog {
 	 * The {@link DataBindingContext}.
 	 */
 	private DataBindingContext context;
-	
+
 	/**
 	 * The UI elements.
 	 */
@@ -76,7 +74,7 @@ public class LoginDialog extends TitleAreaDialog {
 	private Text userText;
 	private Text passwordText;
 	private Combo localeCombo;
-	
+
 	/**
 	 * The selected connection.
 	 */
@@ -121,7 +119,18 @@ public class LoginDialog extends TitleAreaDialog {
 	protected void okPressed() {
 		context.updateModels();
 		selectedCredentials = (Credentials) ((IStructuredSelection)connectionComboViewer.getSelection()).getFirstElement();
-		super.okPressed();
+		if (selectedCredentials.getConnection().getClient().equals("")) {
+			setErrorMessage("Enter a client.");
+			clientText.setFocus();
+		} else if (selectedCredentials.getConnection().getUserName().equals("")) {
+			setErrorMessage("Enter a user name.");
+			userText.setFocus();
+		} else if (selectedCredentials.getPassword().equals("")) {
+			setErrorMessage("Enter a password.");
+			passwordText.setFocus();
+		} else {
+			super.okPressed();
+		}
 	}
 
 	/* (non-Javadoc)
@@ -139,7 +148,7 @@ public class LoginDialog extends TitleAreaDialog {
 	public ICredentials getSelectedCredentials() {
 		return selectedCredentials;
 	}
-	
+
 	/**
 	 * Creates the list of {@link Credentials} instances. 
 	 * @param connections
@@ -263,7 +272,7 @@ public class LoginDialog extends TitleAreaDialog {
 
 		// select the first entry
 		connectionComboViewer.setSelection(new StructuredSelection(credentials.get(0)));
-		
+
 		// only enable the combo box if more than one connection can be chosen
 		connectionComboViewer.getCombo().setEnabled(credentials.size() > 1);
 
