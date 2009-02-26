@@ -33,6 +33,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 
+import com.sap.conn.jco.JCo;
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoDestinationManager;
 import com.sap.conn.jco.JCoException;
@@ -100,16 +101,15 @@ public class ConnectionManager  {
 			} 
 			p.setProperty(JCO_SAPROUTER, connection.getRouter());
 
-			// TODO Make these values configurable.
-			p.setProperty(JCO_PEAK_LIMIT, "5");    // Maximum number of active connections that can be created for a destination simultaneously
+			// TODO #005 Make advanced connection settings configurable.
+			p.setProperty(JCO_PEAK_LIMIT,    "5");    // Maximum number of active connections that can be created for a destination simultaneously
 			p.setProperty(JCO_POOL_CAPACITY, "1"); // Maximum number of idle connections kept open by the destination. A value of 0 has the effect that there is no connection pooling
 			// JCO_EXPIRATION_TIME   - Time in ms after that a free connections hold internally by the destination can be closed
 			// JCO_EXPIRATION_PERIOD - Period in ms after that the destination checks the released connections for expiration
 			// JCO_MAX_GET_TIME      - Max time in ms to wait for a connection, if the max allowed number of connections is allocated by the application
-			// JCO_CPIC_TRACE        - Enable/disable CPIC trace [0..3]
-			// JCO_TRACE             - Enable/disable RFC trace (0 or 1)
-			p.setProperty(JCO_CPIC_TRACE, "3");
-			p.setProperty(JCO_TRACE, "1");
+			
+			p.setProperty(JCO_CPIC_TRACE, Integer.toString(parent.getConnectionCPICTraceLevel()));
+			p.setProperty(JCO_TRACE,      parent.isConnectionRFCTraceEnabled() ? "1" : "0");
 			return p;
 		}
 
@@ -175,6 +175,24 @@ public class ConnectionManager  {
 	 */
 	private Set<IConnectionStateListener> listeners = new HashSet<IConnectionStateListener>();
 
+	/**
+	 * The global RFC trace level.
+	 * @see JCo#setTrace(int, String)
+	 */
+	private int globalRFCTraceLevel = 1; // errors and warnings
+
+	/**
+	 * Whether to enable the connection-level RFC trace.
+	 * @see DestinationDataProvider#JCO_TRACE
+	 */
+	private boolean connectionRFCTraceEnabled = false;
+
+	/**
+	 * The connection-level CPI-C trace level.
+	 * @see DestinationDataProvider#JCO_CPIC_TRACE
+	 */
+	private int connectionCPICTraceLevel = 0; // off
+
 	static {
 		Environment.registerDestinationDataProvider(getInstance().getProvider());
 	}
@@ -198,6 +216,65 @@ public class ConnectionManager  {
 			}
 		}
 		return instance;
+	}
+
+	/**
+	 * @return the global RFC trace level
+	 * @see JCo#setTrace(int, String)
+	 */
+	public int getGlobalRFCTraceLevel() {
+		return globalRFCTraceLevel;
+	}
+
+	/**
+	 * @param level the global RFC trace level to set
+	 * @see JCo#setTrace(int, String)
+	 */
+	public void setGlobalRFCTraceLevel(int level) {
+		if ((level < 0) || (level > 10)) {
+			throw new IllegalArgumentException(MessageFormat.format(
+					"Invalid global RFC trace level {0}. Valid values range from 0 to 10.", level));
+		}
+		JCo.setTrace(level, null);
+		this.globalRFCTraceLevel = level;
+	}
+
+	/**
+	 * @return <code>true</code> if the connection-level RFC trace is enabled
+	 * @see DestinationDataProvider#JCO_TRACE
+	 */
+	public boolean isConnectionRFCTraceEnabled() {
+		return connectionRFCTraceEnabled;
+	}
+
+	/**
+	 * @param enabled whether to enable the connection-level RFC trace
+	 * @see DestinationDataProvider#JCO_TRACE
+	 */
+	public void setConnectionRFCTraceEnabled(boolean enabled) {
+		this.connectionRFCTraceEnabled = enabled;
+		updateConnectionTraceSettings();
+	}
+
+	/**
+	 * @return the connection-level CPI-C trace level
+	 * @see DestinationDataProvider#JCO_CPIC_TRACE
+	 */
+	public int getConnectionCPICTraceLevel() {
+		return connectionCPICTraceLevel;
+	}
+
+	/**
+	 * @param level the connection-level CPI-C trace level
+	 * @see DestinationDataProvider#JCO_CPIC_TRACE
+	 */
+	public void setConnectionCPICTraceLevel(int level) {
+		if ((level < 0) || (level > 3)) {
+			throw new IllegalArgumentException(MessageFormat.format(
+					"Invalid CPI-C trace level {0}. Valid values range from 0 to 3.", level));
+		}
+		this.connectionCPICTraceLevel = level;
+		updateConnectionTraceSettings();
 	}
 
 	/**
@@ -684,6 +761,17 @@ public class ConnectionManager  {
 		final JCoDestination dest = JCoDestinationManager.getDestination(connectionID);
 		dest.ping();
 		return dest;
+	}
+
+	/**
+	 * Updates the trace settings of all active connections.
+	 * @see #setConnectionRFCTraceEnabled(boolean)
+	 * @see #setConnectionCPICTraceLevel(int) 
+	 */
+	private void updateConnectionTraceSettings() {
+		for (final String id: connections.keySet()) {
+			provider.fireDestinationUpdated(id);
+		}
 	}
 
 }
