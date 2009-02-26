@@ -11,8 +11,14 @@
  */
 package net.sf.rcer.conn;
 
+import org.eclipse.core.runtime.ILog;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.core.runtime.Status;
 import org.osgi.framework.BundleContext;
+
+import com.sap.conn.jco.JCo;
+import com.sap.conn.jco.JCoTraceListener;
 
 /**
  * The activator is the class that controls the plug-in lifecycle.
@@ -22,6 +28,37 @@ import org.osgi.framework.BundleContext;
 public class Activator extends Plugin {
 
 	/**
+	 * A listener to add the JCo trace events to the Eclipse / OSGi log.
+	 * @author vwegert
+	 *
+	 */
+	private class TraceListener implements JCoTraceListener {
+
+		private ILog log;
+
+		/**
+		 * Default constructor.
+		 * @param log
+		 */
+		public TraceListener(ILog log) {
+			this.log = log;
+		}
+
+		/* (non-Javadoc)
+		 * @see com.sap.conn.jco.JCoTraceListener#trace(int, java.lang.String)
+		 */
+		public void trace(int traceLevel, String message) {
+			// The incredible JCo design does not allow us to distinguish between errors and warnings. No comment. 
+			if ((traceLevel & ERROR_WARNING) > 0) {
+				log.log(new Status(IStatus.WARNING, PLUGIN_ID, message));
+			} else {
+				log.log(new Status(IStatus.INFO, PLUGIN_ID, message));
+			}			
+		}
+		
+	}
+	
+	/**
 	 * The ID of the plug-in.
 	 */
 	public static final String PLUGIN_ID = "net.sf.rcer.conn";
@@ -30,6 +67,11 @@ public class Activator extends Plugin {
 	 * The de-facto singleton instance. 
 	 */
 	private static Activator instance;
+	
+	/**
+	 * A listener to 
+	 */
+	private TraceListener listener;
 	
 	/**
 	 * Default constructor.
@@ -45,6 +87,8 @@ public class Activator extends Plugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
+		listener = new TraceListener(getLog());
+		JCo.addTraceListener(listener);
 	}
 	
 	/* (non-Javadoc)
@@ -52,6 +96,8 @@ public class Activator extends Plugin {
 	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
+		JCo.removeTraceListener(listener);
+		listener = null;
 		instance = null;
 		super.stop(context);
 	}
