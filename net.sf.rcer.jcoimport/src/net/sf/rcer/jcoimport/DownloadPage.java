@@ -11,14 +11,23 @@
  */
 package net.sf.rcer.jcoimport;
 
+import java.net.URL;
+import java.text.MessageFormat;
+
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * A wizard page that leads the user to the download page for the SAP Java Connector.
@@ -27,6 +36,16 @@ import org.eclipse.swt.widgets.Link;
  */
 public class DownloadPage extends WizardPage {
 
+	/**
+	 * The ID of the plug-in - we don't have an Activator...
+	 */
+	public static final String PLUGIN_ID = "net.sf.rcer.jcoimport";
+	
+	/**
+	 * The URL of the JCo download page.
+	 */
+	public static final String JCO_DOWNLOAD_PAGE = "http://service.sap.com/connectors";
+	
 	/**
 	 * Default constructor.
 	 */
@@ -48,10 +67,23 @@ public class DownloadPage extends WizardPage {
 		GridDataFactory.swtDefaults().hint(parent.getSize().x, SWT.DEFAULT).applyTo(intro);
 		
 		Link link = new Link(top, SWT.NONE); 
-		link.setText("<A HREF=\"http://service.sap.com/connectors\">http://service.sap.com/connectors</A>");
+		link.setText(MessageFormat.format("<A>{0}</A>", JCO_DOWNLOAD_PAGE));
 		link.setEnabled(true);
 		GridDataFactory.swtDefaults().applyTo(link);
-		// TODO actually do something when the user clicks that link, e. g. open the URL in a browser window
+		link.addSelectionListener(new SelectionAdapter() {
+			/* (non-Javadoc)
+			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+			 */
+			@Override
+			public void widgetSelected(SelectionEvent event) {
+				try {
+					PlatformUI.getWorkbench().getBrowserSupport().getExternalBrowser().openURL(new URL(JCO_DOWNLOAD_PAGE));
+				} catch (Exception ex) {
+					ErrorDialog.openError(getShell(), "JCo Import Wizard", "Error opening the JCo download page.", 
+							new Status(IStatus.ERROR, PLUGIN_ID, ex.getMessage(), ex));
+				}
+			}
+		});
 		
 		Label notes = new Label(top, SWT.WRAP);
 		notes.setText("Please note that you'll need a valid SAPnet user account to download the packages. Also note that JCo versions prior to 3.0.0 are not supported by the connector plug-ins.");
