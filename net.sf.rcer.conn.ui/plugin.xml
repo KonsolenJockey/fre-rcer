@@ -14,6 +14,12 @@
             id="net.sf.rcer.conn.ui.preferences.ConnectionPreferencePage"
             name="%preferences.connectionsPage.name">
       </page>
+      <page
+            category="net.sf.rcer.conn.ui.preferences.TopLevelPreferencePage"
+            class="net.sf.rcer.conn.ui.preferences.TracePreferencePage"
+            id="net.sf.rcer.conn.ui.preferences.TracePreferencePage"
+            name="%preferences.tracePage.name">
+      </page>
    </extension>
    <extension
          point="net.sf.rcer.conn.credentials">
