@@ -25,4 +25,11 @@ public interface ITableLine {
 	 */
 	public String getValue(String fieldName) throws FieldNotFoundException;
 
+	/**
+	 * @param fieldName the name of the field
+	 * @return <code>true</code> if the value of the field is 'X'
+	 * @throws FieldNotFoundException
+	 */
+	public boolean getBooleanValue(String fieldName) throws FieldNotFoundException;
+
 }

@@ -59,4 +59,11 @@ public class TableLine implements ITableLine {
 		throw new FieldNotFoundException(structure.getTableName(), fieldName);
 	}
 	
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.tools.ITableLine#getBooleanValue(java.lang.String)
+	 */
+	public boolean getBooleanValue(String fieldName) throws FieldNotFoundException {
+		return getValue(fieldName).equalsIgnoreCase("X");
+	}
+	
 }
