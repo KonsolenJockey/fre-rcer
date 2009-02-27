@@ -12,6 +12,10 @@
 package net.sf.rcer.conn.locales;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -40,9 +44,19 @@ public class LocaleRegistry implements IRegistryEventListener {
 	private static volatile LocaleRegistry instance;
 
 	/**
+	 * The main container for the locale objects.
+	 */
+	private Set<Locale> locales = new HashSet<Locale>();
+
+	/**
 	 * A sorted map that contains the locale objects, ordered by ISO codes.
 	 */
 	private SortedMap<String, Locale> localesByISO = new TreeMap<String, Locale>();
+
+	/**
+	 * A map to retrieve the locale objects by their SAP code.
+	 */
+	private Map<String, Locale> localesByID = new HashMap<String, Locale>();
 
 	/**
 	 * Private constructor to prevent secondary instantiation.
@@ -74,7 +88,7 @@ public class LocaleRegistry implements IRegistryEventListener {
 	 * @return the list of locales that are currently registered
 	 */
 	public Collection<Locale> getLocales() {
-		return localesByISO.values();
+		return locales;
 	}
 
 	/**
@@ -82,6 +96,13 @@ public class LocaleRegistry implements IRegistryEventListener {
 	 */
 	public Collection<String> getISOCodes() {
 		return localesByISO.keySet();
+	}
+
+	/**
+	 * @return the list of SAP codes that are currently registered
+	 */
+	public Collection<String> getIDs() {
+		return localesByID.keySet();
 	}
 
 	/**
@@ -94,6 +115,18 @@ public class LocaleRegistry implements IRegistryEventListener {
 			return localesByISO.get(isoCode);
 		}
 		throw new LocaleNotFoundException(isoCode);
+	}
+
+	/**
+	 * @param id the SAP ID code of the locale to retrieve
+	 * @return the {@link Locale} object
+	 * @throws LocaleNotFoundException
+	 */
+	public Locale getLocaleByID(String id) throws LocaleNotFoundException {
+		if (localesByID.containsKey(id)) {
+			return localesByID.get(id);
+		}
+		throw new LocaleNotFoundException(id);
 	}
 
 	/* (non-Javadoc)
@@ -137,13 +170,21 @@ public class LocaleRegistry implements IRegistryEventListener {
 					final String id = element.getAttribute("id");
 					final String isoCode = element.getAttribute("iso");
 					final String description = element.getAttribute("description");
-					if (localesByISO.containsKey(isoCode)) {
-						final Locale locale = localesByISO.get(id);
-						locale.setID(id);
-						locale.setDescription(description);
-					} else {
-						localesByISO.put(isoCode, new Locale(id, isoCode, description));
+
+					if (localesByID.containsKey(id)) {
+						locales.remove(localesByID.get(id));
+						localesByID.remove(id);
 					}
+
+					if (localesByISO.containsKey(isoCode)) {
+						locales.remove(localesByISO.get(isoCode));
+						localesByISO.remove(isoCode);
+					}		
+
+					Locale locale = new Locale(id, isoCode, description);
+					locales.add(locale);
+					localesByID.put(id, locale);
+					localesByISO.put(isoCode, locale);
 				}
 			}
 		}
@@ -159,10 +200,19 @@ public class LocaleRegistry implements IRegistryEventListener {
 			final IConfigurationElement[] elements = extension.getConfigurationElements();
 			for(final IConfigurationElement element: elements) {
 				if (element.getName().equals("locale")) {
+					final String id = element.getAttribute("id");
 					final String isoCode = element.getAttribute("iso");
-					if (localesByISO.containsKey(isoCode)) {
-						localesByISO.remove(isoCode);
+
+					if (localesByID.containsKey(id)) {
+						locales.remove(localesByID.get(id));
+						localesByID.remove(id);
 					}
+
+					if (localesByISO.containsKey(isoCode)) {
+						locales.remove(localesByISO.get(isoCode));
+						localesByISO.remove(isoCode);
+					}		
+
 				}
 			}
 		}

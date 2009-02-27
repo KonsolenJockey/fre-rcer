@@ -99,4 +99,36 @@ public class LocaleRegistryTest {
 		Locale foo = registry.getLocaleByISO("ZZ_UNKNOWN_ZZ");
 	}
 
+	/**
+	 * Test method for {@link net.sf.rcer.conn.locales.LocaleRegistry#getLocaleByID(java.lang.String)}.
+	 * @throws LocaleNotFoundException 
+	 */
+	@Test
+	public void testGetLocaleByID() throws LocaleNotFoundException {
+		// check for the standard locale E / EN
+		Locale en = registry.getLocaleByID(ID_EN);
+		assertNotNull(en);
+		assertEquals("internal code of standard locale English", ID_EN, en.getID());
+		assertEquals("ISO code of standard locale English", ISO_EN, en.getISOCode());
+		assertEquals("description of standard locale English", DESC_EN, en.getDescription());
+
+		// check for the standard locale D / DE
+		Locale de = registry.getLocaleByID(ID_DE);
+		assertNotNull(de);
+		assertEquals("internal code of standard locale German", ID_DE, de.getID());
+		assertEquals("ISO code of standard locale German", ISO_DE, de.getISOCode());
+		assertEquals("description of standard locale German", DESC_DE, de.getDescription());
+	}
+	
+	/**
+	 * Test method for exception handling of 
+	 * {@link net.sf.rcer.conn.locales.LocaleRegistry#getLocaleByID(java.lang.String)}.
+	 * @throws Exception
+	 */
+	@Test(expected=LocaleNotFoundException.class)
+	public void testGetUnknownLocaleByID() throws Exception {
+		@SuppressWarnings("unused")
+		Locale foo = registry.getLocaleByID("ZZ_UNKNOWN_ZZ");
+	}
+
 }
