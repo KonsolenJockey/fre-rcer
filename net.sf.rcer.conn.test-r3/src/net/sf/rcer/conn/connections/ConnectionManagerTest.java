@@ -11,8 +11,8 @@
  */
 package net.sf.rcer.conn.connections;
 
-import net.sf.rcer.conn.providers.ConnectionProvider;
-import net.sf.rcer.conn.providers.CredentialsProvider;
+import net.sf.rcer.test.provider.ConnectionProvider;
+import net.sf.rcer.test.provider.CredentialsProvider;
 
 import org.junit.After;
 import org.junit.Before;

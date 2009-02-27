@@ -9,7 +9,7 @@
  *
  * $Id$
  */
-package net.sf.rcer.conn.providers;
+package net.sf.rcer.test.provider;
 
 import java.util.Set;
 

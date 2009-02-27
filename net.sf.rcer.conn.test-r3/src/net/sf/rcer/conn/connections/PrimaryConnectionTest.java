@@ -17,8 +17,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Set;
 
-import net.sf.rcer.conn.providers.ConnectionProvider;
-import net.sf.rcer.conn.providers.CredentialsProvider;
+import net.sf.rcer.test.provider.ConnectionProvider;
+import net.sf.rcer.test.provider.CredentialsProvider;
 
 import org.junit.Test;
 
@@ -52,7 +52,7 @@ public class PrimaryConnectionTest extends ConnectionManagerTest {
 		JCoDestination dest1 = manager.getDestination();
 		assertTrue("Manager should report as connected.", manager.isConnected());
 		assertTrue("Connection should be active.", manager.isActive(dest1.getDestinationName()));
-		assertTrue("Connection ID", dest1.getDestinationName().startsWith(CONNECTION_ID_1));
+		assertTrue("Connection ID", dest1.getDestinationName().startsWith(ConnectionProvider.PROVIDER_ID));
 		assertTrue("Credentials Provider with selection should have been called.", 
 				CredentialsProvider.wasGetCredentialsWithSelectionCalled());
 		assertFalse("Credentials Provider without selection should nothave been called.", 

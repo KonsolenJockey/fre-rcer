@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 
-import net.sf.rcer.conn.providers.ConnectionProvider;
+import net.sf.rcer.test.provider.ConnectionProvider;
 
 import org.junit.Test;
 

@@ -14,8 +14,8 @@ package net.sf.rcer.conn.connections;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import net.sf.rcer.conn.providers.ConnectionProvider;
-import net.sf.rcer.conn.providers.CredentialsProvider;
+import net.sf.rcer.test.provider.ConnectionProvider;
+import net.sf.rcer.test.provider.CredentialsProvider;
 
 import org.junit.Before;
 import org.junit.Test;

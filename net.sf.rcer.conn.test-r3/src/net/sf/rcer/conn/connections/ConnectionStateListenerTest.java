@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import net.sf.rcer.conn.providers.ConnectionProvider;
+import net.sf.rcer.test.provider.ConnectionProvider;
 
 import org.junit.Test;
 

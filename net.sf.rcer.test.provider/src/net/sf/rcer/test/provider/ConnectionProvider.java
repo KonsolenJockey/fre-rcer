@@ -9,7 +9,7 @@
  *
  * $Id$
  */
-package net.sf.rcer.conn.providers;
+package net.sf.rcer.test.provider;
 
 import java.text.MessageFormat;
 import java.util.Iterator;
@@ -18,7 +18,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 
-import net.sf.rcer.conn.Activator;
 import net.sf.rcer.conn.connections.Connection;
 import net.sf.rcer.conn.connections.ConnectionData;
 import net.sf.rcer.conn.connections.ConnectionNotFoundException;
@@ -42,7 +41,7 @@ public class ConnectionProvider implements IConnectionProvider {
 	/**
 	 * The ID of the provider.
 	 */
-	public static final String PROVIDER_ID = "net.sf.rcer.conn.unitTestProvider";
+	public static final String PROVIDER_ID = "net.sf.rcer.test.provider.unitTestProvider";
 
 	private static Map<String, ICredentials> allConnections = new TreeMap<String, ICredentials>(); 
 	private static Map<String, ICredentials> activeConnections = new TreeMap<String, ICredentials>(); 
@@ -74,8 +73,8 @@ public class ConnectionProvider implements IConnectionProvider {
 				}
 				i++;
 			}
-		} catch (Exception e) {
-			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e));
+		} catch (Throwable t) {
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, t.getMessage(), t));
 		}
 	}
 	

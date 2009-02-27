@@ -18,6 +18,7 @@ import static org.junit.Assert.assertTrue;
 import net.sf.rcer.conn.connections.ConnectionNotFoundException;
 import net.sf.rcer.conn.connections.ConnectionRegistry;
 import net.sf.rcer.conn.connections.IConnectionData;
+import net.sf.rcer.test.provider.ConnectionProvider;
 
 import org.junit.After;
 import org.junit.Before;

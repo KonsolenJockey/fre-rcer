@@ -14,8 +14,8 @@ package net.sf.rcer.conn.tools;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import net.sf.rcer.conn.connections.ConnectionManager;
-import net.sf.rcer.conn.providers.ConnectionProvider;
-import net.sf.rcer.conn.providers.CredentialsProvider;
+import net.sf.rcer.test.provider.ConnectionProvider;
+import net.sf.rcer.test.provider.CredentialsProvider;
 
 import org.junit.After;
 import org.junit.Before;
@@ -30,6 +30,9 @@ import com.sap.conn.jco.JCoDestination;
  */
 public class TableReaderTest {
 
+	// TODO add more tests
+	// TODO add a test for the last error (fields truncated by 1 character)
+	
 	/**
 	 * The destination to use for testing.
 	 */

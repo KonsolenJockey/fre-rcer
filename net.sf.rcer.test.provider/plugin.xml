@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sf.rcer.conn.connections">
+      <provider
+            id="unitTestProvider"
+            provider="net.sf.rcer.test.provider.ConnectionProvider">
+      </provider>
+   </extension>
+   <extension
+         point="net.sf.rcer.conn.credentials">
+      <credentialsProviderWithoutSelection
+            class="net.sf.rcer.test.provider.CredentialsProvider"
+            id="unitTestProvider"
+            priority="1">
+      </credentialsProviderWithoutSelection>
+      <credentialsProviderWithSelection
+            class="net.sf.rcer.test.provider.CredentialsProvider"
+            id="unitTestProvider"
+            priority="1">
+      </credentialsProviderWithSelection>
+   </extension>
+</plugin>
