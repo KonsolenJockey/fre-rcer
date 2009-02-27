@@ -11,7 +11,6 @@
  */
 package net.sf.rcer.conn.locales;
 
-import java.text.MessageFormat;
 
 /**
  * This exception occurs if an undefined locale is requested from the {@link LocaleRegistry}. 
@@ -26,10 +25,11 @@ public class LocaleNotFoundException extends Exception {
 	private static final long serialVersionUID = -6503792860775030434L;
 
 	/**
-	 * @param isoCode
+	 * @see Exception#Exception(String)
+	 * @param message
 	 */
-	public LocaleNotFoundException(String isoCode) {
-		super(MessageFormat.format("No SAP locale for ISO code {0} defined.", isoCode));
+	public LocaleNotFoundException(String message) {
+		super(message);
 	}
 	
 }

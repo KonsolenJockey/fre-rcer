@@ -11,6 +11,7 @@
  */
 package net.sf.rcer.conn.locales;
 
+import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -114,7 +115,7 @@ public class LocaleRegistry implements IRegistryEventListener {
 		if (localesByISO.containsKey(isoCode)) {
 			return localesByISO.get(isoCode);
 		}
-		throw new LocaleNotFoundException(isoCode);
+		throw new LocaleNotFoundException(MessageFormat.format("No SAP Locale for ISO code {0} defined.", isoCode));
 	}
 
 	/**
@@ -126,7 +127,7 @@ public class LocaleRegistry implements IRegistryEventListener {
 		if (localesByID.containsKey(id)) {
 			return localesByID.get(id);
 		}
-		throw new LocaleNotFoundException(id);
+		throw new LocaleNotFoundException(MessageFormat.format("No SAP Locale for internal ID {0} defined.", id));
 	}
 
 	/* (non-Javadoc)
