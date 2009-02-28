@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id$ -->
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2008 The RCER Development Team.&#xA;&#xD;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,&#xA;this entire header must remain intact.&#xA;&#xA;$Id$"
+    modelDirectory="/net.sf.rcer.rom/src" editDirectory="" editorDirectory="" modelPluginID="net.sf.rcer.rom"
+    modelName="ROM" modelPluginClass="" nonNLSMarkers="true" featureMapWrapperInterface=""
+    featureMapWrapperClass="" testsDirectory="" booleanFlagsField="" importerID="org.eclipse.emf.importer.ecore"
+    suppressUnsettable="true" complianceLevel="5.0" copyrightFields="false" language="">
+  <foreignModel>rom.ecore</foreignModel>
+  <genPackages prefix="ROM" basePackage="net.sf.rcer" disposableProviderFactory="true"
+      contentTypeIdentifier="" ecorePackage="rom.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rom.ecore#//RepositoryObjectType">
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/UNKNOWN"/>
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/PACKAGE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rom.ecore#//PackageType">
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//PackageType/STANDARD"/>
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//PackageType/MAIN"/>
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//PackageType/STRUCTURAL"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rom.ecore#//PackagePermittedObjectTypes">
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//PackagePermittedObjectTypes/ALL"/>
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//PackagePermittedObjectTypes/DESCRIPTIVE_OBJECTS_ONLY"/>
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//PackagePermittedObjectTypes/FUNCTIONAL_OBJECTS_ONLY"/>
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//PackagePermittedObjectTypes/OTR_OBJECTS_ONLY"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="rom.ecore#//Locale"/>
+    <genDataTypes ecoreDataType="rom.ecore#//IStatus"/>
+    <genDataTypes ecoreDataType="rom.ecore#//JCoDestination"/>
+    <genClasses ecoreClass="rom.ecore#//LocalizedString">
+      <genFeatures createChild="false" propertyCategory="" propertyDescription=""
+          ecoreFeature="ecore:EAttribute rom.ecore#//LocalizedString/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//LocalizedString/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rom.ecore#//IRepositoryObjectContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//IRepositoryObjectContainer/objects"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rom.ecore#//RepositoryObject">
+      <genFeatures property="Readonly" createChild="false" propertyCategory="General"
+          propertyDescription="The object type of the repository object (package, structure, class, ...)"
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/objectType"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/loaded"/>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="General"
+          propertyDescription="The program ID as used in the repository header data (typically R3TR)."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/programID"/>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="General"
+          propertyDescription="The object type ID as used in the repository header data (like DOMA, CLAS, INTF, ...)."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/objectTypeID"/>
+      <genFeatures createChild="false" propertyCategory="General" propertyDescription="The name of the repository object."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/name"/>
+      <genFeatures createChild="false" propertyCategory="Repository Header Data" propertyDescription="The name of the source system (usually SAP if it's a standard object)."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/sourceSystem"/>
+      <genFeatures createChild="false" propertyCategory="Repository Header Data" propertyDescription="The user name of the author (usually SAP if it's a standard object)."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/author"/>
+      <genFeatures createChild="false" propertyCategory="Repository Header Data" propertyDescription="Whether the object is flagged as a generated object."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/generated"/>
+      <genFeatures createChild="false" propertyCategory="Repository Header Data" propertyDescription="The locale that was used to create the object initially."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/originalLocale"/>
+      <genFeatures createChild="false" propertyCategory="Repository Header Data" propertyDescription="The ID of the software component this object belongs to."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/softwareComponent"/>
+      <genFeatures createChild="false" propertyCategory="Repository Header Data" propertyDescription="The release (version) of the software component the object was created."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/componentRelease"/>
+      <genFeatures createChild="false" propertyCategory="Repository Header Data" propertyDescription="The name of the package this object is contained in."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/packageName"/>
+      <genFeatures property="None" notify="false" createChild="false" propertyCategory="Repository Header Data"
+          propertyDescription="The container (package or object collection) this object is contained in."
+          ecoreFeature="ecore:EReference rom.ecore#//RepositoryObject/container"/>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="Repository Header Data"
+          propertyDescription="The package this object is contained in." ecoreFeature="ecore:EReference rom.ecore#//RepositoryObject/package"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObject/collection"/>
+      <genOperations ecoreOperation="rom.ecore#//RepositoryObject/load"/>
+    </genClasses>
+    <genClasses ecoreClass="rom.ecore#//RepositoryObjectCollection">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObjectCollection/sourceConnection"/>
+      <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/getPackage">
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getPackage/name"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="rom.ecore#//RepositoryPackage">
+      <genFeatures property="None" children="true" createChild="true" propertyCategory="Package Properties"
+          propertyDescription="The (localized) description of the package." ecoreFeature="ecore:EReference rom.ecore#//RepositoryPackage/description"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Package Properties"
+          propertyDescription="The packages contained in this package." propertySortChoices="true"
+          ecoreFeature="ecore:EReference rom.ecore#//RepositoryPackage/subPackages"/>
+      <genFeatures createChild="false" propertyCategory="Package Properties" propertyDescription="Whether changes to objects in this package should be recorded."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/changeRecodingEnabled"/>
+      <genFeatures createChild="false" propertyCategory="Package Properties" propertyDescription="The name of the user reponsible for the contents of this package."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/responsibleUser"/>
+      <genFeatures createChild="false" propertyCategory="Package Properties" propertyDescription="The transport layer used for objects contained in this package."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/transportLayer"/>
+      <genFeatures createChild="false" propertyCategory="Package Properties" propertyDescription="The namespace to use for objects in this package."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/namespace"/>
+      <genFeatures createChild="false" propertyCategory="Package Properties" propertyDescription="The recommended prefix for package interfaces."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/interfacePrefix"/>
+      <genFeatures createChild="false" propertyCategory="Package Properties" propertyDescription="A restriction on the kind of objects that may be placed in this package."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/permittedObjectTypes"/>
+      <genFeatures createChild="false" propertyCategory="Package Properties" propertyDescription="Whether the creation of new objects in this package is restricted."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/objectCreationRestricted"/>
+      <genFeatures createChild="false" propertyCategory="Package Properties" propertyDescription="The package type (main package, structural package or just a standard package)."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/type"/>
+      <genFeatures createChild="false" propertyCategory="Package Properties" propertyDescription="Whether package access checks assume a server role for this package."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/checkedAsServer"/>
+      <genFeatures createChild="false" propertyCategory="Package Properties" propertyDescription="Whether package access checks assume a server role for this package."
+          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/checkedAsClient"/>
+    </genClasses>
+    <genClasses ecoreClass="rom.ecore#//Domain"/>
+  </genPackages>
+</genmodel:GenModel>
