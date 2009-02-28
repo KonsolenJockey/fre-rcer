@@ -9,62 +9,80 @@
  *
  * $Id$
  */
+
 GenSpec:
 	"package" packageName=STRING
 	(structures += Structure)*
 	(functionModules += FunctionModule)*;
 
+// ====== Structures ==============================================================================
+
 Structure:
+	StructurePOJOMapping;
+
+// --- POJO mapping -------------------------------------------------------------------------------
+
+StructurePOJOMapping:
 	"structure" name=STRING "class" className=ID "{"
-		(fields += StructureFieldMapping)*
+		(fields += StructureFieldPOJOMapping)*
 	"}";
 
-StructureFieldMapping:
+StructureFieldPOJOMapping:
 	"field" name=STRING "=" type=ID attribute=ID ("comment" comment=STRING)? ";";
+
+// ====== Function Modules ========================================================================
 
 FunctionModule: 
 	"function" "module" name=STRING "{"
 		mapping=FunctionModuleMapping
 	"}";
 	
-FunctionModuleMapping: FunctionModuleCallMapping | FunctionModuleRequestResponseMapping;
+FunctionModuleMapping: 
+	FunctionModulePOJOMapping;
 
-FunctionModuleCallMapping: 
+
+// --- POJO mapping -------------------------------------------------------------------------------
+
+FunctionModulePOJOMapping: 
+	FunctionModulePOJOCallMapping | 
+	FunctionModulePOJORequestResponseMapping;
+
+FunctionModulePOJOCallMapping: 
 	"class" className=ID "{"
-		(parameters += FunctionModuleParameterMapping)*
+		(parameters += FunctionModulePOJOParameterMapping)*
 	"}";
 
-FunctionModuleRequestResponseMapping: 
+FunctionModulePOJORequestResponseMapping: 
 	"request" "class" requestClassName=ID "{"
-		(requestParameters += FunctionModuleParameterMapping)*
+		(requestParameters += FunctionModulePOJOParameterMapping)*
 	"}"
 	"response" "class" responseClassName=ID "{"
-		(responseParameters += FunctionModuleParameterMapping)*
+		(responseParameters += FunctionModulePOJOParameterMapping)*
 	"}";
 
-FunctionModuleParameterMapping: 
-	FunctionModuleImportingParameter | 
-	FunctionModuleExportingParameter | 
-	FunctionModuleChangingParameter  | 
-	FunctionModuleTablesParameter; 
+FunctionModulePOJOParameterMapping: 
+	FunctionModulePOJOImportingParameter | 
+	FunctionModulePOJOExportingParameter | 
+	FunctionModulePOJOChangingParameter  | 
+	FunctionModulePOJOTablesParameter; 
 
-FunctionModuleImportingParameter: 
+FunctionModulePOJOImportingParameter: 
 	"import" ("field"                  name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) | 
 	          isStructure?="structure" name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) |
 	          isTable?="table"         name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID ))
 	          ("comment" comment=STRING)? ";";
 
-FunctionModuleExportingParameter: 
+FunctionModulePOJOExportingParameter: 
 	"export" ("field"                  name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) | 
 	          isStructure?="structure" name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) |
 	          isTable?="table"         name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID))
 	          ("comment" comment=STRING)? ";";
 
-FunctionModuleChangingParameter: 
+FunctionModulePOJOChangingParameter: 
 	"change" ("field"                  name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) | 
 	          isStructure?="structure" name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) |
 	          isTable?="table"         name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID))
 	          ("comment" comment=STRING)? ";";
 
-FunctionModuleTablesParameter:
+FunctionModulePOJOTablesParameter:
 	"table" name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) ("comment" comment=STRING)? ";";

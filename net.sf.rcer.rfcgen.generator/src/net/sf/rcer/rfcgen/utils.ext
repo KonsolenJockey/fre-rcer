@@ -14,29 +14,29 @@ import rfcgen;
 String getFileName(Structure structure, String packageName):
 	packageName.replaceAll("\\.", "/") + "/" + structure.className + ".java";
 	
-String getFileName(FunctionModuleCallMapping mapping, String packageName):
+String getFileName(FunctionModulePOJOCallMapping mapping, String packageName):
 	packageName.replaceAll("\\.", "/") + "/" + mapping.className + ".java";
 	
-String getRequestFileName(FunctionModuleRequestResponseMapping mapping, String packageName):
+String getRequestFileName(FunctionModulePOJORequestResponseMapping mapping, String packageName):
 	packageName.replaceAll("\\.", "/") + "/" + mapping.requestClassName + ".java";
 	
-String getResponseFileName(FunctionModuleRequestResponseMapping mapping, String packageName):
+String getResponseFileName(FunctionModulePOJORequestResponseMapping mapping, String packageName):
 	packageName.replaceAll("\\.", "/") + "/" + mapping.responseClassName + ".java";
 	
 // ------------------------------------------------------------------------------------------------
 
-String getJavaType(FunctionModuleParameterMapping parameter):
+String getJavaType(FunctionModulePOJOParameterMapping parameter):
 	"Object";
 
-String getJavaType(FunctionModuleImportingParameter parameter):
+String getJavaType(FunctionModulePOJOImportingParameter parameter):
 	parameter.isTable ? "List<" + parameter.type + ">" : parameter.type;
 
-String getJavaType(FunctionModuleExportingParameter parameter):
+String getJavaType(FunctionModulePOJOExportingParameter parameter):
 	parameter.isTable ? "List<" + parameter.type + ">" : parameter.type;
 
-String getJavaType(FunctionModuleChangingParameter parameter):
+String getJavaType(FunctionModulePOJOChangingParameter parameter):
 	parameter.isTable ? "List<" + parameter.type + ">" : parameter.type;
 
-String getJavaType(FunctionModuleTablesParameter parameter):
+String getJavaType(FunctionModulePOJOTablesParameter parameter):
 	"List<" + parameter.type + ">";
 	

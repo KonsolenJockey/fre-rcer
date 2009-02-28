@@ -38,14 +38,14 @@ T25 : 'table' ;
 T26 : 'export' ;
 T27 : 'change' ;
 
-// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1275
+// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1283
 RULE_ID :
 
 	 ('^')?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*
 	 
 ;
 
-// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1281
+// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1289
 RULE_STRING :
 
 	 '\"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\') | ~('\\'|'\"') )* '\"' |
@@ -53,28 +53,28 @@ RULE_STRING :
 	 
 ;
 
-// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1288
+// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1296
 RULE_INT :
 
 	 ('-')?('0'..'9')+
 	 
 ;
 
-// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1294
+// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1302
 RULE_WS :
 
 	 (' '|'\t'|'\r'|'\n')+ {$channel=HIDDEN;}
 	 
 ;
 
-// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1300
+// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1308
 RULE_ML_COMMENT :
 
 	 '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
 	 
 ;
 
-// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1306
+// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1314
 RULE_SL_COMMENT :
 
 	 '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}

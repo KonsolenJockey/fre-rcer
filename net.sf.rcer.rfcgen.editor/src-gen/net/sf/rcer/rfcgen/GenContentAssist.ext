@@ -3,281 +3,281 @@ import codeassist;
 
 extension net::sf::rcer::rfcgen::EditorExtensions;
 
-/* proposals for Feature StructureFieldMapping::attribute */
-List[Proposal] completeStructureFieldMapping_attribute(emf::EObject ctx, String prefix) :
-	{newProposal("StructureFieldMappingAttribute")};
+/* proposals for Feature StructureFieldPOJOMapping::name */
+List[Proposal] completeStructureFieldPOJOMapping_name(emf::EObject ctx, String prefix) :
+	{newProposal("StructureFieldPOJOMappingName")};
 
-/* proposals for Feature FunctionModuleImportingParameter::name */
-List[Proposal] completeFunctionModuleImportingParameter_name(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleImportingParameterName")};
-
-/* proposals for Feature FunctionModuleExportingParameter::type */
-List[Proposal] completeFunctionModuleExportingParameter_type(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleExportingParameterType")};
-
-/* proposals for Feature FunctionModuleImportingParameter::attribute */
-List[Proposal] completeFunctionModuleImportingParameter_attribute(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleImportingParameterAttribute")};
-
-/* proposals for Feature FunctionModuleChangingParameter::attribute */
-List[Proposal] completeFunctionModuleChangingParameter_attribute(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleChangingParameterAttribute")};
-
-/* proposals for Feature FunctionModuleImportingParameter::type */
-List[Proposal] completeFunctionModuleImportingParameter_type(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleImportingParameterType")};
-
-/* proposals for Feature FunctionModuleExportingParameter::name */
-List[Proposal] completeFunctionModuleExportingParameter_name(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleExportingParameterName")};
-
-/* proposals for Feature FunctionModuleImportingParameter::attribute */
-List[Proposal] completeFunctionModuleImportingParameter_attribute(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleImportingParameterAttribute")};
-
-/* proposals for Feature FunctionModuleCallMapping::className */
-List[Proposal] completeFunctionModuleCallMapping_className(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleCallMappingClassName")};
-
-/* proposals for Feature FunctionModuleChangingParameter::name */
-List[Proposal] completeFunctionModuleChangingParameter_name(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleChangingParameterName")};
-
-/* proposals for Feature FunctionModuleImportingParameter::type */
-List[Proposal] completeFunctionModuleImportingParameter_type(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleImportingParameterType")};
-
-/* proposals for Feature FunctionModuleImportingParameter::name */
-List[Proposal] completeFunctionModuleImportingParameter_name(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleImportingParameterName")};
-
-/* proposals for Feature StructureFieldMapping::name */
-List[Proposal] completeStructureFieldMapping_name(emf::EObject ctx, String prefix) :
-	{newProposal("StructureFieldMappingName")};
-
-/* proposals for Feature FunctionModuleChangingParameter::attribute */
-List[Proposal] completeFunctionModuleChangingParameter_attribute(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleChangingParameterAttribute")};
-
-/* proposals for Feature FunctionModuleImportingParameter::type */
-List[Proposal] completeFunctionModuleImportingParameter_type(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleImportingParameterType")};
-
-/* proposals for Feature FunctionModuleExportingParameter::attribute */
-List[Proposal] completeFunctionModuleExportingParameter_attribute(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleExportingParameterAttribute")};
-
-/* proposals for Feature FunctionModuleChangingParameter::type */
-List[Proposal] completeFunctionModuleChangingParameter_type(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleChangingParameterType")};
-
-/* proposals for Feature FunctionModuleChangingParameter::name */
-List[Proposal] completeFunctionModuleChangingParameter_name(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleChangingParameterName")};
-
-/* proposals for Feature FunctionModuleImportingParameter::comment */
-List[Proposal] completeFunctionModuleImportingParameter_comment(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleImportingParameterComment")};
-
-/* proposals for Feature FunctionModuleChangingParameter::name */
-List[Proposal] completeFunctionModuleChangingParameter_name(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleChangingParameterName")};
-
-/* proposals for Feature Structure::className */
-List[Proposal] completeStructure_className(emf::EObject ctx, String prefix) :
-	{newProposal("StructureClassName")};
-
-/* proposals for Feature FunctionModuleTablesParameter::comment */
-List[Proposal] completeFunctionModuleTablesParameter_comment(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleTablesParameterComment")};
-
-/* proposals for Feature FunctionModuleExportingParameter::type */
-List[Proposal] completeFunctionModuleExportingParameter_type(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleExportingParameterType")};
-
-/* proposals for Feature FunctionModuleChangingParameter::type */
-List[Proposal] completeFunctionModuleChangingParameter_type(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleChangingParameterType")};
-
-/* proposals for Feature FunctionModuleImportingParameter::name */
-List[Proposal] completeFunctionModuleImportingParameter_name(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleImportingParameterName")};
-
-/* proposals for Feature FunctionModuleRequestResponseMapping::requestClassName */
-List[Proposal] completeFunctionModuleRequestResponseMapping_requestClassName(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleRequestResponseMappingRequestClassName")};
-
-/* proposals for Feature FunctionModuleExportingParameter::name */
-List[Proposal] completeFunctionModuleExportingParameter_name(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleExportingParameterName")};
+/* proposals for Feature FunctionModulePOJOChangingParameter::name */
+List[Proposal] completeFunctionModulePOJOChangingParameter_name(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOChangingParameterName")};
 
 /* proposals for Feature FunctionModule::name */
 List[Proposal] completeFunctionModule_name(emf::EObject ctx, String prefix) :
 	{newProposal("FunctionModuleName")};
 
-/* proposals for Feature FunctionModuleImportingParameter::attribute */
-List[Proposal] completeFunctionModuleImportingParameter_attribute(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleImportingParameterAttribute")};
+/* proposals for Feature FunctionModulePOJORequestResponseMapping::responseClassName */
+List[Proposal] completeFunctionModulePOJORequestResponseMapping_responseClassName(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJORequestResponseMappingResponseClassName")};
 
-/* proposals for Feature FunctionModuleTablesParameter::type */
-List[Proposal] completeFunctionModuleTablesParameter_type(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleTablesParameterType")};
+/* proposals for Feature FunctionModulePOJOExportingParameter::type */
+List[Proposal] completeFunctionModulePOJOExportingParameter_type(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOExportingParameterType")};
 
-/* proposals for Feature FunctionModuleTablesParameter::attribute */
-List[Proposal] completeFunctionModuleTablesParameter_attribute(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleTablesParameterAttribute")};
+/* proposals for Feature StructureFieldPOJOMapping::type */
+List[Proposal] completeStructureFieldPOJOMapping_type(emf::EObject ctx, String prefix) :
+	{newProposal("StructureFieldPOJOMappingType")};
 
-/* proposals for Feature FunctionModuleTablesParameter::name */
-List[Proposal] completeFunctionModuleTablesParameter_name(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleTablesParameterName")};
+/* proposals for Feature FunctionModulePOJOImportingParameter::name */
+List[Proposal] completeFunctionModulePOJOImportingParameter_name(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOImportingParameterName")};
 
-/* proposals for Feature FunctionModuleExportingParameter::attribute */
-List[Proposal] completeFunctionModuleExportingParameter_attribute(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleExportingParameterAttribute")};
+/* proposals for Feature FunctionModulePOJORequestResponseMapping::requestClassName */
+List[Proposal] completeFunctionModulePOJORequestResponseMapping_requestClassName(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJORequestResponseMappingRequestClassName")};
 
-/* proposals for Feature FunctionModuleChangingParameter::type */
-List[Proposal] completeFunctionModuleChangingParameter_type(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleChangingParameterType")};
+/* proposals for Feature StructurePOJOMapping::className */
+List[Proposal] completeStructurePOJOMapping_className(emf::EObject ctx, String prefix) :
+	{newProposal("StructurePOJOMappingClassName")};
 
-/* proposals for Feature StructureFieldMapping::comment */
-List[Proposal] completeStructureFieldMapping_comment(emf::EObject ctx, String prefix) :
-	{newProposal("StructureFieldMappingComment")};
+/* proposals for Feature FunctionModulePOJOImportingParameter::name */
+List[Proposal] completeFunctionModulePOJOImportingParameter_name(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOImportingParameterName")};
 
-/* proposals for Feature FunctionModuleChangingParameter::attribute */
-List[Proposal] completeFunctionModuleChangingParameter_attribute(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleChangingParameterAttribute")};
+/* proposals for Feature StructureFieldPOJOMapping::attribute */
+List[Proposal] completeStructureFieldPOJOMapping_attribute(emf::EObject ctx, String prefix) :
+	{newProposal("StructureFieldPOJOMappingAttribute")};
 
-/* proposals for Feature FunctionModuleChangingParameter::comment */
-List[Proposal] completeFunctionModuleChangingParameter_comment(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleChangingParameterComment")};
+/* proposals for Feature FunctionModulePOJOExportingParameter::attribute */
+List[Proposal] completeFunctionModulePOJOExportingParameter_attribute(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOExportingParameterAttribute")};
 
-/* proposals for Feature FunctionModuleExportingParameter::comment */
-List[Proposal] completeFunctionModuleExportingParameter_comment(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleExportingParameterComment")};
+/* proposals for Feature FunctionModulePOJOChangingParameter::name */
+List[Proposal] completeFunctionModulePOJOChangingParameter_name(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOChangingParameterName")};
 
-/* proposals for Feature FunctionModuleRequestResponseMapping::responseClassName */
-List[Proposal] completeFunctionModuleRequestResponseMapping_responseClassName(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleRequestResponseMappingResponseClassName")};
+/* proposals for Feature FunctionModulePOJOChangingParameter::attribute */
+List[Proposal] completeFunctionModulePOJOChangingParameter_attribute(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOChangingParameterAttribute")};
 
-/* proposals for Feature FunctionModuleExportingParameter::type */
-List[Proposal] completeFunctionModuleExportingParameter_type(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleExportingParameterType")};
+/* proposals for Feature FunctionModulePOJOImportingParameter::type */
+List[Proposal] completeFunctionModulePOJOImportingParameter_type(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOImportingParameterType")};
 
-/* proposals for Feature FunctionModuleExportingParameter::name */
-List[Proposal] completeFunctionModuleExportingParameter_name(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleExportingParameterName")};
+/* proposals for Feature FunctionModulePOJOChangingParameter::type */
+List[Proposal] completeFunctionModulePOJOChangingParameter_type(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOChangingParameterType")};
 
-/* proposals for Feature FunctionModuleExportingParameter::attribute */
-List[Proposal] completeFunctionModuleExportingParameter_attribute(emf::EObject ctx, String prefix) :
-	{newProposal("FunctionModuleExportingParameterAttribute")};
+/* proposals for Feature FunctionModulePOJOImportingParameter::type */
+List[Proposal] completeFunctionModulePOJOImportingParameter_type(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOImportingParameterType")};
 
-/* proposals for Feature Structure::name */
-List[Proposal] completeStructure_name(emf::EObject ctx, String prefix) :
-	{newProposal("StructureName")};
+/* proposals for Feature FunctionModulePOJOImportingParameter::attribute */
+List[Proposal] completeFunctionModulePOJOImportingParameter_attribute(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOImportingParameterAttribute")};
+
+/* proposals for Feature FunctionModulePOJOChangingParameter::comment */
+List[Proposal] completeFunctionModulePOJOChangingParameter_comment(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOChangingParameterComment")};
+
+/* proposals for Feature FunctionModulePOJOExportingParameter::type */
+List[Proposal] completeFunctionModulePOJOExportingParameter_type(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOExportingParameterType")};
+
+/* proposals for Feature FunctionModulePOJOTablesParameter::type */
+List[Proposal] completeFunctionModulePOJOTablesParameter_type(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOTablesParameterType")};
+
+/* proposals for Feature FunctionModulePOJOImportingParameter::type */
+List[Proposal] completeFunctionModulePOJOImportingParameter_type(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOImportingParameterType")};
+
+/* proposals for Feature FunctionModulePOJOExportingParameter::attribute */
+List[Proposal] completeFunctionModulePOJOExportingParameter_attribute(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOExportingParameterAttribute")};
+
+/* proposals for Feature FunctionModulePOJOChangingParameter::attribute */
+List[Proposal] completeFunctionModulePOJOChangingParameter_attribute(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOChangingParameterAttribute")};
+
+/* proposals for Feature FunctionModulePOJOExportingParameter::name */
+List[Proposal] completeFunctionModulePOJOExportingParameter_name(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOExportingParameterName")};
+
+/* proposals for Feature FunctionModulePOJOTablesParameter::comment */
+List[Proposal] completeFunctionModulePOJOTablesParameter_comment(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOTablesParameterComment")};
+
+/* proposals for Feature FunctionModulePOJOChangingParameter::name */
+List[Proposal] completeFunctionModulePOJOChangingParameter_name(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOChangingParameterName")};
+
+/* proposals for Feature FunctionModulePOJOImportingParameter::attribute */
+List[Proposal] completeFunctionModulePOJOImportingParameter_attribute(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOImportingParameterAttribute")};
+
+/* proposals for Feature FunctionModulePOJOTablesParameter::attribute */
+List[Proposal] completeFunctionModulePOJOTablesParameter_attribute(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOTablesParameterAttribute")};
+
+/* proposals for Feature FunctionModulePOJOImportingParameter::attribute */
+List[Proposal] completeFunctionModulePOJOImportingParameter_attribute(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOImportingParameterAttribute")};
+
+/* proposals for Feature FunctionModulePOJOImportingParameter::name */
+List[Proposal] completeFunctionModulePOJOImportingParameter_name(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOImportingParameterName")};
+
+/* proposals for Feature StructurePOJOMapping::name */
+List[Proposal] completeStructurePOJOMapping_name(emf::EObject ctx, String prefix) :
+	{newProposal("StructurePOJOMappingName")};
 
 /* proposals for Feature GenSpec::packageName */
 List[Proposal] completeGenSpec_packageName(emf::EObject ctx, String prefix) :
 	{newProposal("GenSpecPackageName")};
 
-/* proposals for Feature StructureFieldMapping::type */
-List[Proposal] completeStructureFieldMapping_type(emf::EObject ctx, String prefix) :
-	{newProposal("StructureFieldMappingType")};
+/* proposals for Feature FunctionModulePOJOChangingParameter::type */
+List[Proposal] completeFunctionModulePOJOChangingParameter_type(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOChangingParameterType")};
+
+/* proposals for Feature FunctionModulePOJOChangingParameter::type */
+List[Proposal] completeFunctionModulePOJOChangingParameter_type(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOChangingParameterType")};
+
+/* proposals for Feature FunctionModulePOJOChangingParameter::attribute */
+List[Proposal] completeFunctionModulePOJOChangingParameter_attribute(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOChangingParameterAttribute")};
+
+/* proposals for Feature FunctionModulePOJOCallMapping::className */
+List[Proposal] completeFunctionModulePOJOCallMapping_className(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOCallMappingClassName")};
+
+/* proposals for Feature FunctionModulePOJOExportingParameter::type */
+List[Proposal] completeFunctionModulePOJOExportingParameter_type(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOExportingParameterType")};
+
+/* proposals for Feature FunctionModulePOJOExportingParameter::comment */
+List[Proposal] completeFunctionModulePOJOExportingParameter_comment(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOExportingParameterComment")};
+
+/* proposals for Feature FunctionModulePOJOExportingParameter::name */
+List[Proposal] completeFunctionModulePOJOExportingParameter_name(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOExportingParameterName")};
+
+/* proposals for Feature StructureFieldPOJOMapping::comment */
+List[Proposal] completeStructureFieldPOJOMapping_comment(emf::EObject ctx, String prefix) :
+	{newProposal("StructureFieldPOJOMappingComment")};
+
+/* proposals for Feature FunctionModulePOJOExportingParameter::name */
+List[Proposal] completeFunctionModulePOJOExportingParameter_name(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOExportingParameterName")};
+
+/* proposals for Feature FunctionModulePOJOImportingParameter::comment */
+List[Proposal] completeFunctionModulePOJOImportingParameter_comment(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOImportingParameterComment")};
+
+/* proposals for Feature FunctionModulePOJOExportingParameter::attribute */
+List[Proposal] completeFunctionModulePOJOExportingParameter_attribute(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOExportingParameterAttribute")};
+
+/* proposals for Feature FunctionModulePOJOTablesParameter::name */
+List[Proposal] completeFunctionModulePOJOTablesParameter_name(emf::EObject ctx, String prefix) :
+	{newProposal("FunctionModulePOJOTablesParameterName")};
 
 
 
-/* proposals for Feature FunctionModuleRequestResponseMapping::requestParameters */
-List[Proposal] completeFunctionModuleRequestResponseMapping_requestParameters(emf::EObject ctx, String prefix) :
+/* proposals for Feature StructurePOJOMapping::fields */
+List[Proposal] completeStructurePOJOMapping_fields(emf::EObject ctx, String prefix) :
 	{};
 
-/* proposals for Feature FunctionModuleCallMapping::parameters */
-List[Proposal] completeFunctionModuleCallMapping_parameters(emf::EObject ctx, String prefix) :
+/* proposals for Feature FunctionModulePOJORequestResponseMapping::responseParameters */
+List[Proposal] completeFunctionModulePOJORequestResponseMapping_responseParameters(emf::EObject ctx, String prefix) :
 	{};
 
 /* proposals for Feature GenSpec::structures */
 List[Proposal] completeGenSpec_structures(emf::EObject ctx, String prefix) :
 	{};
 
-/* proposals for Feature FunctionModuleRequestResponseMapping::responseParameters */
-List[Proposal] completeFunctionModuleRequestResponseMapping_responseParameters(emf::EObject ctx, String prefix) :
-	{};
-
-/* proposals for Feature Structure::fields */
-List[Proposal] completeStructure_fields(emf::EObject ctx, String prefix) :
-	{};
-
-/* proposals for Feature GenSpec::functionModules */
-List[Proposal] completeGenSpec_functionModules(emf::EObject ctx, String prefix) :
+/* proposals for Feature FunctionModulePOJOCallMapping::parameters */
+List[Proposal] completeFunctionModulePOJOCallMapping_parameters(emf::EObject ctx, String prefix) :
 	{};
 
 /* proposals for Feature FunctionModule::mapping */
 List[Proposal] completeFunctionModule_mapping(emf::EObject ctx, String prefix) :
 	{};
 
+/* proposals for Feature FunctionModulePOJORequestResponseMapping::requestParameters */
+List[Proposal] completeFunctionModulePOJORequestResponseMapping_requestParameters(emf::EObject ctx, String prefix) :
+	{};
+
+/* proposals for Feature GenSpec::functionModules */
+List[Proposal] completeGenSpec_functionModules(emf::EObject ctx, String prefix) :
+	{};
 
 
-/* proposals for Feature FunctionModuleChangingParameter::isTable */
-List[Proposal] completeFunctionModuleChangingParameter_isTable(emf::EObject ctx, String prefix) :
+
+/* proposals for Feature FunctionModulePOJOImportingParameter::isInactive */
+List[Proposal] completeFunctionModulePOJOImportingParameter_isInactive(emf::EObject ctx, String prefix) :
+    {newProposal("inactive", "inactive", "keyword.gif")};
+
+/* proposals for Feature FunctionModulePOJOExportingParameter::isTable */
+List[Proposal] completeFunctionModulePOJOExportingParameter_isTable(emf::EObject ctx, String prefix) :
     {newProposal("table", "table", "keyword.gif")};
 
-/* proposals for Feature FunctionModuleExportingParameter::isInactive */
-List[Proposal] completeFunctionModuleExportingParameter_isInactive(emf::EObject ctx, String prefix) :
-    {newProposal("inactive", "inactive", "keyword.gif")};
-
-/* proposals for Feature FunctionModuleTablesParameter::isInactive */
-List[Proposal] completeFunctionModuleTablesParameter_isInactive(emf::EObject ctx, String prefix) :
-    {newProposal("inactive", "inactive", "keyword.gif")};
-
-/* proposals for Feature FunctionModuleExportingParameter::isInactive */
-List[Proposal] completeFunctionModuleExportingParameter_isInactive(emf::EObject ctx, String prefix) :
-    {newProposal("inactive", "inactive", "keyword.gif")};
-
-/* proposals for Feature FunctionModuleChangingParameter::isStructure */
-List[Proposal] completeFunctionModuleChangingParameter_isStructure(emf::EObject ctx, String prefix) :
+/* proposals for Feature FunctionModulePOJOExportingParameter::isStructure */
+List[Proposal] completeFunctionModulePOJOExportingParameter_isStructure(emf::EObject ctx, String prefix) :
     {newProposal("structure", "structure", "keyword.gif")};
 
-/* proposals for Feature FunctionModuleImportingParameter::isTable */
-List[Proposal] completeFunctionModuleImportingParameter_isTable(emf::EObject ctx, String prefix) :
+/* proposals for Feature FunctionModulePOJOChangingParameter::isInactive */
+List[Proposal] completeFunctionModulePOJOChangingParameter_isInactive(emf::EObject ctx, String prefix) :
+    {newProposal("inactive", "inactive", "keyword.gif")};
+
+/* proposals for Feature FunctionModulePOJOChangingParameter::isInactive */
+List[Proposal] completeFunctionModulePOJOChangingParameter_isInactive(emf::EObject ctx, String prefix) :
+    {newProposal("inactive", "inactive", "keyword.gif")};
+
+/* proposals for Feature FunctionModulePOJOExportingParameter::isInactive */
+List[Proposal] completeFunctionModulePOJOExportingParameter_isInactive(emf::EObject ctx, String prefix) :
+    {newProposal("inactive", "inactive", "keyword.gif")};
+
+/* proposals for Feature FunctionModulePOJOExportingParameter::isInactive */
+List[Proposal] completeFunctionModulePOJOExportingParameter_isInactive(emf::EObject ctx, String prefix) :
+    {newProposal("inactive", "inactive", "keyword.gif")};
+
+/* proposals for Feature FunctionModulePOJOTablesParameter::isInactive */
+List[Proposal] completeFunctionModulePOJOTablesParameter_isInactive(emf::EObject ctx, String prefix) :
+    {newProposal("inactive", "inactive", "keyword.gif")};
+
+/* proposals for Feature FunctionModulePOJOImportingParameter::isInactive */
+List[Proposal] completeFunctionModulePOJOImportingParameter_isInactive(emf::EObject ctx, String prefix) :
+    {newProposal("inactive", "inactive", "keyword.gif")};
+
+/* proposals for Feature FunctionModulePOJOChangingParameter::isStructure */
+List[Proposal] completeFunctionModulePOJOChangingParameter_isStructure(emf::EObject ctx, String prefix) :
+    {newProposal("structure", "structure", "keyword.gif")};
+
+/* proposals for Feature FunctionModulePOJOChangingParameter::isTable */
+List[Proposal] completeFunctionModulePOJOChangingParameter_isTable(emf::EObject ctx, String prefix) :
     {newProposal("table", "table", "keyword.gif")};
 
-/* proposals for Feature FunctionModuleImportingParameter::isInactive */
-List[Proposal] completeFunctionModuleImportingParameter_isInactive(emf::EObject ctx, String prefix) :
+/* proposals for Feature FunctionModulePOJOImportingParameter::isStructure */
+List[Proposal] completeFunctionModulePOJOImportingParameter_isStructure(emf::EObject ctx, String prefix) :
+    {newProposal("structure", "structure", "keyword.gif")};
+
+/* proposals for Feature FunctionModulePOJOExportingParameter::isInactive */
+List[Proposal] completeFunctionModulePOJOExportingParameter_isInactive(emf::EObject ctx, String prefix) :
     {newProposal("inactive", "inactive", "keyword.gif")};
 
-/* proposals for Feature FunctionModuleChangingParameter::isInactive */
-List[Proposal] completeFunctionModuleChangingParameter_isInactive(emf::EObject ctx, String prefix) :
+/* proposals for Feature FunctionModulePOJOChangingParameter::isInactive */
+List[Proposal] completeFunctionModulePOJOChangingParameter_isInactive(emf::EObject ctx, String prefix) :
     {newProposal("inactive", "inactive", "keyword.gif")};
 
-/* proposals for Feature FunctionModuleExportingParameter::isInactive */
-List[Proposal] completeFunctionModuleExportingParameter_isInactive(emf::EObject ctx, String prefix) :
+/* proposals for Feature FunctionModulePOJOImportingParameter::isInactive */
+List[Proposal] completeFunctionModulePOJOImportingParameter_isInactive(emf::EObject ctx, String prefix) :
     {newProposal("inactive", "inactive", "keyword.gif")};
 
-/* proposals for Feature FunctionModuleChangingParameter::isInactive */
-List[Proposal] completeFunctionModuleChangingParameter_isInactive(emf::EObject ctx, String prefix) :
-    {newProposal("inactive", "inactive", "keyword.gif")};
-
-/* proposals for Feature FunctionModuleChangingParameter::isInactive */
-List[Proposal] completeFunctionModuleChangingParameter_isInactive(emf::EObject ctx, String prefix) :
-    {newProposal("inactive", "inactive", "keyword.gif")};
-
-/* proposals for Feature FunctionModuleExportingParameter::isTable */
-List[Proposal] completeFunctionModuleExportingParameter_isTable(emf::EObject ctx, String prefix) :
+/* proposals for Feature FunctionModulePOJOImportingParameter::isTable */
+List[Proposal] completeFunctionModulePOJOImportingParameter_isTable(emf::EObject ctx, String prefix) :
     {newProposal("table", "table", "keyword.gif")};
-
-/* proposals for Feature FunctionModuleImportingParameter::isStructure */
-List[Proposal] completeFunctionModuleImportingParameter_isStructure(emf::EObject ctx, String prefix) :
-    {newProposal("structure", "structure", "keyword.gif")};
-
-/* proposals for Feature FunctionModuleImportingParameter::isInactive */
-List[Proposal] completeFunctionModuleImportingParameter_isInactive(emf::EObject ctx, String prefix) :
-    {newProposal("inactive", "inactive", "keyword.gif")};
-
-/* proposals for Feature FunctionModuleImportingParameter::isInactive */
-List[Proposal] completeFunctionModuleImportingParameter_isInactive(emf::EObject ctx, String prefix) :
-    {newProposal("inactive", "inactive", "keyword.gif")};
-
-/* proposals for Feature FunctionModuleExportingParameter::isStructure */
-List[Proposal] completeFunctionModuleExportingParameter_isStructure(emf::EObject ctx, String prefix) :
-    {newProposal("structure", "structure", "keyword.gif")};
 
 
 

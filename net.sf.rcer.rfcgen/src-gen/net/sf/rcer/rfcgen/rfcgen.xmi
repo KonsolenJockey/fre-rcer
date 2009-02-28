@@ -17,6 +17,10 @@
   </rules>
   <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="Structure">
     <type alias="" name="Structure"/>
+    <content xsi:type="org.openarchitectureware.xtext:RuleName" name="StructurePOJOMapping"/>
+  </rules>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="StructurePOJOMapping">
+    <type alias="" name="StructurePOJOMapping"/>
     <content xsi:type="org.openarchitectureware.xtext:Group">
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="structure"/>
       <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">
@@ -28,13 +32,13 @@
       </children>
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="{"/>
       <children xsi:type="org.openarchitectureware.xtext:Assignment" cardinality="ANY" feature="fields" operator="ADD">
-        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="StructureFieldMapping"/>
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="StructureFieldPOJOMapping"/>
       </children>
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="}"/>
     </content>
   </rules>
-  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="StructureFieldMapping">
-    <type alias="" name="StructureFieldMapping"/>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="StructureFieldPOJOMapping">
+    <type alias="" name="StructureFieldPOJOMapping"/>
     <content xsi:type="org.openarchitectureware.xtext:Group">
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="field"/>
       <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">
@@ -73,13 +77,17 @@
   </rules>
   <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleMapping">
     <type alias="" name="FunctionModuleMapping"/>
+    <content xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModulePOJOMapping"/>
+  </rules>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModulePOJOMapping">
+    <type alias="" name="FunctionModulePOJOMapping"/>
     <content xsi:type="org.openarchitectureware.xtext:Alternatives">
-      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleCallMapping"/>
-      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleRequestResponseMapping"/>
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModulePOJOCallMapping"/>
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModulePOJORequestResponseMapping"/>
     </content>
   </rules>
-  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleCallMapping">
-    <type alias="" name="FunctionModuleCallMapping"/>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModulePOJOCallMapping">
+    <type alias="" name="FunctionModulePOJOCallMapping"/>
     <content xsi:type="org.openarchitectureware.xtext:Group">
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="class"/>
       <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="className" operator="ASSIGN">
@@ -87,13 +95,13 @@
       </children>
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="{"/>
       <children xsi:type="org.openarchitectureware.xtext:Assignment" cardinality="ANY" feature="parameters" operator="ADD">
-        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleParameterMapping"/>
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModulePOJOParameterMapping"/>
       </children>
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="}"/>
     </content>
   </rules>
-  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleRequestResponseMapping">
-    <type alias="" name="FunctionModuleRequestResponseMapping"/>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModulePOJORequestResponseMapping">
+    <type alias="" name="FunctionModulePOJORequestResponseMapping"/>
     <content xsi:type="org.openarchitectureware.xtext:Group">
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="request"/>
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="class"/>
@@ -102,7 +110,7 @@
       </children>
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="{"/>
       <children xsi:type="org.openarchitectureware.xtext:Assignment" cardinality="ANY" feature="requestParameters" operator="ADD">
-        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleParameterMapping"/>
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModulePOJOParameterMapping"/>
       </children>
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="}"/>
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="response"/>
@@ -112,22 +120,22 @@
       </children>
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="{"/>
       <children xsi:type="org.openarchitectureware.xtext:Assignment" cardinality="ANY" feature="responseParameters" operator="ADD">
-        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleParameterMapping"/>
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModulePOJOParameterMapping"/>
       </children>
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="}"/>
     </content>
   </rules>
-  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleParameterMapping">
-    <type alias="" name="FunctionModuleParameterMapping"/>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModulePOJOParameterMapping">
+    <type alias="" name="FunctionModulePOJOParameterMapping"/>
     <content xsi:type="org.openarchitectureware.xtext:Alternatives">
-      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleImportingParameter"/>
-      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleExportingParameter"/>
-      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleChangingParameter"/>
-      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleTablesParameter"/>
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModulePOJOImportingParameter"/>
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModulePOJOExportingParameter"/>
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModulePOJOChangingParameter"/>
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModulePOJOTablesParameter"/>
     </content>
   </rules>
-  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleImportingParameter">
-    <type alias="" name="FunctionModuleImportingParameter"/>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModulePOJOImportingParameter">
+    <type alias="" name="FunctionModulePOJOImportingParameter"/>
     <content xsi:type="org.openarchitectureware.xtext:Group">
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="import"/>
       <children xsi:type="org.openarchitectureware.xtext:Alternatives">
@@ -205,8 +213,8 @@
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value=";"/>
     </content>
   </rules>
-  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleExportingParameter">
-    <type alias="" name="FunctionModuleExportingParameter"/>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModulePOJOExportingParameter">
+    <type alias="" name="FunctionModulePOJOExportingParameter"/>
     <content xsi:type="org.openarchitectureware.xtext:Group">
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="export"/>
       <children xsi:type="org.openarchitectureware.xtext:Alternatives">
@@ -284,8 +292,8 @@
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value=";"/>
     </content>
   </rules>
-  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleChangingParameter">
-    <type alias="" name="FunctionModuleChangingParameter"/>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModulePOJOChangingParameter">
+    <type alias="" name="FunctionModulePOJOChangingParameter"/>
     <content xsi:type="org.openarchitectureware.xtext:Group">
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="change"/>
       <children xsi:type="org.openarchitectureware.xtext:Alternatives">
@@ -363,8 +371,8 @@
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value=";"/>
     </content>
   </rules>
-  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleTablesParameter">
-    <type alias="" name="FunctionModuleTablesParameter"/>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModulePOJOTablesParameter">
+    <type alias="" name="FunctionModulePOJOTablesParameter"/>
     <content xsi:type="org.openarchitectureware.xtext:Group">
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="table"/>
       <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">

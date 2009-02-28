@@ -37,8 +37,8 @@ public class RfcgenUtilities extends AbstractLanguageUtilities {
 		r.add("function");
 		r.add("comment");
 		r.add("structure");
-		r.add("import");
 		r.add("response");
+		r.add("import");
 		r.add("class");
 		r.add("inactive");
 		r.add("change");

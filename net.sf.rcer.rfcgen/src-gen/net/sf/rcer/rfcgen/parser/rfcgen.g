@@ -163,81 +163,16 @@ reportError(re);
 recover(input,re);}
 
 ruleStructure returns [EObject result]
+:
+        temp_structurepojomapping=ruleStructurePOJOMapping {$result=temp_structurepojomapping;}	;
+
+ruleStructurePOJOMapping returns [EObject result]
 @init {boolean hasContent = false;}
 :
 			{
-				$result = factory.create("", "Structure");
+				$result = factory.create("", "StructurePOJOMapping");
 			 }
 (({skipCurrentToken = false;}'structure'{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(0)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-({skipCurrentToken = false;}
-RULE_STRING{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(1)));
-  factory.set($result,"name",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}'class'{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(2)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-({skipCurrentToken = false;}
-RULE_ID{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(3)));
-  factory.set($result,"className",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}'{'{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(4)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-({ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(5)));}temp_StructureFieldMapping=
-ruleStructureFieldMapping{if (temp_StructureFieldMapping != null) {
-  hasContent = true;
-  ptm.setModelElement(temp_StructureFieldMapping);
-  factory.add($result,"fields",convert(temp_StructureFieldMapping),false);
-  ptm.ruleFinished(temp_StructureFieldMapping);
-} else {
-  ptm.destroyNode();
-}
-}
-)*
-
-({skipCurrentToken = false;}'}'{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(1)).eContents().get(1)).eContents().get(6)));
-  ptm.ruleFinished(getLastToken());
-}})
-)
- {if (!hasContent)
-  $result = null;};
-catch [RecognitionException re] {if (!hasContent)
-    $result = null;
-reportError(re);
-recover(input,re);}
-
-ruleStructureFieldMapping returns [EObject result]
-@init {boolean hasContent = false;}
-:
-			{
-				$result = factory.create("", "StructureFieldMapping");
-			 }
-(({skipCurrentToken = false;}'field'{if (!skipCurrentToken) {
   hasContent = true;
   ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(0)));
   ptm.ruleFinished(getLastToken());
@@ -253,7 +188,7 @@ RULE_STRING{if (!skipCurrentToken) {
 }}
 )
 
-({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
+({skipCurrentToken = false;}'class'{if (!skipCurrentToken) {
   hasContent = true;
   ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(2)));
   ptm.ruleFinished(getLastToken());
@@ -264,6 +199,75 @@ RULE_ID{if (!skipCurrentToken) {
   hasContent = true;
   Token temp = getLastToken();
   ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(3)));
+  factory.set($result,"className",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}'{'{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(4)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+({ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(5)));}temp_StructureFieldPOJOMapping=
+ruleStructureFieldPOJOMapping{if (temp_StructureFieldPOJOMapping != null) {
+  hasContent = true;
+  ptm.setModelElement(temp_StructureFieldPOJOMapping);
+  factory.add($result,"fields",convert(temp_StructureFieldPOJOMapping),false);
+  ptm.ruleFinished(temp_StructureFieldPOJOMapping);
+} else {
+  ptm.destroyNode();
+}
+}
+)*
+
+({skipCurrentToken = false;}'}'{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(6)));
+  ptm.ruleFinished(getLastToken());
+}})
+)
+ {if (!hasContent)
+  $result = null;};
+catch [RecognitionException re] {if (!hasContent)
+    $result = null;
+reportError(re);
+recover(input,re);}
+
+ruleStructureFieldPOJOMapping returns [EObject result]
+@init {boolean hasContent = false;}
+:
+			{
+				$result = factory.create("", "StructureFieldPOJOMapping");
+			 }
+(({skipCurrentToken = false;}'field'{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(0)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+({skipCurrentToken = false;}
+RULE_STRING{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(1)));
+  factory.set($result,"name",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(2)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+({skipCurrentToken = false;}
+RULE_ID{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(3)));
   factory.set($result,"type",convert(temp),false);
   ptm.ruleFinished(temp);
 }}
@@ -273,7 +277,7 @@ RULE_ID{if (!skipCurrentToken) {
 RULE_ID{if (!skipCurrentToken) {
   hasContent = true;
   Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(4)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(4)));
   factory.set($result,"attribute",convert(temp),false);
   ptm.ruleFinished(temp);
 }}
@@ -281,7 +285,7 @@ RULE_ID{if (!skipCurrentToken) {
 
 (({skipCurrentToken = false;}'comment'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(5)).eContents().get(0)));
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(5)).eContents().get(0)));
   ptm.ruleFinished(getLastToken());
 }})
 
@@ -289,7 +293,7 @@ RULE_ID{if (!skipCurrentToken) {
 RULE_STRING{if (!skipCurrentToken) {
   hasContent = true;
   Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(5)).eContents().get(1)));
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(5)).eContents().get(1)));
   factory.set($result,"comment",convert(temp),false);
   ptm.ruleFinished(temp);
 }}
@@ -298,7 +302,7 @@ RULE_STRING{if (!skipCurrentToken) {
 
 ({skipCurrentToken = false;}';'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(2)).eContents().get(1)).eContents().get(6)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(6)));
   ptm.ruleFinished(getLastToken());
 }})
 )
@@ -317,13 +321,13 @@ ruleFunctionModule returns [EObject result]
 			 }
 (({skipCurrentToken = false;}'function'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(0)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(4)).eContents().get(1)).eContents().get(0)));
   ptm.ruleFinished(getLastToken());
 }})
 
 ({skipCurrentToken = false;}'module'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(1)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(4)).eContents().get(1)).eContents().get(1)));
   ptm.ruleFinished(getLastToken());
 }})
 
@@ -331,7 +335,7 @@ ruleFunctionModule returns [EObject result]
 RULE_STRING{if (!skipCurrentToken) {
   hasContent = true;
   Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(2)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(4)).eContents().get(1)).eContents().get(2)));
   factory.set($result,"name",convert(temp),false);
   ptm.ruleFinished(temp);
 }}
@@ -339,11 +343,11 @@ RULE_STRING{if (!skipCurrentToken) {
 
 ({skipCurrentToken = false;}'{'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(3)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(4)).eContents().get(1)).eContents().get(3)));
   ptm.ruleFinished(getLastToken());
 }})
 
-({ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(4)));}temp_FunctionModuleMapping=
+({ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(4)).eContents().get(1)).eContents().get(4)));}temp_FunctionModuleMapping=
 ruleFunctionModuleMapping{if (temp_FunctionModuleMapping != null) {
   hasContent = true;
   ptm.setModelElement(temp_FunctionModuleMapping);
@@ -357,7 +361,7 @@ ruleFunctionModuleMapping{if (temp_FunctionModuleMapping != null) {
 
 ({skipCurrentToken = false;}'}'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(3)).eContents().get(1)).eContents().get(5)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(4)).eContents().get(1)).eContents().get(5)));
   ptm.ruleFinished(getLastToken());
 }})
 )
@@ -370,17 +374,21 @@ recover(input,re);}
 
 ruleFunctionModuleMapping returns [EObject result]
 :
-        temp_functionmodulecallmapping=ruleFunctionModuleCallMapping {$result=temp_functionmodulecallmapping;}	|        temp_functionmodulerequestresponsemapping=ruleFunctionModuleRequestResponseMapping {$result=temp_functionmodulerequestresponsemapping;}	;
+        temp_functionmodulepojomapping=ruleFunctionModulePOJOMapping {$result=temp_functionmodulepojomapping;}	;
 
-ruleFunctionModuleCallMapping returns [EObject result]
+ruleFunctionModulePOJOMapping returns [EObject result]
+:
+        temp_functionmodulepojocallmapping=ruleFunctionModulePOJOCallMapping {$result=temp_functionmodulepojocallmapping;}	|        temp_functionmodulepojorequestresponsemapping=ruleFunctionModulePOJORequestResponseMapping {$result=temp_functionmodulepojorequestresponsemapping;}	;
+
+ruleFunctionModulePOJOCallMapping returns [EObject result]
 @init {boolean hasContent = false;}
 :
 			{
-				$result = factory.create("", "FunctionModuleCallMapping");
+				$result = factory.create("", "FunctionModulePOJOCallMapping");
 			 }
 (({skipCurrentToken = false;}'class'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(0)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(7)).eContents().get(1)).eContents().get(0)));
   ptm.ruleFinished(getLastToken());
 }})
 
@@ -388,7 +396,7 @@ ruleFunctionModuleCallMapping returns [EObject result]
 RULE_ID{if (!skipCurrentToken) {
   hasContent = true;
   Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(1)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(7)).eContents().get(1)).eContents().get(1)));
   factory.set($result,"className",convert(temp),false);
   ptm.ruleFinished(temp);
 }}
@@ -396,16 +404,16 @@ RULE_ID{if (!skipCurrentToken) {
 
 ({skipCurrentToken = false;}'{'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(2)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(7)).eContents().get(1)).eContents().get(2)));
   ptm.ruleFinished(getLastToken());
 }})
 
-({ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(3)));}temp_FunctionModuleParameterMapping=
-ruleFunctionModuleParameterMapping{if (temp_FunctionModuleParameterMapping != null) {
+({ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(7)).eContents().get(1)).eContents().get(3)));}temp_FunctionModulePOJOParameterMapping=
+ruleFunctionModulePOJOParameterMapping{if (temp_FunctionModulePOJOParameterMapping != null) {
   hasContent = true;
-  ptm.setModelElement(temp_FunctionModuleParameterMapping);
-  factory.add($result,"parameters",convert(temp_FunctionModuleParameterMapping),false);
-  ptm.ruleFinished(temp_FunctionModuleParameterMapping);
+  ptm.setModelElement(temp_FunctionModulePOJOParameterMapping);
+  factory.add($result,"parameters",convert(temp_FunctionModulePOJOParameterMapping),false);
+  ptm.ruleFinished(temp_FunctionModulePOJOParameterMapping);
 } else {
   ptm.destroyNode();
 }
@@ -414,7 +422,7 @@ ruleFunctionModuleParameterMapping{if (temp_FunctionModuleParameterMapping != nu
 
 ({skipCurrentToken = false;}'}'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(5)).eContents().get(1)).eContents().get(4)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(7)).eContents().get(1)).eContents().get(4)));
   ptm.ruleFinished(getLastToken());
 }})
 )
@@ -425,21 +433,21 @@ catch [RecognitionException re] {if (!hasContent)
 reportError(re);
 recover(input,re);}
 
-ruleFunctionModuleRequestResponseMapping returns [EObject result]
+ruleFunctionModulePOJORequestResponseMapping returns [EObject result]
 @init {boolean hasContent = false;}
 :
 			{
-				$result = factory.create("", "FunctionModuleRequestResponseMapping");
+				$result = factory.create("", "FunctionModulePOJORequestResponseMapping");
 			 }
 (({skipCurrentToken = false;}'request'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(0)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(0)));
   ptm.ruleFinished(getLastToken());
 }})
 
 ({skipCurrentToken = false;}'class'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(1)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)));
   ptm.ruleFinished(getLastToken());
 }})
 
@@ -447,7 +455,7 @@ ruleFunctionModuleRequestResponseMapping returns [EObject result]
 RULE_ID{if (!skipCurrentToken) {
   hasContent = true;
   Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(2)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(2)));
   factory.set($result,"requestClassName",convert(temp),false);
   ptm.ruleFinished(temp);
 }}
@@ -455,16 +463,16 @@ RULE_ID{if (!skipCurrentToken) {
 
 ({skipCurrentToken = false;}'{'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(3)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(3)));
   ptm.ruleFinished(getLastToken());
 }})
 
-({ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(4)));}temp_FunctionModuleParameterMapping=
-ruleFunctionModuleParameterMapping{if (temp_FunctionModuleParameterMapping != null) {
+({ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(4)));}temp_FunctionModulePOJOParameterMapping=
+ruleFunctionModulePOJOParameterMapping{if (temp_FunctionModulePOJOParameterMapping != null) {
   hasContent = true;
-  ptm.setModelElement(temp_FunctionModuleParameterMapping);
-  factory.add($result,"requestParameters",convert(temp_FunctionModuleParameterMapping),false);
-  ptm.ruleFinished(temp_FunctionModuleParameterMapping);
+  ptm.setModelElement(temp_FunctionModulePOJOParameterMapping);
+  factory.add($result,"requestParameters",convert(temp_FunctionModulePOJOParameterMapping),false);
+  ptm.ruleFinished(temp_FunctionModulePOJOParameterMapping);
 } else {
   ptm.destroyNode();
 }
@@ -473,19 +481,19 @@ ruleFunctionModuleParameterMapping{if (temp_FunctionModuleParameterMapping != nu
 
 ({skipCurrentToken = false;}'}'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(5)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(5)));
   ptm.ruleFinished(getLastToken());
 }})
 
 ({skipCurrentToken = false;}'response'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(6)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(6)));
   ptm.ruleFinished(getLastToken());
 }})
 
 ({skipCurrentToken = false;}'class'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(7)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(7)));
   ptm.ruleFinished(getLastToken());
 }})
 
@@ -493,7 +501,7 @@ ruleFunctionModuleParameterMapping{if (temp_FunctionModuleParameterMapping != nu
 RULE_ID{if (!skipCurrentToken) {
   hasContent = true;
   Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(8)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(8)));
   factory.set($result,"responseClassName",convert(temp),false);
   ptm.ruleFinished(temp);
 }}
@@ -501,16 +509,16 @@ RULE_ID{if (!skipCurrentToken) {
 
 ({skipCurrentToken = false;}'{'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(9)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(9)));
   ptm.ruleFinished(getLastToken());
 }})
 
-({ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(10)));}temp_FunctionModuleParameterMapping=
-ruleFunctionModuleParameterMapping{if (temp_FunctionModuleParameterMapping != null) {
+({ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(10)));}temp_FunctionModulePOJOParameterMapping=
+ruleFunctionModulePOJOParameterMapping{if (temp_FunctionModulePOJOParameterMapping != null) {
   hasContent = true;
-  ptm.setModelElement(temp_FunctionModuleParameterMapping);
-  factory.add($result,"responseParameters",convert(temp_FunctionModuleParameterMapping),false);
-  ptm.ruleFinished(temp_FunctionModuleParameterMapping);
+  ptm.setModelElement(temp_FunctionModulePOJOParameterMapping);
+  factory.add($result,"responseParameters",convert(temp_FunctionModulePOJOParameterMapping),false);
+  ptm.ruleFinished(temp_FunctionModulePOJOParameterMapping);
 } else {
   ptm.destroyNode();
 }
@@ -519,7 +527,7 @@ ruleFunctionModuleParameterMapping{if (temp_FunctionModuleParameterMapping != nu
 
 ({skipCurrentToken = false;}'}'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(6)).eContents().get(1)).eContents().get(11)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(11)));
   ptm.ruleFinished(getLastToken());
 }})
 )
@@ -530,449 +538,17 @@ catch [RecognitionException re] {if (!hasContent)
 reportError(re);
 recover(input,re);}
 
-ruleFunctionModuleParameterMapping returns [EObject result]
+ruleFunctionModulePOJOParameterMapping returns [EObject result]
 :
-        temp_functionmoduleimportingparameter=ruleFunctionModuleImportingParameter {$result=temp_functionmoduleimportingparameter;}	|        temp_functionmoduleexportingparameter=ruleFunctionModuleExportingParameter {$result=temp_functionmoduleexportingparameter;}	|        temp_functionmodulechangingparameter=ruleFunctionModuleChangingParameter {$result=temp_functionmodulechangingparameter;}	|        temp_functionmoduletablesparameter=ruleFunctionModuleTablesParameter {$result=temp_functionmoduletablesparameter;}	;
+        temp_functionmodulepojoimportingparameter=ruleFunctionModulePOJOImportingParameter {$result=temp_functionmodulepojoimportingparameter;}	|        temp_functionmodulepojoexportingparameter=ruleFunctionModulePOJOExportingParameter {$result=temp_functionmodulepojoexportingparameter;}	|        temp_functionmodulepojochangingparameter=ruleFunctionModulePOJOChangingParameter {$result=temp_functionmodulepojochangingparameter;}	|        temp_functionmodulepojotablesparameter=ruleFunctionModulePOJOTablesParameter {$result=temp_functionmodulepojotablesparameter;}	;
 
-ruleFunctionModuleImportingParameter returns [EObject result]
+ruleFunctionModulePOJOImportingParameter returns [EObject result]
 @init {boolean hasContent = false;}
 :
 			{
-				$result = factory.create("", "FunctionModuleImportingParameter");
+				$result = factory.create("", "FunctionModulePOJOImportingParameter");
 			 }
 (({skipCurrentToken = false;}'import'{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(0)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-((({skipCurrentToken = false;}'field'{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(0)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-({skipCurrentToken = false;}
-RULE_STRING{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(1)));
-  factory.set($result,"name",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(2)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-(({skipCurrentToken = false;}
-'inactive'{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(0)));
-  factory.set($result,"isInactive",true);
-  ptm.ruleFinished(temp);
-}}
-)
-	|
-(({skipCurrentToken = false;}
-RULE_ID{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
-  factory.set($result,"type",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}
-RULE_ID{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
-  factory.set($result,"attribute",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-)
-)
-)
-	|
-(({skipCurrentToken = false;}
-'structure'{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(0)));
-  factory.set($result,"isStructure",true);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}
-RULE_STRING{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(1)));
-  factory.set($result,"name",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(2)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-(({skipCurrentToken = false;}
-'inactive'{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(0)));
-  factory.set($result,"isInactive",true);
-  ptm.ruleFinished(temp);
-}}
-)
-	|
-(({skipCurrentToken = false;}
-RULE_ID{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
-  factory.set($result,"type",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}
-RULE_ID{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
-  factory.set($result,"attribute",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-)
-)
-)
-	|
-(({skipCurrentToken = false;}
-'table'{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(0)));
-  factory.set($result,"isTable",true);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}
-RULE_STRING{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(1)));
-  factory.set($result,"name",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(2)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-(({skipCurrentToken = false;}
-'inactive'{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(0)));
-  factory.set($result,"isInactive",true);
-  ptm.ruleFinished(temp);
-}}
-)
-	|
-(({skipCurrentToken = false;}
-RULE_ID{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
-  factory.set($result,"type",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}
-RULE_ID{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
-  factory.set($result,"attribute",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-)
-)
-)
-)
-
-(({skipCurrentToken = false;}'comment'{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(2)).eContents().get(0)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-({skipCurrentToken = false;}
-RULE_STRING{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(2)).eContents().get(1)));
-  factory.set($result,"comment",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-)?
-
-({skipCurrentToken = false;}';'{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(8)).eContents().get(1)).eContents().get(3)));
-  ptm.ruleFinished(getLastToken());
-}})
-)
- {if (!hasContent)
-  $result = null;};
-catch [RecognitionException re] {if (!hasContent)
-    $result = null;
-reportError(re);
-recover(input,re);}
-
-ruleFunctionModuleExportingParameter returns [EObject result]
-@init {boolean hasContent = false;}
-:
-			{
-				$result = factory.create("", "FunctionModuleExportingParameter");
-			 }
-(({skipCurrentToken = false;}'export'{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(0)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-((({skipCurrentToken = false;}'field'{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(0)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-({skipCurrentToken = false;}
-RULE_STRING{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(1)));
-  factory.set($result,"name",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(2)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-(({skipCurrentToken = false;}
-'inactive'{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(0)));
-  factory.set($result,"isInactive",true);
-  ptm.ruleFinished(temp);
-}}
-)
-	|
-(({skipCurrentToken = false;}
-RULE_ID{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
-  factory.set($result,"type",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}
-RULE_ID{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
-  factory.set($result,"attribute",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-)
-)
-)
-	|
-(({skipCurrentToken = false;}
-'structure'{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(0)));
-  factory.set($result,"isStructure",true);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}
-RULE_STRING{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(1)));
-  factory.set($result,"name",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(2)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-(({skipCurrentToken = false;}
-'inactive'{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(0)));
-  factory.set($result,"isInactive",true);
-  ptm.ruleFinished(temp);
-}}
-)
-	|
-(({skipCurrentToken = false;}
-RULE_ID{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
-  factory.set($result,"type",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}
-RULE_ID{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
-  factory.set($result,"attribute",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-)
-)
-)
-	|
-(({skipCurrentToken = false;}
-'table'{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(0)));
-  factory.set($result,"isTable",true);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}
-RULE_STRING{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(1)));
-  factory.set($result,"name",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(2)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-(({skipCurrentToken = false;}
-'inactive'{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(0)));
-  factory.set($result,"isInactive",true);
-  ptm.ruleFinished(temp);
-}}
-)
-	|
-(({skipCurrentToken = false;}
-RULE_ID{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
-  factory.set($result,"type",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-
-({skipCurrentToken = false;}
-RULE_ID{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
-  factory.set($result,"attribute",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-)
-)
-)
-)
-
-(({skipCurrentToken = false;}'comment'{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(2)).eContents().get(0)));
-  ptm.ruleFinished(getLastToken());
-}})
-
-({skipCurrentToken = false;}
-RULE_STRING{if (!skipCurrentToken) {
-  hasContent = true;
-  Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(2)).eContents().get(1)));
-  factory.set($result,"comment",convert(temp),false);
-  ptm.ruleFinished(temp);
-}}
-)
-)?
-
-({skipCurrentToken = false;}';'{if (!skipCurrentToken) {
-  hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(9)).eContents().get(1)).eContents().get(3)));
-  ptm.ruleFinished(getLastToken());
-}})
-)
- {if (!hasContent)
-  $result = null;};
-catch [RecognitionException re] {if (!hasContent)
-    $result = null;
-reportError(re);
-recover(input,re);}
-
-ruleFunctionModuleChangingParameter returns [EObject result]
-@init {boolean hasContent = false;}
-:
-			{
-				$result = factory.create("", "FunctionModuleChangingParameter");
-			 }
-(({skipCurrentToken = false;}'change'{if (!skipCurrentToken) {
   hasContent = true;
   ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(10)).eContents().get(1)).eContents().get(0)));
   ptm.ruleFinished(getLastToken());
@@ -1182,15 +758,21 @@ catch [RecognitionException re] {if (!hasContent)
 reportError(re);
 recover(input,re);}
 
-ruleFunctionModuleTablesParameter returns [EObject result]
+ruleFunctionModulePOJOExportingParameter returns [EObject result]
 @init {boolean hasContent = false;}
 :
 			{
-				$result = factory.create("", "FunctionModuleTablesParameter");
+				$result = factory.create("", "FunctionModulePOJOExportingParameter");
 			 }
-(({skipCurrentToken = false;}'table'{if (!skipCurrentToken) {
+(({skipCurrentToken = false;}'export'{if (!skipCurrentToken) {
   hasContent = true;
   ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(0)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+((({skipCurrentToken = false;}'field'{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(0)));
   ptm.ruleFinished(getLastToken());
 }})
 
@@ -1198,7 +780,7 @@ ruleFunctionModuleTablesParameter returns [EObject result]
 RULE_STRING{if (!skipCurrentToken) {
   hasContent = true;
   Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)));
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(1)));
   factory.set($result,"name",convert(temp),false);
   ptm.ruleFinished(temp);
 }}
@@ -1206,7 +788,7 @@ RULE_STRING{if (!skipCurrentToken) {
 
 ({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(2)));
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(2)));
   ptm.ruleFinished(getLastToken());
 }})
 
@@ -1214,7 +796,7 @@ RULE_STRING{if (!skipCurrentToken) {
 'inactive'{if (!skipCurrentToken) {
   hasContent = true;
   Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(3)).eContents().get(0)));
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(0)));
   factory.set($result,"isInactive",true);
   ptm.ruleFinished(temp);
 }}
@@ -1224,7 +806,7 @@ RULE_STRING{if (!skipCurrentToken) {
 RULE_ID{if (!skipCurrentToken) {
   hasContent = true;
   Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
   factory.set($result,"type",convert(temp),false);
   ptm.ruleFinished(temp);
 }}
@@ -1234,7 +816,433 @@ RULE_ID{if (!skipCurrentToken) {
 RULE_ID{if (!skipCurrentToken) {
   hasContent = true;
   Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+  factory.set($result,"attribute",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+)
+)
+)
+	|
+(({skipCurrentToken = false;}
+'structure'{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(0)));
+  factory.set($result,"isStructure",true);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}
+RULE_STRING{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(1)));
+  factory.set($result,"name",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(2)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+(({skipCurrentToken = false;}
+'inactive'{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(0)));
+  factory.set($result,"isInactive",true);
+  ptm.ruleFinished(temp);
+}}
+)
+	|
+(({skipCurrentToken = false;}
+RULE_ID{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+  factory.set($result,"type",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}
+RULE_ID{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+  factory.set($result,"attribute",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+)
+)
+)
+	|
+(({skipCurrentToken = false;}
+'table'{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(0)));
+  factory.set($result,"isTable",true);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}
+RULE_STRING{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(1)));
+  factory.set($result,"name",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(2)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+(({skipCurrentToken = false;}
+'inactive'{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(0)));
+  factory.set($result,"isInactive",true);
+  ptm.ruleFinished(temp);
+}}
+)
+	|
+(({skipCurrentToken = false;}
+RULE_ID{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+  factory.set($result,"type",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}
+RULE_ID{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+  factory.set($result,"attribute",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+)
+)
+)
+)
+
+(({skipCurrentToken = false;}'comment'{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(2)).eContents().get(0)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+({skipCurrentToken = false;}
+RULE_STRING{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(2)).eContents().get(1)));
+  factory.set($result,"comment",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+)?
+
+({skipCurrentToken = false;}';'{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(3)));
+  ptm.ruleFinished(getLastToken());
+}})
+)
+ {if (!hasContent)
+  $result = null;};
+catch [RecognitionException re] {if (!hasContent)
+    $result = null;
+reportError(re);
+recover(input,re);}
+
+ruleFunctionModulePOJOChangingParameter returns [EObject result]
+@init {boolean hasContent = false;}
+:
+			{
+				$result = factory.create("", "FunctionModulePOJOChangingParameter");
+			 }
+(({skipCurrentToken = false;}'change'{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(0)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+((({skipCurrentToken = false;}'field'{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(0)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+({skipCurrentToken = false;}
+RULE_STRING{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(1)));
+  factory.set($result,"name",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(2)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+(({skipCurrentToken = false;}
+'inactive'{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(0)));
+  factory.set($result,"isInactive",true);
+  ptm.ruleFinished(temp);
+}}
+)
+	|
+(({skipCurrentToken = false;}
+RULE_ID{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+  factory.set($result,"type",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}
+RULE_ID{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(0)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+  factory.set($result,"attribute",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+)
+)
+)
+	|
+(({skipCurrentToken = false;}
+'structure'{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(0)));
+  factory.set($result,"isStructure",true);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}
+RULE_STRING{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(1)));
+  factory.set($result,"name",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(2)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+(({skipCurrentToken = false;}
+'inactive'{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(0)));
+  factory.set($result,"isInactive",true);
+  ptm.ruleFinished(temp);
+}}
+)
+	|
+(({skipCurrentToken = false;}
+RULE_ID{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+  factory.set($result,"type",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}
+RULE_ID{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+  factory.set($result,"attribute",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+)
+)
+)
+	|
+(({skipCurrentToken = false;}
+'table'{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(0)));
+  factory.set($result,"isTable",true);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}
+RULE_STRING{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(1)));
+  factory.set($result,"name",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(2)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+(({skipCurrentToken = false;}
+'inactive'{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(0)));
+  factory.set($result,"isInactive",true);
+  ptm.ruleFinished(temp);
+}}
+)
+	|
+(({skipCurrentToken = false;}
+RULE_ID{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+  factory.set($result,"type",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}
+RULE_ID{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(1)).eContents().get(2)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
+  factory.set($result,"attribute",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+)
+)
+)
+)
+
+(({skipCurrentToken = false;}'comment'{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(2)).eContents().get(0)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+({skipCurrentToken = false;}
+RULE_STRING{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(2)).eContents().get(1)));
+  factory.set($result,"comment",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+)?
+
+({skipCurrentToken = false;}';'{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(12)).eContents().get(1)).eContents().get(3)));
+  ptm.ruleFinished(getLastToken());
+}})
+)
+ {if (!hasContent)
+  $result = null;};
+catch [RecognitionException re] {if (!hasContent)
+    $result = null;
+reportError(re);
+recover(input,re);}
+
+ruleFunctionModulePOJOTablesParameter returns [EObject result]
+@init {boolean hasContent = false;}
+:
+			{
+				$result = factory.create("", "FunctionModulePOJOTablesParameter");
+			 }
+(({skipCurrentToken = false;}'table'{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(13)).eContents().get(1)).eContents().get(0)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+({skipCurrentToken = false;}
+RULE_STRING{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(13)).eContents().get(1)).eContents().get(1)));
+  factory.set($result,"name",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}'='{if (!skipCurrentToken) {
+  hasContent = true;
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(13)).eContents().get(1)).eContents().get(2)));
+  ptm.ruleFinished(getLastToken());
+}})
+
+(({skipCurrentToken = false;}
+'inactive'{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(13)).eContents().get(1)).eContents().get(3)).eContents().get(0)));
+  factory.set($result,"isInactive",true);
+  ptm.ruleFinished(temp);
+}}
+)
+	|
+(({skipCurrentToken = false;}
+RULE_ID{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(13)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(0)));
+  factory.set($result,"type",convert(temp),false);
+  ptm.ruleFinished(temp);
+}}
+)
+
+({skipCurrentToken = false;}
+RULE_ID{if (!skipCurrentToken) {
+  hasContent = true;
+  Token temp = getLastToken();
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(13)).eContents().get(1)).eContents().get(3)).eContents().get(1)).eContents().get(1)));
   factory.set($result,"attribute",convert(temp),false);
   ptm.ruleFinished(temp);
 }}
@@ -1244,7 +1252,7 @@ RULE_ID{if (!skipCurrentToken) {
 
 (({skipCurrentToken = false;}'comment'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(4)).eContents().get(0)));
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(13)).eContents().get(1)).eContents().get(4)).eContents().get(0)));
   ptm.ruleFinished(getLastToken());
 }})
 
@@ -1252,7 +1260,7 @@ RULE_ID{if (!skipCurrentToken) {
 RULE_STRING{if (!skipCurrentToken) {
   hasContent = true;
   Token temp = getLastToken();
-  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(4)).eContents().get(1)));
+  ptm.createNode(((EObject)((EObject)((EObject)((EObject)xtextfile.eContents().get(13)).eContents().get(1)).eContents().get(4)).eContents().get(1)));
   factory.set($result,"comment",convert(temp),false);
   ptm.ruleFinished(temp);
 }}
@@ -1261,7 +1269,7 @@ RULE_STRING{if (!skipCurrentToken) {
 
 ({skipCurrentToken = false;}';'{if (!skipCurrentToken) {
   hasContent = true;
-  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(11)).eContents().get(1)).eContents().get(5)));
+  ptm.createNode(((EObject)((EObject)((EObject)xtextfile.eContents().get(13)).eContents().get(1)).eContents().get(5)));
   ptm.ruleFinished(getLastToken());
 }})
 )

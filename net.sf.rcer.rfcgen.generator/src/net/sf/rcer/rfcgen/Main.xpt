@@ -229,7 +229,7 @@ public class «className» {
 
 «REM» ============================================================================================= «ENDREM»
 
-«DEFINE FunctionModuleClasses(String packageName, String functionModuleName) FOR FunctionModuleCallMapping»
+«DEFINE FunctionModuleClasses(String packageName, String functionModuleName) FOR FunctionModulePOJOCallMapping»
 «FILE getFileName(packageName)» 
 package «packageName»;
 «EXPAND Imports FOR this»
@@ -249,7 +249,7 @@ public class «className» {
 	private PropertyChangeSupport _pcs;
 
 «FOREACH parameters AS p-»
-	«EXPAND FunctionModuleParameterAttribute FOR p-»
+	«EXPAND FunctionModulePOJOParameterAttribute FOR p-»
 «ENDFOREACH-»
 	
 	/**
@@ -285,11 +285,11 @@ public class «className» {
 	public void execute(JCoDestination destination) throws JCoException {
 		JCoFunction function = destination.getRepository().getFunction("«functionModuleName»");
 «FOREACH parameters AS p-»
-	«EXPAND FunctionModuleParameterBeforeCall FOR p-»
+	«EXPAND FunctionModulePOJOParameterBeforeCall FOR p-»
 «ENDFOREACH-»
 		function.execute(destination);
 «FOREACH parameters AS p-»
-	«EXPAND FunctionModuleParameterAfterCall FOR p-»
+	«EXPAND FunctionModulePOJOParameterAfterCall FOR p-»
 «ENDFOREACH-»
 	}
 
@@ -300,7 +300,7 @@ public class «className» {
 
 «REM» ============================================================================================= «ENDREM»
 
-«DEFINE FunctionModuleClasses(String packageName, String functionModuleName) FOR FunctionModuleRequestResponseMapping»
+«DEFINE FunctionModuleClasses(String packageName, String functionModuleName) FOR FunctionModulePOJORequestResponseMapping»
 «FILE getRequestFileName(packageName)» 
 package «packageName»;
 «EXPAND Imports FOR this»
@@ -320,7 +320,7 @@ public class «requestClassName» {
 	private PropertyChangeSupport _pcs;
 
 «FOREACH requestParameters AS p-»
-	«EXPAND FunctionModuleParameterAttribute FOR p-»
+	«EXPAND FunctionModulePOJOParameterAttribute FOR p-»
 «ENDFOREACH-»
 	
 	/**
@@ -356,12 +356,12 @@ public class «requestClassName» {
 	public «responseClassName» execute(JCoDestination destination) throws JCoException {
 		JCoFunction function = destination.getRepository().getFunction("«functionModuleName»");
 «FOREACH requestParameters AS p-»
-	«EXPAND FunctionModuleParameterBeforeCall FOR p-»
+	«EXPAND FunctionModulePOJOParameterBeforeCall FOR p-»
 «ENDFOREACH-»
 		function.execute(destination);
 		«responseClassName» response = new «responseClassName»();
 «FOREACH responseParameters AS p-»
-	«EXPAND FunctionModuleParameterAfterCallResponse FOR p-»
+	«EXPAND FunctionModulePOJOParameterAfterCallResponse FOR p-»
 «ENDFOREACH-»
 		return response;
 	}
@@ -383,7 +383,7 @@ public class «responseClassName» {
 	private PropertyChangeSupport _pcs;
 
 «FOREACH responseParameters AS p-»
-	«EXPAND FunctionModuleParameterAttribute FOR p-»
+	«EXPAND FunctionModulePOJOParameterAttribute FOR p-»
 «ENDFOREACH-»
 	
 	/**
@@ -418,11 +418,11 @@ public class «responseClassName» {
 
 «REM» ============================================================================================= «ENDREM»
 
-«DEFINE FunctionModuleParameterAttribute FOR FunctionModuleParameterMapping»
+«DEFINE FunctionModulePOJOParameterAttribute FOR FunctionModulePOJOParameterMapping»
 «ERROR "Abstract template called - should not happen."»
 «ENDDEFINE»
 
-«DEFINE FunctionModuleParameterAttribute FOR FunctionModuleImportingParameter-»
+«DEFINE FunctionModulePOJOParameterAttribute FOR FunctionModulePOJOImportingParameter-»
 «IF isTable-»
 	private «getJavaType()» «attribute» = new ArrayList<«type»>();
 «ELSE-»
@@ -430,7 +430,7 @@ public class «responseClassName» {
 «ENDIF-»
 «ENDDEFINE»
 
-«DEFINE FunctionModuleParameterAttribute FOR FunctionModuleExportingParameter-»
+«DEFINE FunctionModulePOJOParameterAttribute FOR FunctionModulePOJOExportingParameter-»
 «IF isTable-»
 	private «getJavaType()» «attribute» = new ArrayList<«type»>();
 «ELSE-»
@@ -438,7 +438,7 @@ public class «responseClassName» {
 «ENDIF-»
 «ENDDEFINE»
 
-«DEFINE FunctionModuleParameterAttribute FOR FunctionModuleChangingParameter-»
+«DEFINE FunctionModulePOJOParameterAttribute FOR FunctionModulePOJOChangingParameter-»
 «IF isTable-»
 	private «getJavaType()» «attribute» = new ArrayList<«type»>();
 «ELSE-»
@@ -446,16 +446,16 @@ public class «responseClassName» {
 «ENDIF-»
 «ENDDEFINE»
 
-«DEFINE FunctionModuleParameterAttribute FOR FunctionModuleTablesParameter-»
+«DEFINE FunctionModulePOJOParameterAttribute FOR FunctionModulePOJOTablesParameter-»
 	private «getJavaType()» «attribute» = new ArrayList<«type»>();
 «ENDDEFINE»
 
 «REM» ============================================================================================= «ENDREM»
 
-«DEFINE FunctionModuleParameterBeforeCall FOR FunctionModuleParameterMapping-»
+«DEFINE FunctionModulePOJOParameterBeforeCall FOR FunctionModulePOJOParameterMapping-»
 «ENDDEFINE»
 
-«DEFINE FunctionModuleParameterBeforeCall FOR FunctionModuleImportingParameter-»
+«DEFINE FunctionModulePOJOParameterBeforeCall FOR FunctionModulePOJOImportingParameter-»
 «IF isTable-»
 		«type».toTable(function.getImportParameterList().getTable("«name»"));
 «ELSEIF isStructure-»
@@ -465,7 +465,7 @@ public class «responseClassName» {
 «ENDIF-»
 «ENDDEFINE»
 
-«DEFINE FunctionModuleParameterBeforeCall FOR FunctionModuleChangingParameter-»
+«DEFINE FunctionModulePOJOParameterBeforeCall FOR FunctionModulePOJOChangingParameter-»
 «IF isTable-»
 		«type».toTable(function.getChangingParameterList().getTable("«name»"));
 «ELSEIF isStructure-»
@@ -475,16 +475,16 @@ public class «responseClassName» {
 «ENDIF-»
 «ENDDEFINE»
 
-«DEFINE FunctionModuleParameterBeforeCall FOR FunctionModuleTablesParameter-»
+«DEFINE FunctionModulePOJOParameterBeforeCall FOR FunctionModulePOJOTablesParameter-»
 		«type».toTable(«attribute», function.getTableParameterList().getTable("«name»"));
 «ENDDEFINE»
 
 «REM» ============================================================================================= «ENDREM»
 
-«DEFINE FunctionModuleParameterAfterCall FOR FunctionModuleParameterMapping-»
+«DEFINE FunctionModulePOJOParameterAfterCall FOR FunctionModulePOJOParameterMapping-»
 «ENDDEFINE»
 
-«DEFINE FunctionModuleParameterAfterCall FOR FunctionModuleExportingParameter-»
+«DEFINE FunctionModulePOJOParameterAfterCall FOR FunctionModulePOJOExportingParameter-»
 «IF isTable-»
 		«attribute» = «type».fromTable(function.getExportParameterList().getTable("«name»"));
 «ELSEIF isStructure-»
@@ -494,7 +494,7 @@ public class «responseClassName» {
 «ENDIF-»
 «ENDDEFINE»
 
-«DEFINE FunctionModuleParameterAfterCall FOR FunctionModuleChangingParameter-»
+«DEFINE FunctionModulePOJOParameterAfterCall FOR FunctionModulePOJOChangingParameter-»
 «IF isTable-»
 		«attribute» = «type».fromTable(function.getChangingParameterList().getTable("«name»"));
 «ELSEIF isStructure-»
@@ -504,16 +504,16 @@ public class «responseClassName» {
 «ENDIF-»
 «ENDDEFINE»
 
-«DEFINE FunctionModuleParameterAfterCall FOR FunctionModuleTablesParameter-»
+«DEFINE FunctionModulePOJOParameterAfterCall FOR FunctionModulePOJOTablesParameter-»
 		«attribute» = «type».fromTable(function.getTableParameterList().getTable("«name»"));
 «ENDDEFINE»
 
 «REM» ============================================================================================= «ENDREM»
 
-«DEFINE FunctionModuleParameterAfterCallResponse FOR FunctionModuleParameterMapping-»
+«DEFINE FunctionModulePOJOParameterAfterCallResponse FOR FunctionModulePOJOParameterMapping-»
 «ENDDEFINE»
 
-«DEFINE FunctionModuleParameterAfterCallResponse FOR FunctionModuleExportingParameter-»
+«DEFINE FunctionModulePOJOParameterAfterCallResponse FOR FunctionModulePOJOExportingParameter-»
 «IF isTable-»
 		response.set«attribute.toFirstUpper()»(«type».fromTable(function.getExportParameterList().getTable("«name»")));
 «ELSEIF isStructure-»
@@ -523,7 +523,7 @@ public class «responseClassName» {
 «ENDIF-»
 «ENDDEFINE»
 
-«DEFINE FunctionModuleParameterAfterCallResponse FOR FunctionModuleChangingParameter-»
+«DEFINE FunctionModulePOJOParameterAfterCallResponse FOR FunctionModulePOJOChangingParameter-»
 «IF isTable-»
 		response.set«attribute.toFirstUpper()»(«type».fromTable(function.getChangingParameterList().getTable("«name»")));
 «ELSEIF isStructure-»
@@ -533,7 +533,7 @@ public class «responseClassName» {
 «ENDIF-»
 «ENDDEFINE»
 
-«DEFINE FunctionModuleParameterAfterCallResponse FOR FunctionModuleTablesParameter-»
+«DEFINE FunctionModulePOJOParameterAfterCallResponse FOR FunctionModulePOJOTablesParameter-»
 		response.set«attribute.toFirstUpper()»(«type».fromTable(function.getTableParameterList().getTable("«name»")));
 «ENDDEFINE»
 

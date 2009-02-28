@@ -24,6 +24,10 @@ ruleGenSpec
 ;
 
 ruleStructure 
+:
+        temp_structurepojomapping=ruleStructurePOJOMapping 	;
+
+ruleStructurePOJOMapping 
 
 :
 (('structure')
@@ -36,13 +40,13 @@ ruleStructure
 
 ('{')
 
-(ruleStructureFieldMapping)*
+(ruleStructureFieldPOJOMapping)*
 
 ('}')
 )
 ;
 
-ruleStructureFieldMapping 
+ruleStructureFieldPOJOMapping 
 
 :
 (('field')
@@ -83,9 +87,13 @@ ruleFunctionModule
 
 ruleFunctionModuleMapping 
 :
-        temp_functionmodulecallmapping=ruleFunctionModuleCallMapping 	|        temp_functionmodulerequestresponsemapping=ruleFunctionModuleRequestResponseMapping 	;
+        temp_functionmodulepojomapping=ruleFunctionModulePOJOMapping 	;
 
-ruleFunctionModuleCallMapping 
+ruleFunctionModulePOJOMapping 
+:
+        temp_functionmodulepojocallmapping=ruleFunctionModulePOJOCallMapping 	|        temp_functionmodulepojorequestresponsemapping=ruleFunctionModulePOJORequestResponseMapping 	;
+
+ruleFunctionModulePOJOCallMapping 
 
 :
 (('class')
@@ -94,13 +102,13 @@ ruleFunctionModuleCallMapping
 
 ('{')
 
-(ruleFunctionModuleParameterMapping)*
+(ruleFunctionModulePOJOParameterMapping)*
 
 ('}')
 )
 ;
 
-ruleFunctionModuleRequestResponseMapping 
+ruleFunctionModulePOJORequestResponseMapping 
 
 :
 (('request')
@@ -111,7 +119,7 @@ ruleFunctionModuleRequestResponseMapping
 
 ('{')
 
-(ruleFunctionModuleParameterMapping)*
+(ruleFunctionModulePOJOParameterMapping)*
 
 ('}')
 
@@ -123,17 +131,17 @@ ruleFunctionModuleRequestResponseMapping
 
 ('{')
 
-(ruleFunctionModuleParameterMapping)*
+(ruleFunctionModulePOJOParameterMapping)*
 
 ('}')
 )
 ;
 
-ruleFunctionModuleParameterMapping 
+ruleFunctionModulePOJOParameterMapping 
 :
-        temp_functionmoduleimportingparameter=ruleFunctionModuleImportingParameter 	|        temp_functionmoduleexportingparameter=ruleFunctionModuleExportingParameter 	|        temp_functionmodulechangingparameter=ruleFunctionModuleChangingParameter 	|        temp_functionmoduletablesparameter=ruleFunctionModuleTablesParameter 	;
+        temp_functionmodulepojoimportingparameter=ruleFunctionModulePOJOImportingParameter 	|        temp_functionmodulepojoexportingparameter=ruleFunctionModulePOJOExportingParameter 	|        temp_functionmodulepojochangingparameter=ruleFunctionModulePOJOChangingParameter 	|        temp_functionmodulepojotablesparameter=ruleFunctionModulePOJOTablesParameter 	;
 
-ruleFunctionModuleImportingParameter 
+ruleFunctionModulePOJOImportingParameter 
 
 :
 (('import')
@@ -193,7 +201,7 @@ ruleFunctionModuleImportingParameter
 )
 ;
 
-ruleFunctionModuleExportingParameter 
+ruleFunctionModulePOJOExportingParameter 
 
 :
 (('export')
@@ -253,7 +261,7 @@ ruleFunctionModuleExportingParameter
 )
 ;
 
-ruleFunctionModuleChangingParameter 
+ruleFunctionModulePOJOChangingParameter 
 
 :
 (('change')
@@ -313,7 +321,7 @@ ruleFunctionModuleChangingParameter
 )
 ;
 
-ruleFunctionModuleTablesParameter 
+ruleFunctionModulePOJOTablesParameter 
 
 :
 (('table')
