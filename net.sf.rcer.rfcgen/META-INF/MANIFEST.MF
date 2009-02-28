@@ -7,7 +7,7 @@ Require-Bundle: org.openarchitectureware.dependencies;bundle-version="4.3.0";vis
  org.antlr;bundle-version="3.0.0";visibility:=reexport,
  org.openarchitectureware.xtext.core.base;bundle-version="4.3.0";visibility:=reexport,
  org.openarchitectureware.xtext.generator;bundle-version="4.3.0"
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Export-Package: net.sf.rcer.rfcgen,
                 net.sf.rcer.rfcgen.parser
 Bundle-Vendor: %bundle.vendor
