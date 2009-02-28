@@ -9,7 +9,7 @@
  *
  * $Id$
  */
-package net.sf.rcer.example.rfcgen.rr;
+package net.sf.rcer.example.rfcgen.pojo.rr;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;

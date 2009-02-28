@@ -31,8 +31,8 @@ svn_export net.sf.rcer.conn
 svn_export net.sf.rcer.conn.doc
 svn_export net.sf.rcer.conn.ui
 svn_export net.sf.rcer.doc
-svn_export net.sf.rcer.example.rfcgen.call
-svn_export net.sf.rcer.example.rfcgen.rr
+svn_export net.sf.rcer.example.rfcgen.pojo.call
+svn_export net.sf.rcer.example.rfcgen.pojo.rr
 svn_export net.sf.rcer.example.traditional
 svn_export net.sf.rcer.jcoimport
 svn_export net.sf.rcer.jcoimport.doc

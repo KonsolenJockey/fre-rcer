@@ -1,5 +1,5 @@
  
-package net.sf.rcer.example.rfcgen.call;
+package net.sf.rcer.example.rfcgen.pojo.rr;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -17,17 +17,17 @@ import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
 /**
- * A class to model a RFC call to BAPI_SFLIGHT_GETLIST. Use the setters to prepare the importing parameters, 
- * then invoke {@link #execute(JCoDestination)} to execute the call. The attributes of this instance 
- * will be updated to reflect the data returned from the SAP R/3 system.
+ * A class to model the input data of a RFC call to BAPI_SFLIGHT_GETLIST. Use the setters to prepare 
+ * the importing parameters, then invoke {@link #execute(JCoDestination)} to execute the call. This method
+ * returns an instance that contains the data returned from the SAP R/3 system.
  * <blockquote><pre>
- * GetFlightListCall call = new GetFlightListCall();
- * call.setFoo(...);
- * call.execute(destination);
- * bar = call.getBar();
+ * GetFlightListRequest request = new GetFlightListRequest();
+ * request.setFoo(...);
+ * GetFlightListResponse response = call.execute(destination);
+ * bar = response.getBar();
  * </pre></blockquote>
  */
-public class GetFlightListCall {
+public class GetFlightListRequest {
 
 	private PropertyChangeSupport _pcs;
 
@@ -35,15 +35,14 @@ public class GetFlightListCall {
 	private String fromCity;
 	private String toCountry;
 	private String toCity;
-	private List<FlightData> flights = new ArrayList<FlightData>();
 	
 	/**
 	 * Default constructor to create an instance with initial values.
 	 */
-	public GetFlightListCall() {
+	public GetFlightListRequest() {
 		_pcs = new PropertyChangeSupport(this);
 	}
-
+	
 	/**
 	 * @return the country code of origin (FROMCOUNTRYKEY)
 	 */
@@ -109,35 +108,20 @@ public class GetFlightListCall {
 	}
 	
 	/**
-	 * @return the list of flights (FLIGHTLIST)
-	 */
-	public List<FlightData> getFlights() {
-		return this.flights;
-	}
-	
-	/**
-	 * Changes the list of flights (FLIGHTLIST).
-	 * @param newFlights the new list of flights to set
-	 */
-	public void setFlights(List<FlightData> newFlights) {
-		_pcs.firePropertyChange("flights", this.flights, newFlights);
-		this.flights = newFlights;
-	}
-	
-	/**
-	 * Executes the RFC call and updates the attributes accordingly.
+	 * Executes the RFC call and returns the response instance.
 	 * @param destination the RFC destination to use
 	 * @throws JCoException
 	 */
-	public void execute(JCoDestination destination) throws JCoException {
+	public GetFlightListResponse execute(JCoDestination destination) throws JCoException {
 		JCoFunction function = destination.getRepository().getFunction("BAPI_SFLIGHT_GETLIST");
 		function.getImportParameterList().setValue("FROMCOUNTRYKEY", fromCountry);
 		function.getImportParameterList().setValue("FROMCITY", fromCity);
 		function.getImportParameterList().setValue("TOCOUNTRYKEY", toCountry);
 		function.getImportParameterList().setValue("TOCITY", toCity);
-		FlightData.toTable(flights, function.getTableParameterList().getTable("FLIGHTLIST"));
 		function.execute(destination);
-		flights = FlightData.fromTable(function.getTableParameterList().getTable("FLIGHTLIST"));
+		GetFlightListResponse response = new GetFlightListResponse();
+		response.setFlights(FlightData.fromTable(function.getTableParameterList().getTable("FLIGHTLIST")));
+		return response;
 	}
 
 	/**

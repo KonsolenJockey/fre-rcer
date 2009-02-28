@@ -9,7 +9,7 @@
  *
  * $Id$
  */
-package net.sf.rcer.example.rfcgen.call;
+package net.sf.rcer.example.rfcgen.pojo.rr;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
@@ -23,6 +23,6 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The ID of the plug-in.
 	 */
-	public final static String PLUGIN_ID = "net.sf.rcer.example.rfcgen.call";
+	public final static String PLUGIN_ID = "net.sf.rcer.example.rfcgen.pojo.rr";
 
 }

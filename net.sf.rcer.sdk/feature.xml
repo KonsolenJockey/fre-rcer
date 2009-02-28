@@ -105,14 +105,14 @@ http://www.eclipse.org/legal/epl-v10.html.
          unpack="false"/>
 
    <plugin
-         id="net.sf.rcer.example.rfcgen.call"
+         id="net.sf.rcer.example.rfcgen.pojo.call"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="net.sf.rcer.example.rfcgen.rr"
+         id="net.sf.rcer.example.rfcgen.pojo.rr"
          download-size="0"
          install-size="0"
          version="0.0.0"

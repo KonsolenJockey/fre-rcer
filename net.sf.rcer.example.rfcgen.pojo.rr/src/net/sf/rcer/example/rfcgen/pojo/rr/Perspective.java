@@ -9,7 +9,7 @@
  *
  * $Id$
  */
-package net.sf.rcer.example.rfcgen.call;
+package net.sf.rcer.example.rfcgen.pojo.rr;
 
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
@@ -24,7 +24,7 @@ public class Perspective implements IPerspectiveFactory {
 	/**
 	 * The ID of the perspective
 	 */
-	public static final String ID = "net.sf.rcer.example.rfcgen.call.perspective";
+	public static final String ID = "net.sf.rcer.example.rfcgen.pojo.rr.perspective";
 	
 	public void createInitialLayout(IPageLayout layout) {
 		String editorArea = layout.getEditorArea();

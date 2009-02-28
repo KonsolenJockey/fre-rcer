@@ -9,9 +9,12 @@
  *
  * $Id$
  */
-package net.sf.rcer.example.rfcgen.rr;
+package net.sf.rcer.example.rfcgen.pojo.rr;
 
 import net.sf.rcer.conn.connections.ConnectionManager;
+import net.sf.rcer.example.rfcgen.pojo.rr.FlightData;
+import net.sf.rcer.example.rfcgen.pojo.rr.GetFlightListRequest;
+import net.sf.rcer.example.rfcgen.pojo.rr.GetFlightListResponse;
 
 import org.eclipse.core.databinding.beans.BeansObservables;
 import org.eclipse.core.databinding.observable.list.WritableList;
@@ -45,7 +48,7 @@ public class View extends ViewPart {
 	/**
 	 * The ID of the view.
 	 */
-	public static final String ID = "net.sf.rcer.example.rfcgen.rr.view";
+	public static final String ID = "net.sf.rcer.example.rfcgen.pojo.rr.view";
 
 	private Text fromCountryText;
 	private Text fromCityText;

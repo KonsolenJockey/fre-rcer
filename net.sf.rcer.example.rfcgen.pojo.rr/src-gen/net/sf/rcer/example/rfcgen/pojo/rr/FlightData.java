@@ -1,5 +1,5 @@
  
-package net.sf.rcer.example.rfcgen.call;
+package net.sf.rcer.example.rfcgen.pojo.rr;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

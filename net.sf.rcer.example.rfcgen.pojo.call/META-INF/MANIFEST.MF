@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %bundle.name
-Bundle-SymbolicName: net.sf.rcer.example.rfcgen.call; singleton:=true
+Bundle-SymbolicName: net.sf.rcer.example.rfcgen.pojo.call;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
@@ -16,6 +16,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.openarchitectureware.dependencies;resolution=optional
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %bundle.vendor
-Bundle-Activator: net.sf.rcer.example.rfcgen.call.Activator
-Export-Package: net.sf.rcer.example.rfcgen.call
+Bundle-Activator: net.sf.rcer.example.rfcgen.pojo.call.Activator
+Export-Package: net.sf.rcer.example.rfcgen.pojo.call
 Bundle-Localization: plugin

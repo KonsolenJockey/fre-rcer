@@ -7,7 +7,7 @@
          point="org.eclipse.core.runtime.applications">
       <application>
          <run
-               class="net.sf.rcer.example.rfcgen.rr.Application">
+               class="net.sf.rcer.example.rfcgen.pojo.rr.Application">
          </run>
       </application>
    </extension>
@@ -15,16 +15,16 @@
          point="org.eclipse.ui.perspectives">
       <perspective
             name="%perspective.name"
-            class="net.sf.rcer.example.rfcgen.rr.Perspective"
-            id="net.sf.rcer.example.rfcgen.rr.perspective">
+            class="net.sf.rcer.example.rfcgen.pojo.rr.Perspective"
+            id="net.sf.rcer.example.rfcgen.pojo.rr.perspective">
       </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.views">
       <view
             name="%view.name"
-            class="net.sf.rcer.example.rfcgen.rr.View"
-            id="net.sf.rcer.example.rfcgen.rr.view">
+            class="net.sf.rcer.example.rfcgen.pojo.rr.View"
+            id="net.sf.rcer.example.rfcgen.pojo.rr.view">
       </view>
    </extension>
 
