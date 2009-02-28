@@ -70,7 +70,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 public class ConnectionsPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 
 	// TODO The label in the connection table viewer is not updated when the values are changed.
-	// TODO The preference page looks really bad on screens with low resolution (e. g. during presentations).
+	// TODO #003 The preference page looks really bad on screens with low resolution (e. g. during presentations).
 	
 	/**
 	 * The connections displayed.
@@ -409,7 +409,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 		GridDataFactory.fillDefaults().applyTo(importButton);
 		importButton.setText("Import...");
 		importButton.setEnabled(false);
-		// TODO Support import of connection data
+		// TODO #001 Support import of connection data
 
 		removeButton = new Button(masterButtons, SWT.PUSH);
 		GridDataFactory.fillDefaults().applyTo(removeButton);
@@ -625,12 +625,12 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 				new UpdateValueStrategy());
 		new VisibilityUpdater(details, applicationServerText, applicationServerLabel,
 				connectionTypeObservable, ConnectionType.DIRECT);
-		// TODO ensure that the app server is required for direct connections
+		// TODO #002 ensure that the app server is required for direct connections
 
 		// bind the system number
 		targetToModel = new UpdateValueStrategy();
 		targetToModel.setConverter(StringToNumberConverter.toInteger(true));
-		// TODO ensure that the system number is required for direct connections
+		// TODO #002 ensure that the system number is required for direct connections
 		//		targetToModel.setAfterGetValidator(new ConditionalNotEmptyValidator(
 		//				connectionTypeObservable, ConnectionType.DIRECT, "System Number must be set for direct connections."));
 		targetToModel.setBeforeSetValidator(new IntegerRangeValidator("System Number", 0, 99));
@@ -648,7 +648,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 				new UpdateValueStrategy());
 		new VisibilityUpdater(details, messageServerText, messageServerLabel, 
 				connectionTypeObservable, ConnectionType.LOAD_BALANCED);
-		// TODO ensure that the message server is required for lb connections
+		// TODO #002 ensure that the message server is required for lb connections
 
 		// bind the message server port
 		context.bindValue(SWTObservables.observeText(messageServerPortText, SWT.Modify), 
@@ -657,7 +657,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 				new UpdateValueStrategy().setConverter(NumberToStringConverter.fromInteger(true)));
 		new VisibilityUpdater(details, messageServerPortText, messageServerPortLabel, 
 				connectionTypeObservable, ConnectionType.LOAD_BALANCED);
-		// TODO ensure that the port is required for lb connections
+		// TODO #002 ensure that the port is required for lb connections
 
 		// bind the logon group 
 		context.bindValue(SWTObservables.observeText(logonGroupText, SWT.Modify), 
@@ -666,7 +666,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 				new UpdateValueStrategy());
 		new VisibilityUpdater(details, logonGroupText, logonGroupLabel, 
 				connectionTypeObservable, ConnectionType.LOAD_BALANCED);
-		// TODO ensure that the logon group is required for lb connections
+		// TODO #002 ensure that the logon group is required for lb connections
 
 		// bind the default client 
 		context.bindValue(SWTObservables.observeText(defaultClientText, SWT.Modify), 
