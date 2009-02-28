@@ -60,6 +60,11 @@ import org.eclipse.ui.progress.IProgressConstants;
 @SuppressWarnings("restriction")
 public class ProjectGenerator implements IRunnableWithProgress {
 
+	/**
+	 * The ID of the plug-in project nature as used by the PDE. 
+	 */
+	public static final String PLUGIN_NATURE_ID = "org.eclipse.pde.PluginNature";
+	
 	private ProjectGeneratorSettings settings;
 	private IWorkspaceRoot workspaceRoot;
 	private ArrayList<IPluginModelBase> exportableBundles = new ArrayList<IPluginModelBase>();
@@ -213,8 +218,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 
 		// update the project description                                                                     5
 		IProjectDescription description = project.getDescription();
-		description.setNatureIds(new String[] {	JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
-		// TODO find the string constant for the PDE nature
+		description.setNatureIds(new String[] {	JavaCore.NATURE_ID, PLUGIN_NATURE_ID });
 		project.setDescription(description, new SubProgressMonitor(monitor, 5));
 
 		// set the basic Java project properties                                                              5
@@ -305,8 +309,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 
 		// update the project description                                                                     5
 		IProjectDescription description = project.getDescription();
-		description.setNatureIds(new String[] {	"org.eclipse.pde.PluginNature" });
-		// TODO find the string constant for the PDE nature
+		description.setNatureIds(new String[] {	PLUGIN_NATURE_ID });
 		project.setDescription(description, new SubProgressMonitor(monitor, 5));
 
 		// create jni folder                                                                                  5
