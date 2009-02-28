@@ -1,4 +1,4 @@
-// $ANTLR 3.0 ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g 2009-02-28 20:49:04
+// $ANTLR 3.0 ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g 2009-02-28 21:35:06
 
 package net.sf.rcer.rfcgen.parser;
 
@@ -21,6 +21,7 @@ public class rfcgenLexer extends Lexer {
     public static final int T11=11;
     public static final int RULE_STRING=4;
     public static final int T12=12;
+    public static final int T28=28;
     public static final int T23=23;
     public static final int T13=13;
     public static final int T20=20;
@@ -33,7 +34,7 @@ public class rfcgenLexer extends Lexer {
     public static final int RULE_INT=6;
     public static final int EOF=-1;
     public static final int T17=17;
-    public static final int Tokens=28;
+    public static final int Tokens=29;
     public static final int T16=16;
     public static final int T27=27;
     public static final int RULE_SL_COMMENT=9;
@@ -99,11 +100,10 @@ public class rfcgenLexer extends Lexer {
     public void mT12() throws RecognitionException {
         try {
             int _type = T12;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:24:7: ( 'class' )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:24:7: 'class'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:24:7: ( '{' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:24:7: '{'
             {
-            match("class"); 
-
+            match('{'); 
 
             }
 
@@ -118,10 +118,10 @@ public class rfcgenLexer extends Lexer {
     public void mT13() throws RecognitionException {
         try {
             int _type = T13;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:25:7: ( '{' )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:25:7: '{'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:25:7: ( '}' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:25:7: '}'
             {
-            match('{'); 
+            match('}'); 
 
             }
 
@@ -136,10 +136,11 @@ public class rfcgenLexer extends Lexer {
     public void mT14() throws RecognitionException {
         try {
             int _type = T14;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:26:7: ( '}' )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:26:7: '}'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:26:7: ( 'class' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:26:7: 'class'
             {
-            match('}'); 
+            match("class"); 
+
 
             }
 
@@ -228,10 +229,10 @@ public class rfcgenLexer extends Lexer {
     public void mT19() throws RecognitionException {
         try {
             int _type = T19;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:31:7: ( 'function' )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:31:7: 'function'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:31:7: ( 'EClass' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:31:7: 'EClass'
             {
-            match("function"); 
+            match("EClass"); 
 
 
             }
@@ -247,10 +248,10 @@ public class rfcgenLexer extends Lexer {
     public void mT20() throws RecognitionException {
         try {
             int _type = T20;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:32:7: ( 'module' )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:32:7: 'module'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:32:7: ( 'function' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:32:7: 'function'
             {
-            match("module"); 
+            match("function"); 
 
 
             }
@@ -266,10 +267,10 @@ public class rfcgenLexer extends Lexer {
     public void mT21() throws RecognitionException {
         try {
             int _type = T21;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:33:7: ( 'request' )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:33:7: 'request'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:33:7: ( 'module' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:33:7: 'module'
             {
-            match("request"); 
+            match("module"); 
 
 
             }
@@ -285,10 +286,10 @@ public class rfcgenLexer extends Lexer {
     public void mT22() throws RecognitionException {
         try {
             int _type = T22;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:34:7: ( 'response' )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:34:7: 'response'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:34:7: ( 'request' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:34:7: 'request'
             {
-            match("response"); 
+            match("request"); 
 
 
             }
@@ -304,10 +305,10 @@ public class rfcgenLexer extends Lexer {
     public void mT23() throws RecognitionException {
         try {
             int _type = T23;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:35:7: ( 'import' )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:35:7: 'import'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:35:7: ( 'response' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:35:7: 'response'
             {
-            match("import"); 
+            match("response"); 
 
 
             }
@@ -323,10 +324,10 @@ public class rfcgenLexer extends Lexer {
     public void mT24() throws RecognitionException {
         try {
             int _type = T24;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:36:7: ( 'inactive' )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:36:7: 'inactive'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:36:7: ( 'import' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:36:7: 'import'
             {
-            match("inactive"); 
+            match("import"); 
 
 
             }
@@ -342,10 +343,10 @@ public class rfcgenLexer extends Lexer {
     public void mT25() throws RecognitionException {
         try {
             int _type = T25;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:37:7: ( 'table' )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:37:7: 'table'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:37:7: ( 'inactive' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:37:7: 'inactive'
             {
-            match("table"); 
+            match("inactive"); 
 
 
             }
@@ -361,10 +362,10 @@ public class rfcgenLexer extends Lexer {
     public void mT26() throws RecognitionException {
         try {
             int _type = T26;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:38:7: ( 'export' )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:38:7: 'export'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:38:7: ( 'table' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:38:7: 'table'
             {
-            match("export"); 
+            match("table"); 
 
 
             }
@@ -380,10 +381,10 @@ public class rfcgenLexer extends Lexer {
     public void mT27() throws RecognitionException {
         try {
             int _type = T27;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:39:7: ( 'change' )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:39:7: 'change'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:39:7: ( 'export' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:39:7: 'export'
             {
-            match("change"); 
+            match("export"); 
 
 
             }
@@ -395,14 +396,33 @@ public class rfcgenLexer extends Lexer {
     }
     // $ANTLR end T27
 
+    // $ANTLR start T28
+    public void mT28() throws RecognitionException {
+        try {
+            int _type = T28;
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:40:7: ( 'change' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:40:7: 'change'
+            {
+            match("change"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T28
+
     // $ANTLR start RULE_ID
     public void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1285:3: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1285:3: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2152:3: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2152:3: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1285:3: ( '^' )?
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2152:3: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -411,7 +431,7 @@ public class rfcgenLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1285:4: '^'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2152:4: '^'
                     {
                     match('^'); 
 
@@ -430,7 +450,7 @@ public class rfcgenLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1285:33: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2152:33: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -478,7 +498,7 @@ public class rfcgenLexer extends Lexer {
     public void mRULE_STRING() throws RecognitionException {
         try {
             int _type = RULE_STRING;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1291:3: ( '\\\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\\"' ) )* '\\\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )* '\\'' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2158:3: ( '\\\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\\"' ) )* '\\\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )* '\\'' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -490,16 +510,16 @@ public class rfcgenLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1289:1: RULE_STRING : ( '\\\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\\"' ) )* '\\\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )* '\\'' );", 5, 0, input);
+                    new NoViableAltException("2156:1: RULE_STRING : ( '\\\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\\"' ) )* '\\\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )* '\\'' );", 5, 0, input);
 
                 throw nvae;
             }
             switch (alt5) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1291:3: '\\\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\\"' ) )* '\\\"'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2158:3: '\\\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\\"' ) )* '\\\"'
                     {
                     match('\"'); 
-                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1291:8: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\\"' ) )*
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2158:8: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\\"' ) )*
                     loop3:
                     do {
                         int alt3=3;
@@ -515,7 +535,7 @@ public class rfcgenLexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1291:10: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2158:10: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -532,7 +552,7 @@ public class rfcgenLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1291:54: ~ ( '\\\\' | '\\\"' )
+                    	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2158:54: ~ ( '\\\\' | '\\\"' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -558,10 +578,10 @@ public class rfcgenLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1292:3: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )* '\\''
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2159:3: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )* '\\''
                     {
                     match('\''); 
-                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1292:8: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )*
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2159:8: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -577,7 +597,7 @@ public class rfcgenLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1292:10: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2159:10: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -594,7 +614,7 @@ public class rfcgenLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1292:54: ~ ( '\\\\' | '\\'' )
+                    	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2159:54: ~ ( '\\\\' | '\\'' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -632,10 +652,10 @@ public class rfcgenLexer extends Lexer {
     public void mRULE_INT() throws RecognitionException {
         try {
             int _type = RULE_INT;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1298:3: ( ( '-' )? ( '0' .. '9' )+ )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1298:3: ( '-' )? ( '0' .. '9' )+
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2165:3: ( ( '-' )? ( '0' .. '9' )+ )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2165:3: ( '-' )? ( '0' .. '9' )+
             {
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1298:3: ( '-' )?
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2165:3: ( '-' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -644,7 +664,7 @@ public class rfcgenLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1298:4: '-'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2165:4: '-'
                     {
                     match('-'); 
 
@@ -653,7 +673,7 @@ public class rfcgenLexer extends Lexer {
 
             }
 
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1298:9: ( '0' .. '9' )+
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2165:9: ( '0' .. '9' )+
             int cnt7=0;
             loop7:
             do {
@@ -667,7 +687,7 @@ public class rfcgenLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1298:10: '0' .. '9'
+            	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2165:10: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -697,10 +717,10 @@ public class rfcgenLexer extends Lexer {
     public void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1304:3: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1304:3: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2171:3: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2171:3: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1304:3: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2171:3: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt8=0;
             loop8:
             do {
@@ -754,12 +774,12 @@ public class rfcgenLexer extends Lexer {
     public void mRULE_ML_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_ML_COMMENT;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1310:3: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1310:3: '/*' ( options {greedy=false; } : . )* '*/'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2177:3: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2177:3: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1310:8: ( options {greedy=false; } : . )*
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2177:8: ( options {greedy=false; } : . )*
             loop9:
             do {
                 int alt9=2;
@@ -784,7 +804,7 @@ public class rfcgenLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1310:36: .
+            	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2177:36: .
             	    {
             	    matchAny(); 
 
@@ -813,12 +833,12 @@ public class rfcgenLexer extends Lexer {
     public void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1316:3: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1316:3: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2183:3: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2183:3: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
             {
             match("//"); 
 
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1316:8: (~ ( '\\n' | '\\r' ) )*
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2183:8: (~ ( '\\n' | '\\r' ) )*
             loop10:
             do {
                 int alt10=2;
@@ -831,7 +851,7 @@ public class rfcgenLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1316:8: ~ ( '\\n' | '\\r' )
+            	    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2183:8: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -852,7 +872,7 @@ public class rfcgenLexer extends Lexer {
                 }
             } while (true);
 
-            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1316:22: ( '\\r' )?
+            // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2183:22: ( '\\r' )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -861,7 +881,7 @@ public class rfcgenLexer extends Lexer {
             }
             switch (alt11) {
                 case 1 :
-                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1316:22: '\\r'
+                    // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:2183:22: '\\r'
                     {
                     match('\r'); 
 
@@ -883,54 +903,54 @@ public class rfcgenLexer extends Lexer {
     // $ANTLR end RULE_SL_COMMENT
 
     public void mTokens() throws RecognitionException {
-        // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:10: ( T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | RULE_ID | RULE_STRING | RULE_INT | RULE_WS | RULE_ML_COMMENT | RULE_SL_COMMENT )
-        int alt12=24;
+        // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:10: ( T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_STRING | RULE_INT | RULE_WS | RULE_ML_COMMENT | RULE_SL_COMMENT )
+        int alt12=25;
         switch ( input.LA(1) ) {
         case 'p':
             {
             int LA12_1 = input.LA(2);
 
             if ( (LA12_1=='a') ) {
-                int LA12_19 = input.LA(3);
+                int LA12_20 = input.LA(3);
 
-                if ( (LA12_19=='c') ) {
-                    int LA12_34 = input.LA(4);
+                if ( (LA12_20=='c') ) {
+                    int LA12_36 = input.LA(4);
 
-                    if ( (LA12_34=='k') ) {
-                        int LA12_48 = input.LA(5);
+                    if ( (LA12_36=='k') ) {
+                        int LA12_51 = input.LA(5);
 
-                        if ( (LA12_48=='a') ) {
-                            int LA12_62 = input.LA(6);
+                        if ( (LA12_51=='a') ) {
+                            int LA12_66 = input.LA(6);
 
-                            if ( (LA12_62=='g') ) {
-                                int LA12_76 = input.LA(7);
+                            if ( (LA12_66=='g') ) {
+                                int LA12_81 = input.LA(7);
 
-                                if ( (LA12_76=='e') ) {
-                                    int LA12_90 = input.LA(8);
+                                if ( (LA12_81=='e') ) {
+                                    int LA12_96 = input.LA(8);
 
-                                    if ( ((LA12_90>='0' && LA12_90<='9')||(LA12_90>='A' && LA12_90<='Z')||LA12_90=='_'||(LA12_90>='a' && LA12_90<='z')) ) {
-                                        alt12=19;
+                                    if ( ((LA12_96>='0' && LA12_96<='9')||(LA12_96>='A' && LA12_96<='Z')||LA12_96=='_'||(LA12_96>='a' && LA12_96<='z')) ) {
+                                        alt12=20;
                                     }
                                     else {
                                         alt12=1;}
                                 }
                                 else {
-                                    alt12=19;}
+                                    alt12=20;}
                             }
                             else {
-                                alt12=19;}
+                                alt12=20;}
                         }
                         else {
-                            alt12=19;}
+                            alt12=20;}
                     }
                     else {
-                        alt12=19;}
+                        alt12=20;}
                 }
                 else {
-                    alt12=19;}
+                    alt12=20;}
             }
             else {
-                alt12=19;}
+                alt12=20;}
             }
             break;
         case 's':
@@ -938,58 +958,68 @@ public class rfcgenLexer extends Lexer {
             int LA12_2 = input.LA(2);
 
             if ( (LA12_2=='t') ) {
-                int LA12_20 = input.LA(3);
+                int LA12_21 = input.LA(3);
 
-                if ( (LA12_20=='r') ) {
-                    int LA12_35 = input.LA(4);
+                if ( (LA12_21=='r') ) {
+                    int LA12_37 = input.LA(4);
 
-                    if ( (LA12_35=='u') ) {
-                        int LA12_49 = input.LA(5);
+                    if ( (LA12_37=='u') ) {
+                        int LA12_52 = input.LA(5);
 
-                        if ( (LA12_49=='c') ) {
-                            int LA12_63 = input.LA(6);
+                        if ( (LA12_52=='c') ) {
+                            int LA12_67 = input.LA(6);
 
-                            if ( (LA12_63=='t') ) {
-                                int LA12_77 = input.LA(7);
+                            if ( (LA12_67=='t') ) {
+                                int LA12_82 = input.LA(7);
 
-                                if ( (LA12_77=='u') ) {
-                                    int LA12_91 = input.LA(8);
+                                if ( (LA12_82=='u') ) {
+                                    int LA12_97 = input.LA(8);
 
-                                    if ( (LA12_91=='r') ) {
-                                        int LA12_102 = input.LA(9);
+                                    if ( (LA12_97=='r') ) {
+                                        int LA12_109 = input.LA(9);
 
-                                        if ( (LA12_102=='e') ) {
-                                            int LA12_108 = input.LA(10);
+                                        if ( (LA12_109=='e') ) {
+                                            int LA12_115 = input.LA(10);
 
-                                            if ( ((LA12_108>='0' && LA12_108<='9')||(LA12_108>='A' && LA12_108<='Z')||LA12_108=='_'||(LA12_108>='a' && LA12_108<='z')) ) {
-                                                alt12=19;
+                                            if ( ((LA12_115>='0' && LA12_115<='9')||(LA12_115>='A' && LA12_115<='Z')||LA12_115=='_'||(LA12_115>='a' && LA12_115<='z')) ) {
+                                                alt12=20;
                                             }
                                             else {
                                                 alt12=2;}
                                         }
                                         else {
-                                            alt12=19;}
+                                            alt12=20;}
                                     }
                                     else {
-                                        alt12=19;}
+                                        alt12=20;}
                                 }
                                 else {
-                                    alt12=19;}
+                                    alt12=20;}
                             }
                             else {
-                                alt12=19;}
+                                alt12=20;}
                         }
                         else {
-                            alt12=19;}
+                            alt12=20;}
                     }
                     else {
-                        alt12=19;}
+                        alt12=20;}
                 }
                 else {
-                    alt12=19;}
+                    alt12=20;}
             }
             else {
-                alt12=19;}
+                alt12=20;}
+            }
+            break;
+        case '{':
+            {
+            alt12=3;
+            }
+            break;
+        case '}':
+            {
+            alt12=4;
             }
             break;
         case 'c':
@@ -997,122 +1027,112 @@ public class rfcgenLexer extends Lexer {
             switch ( input.LA(2) ) {
             case 'l':
                 {
-                int LA12_21 = input.LA(3);
+                int LA12_22 = input.LA(3);
 
-                if ( (LA12_21=='a') ) {
-                    int LA12_36 = input.LA(4);
+                if ( (LA12_22=='a') ) {
+                    int LA12_38 = input.LA(4);
 
-                    if ( (LA12_36=='s') ) {
-                        int LA12_50 = input.LA(5);
+                    if ( (LA12_38=='s') ) {
+                        int LA12_53 = input.LA(5);
 
-                        if ( (LA12_50=='s') ) {
-                            int LA12_64 = input.LA(6);
+                        if ( (LA12_53=='s') ) {
+                            int LA12_68 = input.LA(6);
 
-                            if ( ((LA12_64>='0' && LA12_64<='9')||(LA12_64>='A' && LA12_64<='Z')||LA12_64=='_'||(LA12_64>='a' && LA12_64<='z')) ) {
-                                alt12=19;
+                            if ( ((LA12_68>='0' && LA12_68<='9')||(LA12_68>='A' && LA12_68<='Z')||LA12_68=='_'||(LA12_68>='a' && LA12_68<='z')) ) {
+                                alt12=20;
                             }
                             else {
-                                alt12=3;}
+                                alt12=5;}
                         }
                         else {
-                            alt12=19;}
+                            alt12=20;}
                     }
                     else {
-                        alt12=19;}
+                        alt12=20;}
                 }
                 else {
-                    alt12=19;}
+                    alt12=20;}
                 }
                 break;
             case 'o':
                 {
-                int LA12_22 = input.LA(3);
+                int LA12_23 = input.LA(3);
 
-                if ( (LA12_22=='m') ) {
-                    int LA12_37 = input.LA(4);
+                if ( (LA12_23=='m') ) {
+                    int LA12_39 = input.LA(4);
 
-                    if ( (LA12_37=='m') ) {
-                        int LA12_51 = input.LA(5);
+                    if ( (LA12_39=='m') ) {
+                        int LA12_54 = input.LA(5);
 
-                        if ( (LA12_51=='e') ) {
-                            int LA12_65 = input.LA(6);
+                        if ( (LA12_54=='e') ) {
+                            int LA12_69 = input.LA(6);
 
-                            if ( (LA12_65=='n') ) {
-                                int LA12_79 = input.LA(7);
+                            if ( (LA12_69=='n') ) {
+                                int LA12_84 = input.LA(7);
 
-                                if ( (LA12_79=='t') ) {
-                                    int LA12_92 = input.LA(8);
+                                if ( (LA12_84=='t') ) {
+                                    int LA12_98 = input.LA(8);
 
-                                    if ( ((LA12_92>='0' && LA12_92<='9')||(LA12_92>='A' && LA12_92<='Z')||LA12_92=='_'||(LA12_92>='a' && LA12_92<='z')) ) {
-                                        alt12=19;
+                                    if ( ((LA12_98>='0' && LA12_98<='9')||(LA12_98>='A' && LA12_98<='Z')||LA12_98=='_'||(LA12_98>='a' && LA12_98<='z')) ) {
+                                        alt12=20;
                                     }
                                     else {
                                         alt12=8;}
                                 }
                                 else {
-                                    alt12=19;}
+                                    alt12=20;}
                             }
                             else {
-                                alt12=19;}
+                                alt12=20;}
                         }
                         else {
-                            alt12=19;}
+                            alt12=20;}
                     }
                     else {
-                        alt12=19;}
+                        alt12=20;}
                 }
                 else {
-                    alt12=19;}
+                    alt12=20;}
                 }
                 break;
             case 'h':
                 {
-                int LA12_23 = input.LA(3);
+                int LA12_24 = input.LA(3);
 
-                if ( (LA12_23=='a') ) {
-                    int LA12_38 = input.LA(4);
+                if ( (LA12_24=='a') ) {
+                    int LA12_40 = input.LA(4);
 
-                    if ( (LA12_38=='n') ) {
-                        int LA12_52 = input.LA(5);
+                    if ( (LA12_40=='n') ) {
+                        int LA12_55 = input.LA(5);
 
-                        if ( (LA12_52=='g') ) {
-                            int LA12_66 = input.LA(6);
+                        if ( (LA12_55=='g') ) {
+                            int LA12_70 = input.LA(6);
 
-                            if ( (LA12_66=='e') ) {
-                                int LA12_80 = input.LA(7);
+                            if ( (LA12_70=='e') ) {
+                                int LA12_85 = input.LA(7);
 
-                                if ( ((LA12_80>='0' && LA12_80<='9')||(LA12_80>='A' && LA12_80<='Z')||LA12_80=='_'||(LA12_80>='a' && LA12_80<='z')) ) {
-                                    alt12=19;
+                                if ( ((LA12_85>='0' && LA12_85<='9')||(LA12_85>='A' && LA12_85<='Z')||LA12_85=='_'||(LA12_85>='a' && LA12_85<='z')) ) {
+                                    alt12=20;
                                 }
                                 else {
-                                    alt12=18;}
+                                    alt12=19;}
                             }
                             else {
-                                alt12=19;}
+                                alt12=20;}
                         }
                         else {
-                            alt12=19;}
+                            alt12=20;}
                     }
                     else {
-                        alt12=19;}
+                        alt12=20;}
                 }
                 else {
-                    alt12=19;}
+                    alt12=20;}
                 }
                 break;
             default:
-                alt12=19;}
+                alt12=20;}
 
-            }
-            break;
-        case '{':
-            {
-            alt12=4;
-            }
-            break;
-        case '}':
-            {
-            alt12=5;
             }
             break;
         case 'f':
@@ -1120,82 +1140,82 @@ public class rfcgenLexer extends Lexer {
             switch ( input.LA(2) ) {
             case 'i':
                 {
-                int LA12_24 = input.LA(3);
+                int LA12_25 = input.LA(3);
 
-                if ( (LA12_24=='e') ) {
-                    int LA12_39 = input.LA(4);
+                if ( (LA12_25=='e') ) {
+                    int LA12_41 = input.LA(4);
 
-                    if ( (LA12_39=='l') ) {
-                        int LA12_53 = input.LA(5);
+                    if ( (LA12_41=='l') ) {
+                        int LA12_56 = input.LA(5);
 
-                        if ( (LA12_53=='d') ) {
-                            int LA12_67 = input.LA(6);
+                        if ( (LA12_56=='d') ) {
+                            int LA12_71 = input.LA(6);
 
-                            if ( ((LA12_67>='0' && LA12_67<='9')||(LA12_67>='A' && LA12_67<='Z')||LA12_67=='_'||(LA12_67>='a' && LA12_67<='z')) ) {
-                                alt12=19;
+                            if ( ((LA12_71>='0' && LA12_71<='9')||(LA12_71>='A' && LA12_71<='Z')||LA12_71=='_'||(LA12_71>='a' && LA12_71<='z')) ) {
+                                alt12=20;
                             }
                             else {
                                 alt12=6;}
                         }
                         else {
-                            alt12=19;}
+                            alt12=20;}
                     }
                     else {
-                        alt12=19;}
+                        alt12=20;}
                 }
                 else {
-                    alt12=19;}
+                    alt12=20;}
                 }
                 break;
             case 'u':
                 {
-                int LA12_25 = input.LA(3);
+                int LA12_26 = input.LA(3);
 
-                if ( (LA12_25=='n') ) {
-                    int LA12_40 = input.LA(4);
+                if ( (LA12_26=='n') ) {
+                    int LA12_42 = input.LA(4);
 
-                    if ( (LA12_40=='c') ) {
-                        int LA12_54 = input.LA(5);
+                    if ( (LA12_42=='c') ) {
+                        int LA12_57 = input.LA(5);
 
-                        if ( (LA12_54=='t') ) {
-                            int LA12_68 = input.LA(6);
+                        if ( (LA12_57=='t') ) {
+                            int LA12_72 = input.LA(6);
 
-                            if ( (LA12_68=='i') ) {
-                                int LA12_82 = input.LA(7);
+                            if ( (LA12_72=='i') ) {
+                                int LA12_87 = input.LA(7);
 
-                                if ( (LA12_82=='o') ) {
-                                    int LA12_94 = input.LA(8);
+                                if ( (LA12_87=='o') ) {
+                                    int LA12_100 = input.LA(8);
 
-                                    if ( (LA12_94=='n') ) {
-                                        int LA12_104 = input.LA(9);
+                                    if ( (LA12_100=='n') ) {
+                                        int LA12_111 = input.LA(9);
 
-                                        if ( ((LA12_104>='0' && LA12_104<='9')||(LA12_104>='A' && LA12_104<='Z')||LA12_104=='_'||(LA12_104>='a' && LA12_104<='z')) ) {
-                                            alt12=19;
+                                        if ( ((LA12_111>='0' && LA12_111<='9')||(LA12_111>='A' && LA12_111<='Z')||LA12_111=='_'||(LA12_111>='a' && LA12_111<='z')) ) {
+                                            alt12=20;
                                         }
                                         else {
-                                            alt12=10;}
+                                            alt12=11;}
                                     }
                                     else {
-                                        alt12=19;}
+                                        alt12=20;}
                                 }
                                 else {
-                                    alt12=19;}
+                                    alt12=20;}
                             }
                             else {
-                                alt12=19;}
+                                alt12=20;}
                         }
                         else {
-                            alt12=19;}
+                            alt12=20;}
                     }
                     else {
-                        alt12=19;}
+                        alt12=20;}
                 }
                 else {
-                    alt12=19;}
+                    alt12=20;}
                 }
                 break;
             default:
-                alt12=19;}
+                alt12=20;}
 
             }
             break;
@@ -1209,135 +1229,176 @@ public class rfcgenLexer extends Lexer {
             alt12=9;
             }
             break;
-        case 'm':
+        case 'E':
             {
             int LA12_9 = input.LA(2);
 
-            if ( (LA12_9=='o') ) {
-                int LA12_26 = input.LA(3);
+            if ( (LA12_9=='C') ) {
+                int LA12_27 = input.LA(3);
 
-                if ( (LA12_26=='d') ) {
-                    int LA12_41 = input.LA(4);
+                if ( (LA12_27=='l') ) {
+                    int LA12_43 = input.LA(4);
 
-                    if ( (LA12_41=='u') ) {
-                        int LA12_55 = input.LA(5);
+                    if ( (LA12_43=='a') ) {
+                        int LA12_58 = input.LA(5);
 
-                        if ( (LA12_55=='l') ) {
-                            int LA12_69 = input.LA(6);
+                        if ( (LA12_58=='s') ) {
+                            int LA12_73 = input.LA(6);
 
-                            if ( (LA12_69=='e') ) {
-                                int LA12_83 = input.LA(7);
+                            if ( (LA12_73=='s') ) {
+                                int LA12_88 = input.LA(7);
 
-                                if ( ((LA12_83>='0' && LA12_83<='9')||(LA12_83>='A' && LA12_83<='Z')||LA12_83=='_'||(LA12_83>='a' && LA12_83<='z')) ) {
-                                    alt12=19;
+                                if ( ((LA12_88>='0' && LA12_88<='9')||(LA12_88>='A' && LA12_88<='Z')||LA12_88=='_'||(LA12_88>='a' && LA12_88<='z')) ) {
+                                    alt12=20;
                                 }
                                 else {
-                                    alt12=11;}
+                                    alt12=10;}
                             }
                             else {
-                                alt12=19;}
+                                alt12=20;}
                         }
                         else {
-                            alt12=19;}
+                            alt12=20;}
                     }
                     else {
-                        alt12=19;}
+                        alt12=20;}
                 }
                 else {
-                    alt12=19;}
+                    alt12=20;}
             }
             else {
-                alt12=19;}
+                alt12=20;}
+            }
+            break;
+        case 'm':
+            {
+            int LA12_10 = input.LA(2);
+
+            if ( (LA12_10=='o') ) {
+                int LA12_28 = input.LA(3);
+
+                if ( (LA12_28=='d') ) {
+                    int LA12_44 = input.LA(4);
+
+                    if ( (LA12_44=='u') ) {
+                        int LA12_59 = input.LA(5);
+
+                        if ( (LA12_59=='l') ) {
+                            int LA12_74 = input.LA(6);
+
+                            if ( (LA12_74=='e') ) {
+                                int LA12_89 = input.LA(7);
+
+                                if ( ((LA12_89>='0' && LA12_89<='9')||(LA12_89>='A' && LA12_89<='Z')||LA12_89=='_'||(LA12_89>='a' && LA12_89<='z')) ) {
+                                    alt12=20;
+                                }
+                                else {
+                                    alt12=12;}
+                            }
+                            else {
+                                alt12=20;}
+                        }
+                        else {
+                            alt12=20;}
+                    }
+                    else {
+                        alt12=20;}
+                }
+                else {
+                    alt12=20;}
+            }
+            else {
+                alt12=20;}
             }
             break;
         case 'r':
             {
-            int LA12_10 = input.LA(2);
+            int LA12_11 = input.LA(2);
 
-            if ( (LA12_10=='e') ) {
+            if ( (LA12_11=='e') ) {
                 switch ( input.LA(3) ) {
-                case 'q':
-                    {
-                    int LA12_42 = input.LA(4);
-
-                    if ( (LA12_42=='u') ) {
-                        int LA12_56 = input.LA(5);
-
-                        if ( (LA12_56=='e') ) {
-                            int LA12_70 = input.LA(6);
-
-                            if ( (LA12_70=='s') ) {
-                                int LA12_84 = input.LA(7);
-
-                                if ( (LA12_84=='t') ) {
-                                    int LA12_96 = input.LA(8);
-
-                                    if ( ((LA12_96>='0' && LA12_96<='9')||(LA12_96>='A' && LA12_96<='Z')||LA12_96=='_'||(LA12_96>='a' && LA12_96<='z')) ) {
-                                        alt12=19;
-                                    }
-                                    else {
-                                        alt12=12;}
-                                }
-                                else {
-                                    alt12=19;}
-                            }
-                            else {
-                                alt12=19;}
-                        }
-                        else {
-                            alt12=19;}
-                    }
-                    else {
-                        alt12=19;}
-                    }
-                    break;
                 case 's':
                     {
-                    int LA12_43 = input.LA(4);
+                    int LA12_45 = input.LA(4);
 
-                    if ( (LA12_43=='p') ) {
-                        int LA12_57 = input.LA(5);
+                    if ( (LA12_45=='p') ) {
+                        int LA12_60 = input.LA(5);
 
-                        if ( (LA12_57=='o') ) {
-                            int LA12_71 = input.LA(6);
+                        if ( (LA12_60=='o') ) {
+                            int LA12_75 = input.LA(6);
 
-                            if ( (LA12_71=='n') ) {
-                                int LA12_85 = input.LA(7);
+                            if ( (LA12_75=='n') ) {
+                                int LA12_90 = input.LA(7);
 
-                                if ( (LA12_85=='s') ) {
-                                    int LA12_97 = input.LA(8);
+                                if ( (LA12_90=='s') ) {
+                                    int LA12_103 = input.LA(8);
 
-                                    if ( (LA12_97=='e') ) {
-                                        int LA12_106 = input.LA(9);
+                                    if ( (LA12_103=='e') ) {
+                                        int LA12_112 = input.LA(9);
 
-                                        if ( ((LA12_106>='0' && LA12_106<='9')||(LA12_106>='A' && LA12_106<='Z')||LA12_106=='_'||(LA12_106>='a' && LA12_106<='z')) ) {
-                                            alt12=19;
+                                        if ( ((LA12_112>='0' && LA12_112<='9')||(LA12_112>='A' && LA12_112<='Z')||LA12_112=='_'||(LA12_112>='a' && LA12_112<='z')) ) {
+                                            alt12=20;
                                         }
                                         else {
-                                            alt12=13;}
+                                            alt12=14;}
                                     }
                                     else {
-                                        alt12=19;}
+                                        alt12=20;}
                                 }
                                 else {
-                                    alt12=19;}
+                                    alt12=20;}
                             }
                             else {
-                                alt12=19;}
+                                alt12=20;}
                         }
                         else {
-                            alt12=19;}
+                            alt12=20;}
                     }
                     else {
-                        alt12=19;}
+                        alt12=20;}
+                    }
+                    break;
+                case 'q':
+                    {
+                    int LA12_46 = input.LA(4);
+
+                    if ( (LA12_46=='u') ) {
+                        int LA12_61 = input.LA(5);
+
+                        if ( (LA12_61=='e') ) {
+                            int LA12_76 = input.LA(6);
+
+                            if ( (LA12_76=='s') ) {
+                                int LA12_91 = input.LA(7);
+
+                                if ( (LA12_91=='t') ) {
+                                    int LA12_104 = input.LA(8);
+
+                                    if ( ((LA12_104>='0' && LA12_104<='9')||(LA12_104>='A' && LA12_104<='Z')||LA12_104=='_'||(LA12_104>='a' && LA12_104<='z')) ) {
+                                        alt12=20;
+                                    }
+                                    else {
+                                        alt12=13;}
+                                }
+                                else {
+                                    alt12=20;}
+                            }
+                            else {
+                                alt12=20;}
+                        }
+                        else {
+                            alt12=20;}
+                    }
+                    else {
+                        alt12=20;}
                     }
                     break;
                 default:
-                    alt12=19;}
+                    alt12=20;}
 
             }
             else {
-                alt12=19;}
+                alt12=20;}
             }
             break;
         case 'i':
@@ -1345,172 +1406,171 @@ public class rfcgenLexer extends Lexer {
             switch ( input.LA(2) ) {
             case 'n':
                 {
-                int LA12_28 = input.LA(3);
+                int LA12_30 = input.LA(3);
 
-                if ( (LA12_28=='a') ) {
-                    int LA12_44 = input.LA(4);
+                if ( (LA12_30=='a') ) {
+                    int LA12_47 = input.LA(4);
 
-                    if ( (LA12_44=='c') ) {
-                        int LA12_58 = input.LA(5);
+                    if ( (LA12_47=='c') ) {
+                        int LA12_62 = input.LA(5);
 
-                        if ( (LA12_58=='t') ) {
-                            int LA12_72 = input.LA(6);
+                        if ( (LA12_62=='t') ) {
+                            int LA12_77 = input.LA(6);
 
-                            if ( (LA12_72=='i') ) {
-                                int LA12_86 = input.LA(7);
+                            if ( (LA12_77=='i') ) {
+                                int LA12_92 = input.LA(7);
 
-                                if ( (LA12_86=='v') ) {
-                                    int LA12_98 = input.LA(8);
+                                if ( (LA12_92=='v') ) {
+                                    int LA12_105 = input.LA(8);
 
-                                    if ( (LA12_98=='e') ) {
-                                        int LA12_107 = input.LA(9);
+                                    if ( (LA12_105=='e') ) {
+                                        int LA12_114 = input.LA(9);
 
-                                        if ( ((LA12_107>='0' && LA12_107<='9')||(LA12_107>='A' && LA12_107<='Z')||LA12_107=='_'||(LA12_107>='a' && LA12_107<='z')) ) {
-                                            alt12=19;
+                                        if ( ((LA12_114>='0' && LA12_114<='9')||(LA12_114>='A' && LA12_114<='Z')||LA12_114=='_'||(LA12_114>='a' && LA12_114<='z')) ) {
+                                            alt12=20;
                                         }
                                         else {
-                                            alt12=15;}
+                                            alt12=16;}
                                     }
                                     else {
-                                        alt12=19;}
+                                        alt12=20;}
                                 }
                                 else {
-                                    alt12=19;}
+                                    alt12=20;}
                             }
                             else {
-                                alt12=19;}
+                                alt12=20;}
                         }
                         else {
-                            alt12=19;}
+                            alt12=20;}
                     }
                     else {
-                        alt12=19;}
+                        alt12=20;}
                 }
                 else {
-                    alt12=19;}
+                    alt12=20;}
                 }
                 break;
             case 'm':
                 {
-                int LA12_29 = input.LA(3);
+                int LA12_31 = input.LA(3);
 
-                if ( (LA12_29=='p') ) {
-                    int LA12_45 = input.LA(4);
+                if ( (LA12_31=='p') ) {
+                    int LA12_48 = input.LA(4);
 
-                    if ( (LA12_45=='o') ) {
-                        int LA12_59 = input.LA(5);
+                    if ( (LA12_48=='o') ) {
+                        int LA12_63 = input.LA(5);
 
-                        if ( (LA12_59=='r') ) {
-                            int LA12_73 = input.LA(6);
+                        if ( (LA12_63=='r') ) {
+                            int LA12_78 = input.LA(6);
 
-                            if ( (LA12_73=='t') ) {
-                                int LA12_87 = input.LA(7);
+                            if ( (LA12_78=='t') ) {
+                                int LA12_93 = input.LA(7);
 
-                                if ( ((LA12_87>='0' && LA12_87<='9')||(LA12_87>='A' && LA12_87<='Z')||LA12_87=='_'||(LA12_87>='a' && LA12_87<='z')) ) {
-                                    alt12=19;
+                                if ( ((LA12_93>='0' && LA12_93<='9')||(LA12_93>='A' && LA12_93<='Z')||LA12_93=='_'||(LA12_93>='a' && LA12_93<='z')) ) {
+                                    alt12=20;
                                 }
                                 else {
-                                    alt12=14;}
+                                    alt12=15;}
                             }
                             else {
-                                alt12=19;}
+                                alt12=20;}
                         }
                         else {
-                            alt12=19;}
+                            alt12=20;}
                     }
                     else {
-                        alt12=19;}
+                        alt12=20;}
                 }
                 else {
-                    alt12=19;}
+                    alt12=20;}
                 }
                 break;
             default:
-                alt12=19;}
+                alt12=20;}
 
             }
             break;
         case 't':
             {
-            int LA12_12 = input.LA(2);
+            int LA12_13 = input.LA(2);
 
-            if ( (LA12_12=='a') ) {
-                int LA12_30 = input.LA(3);
+            if ( (LA12_13=='a') ) {
+                int LA12_32 = input.LA(3);
 
-                if ( (LA12_30=='b') ) {
-                    int LA12_46 = input.LA(4);
+                if ( (LA12_32=='b') ) {
+                    int LA12_49 = input.LA(4);
 
-                    if ( (LA12_46=='l') ) {
-                        int LA12_60 = input.LA(5);
+                    if ( (LA12_49=='l') ) {
+                        int LA12_64 = input.LA(5);
 
-                        if ( (LA12_60=='e') ) {
-                            int LA12_74 = input.LA(6);
+                        if ( (LA12_64=='e') ) {
+                            int LA12_79 = input.LA(6);
 
-                            if ( ((LA12_74>='0' && LA12_74<='9')||(LA12_74>='A' && LA12_74<='Z')||LA12_74=='_'||(LA12_74>='a' && LA12_74<='z')) ) {
-                                alt12=19;
+                            if ( ((LA12_79>='0' && LA12_79<='9')||(LA12_79>='A' && LA12_79<='Z')||LA12_79=='_'||(LA12_79>='a' && LA12_79<='z')) ) {
+                                alt12=20;
                             }
                             else {
-                                alt12=16;}
+                                alt12=17;}
                         }
                         else {
-                            alt12=19;}
+                            alt12=20;}
                     }
                     else {
-                        alt12=19;}
+                        alt12=20;}
                 }
                 else {
-                    alt12=19;}
+                    alt12=20;}
             }
             else {
-                alt12=19;}
+                alt12=20;}
             }
             break;
         case 'e':
             {
-            int LA12_13 = input.LA(2);
+            int LA12_14 = input.LA(2);
 
-            if ( (LA12_13=='x') ) {
-                int LA12_31 = input.LA(3);
+            if ( (LA12_14=='x') ) {
+                int LA12_33 = input.LA(3);
 
-                if ( (LA12_31=='p') ) {
-                    int LA12_47 = input.LA(4);
+                if ( (LA12_33=='p') ) {
+                    int LA12_50 = input.LA(4);
 
-                    if ( (LA12_47=='o') ) {
-                        int LA12_61 = input.LA(5);
+                    if ( (LA12_50=='o') ) {
+                        int LA12_65 = input.LA(5);
 
-                        if ( (LA12_61=='r') ) {
-                            int LA12_75 = input.LA(6);
+                        if ( (LA12_65=='r') ) {
+                            int LA12_80 = input.LA(6);
 
-                            if ( (LA12_75=='t') ) {
-                                int LA12_89 = input.LA(7);
+                            if ( (LA12_80=='t') ) {
+                                int LA12_95 = input.LA(7);
 
-                                if ( ((LA12_89>='0' && LA12_89<='9')||(LA12_89>='A' && LA12_89<='Z')||LA12_89=='_'||(LA12_89>='a' && LA12_89<='z')) ) {
-                                    alt12=19;
+                                if ( ((LA12_95>='0' && LA12_95<='9')||(LA12_95>='A' && LA12_95<='Z')||LA12_95=='_'||(LA12_95>='a' && LA12_95<='z')) ) {
+                                    alt12=20;
                                 }
                                 else {
-                                    alt12=17;}
+                                    alt12=18;}
                             }
                             else {
-                                alt12=19;}
+                                alt12=20;}
                         }
                         else {
-                            alt12=19;}
+                            alt12=20;}
                     }
                     else {
-                        alt12=19;}
+                        alt12=20;}
                 }
                 else {
-                    alt12=19;}
+                    alt12=20;}
             }
             else {
-                alt12=19;}
+                alt12=20;}
             }
             break;
         case 'A':
         case 'B':
         case 'C':
         case 'D':
-        case 'E':
         case 'F':
         case 'G':
         case 'H':
@@ -1552,13 +1612,13 @@ public class rfcgenLexer extends Lexer {
         case 'y':
         case 'z':
             {
-            alt12=19;
+            alt12=20;
             }
             break;
         case '\"':
         case '\'':
             {
-            alt12=20;
+            alt12=21;
             }
             break;
         case '-':
@@ -1573,7 +1633,7 @@ public class rfcgenLexer extends Lexer {
         case '8':
         case '9':
             {
-            alt12=21;
+            alt12=22;
             }
             break;
         case '\t':
@@ -1581,22 +1641,22 @@ public class rfcgenLexer extends Lexer {
         case '\r':
         case ' ':
             {
-            alt12=22;
+            alt12=23;
             }
             break;
         case '/':
             {
-            int LA12_18 = input.LA(2);
+            int LA12_19 = input.LA(2);
 
-            if ( (LA12_18=='*') ) {
-                alt12=23;
+            if ( (LA12_19=='/') ) {
+                alt12=25;
             }
-            else if ( (LA12_18=='/') ) {
+            else if ( (LA12_19=='*') ) {
                 alt12=24;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1:1: Tokens : ( T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | RULE_ID | RULE_STRING | RULE_INT | RULE_WS | RULE_ML_COMMENT | RULE_SL_COMMENT );", 12, 18, input);
+                    new NoViableAltException("1:1: Tokens : ( T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_STRING | RULE_INT | RULE_WS | RULE_ML_COMMENT | RULE_SL_COMMENT );", 12, 19, input);
 
                 throw nvae;
             }
@@ -1604,7 +1664,7 @@ public class rfcgenLexer extends Lexer {
             break;
         default:
             NoViableAltException nvae =
-                new NoViableAltException("1:1: Tokens : ( T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | RULE_ID | RULE_STRING | RULE_INT | RULE_WS | RULE_ML_COMMENT | RULE_SL_COMMENT );", 12, 0, input);
+                new NoViableAltException("1:1: Tokens : ( T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_STRING | RULE_INT | RULE_WS | RULE_ML_COMMENT | RULE_SL_COMMENT );", 12, 0, input);
 
             throw nvae;
         }
@@ -1737,42 +1797,49 @@ public class rfcgenLexer extends Lexer {
                 }
                 break;
             case 19 :
-                // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:82: RULE_ID
+                // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:82: T28
+                {
+                mT28(); 
+
+                }
+                break;
+            case 20 :
+                // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:86: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 20 :
-                // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:90: RULE_STRING
+            case 21 :
+                // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:94: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 21 :
-                // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:102: RULE_INT
+            case 22 :
+                // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:106: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 22 :
-                // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:111: RULE_WS
+            case 23 :
+                // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:115: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 23 :
-                // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:119: RULE_ML_COMMENT
+            case 24 :
+                // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:123: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 24 :
-                // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:135: RULE_SL_COMMENT
+            case 25 :
+                // ..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g:1:139: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 

@@ -1,41 +1,56 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="rfcgen" nsURI="http://www.sf.net/rcer/rfcgen" nsPrefix="rfcgen">
   <eClassifiers xsi:type="ecore:EClass" name="GenSpec">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="structures" ordered="false" upperBound="-1" eType="//Structure" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionModules" ordered="false" upperBound="-1" eType="//FunctionModule" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageName" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="structures" ordered="false" upperBound="-1" eType="//Structure" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="functionModules" ordered="false" upperBound="-1" eType="//FunctionModule" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Structure" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Structure">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" ordered="false" eType="//StructureMapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" ordered="false" upperBound="-1" eType="//StructureFieldPOJOMapping" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructureMapping" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StructurePOJOMapping" eSuperTypes="//Structure"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StructurePOJOMapping" eSuperTypes="//StructureMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" ordered="false" upperBound="-1" eType="//StructureFieldPOJOMapping" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StructureFieldPOJOMapping">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attribute" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructureEMFMapping" eSuperTypes="//StructureMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" ordered="false" upperBound="-1" eType="//StructureFieldEMFMapping" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructureFieldEMFMapping">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="attribute" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" ordered="false" unique="false">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionModule">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" ordered="false" eType="//FunctionModuleMapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" ordered="false" eType="//FunctionModuleMapping" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionModuleMapping" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionModulePOJOMapping" abstract="true" eSuperTypes="//FunctionModuleMapping"/>
@@ -46,26 +61,26 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionModulePOJORequestResponseMapping" eSuperTypes="//FunctionModulePOJOMapping">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requestClassName" ordered="false" unique="false">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requestParameters" ordered="false" upperBound="-1" eType="//FunctionModulePOJOParameterMapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="responseClassName" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="requestParameters" ordered="false" upperBound="-1" eType="//FunctionModulePOJOParameterMapping" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requestClassName" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="responseParameters" ordered="false" upperBound="-1" eType="//FunctionModulePOJOParameterMapping" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionModulePOJOParameterMapping" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInactive" ordered="false" unique="false">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="attribute" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" ordered="false" unique="false">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" ordered="false" unique="false">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInactive" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false">
@@ -81,14 +96,51 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionModulePOJOExportingParameter" eSuperTypes="//FunctionModulePOJOParameterMapping">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTable" ordered="false" unique="false">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStructure" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStructure" ordered="false" unique="false">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTable" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionModulePOJOChangingParameter" eSuperTypes="//FunctionModulePOJOParameterMapping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTable" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStructure" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionModulePOJOTablesParameter" eSuperTypes="//FunctionModulePOJOParameterMapping"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionModuleEMFMapping" abstract="true" eSuperTypes="//FunctionModuleMapping"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionModuleEMFCallMapping" eSuperTypes="//FunctionModuleEMFMapping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" ordered="false" upperBound="-1" eType="//FunctionModuleEMFParameterMapping" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionModuleEMFRequestResponseMapping" eSuperTypes="//FunctionModuleEMFMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requestParameters" ordered="false" upperBound="-1" eType="//FunctionModuleEMFParameterMapping" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requestClassName" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="responseParameters" ordered="false" upperBound="-1" eType="//FunctionModuleEMFParameterMapping" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="responseClassName" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionModuleEMFParameterMapping" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attribute" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInactive" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionModuleEMFImportingParameter" eSuperTypes="//FunctionModuleEMFParameterMapping">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStructure" ordered="false" unique="false">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eStructuralFeatures>
@@ -96,5 +148,21 @@
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionModulePOJOTablesParameter" eSuperTypes="//FunctionModulePOJOParameterMapping"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionModuleEMFExportingParameter" eSuperTypes="//FunctionModuleEMFParameterMapping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStructure" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTable" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionModuleEMFChangingParameter" eSuperTypes="//FunctionModuleEMFParameterMapping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTable" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStructure" ordered="false" unique="false">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionModuleEMFTablesParameter" eSuperTypes="//FunctionModuleEMFParameterMapping"/>
 </ecore:EPackage>

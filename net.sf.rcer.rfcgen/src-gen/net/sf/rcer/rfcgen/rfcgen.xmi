@@ -17,15 +17,28 @@
   </rules>
   <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="Structure">
     <type alias="" name="Structure"/>
-    <content xsi:type="org.openarchitectureware.xtext:RuleName" name="StructurePOJOMapping"/>
-  </rules>
-  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="StructurePOJOMapping">
-    <type alias="" name="StructurePOJOMapping"/>
     <content xsi:type="org.openarchitectureware.xtext:Group">
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="structure"/>
       <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">
         <token xsi:type="org.openarchitectureware.xtext:RuleName" name="STRING"/>
       </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="{"/>
+      <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="mapping" operator="ASSIGN">
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="StructureMapping"/>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="}"/>
+    </content>
+  </rules>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="StructureMapping">
+    <type alias="" name="StructureMapping"/>
+    <content xsi:type="org.openarchitectureware.xtext:Alternatives">
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="StructurePOJOMapping"/>
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="StructureEMFMapping"/>
+    </content>
+  </rules>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="StructurePOJOMapping">
+    <type alias="" name="StructurePOJOMapping"/>
+    <content xsi:type="org.openarchitectureware.xtext:Group">
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value="class"/>
       <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="className" operator="ASSIGN">
         <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
@@ -60,6 +73,34 @@
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value=";"/>
     </content>
   </rules>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="StructureEMFMapping">
+    <type alias="" name="StructureEMFMapping"/>
+    <content xsi:type="org.openarchitectureware.xtext:Group">
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="EClass"/>
+      <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="className" operator="ASSIGN">
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="{"/>
+      <children xsi:type="org.openarchitectureware.xtext:Assignment" cardinality="ANY" feature="fields" operator="ADD">
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="StructureFieldEMFMapping"/>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="}"/>
+    </content>
+  </rules>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="StructureFieldEMFMapping">
+    <type alias="" name="StructureFieldEMFMapping"/>
+    <content xsi:type="org.openarchitectureware.xtext:Group">
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="field"/>
+      <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="STRING"/>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="="/>
+      <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="attribute" operator="ASSIGN">
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value=";"/>
+    </content>
+  </rules>
   <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModule">
     <type alias="" name="FunctionModule"/>
     <content xsi:type="org.openarchitectureware.xtext:Group">
@@ -77,7 +118,10 @@
   </rules>
   <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleMapping">
     <type alias="" name="FunctionModuleMapping"/>
-    <content xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModulePOJOMapping"/>
+    <content xsi:type="org.openarchitectureware.xtext:Alternatives">
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModulePOJOMapping"/>
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleEMFMapping"/>
+    </content>
   </rules>
   <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModulePOJOMapping">
     <type alias="" name="FunctionModulePOJOMapping"/>
@@ -397,6 +441,254 @@
         <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="comment" operator="ASSIGN">
           <token xsi:type="org.openarchitectureware.xtext:RuleName" name="STRING"/>
         </children>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value=";"/>
+    </content>
+  </rules>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleEMFMapping">
+    <type alias="" name="FunctionModuleEMFMapping"/>
+    <content xsi:type="org.openarchitectureware.xtext:Alternatives">
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleEMFCallMapping"/>
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleEMFRequestResponseMapping"/>
+    </content>
+  </rules>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleEMFCallMapping">
+    <type alias="" name="FunctionModuleEMFCallMapping"/>
+    <content xsi:type="org.openarchitectureware.xtext:Group">
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="EClass"/>
+      <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="className" operator="ASSIGN">
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="{"/>
+      <children xsi:type="org.openarchitectureware.xtext:Assignment" cardinality="ANY" feature="parameters" operator="ADD">
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleEMFParameterMapping"/>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="}"/>
+    </content>
+  </rules>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleEMFRequestResponseMapping">
+    <type alias="" name="FunctionModuleEMFRequestResponseMapping"/>
+    <content xsi:type="org.openarchitectureware.xtext:Group">
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="request"/>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="EClass"/>
+      <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="requestClassName" operator="ASSIGN">
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="{"/>
+      <children xsi:type="org.openarchitectureware.xtext:Assignment" cardinality="ANY" feature="requestParameters" operator="ADD">
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleEMFParameterMapping"/>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="}"/>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="response"/>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="EClass"/>
+      <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="responseClassName" operator="ASSIGN">
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="{"/>
+      <children xsi:type="org.openarchitectureware.xtext:Assignment" cardinality="ANY" feature="responseParameters" operator="ADD">
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleEMFParameterMapping"/>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="}"/>
+    </content>
+  </rules>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleEMFParameterMapping">
+    <type alias="" name="FunctionModuleEMFParameterMapping"/>
+    <content xsi:type="org.openarchitectureware.xtext:Alternatives">
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleEMFImportingParameter"/>
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleEMFExportingParameter"/>
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleEMFChangingParameter"/>
+      <alternatives xsi:type="org.openarchitectureware.xtext:RuleName" name="FunctionModuleEMFTablesParameter"/>
+    </content>
+  </rules>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleEMFImportingParameter">
+    <type alias="" name="FunctionModuleEMFImportingParameter"/>
+    <content xsi:type="org.openarchitectureware.xtext:Group">
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="import"/>
+      <children xsi:type="org.openarchitectureware.xtext:Alternatives">
+        <alternatives xsi:type="org.openarchitectureware.xtext:Group">
+          <children xsi:type="org.openarchitectureware.xtext:Keyword" value="field"/>
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:RuleName" name="STRING"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Keyword" value="="/>
+          <children xsi:type="org.openarchitectureware.xtext:Alternatives">
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="isInactive" operator="BOOLASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:Keyword" value="inactive"/>
+            </alternatives>
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="attribute" operator="ASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+            </alternatives>
+          </children>
+        </alternatives>
+        <alternatives xsi:type="org.openarchitectureware.xtext:Group">
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="isStructure" operator="BOOLASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:Keyword" value="structure"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:RuleName" name="STRING"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Keyword" value="="/>
+          <children xsi:type="org.openarchitectureware.xtext:Alternatives">
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="isInactive" operator="BOOLASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:Keyword" value="inactive"/>
+            </alternatives>
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="attribute" operator="ASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+            </alternatives>
+          </children>
+        </alternatives>
+        <alternatives xsi:type="org.openarchitectureware.xtext:Group">
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="isTable" operator="BOOLASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:Keyword" value="table"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:RuleName" name="STRING"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Keyword" value="="/>
+          <children xsi:type="org.openarchitectureware.xtext:Alternatives">
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="isInactive" operator="BOOLASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:Keyword" value="inactive"/>
+            </alternatives>
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="attribute" operator="ASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+            </alternatives>
+          </children>
+        </alternatives>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value=";"/>
+    </content>
+  </rules>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleEMFExportingParameter">
+    <type alias="" name="FunctionModuleEMFExportingParameter"/>
+    <content xsi:type="org.openarchitectureware.xtext:Group">
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="export"/>
+      <children xsi:type="org.openarchitectureware.xtext:Alternatives">
+        <alternatives xsi:type="org.openarchitectureware.xtext:Group">
+          <children xsi:type="org.openarchitectureware.xtext:Keyword" value="field"/>
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:RuleName" name="STRING"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Keyword" value="="/>
+          <children xsi:type="org.openarchitectureware.xtext:Alternatives">
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="isInactive" operator="BOOLASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:Keyword" value="inactive"/>
+            </alternatives>
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="attribute" operator="ASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+            </alternatives>
+          </children>
+        </alternatives>
+        <alternatives xsi:type="org.openarchitectureware.xtext:Group">
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="isStructure" operator="BOOLASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:Keyword" value="structure"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:RuleName" name="STRING"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Keyword" value="="/>
+          <children xsi:type="org.openarchitectureware.xtext:Alternatives">
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="isInactive" operator="BOOLASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:Keyword" value="inactive"/>
+            </alternatives>
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="attribute" operator="ASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+            </alternatives>
+          </children>
+        </alternatives>
+        <alternatives xsi:type="org.openarchitectureware.xtext:Group">
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="isTable" operator="BOOLASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:Keyword" value="table"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:RuleName" name="STRING"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Keyword" value="="/>
+          <children xsi:type="org.openarchitectureware.xtext:Alternatives">
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="isInactive" operator="BOOLASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:Keyword" value="inactive"/>
+            </alternatives>
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="attribute" operator="ASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+            </alternatives>
+          </children>
+        </alternatives>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value=";"/>
+    </content>
+  </rules>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleEMFChangingParameter">
+    <type alias="" name="FunctionModuleEMFChangingParameter"/>
+    <content xsi:type="org.openarchitectureware.xtext:Group">
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="change"/>
+      <children xsi:type="org.openarchitectureware.xtext:Alternatives">
+        <alternatives xsi:type="org.openarchitectureware.xtext:Group">
+          <children xsi:type="org.openarchitectureware.xtext:Keyword" value="field"/>
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:RuleName" name="STRING"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Keyword" value="="/>
+          <children xsi:type="org.openarchitectureware.xtext:Alternatives">
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="isInactive" operator="BOOLASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:Keyword" value="inactive"/>
+            </alternatives>
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="attribute" operator="ASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+            </alternatives>
+          </children>
+        </alternatives>
+        <alternatives xsi:type="org.openarchitectureware.xtext:Group">
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="isStructure" operator="BOOLASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:Keyword" value="structure"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:RuleName" name="STRING"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Keyword" value="="/>
+          <children xsi:type="org.openarchitectureware.xtext:Alternatives">
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="isInactive" operator="BOOLASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:Keyword" value="inactive"/>
+            </alternatives>
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="attribute" operator="ASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+            </alternatives>
+          </children>
+        </alternatives>
+        <alternatives xsi:type="org.openarchitectureware.xtext:Group">
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="isTable" operator="BOOLASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:Keyword" value="table"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">
+            <token xsi:type="org.openarchitectureware.xtext:RuleName" name="STRING"/>
+          </children>
+          <children xsi:type="org.openarchitectureware.xtext:Keyword" value="="/>
+          <children xsi:type="org.openarchitectureware.xtext:Alternatives">
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="isInactive" operator="BOOLASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:Keyword" value="inactive"/>
+            </alternatives>
+            <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="attribute" operator="ASSIGN">
+              <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+            </alternatives>
+          </children>
+        </alternatives>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value=";"/>
+    </content>
+  </rules>
+  <rules xsi:type="org.openarchitectureware.xtext:TypeRule" name="FunctionModuleEMFTablesParameter">
+    <type alias="" name="FunctionModuleEMFTablesParameter"/>
+    <content xsi:type="org.openarchitectureware.xtext:Group">
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="table"/>
+      <children xsi:type="org.openarchitectureware.xtext:Assignment" feature="name" operator="ASSIGN">
+        <token xsi:type="org.openarchitectureware.xtext:RuleName" name="STRING"/>
+      </children>
+      <children xsi:type="org.openarchitectureware.xtext:Keyword" value="="/>
+      <children xsi:type="org.openarchitectureware.xtext:Alternatives">
+        <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="isInactive" operator="BOOLASSIGN">
+          <token xsi:type="org.openarchitectureware.xtext:Keyword" value="inactive"/>
+        </alternatives>
+        <alternatives xsi:type="org.openarchitectureware.xtext:Assignment" feature="attribute" operator="ASSIGN">
+          <token xsi:type="org.openarchitectureware.xtext:RuleName" name="ID"/>
+        </alternatives>
       </children>
       <children xsi:type="org.openarchitectureware.xtext:Keyword" value=";"/>
     </content>

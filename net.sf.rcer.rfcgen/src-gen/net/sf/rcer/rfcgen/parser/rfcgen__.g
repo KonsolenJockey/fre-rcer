@@ -21,31 +21,32 @@ import org.openarchitectureware.xtext.parser.impl.AntlrUtil;
 
 T10 : 'package' ;
 T11 : 'structure' ;
-T12 : 'class' ;
-T13 : '{' ;
-T14 : '}' ;
+T12 : '{' ;
+T13 : '}' ;
+T14 : 'class' ;
 T15 : 'field' ;
 T16 : '=' ;
 T17 : 'comment' ;
 T18 : ';' ;
-T19 : 'function' ;
-T20 : 'module' ;
-T21 : 'request' ;
-T22 : 'response' ;
-T23 : 'import' ;
-T24 : 'inactive' ;
-T25 : 'table' ;
-T26 : 'export' ;
-T27 : 'change' ;
+T19 : 'EClass' ;
+T20 : 'function' ;
+T21 : 'module' ;
+T22 : 'request' ;
+T23 : 'response' ;
+T24 : 'import' ;
+T25 : 'inactive' ;
+T26 : 'table' ;
+T27 : 'export' ;
+T28 : 'change' ;
 
-// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1283
+// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 2150
 RULE_ID :
 
 	 ('^')?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*
 	 
 ;
 
-// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1289
+// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 2156
 RULE_STRING :
 
 	 '\"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\') | ~('\\'|'\"') )* '\"' |
@@ -53,28 +54,28 @@ RULE_STRING :
 	 
 ;
 
-// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1296
+// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 2163
 RULE_INT :
 
 	 ('-')?('0'..'9')+
 	 
 ;
 
-// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1302
+// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 2169
 RULE_WS :
 
 	 (' '|'\t'|'\r'|'\n')+ {$channel=HIDDEN;}
 	 
 ;
 
-// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1308
+// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 2175
 RULE_ML_COMMENT :
 
 	 '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
 	 
 ;
 
-// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 1314
+// $ANTLR src "..//net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/rfcgen.g" 2181
 RULE_SL_COMMENT :
 
 	 '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}

@@ -34,18 +34,19 @@ public class RfcgenUtilities extends AbstractLanguageUtilities {
 	List<String> r = new ArrayList<String>();
 	{
 		r.add("table");
-		r.add("function");
-		r.add("comment");
 		r.add("structure");
 		r.add("response");
-		r.add("import");
+		r.add("EClass");
 		r.add("class");
 		r.add("inactive");
-		r.add("change");
 		r.add("export");
+		r.add("module");
+		r.add("function");
+		r.add("comment");
+		r.add("import");
+		r.add("change");
 		r.add("field");
 		r.add("request");
-		r.add("module");
 		r.add("package");
 	}
 	public List<String> allKeywords() {

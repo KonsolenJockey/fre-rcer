@@ -11,7 +11,7 @@
  */
 import rfcgen;
 
-String getFileName(Structure structure, String packageName):
+String getFileName(StructurePOJOMapping structure, String packageName):
 	packageName.replaceAll("\\.", "/") + "/" + structure.className + ".java";
 	
 String getFileName(FunctionModulePOJOCallMapping mapping, String packageName):

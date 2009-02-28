@@ -18,7 +18,7 @@
 
 «DEFINE main FOR GenSpec»
 	«FOREACH structures AS s»
-		«EXPAND StructureClass(packageName) FOR s»
+		«EXPAND StructureClass(packageName, s.name) FOR s.mapping»
 	«ENDFOREACH»
 	«FOREACH functionModules AS m»
 		«EXPAND FunctionModuleClasses(packageName, m.name) FOR m.mapping»
@@ -110,12 +110,18 @@ import com.sap.conn.jco.JCoTable;
 
 «REM» ============================================================================================= «ENDREM»
 
-«DEFINE StructureClass(String packageName) FOR Structure»
+«DEFINE StructureClass(String packageName, String functionModuleName) FOR StructureMapping»
+«ERROR "Abstract template for StructureMapping called - should not happen."»
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE StructureClass(String packageName, String structureName) FOR StructurePOJOMapping»
 «FILE getFileName(packageName)» 
 package «packageName»;
 «EXPAND Imports FOR this»
 /**
- * A class representing the SAP R/3 data structure «name».
+ * A class representing the SAP R/3 data structure «structureName».
  */
 public class «className» {
 
@@ -188,26 +194,26 @@ public class «className» {
 	}
 	
 	/**
-	 * @throws UnsupportedOperationException if any structure other than «name» is passed
+	 * @throws UnsupportedOperationException if any structure other than «structureName» is passed
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("«name»")) {
+		if (!structureName.equals("«structureName»")) {
 			throw new UnsupportedOperationException(
-				MessageFormat.format("Unsupported structure {0} (expected «name»).", structureName));
+				MessageFormat.format("Unsupported structure {0} (expected «structureName»).", structureName));
 		}
 	}
 	
 «FOREACH fields AS f-»
 	/**
-	 * @return the «f.comment == null ? f.attribute : f.comment» («name»-«f.name»)
+	 * @return the «f.comment == null ? f.attribute : f.comment» («structureName»-«f.name»)
 	 */
 	public «f.type» get«f.attribute.toFirstUpper()»() {
 		return this.«f.attribute»;
 	}
 	
 	/**
-	 * Changes the «f.comment == null ? f.attribute : f.comment» («name»-«f.name»).
+	 * Changes the «f.comment == null ? f.attribute : f.comment» («structureName»-«f.name»).
 	 * @param new«f.attribute.toFirstUpper()» the new «f.comment == null ? f.attribute : f.comment» to set
 	 */
 	public void set«f.attribute.toFirstUpper()»(«f.type» new«f.attribute.toFirstUpper()») {
@@ -224,7 +230,7 @@ public class «className» {
 «REM» ============================================================================================= «ENDREM»
 
 «DEFINE FunctionModuleClasses(String packageName, String functionModuleName) FOR FunctionModuleMapping»
-«ERROR "Abstract template called - should not happen."»
+«ERROR "Abstract template for FunctionModuleMapping called - should not happen."»
 «ENDDEFINE»
 
 «REM» ============================================================================================= «ENDREM»

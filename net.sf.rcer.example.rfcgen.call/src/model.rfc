@@ -11,15 +11,17 @@
 //
 package "net.sf.rcer.example.rfcgen.call"
 
-structure "BAPISFLIST" class FlightData { 
-	field "CARRID"   = String carrierID    comment "carrier ID";
-	field "CONNID"   = String connectionID comment "connection ID";
-	field "FLDATE"   = Date flightDate     comment "flight date";
-	field "DEPTIME"  = Date departureTime  comment "departure time";
-	field "AIRPFROM" = String origin       comment "originating airport";
-	field "AIRPTO"   = String destination  comment "destination airport";
-	field "SEATSMAX" = int maximumSeats    comment "maximum number of seats";
-	field "SEATSOCC" = int occupiedSeats   comment "number of seats occupied";
+structure "BAPISFLIST" {
+	class FlightData { 
+		field "CARRID"   = String carrierID    comment "carrier ID";
+		field "CONNID"   = String connectionID comment "connection ID";
+		field "FLDATE"   = Date flightDate     comment "flight date";
+		field "DEPTIME"  = Date departureTime  comment "departure time";
+		field "AIRPFROM" = String origin       comment "originating airport";
+		field "AIRPTO"   = String destination  comment "destination airport";
+		field "SEATSMAX" = int maximumSeats    comment "maximum number of seats";
+		field "SEATSOCC" = int occupiedSeats   comment "number of seats occupied";
+	}
 }
 
 function module "BAPI_SFLIGHT_GETLIST" {
