@@ -96,10 +96,10 @@ public class FlightData {
 	public static List<FlightData> fromTable(JCoTable source) {
 		List<FlightData> list = new ArrayList<FlightData>();
 		if (!source.isEmpty()) {
-			for (int i = 1; i <= source.getNumRows(); i++) {
-				source.setRow(i);
+			source.firstRow();
+			do {
 				list.add(new FlightData(source));
-			} 
+			} while (source.nextRow());
 		}
 		return list;
 	}
