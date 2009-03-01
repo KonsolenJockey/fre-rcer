@@ -23,10 +23,12 @@ public class RfcgenUtilities extends AbstractLanguageUtilities {
 		return new XtextParser(inputStream);
 	}
 
+	@Override
 	public String getFileExtension() {
 		return "rfc";
 	}
 
+	@Override
 	public EPackage getEPackage() {
 		return EPACKAGE;
 	}
@@ -52,6 +54,7 @@ public class RfcgenUtilities extends AbstractLanguageUtilities {
 		return r;
 	}
 
+	@Override
 	protected ClassLoader getClassLoader() {
 		return this.getClass().getClassLoader();
 	}

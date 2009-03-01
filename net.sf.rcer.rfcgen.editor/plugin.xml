@@ -38,4 +38,22 @@
         name="%category.name">
   </category>
 	</extension>
+	
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="net.sf.rcer"
+            name="%category.name">
+      </category>
+      <wizard
+            category="net.sf.rcer"
+            class="net.sf.rcer.rfcgen.wizard.CreateMappingWizard"
+            id="net.sf.rcer.rfcgen.CreateMappingWizard"
+            name="%import.wizard.name">
+         <description>
+            %import.wizard.description
+         </description>
+      </wizard>
+   </extension>
+	
 </plugin>
