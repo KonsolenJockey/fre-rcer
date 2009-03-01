@@ -35,6 +35,7 @@ public class GetFlightListRequest {
 	private String fromCity;
 	private String toCountry;
 	private String toCity;
+	private boolean afternoon;
 	
 	/**
 	 * Default constructor to create an instance with initial values.
@@ -108,6 +109,22 @@ public class GetFlightListRequest {
 	}
 	
 	/**
+	 * @return the restrict search to afternoon flights (AFTERNOON)
+	 */
+	public boolean isAfternoon() {
+		return this.afternoon;
+	}
+	
+	/**
+	 * Changes the restrict search to afternoon flights (AFTERNOON).
+	 * @param newAfternoon the new restrict search to afternoon flights to set
+	 */
+	public void setAfternoon(boolean newAfternoon) {
+		_pcs.firePropertyChange("afternoon", this.afternoon, newAfternoon);
+		this.afternoon = newAfternoon;
+	}
+	
+	/**
 	 * Executes the RFC call and returns the response instance.
 	 * @param destination the RFC destination to use
 	 * @throws JCoException
@@ -118,6 +135,7 @@ public class GetFlightListRequest {
 		function.getImportParameterList().setValue("FROMCITY", fromCity);
 		function.getImportParameterList().setValue("TOCOUNTRYKEY", toCountry);
 		function.getImportParameterList().setValue("TOCITY", toCity);
+		function.getImportParameterList().setValue("AFTERNOON", afternoon ? "X" : " ");
 		function.execute(destination);
 		GetFlightListResponse response = new GetFlightListResponse();
 		response.setFlights(FlightData.fromTable(function.getTableParameterList().getTable("FLIGHTLIST")));

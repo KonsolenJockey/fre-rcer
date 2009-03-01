@@ -208,7 +208,7 @@ public class «className» {
 	/**
 	 * @return the «f.comment == null ? f.attribute : f.comment» («structureName»-«f.name»)
 	 */
-	public «f.type» get«f.attribute.toFirstUpper()»() {
+	public «f.type» «f.getGetterName()»() {
 		return this.«f.attribute»;
 	}
 	
@@ -216,7 +216,7 @@ public class «className» {
 	 * Changes the «f.comment == null ? f.attribute : f.comment» («structureName»-«f.name»).
 	 * @param new«f.attribute.toFirstUpper()» the new «f.comment == null ? f.attribute : f.comment» to set
 	 */
-	public void set«f.attribute.toFirstUpper()»(«f.type» new«f.attribute.toFirstUpper()») {
+	public void set«f.getSetterName()»(«f.type» new«f.attribute.toFirstUpper()») {
 		_pcs.firePropertyChange("«f.attribute»", this.«f.attribute», new«f.attribute.toFirstUpper()»);
 		this.«f.attribute» = new«f.attribute.toFirstUpper()»;
 	}
@@ -269,7 +269,7 @@ public class «className» {
 	/**
 	 * @return the «p.comment == null ? p.attribute : p.comment» («p.name»)
 	 */
-	public «p.getJavaType()» get«p.attribute.toFirstUpper()»() {
+	public «p.getJavaType()» «p.getGetterName()»() {
 		return this.«p.attribute»;
 	}
 	
@@ -277,7 +277,7 @@ public class «className» {
 	 * Changes the «p.comment == null ? p.attribute : p.comment» («p.name»).
 	 * @param new«p.attribute.toFirstUpper()» the new «p.comment == null ? p.attribute : p.comment» to set
 	 */
-	public void set«p.attribute.toFirstUpper()»(«p.getJavaType()» new«p.attribute.toFirstUpper()») {
+	public void «p.getSetterName()»(«p.getJavaType()» new«p.attribute.toFirstUpper()») {
 		_pcs.firePropertyChange("«p.attribute»", this.«p.attribute», new«p.attribute.toFirstUpper()»);
 		this.«p.attribute» = new«p.attribute.toFirstUpper()»;
 	}
@@ -340,7 +340,7 @@ public class «requestClassName» {
 	/**
 	 * @return the «p.comment == null ? p.attribute : p.comment» («p.name»)
 	 */
-	public «p.getJavaType()» get«p.attribute.toFirstUpper()»() {
+	public «p.getJavaType()» «p.getGetterName()»() {
 		return this.«p.attribute»;
 	}
 	
@@ -348,7 +348,7 @@ public class «requestClassName» {
 	 * Changes the «p.comment == null ? p.attribute : p.comment» («p.name»).
 	 * @param new«p.attribute.toFirstUpper()» the new «p.comment == null ? p.attribute : p.comment» to set
 	 */
-	public void set«p.attribute.toFirstUpper()»(«p.getJavaType()» new«p.attribute.toFirstUpper()») {
+	public void «p.getSetterName()»(«p.getJavaType()» new«p.attribute.toFirstUpper()») {
 		_pcs.firePropertyChange("«p.attribute»", this.«p.attribute», new«p.attribute.toFirstUpper()»);
 		this.«p.attribute» = new«p.attribute.toFirstUpper()»;
 	}
@@ -403,7 +403,7 @@ public class «responseClassName» {
 	/**
 	 * @return the «p.comment == null ? p.attribute : p.comment» («p.name»)
 	 */
-	public «p.getJavaType()» get«p.attribute.toFirstUpper()»() {
+	public «p.getJavaType()» «p.getGetterName()»() {
 		return this.«p.attribute»;
 	}
 	
@@ -411,7 +411,7 @@ public class «responseClassName» {
 	 * Changes the «p.comment == null ? p.attribute : p.comment» («p.name»).
 	 * @param new«p.attribute.toFirstUpper()» the new «p.comment == null ? p.attribute : p.comment» to set
 	 */
-	public void set«p.attribute.toFirstUpper()»(«p.getJavaType()» new«p.attribute.toFirstUpper()») {
+	public void «p.getSetterName()»(«p.getJavaType()» new«p.attribute.toFirstUpper()») {
 		_pcs.firePropertyChange("«p.attribute»", this.«p.attribute», new«p.attribute.toFirstUpper()»);
 		this.«p.attribute» = new«p.attribute.toFirstUpper()»;
 	}
@@ -466,6 +466,8 @@ public class «responseClassName» {
 		«type».toTable(function.getImportParameterList().getTable("«name»"));
 «ELSEIF isStructure-»
 		«attribute».toStructure(«attribute», function.getImportParameterList().getStructure("«name»"));
+«ELSEIF isBoolean()-»
+		function.getImportParameterList().setValue("«name»", «attribute» ? "X" : " ");
 «ELSE-»
 		function.getImportParameterList().setValue("«name»", «attribute»);
 «ENDIF-»
@@ -476,6 +478,8 @@ public class «responseClassName» {
 		«type».toTable(function.getChangingParameterList().getTable("«name»"));
 «ELSEIF isStructure-»
 		«attribute».toStructure(«attribute», function.getChangingParameterList().getStructure("«name»"));
+«ELSEIF isBoolean()-»
+		function.getChangingParameterList().setValue("«name»", «attribute» ? "X" : " ");
 «ELSE-»
 		function.getChangingParameterList().setValue("«name»", «attribute»);
 «ENDIF-»
@@ -495,6 +499,8 @@ public class «responseClassName» {
 		«attribute» = «type».fromTable(function.getExportParameterList().getTable("«name»"));
 «ELSEIF isStructure-»
 		«attribute» = new «type»(function.getExportParameterList().getStructure("«name»"));
+«ELSEIF isBoolean()-»
+		«attribute» = function.getExportParameterList().getValue("«name»").equalsIgnoreCase("X");
 «ELSE-»
 		«attribute» = function.getExportParameterList().getValue("«name»");
 «ENDIF-»
@@ -505,6 +511,8 @@ public class «responseClassName» {
 		«attribute» = «type».fromTable(function.getChangingParameterList().getTable("«name»"));
 «ELSEIF isStructure-»
 		«attribute» = new «type»(function.getChangingParameterList().getStructure("«name»"));
+«ELSEIF isBoolean()-»
+		«attribute» = function.getChangingParameterList().getValue("«name»").equalsIgnoreCase("X");
 «ELSE-»
 		«attribute» = function.getChangingParameterList().getValue("«name»");
 «ENDIF-»
@@ -521,25 +529,29 @@ public class «responseClassName» {
 
 «DEFINE FunctionModulePOJOParameterAfterCallResponse FOR FunctionModulePOJOExportingParameter-»
 «IF isTable-»
-		response.set«attribute.toFirstUpper()»(«type».fromTable(function.getExportParameterList().getTable("«name»")));
+		response.«getSetterName()»(«type».fromTable(function.getExportParameterList().getTable("«name»")));
 «ELSEIF isStructure-»
-		response.set«attribute.toFirstUpper()»(new «type»(function.getExportParameterList().getStructure("«name»")));
+		response.«getSetterName()»(new «type»(function.getExportParameterList().getStructure("«name»")));
+«ELSEIF isBoolean()-»
+		response.«getSetterName()»(function.getExportParameterList().getValue("«name»").equalsIgnoreCase("X"));
 «ELSE-»
-		response.set«attribute.toFirstUpper()»(function.getExportParameterList().getValue("«name»"));
+		response.«getSetterName()»(function.getExportParameterList().getValue("«name»"));
 «ENDIF-»
 «ENDDEFINE»
 
 «DEFINE FunctionModulePOJOParameterAfterCallResponse FOR FunctionModulePOJOChangingParameter-»
 «IF isTable-»
-		response.set«attribute.toFirstUpper()»(«type».fromTable(function.getChangingParameterList().getTable("«name»")));
+		response.«getSetterName()»(«type».fromTable(function.getChangingParameterList().getTable("«name»")));
 «ELSEIF isStructure-»
-		response.set«attribute.toFirstUpper()»(new «type»(function.getChangingParameterList().getStructure("«name»")));
+		response.«getSetterName()»(new «type»(function.getChangingParameterList().getStructure("«name»")));
+«ELSEIF isBoolean()-»
+		response.«getSetterName()»(function.getChangingParameterList().getValue("«name»").equalsIgnoreCase("X"));
 «ELSE-»
-		response.set«attribute.toFirstUpper()»(function.getChangingParameterList().getValue("«name»"));
+		response.«getSetterName()»(function.getChangingParameterList().getValue("«name»"));
 «ENDIF-»
 «ENDDEFINE»
 
 «DEFINE FunctionModulePOJOParameterAfterCallResponse FOR FunctionModulePOJOTablesParameter-»
-		response.set«attribute.toFirstUpper()»(«type».fromTable(function.getTableParameterList().getTable("«name»")));
+		response.«getSetterName()»(«type».fromTable(function.getTableParameterList().getTable("«name»")));
 «ENDDEFINE»
 

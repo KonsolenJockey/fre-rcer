@@ -126,7 +126,7 @@ public class FlightData {
 	 * Changes the carrier ID (BAPISFLIST-CARRID).
 	 * @param newCarrierID the new carrier ID to set
 	 */
-	public void setCarrierID(String newCarrierID) {
+	public void setsetCarrierID(String newCarrierID) {
 		_pcs.firePropertyChange("carrierID", this.carrierID, newCarrierID);
 		this.carrierID = newCarrierID;
 	}
@@ -142,7 +142,7 @@ public class FlightData {
 	 * Changes the connection ID (BAPISFLIST-CONNID).
 	 * @param newConnectionID the new connection ID to set
 	 */
-	public void setConnectionID(String newConnectionID) {
+	public void setsetConnectionID(String newConnectionID) {
 		_pcs.firePropertyChange("connectionID", this.connectionID, newConnectionID);
 		this.connectionID = newConnectionID;
 	}
@@ -158,7 +158,7 @@ public class FlightData {
 	 * Changes the flight date (BAPISFLIST-FLDATE).
 	 * @param newFlightDate the new flight date to set
 	 */
-	public void setFlightDate(Date newFlightDate) {
+	public void setsetFlightDate(Date newFlightDate) {
 		_pcs.firePropertyChange("flightDate", this.flightDate, newFlightDate);
 		this.flightDate = newFlightDate;
 	}
@@ -174,7 +174,7 @@ public class FlightData {
 	 * Changes the departure time (BAPISFLIST-DEPTIME).
 	 * @param newDepartureTime the new departure time to set
 	 */
-	public void setDepartureTime(Date newDepartureTime) {
+	public void setsetDepartureTime(Date newDepartureTime) {
 		_pcs.firePropertyChange("departureTime", this.departureTime, newDepartureTime);
 		this.departureTime = newDepartureTime;
 	}
@@ -190,7 +190,7 @@ public class FlightData {
 	 * Changes the originating airport (BAPISFLIST-AIRPFROM).
 	 * @param newOrigin the new originating airport to set
 	 */
-	public void setOrigin(String newOrigin) {
+	public void setsetOrigin(String newOrigin) {
 		_pcs.firePropertyChange("origin", this.origin, newOrigin);
 		this.origin = newOrigin;
 	}
@@ -206,7 +206,7 @@ public class FlightData {
 	 * Changes the destination airport (BAPISFLIST-AIRPTO).
 	 * @param newDestination the new destination airport to set
 	 */
-	public void setDestination(String newDestination) {
+	public void setsetDestination(String newDestination) {
 		_pcs.firePropertyChange("destination", this.destination, newDestination);
 		this.destination = newDestination;
 	}
@@ -222,7 +222,7 @@ public class FlightData {
 	 * Changes the maximum number of seats (BAPISFLIST-SEATSMAX).
 	 * @param newMaximumSeats the new maximum number of seats to set
 	 */
-	public void setMaximumSeats(int newMaximumSeats) {
+	public void setsetMaximumSeats(int newMaximumSeats) {
 		_pcs.firePropertyChange("maximumSeats", this.maximumSeats, newMaximumSeats);
 		this.maximumSeats = newMaximumSeats;
 	}
@@ -238,7 +238,7 @@ public class FlightData {
 	 * Changes the number of seats occupied (BAPISFLIST-SEATSOCC).
 	 * @param newOccupiedSeats the new number of seats occupied to set
 	 */
-	public void setOccupiedSeats(int newOccupiedSeats) {
+	public void setsetOccupiedSeats(int newOccupiedSeats) {
 		_pcs.firePropertyChange("occupiedSeats", this.occupiedSeats, newOccupiedSeats);
 		this.occupiedSeats = newOccupiedSeats;
 	}

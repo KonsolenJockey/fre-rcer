@@ -11,7 +11,7 @@
 //
 package "net.sf.rcer.example.rfcgen.pojo.call"
 
-structure "BAPISFLIST" {
+structure "BAPISFLIST" { 
 	class FlightData { 
 		field "CARRID"   = String carrierID    comment "carrier ID";
 		field "CONNID"   = String connectionID comment "connection ID";
@@ -30,6 +30,7 @@ function module "BAPI_SFLIGHT_GETLIST" {
 		import field "FROMCITY"       = String fromCity    comment "city of origin";
 		import field "TOCOUNTRYKEY"   = String toCountry   comment "country code of destination";
 		import field "TOCITY"         = String toCity      comment "destination city";
+		import field "AFTERNOON"      = boolean afternoon  comment "restrict search to afternoon flights";
 		table "FLIGHTLIST"            = FlightData flights comment "list of flights";
 	}
 }

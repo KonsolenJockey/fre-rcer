@@ -11,6 +11,8 @@
  */
 import rfcgen;
 
+// --- file names ---------------------------------------------------------------------------------
+
 String getFileName(StructurePOJOMapping structure, String packageName):
 	packageName.replaceAll("\\.", "/") + "/" + structure.className + ".java";
 	
@@ -23,10 +25,32 @@ String getRequestFileName(FunctionModulePOJORequestResponseMapping mapping, Stri
 String getResponseFileName(FunctionModulePOJORequestResponseMapping mapping, String packageName):
 	packageName.replaceAll("\\.", "/") + "/" + mapping.responseClassName + ".java";
 	
-// ------------------------------------------------------------------------------------------------
+// --- common mapping functions -------------------------------------------------------------------
 
 String getJavaType(FunctionModulePOJOParameterMapping parameter):
 	"Object";
+
+// --- structure mapping --------------------------------------------------------------------------
+
+boolean isBoolean(StructureFieldPOJOMapping parameter):
+	parameter.type.toLowerCase() == "boolean";
+
+String getGetterName(StructureFieldPOJOMapping parameter):
+	(parameter.isBoolean() ? "is" : "get") + parameter.attribute.toFirstUpper();
+
+String getSetterName(StructureFieldPOJOMapping parameter):
+	"set" + parameter.attribute.toFirstUpper();
+
+// --- function module mapping --------------------------------------------------------------------
+
+boolean isBoolean(FunctionModulePOJOParameterMapping parameter):
+	parameter.type.toLowerCase() == "boolean";
+
+String getGetterName(FunctionModulePOJOParameterMapping parameter):
+	(parameter.isBoolean() ? "is" : "get") + parameter.attribute.toFirstUpper();
+
+String getSetterName(FunctionModulePOJOParameterMapping parameter):
+	"set" + parameter.attribute.toFirstUpper();
 
 String getJavaType(FunctionModulePOJOImportingParameter parameter):
 	parameter.isTable ? "List<" + parameter.type + ">" : parameter.type;
@@ -39,4 +63,3 @@ String getJavaType(FunctionModulePOJOChangingParameter parameter):
 
 String getJavaType(FunctionModulePOJOTablesParameter parameter):
 	"List<" + parameter.type + ">";
-	

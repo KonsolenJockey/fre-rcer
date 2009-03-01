@@ -35,6 +35,7 @@ public class GetFlightListCall {
 	private String fromCity;
 	private String toCountry;
 	private String toCity;
+	private boolean afternoon;
 	private List<FlightData> flights = new ArrayList<FlightData>();
 	
 	/**
@@ -109,6 +110,22 @@ public class GetFlightListCall {
 	}
 	
 	/**
+	 * @return the restrict search to afternoon flights (AFTERNOON)
+	 */
+	public boolean isAfternoon() {
+		return this.afternoon;
+	}
+	
+	/**
+	 * Changes the restrict search to afternoon flights (AFTERNOON).
+	 * @param newAfternoon the new restrict search to afternoon flights to set
+	 */
+	public void setAfternoon(boolean newAfternoon) {
+		_pcs.firePropertyChange("afternoon", this.afternoon, newAfternoon);
+		this.afternoon = newAfternoon;
+	}
+	
+	/**
 	 * @return the list of flights (FLIGHTLIST)
 	 */
 	public List<FlightData> getFlights() {
@@ -135,6 +152,7 @@ public class GetFlightListCall {
 		function.getImportParameterList().setValue("FROMCITY", fromCity);
 		function.getImportParameterList().setValue("TOCOUNTRYKEY", toCountry);
 		function.getImportParameterList().setValue("TOCITY", toCity);
+		function.getImportParameterList().setValue("AFTERNOON", afternoon ? "X" : " ");
 		FlightData.toTable(flights, function.getTableParameterList().getTable("FLIGHTLIST"));
 		function.execute(destination);
 		flights = FlightData.fromTable(function.getTableParameterList().getTable("FLIGHTLIST"));
