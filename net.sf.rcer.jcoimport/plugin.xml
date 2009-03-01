@@ -4,11 +4,11 @@
    <extension
          point="org.eclipse.ui.importWizards">
       <category
-            id="net.sf.rcer.jcogen.sampleCategory"
+            id="net.sf.rcer"
             name="%wizard.category">
       </category>
       <wizard
-            category="net.sf.rcer.jcogen.sampleCategory"
+            category="net.sf.rcer"
             class="net.sf.rcer.jcoimport.JCoImportWizard"
             id="net.sf.rcer.jcogen.JCoImportWizard"
             name="%wizard.name">
@@ -17,5 +17,4 @@
          </description>
       </wizard>
    </extension>
-
 </plugin>
