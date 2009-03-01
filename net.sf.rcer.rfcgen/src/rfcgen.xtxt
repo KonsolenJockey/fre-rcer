@@ -23,7 +23,7 @@ Structure:
 	"}";
 
 StructureMapping:
-	StructurePOJOMapping | StructureEMFMapping;
+	StructurePOJOMapping;
 
 // --- POJO mapping -------------------------------------------------------------------------------
 
@@ -35,16 +35,6 @@ StructurePOJOMapping:
 StructureFieldPOJOMapping:
 	"field" name=STRING "=" type=ID attribute=ID ("comment" comment=STRING)? ";";
 
-// --- EMF mapping --------------------------------------------------------------------------------
-
-StructureEMFMapping:
-	"EClass" className=ID "{"
-		(fields += StructureFieldEMFMapping)*
-	"}";
-
-StructureFieldEMFMapping:
-	"field" name=STRING "=" attribute=ID ";";
-
 // ====== Function Modules ========================================================================
 
 FunctionModule: 
@@ -53,7 +43,7 @@ FunctionModule:
 	"}";
 	
 FunctionModuleMapping: 
-	FunctionModulePOJOMapping | FunctionModuleEMFMapping;
+	FunctionModulePOJOMapping;
 
 // --- POJO mapping -------------------------------------------------------------------------------
 
@@ -100,46 +90,3 @@ FunctionModulePOJOChangingParameter:
 
 FunctionModulePOJOTablesParameter:
 	"table" name=STRING "=" (isInactive?="inactive" | type=ID attribute=ID) ("comment" comment=STRING)? ";";
-
-// --- EMF mapping --------------------------------------------------------------------------------
-
-FunctionModuleEMFMapping: 
-	FunctionModuleEMFCallMapping | 
-	FunctionModuleEMFRequestResponseMapping;
-
-FunctionModuleEMFCallMapping: 
-	"EClass" className=ID "{"
-		(parameters += FunctionModuleEMFParameterMapping)*
-	"}";
-
-FunctionModuleEMFRequestResponseMapping: 
-	"request" "EClass" requestClassName=ID "{"
-		(requestParameters += FunctionModuleEMFParameterMapping)*
-	"}"
-	"response" "EClass" responseClassName=ID "{"
-		(responseParameters += FunctionModuleEMFParameterMapping)*
-	"}";
-
-FunctionModuleEMFParameterMapping: 
-	FunctionModuleEMFImportingParameter | 
-	FunctionModuleEMFExportingParameter | 
-	FunctionModuleEMFChangingParameter  | 
-	FunctionModuleEMFTablesParameter; 
-
-FunctionModuleEMFImportingParameter: 
-	"import" ("field"                  name=STRING "=" (isInactive?="inactive" | attribute=ID) | 
-	          isStructure?="structure" name=STRING "=" (isInactive?="inactive" | attribute=ID) |
-	          isTable?="table"         name=STRING "=" (isInactive?="inactive" | attribute=ID)) ";";
-
-FunctionModuleEMFExportingParameter: 
-	"export" ("field"                  name=STRING "=" (isInactive?="inactive" | attribute=ID) | 
-	          isStructure?="structure" name=STRING "=" (isInactive?="inactive" | attribute=ID) |
-	          isTable?="table"         name=STRING "=" (isInactive?="inactive" | attribute=ID)) ";";
-
-FunctionModuleEMFChangingParameter: 
-	"change" ("field"                  name=STRING "=" (isInactive?="inactive" | attribute=ID) | 
-	          isStructure?="structure" name=STRING "=" (isInactive?="inactive" | attribute=ID) |
-	          isTable?="table"         name=STRING "=" (isInactive?="inactive" | attribute=ID)) ";";
-
-FunctionModuleEMFTablesParameter:
-	"table" name=STRING "=" (isInactive?="inactive" | attribute=ID) ";";

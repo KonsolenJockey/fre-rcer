@@ -40,7 +40,7 @@ ruleStructure
 
 ruleStructureMapping 
 :
-        temp_structurepojomapping=ruleStructurePOJOMapping 	|        temp_structureemfmapping=ruleStructureEMFMapping 	;
+        temp_structurepojomapping=ruleStructurePOJOMapping 	;
 
 ruleStructurePOJOMapping 
 
@@ -79,36 +79,6 @@ ruleStructureFieldPOJOMapping
 )
 ;
 
-ruleStructureEMFMapping 
-
-:
-(('EClass')
-
-(RULE_ID)
-
-('{')
-
-(ruleStructureFieldEMFMapping)*
-
-('}')
-)
-;
-
-ruleStructureFieldEMFMapping 
-
-:
-(('field')
-
-(RULE_STRING)
-
-('=')
-
-(RULE_ID)
-
-(';')
-)
-;
-
 ruleFunctionModule 
 
 :
@@ -128,7 +98,7 @@ ruleFunctionModule
 
 ruleFunctionModuleMapping 
 :
-        temp_functionmodulepojomapping=ruleFunctionModulePOJOMapping 	|        temp_functionmoduleemfmapping=ruleFunctionModuleEMFMapping 	;
+        temp_functionmodulepojomapping=ruleFunctionModulePOJOMapping 	;
 
 ruleFunctionModulePOJOMapping 
 :
@@ -383,214 +353,6 @@ ruleFunctionModulePOJOTablesParameter
 
 (RULE_STRING)
 )?
-
-(';')
-)
-;
-
-ruleFunctionModuleEMFMapping 
-:
-        temp_functionmoduleemfcallmapping=ruleFunctionModuleEMFCallMapping 	|        temp_functionmoduleemfrequestresponsemapping=ruleFunctionModuleEMFRequestResponseMapping 	;
-
-ruleFunctionModuleEMFCallMapping 
-
-:
-(('EClass')
-
-(RULE_ID)
-
-('{')
-
-(ruleFunctionModuleEMFParameterMapping)*
-
-('}')
-)
-;
-
-ruleFunctionModuleEMFRequestResponseMapping 
-
-:
-(('request')
-
-('EClass')
-
-(RULE_ID)
-
-('{')
-
-(ruleFunctionModuleEMFParameterMapping)*
-
-('}')
-
-('response')
-
-('EClass')
-
-(RULE_ID)
-
-('{')
-
-(ruleFunctionModuleEMFParameterMapping)*
-
-('}')
-)
-;
-
-ruleFunctionModuleEMFParameterMapping 
-:
-        temp_functionmoduleemfimportingparameter=ruleFunctionModuleEMFImportingParameter 	|        temp_functionmoduleemfexportingparameter=ruleFunctionModuleEMFExportingParameter 	|        temp_functionmoduleemfchangingparameter=ruleFunctionModuleEMFChangingParameter 	|        temp_functionmoduleemftablesparameter=ruleFunctionModuleEMFTablesParameter 	;
-
-ruleFunctionModuleEMFImportingParameter 
-
-:
-(('import')
-
-((('field')
-
-(RULE_STRING)
-
-('=')
-
-(('inactive')
-	|
-(RULE_ID)
-)
-)
-	|
-(('structure')
-
-(RULE_STRING)
-
-('=')
-
-(('inactive')
-	|
-(RULE_ID)
-)
-)
-	|
-(('table')
-
-(RULE_STRING)
-
-('=')
-
-(('inactive')
-	|
-(RULE_ID)
-)
-)
-)
-
-(';')
-)
-;
-
-ruleFunctionModuleEMFExportingParameter 
-
-:
-(('export')
-
-((('field')
-
-(RULE_STRING)
-
-('=')
-
-(('inactive')
-	|
-(RULE_ID)
-)
-)
-	|
-(('structure')
-
-(RULE_STRING)
-
-('=')
-
-(('inactive')
-	|
-(RULE_ID)
-)
-)
-	|
-(('table')
-
-(RULE_STRING)
-
-('=')
-
-(('inactive')
-	|
-(RULE_ID)
-)
-)
-)
-
-(';')
-)
-;
-
-ruleFunctionModuleEMFChangingParameter 
-
-:
-(('change')
-
-((('field')
-
-(RULE_STRING)
-
-('=')
-
-(('inactive')
-	|
-(RULE_ID)
-)
-)
-	|
-(('structure')
-
-(RULE_STRING)
-
-('=')
-
-(('inactive')
-	|
-(RULE_ID)
-)
-)
-	|
-(('table')
-
-(RULE_STRING)
-
-('=')
-
-(('inactive')
-	|
-(RULE_ID)
-)
-)
-)
-
-(';')
-)
-;
-
-ruleFunctionModuleEMFTablesParameter 
-
-:
-(('table')
-
-(RULE_STRING)
-
-('=')
-
-(('inactive')
-	|
-(RULE_ID)
-)
 
 (';')
 )
