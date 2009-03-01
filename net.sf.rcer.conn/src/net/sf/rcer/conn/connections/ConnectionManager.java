@@ -290,7 +290,7 @@ public class ConnectionManager  {
 	 */
 	public JCoDestination getDestination() throws ConnectionException, JCoException {
 		if (primaryConnectionID != null) {
-			getCheckedDestination(primaryConnectionID);
+			return getCheckedDestination(primaryConnectionID);
 		}
 		final Set<IConnectionData> registeredConnectionData = ConnectionRegistry.getInstance().getConnectionData();
 		switch(registeredConnectionData.size()) {
