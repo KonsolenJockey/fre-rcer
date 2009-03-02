@@ -323,6 +323,7 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 	public String getProgramID() {
 		switch(getObjectType()) {
 		case PACKAGE: return "R3TR";
+		case DOMAIN: return "R3TR";
 		case UNKNOWN: throw new UnsupportedOperationException("Unable to determine the program ID of objects with missing type.");
 		}
 		throw new UnsupportedOperationException("Error determining the program ID - please file a bug report.");
@@ -336,6 +337,7 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 	public String getObjectTypeID() {
 		switch(getObjectType()) {
 		case PACKAGE: return "DEVC";
+		case DOMAIN: return "DOMA";
 		case UNKNOWN: throw new UnsupportedOperationException("Unable to determine the program ID of objects with missing type.");
 		}
 		throw new UnsupportedOperationException("Error determining the program ID - please file a bug report.");

@@ -1,0 +1,46 @@
+//
+// Copyright (c) 2008 The RCER Development Team.
+//
+// All rights reserved. This program and the accompanying materials
+// are made available under the terms of the Eclipse Public License v1.0
+// which accompanies this distribution, and is available at
+// http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,
+// this entire header must remain intact.
+//
+// $Id$
+//
+package "net.sf.rcer.rom.ddic.rfc"
+
+structure "DD01V" {
+	class RFCDomainData {
+		field "DATATYPE"   = String  dataType       comment "data type in ABAP Dictionary";
+		field "LENG"       = int     length         comment "length (number of characters)";
+		field "OUTPUTLEN"  = int     outputLength   comment "output length";
+		field "DECIMALS"   = int     decimals       comment "number of decimal places";
+		field "LOWERCASE"  = boolean caseSensitive  comment "whether lower case letters are allowed";
+		field "SIGNFLAG"   = boolean signed         comment "whether a numerical field is signed";
+		field "VALEXI"     = boolean valueListFixed comment "whether fixed values exist";
+		field "ENTITYTAB"  = String  valueTable     comment "name of the value table";
+		field "CONVEXIT"   = String  conversionExit comment "conversion routine";
+		field "DDTEXT"     = String  description    comment "short text describing the domain";
+	}
+}
+
+structure "DD07V" {
+	class RFCDomainValue {
+		field "VALPOS"     = int    position    comment "domain value key";
+		field "DDLANGUAGE" = String localeID    comment "locale key";
+		field "DOMVALUE_L" = String lowerValue  comment "single value or lower limit";
+		field "DOMVALUE_H" = String upperValue  comment "upper limit";
+		field "DDTEXT"     = String description comment "short text for fixed values";
+	}
+}
+
+function module "DD_DOMA_GET" {
+	class RFCDomainReader {
+		import field     "DOMAIN_NAME" = String         domainName comment "name";
+		import field     "LANGU"       = String         localeID   comment "localeID";
+		export structure "DD01V_WA_A"  = RFCDomainData  domainData comment "the data of the domain";
+		table            "DD07V_TAB_A" = RFCDomainValue values     comment "the fixed values of the domain";
+	}
+}

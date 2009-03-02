@@ -25,6 +25,8 @@ import net.sf.rcer.rom.RepositoryObjectCollection;
 import net.sf.rcer.rom.RepositoryObjectType;
 import net.sf.rcer.rom.RepositoryPackage;
 
+import net.sf.rcer.rom.ddic.DDICPackage;
+import net.sf.rcer.rom.ddic.impl.DDICPackageImpl;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -177,11 +179,16 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 
 		isInited = true;
 
+		// Obtain or create and register interdependencies
+		DDICPackageImpl theDDICPackage = (DDICPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DDICPackage.eNS_URI) instanceof DDICPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DDICPackage.eNS_URI) : DDICPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theROMPackage.createPackageContents();
+		theDDICPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theROMPackage.initializePackageContents();
+		theDDICPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theROMPackage.freeze();
@@ -733,6 +740,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		initEEnum(repositoryObjectTypeEEnum, RepositoryObjectType.class, "RepositoryObjectType"); //$NON-NLS-1$
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.UNKNOWN);
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.PACKAGE);
+		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.DOMAIN);
 
 		initEEnum(packageTypeEEnum, PackageType.class, "PackageType"); //$NON-NLS-1$
 		addEEnumLiteral(packageTypeEEnum, PackageType.STANDARD);

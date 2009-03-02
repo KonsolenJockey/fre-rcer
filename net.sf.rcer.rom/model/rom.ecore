@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id$ -->
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="rom"
@@ -18,6 +17,7 @@
   <eClassifiers xsi:type="ecore:EEnum" name="RepositoryObjectType">
     <eLiterals name="UNKNOWN"/>
     <eLiterals name="PACKAGE" value="10"/>
+    <eLiterals name="DOMAIN" value="20"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IRepositoryObjectContainer" abstract="true"
       interface="true">
@@ -119,5 +119,4 @@
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Domain" eSuperTypes="#//RepositoryObject"/>
 </ecore:EPackage>

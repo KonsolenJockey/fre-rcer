@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id$ -->
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2008 The RCER Development Team.&#xA;&#xD;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,&#xA;this entire header must remain intact.&#xA;&#xA;$Id$"
@@ -7,7 +6,63 @@
     modelName="ROM" modelPluginClass="" nonNLSMarkers="true" featureMapWrapperInterface=""
     featureMapWrapperClass="" testsDirectory="" booleanFlagsField="" importerID="org.eclipse.emf.importer.ecore"
     suppressUnsettable="true" complianceLevel="5.0" copyrightFields="false" language="">
+  <foreignModel>ddic.ecore</foreignModel>
   <foreignModel>rom.ecore</foreignModel>
+  <genPackages prefix="DDIC" basePackage="net.sf.rcer.rom" disposableProviderFactory="true"
+      ecorePackage="ddic.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ddic.ecore#//DictionaryDataType">
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/ACCOUNTING_PERIOD"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/CHARACTER"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/CLIENT"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/CURRENCY_KEY"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/CURRENCY_VALUE"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/DATE"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/DECIMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/FLOATING_POINT"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/INT_BYTE"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/INT_WORD"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/INT_DWORD"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/LOCALE"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/LONG_CHARACTER_SEQUENCE"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/LONG_BYTE_SEQUENCE"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/NUMERICAL_CHARACTER"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/PRECISION"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/QUANTITY"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/BYTES"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/BYTE_STRING"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/SHORT_CHARACTER_STRING"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/CHARACTER_STRING"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/TIME"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/VAR_CHARACTER"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/UNIT"/>
+    </genEnums>
+    <genClasses ecoreClass="ddic.ecore#//Domain">
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//Domain/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//Domain/dictionaryDataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//Domain/length"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//Domain/outputLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//Domain/decimals"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//Domain/caseSensitive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//Domain/signed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//Domain/valueListFixed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//Domain/valueTableName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//Domain/conversionExit"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ddic.ecore#//Domain/values"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ddic.ecore#//DomainValue">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//DomainValue/domain"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DomainValue/position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DomainValue/range"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//DomainValue/description"/>
+    </genClasses>
+    <genClasses ecoreClass="ddic.ecore#//DomainValueSingle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DomainValueSingle/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ddic.ecore#//DomainValueRange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DomainValueRange/lowerBoundary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DomainValueRange/upperBoundary"/>
+    </genClasses>
+  </genPackages>
   <genPackages prefix="ROM" basePackage="net.sf.rcer" disposableProviderFactory="true"
       contentTypeIdentifier="" ecorePackage="rom.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="rom.ecore#//RepositoryObjectType">
@@ -29,8 +84,7 @@
     <genDataTypes ecoreDataType="rom.ecore#//IStatus"/>
     <genDataTypes ecoreDataType="rom.ecore#//JCoDestination"/>
     <genClasses ecoreClass="rom.ecore#//LocalizedString">
-      <genFeatures createChild="false" propertyCategory="" propertyDescription=""
-          ecoreFeature="ecore:EAttribute rom.ecore#//LocalizedString/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//LocalizedString/key"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//LocalizedString/value"/>
     </genClasses>
     <genClasses image="false" ecoreClass="rom.ecore#//IRepositoryObjectContainer">
@@ -104,6 +158,5 @@
       <genFeatures createChild="false" propertyCategory="Package Properties" propertyDescription="Whether package access checks assume a server role for this package."
           ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/checkedAsClient"/>
     </genClasses>
-    <genClasses ecoreClass="rom.ecore#//Domain"/>
   </genPackages>
 </genmodel:GenModel>

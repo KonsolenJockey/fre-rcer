@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ddic"
+    nsURI="http://rcer.sf.net/rom/ddic" nsPrefix="net.sf.rcer.rom">
+  <eClassifiers xsi:type="ecore:EEnum" name="DictionaryDataType">
+    <eLiterals name="ACCOUNTING_PERIOD" value="1" literal="ACCP"/>
+    <eLiterals name="CHARACTER" value="2" literal="CHAR"/>
+    <eLiterals name="CLIENT" value="3" literal="CLNT"/>
+    <eLiterals name="CURRENCY_KEY" value="4" literal="CUKY"/>
+    <eLiterals name="CURRENCY_VALUE" value="5" literal="CURR"/>
+    <eLiterals name="DATE" value="6" literal="DATS"/>
+    <eLiterals name="DECIMAL" value="7" literal="DEC"/>
+    <eLiterals name="FLOATING_POINT" value="8" literal="FLTP"/>
+    <eLiterals name="INT_BYTE" value="9" literal="INT1"/>
+    <eLiterals name="INT_WORD" value="10" literal="INT2"/>
+    <eLiterals name="INT_DWORD" value="11" literal="INT4"/>
+    <eLiterals name="LOCALE" value="12" literal="LANG"/>
+    <eLiterals name="LONG_CHARACTER_SEQUENCE" value="13" literal="LCHR"/>
+    <eLiterals name="LONG_BYTE_SEQUENCE" value="14" literal="LRAW"/>
+    <eLiterals name="NUMERICAL_CHARACTER" value="15" literal="NUMC"/>
+    <eLiterals name="PRECISION" value="16" literal="PREC"/>
+    <eLiterals name="QUANTITY" value="17" literal="QUAN"/>
+    <eLiterals name="BYTES" value="18" literal="RAW"/>
+    <eLiterals name="BYTE_STRING" value="19" literal="RSTR"/>
+    <eLiterals name="SHORT_CHARACTER_STRING" value="20" literal="SSTR"/>
+    <eLiterals name="CHARACTER_STRING" value="21" literal="STRG"/>
+    <eLiterals name="TIME" value="22" literal="TIMS"/>
+    <eLiterals name="VAR_CHARACTER" value="23" literal="VARC"/>
+    <eLiterals name="UNIT" value="24" literal="UNIT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Domain" eSuperTypes="rom.ecore#//RepositoryObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="description" ordered="false"
+        unique="false" upperBound="-1" eType="ecore:EClass rom.ecore#//LocalizedString"
+        changeable="false" containment="true" eKeys="rom.ecore#//LocalizedString/key"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dictionaryDataType" ordered="false"
+        unique="false" eType="#//DictionaryDataType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="outputLength" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="decimals" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="caseSensitive" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="signed" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueListFixed" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueTableName" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="conversionExit" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//DomainValue" containment="true" eOpposite="#//DomainValue/domain"
+        eKeys="#//DomainValue/position"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DomainValue" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
+        eType="#//Domain" eOpposite="#//Domain/values"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="range" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="description" ordered="false"
+        unique="false" upperBound="-1" eType="ecore:EClass rom.ecore#//LocalizedString"
+        changeable="false" containment="true" eKeys="rom.ecore#//LocalizedString/key"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DomainValueSingle" eSuperTypes="#//DomainValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DomainValueRange" eSuperTypes="#//DomainValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBoundary" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBoundary" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>
