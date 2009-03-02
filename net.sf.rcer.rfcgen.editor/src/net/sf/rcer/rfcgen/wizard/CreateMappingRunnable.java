@@ -180,7 +180,10 @@ public class CreateMappingRunnable implements IRunnableWithProgress {
 				field.fieldName = struct.getName(pos);
 				field.fieldType = removeStandardPackages(struct.getClassNameOfField(pos));
 				field.attributeName = struct.getName(pos);
-				field.comment = struct.getDescription(pos).replaceAll("\"", "'");
+				field.comment = struct.getDescription(pos);
+				if (field.comment != null) {
+					field.comment = field.comment.replaceAll("\"", "'");
+				}
 				info.fields.add(field);
 			}
 			structures.put(struct.getName(), info);
@@ -220,7 +223,10 @@ public class CreateMappingRunnable implements IRunnableWithProgress {
 					param.parameterType = paramType;
 					param.parameterName = iface.getName(pos);
 					param.attributeName = iface.getName(pos);
-					param.comment = iface.getDescription(pos).replaceAll("\"", "'");
+					param.comment = iface.getDescription(pos);
+					if (param.comment != null) {
+						param.comment = param.comment.replaceAll("\"", "'");
+					}
 					param.isStructure = iface.isStructure(pos);
 					param.isTable = iface.isTable(pos);
 					if (param.isStructure || param.isTable) {
