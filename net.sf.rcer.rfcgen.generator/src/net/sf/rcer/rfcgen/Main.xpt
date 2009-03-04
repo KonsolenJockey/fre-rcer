@@ -65,7 +65,7 @@ import com.sap.conn.jco.JCoTable;
 	}
 
 	/**
-	 * @return
+	 * @return the list of property change listeners
 	 * @see java.beans.PropertyChangeSupport#getPropertyChangeListeners()
 	 */
 	public PropertyChangeListener[] getPropertyChangeListeners() {
@@ -74,7 +74,7 @@ import com.sap.conn.jco.JCoTable;
 
 	/**
 	 * @param propertyName
-	 * @return
+	 * @return the list of property change listeners for a certain property
 	 * @see java.beans.PropertyChangeSupport#getPropertyChangeListeners(java.lang.String)
 	 */
 	public PropertyChangeListener[] getPropertyChangeListeners(String propertyName) {
@@ -83,7 +83,7 @@ import com.sap.conn.jco.JCoTable;
 
 	/**
 	 * @param propertyName
-	 * @return
+	 * @return <code>true</code> if any property change listeners are registered
 	 * @see java.beans.PropertyChangeSupport#hasListeners(java.lang.String)
 	 */
 	public boolean hasListeners(String propertyName) {
@@ -147,7 +147,11 @@ public class «className» {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
 «FOREACH fields AS f-»
+	«IF f.isBoolean()-»
+		this.«f.attribute» = source.getString("«f.name»").equalsIgnoreCase("X");
+	«ELSE-»
 		this.«f.attribute» = source.get«f.type.toFirstUpper()»("«f.name»");
+	«ENDIF-»
 «ENDFOREACH-»
 	}
 
@@ -500,9 +504,9 @@ public class «responseClassName» {
 «ELSEIF isStructure-»
 		«attribute» = new «type»(function.getExportParameterList().getStructure("«name»"));
 «ELSEIF isBoolean()-»
-		«attribute» = function.getExportParameterList().getValue("«name»").equalsIgnoreCase("X");
+		«attribute» = function.getExportParameterList().getString("«name»").equalsIgnoreCase("X");
 «ELSE-»
-		«attribute» = function.getExportParameterList().getValue("«name»");
+		«attribute» = function.getExportParameterList().get«type.toFirstUpper()»("«name»");
 «ENDIF-»
 «ENDDEFINE»
 
@@ -512,9 +516,9 @@ public class «responseClassName» {
 «ELSEIF isStructure-»
 		«attribute» = new «type»(function.getChangingParameterList().getStructure("«name»"));
 «ELSEIF isBoolean()-»
-		«attribute» = function.getChangingParameterList().getValue("«name»").equalsIgnoreCase("X");
+		«attribute» = function.getChangingParameterList().getString("«name»").equalsIgnoreCase("X");
 «ELSE-»
-		«attribute» = function.getChangingParameterList().getValue("«name»");
+		«attribute» = function.getChangingParameterList().get«type.toFirstUpper()»("«name»");
 «ENDIF-»
 «ENDDEFINE»
 
@@ -533,9 +537,9 @@ public class «responseClassName» {
 «ELSEIF isStructure-»
 		response.«getSetterName()»(new «type»(function.getExportParameterList().getStructure("«name»")));
 «ELSEIF isBoolean()-»
-		response.«getSetterName()»(function.getExportParameterList().getValue("«name»").equalsIgnoreCase("X"));
+		response.«getSetterName()»(function.getExportParameterList().getString("«name»").equalsIgnoreCase("X"));
 «ELSE-»
-		response.«getSetterName()»(function.getExportParameterList().getValue("«name»"));
+		response.«getSetterName()»(function.getExportParameterList().get«type.toFirstUpper()»("«name»"));
 «ENDIF-»
 «ENDDEFINE»
 
@@ -545,9 +549,9 @@ public class «responseClassName» {
 «ELSEIF isStructure-»
 		response.«getSetterName()»(new «type»(function.getChangingParameterList().getStructure("«name»")));
 «ELSEIF isBoolean()-»
-		response.«getSetterName()»(function.getChangingParameterList().getValue("«name»").equalsIgnoreCase("X"));
+		response.«getSetterName()»(function.getChangingParameterList().getString("«name»").equalsIgnoreCase("X"));
 «ELSE-»
-		response.«getSetterName()»(function.getChangingParameterList().getValue("«name»"));
+		response.«getSetterName()»(function.getChangingParameterList().get«type.toFirstUpper()»("«name»"));
 «ENDIF-»
 «ENDDEFINE»
 
