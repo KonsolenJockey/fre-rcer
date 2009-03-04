@@ -16,7 +16,6 @@
      <modelFile value='${modelFile}'/>
      <outputSlot value='theModel'/>
   </component>
-  <component class='oaw.workflow.common.DirectoryCleaner' directories='${targetDir}'/>
   <component class='oaw.xpand2.Generator'>
      <metaModel id='mm' class='org.eclipse.m2t.type.emf.EmfRegistryMetaModel'/>
      <expand value='net::sf::rcer::rfcgen::Main::main FOR theModel'/>

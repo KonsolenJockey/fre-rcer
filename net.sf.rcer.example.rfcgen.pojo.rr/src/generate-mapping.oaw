@@ -10,6 +10,7 @@
  * $Id$
 -->
 <workflow>
+	<component class='oaw.workflow.common.DirectoryCleaner' directories='src-gen'/>
 	<component file='net/sf/rcer/rfcgen/generator.oaw'>
 		<modelFile value='model.rfc' />
 		<targetDir value='src-gen' />
