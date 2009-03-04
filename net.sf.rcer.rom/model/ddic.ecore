@@ -77,4 +77,83 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBoundary" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ReferredObjectType">
+    <eLiterals name="UNKNOWN" literal=""/>
+    <eLiterals name="ANY" value="1" literal="A"/>
+    <eLiterals name="OBJECT" value="2" literal="O"/>
+    <eLiterals name="DATA" value="3" literal="D"/>
+    <eLiterals name="DICTIONARY_TYPE" value="4" literal="B"/>
+    <eLiterals name="DATA_ELEMENT" value="5" literal="E"/>
+    <eLiterals name="STRUCTURE" value="6" literal="S"/>
+    <eLiterals name="TABLE_TYPE" value="7" literal="L"/>
+    <eLiterals name="CLASS" value="8" literal="C"/>
+    <eLiterals name="INTERFACE" value="9" literal="I"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TypeKind">
+    <eLiterals name="DICTIONARY_TYPE" value="1"/>
+    <eLiterals name="BUILT_IN_TYPE" value="2" literal="E"/>
+    <eLiterals name="STRUCTURE" value="3" literal="S"/>
+    <eLiterals name="TABLE_TYPE" value="4" literal="L"/>
+    <eLiterals name="REFERENCE" value="5" literal="R"/>
+    <eLiterals name="DOMAIN" value="6" literal="D"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataElement" eSuperTypes="rom.ecore#//RepositoryObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="description" ordered="false"
+        unique="false" upperBound="-1" eType="ecore:EClass rom.ecore#//LocalizedString"
+        changeable="false" containment="true" eKeys="rom.ecore#//LocalizedString/key"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="heading" ordered="false"
+        unique="false" upperBound="-1" eType="ecore:EClass rom.ecore#//LocalizedString"
+        changeable="false" containment="true" eKeys="rom.ecore#//LocalizedString/key"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxHeadingLength" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="shortText" ordered="false"
+        unique="false" upperBound="-1" eType="ecore:EClass rom.ecore#//LocalizedString"
+        changeable="false" containment="true" eKeys="rom.ecore#//LocalizedString/key"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxShortTextLength" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mediumText" ordered="false"
+        unique="false" upperBound="-1" eType="ecore:EClass rom.ecore#//LocalizedString"
+        changeable="false" containment="true" eKeys="rom.ecore#//LocalizedString/key"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxMediumTextLength" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="longText" ordered="false"
+        unique="false" upperBound="-1" eType="ecore:EClass rom.ecore#//LocalizedString"
+        changeable="false" containment="true" eKeys="rom.ecore#//LocalizedString/key"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLongTextLength" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeName" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameterID" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="logged" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueHelpName" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueHelpFieldName" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultFieldName" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dictionaryDataType" ordered="false"
+        unique="false" eType="#//DictionaryDataType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="outputLength" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="decimals" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="caseSensitive" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="signed" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueListFixed" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueTableName" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="conversionExit" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeKind" ordered="false"
+        unique="false" eType="#//TypeKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="referredType" ordered="false"
+        unique="false" eType="#//ReferredObjectType"/>
+  </eClassifiers>
 </ecore:EPackage>

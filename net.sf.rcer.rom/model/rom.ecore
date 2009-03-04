@@ -18,6 +18,7 @@
     <eLiterals name="UNKNOWN"/>
     <eLiterals name="PACKAGE" value="10"/>
     <eLiterals name="DOMAIN" value="20"/>
+    <eLiterals name="DATA_ELEMENT" value="21"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IRepositoryObjectContainer" abstract="true"
       interface="true">

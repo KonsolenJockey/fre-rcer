@@ -59,6 +59,15 @@ public interface DDICFactory extends EFactory {
 	DomainValueRange createDomainValueRange();
 
 	/**
+	 * Returns a new object of class '<em>Data Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Data Element</em>'.
+	 * @generated
+	 */
+	DataElement createDataElement();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

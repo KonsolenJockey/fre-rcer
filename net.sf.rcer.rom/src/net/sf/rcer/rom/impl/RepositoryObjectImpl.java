@@ -320,28 +320,14 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 	 * <!-- end-user-doc -->
 	 * @generated and changed
 	 */
-	public String getProgramID() {
-		switch(getObjectType()) {
-		case PACKAGE: return "R3TR";
-		case DOMAIN: return "R3TR";
-		case UNKNOWN: throw new UnsupportedOperationException("Unable to determine the program ID of objects with missing type.");
-		}
-		throw new UnsupportedOperationException("Error determining the program ID - please file a bug report.");
-	}
+	public abstract String getProgramID();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated and changed
 	 */
-	public String getObjectTypeID() {
-		switch(getObjectType()) {
-		case PACKAGE: return "DEVC";
-		case DOMAIN: return "DOMA";
-		case UNKNOWN: throw new UnsupportedOperationException("Unable to determine the program ID of objects with missing type.");
-		}
-		throw new UnsupportedOperationException("Error determining the program ID - please file a bug report.");
-	}
+	public abstract String getObjectTypeID();
 
 	/**
 	 * <!-- begin-user-doc -->

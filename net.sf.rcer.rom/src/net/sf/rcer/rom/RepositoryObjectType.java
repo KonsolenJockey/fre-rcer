@@ -54,7 +54,15 @@ public enum RepositoryObjectType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DOMAIN(20, "DOMAIN", "DOMAIN"); //$NON-NLS-1$ //$NON-NLS-2$
+	DOMAIN(20, "DOMAIN", "DOMAIN"), /**
+	 * The '<em><b>DATA ELEMENT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DATA_ELEMENT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	DATA_ELEMENT(21, "DATA_ELEMENT", "DATA_ELEMENT"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>UNKNOWN</b></em>' literal value.
@@ -102,6 +110,21 @@ public enum RepositoryObjectType implements Enumerator {
 	public static final int DOMAIN_VALUE = 20;
 
 	/**
+	 * The '<em><b>DATA ELEMENT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DATA ELEMENT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DATA_ELEMENT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DATA_ELEMENT_VALUE = 21;
+
+	/**
 	 * An array of all the '<em><b>Repository Object Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -112,6 +135,7 @@ public enum RepositoryObjectType implements Enumerator {
 			UNKNOWN,
 			PACKAGE,
 			DOMAIN,
+			DATA_ELEMENT,
 		};
 
 	/**
@@ -165,6 +189,7 @@ public enum RepositoryObjectType implements Enumerator {
 			case UNKNOWN_VALUE: return UNKNOWN;
 			case PACKAGE_VALUE: return PACKAGE;
 			case DOMAIN_VALUE: return DOMAIN;
+			case DATA_ELEMENT_VALUE: return DATA_ELEMENT;
 		}
 		return null;
 	}

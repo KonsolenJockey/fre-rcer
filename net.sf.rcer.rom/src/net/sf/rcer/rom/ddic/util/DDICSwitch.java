@@ -122,6 +122,13 @@ public class DDICSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DDICPackage.DATA_ELEMENT: {
+				DataElement dataElement = (DataElement)theEObject;
+				T result = caseDataElement(dataElement);
+				if (result == null) result = caseRepositoryObject(dataElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -183,6 +190,21 @@ public class DDICSwitch<T> {
 	 * @generated
 	 */
 	public T caseDomainValueRange(DomainValueRange object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Data Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Data Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDataElement(DataElement object) {
 		return null;
 	}
 

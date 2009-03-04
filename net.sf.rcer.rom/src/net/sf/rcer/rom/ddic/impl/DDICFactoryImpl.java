@@ -70,6 +70,7 @@ public class DDICFactoryImpl extends EFactoryImpl implements DDICFactory {
 			case DDICPackage.DOMAIN: return createDomain();
 			case DDICPackage.DOMAIN_VALUE_SINGLE: return createDomainValueSingle();
 			case DDICPackage.DOMAIN_VALUE_RANGE: return createDomainValueRange();
+			case DDICPackage.DATA_ELEMENT: return createDataElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -85,6 +86,10 @@ public class DDICFactoryImpl extends EFactoryImpl implements DDICFactory {
 		switch (eDataType.getClassifierID()) {
 			case DDICPackage.DICTIONARY_DATA_TYPE:
 				return createDictionaryDataTypeFromString(eDataType, initialValue);
+			case DDICPackage.REFERRED_OBJECT_TYPE:
+				return createReferredObjectTypeFromString(eDataType, initialValue);
+			case DDICPackage.TYPE_KIND:
+				return createTypeKindFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -100,6 +105,10 @@ public class DDICFactoryImpl extends EFactoryImpl implements DDICFactory {
 		switch (eDataType.getClassifierID()) {
 			case DDICPackage.DICTIONARY_DATA_TYPE:
 				return convertDictionaryDataTypeToString(eDataType, instanceValue);
+			case DDICPackage.REFERRED_OBJECT_TYPE:
+				return convertReferredObjectTypeToString(eDataType, instanceValue);
+			case DDICPackage.TYPE_KIND:
+				return convertTypeKindToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -140,6 +149,16 @@ public class DDICFactoryImpl extends EFactoryImpl implements DDICFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DataElement createDataElement() {
+		DataElementImpl dataElement = new DataElementImpl();
+		return dataElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DictionaryDataType createDictionaryDataTypeFromString(EDataType eDataType, String initialValue) {
 		DictionaryDataType result = DictionaryDataType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -152,6 +171,46 @@ public class DDICFactoryImpl extends EFactoryImpl implements DDICFactory {
 	 * @generated
 	 */
 	public String convertDictionaryDataTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReferredObjectType createReferredObjectTypeFromString(EDataType eDataType, String initialValue) {
+		ReferredObjectType result = ReferredObjectType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertReferredObjectTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypeKind createTypeKindFromString(EDataType eDataType, String initialValue) {
+		TypeKind result = TypeKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTypeKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

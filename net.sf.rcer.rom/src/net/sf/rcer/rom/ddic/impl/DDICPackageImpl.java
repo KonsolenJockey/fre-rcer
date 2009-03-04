@@ -16,12 +16,15 @@ import net.sf.rcer.rom.ROMPackage;
 
 import net.sf.rcer.rom.ddic.DDICFactory;
 import net.sf.rcer.rom.ddic.DDICPackage;
+import net.sf.rcer.rom.ddic.DataElement;
 import net.sf.rcer.rom.ddic.DictionaryDataType;
 import net.sf.rcer.rom.ddic.Domain;
 import net.sf.rcer.rom.ddic.DomainValue;
 import net.sf.rcer.rom.ddic.DomainValueRange;
 import net.sf.rcer.rom.ddic.DomainValueSingle;
 
+import net.sf.rcer.rom.ddic.ReferredObjectType;
+import net.sf.rcer.rom.ddic.TypeKind;
 import net.sf.rcer.rom.impl.ROMPackageImpl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -72,7 +75,28 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass dataElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum dictionaryDataTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum referredObjectTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum typeKindEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -350,8 +374,269 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDataElement() {
+		return dataElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDataElement_Description() {
+		return (EReference)dataElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDataElement_Heading() {
+		return (EReference)dataElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_MaxHeadingLength() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDataElement_ShortText() {
+		return (EReference)dataElementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_MaxShortTextLength() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDataElement_MediumText() {
+		return (EReference)dataElementEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_MaxMediumTextLength() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDataElement_LongText() {
+		return (EReference)dataElementEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_MaxLongTextLength() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_TypeName() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_ParameterID() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_Logged() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_ValueHelpName() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_ValueHelpFieldName() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_DefaultFieldName() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_DictionaryDataType() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_Length() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_OutputLength() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_Decimals() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_CaseSensitive() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_Signed() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_ValueListFixed() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(21);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_ValueTableName() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(22);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_ConversionExit() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(23);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_TypeKind() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(24);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_ReferredType() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(25);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getDictionaryDataType() {
 		return dictionaryDataTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getReferredObjectType() {
+		return referredObjectTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getTypeKind() {
+		return typeKindEEnum;
 	}
 
 	/**
@@ -408,8 +693,38 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 		createEAttribute(domainValueRangeEClass, DOMAIN_VALUE_RANGE__LOWER_BOUNDARY);
 		createEAttribute(domainValueRangeEClass, DOMAIN_VALUE_RANGE__UPPER_BOUNDARY);
 
+		dataElementEClass = createEClass(DATA_ELEMENT);
+		createEReference(dataElementEClass, DATA_ELEMENT__DESCRIPTION);
+		createEReference(dataElementEClass, DATA_ELEMENT__HEADING);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__MAX_HEADING_LENGTH);
+		createEReference(dataElementEClass, DATA_ELEMENT__SHORT_TEXT);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__MAX_SHORT_TEXT_LENGTH);
+		createEReference(dataElementEClass, DATA_ELEMENT__MEDIUM_TEXT);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__MAX_MEDIUM_TEXT_LENGTH);
+		createEReference(dataElementEClass, DATA_ELEMENT__LONG_TEXT);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__MAX_LONG_TEXT_LENGTH);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__TYPE_NAME);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__PARAMETER_ID);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__LOGGED);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__VALUE_HELP_NAME);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__VALUE_HELP_FIELD_NAME);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__DEFAULT_FIELD_NAME);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__DICTIONARY_DATA_TYPE);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__LENGTH);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__OUTPUT_LENGTH);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__DECIMALS);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__CASE_SENSITIVE);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__SIGNED);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__VALUE_LIST_FIXED);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__VALUE_TABLE_NAME);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__CONVERSION_EXIT);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__TYPE_KIND);
+		createEAttribute(dataElementEClass, DATA_ELEMENT__REFERRED_TYPE);
+
 		// Create enums
 		dictionaryDataTypeEEnum = createEEnum(DICTIONARY_DATA_TYPE);
+		referredObjectTypeEEnum = createEEnum(REFERRED_OBJECT_TYPE);
+		typeKindEEnum = createEEnum(TYPE_KIND);
 	}
 
 	/**
@@ -446,6 +761,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 		domainEClass.getESuperTypes().add(theROMPackage.getRepositoryObject());
 		domainValueSingleEClass.getESuperTypes().add(this.getDomainValue());
 		domainValueRangeEClass.getESuperTypes().add(this.getDomainValue());
+		dataElementEClass.getESuperTypes().add(theROMPackage.getRepositoryObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(domainEClass, Domain.class, "Domain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -477,6 +793,39 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 		initEAttribute(getDomainValueRange_LowerBoundary(), ecorePackage.getEString(), "lowerBoundary", null, 1, 1, DomainValueRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDomainValueRange_UpperBoundary(), ecorePackage.getEString(), "upperBoundary", null, 1, 1, DomainValueRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(dataElementEClass, DataElement.class, "DataElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getDataElement_Description(), theROMPackage.getLocalizedString(), null, "description", null, 0, -1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getDataElement_Description().getEKeys().add(theROMPackage.getLocalizedString_Key());
+		initEReference(getDataElement_Heading(), theROMPackage.getLocalizedString(), null, "heading", null, 0, -1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getDataElement_Heading().getEKeys().add(theROMPackage.getLocalizedString_Key());
+		initEAttribute(getDataElement_MaxHeadingLength(), ecorePackage.getEInt(), "maxHeadingLength", null, 1, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDataElement_ShortText(), theROMPackage.getLocalizedString(), null, "shortText", null, 0, -1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getDataElement_ShortText().getEKeys().add(theROMPackage.getLocalizedString_Key());
+		initEAttribute(getDataElement_MaxShortTextLength(), ecorePackage.getEInt(), "maxShortTextLength", null, 1, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDataElement_MediumText(), theROMPackage.getLocalizedString(), null, "mediumText", null, 0, -1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getDataElement_MediumText().getEKeys().add(theROMPackage.getLocalizedString_Key());
+		initEAttribute(getDataElement_MaxMediumTextLength(), ecorePackage.getEInt(), "maxMediumTextLength", null, 1, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDataElement_LongText(), theROMPackage.getLocalizedString(), null, "longText", null, 0, -1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getDataElement_LongText().getEKeys().add(theROMPackage.getLocalizedString_Key());
+		initEAttribute(getDataElement_MaxLongTextLength(), ecorePackage.getEInt(), "maxLongTextLength", null, 1, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_TypeName(), ecorePackage.getEString(), "typeName", null, 0, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_ParameterID(), ecorePackage.getEString(), "parameterID", null, 0, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_Logged(), ecorePackage.getEBoolean(), "logged", null, 1, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_ValueHelpName(), ecorePackage.getEString(), "valueHelpName", null, 0, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_ValueHelpFieldName(), ecorePackage.getEString(), "valueHelpFieldName", null, 0, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_DefaultFieldName(), ecorePackage.getEString(), "defaultFieldName", null, 0, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_DictionaryDataType(), this.getDictionaryDataType(), "dictionaryDataType", null, 0, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_Length(), ecorePackage.getEInt(), "length", null, 1, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_OutputLength(), ecorePackage.getEInt(), "outputLength", null, 1, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_Decimals(), ecorePackage.getEInt(), "decimals", null, 1, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_CaseSensitive(), ecorePackage.getEBoolean(), "caseSensitive", null, 1, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_Signed(), ecorePackage.getEBoolean(), "signed", null, 1, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_ValueListFixed(), ecorePackage.getEBoolean(), "valueListFixed", null, 1, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_ValueTableName(), ecorePackage.getEString(), "valueTableName", null, 0, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_ConversionExit(), ecorePackage.getEString(), "conversionExit", null, 0, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_TypeKind(), this.getTypeKind(), "typeKind", null, 0, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElement_ReferredType(), this.getReferredObjectType(), "referredType", null, 0, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
 		// Initialize enums and add enum literals
 		initEEnum(dictionaryDataTypeEEnum, DictionaryDataType.class, "DictionaryDataType"); //$NON-NLS-1$
 		addEEnumLiteral(dictionaryDataTypeEEnum, DictionaryDataType.ACCOUNTING_PERIOD);
@@ -503,6 +852,26 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 		addEEnumLiteral(dictionaryDataTypeEEnum, DictionaryDataType.TIME);
 		addEEnumLiteral(dictionaryDataTypeEEnum, DictionaryDataType.VAR_CHARACTER);
 		addEEnumLiteral(dictionaryDataTypeEEnum, DictionaryDataType.UNIT);
+
+		initEEnum(referredObjectTypeEEnum, ReferredObjectType.class, "ReferredObjectType"); //$NON-NLS-1$
+		addEEnumLiteral(referredObjectTypeEEnum, ReferredObjectType.UNKNOWN);
+		addEEnumLiteral(referredObjectTypeEEnum, ReferredObjectType.ANY);
+		addEEnumLiteral(referredObjectTypeEEnum, ReferredObjectType.OBJECT);
+		addEEnumLiteral(referredObjectTypeEEnum, ReferredObjectType.DATA);
+		addEEnumLiteral(referredObjectTypeEEnum, ReferredObjectType.DICTIONARY_TYPE);
+		addEEnumLiteral(referredObjectTypeEEnum, ReferredObjectType.DATA_ELEMENT);
+		addEEnumLiteral(referredObjectTypeEEnum, ReferredObjectType.STRUCTURE);
+		addEEnumLiteral(referredObjectTypeEEnum, ReferredObjectType.TABLE_TYPE);
+		addEEnumLiteral(referredObjectTypeEEnum, ReferredObjectType.CLASS);
+		addEEnumLiteral(referredObjectTypeEEnum, ReferredObjectType.INTERFACE);
+
+		initEEnum(typeKindEEnum, TypeKind.class, "TypeKind"); //$NON-NLS-1$
+		addEEnumLiteral(typeKindEEnum, TypeKind.DICTIONARY_TYPE);
+		addEEnumLiteral(typeKindEEnum, TypeKind.BUILT_IN_TYPE);
+		addEEnumLiteral(typeKindEEnum, TypeKind.STRUCTURE);
+		addEEnumLiteral(typeKindEEnum, TypeKind.TABLE_TYPE);
+		addEEnumLiteral(typeKindEEnum, TypeKind.REFERENCE);
+		addEEnumLiteral(typeKindEEnum, TypeKind.DOMAIN);
 
 		// Create resource
 		createResource(eNS_URI);

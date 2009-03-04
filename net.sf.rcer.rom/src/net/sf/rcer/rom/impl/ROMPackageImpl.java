@@ -741,6 +741,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.UNKNOWN);
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.PACKAGE);
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.DOMAIN);
+		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.DATA_ELEMENT);
 
 		initEEnum(packageTypeEEnum, PackageType.class, "PackageType"); //$NON-NLS-1$
 		addEEnumLiteral(packageTypeEEnum, PackageType.STANDARD);

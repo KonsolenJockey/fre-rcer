@@ -851,6 +851,24 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	}
 
 	/**
+	 * @see net.sf.rcer.rom.impl.RepositoryObjectImpl#getProgramID()
+	 * @generated no
+	 */
+	@Override
+	public String getProgramID() {
+		return "R3TR";
+	}
+
+	/**
+	 * @generated no
+	 * @see net.sf.rcer.rom.impl.RepositoryObjectImpl#getObjectTypeID()
+	 */
+	@Override
+	public String getObjectTypeID() {
+		return "DEVC";
+	}
+	
+	/**
 	 * @see net.sf.rcer.rom.impl.RepositoryObjectImpl#loadObjectData(JCoDestination)
 	 * @generated no
 	 */

@@ -730,12 +730,31 @@ public class DomainImpl extends RepositoryObjectImpl implements Domain {
 	}
 
 	/**
+	 * @see net.sf.rcer.rom.impl.RepositoryObjectImpl#getProgramID()
+	 * @generated no
+	 */
+	@Override
+	public String getProgramID() {
+		return "R3TR";
+	}
+
+	/**
+	 * @generated no
+	 * @see net.sf.rcer.rom.impl.RepositoryObjectImpl#getObjectTypeID()
+	 */
+	@Override
+	public String getObjectTypeID() {
+		return "DOMA";
+	}
+	
+	/**
 	 * @see net.sf.rcer.rom.impl.RepositoryObjectImpl#loadObjectData(JCoDestination)
 	 * @generated no
 	 */
 	@Override
 	public IStatus loadObjectData(JCoDestination dest) {
 		try {
+			// TODO Support reading of other locales than the master locale.
 			RFCDomainReader reader = new RFCDomainReader();
 			reader.setDomainName(getName());
 			reader.setLocaleID(getOriginalLocale().getID());

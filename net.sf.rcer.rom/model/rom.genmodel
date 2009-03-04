@@ -36,6 +36,26 @@
       <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/VAR_CHARACTER"/>
       <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//DictionaryDataType/UNIT"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ddic.ecore#//ReferredObjectType">
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//ReferredObjectType/UNKNOWN"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//ReferredObjectType/ANY"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//ReferredObjectType/OBJECT"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//ReferredObjectType/DATA"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//ReferredObjectType/DICTIONARY_TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//ReferredObjectType/DATA_ELEMENT"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//ReferredObjectType/STRUCTURE"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//ReferredObjectType/TABLE_TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//ReferredObjectType/CLASS"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//ReferredObjectType/INTERFACE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ddic.ecore#//TypeKind">
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//TypeKind/DICTIONARY_TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//TypeKind/BUILT_IN_TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//TypeKind/STRUCTURE"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//TypeKind/TABLE_TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//TypeKind/REFERENCE"/>
+      <genEnumLiterals ecoreEnumLiteral="ddic.ecore#//TypeKind/DOMAIN"/>
+    </genEnums>
     <genClasses ecoreClass="ddic.ecore#//Domain">
       <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//Domain/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//Domain/dictionaryDataType"/>
@@ -62,12 +82,41 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DomainValueRange/lowerBoundary"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DomainValueRange/upperBoundary"/>
     </genClasses>
+    <genClasses ecoreClass="ddic.ecore#//DataElement">
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//DataElement/description"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//DataElement/heading"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/maxHeadingLength"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//DataElement/shortText"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/maxShortTextLength"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//DataElement/mediumText"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/maxMediumTextLength"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//DataElement/longText"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/maxLongTextLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/typeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/parameterID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/logged"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/valueHelpName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/valueHelpFieldName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/defaultFieldName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/dictionaryDataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/length"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/outputLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/decimals"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/caseSensitive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/signed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/valueListFixed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/valueTableName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/conversionExit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/typeKind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/referredType"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="ROM" basePackage="net.sf.rcer" disposableProviderFactory="true"
       contentTypeIdentifier="" ecorePackage="rom.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="rom.ecore#//RepositoryObjectType">
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/UNKNOWN"/>
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/PACKAGE"/>
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/DOMAIN"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="rom.ecore#//PackageType">
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//PackageType/STANDARD"/>
