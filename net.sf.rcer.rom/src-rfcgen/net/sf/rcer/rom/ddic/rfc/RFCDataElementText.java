@@ -126,15 +126,15 @@ public class RFCDataElementText {
 	}
 	
 	/**
-	 * @return the Short text describing R/3 Repository objects (DD04T-DDTEXT)
+	 * @return the description (DD04T-DDTEXT)
 	 */
 	public String getDescription() {
 		return this.description;
 	}
 	
 	/**
-	 * Changes the Short text describing R/3 Repository objects (DD04T-DDTEXT).
-	 * @param newDescription the new Short text describing R/3 Repository objects to set
+	 * Changes the description (DD04T-DDTEXT).
+	 * @param newDescription the new description to set
 	 */
 	public void setsetDescription(String newDescription) {
 		_pcs.firePropertyChange("description", this.description, newDescription);
@@ -142,15 +142,15 @@ public class RFCDataElementText {
 	}
 	
 	/**
-	 * @return the Heading (DD04T-REPTEXT)
+	 * @return the heading (DD04T-REPTEXT)
 	 */
 	public String getHeading() {
 		return this.heading;
 	}
 	
 	/**
-	 * Changes the Heading (DD04T-REPTEXT).
-	 * @param newHeading the new Heading to set
+	 * Changes the heading (DD04T-REPTEXT).
+	 * @param newHeading the new heading to set
 	 */
 	public void setsetHeading(String newHeading) {
 		_pcs.firePropertyChange("heading", this.heading, newHeading);
@@ -158,15 +158,15 @@ public class RFCDataElementText {
 	}
 	
 	/**
-	 * @return the Short Field Label (DD04T-SCRTEXT_S)
+	 * @return the short field label (DD04T-SCRTEXT_S)
 	 */
 	public String getShortText() {
 		return this.shortText;
 	}
 	
 	/**
-	 * Changes the Short Field Label (DD04T-SCRTEXT_S).
-	 * @param newShortText the new Short Field Label to set
+	 * Changes the short field label (DD04T-SCRTEXT_S).
+	 * @param newShortText the new short field label to set
 	 */
 	public void setsetShortText(String newShortText) {
 		_pcs.firePropertyChange("shortText", this.shortText, newShortText);
@@ -174,15 +174,15 @@ public class RFCDataElementText {
 	}
 	
 	/**
-	 * @return the Medium field label (DD04T-SCRTEXT_M)
+	 * @return the medium field label (DD04T-SCRTEXT_M)
 	 */
 	public String getMediumText() {
 		return this.mediumText;
 	}
 	
 	/**
-	 * Changes the Medium field label (DD04T-SCRTEXT_M).
-	 * @param newMediumText the new Medium field label to set
+	 * Changes the medium field label (DD04T-SCRTEXT_M).
+	 * @param newMediumText the new medium field label to set
 	 */
 	public void setsetMediumText(String newMediumText) {
 		_pcs.firePropertyChange("mediumText", this.mediumText, newMediumText);
@@ -190,15 +190,15 @@ public class RFCDataElementText {
 	}
 	
 	/**
-	 * @return the Long field label (DD04T-SCRTEXT_L)
+	 * @return the long field label (DD04T-SCRTEXT_L)
 	 */
 	public String getLongText() {
 		return this.longText;
 	}
 	
 	/**
-	 * Changes the Long field label (DD04T-SCRTEXT_L).
-	 * @param newLongText the new Long field label to set
+	 * Changes the long field label (DD04T-SCRTEXT_L).
+	 * @param newLongText the new long field label to set
 	 */
 	public void setsetLongText(String newLongText) {
 		_pcs.firePropertyChange("longText", this.longText, newLongText);

@@ -40,11 +40,11 @@ structure "DD04L" {
 structure "DD04T" {
 	class RFCDataElementText {
 		field "DDLANGUAGE" = String localeID    comment "locale ID";
-		field "DDTEXT"     = String description comment "Short text describing R/3 Repository objects";
-		field "REPTEXT"    = String heading     comment "Heading";
-		field "SCRTEXT_S"  = String shortText   comment "Short Field Label";
-		field "SCRTEXT_M"  = String mediumText  comment "Medium field label";
-		field "SCRTEXT_L"  = String longText    comment "Long field label";
+		field "DDTEXT"     = String description comment "description";
+		field "REPTEXT"    = String heading     comment "heading";
+		field "SCRTEXT_S"  = String shortText   comment "short field label";
+		field "SCRTEXT_M"  = String mediumText  comment "medium field label";
+		field "SCRTEXT_L"  = String longText    comment "long field label";
 	}
 }
 
