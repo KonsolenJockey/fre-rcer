@@ -19,4 +19,8 @@
 		<modelFile value='DataElement.rfc' />
 		<targetDir value='src-rfcgen' />
 	</component>
+	<component file='net/sf/rcer/rfcgen/generator.oaw'>
+		<modelFile value='DataStructure.rfc' />
+		<targetDir value='src-rfcgen' />
+	</component>
 </workflow>
