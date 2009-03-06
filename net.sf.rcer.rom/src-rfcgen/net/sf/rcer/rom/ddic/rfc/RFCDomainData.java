@@ -132,7 +132,7 @@ public class RFCDomainData {
 	 * Changes the data type in ABAP Dictionary (DD01V-DATATYPE).
 	 * @param newDataType the new data type in ABAP Dictionary to set
 	 */
-	public void setsetDataType(String newDataType) {
+	public void setDataType(String newDataType) {
 		_pcs.firePropertyChange("dataType", this.dataType, newDataType);
 		this.dataType = newDataType;
 	}
@@ -148,7 +148,7 @@ public class RFCDomainData {
 	 * Changes the length (number of characters) (DD01V-LENG).
 	 * @param newLength the new length (number of characters) to set
 	 */
-	public void setsetLength(int newLength) {
+	public void setLength(int newLength) {
 		_pcs.firePropertyChange("length", this.length, newLength);
 		this.length = newLength;
 	}
@@ -164,7 +164,7 @@ public class RFCDomainData {
 	 * Changes the output length (DD01V-OUTPUTLEN).
 	 * @param newOutputLength the new output length to set
 	 */
-	public void setsetOutputLength(int newOutputLength) {
+	public void setOutputLength(int newOutputLength) {
 		_pcs.firePropertyChange("outputLength", this.outputLength, newOutputLength);
 		this.outputLength = newOutputLength;
 	}
@@ -180,7 +180,7 @@ public class RFCDomainData {
 	 * Changes the number of decimal places (DD01V-DECIMALS).
 	 * @param newDecimals the new number of decimal places to set
 	 */
-	public void setsetDecimals(int newDecimals) {
+	public void setDecimals(int newDecimals) {
 		_pcs.firePropertyChange("decimals", this.decimals, newDecimals);
 		this.decimals = newDecimals;
 	}
@@ -196,7 +196,7 @@ public class RFCDomainData {
 	 * Changes the whether lower case letters are allowed (DD01V-LOWERCASE).
 	 * @param newCaseSensitive the new whether lower case letters are allowed to set
 	 */
-	public void setsetCaseSensitive(boolean newCaseSensitive) {
+	public void setCaseSensitive(boolean newCaseSensitive) {
 		_pcs.firePropertyChange("caseSensitive", this.caseSensitive, newCaseSensitive);
 		this.caseSensitive = newCaseSensitive;
 	}
@@ -212,7 +212,7 @@ public class RFCDomainData {
 	 * Changes the whether a numerical field is signed (DD01V-SIGNFLAG).
 	 * @param newSigned the new whether a numerical field is signed to set
 	 */
-	public void setsetSigned(boolean newSigned) {
+	public void setSigned(boolean newSigned) {
 		_pcs.firePropertyChange("signed", this.signed, newSigned);
 		this.signed = newSigned;
 	}
@@ -228,7 +228,7 @@ public class RFCDomainData {
 	 * Changes the whether fixed values exist (DD01V-VALEXI).
 	 * @param newValueListFixed the new whether fixed values exist to set
 	 */
-	public void setsetValueListFixed(boolean newValueListFixed) {
+	public void setValueListFixed(boolean newValueListFixed) {
 		_pcs.firePropertyChange("valueListFixed", this.valueListFixed, newValueListFixed);
 		this.valueListFixed = newValueListFixed;
 	}
@@ -244,7 +244,7 @@ public class RFCDomainData {
 	 * Changes the name of the value table (DD01V-ENTITYTAB).
 	 * @param newValueTable the new name of the value table to set
 	 */
-	public void setsetValueTable(String newValueTable) {
+	public void setValueTable(String newValueTable) {
 		_pcs.firePropertyChange("valueTable", this.valueTable, newValueTable);
 		this.valueTable = newValueTable;
 	}
@@ -260,7 +260,7 @@ public class RFCDomainData {
 	 * Changes the conversion routine (DD01V-CONVEXIT).
 	 * @param newConversionExit the new conversion routine to set
 	 */
-	public void setsetConversionExit(String newConversionExit) {
+	public void setConversionExit(String newConversionExit) {
 		_pcs.firePropertyChange("conversionExit", this.conversionExit, newConversionExit);
 		this.conversionExit = newConversionExit;
 	}
@@ -276,7 +276,7 @@ public class RFCDomainData {
 	 * Changes the short text describing the domain (DD01V-DDTEXT).
 	 * @param newDescription the new short text describing the domain to set
 	 */
-	public void setsetDescription(String newDescription) {
+	public void setDescription(String newDescription) {
 		_pcs.firePropertyChange("description", this.description, newDescription);
 		this.description = newDescription;
 	}

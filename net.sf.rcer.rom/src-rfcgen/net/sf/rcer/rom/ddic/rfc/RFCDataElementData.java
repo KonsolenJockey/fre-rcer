@@ -165,7 +165,7 @@ public class RFCDataElementData {
 	 * Changes the domain or referenced data type name (DD04L-DOMNAME).
 	 * @param newTypeName the new domain or referenced data type name to set
 	 */
-	public void setsetTypeName(String newTypeName) {
+	public void setTypeName(String newTypeName) {
 		_pcs.firePropertyChange("typeName", this.typeName, newTypeName);
 		this.typeName = newTypeName;
 	}
@@ -181,7 +181,7 @@ public class RFCDataElementData {
 	 * Changes the SET/GET parameter ID (DD04L-MEMORYID).
 	 * @param newParameterID the new SET/GET parameter ID to set
 	 */
-	public void setsetParameterID(String newParameterID) {
+	public void setParameterID(String newParameterID) {
 		_pcs.firePropertyChange("parameterID", this.parameterID, newParameterID);
 		this.parameterID = newParameterID;
 	}
@@ -197,7 +197,7 @@ public class RFCDataElementData {
 	 * Changes the whether this field occurs in change documents (DD04L-LOGFLAG).
 	 * @param newLogged the new whether this field occurs in change documents to set
 	 */
-	public void setsetLogged(boolean newLogged) {
+	public void setLogged(boolean newLogged) {
 		_pcs.firePropertyChange("logged", this.logged, newLogged);
 		this.logged = newLogged;
 	}
@@ -213,7 +213,7 @@ public class RFCDataElementData {
 	 * Changes the maximum length of heading (DD04L-HEADLEN).
 	 * @param newHeadingLength the new maximum length of heading to set
 	 */
-	public void setsetHeadingLength(int newHeadingLength) {
+	public void setHeadingLength(int newHeadingLength) {
 		_pcs.firePropertyChange("headingLength", this.headingLength, newHeadingLength);
 		this.headingLength = newHeadingLength;
 	}
@@ -229,7 +229,7 @@ public class RFCDataElementData {
 	 * Changes the maximum length of short field label (DD04L-SCRLEN1).
 	 * @param newShortTextLength the new maximum length of short field label to set
 	 */
-	public void setsetShortTextLength(int newShortTextLength) {
+	public void setShortTextLength(int newShortTextLength) {
 		_pcs.firePropertyChange("shortTextLength", this.shortTextLength, newShortTextLength);
 		this.shortTextLength = newShortTextLength;
 	}
@@ -245,7 +245,7 @@ public class RFCDataElementData {
 	 * Changes the maximum length of medium field label (DD04L-SCRLEN2).
 	 * @param newMediumTextLength the new maximum length of medium field label to set
 	 */
-	public void setsetMediumTextLength(int newMediumTextLength) {
+	public void setMediumTextLength(int newMediumTextLength) {
 		_pcs.firePropertyChange("mediumTextLength", this.mediumTextLength, newMediumTextLength);
 		this.mediumTextLength = newMediumTextLength;
 	}
@@ -261,7 +261,7 @@ public class RFCDataElementData {
 	 * Changes the maximum length of long field label (DD04L-SCRLEN3).
 	 * @param newLongTextLength the new maximum length of long field label to set
 	 */
-	public void setsetLongTextLength(int newLongTextLength) {
+	public void setLongTextLength(int newLongTextLength) {
 		_pcs.firePropertyChange("longTextLength", this.longTextLength, newLongTextLength);
 		this.longTextLength = newLongTextLength;
 	}
@@ -277,7 +277,7 @@ public class RFCDataElementData {
 	 * Changes the name of a search help (DD04L-SHLPNAME).
 	 * @param newSearchHelpName the new name of a search help to set
 	 */
-	public void setsetSearchHelpName(String newSearchHelpName) {
+	public void setSearchHelpName(String newSearchHelpName) {
 		_pcs.firePropertyChange("searchHelpName", this.searchHelpName, newSearchHelpName);
 		this.searchHelpName = newSearchHelpName;
 	}
@@ -293,7 +293,7 @@ public class RFCDataElementData {
 	 * Changes the name of a search help parameter (DD04L-SHLPFIELD).
 	 * @param newSearchHelpField the new name of a search help parameter to set
 	 */
-	public void setsetSearchHelpField(String newSearchHelpField) {
+	public void setSearchHelpField(String newSearchHelpField) {
 		_pcs.firePropertyChange("searchHelpField", this.searchHelpField, newSearchHelpField);
 		this.searchHelpField = newSearchHelpField;
 	}
@@ -309,7 +309,7 @@ public class RFCDataElementData {
 	 * Changes the nefault name for components using the data element (DD04L-DEFFDNAME).
 	 * @param newDefaultFieldName the new nefault name for components using the data element to set
 	 */
-	public void setsetDefaultFieldName(String newDefaultFieldName) {
+	public void setDefaultFieldName(String newDefaultFieldName) {
 		_pcs.firePropertyChange("defaultFieldName", this.defaultFieldName, newDefaultFieldName);
 		this.defaultFieldName = newDefaultFieldName;
 	}
@@ -325,7 +325,7 @@ public class RFCDataElementData {
 	 * Changes the data type in ABAP Dictionary (DD04L-DATATYPE).
 	 * @param newDataType the new data type in ABAP Dictionary to set
 	 */
-	public void setsetDataType(String newDataType) {
+	public void setDataType(String newDataType) {
 		_pcs.firePropertyChange("dataType", this.dataType, newDataType);
 		this.dataType = newDataType;
 	}
@@ -341,7 +341,7 @@ public class RFCDataElementData {
 	 * Changes the length (number of characters) (DD04L-LENG).
 	 * @param newLength the new length (number of characters) to set
 	 */
-	public void setsetLength(int newLength) {
+	public void setLength(int newLength) {
 		_pcs.firePropertyChange("length", this.length, newLength);
 		this.length = newLength;
 	}
@@ -357,7 +357,7 @@ public class RFCDataElementData {
 	 * Changes the number of decimal places (DD04L-DECIMALS).
 	 * @param newDecimals the new number of decimal places to set
 	 */
-	public void setsetDecimals(int newDecimals) {
+	public void setDecimals(int newDecimals) {
 		_pcs.firePropertyChange("decimals", this.decimals, newDecimals);
 		this.decimals = newDecimals;
 	}
@@ -373,7 +373,7 @@ public class RFCDataElementData {
 	 * Changes the output length (DD04L-OUTPUTLEN).
 	 * @param newOutputLength the new output length to set
 	 */
-	public void setsetOutputLength(int newOutputLength) {
+	public void setOutputLength(int newOutputLength) {
 		_pcs.firePropertyChange("outputLength", this.outputLength, newOutputLength);
 		this.outputLength = newOutputLength;
 	}
@@ -389,7 +389,7 @@ public class RFCDataElementData {
 	 * Changes the whether lower case letters are allowed (DD04L-LOWERCASE).
 	 * @param newCaseSensitive the new whether lower case letters are allowed to set
 	 */
-	public void setsetCaseSensitive(boolean newCaseSensitive) {
+	public void setCaseSensitive(boolean newCaseSensitive) {
 		_pcs.firePropertyChange("caseSensitive", this.caseSensitive, newCaseSensitive);
 		this.caseSensitive = newCaseSensitive;
 	}
@@ -405,7 +405,7 @@ public class RFCDataElementData {
 	 * Changes the whether a numerical field is signed (DD04L-SIGNFLAG).
 	 * @param newSigned the new whether a numerical field is signed to set
 	 */
-	public void setsetSigned(boolean newSigned) {
+	public void setSigned(boolean newSigned) {
 		_pcs.firePropertyChange("signed", this.signed, newSigned);
 		this.signed = newSigned;
 	}
@@ -421,7 +421,7 @@ public class RFCDataElementData {
 	 * Changes the conversion routine (DD04L-CONVEXIT).
 	 * @param newConversionExit the new conversion routine to set
 	 */
-	public void setsetConversionExit(String newConversionExit) {
+	public void setConversionExit(String newConversionExit) {
 		_pcs.firePropertyChange("conversionExit", this.conversionExit, newConversionExit);
 		this.conversionExit = newConversionExit;
 	}
@@ -437,7 +437,7 @@ public class RFCDataElementData {
 	 * Changes the whether fixed values exist (DD04L-VALEXI).
 	 * @param newValueListFixed the new whether fixed values exist to set
 	 */
-	public void setsetValueListFixed(boolean newValueListFixed) {
+	public void setValueListFixed(boolean newValueListFixed) {
 		_pcs.firePropertyChange("valueListFixed", this.valueListFixed, newValueListFixed);
 		this.valueListFixed = newValueListFixed;
 	}
@@ -453,7 +453,7 @@ public class RFCDataElementData {
 	 * Changes the name of the value table (DD04L-ENTITYTAB).
 	 * @param newValueTable the new name of the value table to set
 	 */
-	public void setsetValueTable(String newValueTable) {
+	public void setValueTable(String newValueTable) {
 		_pcs.firePropertyChange("valueTable", this.valueTable, newValueTable);
 		this.valueTable = newValueTable;
 	}
@@ -469,7 +469,7 @@ public class RFCDataElementData {
 	 * Changes the category of dictionary type (DD04L-REFKIND).
 	 * @param newTypeKind the new category of dictionary type to set
 	 */
-	public void setsetTypeKind(String newTypeKind) {
+	public void setTypeKind(String newTypeKind) {
 		_pcs.firePropertyChange("typeKind", this.typeKind, newTypeKind);
 		this.typeKind = newTypeKind;
 	}
@@ -485,7 +485,7 @@ public class RFCDataElementData {
 	 * Changes the type of object referenced (DD04L-REFTYPE).
 	 * @param newReferenceKind the new type of object referenced to set
 	 */
-	public void setsetReferenceKind(String newReferenceKind) {
+	public void setReferenceKind(String newReferenceKind) {
 		_pcs.firePropertyChange("referenceKind", this.referenceKind, newReferenceKind);
 		this.referenceKind = newReferenceKind;
 	}

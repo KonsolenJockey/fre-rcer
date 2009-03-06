@@ -120,7 +120,7 @@ public class RFCDataElementText {
 	 * Changes the locale ID (DD04T-DDLANGUAGE).
 	 * @param newLocaleID the new locale ID to set
 	 */
-	public void setsetLocaleID(String newLocaleID) {
+	public void setLocaleID(String newLocaleID) {
 		_pcs.firePropertyChange("localeID", this.localeID, newLocaleID);
 		this.localeID = newLocaleID;
 	}
@@ -136,7 +136,7 @@ public class RFCDataElementText {
 	 * Changes the description (DD04T-DDTEXT).
 	 * @param newDescription the new description to set
 	 */
-	public void setsetDescription(String newDescription) {
+	public void setDescription(String newDescription) {
 		_pcs.firePropertyChange("description", this.description, newDescription);
 		this.description = newDescription;
 	}
@@ -152,7 +152,7 @@ public class RFCDataElementText {
 	 * Changes the heading (DD04T-REPTEXT).
 	 * @param newHeading the new heading to set
 	 */
-	public void setsetHeading(String newHeading) {
+	public void setHeading(String newHeading) {
 		_pcs.firePropertyChange("heading", this.heading, newHeading);
 		this.heading = newHeading;
 	}
@@ -168,7 +168,7 @@ public class RFCDataElementText {
 	 * Changes the short field label (DD04T-SCRTEXT_S).
 	 * @param newShortText the new short field label to set
 	 */
-	public void setsetShortText(String newShortText) {
+	public void setShortText(String newShortText) {
 		_pcs.firePropertyChange("shortText", this.shortText, newShortText);
 		this.shortText = newShortText;
 	}
@@ -184,7 +184,7 @@ public class RFCDataElementText {
 	 * Changes the medium field label (DD04T-SCRTEXT_M).
 	 * @param newMediumText the new medium field label to set
 	 */
-	public void setsetMediumText(String newMediumText) {
+	public void setMediumText(String newMediumText) {
 		_pcs.firePropertyChange("mediumText", this.mediumText, newMediumText);
 		this.mediumText = newMediumText;
 	}
@@ -200,7 +200,7 @@ public class RFCDataElementText {
 	 * Changes the long field label (DD04T-SCRTEXT_L).
 	 * @param newLongText the new long field label to set
 	 */
-	public void setsetLongText(String newLongText) {
+	public void setLongText(String newLongText) {
 		_pcs.firePropertyChange("longText", this.longText, newLongText);
 		this.longText = newLongText;
 	}

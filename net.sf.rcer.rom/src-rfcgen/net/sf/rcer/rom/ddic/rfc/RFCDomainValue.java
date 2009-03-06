@@ -117,7 +117,7 @@ public class RFCDomainValue {
 	 * Changes the domain value key (DD07V-VALPOS).
 	 * @param newPosition the new domain value key to set
 	 */
-	public void setsetPosition(int newPosition) {
+	public void setPosition(int newPosition) {
 		_pcs.firePropertyChange("position", this.position, newPosition);
 		this.position = newPosition;
 	}
@@ -133,7 +133,7 @@ public class RFCDomainValue {
 	 * Changes the locale key (DD07V-DDLANGUAGE).
 	 * @param newLocaleID the new locale key to set
 	 */
-	public void setsetLocaleID(String newLocaleID) {
+	public void setLocaleID(String newLocaleID) {
 		_pcs.firePropertyChange("localeID", this.localeID, newLocaleID);
 		this.localeID = newLocaleID;
 	}
@@ -149,7 +149,7 @@ public class RFCDomainValue {
 	 * Changes the single value or lower limit (DD07V-DOMVALUE_L).
 	 * @param newLowerValue the new single value or lower limit to set
 	 */
-	public void setsetLowerValue(String newLowerValue) {
+	public void setLowerValue(String newLowerValue) {
 		_pcs.firePropertyChange("lowerValue", this.lowerValue, newLowerValue);
 		this.lowerValue = newLowerValue;
 	}
@@ -165,7 +165,7 @@ public class RFCDomainValue {
 	 * Changes the upper limit (DD07V-DOMVALUE_H).
 	 * @param newUpperValue the new upper limit to set
 	 */
-	public void setsetUpperValue(String newUpperValue) {
+	public void setUpperValue(String newUpperValue) {
 		_pcs.firePropertyChange("upperValue", this.upperValue, newUpperValue);
 		this.upperValue = newUpperValue;
 	}
@@ -181,7 +181,7 @@ public class RFCDomainValue {
 	 * Changes the short text for fixed values (DD07V-DDTEXT).
 	 * @param newDescription the new short text for fixed values to set
 	 */
-	public void setsetDescription(String newDescription) {
+	public void setDescription(String newDescription) {
 		_pcs.firePropertyChange("description", this.description, newDescription);
 		this.description = newDescription;
 	}
