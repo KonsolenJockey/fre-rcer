@@ -185,7 +185,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDomain_Description() {
+	public EReference getDomain_Collection() {
 		return (EReference)domainEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -194,8 +194,8 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDomain_DictionaryDataType() {
-		return (EAttribute)domainEClass.getEStructuralFeatures().get(1);
+	public EReference getDomain_Description() {
+		return (EReference)domainEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -203,7 +203,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDomain_Length() {
+	public EAttribute getDomain_DictionaryDataType() {
 		return (EAttribute)domainEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -212,7 +212,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDomain_OutputLength() {
+	public EAttribute getDomain_Length() {
 		return (EAttribute)domainEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -221,7 +221,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDomain_Decimals() {
+	public EAttribute getDomain_OutputLength() {
 		return (EAttribute)domainEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -230,7 +230,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDomain_CaseSensitive() {
+	public EAttribute getDomain_Decimals() {
 		return (EAttribute)domainEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -239,7 +239,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDomain_Signed() {
+	public EAttribute getDomain_CaseSensitive() {
 		return (EAttribute)domainEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -248,7 +248,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDomain_ValueListFixed() {
+	public EAttribute getDomain_Signed() {
 		return (EAttribute)domainEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -257,7 +257,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDomain_ValueTableName() {
+	public EAttribute getDomain_ValueListFixed() {
 		return (EAttribute)domainEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -266,7 +266,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDomain_ConversionExit() {
+	public EAttribute getDomain_ValueTableName() {
 		return (EAttribute)domainEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -275,8 +275,17 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDomain_ConversionExit() {
+		return (EAttribute)domainEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getDomain_Values() {
-		return (EReference)domainEClass.getEStructuralFeatures().get(10);
+		return (EReference)domainEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -383,7 +392,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataElement_Description() {
+	public EReference getDataElement_Collection() {
 		return (EReference)dataElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -392,7 +401,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataElement_Heading() {
+	public EReference getDataElement_Description() {
 		return (EReference)dataElementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -401,8 +410,17 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getDataElement_Heading() {
+		return (EReference)dataElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getDataElement_MaxHeadingLength() {
-		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -411,7 +429,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * @generated
 	 */
 	public EReference getDataElement_ShortText() {
-		return (EReference)dataElementEClass.getEStructuralFeatures().get(3);
+		return (EReference)dataElementEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -420,7 +438,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * @generated
 	 */
 	public EAttribute getDataElement_MaxShortTextLength() {
-		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -429,7 +447,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * @generated
 	 */
 	public EReference getDataElement_MediumText() {
-		return (EReference)dataElementEClass.getEStructuralFeatures().get(5);
+		return (EReference)dataElementEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -438,7 +456,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * @generated
 	 */
 	public EAttribute getDataElement_MaxMediumTextLength() {
-		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -447,7 +465,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * @generated
 	 */
 	public EReference getDataElement_LongText() {
-		return (EReference)dataElementEClass.getEStructuralFeatures().get(7);
+		return (EReference)dataElementEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -456,15 +474,6 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * @generated
 	 */
 	public EAttribute getDataElement_MaxLongTextLength() {
-		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDataElement_TypeName() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -473,7 +482,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_ParameterID() {
+	public EAttribute getDataElement_TypeName() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -482,7 +491,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_Logged() {
+	public EAttribute getDataElement_ParameterID() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -491,7 +500,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_ValueHelpName() {
+	public EAttribute getDataElement_Logged() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -500,7 +509,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_ValueHelpFieldName() {
+	public EAttribute getDataElement_ValueHelpName() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -509,7 +518,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_DefaultFieldName() {
+	public EAttribute getDataElement_ValueHelpFieldName() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(14);
 	}
 
@@ -518,7 +527,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_DictionaryDataType() {
+	public EAttribute getDataElement_DefaultFieldName() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(15);
 	}
 
@@ -527,7 +536,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_Length() {
+	public EAttribute getDataElement_DictionaryDataType() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(16);
 	}
 
@@ -536,7 +545,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_OutputLength() {
+	public EAttribute getDataElement_Length() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(17);
 	}
 
@@ -545,7 +554,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_Decimals() {
+	public EAttribute getDataElement_OutputLength() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(18);
 	}
 
@@ -554,7 +563,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_CaseSensitive() {
+	public EAttribute getDataElement_Decimals() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(19);
 	}
 
@@ -563,7 +572,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_Signed() {
+	public EAttribute getDataElement_CaseSensitive() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(20);
 	}
 
@@ -572,7 +581,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_ValueListFixed() {
+	public EAttribute getDataElement_Signed() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(21);
 	}
 
@@ -581,7 +590,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_ValueTableName() {
+	public EAttribute getDataElement_ValueListFixed() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(22);
 	}
 
@@ -590,7 +599,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_ConversionExit() {
+	public EAttribute getDataElement_ValueTableName() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(23);
 	}
 
@@ -599,7 +608,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_TypeKind() {
+	public EAttribute getDataElement_ConversionExit() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(24);
 	}
 
@@ -608,8 +617,17 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDataElement_ReferredType() {
+	public EAttribute getDataElement_TypeKind() {
 		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(25);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElement_ReferredType() {
+		return (EAttribute)dataElementEClass.getEStructuralFeatures().get(26);
 	}
 
 	/**
@@ -668,6 +686,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 
 		// Create classes and their features
 		domainEClass = createEClass(DOMAIN);
+		createEReference(domainEClass, DOMAIN__COLLECTION);
 		createEReference(domainEClass, DOMAIN__DESCRIPTION);
 		createEAttribute(domainEClass, DOMAIN__DICTIONARY_DATA_TYPE);
 		createEAttribute(domainEClass, DOMAIN__LENGTH);
@@ -694,6 +713,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 		createEAttribute(domainValueRangeEClass, DOMAIN_VALUE_RANGE__UPPER_BOUNDARY);
 
 		dataElementEClass = createEClass(DATA_ELEMENT);
+		createEReference(dataElementEClass, DATA_ELEMENT__COLLECTION);
 		createEReference(dataElementEClass, DATA_ELEMENT__DESCRIPTION);
 		createEReference(dataElementEClass, DATA_ELEMENT__HEADING);
 		createEAttribute(dataElementEClass, DATA_ELEMENT__MAX_HEADING_LENGTH);
@@ -765,6 +785,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(domainEClass, Domain.class, "Domain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getDomain_Collection(), theROMPackage.getRepositoryObjectCollection(), theROMPackage.getRepositoryObjectCollection_Domains(), "collection", null, 0, 1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDomain_Description(), theROMPackage.getLocalizedString(), null, "description", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		getDomain_Description().getEKeys().add(theROMPackage.getLocalizedString_Key());
 		initEAttribute(getDomain_DictionaryDataType(), this.getDictionaryDataType(), "dictionaryDataType", null, 0, 1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -794,6 +815,7 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 		initEAttribute(getDomainValueRange_UpperBoundary(), ecorePackage.getEString(), "upperBoundary", null, 1, 1, DomainValueRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(dataElementEClass, DataElement.class, "DataElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getDataElement_Collection(), theROMPackage.getRepositoryObjectCollection(), theROMPackage.getRepositoryObjectCollection_DataElements(), "collection", null, 0, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDataElement_Description(), theROMPackage.getLocalizedString(), null, "description", null, 0, -1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		getDataElement_Description().getEKeys().add(theROMPackage.getLocalizedString_Key());
 		initEReference(getDataElement_Heading(), theROMPackage.getLocalizedString(), null, "heading", null, 0, -1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$

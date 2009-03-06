@@ -12,26 +12,17 @@
  */
 package net.sf.rcer.rom.impl;
 
-import java.text.MessageFormat;
 import java.util.Collection;
 
 import net.sf.rcer.conn.locales.Locale;
-import net.sf.rcer.conn.locales.LocaleRegistry;
-import net.sf.rcer.conn.tools.ITableContents;
-import net.sf.rcer.conn.tools.ITableLine;
-import net.sf.rcer.conn.tools.TableReader;
-import net.sf.rcer.conn.tools.TableReaderBuffer;
-import net.sf.rcer.rom.IRepositoryObjectContainer;
 import net.sf.rcer.rom.PackagePermittedObjectTypes;
 import net.sf.rcer.rom.PackageType;
-import net.sf.rcer.rom.ROMFactory;
 import net.sf.rcer.rom.ROMPackage;
 import net.sf.rcer.rom.RepositoryObject;
+import net.sf.rcer.rom.RepositoryObjectCollection;
 import net.sf.rcer.rom.RepositoryObjectType;
 import net.sf.rcer.rom.RepositoryPackage;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -39,13 +30,10 @@ import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,9 +42,9 @@ import com.sap.conn.jco.JCoException;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#getObjects <em>Objects</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#getSubPackages <em>Sub Packages</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#getObjects <em>Objects</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#getSubPackageNames <em>Sub Package Names</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#isChangeRecodingEnabled <em>Change Recoding Enabled</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#getResponsibleUser <em>Responsible User</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#getTransportLayer <em>Transport Layer</em>}</li>
@@ -67,22 +55,13 @@ import com.sap.conn.jco.JCoException;
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#getType <em>Type</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#isCheckedAsServer <em>Checked As Server</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#isCheckedAsClient <em>Checked As Client</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#getCollection <em>Collection</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class RepositoryPackageImpl extends RepositoryObjectImpl implements RepositoryPackage {
-	/**
-	 * The cached value of the '{@link #getObjects() <em>Objects</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getObjects()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<RepositoryObject> objects;
-
 	/**
 	 * The cached value of the '{@link #getDescription() <em>Description</em>}' map.
 	 * <!-- begin-user-doc -->
@@ -94,14 +73,24 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	protected EMap<Locale, String> description;
 
 	/**
-	 * The cached value of the '{@link #getSubPackages() <em>Sub Packages</em>}' reference list.
+	 * The cached value of the '{@link #getObjects() <em>Objects</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSubPackages()
+	 * @see #getObjects()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<RepositoryPackage> subPackages;
+	protected EList<RepositoryObject> objects;
+
+	/**
+	 * The cached value of the '{@link #getSubPackageNames() <em>Sub Package Names</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubPackageNames()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> subPackageNames;
 
 	/**
 	 * The default value of the '{@link #isChangeRecodingEnabled() <em>Change Recoding Enabled</em>}' attribute.
@@ -329,9 +318,21 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	 */
 	public EList<RepositoryObject> getObjects() {
 		if (objects == null) {
-			objects = new EObjectContainmentWithInverseEList<RepositoryObject>(RepositoryObject.class, this, ROMPackage.REPOSITORY_PACKAGE__OBJECTS, ROMPackage.REPOSITORY_OBJECT__CONTAINER);
+			objects = new EObjectResolvingEList<RepositoryObject>(RepositoryObject.class, this, ROMPackage.REPOSITORY_PACKAGE__OBJECTS);
 		}
 		return objects;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<String> getSubPackageNames() {
+		if (subPackageNames == null) {
+			subPackageNames = new EDataTypeUniqueEList<String>(String.class, this, ROMPackage.REPOSITORY_PACKAGE__SUB_PACKAGE_NAMES);
+		}
+		return subPackageNames;
 	}
 
 	/**
@@ -561,14 +562,10 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getObjects()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
+	public RepositoryObjectCollection getCollection() {
+		if (eContainerFeatureID != ROMPackage.REPOSITORY_PACKAGE__COLLECTION) return null;
+		return (RepositoryObjectCollection)eContainer();
 	}
 
 	/**
@@ -576,11 +573,15 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<RepositoryPackage> getSubPackages() {
-		if (subPackages == null) {
-			subPackages = new EObjectResolvingEList<RepositoryPackage>(RepositoryPackage.class, this, ROMPackage.REPOSITORY_PACKAGE__SUB_PACKAGES);
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ROMPackage.REPOSITORY_PACKAGE__COLLECTION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return eBasicSetContainer(otherEnd, ROMPackage.REPOSITORY_PACKAGE__COLLECTION, msgs);
 		}
-		return subPackages;
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -591,10 +592,10 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS:
-				return ((InternalEList<?>)getObjects()).basicRemove(otherEnd, msgs);
 			case ROMPackage.REPOSITORY_PACKAGE__DESCRIPTION:
 				return ((InternalEList<?>)getDescription()).basicRemove(otherEnd, msgs);
+			case ROMPackage.REPOSITORY_PACKAGE__COLLECTION:
+				return eBasicSetContainer(null, ROMPackage.REPOSITORY_PACKAGE__COLLECTION, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -605,15 +606,29 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case ROMPackage.REPOSITORY_PACKAGE__COLLECTION:
+				return eInternalContainer().eInverseRemove(this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__PACKAGES, RepositoryObjectCollection.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS:
-				return getObjects();
 			case ROMPackage.REPOSITORY_PACKAGE__DESCRIPTION:
 				if (coreType) return getDescription();
 				else return getDescription().map();
-			case ROMPackage.REPOSITORY_PACKAGE__SUB_PACKAGES:
-				return getSubPackages();
+			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS:
+				return getObjects();
+			case ROMPackage.REPOSITORY_PACKAGE__SUB_PACKAGE_NAMES:
+				return getSubPackageNames();
 			case ROMPackage.REPOSITORY_PACKAGE__CHANGE_RECODING_ENABLED:
 				return isChangeRecodingEnabled() ? Boolean.TRUE : Boolean.FALSE;
 			case ROMPackage.REPOSITORY_PACKAGE__RESPONSIBLE_USER:
@@ -634,6 +649,8 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 				return isCheckedAsServer() ? Boolean.TRUE : Boolean.FALSE;
 			case ROMPackage.REPOSITORY_PACKAGE__CHECKED_AS_CLIENT:
 				return isCheckedAsClient() ? Boolean.TRUE : Boolean.FALSE;
+			case ROMPackage.REPOSITORY_PACKAGE__COLLECTION:
+				return getCollection();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -651,9 +668,9 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 				getObjects().clear();
 				getObjects().addAll((Collection<? extends RepositoryObject>)newValue);
 				return;
-			case ROMPackage.REPOSITORY_PACKAGE__SUB_PACKAGES:
-				getSubPackages().clear();
-				getSubPackages().addAll((Collection<? extends RepositoryPackage>)newValue);
+			case ROMPackage.REPOSITORY_PACKAGE__SUB_PACKAGE_NAMES:
+				getSubPackageNames().clear();
+				getSubPackageNames().addAll((Collection<? extends String>)newValue);
 				return;
 			case ROMPackage.REPOSITORY_PACKAGE__CHANGE_RECODING_ENABLED:
 				setChangeRecodingEnabled(((Boolean)newValue).booleanValue());
@@ -700,8 +717,8 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS:
 				getObjects().clear();
 				return;
-			case ROMPackage.REPOSITORY_PACKAGE__SUB_PACKAGES:
-				getSubPackages().clear();
+			case ROMPackage.REPOSITORY_PACKAGE__SUB_PACKAGE_NAMES:
+				getSubPackageNames().clear();
 				return;
 			case ROMPackage.REPOSITORY_PACKAGE__CHANGE_RECODING_ENABLED:
 				setChangeRecodingEnabled(CHANGE_RECODING_ENABLED_EDEFAULT);
@@ -745,12 +762,12 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS:
-				return objects != null && !objects.isEmpty();
 			case ROMPackage.REPOSITORY_PACKAGE__DESCRIPTION:
 				return description != null && !description.isEmpty();
-			case ROMPackage.REPOSITORY_PACKAGE__SUB_PACKAGES:
-				return subPackages != null && !subPackages.isEmpty();
+			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS:
+				return objects != null && !objects.isEmpty();
+			case ROMPackage.REPOSITORY_PACKAGE__SUB_PACKAGE_NAMES:
+				return subPackageNames != null && !subPackageNames.isEmpty();
 			case ROMPackage.REPOSITORY_PACKAGE__CHANGE_RECODING_ENABLED:
 				return changeRecodingEnabled != CHANGE_RECODING_ENABLED_EDEFAULT;
 			case ROMPackage.REPOSITORY_PACKAGE__RESPONSIBLE_USER:
@@ -771,40 +788,10 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 				return checkedAsServer != CHECKED_AS_SERVER_EDEFAULT;
 			case ROMPackage.REPOSITORY_PACKAGE__CHECKED_AS_CLIENT:
 				return checkedAsClient != CHECKED_AS_CLIENT_EDEFAULT;
+			case ROMPackage.REPOSITORY_PACKAGE__COLLECTION:
+				return getCollection() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == IRepositoryObjectContainer.class) {
-			switch (derivedFeatureID) {
-				case ROMPackage.REPOSITORY_PACKAGE__OBJECTS: return ROMPackage.IREPOSITORY_OBJECT_CONTAINER__OBJECTS;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == IRepositoryObjectContainer.class) {
-			switch (baseFeatureID) {
-				case ROMPackage.IREPOSITORY_OBJECT_CONTAINER__OBJECTS: return ROMPackage.REPOSITORY_PACKAGE__OBJECTS;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -817,7 +804,9 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (changeRecodingEnabled: "); //$NON-NLS-1$
+		result.append(" (subPackageNames: "); //$NON-NLS-1$
+		result.append(subPackageNames);
+		result.append(", changeRecodingEnabled: "); //$NON-NLS-1$
 		result.append(changeRecodingEnabled);
 		result.append(", responsibleUser: "); //$NON-NLS-1$
 		result.append(responsibleUser);
@@ -868,156 +857,4 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 		return "DEVC";
 	}
 	
-	/**
-	 * @see net.sf.rcer.rom.impl.RepositoryObjectImpl#loadObjectData(JCoDestination)
-	 * @generated no
-	 */
-	@Override
-	public IStatus loadObjectData(JCoDestination dest) {
-		try {
-			
-			// --- read the package data from TDEVC --------------------------------------------------------------------
-			
-			TableReader reader = TableReaderBuffer.getInstance(dest).getTableReader("TDEVC");
-			ITableContents result = reader.read(MessageFormat.format("DEVCLASS = ''{0}''", getName()));
-
-			if (result.isEmpty()) {
-				return new Status(IStatus.ERROR, ROMPackage.PLUGIN_ID, MessageFormat.format(
-						"Unable to read the package data (TDEVC) for package {0}", getName()));
-			}
-			if (result.size() > 1) {
-				return new Status(IStatus.ERROR, ROMPackage.PLUGIN_ID, MessageFormat.format(
-						"Received multiple lines while reading the package data (TDEVC) for package {0}", getName()));				
-			}
-
-			try {
-				final ITableLine line = result.getLine(0);
-				// IMPORTANT - we overwrite the value from TADIR because that line (R3TR DEVC) always points to itself!
-				setPackageName(line.getValue("PARENTCL"));
-				
-				setChangeRecodingEnabled(line.getBooleanValue("KORRFLAG"));
-				setResponsibleUser(line.getValue("AS4USER"));
-				setTransportLayer(line.getValue("PDEVCLASS"));
-				setNamespace(line.getValue("NAMESPACE"));
-				setInterfacePrefix(line.getValue("INTFPREFX"));
-				setObjectCreationRestricted(line.getBooleanValue("RESTRICTED"));
-				setCheckedAsServer(line.getBooleanValue("SRV_CHECK"));
-				setCheckedAsClient(line.getBooleanValue("CLI_CHECK"));
-
-				final String packtype = line.getValue("PACKTYPE");
-				if (packtype.equals("")) {
-					setPermittedObjectTypes(PackagePermittedObjectTypes.ALL);
-				} else {
-					switch(packtype.charAt(0)) {
-					case ' ': 
-						setPermittedObjectTypes(PackagePermittedObjectTypes.ALL);
-						break;
-					case 'D':
-						setPermittedObjectTypes(PackagePermittedObjectTypes.DESCRIPTIVE_OBJECTS_ONLY);
-						break;
-					case 'F':
-						setPermittedObjectTypes(PackagePermittedObjectTypes.FUNCTIONAL_OBJECTS_ONLY);
-						break;
-					case 'O':
-						setPermittedObjectTypes(PackagePermittedObjectTypes.OTR_OBJECTS_ONLY);
-						break;
-					default: 
-						return new Status(IStatus.ERROR, ROMPackage.PLUGIN_ID, MessageFormat.format(
-								"Unexpected value {0} in field PACKTYPE of the package data (TDEVC) for package {1}",
-								packtype, getName())) ;				
-					}
-				}
-
-				final String mainpack = line.getValue("MAINPACK");
-				if (mainpack.equals("")) {
-					setType(PackageType.STANDARD);
-				} else {
-					switch(mainpack.charAt(0)) {
-					case ' ': 
-						setType(PackageType.STANDARD);
-						break;
-					case 'X':
-						setType(PackageType.MAIN);
-						break;
-					case 'S':
-						setType(PackageType.STRUCTURAL);
-						break;
-					default: 
-						return new Status(IStatus.ERROR, ROMPackage.PLUGIN_ID, MessageFormat.format(
-								"Unexpected value {0} in field MAINPACK of the package data (TDEVC) for package {1}", 
-								packtype, getName())) ;				
-					}
-				}
-			} catch (Exception e) {
-				return new Status(IStatus.ERROR, ROMPackage.PLUGIN_ID, MessageFormat.format(
-						"Error converting the package data from TDEVC for package {0}", getName()), e);				
-			}		
-
-			// --- read the package texts from TDEVCT ------------------------------------------------------------------
-
-			reader = TableReaderBuffer.getInstance(dest).getTableReader("TDEVCT");
-			result = reader.read(MessageFormat.format("DEVCLASS = ''{0}''", getName()));
-			
-			getDescription().clear();
-			for (final ITableLine line: result) {
-				try {
-					final String id = line.getValue("SPRAS");
-					if (id.length() > 0) {
-						final Locale locale = LocaleRegistry.getInstance().getLocaleByID(id);
-						getDescription().put(locale, line.getValue("CTEXT"));
-					}
-				} catch (Exception e) {
-					// ignore this for now, it's only the description after all
-				}
-			}
-			
-			// --- read the contained subpackages ----------------------------------------------------------------------
-			
-			reader = TableReaderBuffer.getInstance(dest).getTableReader("TDEVC");
-			result = reader.read(MessageFormat.format("PARENTCL = ''{0}''", getName()));
-			
-			for (final ITableLine line: result) {
-				try {
-					RepositoryPackage subPackage = ROMFactory.eINSTANCE.createRepositoryPackage();
-					subPackage.setName(line.getValue("DEVCLASS"));
-					subPackage.setPackageName(getName());
-					getSubPackages().add(subPackage);
-					getCollection().getObjects().add(subPackage);
-				} catch (Exception e) {
-					return new Status(IStatus.ERROR, ROMPackage.PLUGIN_ID, MessageFormat.format(
-							"Error converting the package data from TDEVC for package {0}", getName()), e);				
-				}		
-			}
-
-			// --- read the contained objects --------------------------------------------------------------------------
-			
-			reader = TableReaderBuffer.getInstance(dest).getTableReader("TADIR");
-			result = reader.read(MessageFormat.format("DEVCLASS = ''{0}''", getName()));
-			
-			for (final ITableLine line: result) {
-				try {
-					final String pgmid   = line.getValue("PGMID");
-					final String object  = line.getValue("OBJECT");
-					final String objName = line.getValue("OBJ_NAME");
-					
-					if (pgmid.equalsIgnoreCase("R3TR")) {
-						
-						// TODO Read the actual package contents
-						
-					} else {
-						// ignore these objects for now
-					}
-				} catch (Exception e) {
-					return new Status(IStatus.ERROR, ROMPackage.PLUGIN_ID, MessageFormat.format(
-							"Error reading the contents of package {0}", getName()), e);				
-				}		
-			}
-			
-			return Status.OK_STATUS;
-		} catch (JCoException e) {
-			return new Status(IStatus.ERROR, ROMPackage.PLUGIN_ID, MessageFormat.format(
-					"Error loading the package data from TDEVC/TDEVCT for package {0}", getName()), e);				
-		}
-	}
-
 } //RepositoryPackageImpl

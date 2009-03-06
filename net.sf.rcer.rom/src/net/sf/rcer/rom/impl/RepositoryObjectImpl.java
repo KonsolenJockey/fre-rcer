@@ -12,35 +12,19 @@
  */
 package net.sf.rcer.rom.impl;
 
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
-
 import net.sf.rcer.conn.locales.Locale;
-import net.sf.rcer.conn.locales.LocaleRegistry;
-import net.sf.rcer.conn.tools.ITableContents;
-import net.sf.rcer.conn.tools.ITableLine;
-import net.sf.rcer.conn.tools.TableReader;
-import net.sf.rcer.conn.tools.TableReaderBuffer;
-import net.sf.rcer.rom.IRepositoryObjectContainer;
 import net.sf.rcer.rom.ROMPackage;
 import net.sf.rcer.rom.RepositoryObject;
 import net.sf.rcer.rom.RepositoryObjectCollection;
 import net.sf.rcer.rom.RepositoryObjectType;
 import net.sf.rcer.rom.RepositoryPackage;
+import net.sf.rcer.rom.util.ObjectLoadingException;
+import net.sf.rcer.rom.util.ObjectNotFoundException;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.MultiStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,10 +34,10 @@ import com.sap.conn.jco.JCoException;
  * The following features are implemented:
  * <ul>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getObjectType <em>Object Type</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getName <em>Name</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#isLoaded <em>Loaded</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getProgramID <em>Program ID</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getObjectTypeID <em>Object Type ID</em>}</li>
- *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getName <em>Name</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getSourceSystem <em>Source System</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getAuthor <em>Author</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#isGenerated <em>Generated</em>}</li>
@@ -61,9 +45,6 @@ import com.sap.conn.jco.JCoException;
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getSoftwareComponent <em>Software Component</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getComponentRelease <em>Component Release</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getPackageName <em>Package Name</em>}</li>
- *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getContainer <em>Container</em>}</li>
- *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getPackage <em>Package</em>}</li>
- *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getCollection <em>Collection</em>}</li>
  * </ul>
  * </p>
  *
@@ -79,6 +60,26 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 	 * @ordered
 	 */
 	protected static final RepositoryObjectType OBJECT_TYPE_EDEFAULT = RepositoryObjectType.UNKNOWN;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = ""; //$NON-NLS-1$
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isLoaded() <em>Loaded</em>}' attribute.
@@ -119,26 +120,6 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 	 * @ordered
 	 */
 	protected static final String OBJECT_TYPE_ID_EDEFAULT = ""; //$NON-NLS-1$
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = ""; //$NON-NLS-1$
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSourceSystem() <em>Source System</em>}' attribute.
@@ -318,6 +299,18 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLoaded(boolean newLoaded) {
+		boolean oldLoaded = loaded;
+		loaded = newLoaded;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ROMPackage.REPOSITORY_OBJECT__LOADED, oldLoaded, loaded));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated and changed
 	 */
 	public abstract String getProgramID();
@@ -397,7 +390,14 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 	 * <!-- end-user-doc -->
 	 * @generated and changed
 	 */
-	public RepositoryPackage getPackage() {
+	public abstract RepositoryObjectCollection getCollection();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated and changed
+	 */
+	public RepositoryPackage getPackage(boolean load) throws ObjectNotFoundException, ObjectLoadingException {
 		String pkg = getPackageName();
 		if ((pkg == null) || (pkg.equals(""))) {
 			return null;
@@ -405,171 +405,7 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 		if (getCollection() == null) {
 			throw new UnsupportedOperationException("Retrieving the package is only possible if the object is contained in a repository object collection.");
 		}
-		return getCollection().getPackage(pkg);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated and changed
-	 */
-	public RepositoryObjectCollection getCollection() {
-		final IRepositoryObjectContainer container = getContainer();
-		if (container == null) {
-			return null;
-		}
-		if (container instanceof RepositoryObjectCollection) {
-			return (RepositoryObjectCollection) container;
-		}
-		if (container instanceof RepositoryPackage) {
-			RepositoryPackage pkg = (RepositoryPackage) container;
-			return pkg.getCollection();
-		}
-		throw new UnsupportedOperationException("Unknown derived class - please file a bug.");
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IRepositoryObjectContainer getContainer() {
-		if (eContainerFeatureID != ROMPackage.REPOSITORY_OBJECT__CONTAINER) return null;
-		return (IRepositoryObjectContainer)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated and changed
-	 */
-	public IStatus load() {
-		// get the RFC destionation 
-		final RepositoryObjectCollection collection = getCollection();
-		if (collection == null) {
-			return new Status(IStatus.ERROR, ROMPackage.PLUGIN_ID, "Objects that are not contained in a collection cannot be loaded.");
-		} 
-		final JCoDestination dest = collection.getSourceConnection();
-		if (dest == null) {
-			return new Status(IStatus.ERROR, ROMPackage.PLUGIN_ID, "The object collection does not have a source connection assigned.");
-		} 
-
-		// load the header data (TADIR)
-		final IStatus statusRepository = loadRepositoryData(dest);
-		if (!statusRepository.isOK()) {
-			return statusRepository;
-		} 
-
-		// load the object data
-		final IStatus statusObject = loadObjectData(dest); 
-		if (statusObject.isOK()) {
-			loaded = true;
-		}
-		return new MultiStatus(ROMPackage.PLUGIN_ID, 0, new IStatus[] { statusRepository, statusObject }, 
-				statusObject.getMessage() , statusObject.getException());
-	}
-
-	/**
-	 * Loads the repository header data of the object from table TADIR. 
-	 * @param dest the RFC destination to use 
-	 * @return {@link IStatus} instance
-	 * @generated no
-	 */
-	protected IStatus loadRepositoryData(JCoDestination dest) {
-		try {
-			List<String> criteria = new ArrayList<String>();
-			criteria.add(MessageFormat.format("PGMID    = ''{0}'' AND", getProgramID()));
-			criteria.add(MessageFormat.format("OBJECT   = ''{0}'' AND", getObjectTypeID()));
-			criteria.add(MessageFormat.format("OBJ_NAME = ''{0}''", getName()));
-			TableReader reader = TableReaderBuffer.getInstance(dest).getTableReader("TADIR");
-			ITableContents result = reader.read(criteria);
-
-			if (result.isEmpty()) {
-				return new Status(IStatus.ERROR, ROMPackage.PLUGIN_ID, MessageFormat.format(
-						"Unable to read the repository data (TADIR) for object {0} {1} {2}",
-						getProgramID(), getObjectTypeID(), getName()));
-			}
-			if (result.size() > 1) {
-				return new Status(IStatus.ERROR, ROMPackage.PLUGIN_ID, MessageFormat.format(
-						"Received multiple lines while reading the repository data (TADIR) for object {0} {1} {2}",
-						getProgramID(), getObjectTypeID(), getName()));				
-			}
-
-			try {
-				final ITableLine line = result.getLine(0);
-				setSourceSystem(line.getValue("SRCSYSTEM"));
-				setAuthor(line.getValue("AUTHOR"));
-				setGenerated(line.getBooleanValue("GENFLAG"));
-				final String masterlang = line.getValue("MASTERLANG");
-				if (masterlang.length() > 0) {
-					setOriginalLocale(LocaleRegistry.getInstance().getLocaleByID(masterlang));
-				}
-				setSoftwareComponent(line.getValue("COMPONENT"));
-				setComponentRelease(line.getValue("CRELEASE"));
-				setPackageName(line.getValue("DEVCLASS"));
-			} catch (Exception e) {
-				return new Status(IStatus.ERROR, ROMPackage.PLUGIN_ID, MessageFormat.format(
-						"Error converting the repository object data from TADIR for object {0} {1} {2}",
-						getProgramID(), getObjectTypeID(), getName()), e);				
-			}		
-			return Status.OK_STATUS;
-		} catch (JCoException e) {
-			return new Status(IStatus.ERROR, ROMPackage.PLUGIN_ID, MessageFormat.format(
-					"Error loading the repository object data from TADIR for object {0} {1} {2}",
-					getProgramID(), getObjectTypeID(), getName()), e);				
-		}
-	}
-
-	/**
-	 * Loads the object data. 
-	 * @param dest the RFC destination to use
-	 * @return {@link IStatus} instance
-	 * @generated no
-	 */
-	protected abstract IStatus loadObjectData(JCoDestination dest);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ROMPackage.REPOSITORY_OBJECT__CONTAINER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return eBasicSetContainer(otherEnd, ROMPackage.REPOSITORY_OBJECT__CONTAINER, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ROMPackage.REPOSITORY_OBJECT__CONTAINER:
-				return eBasicSetContainer(null, ROMPackage.REPOSITORY_OBJECT__CONTAINER, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
-			case ROMPackage.REPOSITORY_OBJECT__CONTAINER:
-				return eInternalContainer().eInverseRemove(this, ROMPackage.IREPOSITORY_OBJECT_CONTAINER__OBJECTS, IRepositoryObjectContainer.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
+		return getCollection().getPackage(pkg, load);
 	}
 
 	/**
@@ -687,14 +523,14 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 		switch (featureID) {
 			case ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE:
 				return getObjectType();
+			case ROMPackage.REPOSITORY_OBJECT__NAME:
+				return getName();
 			case ROMPackage.REPOSITORY_OBJECT__LOADED:
 				return isLoaded() ? Boolean.TRUE : Boolean.FALSE;
 			case ROMPackage.REPOSITORY_OBJECT__PROGRAM_ID:
 				return getProgramID();
 			case ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE_ID:
 				return getObjectTypeID();
-			case ROMPackage.REPOSITORY_OBJECT__NAME:
-				return getName();
 			case ROMPackage.REPOSITORY_OBJECT__SOURCE_SYSTEM:
 				return getSourceSystem();
 			case ROMPackage.REPOSITORY_OBJECT__AUTHOR:
@@ -709,12 +545,6 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 				return getComponentRelease();
 			case ROMPackage.REPOSITORY_OBJECT__PACKAGE_NAME:
 				return getPackageName();
-			case ROMPackage.REPOSITORY_OBJECT__CONTAINER:
-				return getContainer();
-			case ROMPackage.REPOSITORY_OBJECT__PACKAGE:
-				return getPackage();
-			case ROMPackage.REPOSITORY_OBJECT__COLLECTION:
-				return getCollection();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -729,6 +559,9 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 		switch (featureID) {
 			case ROMPackage.REPOSITORY_OBJECT__NAME:
 				setName((String)newValue);
+				return;
+			case ROMPackage.REPOSITORY_OBJECT__LOADED:
+				setLoaded(((Boolean)newValue).booleanValue());
 				return;
 			case ROMPackage.REPOSITORY_OBJECT__SOURCE_SYSTEM:
 				setSourceSystem((String)newValue);
@@ -766,6 +599,9 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 			case ROMPackage.REPOSITORY_OBJECT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case ROMPackage.REPOSITORY_OBJECT__LOADED:
+				setLoaded(LOADED_EDEFAULT);
+				return;
 			case ROMPackage.REPOSITORY_OBJECT__SOURCE_SYSTEM:
 				setSourceSystem(SOURCE_SYSTEM_EDEFAULT);
 				return;
@@ -801,14 +637,14 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 		switch (featureID) {
 			case ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE:
 				return getObjectType() != OBJECT_TYPE_EDEFAULT;
+			case ROMPackage.REPOSITORY_OBJECT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ROMPackage.REPOSITORY_OBJECT__LOADED:
 				return loaded != LOADED_EDEFAULT;
 			case ROMPackage.REPOSITORY_OBJECT__PROGRAM_ID:
 				return PROGRAM_ID_EDEFAULT == null ? getProgramID() != null : !PROGRAM_ID_EDEFAULT.equals(getProgramID());
 			case ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE_ID:
 				return OBJECT_TYPE_ID_EDEFAULT == null ? getObjectTypeID() != null : !OBJECT_TYPE_ID_EDEFAULT.equals(getObjectTypeID());
-			case ROMPackage.REPOSITORY_OBJECT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ROMPackage.REPOSITORY_OBJECT__SOURCE_SYSTEM:
 				return SOURCE_SYSTEM_EDEFAULT == null ? sourceSystem != null : !SOURCE_SYSTEM_EDEFAULT.equals(sourceSystem);
 			case ROMPackage.REPOSITORY_OBJECT__AUTHOR:
@@ -823,12 +659,6 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 				return COMPONENT_RELEASE_EDEFAULT == null ? componentRelease != null : !COMPONENT_RELEASE_EDEFAULT.equals(componentRelease);
 			case ROMPackage.REPOSITORY_OBJECT__PACKAGE_NAME:
 				return PACKAGE_NAME_EDEFAULT == null ? packageName != null : !PACKAGE_NAME_EDEFAULT.equals(packageName);
-			case ROMPackage.REPOSITORY_OBJECT__CONTAINER:
-				return getContainer() != null;
-			case ROMPackage.REPOSITORY_OBJECT__PACKAGE:
-				return getPackage() != null;
-			case ROMPackage.REPOSITORY_OBJECT__COLLECTION:
-				return getCollection() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -843,10 +673,10 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (loaded: "); //$NON-NLS-1$
-		result.append(loaded);
-		result.append(", name: "); //$NON-NLS-1$
+		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
+		result.append(", loaded: "); //$NON-NLS-1$
+		result.append(loaded);
 		result.append(", sourceSystem: "); //$NON-NLS-1$
 		result.append(sourceSystem);
 		result.append(", author: "); //$NON-NLS-1$

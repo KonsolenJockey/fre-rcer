@@ -112,34 +112,6 @@ public interface ROMPackage extends EPackage {
 	int LOCALIZED_STRING_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link net.sf.rcer.rom.IRepositoryObjectContainer <em>IRepository Object Container</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see net.sf.rcer.rom.IRepositoryObjectContainer
-	 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getIRepositoryObjectContainer()
-	 * @generated
-	 */
-	int IREPOSITORY_OBJECT_CONTAINER = 1;
-
-	/**
-	 * The feature id for the '<em><b>Objects</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IREPOSITORY_OBJECT_CONTAINER__OBJECTS = 0;
-
-	/**
-	 * The number of structural features of the '<em>IRepository Object Container</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IREPOSITORY_OBJECT_CONTAINER_FEATURE_COUNT = 1;
-
-	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.impl.RepositoryObjectImpl <em>Repository Object</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -147,7 +119,7 @@ public interface ROMPackage extends EPackage {
 	 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getRepositoryObject()
 	 * @generated
 	 */
-	int REPOSITORY_OBJECT = 2;
+	int REPOSITORY_OBJECT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Object Type</b></em>' attribute.
@@ -159,13 +131,22 @@ public interface ROMPackage extends EPackage {
 	int REPOSITORY_OBJECT__OBJECT_TYPE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY_OBJECT__NAME = 1;
+
+	/**
 	 * The feature id for the '<em><b>Loaded</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_OBJECT__LOADED = 1;
+	int REPOSITORY_OBJECT__LOADED = 2;
 
 	/**
 	 * The feature id for the '<em><b>Program ID</b></em>' attribute.
@@ -174,7 +155,7 @@ public interface ROMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_OBJECT__PROGRAM_ID = 2;
+	int REPOSITORY_OBJECT__PROGRAM_ID = 3;
 
 	/**
 	 * The feature id for the '<em><b>Object Type ID</b></em>' attribute.
@@ -183,16 +164,7 @@ public interface ROMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_OBJECT__OBJECT_TYPE_ID = 3;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPOSITORY_OBJECT__NAME = 4;
+	int REPOSITORY_OBJECT__OBJECT_TYPE_ID = 4;
 
 	/**
 	 * The feature id for the '<em><b>Source System</b></em>' attribute.
@@ -258,40 +230,13 @@ public interface ROMPackage extends EPackage {
 	int REPOSITORY_OBJECT__PACKAGE_NAME = 11;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPOSITORY_OBJECT__CONTAINER = 12;
-
-	/**
-	 * The feature id for the '<em><b>Package</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPOSITORY_OBJECT__PACKAGE = 13;
-
-	/**
-	 * The feature id for the '<em><b>Collection</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPOSITORY_OBJECT__COLLECTION = 14;
-
-	/**
 	 * The number of structural features of the '<em>Repository Object</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_OBJECT_FEATURE_COUNT = 15;
+	int REPOSITORY_OBJECT_FEATURE_COUNT = 12;
 
 	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl <em>Repository Object Collection</em>}' class.
@@ -301,16 +246,7 @@ public interface ROMPackage extends EPackage {
 	 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getRepositoryObjectCollection()
 	 * @generated
 	 */
-	int REPOSITORY_OBJECT_COLLECTION = 3;
-
-	/**
-	 * The feature id for the '<em><b>Objects</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPOSITORY_OBJECT_COLLECTION__OBJECTS = IREPOSITORY_OBJECT_CONTAINER__OBJECTS;
+	int REPOSITORY_OBJECT_COLLECTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Source Connection</b></em>' attribute.
@@ -319,7 +255,34 @@ public interface ROMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_OBJECT_COLLECTION__SOURCE_CONNECTION = IREPOSITORY_OBJECT_CONTAINER_FEATURE_COUNT + 0;
+	int REPOSITORY_OBJECT_COLLECTION__SOURCE_CONNECTION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Packages</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY_OBJECT_COLLECTION__PACKAGES = 1;
+
+	/**
+	 * The feature id for the '<em><b>Domains</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY_OBJECT_COLLECTION__DOMAINS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Data Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS = 3;
 
 	/**
 	 * The number of structural features of the '<em>Repository Object Collection</em>' class.
@@ -328,7 +291,7 @@ public interface ROMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_OBJECT_COLLECTION_FEATURE_COUNT = IREPOSITORY_OBJECT_CONTAINER_FEATURE_COUNT + 1;
+	int REPOSITORY_OBJECT_COLLECTION_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.impl.RepositoryPackageImpl <em>Repository Package</em>}' class.
@@ -338,7 +301,7 @@ public interface ROMPackage extends EPackage {
 	 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getRepositoryPackage()
 	 * @generated
 	 */
-	int REPOSITORY_PACKAGE = 4;
+	int REPOSITORY_PACKAGE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Object Type</b></em>' attribute.
@@ -348,6 +311,15 @@ public interface ROMPackage extends EPackage {
 	 * @ordered
 	 */
 	int REPOSITORY_PACKAGE__OBJECT_TYPE = REPOSITORY_OBJECT__OBJECT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY_PACKAGE__NAME = REPOSITORY_OBJECT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Loaded</b></em>' attribute.
@@ -375,15 +347,6 @@ public interface ROMPackage extends EPackage {
 	 * @ordered
 	 */
 	int REPOSITORY_PACKAGE__OBJECT_TYPE_ID = REPOSITORY_OBJECT__OBJECT_TYPE_ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPOSITORY_PACKAGE__NAME = REPOSITORY_OBJECT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source System</b></em>' attribute.
@@ -449,58 +412,31 @@ public interface ROMPackage extends EPackage {
 	int REPOSITORY_PACKAGE__PACKAGE_NAME = REPOSITORY_OBJECT__PACKAGE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPOSITORY_PACKAGE__CONTAINER = REPOSITORY_OBJECT__CONTAINER;
-
-	/**
-	 * The feature id for the '<em><b>Package</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPOSITORY_PACKAGE__PACKAGE = REPOSITORY_OBJECT__PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Collection</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPOSITORY_PACKAGE__COLLECTION = REPOSITORY_OBJECT__COLLECTION;
-
-	/**
-	 * The feature id for the '<em><b>Objects</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPOSITORY_PACKAGE__OBJECTS = REPOSITORY_OBJECT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Description</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_PACKAGE__DESCRIPTION = REPOSITORY_OBJECT_FEATURE_COUNT + 1;
+	int REPOSITORY_PACKAGE__DESCRIPTION = REPOSITORY_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Sub Packages</b></em>' reference list.
+	 * The feature id for the '<em><b>Objects</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_PACKAGE__SUB_PACKAGES = REPOSITORY_OBJECT_FEATURE_COUNT + 2;
+	int REPOSITORY_PACKAGE__OBJECTS = REPOSITORY_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Sub Package Names</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY_PACKAGE__SUB_PACKAGE_NAMES = REPOSITORY_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Change Recoding Enabled</b></em>' attribute.
@@ -593,13 +529,22 @@ public interface ROMPackage extends EPackage {
 	int REPOSITORY_PACKAGE__CHECKED_AS_CLIENT = REPOSITORY_OBJECT_FEATURE_COUNT + 12;
 
 	/**
+	 * The feature id for the '<em><b>Collection</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY_PACKAGE__COLLECTION = REPOSITORY_OBJECT_FEATURE_COUNT + 13;
+
+	/**
 	 * The number of structural features of the '<em>Repository Package</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_PACKAGE_FEATURE_COUNT = REPOSITORY_OBJECT_FEATURE_COUNT + 13;
+	int REPOSITORY_PACKAGE_FEATURE_COUNT = REPOSITORY_OBJECT_FEATURE_COUNT + 14;
 
 	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.RepositoryObjectType <em>Repository Object Type</em>}' enum.
@@ -609,7 +554,7 @@ public interface ROMPackage extends EPackage {
 	 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getRepositoryObjectType()
 	 * @generated
 	 */
-	int REPOSITORY_OBJECT_TYPE = 5;
+	int REPOSITORY_OBJECT_TYPE = 4;
 
 	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.PackageType <em>Package Type</em>}' enum.
@@ -619,7 +564,7 @@ public interface ROMPackage extends EPackage {
 	 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getPackageType()
 	 * @generated
 	 */
-	int PACKAGE_TYPE = 6;
+	int PACKAGE_TYPE = 5;
 
 	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.PackagePermittedObjectTypes <em>Package Permitted Object Types</em>}' enum.
@@ -629,7 +574,7 @@ public interface ROMPackage extends EPackage {
 	 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getPackagePermittedObjectTypes()
 	 * @generated
 	 */
-	int PACKAGE_PERMITTED_OBJECT_TYPES = 7;
+	int PACKAGE_PERMITTED_OBJECT_TYPES = 6;
 
 	/**
 	 * The meta object id for the '<em>Locale</em>' data type.
@@ -639,7 +584,7 @@ public interface ROMPackage extends EPackage {
 	 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getLocale()
 	 * @generated
 	 */
-	int LOCALE = 8;
+	int LOCALE = 7;
 
 
 	/**
@@ -650,7 +595,7 @@ public interface ROMPackage extends EPackage {
 	 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getIStatus()
 	 * @generated
 	 */
-	int ISTATUS = 9;
+	int ISTATUS = 8;
 
 	/**
 	 * The meta object id for the '<em>JCo Destination</em>' data type.
@@ -660,7 +605,29 @@ public interface ROMPackage extends EPackage {
 	 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getJCoDestination()
 	 * @generated
 	 */
-	int JCO_DESTINATION = 10;
+	int JCO_DESTINATION = 9;
+
+
+	/**
+	 * The meta object id for the '<em>Object Not Found Exception</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.util.ObjectNotFoundException
+	 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getObjectNotFoundException()
+	 * @generated
+	 */
+	int OBJECT_NOT_FOUND_EXCEPTION = 10;
+
+
+	/**
+	 * The meta object id for the '<em>Object Loading Exception</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.util.ObjectLoadingException
+	 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getObjectLoadingException()
+	 * @generated
+	 */
+	int OBJECT_LOADING_EXCEPTION = 11;
 
 
 	/**
@@ -696,27 +663,6 @@ public interface ROMPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLocalizedString_Value();
-
-	/**
-	 * Returns the meta object for class '{@link net.sf.rcer.rom.IRepositoryObjectContainer <em>IRepository Object Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IRepository Object Container</em>'.
-	 * @see net.sf.rcer.rom.IRepositoryObjectContainer
-	 * @generated
-	 */
-	EClass getIRepositoryObjectContainer();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link net.sf.rcer.rom.IRepositoryObjectContainer#getObjects <em>Objects</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Objects</em>'.
-	 * @see net.sf.rcer.rom.IRepositoryObjectContainer#getObjects()
-	 * @see #getIRepositoryObjectContainer()
-	 * @generated
-	 */
-	EReference getIRepositoryObjectContainer_Objects();
 
 	/**
 	 * Returns the meta object for class '{@link net.sf.rcer.rom.RepositoryObject <em>Repository Object</em>}'.
@@ -806,39 +752,6 @@ public interface ROMPackage extends EPackage {
 	EAttribute getRepositoryObject_Author();
 
 	/**
-	 * Returns the meta object for the reference '{@link net.sf.rcer.rom.RepositoryObject#getPackage <em>Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Package</em>'.
-	 * @see net.sf.rcer.rom.RepositoryObject#getPackage()
-	 * @see #getRepositoryObject()
-	 * @generated
-	 */
-	EReference getRepositoryObject_Package();
-
-	/**
-	 * Returns the meta object for the reference '{@link net.sf.rcer.rom.RepositoryObject#getCollection <em>Collection</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Collection</em>'.
-	 * @see net.sf.rcer.rom.RepositoryObject#getCollection()
-	 * @see #getRepositoryObject()
-	 * @generated
-	 */
-	EReference getRepositoryObject_Collection();
-
-	/**
-	 * Returns the meta object for the container reference '{@link net.sf.rcer.rom.RepositoryObject#getContainer <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Container</em>'.
-	 * @see net.sf.rcer.rom.RepositoryObject#getContainer()
-	 * @see #getRepositoryObject()
-	 * @generated
-	 */
-	EReference getRepositoryObject_Container();
-
-	/**
 	 * Returns the meta object for class '{@link net.sf.rcer.rom.RepositoryObjectCollection <em>Repository Object Collection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -858,6 +771,39 @@ public interface ROMPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRepositoryObjectCollection_SourceConnection();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link net.sf.rcer.rom.RepositoryObjectCollection#getPackages <em>Packages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Packages</em>'.
+	 * @see net.sf.rcer.rom.RepositoryObjectCollection#getPackages()
+	 * @see #getRepositoryObjectCollection()
+	 * @generated
+	 */
+	EReference getRepositoryObjectCollection_Packages();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link net.sf.rcer.rom.RepositoryObjectCollection#getDomains <em>Domains</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Domains</em>'.
+	 * @see net.sf.rcer.rom.RepositoryObjectCollection#getDomains()
+	 * @see #getRepositoryObjectCollection()
+	 * @generated
+	 */
+	EReference getRepositoryObjectCollection_Domains();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link net.sf.rcer.rom.RepositoryObjectCollection#getDataElements <em>Data Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Data Elements</em>'.
+	 * @see net.sf.rcer.rom.RepositoryObjectCollection#getDataElements()
+	 * @see #getRepositoryObjectCollection()
+	 * @generated
+	 */
+	EReference getRepositoryObjectCollection_DataElements();
 
 	/**
 	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.RepositoryObject#isGenerated <em>Generated</em>}'.
@@ -1046,15 +992,37 @@ public interface ROMPackage extends EPackage {
 	EAttribute getRepositoryPackage_CheckedAsClient();
 
 	/**
-	 * Returns the meta object for the reference list '{@link net.sf.rcer.rom.RepositoryPackage#getSubPackages <em>Sub Packages</em>}'.
+	 * Returns the meta object for the container reference '{@link net.sf.rcer.rom.RepositoryPackage#getCollection <em>Collection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Sub Packages</em>'.
-	 * @see net.sf.rcer.rom.RepositoryPackage#getSubPackages()
+	 * @return the meta object for the container reference '<em>Collection</em>'.
+	 * @see net.sf.rcer.rom.RepositoryPackage#getCollection()
 	 * @see #getRepositoryPackage()
 	 * @generated
 	 */
-	EReference getRepositoryPackage_SubPackages();
+	EReference getRepositoryPackage_Collection();
+
+	/**
+	 * Returns the meta object for the reference list '{@link net.sf.rcer.rom.RepositoryPackage#getObjects <em>Objects</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Objects</em>'.
+	 * @see net.sf.rcer.rom.RepositoryPackage#getObjects()
+	 * @see #getRepositoryPackage()
+	 * @generated
+	 */
+	EReference getRepositoryPackage_Objects();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link net.sf.rcer.rom.RepositoryPackage#getSubPackageNames <em>Sub Package Names</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Sub Package Names</em>'.
+	 * @see net.sf.rcer.rom.RepositoryPackage#getSubPackageNames()
+	 * @see #getRepositoryPackage()
+	 * @generated
+	 */
+	EAttribute getRepositoryPackage_SubPackageNames();
 
 	/**
 	 * Returns the meta object for enum '{@link net.sf.rcer.rom.RepositoryObjectType <em>Repository Object Type</em>}'.
@@ -1120,6 +1088,28 @@ public interface ROMPackage extends EPackage {
 	EDataType getJCoDestination();
 
 	/**
+	 * Returns the meta object for data type '{@link net.sf.rcer.rom.util.ObjectNotFoundException <em>Object Not Found Exception</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Object Not Found Exception</em>'.
+	 * @see net.sf.rcer.rom.util.ObjectNotFoundException
+	 * @model instanceClass="net.sf.rcer.rom.util.ObjectNotFoundException"
+	 * @generated
+	 */
+	EDataType getObjectNotFoundException();
+
+	/**
+	 * Returns the meta object for data type '{@link net.sf.rcer.rom.util.ObjectLoadingException <em>Object Loading Exception</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Object Loading Exception</em>'.
+	 * @see net.sf.rcer.rom.util.ObjectLoadingException
+	 * @model instanceClass="net.sf.rcer.rom.util.ObjectLoadingException"
+	 * @generated
+	 */
+	EDataType getObjectLoadingException();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1166,24 +1156,6 @@ public interface ROMPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LOCALIZED_STRING__VALUE = eINSTANCE.getLocalizedString_Value();
-
-		/**
-		 * The meta object literal for the '{@link net.sf.rcer.rom.IRepositoryObjectContainer <em>IRepository Object Container</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see net.sf.rcer.rom.IRepositoryObjectContainer
-		 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getIRepositoryObjectContainer()
-		 * @generated
-		 */
-		EClass IREPOSITORY_OBJECT_CONTAINER = eINSTANCE.getIRepositoryObjectContainer();
-
-		/**
-		 * The meta object literal for the '<em><b>Objects</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IREPOSITORY_OBJECT_CONTAINER__OBJECTS = eINSTANCE.getIRepositoryObjectContainer_Objects();
 
 		/**
 		 * The meta object literal for the '{@link net.sf.rcer.rom.impl.RepositoryObjectImpl <em>Repository Object</em>}' class.
@@ -1252,30 +1224,6 @@ public interface ROMPackage extends EPackage {
 		EAttribute REPOSITORY_OBJECT__AUTHOR = eINSTANCE.getRepositoryObject_Author();
 
 		/**
-		 * The meta object literal for the '<em><b>Package</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REPOSITORY_OBJECT__PACKAGE = eINSTANCE.getRepositoryObject_Package();
-
-		/**
-		 * The meta object literal for the '<em><b>Collection</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REPOSITORY_OBJECT__COLLECTION = eINSTANCE.getRepositoryObject_Collection();
-
-		/**
-		 * The meta object literal for the '<em><b>Container</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REPOSITORY_OBJECT__CONTAINER = eINSTANCE.getRepositoryObject_Container();
-
-		/**
 		 * The meta object literal for the '{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl <em>Repository Object Collection</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1292,6 +1240,30 @@ public interface ROMPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REPOSITORY_OBJECT_COLLECTION__SOURCE_CONNECTION = eINSTANCE.getRepositoryObjectCollection_SourceConnection();
+
+		/**
+		 * The meta object literal for the '<em><b>Packages</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPOSITORY_OBJECT_COLLECTION__PACKAGES = eINSTANCE.getRepositoryObjectCollection_Packages();
+
+		/**
+		 * The meta object literal for the '<em><b>Domains</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPOSITORY_OBJECT_COLLECTION__DOMAINS = eINSTANCE.getRepositoryObjectCollection_Domains();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS = eINSTANCE.getRepositoryObjectCollection_DataElements();
 
 		/**
 		 * The meta object literal for the '<em><b>Generated</b></em>' attribute feature.
@@ -1432,12 +1404,28 @@ public interface ROMPackage extends EPackage {
 		EAttribute REPOSITORY_PACKAGE__CHECKED_AS_CLIENT = eINSTANCE.getRepositoryPackage_CheckedAsClient();
 
 		/**
-		 * The meta object literal for the '<em><b>Sub Packages</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Collection</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REPOSITORY_PACKAGE__SUB_PACKAGES = eINSTANCE.getRepositoryPackage_SubPackages();
+		EReference REPOSITORY_PACKAGE__COLLECTION = eINSTANCE.getRepositoryPackage_Collection();
+
+		/**
+		 * The meta object literal for the '<em><b>Objects</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPOSITORY_PACKAGE__OBJECTS = eINSTANCE.getRepositoryPackage_Objects();
+
+		/**
+		 * The meta object literal for the '<em><b>Sub Package Names</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REPOSITORY_PACKAGE__SUB_PACKAGE_NAMES = eINSTANCE.getRepositoryPackage_SubPackageNames();
 
 		/**
 		 * The meta object literal for the '{@link net.sf.rcer.rom.RepositoryObjectType <em>Repository Object Type</em>}' enum.
@@ -1498,6 +1486,26 @@ public interface ROMPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType JCO_DESTINATION = eINSTANCE.getJCoDestination();
+
+		/**
+		 * The meta object literal for the '<em>Object Not Found Exception</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.util.ObjectNotFoundException
+		 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getObjectNotFoundException()
+		 * @generated
+		 */
+		EDataType OBJECT_NOT_FOUND_EXCEPTION = eINSTANCE.getObjectNotFoundException();
+
+		/**
+		 * The meta object literal for the '<em>Object Loading Exception</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.util.ObjectLoadingException
+		 * @see net.sf.rcer.rom.impl.ROMPackageImpl#getObjectLoadingException()
+		 * @generated
+		 */
+		EDataType OBJECT_LOADING_EXCEPTION = eINSTANCE.getObjectLoadingException();
 
 	}
 

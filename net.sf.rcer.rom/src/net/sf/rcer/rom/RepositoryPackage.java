@@ -26,7 +26,8 @@ import org.eclipse.emf.common.util.EMap;
  * The following features are supported:
  * <ul>
  *   <li>{@link net.sf.rcer.rom.RepositoryPackage#getDescription <em>Description</em>}</li>
- *   <li>{@link net.sf.rcer.rom.RepositoryPackage#getSubPackages <em>Sub Packages</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.RepositoryPackage#getObjects <em>Objects</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.RepositoryPackage#getSubPackageNames <em>Sub Package Names</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryPackage#isChangeRecodingEnabled <em>Change Recoding Enabled</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryPackage#getResponsibleUser <em>Responsible User</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryPackage#getTransportLayer <em>Transport Layer</em>}</li>
@@ -37,6 +38,7 @@ import org.eclipse.emf.common.util.EMap;
  *   <li>{@link net.sf.rcer.rom.RepositoryPackage#getType <em>Type</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryPackage#isCheckedAsServer <em>Checked As Server</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryPackage#isCheckedAsClient <em>Checked As Client</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.RepositoryPackage#getCollection <em>Collection</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,7 +46,7 @@ import org.eclipse.emf.common.util.EMap;
  * @model
  * @generated
  */
-public interface RepositoryPackage extends RepositoryObject, IRepositoryObjectContainer {
+public interface RepositoryPackage extends RepositoryObject {
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' map.
 	 * The key is of type {@link net.sf.rcer.conn.locales.Locale},
@@ -335,19 +337,52 @@ public interface RepositoryPackage extends RepositoryObject, IRepositoryObjectCo
 	void setCheckedAsClient(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Sub Packages</b></em>' reference list.
-	 * The list contents are of type {@link net.sf.rcer.rom.RepositoryPackage}.
+	 * Returns the value of the '<em><b>Collection</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link net.sf.rcer.rom.RepositoryObjectCollection#getPackages <em>Packages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sub Packages</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Collection</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sub Packages</em>' reference list.
-	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryPackage_SubPackages()
-	 * @model keys="name" derived="true" ordered="false"
+	 * @return the value of the '<em>Collection</em>' container reference.
+	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryPackage_Collection()
+	 * @see net.sf.rcer.rom.RepositoryObjectCollection#getPackages
+	 * @model opposite="packages" transient="false" changeable="false" derived="true" ordered="false"
 	 * @generated
 	 */
-	EList<RepositoryPackage> getSubPackages();
+	RepositoryObjectCollection getCollection();
+
+	/**
+	 * Returns the value of the '<em><b>Objects</b></em>' reference list.
+	 * The list contents are of type {@link net.sf.rcer.rom.RepositoryObject}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Objects</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Objects</em>' reference list.
+	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryPackage_Objects()
+	 * @model keys="objectType name" ordered="false"
+	 * @generated
+	 */
+	EList<RepositoryObject> getObjects();
+
+	/**
+	 * Returns the value of the '<em><b>Sub Package Names</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sub Package Names</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sub Package Names</em>' attribute list.
+	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryPackage_SubPackageNames()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	EList<String> getSubPackageNames();
 
 } // RepositoryPackage

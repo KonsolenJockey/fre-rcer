@@ -13,23 +13,17 @@
 package net.sf.rcer.rom.ddic.impl;
 
 import net.sf.rcer.conn.locales.Locale;
-import net.sf.rcer.conn.locales.LocaleNotFoundException;
-import net.sf.rcer.conn.locales.LocaleRegistry;
 import net.sf.rcer.rom.ROMPackage;
+import net.sf.rcer.rom.RepositoryObjectCollection;
 import net.sf.rcer.rom.RepositoryObjectType;
 import net.sf.rcer.rom.ddic.DDICPackage;
 import net.sf.rcer.rom.ddic.DataElement;
 import net.sf.rcer.rom.ddic.DictionaryDataType;
 import net.sf.rcer.rom.ddic.ReferredObjectType;
 import net.sf.rcer.rom.ddic.TypeKind;
-import net.sf.rcer.rom.ddic.rfc.RFCDataElementData;
-import net.sf.rcer.rom.ddic.rfc.RFCDataElementReader;
-import net.sf.rcer.rom.ddic.rfc.RFCDataElementText;
 import net.sf.rcer.rom.impl.LocalizedStringImpl;
 import net.sf.rcer.rom.impl.RepositoryObjectImpl;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EMap;
@@ -39,9 +33,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Data Element</b></em>'.
@@ -49,6 +40,7 @@ import com.sap.conn.jco.JCoException;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link net.sf.rcer.rom.ddic.impl.DataElementImpl#getCollection <em>Collection</em>}</li>
  *   <li>{@link net.sf.rcer.rom.ddic.impl.DataElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link net.sf.rcer.rom.ddic.impl.DataElementImpl#getHeading <em>Heading</em>}</li>
  *   <li>{@link net.sf.rcer.rom.ddic.impl.DataElementImpl#getMaxHeadingLength <em>Max Heading Length</em>}</li>
@@ -575,6 +567,17 @@ public class DataElementImpl extends RepositoryObjectImpl implements DataElement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public RepositoryObjectCollection getCollection() {
+		if (eContainerFeatureID != DDICPackage.DATA_ELEMENT__COLLECTION) return null;
+		return (RepositoryObjectCollection)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EMap<Locale, String> getDescription() {
 		if (description == null) {
 			description = new EcoreEMap<Locale,String>(ROMPackage.Literals.LOCALIZED_STRING, LocalizedStringImpl.class, this, DDICPackage.DATA_ELEMENT__DESCRIPTION);
@@ -1077,8 +1080,26 @@ public class DataElementImpl extends RepositoryObjectImpl implements DataElement
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DDICPackage.DATA_ELEMENT__COLLECTION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return eBasicSetContainer(otherEnd, DDICPackage.DATA_ELEMENT__COLLECTION, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DDICPackage.DATA_ELEMENT__COLLECTION:
+				return eBasicSetContainer(null, DDICPackage.DATA_ELEMENT__COLLECTION, msgs);
 			case DDICPackage.DATA_ELEMENT__DESCRIPTION:
 				return ((InternalEList<?>)getDescription()).basicRemove(otherEnd, msgs);
 			case DDICPackage.DATA_ELEMENT__HEADING:
@@ -1099,8 +1120,24 @@ public class DataElementImpl extends RepositoryObjectImpl implements DataElement
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case DDICPackage.DATA_ELEMENT__COLLECTION:
+				return eInternalContainer().eInverseRemove(this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS, RepositoryObjectCollection.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case DDICPackage.DATA_ELEMENT__COLLECTION:
+				return getCollection();
 			case DDICPackage.DATA_ELEMENT__DESCRIPTION:
 				if (coreType) return getDescription();
 				else return getDescription().map();
@@ -1320,6 +1357,8 @@ public class DataElementImpl extends RepositoryObjectImpl implements DataElement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case DDICPackage.DATA_ELEMENT__COLLECTION:
+				return getCollection() != null;
 			case DDICPackage.DATA_ELEMENT__DESCRIPTION:
 				return description != null && !description.isEmpty();
 			case DDICPackage.DATA_ELEMENT__HEADING:
@@ -1459,56 +1498,4 @@ public class DataElementImpl extends RepositoryObjectImpl implements DataElement
 		return "DTEL";
 	}
 	
-	/**
-	 * @see net.sf.rcer.rom.impl.RepositoryObjectImpl#loadObjectData(JCoDestination)
-	 * @generated no
-	 */
-	@Override
-	public IStatus loadObjectData(JCoDestination dest) {
-		try {
-			RFCDataElementReader reader = new RFCDataElementReader();
-			reader.setDataElementName(getName());
-			reader.setLocaleID(getOriginalLocale().getID());
-			reader.execute(dest);
-
-			final RFCDataElementData data = reader.getDataElementData();
-			setTypeName(data.getTypeName());
-			setParameterID(data.getParameterID());
-			setLogged(data.isLogged());
-			setMaxHeadingLength(data.getHeadingLength());
-			setMaxShortTextLength(data.getShortTextLength());
-			setMaxMediumTextLength(data.getMediumTextLength());
-			setMaxLongTextLength(data.getLongTextLength());
-			setValueHelpName(data.getSearchHelpName());
-			setValueHelpFieldName(data.getSearchHelpField());
-			setDefaultFieldName(data.getDefaultFieldName());
-			setDictionaryDataType(DictionaryDataType.get(data.getDataType()));
-			setLength(data.getLength());
-			setOutputLength(data.getOutputLength());
-			setDecimals(data.getDecimals());
-			setCaseSensitive(data.isCaseSensitive());
-			setSigned(data.isSigned());
-			setValueListFixed(data.isValueListFixed());
-			setValueTableName(data.getValueTable());
-			setConversionExit(data.getConversionExit());
-			setTypeKind(TypeKind.get(data.getTypeKind()));
-			setReferredType(ReferredObjectType.get(data.getReferenceKind()));
-
-			for (final RFCDataElementText text: reader.getTexts()) {
-				Locale locale = LocaleRegistry.getInstance().getLocaleByID(text.getLocaleID());
-				getDescription().put(locale, text.getDescription());
-				getHeading().put(locale, text.getHeading());
-				getShortText().put(locale, text.getShortText());
-				getMediumText().put(locale, text.getMediumText());
-				getLongText().put(locale, text.getLongText());
-			}
-			
-			return Status.OK_STATUS;
-		} catch (JCoException e) {
-			return new Status(IStatus.ERROR, "net.sf.rcer.rom", e.getMessage(), e);
-		} catch (LocaleNotFoundException e) {
-			return new Status(IStatus.ERROR, "net.sf.rcer.rom", e.getMessage(), e);
-		}
-	}
-
 } //DataElementImpl

@@ -16,6 +16,7 @@ import net.sf.rcer.conn.locales.Locale;
 
 import net.sf.rcer.rom.RepositoryObject;
 
+import net.sf.rcer.rom.RepositoryObjectCollection;
 import org.eclipse.emf.common.util.EMap;
 
 /**
@@ -26,6 +27,7 @@ import org.eclipse.emf.common.util.EMap;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link net.sf.rcer.rom.ddic.DataElement#getCollection <em>Collection</em>}</li>
  *   <li>{@link net.sf.rcer.rom.ddic.DataElement#getDescription <em>Description</em>}</li>
  *   <li>{@link net.sf.rcer.rom.ddic.DataElement#getHeading <em>Heading</em>}</li>
  *   <li>{@link net.sf.rcer.rom.ddic.DataElement#getMaxHeadingLength <em>Max Heading Length</em>}</li>
@@ -60,6 +62,23 @@ import org.eclipse.emf.common.util.EMap;
  * @generated
  */
 public interface DataElement extends RepositoryObject {
+	/**
+	 * Returns the value of the '<em><b>Collection</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link net.sf.rcer.rom.RepositoryObjectCollection#getDataElements <em>Data Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Collection</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Collection</em>' container reference.
+	 * @see net.sf.rcer.rom.ddic.DDICPackage#getDataElement_Collection()
+	 * @see net.sf.rcer.rom.RepositoryObjectCollection#getDataElements
+	 * @model opposite="dataElements" transient="false" changeable="false" derived="true" ordered="false"
+	 * @generated
+	 */
+	RepositoryObjectCollection getCollection();
+
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' map.
 	 * The key is of type {@link net.sf.rcer.conn.locales.Locale},

@@ -13,6 +13,12 @@
 package net.sf.rcer.rom;
 
 import com.sap.conn.jco.JCoDestination;
+import net.sf.rcer.rom.ddic.DataElement;
+import net.sf.rcer.rom.ddic.Domain;
+import net.sf.rcer.rom.util.ObjectLoadingException;
+import net.sf.rcer.rom.util.ObjectNotFoundException;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 
 /**
@@ -24,6 +30,9 @@ import com.sap.conn.jco.JCoDestination;
  * The following features are supported:
  * <ul>
  *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getSourceConnection <em>Source Connection</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getPackages <em>Packages</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getDomains <em>Domains</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getDataElements <em>Data Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,7 +40,7 @@ import com.sap.conn.jco.JCoDestination;
  * @model
  * @generated
  */
-public interface RepositoryObjectCollection extends IRepositoryObjectContainer {
+public interface RepositoryObjectCollection extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Source Connection</b></em>' attribute.
@@ -60,10 +69,88 @@ public interface RepositoryObjectCollection extends IRepositoryObjectContainer {
 	void setSourceConnection(JCoDestination value);
 
 	/**
+	 * Returns the value of the '<em><b>Packages</b></em>' containment reference list.
+	 * The list contents are of type {@link net.sf.rcer.rom.RepositoryPackage}.
+	 * It is bidirectional and its opposite is '{@link net.sf.rcer.rom.RepositoryPackage#getCollection <em>Collection</em>}'.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Packages</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @model unique="false" required="true" ordered="false" nameUnique="false" nameRequired="true" nameOrdered="false"
+	 * @return the value of the '<em>Packages</em>' containment reference list.
+	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryObjectCollection_Packages()
+	 * @see net.sf.rcer.rom.RepositoryPackage#getCollection
+	 * @model opposite="collection" containment="true" keys="name" ordered="false"
 	 * @generated
 	 */
-	RepositoryPackage getPackage(String name);
+	EList<RepositoryPackage> getPackages();
+
+	/**
+	 * Returns the value of the '<em><b>Domains</b></em>' containment reference list.
+	 * The list contents are of type {@link net.sf.rcer.rom.ddic.Domain}.
+	 * It is bidirectional and its opposite is '{@link net.sf.rcer.rom.ddic.Domain#getCollection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Domains</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Domains</em>' containment reference list.
+	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryObjectCollection_Domains()
+	 * @see net.sf.rcer.rom.ddic.Domain#getCollection
+	 * @model opposite="collection" containment="true" keys="name" ordered="false"
+	 * @generated
+	 */
+	EList<Domain> getDomains();
+
+	/**
+	 * Returns the value of the '<em><b>Data Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link net.sf.rcer.rom.ddic.DataElement}.
+	 * It is bidirectional and its opposite is '{@link net.sf.rcer.rom.ddic.DataElement#getCollection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Data Elements</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Elements</em>' containment reference list.
+	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryObjectCollection_DataElements()
+	 * @see net.sf.rcer.rom.ddic.DataElement#getCollection
+	 * @model opposite="collection" containment="true" keys="name" ordered="false"
+	 * @generated
+	 */
+	EList<DataElement> getDataElements();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false" required="true" ordered="false" exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" nameUnique="false" nameRequired="true" nameOrdered="false" loadUnique="false" loadRequired="true" loadOrdered="false"
+	 * @generated
+	 */
+	RepositoryPackage getPackage(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false" required="true" ordered="false" exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" nameUnique="false" nameRequired="true" nameOrdered="false" loadUnique="false" loadRequired="true" loadOrdered="false"
+	 * @generated
+	 */
+	Domain getDomain(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false" required="true" ordered="false" exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" nameUnique="false" nameRequired="true" nameOrdered="false" loadUnique="false" loadRequired="true" loadOrdered="false"
+	 * @generated
+	 */
+	DataElement getDataElement(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false" required="true" ordered="false" exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" programIDUnique="false" programIDRequired="true" programIDOrdered="false" objectTypeIDUnique="false" objectTypeIDRequired="true" objectTypeIDOrdered="false" objectNameUnique="false" objectNameRequired="true" objectNameOrdered="false"
+	 * @generated
+	 */
+	RepositoryObject loadObject(String programID, String objectTypeID, String objectName) throws ObjectNotFoundException, ObjectLoadingException;
 } // RepositoryObjectCollection

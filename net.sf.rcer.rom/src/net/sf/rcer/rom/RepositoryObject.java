@@ -13,8 +13,9 @@
 package net.sf.rcer.rom;
 
 import net.sf.rcer.conn.locales.Locale;
+import net.sf.rcer.rom.util.ObjectLoadingException;
+import net.sf.rcer.rom.util.ObjectNotFoundException;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -26,10 +27,10 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#getObjectType <em>Object Type</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.RepositoryObject#getName <em>Name</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#isLoaded <em>Loaded</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#getProgramID <em>Program ID</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#getObjectTypeID <em>Object Type ID</em>}</li>
- *   <li>{@link net.sf.rcer.rom.RepositoryObject#getName <em>Name</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#getSourceSystem <em>Source System</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#getAuthor <em>Author</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#isGenerated <em>Generated</em>}</li>
@@ -37,9 +38,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#getSoftwareComponent <em>Software Component</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#getComponentRelease <em>Component Release</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#getPackageName <em>Package Name</em>}</li>
- *   <li>{@link net.sf.rcer.rom.RepositoryObject#getContainer <em>Container</em>}</li>
- *   <li>{@link net.sf.rcer.rom.RepositoryObject#getPackage <em>Package</em>}</li>
- *   <li>{@link net.sf.rcer.rom.RepositoryObject#getCollection <em>Collection</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,11 +74,22 @@ public interface RepositoryObject extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Loaded</em>' attribute.
+	 * @see #setLoaded(boolean)
 	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryObject_Loaded()
-	 * @model default="false" unique="false" required="true" transient="true" changeable="false" ordered="false"
+	 * @model default="false" unique="false" required="true" transient="true" ordered="false"
 	 * @generated
 	 */
 	boolean isLoaded();
+
+	/**
+	 * Sets the value of the '{@link net.sf.rcer.rom.RepositoryObject#isLoaded <em>Loaded</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Loaded</em>' attribute.
+	 * @see #isLoaded()
+	 * @generated
+	 */
+	void setLoaded(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Program ID</b></em>' attribute.
@@ -194,59 +203,24 @@ public interface RepositoryObject extends EObject {
 	void setAuthor(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Package</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Package</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Package</em>' reference.
-	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryObject_Package()
-	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
-	 * @generated
-	 */
-	RepositoryPackage getPackage();
-
-	/**
-	 * Returns the value of the '<em><b>Collection</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Collection</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Collection</em>' reference.
-	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryObject_Collection()
-	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
+	 * @model kind="operation" unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	RepositoryObjectCollection getCollection();
 
 	/**
-	 * Returns the value of the '<em><b>Container</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link net.sf.rcer.rom.IRepositoryObjectContainer#getObjects <em>Objects</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Container</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Container</em>' container reference.
-	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryObject_Container()
-	 * @see net.sf.rcer.rom.IRepositoryObjectContainer#getObjects
-	 * @model opposite="objects" changeable="false" ordered="false"
-	 * @generated
-	 */
-	IRepositoryObjectContainer getContainer();
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model dataType="net.sf.rcer.rom.IStatus" required="true"
+	 * @model unique="false" required="true" ordered="false" exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" loadUnique="false" loadRequired="true" loadOrdered="false"
 	 * @generated
 	 */
-	IStatus load();
+	RepositoryPackage getPackage(boolean load) throws ObjectNotFoundException, ObjectLoadingException;
 
 	/**
 	 * Returns the value of the '<em><b>Generated</b></em>' attribute.

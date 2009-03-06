@@ -102,12 +102,6 @@ public class ROMSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ROMPackage.IREPOSITORY_OBJECT_CONTAINER: {
-				IRepositoryObjectContainer iRepositoryObjectContainer = (IRepositoryObjectContainer)theEObject;
-				T result = caseIRepositoryObjectContainer(iRepositoryObjectContainer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ROMPackage.REPOSITORY_OBJECT: {
 				RepositoryObject repositoryObject = (RepositoryObject)theEObject;
 				T result = caseRepositoryObject(repositoryObject);
@@ -117,7 +111,6 @@ public class ROMSwitch<T> {
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION: {
 				RepositoryObjectCollection repositoryObjectCollection = (RepositoryObjectCollection)theEObject;
 				T result = caseRepositoryObjectCollection(repositoryObjectCollection);
-				if (result == null) result = caseIRepositoryObjectContainer(repositoryObjectCollection);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -125,7 +118,6 @@ public class ROMSwitch<T> {
 				RepositoryPackage repositoryPackage = (RepositoryPackage)theEObject;
 				T result = caseRepositoryPackage(repositoryPackage);
 				if (result == null) result = caseRepositoryObject(repositoryPackage);
-				if (result == null) result = caseIRepositoryObjectContainer(repositoryPackage);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -145,21 +137,6 @@ public class ROMSwitch<T> {
 	 * @generated
 	 */
 	public T caseLocalizedString(Map.Entry<Locale, String> object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IRepository Object Container</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IRepository Object Container</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIRepositoryObjectContainer(IRepositoryObjectContainer object) {
 		return null;
 	}
 

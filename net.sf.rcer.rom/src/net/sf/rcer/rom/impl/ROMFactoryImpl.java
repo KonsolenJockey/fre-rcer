@@ -18,6 +18,8 @@ import net.sf.rcer.conn.locales.Locale;
 
 import net.sf.rcer.rom.*;
 
+import net.sf.rcer.rom.util.ObjectLoadingException;
+import net.sf.rcer.rom.util.ObjectNotFoundException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -95,6 +97,10 @@ public class ROMFactoryImpl extends EFactoryImpl implements ROMFactory {
 				return createPackagePermittedObjectTypesFromString(eDataType, initialValue);
 			case ROMPackage.LOCALE:
 				return createLocaleFromString(eDataType, initialValue);
+			case ROMPackage.OBJECT_NOT_FOUND_EXCEPTION:
+				return createObjectNotFoundExceptionFromString(eDataType, initialValue);
+			case ROMPackage.OBJECT_LOADING_EXCEPTION:
+				return createObjectLoadingExceptionFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -116,6 +122,10 @@ public class ROMFactoryImpl extends EFactoryImpl implements ROMFactory {
 				return convertPackagePermittedObjectTypesToString(eDataType, instanceValue);
 			case ROMPackage.LOCALE:
 				return convertLocaleToString(eDataType, instanceValue);
+			case ROMPackage.OBJECT_NOT_FOUND_EXCEPTION:
+				return convertObjectNotFoundExceptionToString(eDataType, instanceValue);
+			case ROMPackage.OBJECT_LOADING_EXCEPTION:
+				return convertObjectLoadingExceptionToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -226,6 +236,42 @@ public class ROMFactoryImpl extends EFactoryImpl implements ROMFactory {
 	 * @generated
 	 */
 	public String convertLocaleToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ObjectNotFoundException createObjectNotFoundExceptionFromString(EDataType eDataType, String initialValue) {
+		return (ObjectNotFoundException)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertObjectNotFoundExceptionToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ObjectLoadingException createObjectLoadingExceptionFromString(EDataType eDataType, String initialValue) {
+		return (ObjectLoadingException)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertObjectLoadingExceptionToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

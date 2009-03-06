@@ -88,6 +88,15 @@ public interface DDICPackage extends EPackage {
 	int DOMAIN__OBJECT_TYPE = ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN__NAME = ROMPackage.REPOSITORY_OBJECT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Loaded</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,15 +122,6 @@ public interface DDICPackage extends EPackage {
 	 * @ordered
 	 */
 	int DOMAIN__OBJECT_TYPE_ID = ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE_ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOMAIN__NAME = ROMPackage.REPOSITORY_OBJECT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source System</b></em>' attribute.
@@ -187,31 +187,13 @@ public interface DDICPackage extends EPackage {
 	int DOMAIN__PACKAGE_NAME = ROMPackage.REPOSITORY_OBJECT__PACKAGE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * The feature id for the '<em><b>Collection</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN__CONTAINER = ROMPackage.REPOSITORY_OBJECT__CONTAINER;
-
-	/**
-	 * The feature id for the '<em><b>Package</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOMAIN__PACKAGE = ROMPackage.REPOSITORY_OBJECT__PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Collection</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOMAIN__COLLECTION = ROMPackage.REPOSITORY_OBJECT__COLLECTION;
+	int DOMAIN__COLLECTION = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' map.
@@ -220,7 +202,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN__DESCRIPTION = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 0;
+	int DOMAIN__DESCRIPTION = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Dictionary Data Type</b></em>' attribute.
@@ -229,7 +211,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN__DICTIONARY_DATA_TYPE = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 1;
+	int DOMAIN__DICTIONARY_DATA_TYPE = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -238,7 +220,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN__LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 2;
+	int DOMAIN__LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Output Length</b></em>' attribute.
@@ -247,7 +229,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN__OUTPUT_LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 3;
+	int DOMAIN__OUTPUT_LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Decimals</b></em>' attribute.
@@ -256,7 +238,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN__DECIMALS = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 4;
+	int DOMAIN__DECIMALS = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
@@ -265,7 +247,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN__CASE_SENSITIVE = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 5;
+	int DOMAIN__CASE_SENSITIVE = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Signed</b></em>' attribute.
@@ -274,7 +256,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN__SIGNED = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 6;
+	int DOMAIN__SIGNED = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Value List Fixed</b></em>' attribute.
@@ -283,7 +265,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN__VALUE_LIST_FIXED = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 7;
+	int DOMAIN__VALUE_LIST_FIXED = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Value Table Name</b></em>' attribute.
@@ -292,7 +274,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN__VALUE_TABLE_NAME = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 8;
+	int DOMAIN__VALUE_TABLE_NAME = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Conversion Exit</b></em>' attribute.
@@ -301,7 +283,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN__CONVERSION_EXIT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 9;
+	int DOMAIN__CONVERSION_EXIT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Values</b></em>' containment reference list.
@@ -310,7 +292,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN__VALUES = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 10;
+	int DOMAIN__VALUES = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 11;
 
 	/**
 	 * The number of structural features of the '<em>Domain</em>' class.
@@ -319,7 +301,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN_FEATURE_COUNT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 11;
+	int DOMAIN_FEATURE_COUNT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.DomainValueImpl <em>Domain Value</em>}' class.
@@ -533,6 +515,15 @@ public interface DDICPackage extends EPackage {
 	int DATA_ELEMENT__OBJECT_TYPE = ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_ELEMENT__NAME = ROMPackage.REPOSITORY_OBJECT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Loaded</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -558,15 +549,6 @@ public interface DDICPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_ELEMENT__OBJECT_TYPE_ID = ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE_ID;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_ELEMENT__NAME = ROMPackage.REPOSITORY_OBJECT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Source System</b></em>' attribute.
@@ -632,31 +614,13 @@ public interface DDICPackage extends EPackage {
 	int DATA_ELEMENT__PACKAGE_NAME = ROMPackage.REPOSITORY_OBJECT__PACKAGE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * The feature id for the '<em><b>Collection</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__CONTAINER = ROMPackage.REPOSITORY_OBJECT__CONTAINER;
-
-	/**
-	 * The feature id for the '<em><b>Package</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_ELEMENT__PACKAGE = ROMPackage.REPOSITORY_OBJECT__PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Collection</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_ELEMENT__COLLECTION = ROMPackage.REPOSITORY_OBJECT__COLLECTION;
+	int DATA_ELEMENT__COLLECTION = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' map.
@@ -665,7 +629,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__DESCRIPTION = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 0;
+	int DATA_ELEMENT__DESCRIPTION = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Heading</b></em>' map.
@@ -674,7 +638,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__HEADING = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 1;
+	int DATA_ELEMENT__HEADING = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Max Heading Length</b></em>' attribute.
@@ -683,7 +647,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__MAX_HEADING_LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 2;
+	int DATA_ELEMENT__MAX_HEADING_LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Short Text</b></em>' map.
@@ -692,7 +656,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__SHORT_TEXT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 3;
+	int DATA_ELEMENT__SHORT_TEXT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Max Short Text Length</b></em>' attribute.
@@ -701,7 +665,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__MAX_SHORT_TEXT_LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 4;
+	int DATA_ELEMENT__MAX_SHORT_TEXT_LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Medium Text</b></em>' map.
@@ -710,7 +674,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__MEDIUM_TEXT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 5;
+	int DATA_ELEMENT__MEDIUM_TEXT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Max Medium Text Length</b></em>' attribute.
@@ -719,7 +683,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__MAX_MEDIUM_TEXT_LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 6;
+	int DATA_ELEMENT__MAX_MEDIUM_TEXT_LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Long Text</b></em>' map.
@@ -728,7 +692,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__LONG_TEXT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 7;
+	int DATA_ELEMENT__LONG_TEXT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Max Long Text Length</b></em>' attribute.
@@ -737,7 +701,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__MAX_LONG_TEXT_LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 8;
+	int DATA_ELEMENT__MAX_LONG_TEXT_LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Type Name</b></em>' attribute.
@@ -746,7 +710,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__TYPE_NAME = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 9;
+	int DATA_ELEMENT__TYPE_NAME = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Parameter ID</b></em>' attribute.
@@ -755,7 +719,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__PARAMETER_ID = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 10;
+	int DATA_ELEMENT__PARAMETER_ID = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Logged</b></em>' attribute.
@@ -764,7 +728,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__LOGGED = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 11;
+	int DATA_ELEMENT__LOGGED = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Value Help Name</b></em>' attribute.
@@ -773,7 +737,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__VALUE_HELP_NAME = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 12;
+	int DATA_ELEMENT__VALUE_HELP_NAME = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Value Help Field Name</b></em>' attribute.
@@ -782,7 +746,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__VALUE_HELP_FIELD_NAME = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 13;
+	int DATA_ELEMENT__VALUE_HELP_FIELD_NAME = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Default Field Name</b></em>' attribute.
@@ -791,7 +755,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__DEFAULT_FIELD_NAME = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 14;
+	int DATA_ELEMENT__DEFAULT_FIELD_NAME = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 15;
 
 	/**
 	 * The feature id for the '<em><b>Dictionary Data Type</b></em>' attribute.
@@ -800,7 +764,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__DICTIONARY_DATA_TYPE = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 15;
+	int DATA_ELEMENT__DICTIONARY_DATA_TYPE = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 16;
 
 	/**
 	 * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -809,7 +773,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 16;
+	int DATA_ELEMENT__LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Output Length</b></em>' attribute.
@@ -818,7 +782,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__OUTPUT_LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 17;
+	int DATA_ELEMENT__OUTPUT_LENGTH = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>Decimals</b></em>' attribute.
@@ -827,7 +791,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__DECIMALS = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 18;
+	int DATA_ELEMENT__DECIMALS = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 19;
 
 	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
@@ -836,7 +800,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__CASE_SENSITIVE = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 19;
+	int DATA_ELEMENT__CASE_SENSITIVE = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 20;
 
 	/**
 	 * The feature id for the '<em><b>Signed</b></em>' attribute.
@@ -845,7 +809,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__SIGNED = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 20;
+	int DATA_ELEMENT__SIGNED = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 21;
 
 	/**
 	 * The feature id for the '<em><b>Value List Fixed</b></em>' attribute.
@@ -854,7 +818,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__VALUE_LIST_FIXED = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 21;
+	int DATA_ELEMENT__VALUE_LIST_FIXED = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 22;
 
 	/**
 	 * The feature id for the '<em><b>Value Table Name</b></em>' attribute.
@@ -863,7 +827,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__VALUE_TABLE_NAME = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 22;
+	int DATA_ELEMENT__VALUE_TABLE_NAME = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 23;
 
 	/**
 	 * The feature id for the '<em><b>Conversion Exit</b></em>' attribute.
@@ -872,7 +836,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__CONVERSION_EXIT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 23;
+	int DATA_ELEMENT__CONVERSION_EXIT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 24;
 
 	/**
 	 * The feature id for the '<em><b>Type Kind</b></em>' attribute.
@@ -881,7 +845,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__TYPE_KIND = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 24;
+	int DATA_ELEMENT__TYPE_KIND = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 25;
 
 	/**
 	 * The feature id for the '<em><b>Referred Type</b></em>' attribute.
@@ -890,7 +854,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT__REFERRED_TYPE = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 25;
+	int DATA_ELEMENT__REFERRED_TYPE = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 26;
 
 	/**
 	 * The number of structural features of the '<em>Data Element</em>' class.
@@ -899,7 +863,7 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_ELEMENT_FEATURE_COUNT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 26;
+	int DATA_ELEMENT_FEATURE_COUNT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 27;
 
 	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.DictionaryDataType <em>Dictionary Data Type</em>}' enum.
@@ -942,6 +906,17 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getDomain();
+
+	/**
+	 * Returns the meta object for the container reference '{@link net.sf.rcer.rom.ddic.Domain#getCollection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Collection</em>'.
+	 * @see net.sf.rcer.rom.ddic.Domain#getCollection()
+	 * @see #getDomain()
+	 * @generated
+	 */
+	EReference getDomain_Collection();
 
 	/**
 	 * Returns the meta object for the map '{@link net.sf.rcer.rom.ddic.Domain#getDescription <em>Description</em>}'.
@@ -1180,6 +1155,17 @@ public interface DDICPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getDataElement();
+
+	/**
+	 * Returns the meta object for the container reference '{@link net.sf.rcer.rom.ddic.DataElement#getCollection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Collection</em>'.
+	 * @see net.sf.rcer.rom.ddic.DataElement#getCollection()
+	 * @see #getDataElement()
+	 * @generated
+	 */
+	EReference getDataElement_Collection();
 
 	/**
 	 * Returns the meta object for the map '{@link net.sf.rcer.rom.ddic.DataElement#getDescription <em>Description</em>}'.
@@ -1530,6 +1516,14 @@ public interface DDICPackage extends EPackage {
 		EClass DOMAIN = eINSTANCE.getDomain();
 
 		/**
+		 * The meta object literal for the '<em><b>Collection</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DOMAIN__COLLECTION = eINSTANCE.getDomain_Collection();
+
+		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' map feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1712,6 +1706,14 @@ public interface DDICPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DATA_ELEMENT = eINSTANCE.getDataElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Collection</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATA_ELEMENT__COLLECTION = eINSTANCE.getDataElement_Collection();
 
 		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' map feature.

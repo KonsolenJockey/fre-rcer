@@ -30,6 +30,9 @@
     <eLiterals name="UNIT" value="24" literal="UNIT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Domain" eSuperTypes="rom.ecore#//RepositoryObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collection" ordered="false"
+        unique="false" eType="ecore:EClass rom.ecore#//RepositoryObjectCollection"
+        changeable="false" derived="true" resolveProxies="false" eOpposite="rom.ecore#//RepositoryObjectCollection/domains"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="description" ordered="false"
         unique="false" upperBound="-1" eType="ecore:EClass rom.ecore#//LocalizedString"
         changeable="false" containment="true" eKeys="rom.ecore#//LocalizedString/key"/>
@@ -98,6 +101,9 @@
     <eLiterals name="DOMAIN" value="6" literal="D"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataElement" eSuperTypes="rom.ecore#//RepositoryObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collection" ordered="false"
+        unique="false" eType="ecore:EClass rom.ecore#//RepositoryObjectCollection"
+        changeable="false" derived="true" eOpposite="rom.ecore#//RepositoryObjectCollection/dataElements"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="description" ordered="false"
         unique="false" upperBound="-1" eType="ecore:EClass rom.ecore#//LocalizedString"
         changeable="false" containment="true" eKeys="rom.ecore#//LocalizedString/key"/>

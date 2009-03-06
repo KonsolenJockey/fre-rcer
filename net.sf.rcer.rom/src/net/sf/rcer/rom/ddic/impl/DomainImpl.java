@@ -16,22 +16,15 @@ import java.util.Collection;
 
 import net.sf.rcer.conn.locales.Locale;
 import net.sf.rcer.rom.ROMPackage;
+import net.sf.rcer.rom.RepositoryObjectCollection;
 import net.sf.rcer.rom.RepositoryObjectType;
-import net.sf.rcer.rom.ddic.DDICFactory;
 import net.sf.rcer.rom.ddic.DDICPackage;
 import net.sf.rcer.rom.ddic.DictionaryDataType;
 import net.sf.rcer.rom.ddic.Domain;
 import net.sf.rcer.rom.ddic.DomainValue;
-import net.sf.rcer.rom.ddic.DomainValueRange;
-import net.sf.rcer.rom.ddic.DomainValueSingle;
-import net.sf.rcer.rom.ddic.rfc.RFCDomainData;
-import net.sf.rcer.rom.ddic.rfc.RFCDomainReader;
-import net.sf.rcer.rom.ddic.rfc.RFCDomainValue;
 import net.sf.rcer.rom.impl.LocalizedStringImpl;
 import net.sf.rcer.rom.impl.RepositoryObjectImpl;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -43,9 +36,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Domain</b></em>'.
@@ -53,6 +43,7 @@ import com.sap.conn.jco.JCoException;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link net.sf.rcer.rom.ddic.impl.DomainImpl#getCollection <em>Collection</em>}</li>
  *   <li>{@link net.sf.rcer.rom.ddic.impl.DomainImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link net.sf.rcer.rom.ddic.impl.DomainImpl#getDictionaryDataType <em>Dictionary Data Type</em>}</li>
  *   <li>{@link net.sf.rcer.rom.ddic.impl.DomainImpl#getLength <em>Length</em>}</li>
@@ -294,6 +285,17 @@ public class DomainImpl extends RepositoryObjectImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public RepositoryObjectCollection getCollection() {
+		if (eContainerFeatureID != DDICPackage.DOMAIN__COLLECTION) return null;
+		return (RepositoryObjectCollection)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EMap<Locale, String> getDescription() {
 		if (description == null) {
 			description = new EcoreEMap<Locale,String>(ROMPackage.Literals.LOCALIZED_STRING, LocalizedStringImpl.class, this, DDICPackage.DOMAIN__DESCRIPTION);
@@ -511,6 +513,10 @@ public class DomainImpl extends RepositoryObjectImpl implements Domain {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DDICPackage.DOMAIN__COLLECTION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return eBasicSetContainer(otherEnd, DDICPackage.DOMAIN__COLLECTION, msgs);
 			case DDICPackage.DOMAIN__VALUES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getValues()).basicAdd(otherEnd, msgs);
 		}
@@ -525,6 +531,8 @@ public class DomainImpl extends RepositoryObjectImpl implements Domain {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DDICPackage.DOMAIN__COLLECTION:
+				return eBasicSetContainer(null, DDICPackage.DOMAIN__COLLECTION, msgs);
 			case DDICPackage.DOMAIN__DESCRIPTION:
 				return ((InternalEList<?>)getDescription()).basicRemove(otherEnd, msgs);
 			case DDICPackage.DOMAIN__VALUES:
@@ -539,8 +547,24 @@ public class DomainImpl extends RepositoryObjectImpl implements Domain {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case DDICPackage.DOMAIN__COLLECTION:
+				return eInternalContainer().eInverseRemove(this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__DOMAINS, RepositoryObjectCollection.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case DDICPackage.DOMAIN__COLLECTION:
+				return getCollection();
 			case DDICPackage.DOMAIN__DESCRIPTION:
 				if (coreType) return getDescription();
 				else return getDescription().map();
@@ -662,6 +686,8 @@ public class DomainImpl extends RepositoryObjectImpl implements Domain {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case DDICPackage.DOMAIN__COLLECTION:
+				return getCollection() != null;
 			case DDICPackage.DOMAIN__DESCRIPTION:
 				return description != null && !description.isEmpty();
 			case DDICPackage.DOMAIN__DICTIONARY_DATA_TYPE:
@@ -747,54 +773,4 @@ public class DomainImpl extends RepositoryObjectImpl implements Domain {
 		return "DOMA";
 	}
 	
-	/**
-	 * @see net.sf.rcer.rom.impl.RepositoryObjectImpl#loadObjectData(JCoDestination)
-	 * @generated no
-	 */
-	@Override
-	public IStatus loadObjectData(JCoDestination dest) {
-		try {
-			// TODO Support reading of other locales than the master locale.
-			RFCDomainReader reader = new RFCDomainReader();
-			reader.setDomainName(getName());
-			reader.setLocaleID(getOriginalLocale().getID());
-			reader.execute(dest);
-
-			final RFCDomainData data = reader.getDomainData();
-			getDescription().put(getOriginalLocale(), data.getDescription());
-			setDictionaryDataType(DictionaryDataType.get(data.getDataType()));
-			setLength(data.getLength());
-			setOutputLength(data.getOutputLength());
-			setDecimals(data.getDecimals());
-			setCaseSensitive(data.isCaseSensitive());
-			setSigned(data.isSigned());
-			setValueListFixed(data.isValueListFixed());
-			setValueTableName(data.getValueTable());
-			setConversionExit(data.getConversionExit());
-			
-			for (final RFCDomainValue value: reader.getValues()) {
-				if (value.getLocaleID().equals(getOriginalLocale().getID())) {
-					if ((value.getUpperValue() != null) && (value.getUpperValue().length() > 0)) {
-						DomainValueRange v = DDICFactory.eINSTANCE.createDomainValueRange();
-						v.setPosition(value.getPosition());
-						v.setLowerBoundary(value.getLowerValue());
-						v.setUpperBoundary(value.getUpperValue());
-						v.getDescription().put(getOriginalLocale(), value.getDescription());
-						getValues().add(v);
-					} else {
-						DomainValueSingle v = DDICFactory.eINSTANCE.createDomainValueSingle();
-						v.setPosition(value.getPosition());
-						v.setValue(value.getLowerValue());
-						v.getDescription().put(getOriginalLocale(), value.getDescription());
-						getValues().add(v);
-					}
-				}
-			}
-			
-			return Status.OK_STATUS;
-		} catch (JCoException e) {
-			return new Status(IStatus.ERROR, "net.sf.rcer.rom", e.getMessage(), e);
-		}
-	}
-
 } //DomainImpl
