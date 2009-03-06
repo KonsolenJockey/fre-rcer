@@ -220,7 +220,7 @@ public class «className» {
 	 * Changes the «f.comment == null ? f.attribute : f.comment» («structureName»-«f.name»).
 	 * @param new«f.attribute.toFirstUpper()» the new «f.comment == null ? f.attribute : f.comment» to set
 	 */
-	public void set«f.getSetterName()»(«f.type» new«f.attribute.toFirstUpper()») {
+	public void «f.getSetterName()»(«f.type» new«f.attribute.toFirstUpper()») {
 		_pcs.firePropertyChange("«f.attribute»", this.«f.attribute», new«f.attribute.toFirstUpper()»);
 		this.«f.attribute» = new«f.attribute.toFirstUpper()»;
 	}
