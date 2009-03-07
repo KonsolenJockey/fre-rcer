@@ -32,4 +32,11 @@ public interface ITableLine {
 	 */
 	public boolean getBooleanValue(String fieldName) throws FieldNotFoundException;
 
+	/**
+	 * @param fieldName the name of the field
+	 * @return the integer value of the field
+	 * @throws FieldNotFoundException
+	 */
+	public int getIntegerValue(String fieldName) throws FieldNotFoundException;
+
 }

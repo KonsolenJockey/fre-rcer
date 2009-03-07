@@ -65,5 +65,12 @@ public class TableLine implements ITableLine {
 	public boolean getBooleanValue(String fieldName) throws FieldNotFoundException {
 		return getValue(fieldName).equalsIgnoreCase("X");
 	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.conn.tools.ITableLine#getIntegerValue(java.lang.String)
+	 */
+	public int getIntegerValue(String fieldName) throws FieldNotFoundException {
+		return Integer.parseInt(getValue(fieldName));
+	}
 	
 }
