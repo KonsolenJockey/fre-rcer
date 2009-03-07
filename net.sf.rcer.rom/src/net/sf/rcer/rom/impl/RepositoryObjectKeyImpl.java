@@ -6,7 +6,7 @@
  * http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,
  * this entire header must remain intact.
  * 
- * $Id: rom.genmodel 171 2009-03-06 10:46:43Z vwegert $
+ * $Id$
  *
  * $Id$
  */
@@ -261,7 +261,7 @@ public class RepositoryObjectKeyImpl extends EObjectImpl implements RepositoryOb
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated and changed
 	 */
 	@Override
 	public String toString() {

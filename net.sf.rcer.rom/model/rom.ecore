@@ -86,6 +86,16 @@
         eExceptions="#//ObjectNotFoundException #//ObjectLoadingException">
       <eParameters name="key" ordered="false" unique="false" lowerBound="1" eType="#//RepositoryObjectKey"/>
     </eOperations>
+    <eOperations name="getStructure" ordered="false" unique="false" lowerBound="1"
+        eType="ecore:EClass ddic.ecore#//Structure" eExceptions="#//ObjectNotFoundException #//ObjectLoadingException">
+      <eParameters name="name" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="load" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="getTable" ordered="false" unique="false" lowerBound="1" eType="ecore:EClass ddic.ecore#//Table"
+        eExceptions="#//ObjectNotFoundException #//ObjectLoadingException">
+      <eParameters name="name" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="load" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceConnection" ordered="false"
         unique="false" eType="#//JCoDestination" transient="true" unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="packages" ordered="false"

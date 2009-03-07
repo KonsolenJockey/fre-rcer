@@ -35,20 +35,28 @@ import net.sf.rcer.rom.RepositoryPackage;
 import net.sf.rcer.rom.ddic.DDICFactory;
 import net.sf.rcer.rom.ddic.DDICPackage;
 import net.sf.rcer.rom.ddic.DataElement;
+import net.sf.rcer.rom.ddic.DataElementField;
 import net.sf.rcer.rom.ddic.DictionaryDataType;
+import net.sf.rcer.rom.ddic.DirectField;
 import net.sf.rcer.rom.ddic.Domain;
 import net.sf.rcer.rom.ddic.DomainValueRange;
 import net.sf.rcer.rom.ddic.DomainValueSingle;
 import net.sf.rcer.rom.ddic.ReferredObjectType;
 import net.sf.rcer.rom.ddic.Structure;
+import net.sf.rcer.rom.ddic.StructureInclusion;
+import net.sf.rcer.rom.ddic.StructuredField;
 import net.sf.rcer.rom.ddic.Table;
+import net.sf.rcer.rom.ddic.TabularField;
 import net.sf.rcer.rom.ddic.TypeKind;
 import net.sf.rcer.rom.ddic.rfc.RFCDataElementData;
 import net.sf.rcer.rom.ddic.rfc.RFCDataElementReader;
 import net.sf.rcer.rom.ddic.rfc.RFCDataElementText;
+import net.sf.rcer.rom.ddic.rfc.RFCDataStructureField;
+import net.sf.rcer.rom.ddic.rfc.RFCDataStructureReader;
 import net.sf.rcer.rom.ddic.rfc.RFCDomainData;
 import net.sf.rcer.rom.ddic.rfc.RFCDomainReader;
 import net.sf.rcer.rom.ddic.rfc.RFCDomainValue;
+import net.sf.rcer.rom.ddic.rfc.RFCStructureStates;
 import net.sf.rcer.rom.util.ObjectLoadingException;
 import net.sf.rcer.rom.util.ObjectNotFoundException;
 
@@ -198,6 +206,76 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated and changed 
+	 */
+	public RepositoryObject loadObject(RepositoryObjectKey key) throws ObjectNotFoundException, ObjectLoadingException {
+		if (key.getProgramID().equals("R3TR")) {
+			if (key.getObjectTypeID().equals("DEVC")) {
+				return getPackage(key.getName(), true);
+			}
+			if (key.getObjectTypeID().equals("DOMA")) {
+				return getDomain(key.getName(), true);
+			}
+			if (key.getObjectTypeID().equals("DTEL")) {
+				return getDomain(key.getName(), true);
+			}
+		}
+		throw new ObjectLoadingException(MessageFormat.format("Unable to load repository object {0} {1} {2}.",
+				key.getProgramID(), key.getObjectTypeID(), key.getName()));
+	}
+
+	/**
+	 * Loads the repository header data of the object from table TADIR. 
+	 * @throws ObjectLoadingException 
+	 * @generated no
+	 */
+	protected void loadRepositoryData(RepositoryObject object) throws ObjectLoadingException {
+		try {
+			List<String> criteria = new ArrayList<String>();
+			criteria.add(MessageFormat.format("PGMID    = ''{0}'' AND", object.getProgramID()));
+			criteria.add(MessageFormat.format("OBJECT   = ''{0}'' AND", object.getObjectTypeID()));
+			criteria.add(MessageFormat.format("OBJ_NAME = ''{0}''",     object.getName()));
+			TableReader reader = TableReaderBuffer.getInstance(getSourceConnection()).getTableReader("TADIR");
+			ITableContents result = reader.read(criteria);
+	
+			if (result.isEmpty()) {
+				throw new ObjectLoadingException(MessageFormat.format(
+						"Unable to read the repository data (TADIR) for object {0} {1} {2}",
+						object.getProgramID(), object.getObjectTypeID(), object.getName()));
+			}
+			if (result.size() > 1) {
+				throw new ObjectLoadingException(MessageFormat.format(
+						"Received multiple lines while reading the repository data (TADIR) for object {0} {1} {2}",
+						object.getProgramID(), object.getObjectTypeID(), object.getName()));				
+			}
+	
+			try {
+				final ITableLine line = result.getLine(0);
+				object.setSourceSystem(line.getValue("SRCSYSTEM"));
+				object.setAuthor(line.getValue("AUTHOR"));
+				object.setGenerated(line.getBooleanValue("GENFLAG"));
+				final String masterlang = line.getValue("MASTERLANG");
+				if (masterlang.length() > 0) {
+					object.setOriginalLocale(LocaleRegistry.getInstance().getLocaleByID(masterlang));
+				}
+				object.setSoftwareComponent(line.getValue("COMPONENT"));
+				object.setComponentRelease(line.getValue("CRELEASE"));
+				object.setPackageName(line.getValue("DEVCLASS"));
+			} catch (Exception e) {
+				throw new ObjectLoadingException(MessageFormat.format(
+						"Error converting the repository object data from TADIR for object {0} {1} {2}",
+						object.getProgramID(), object.getObjectTypeID(), object.getName()), e);				
+			}		
+		} catch (JCoException e) {
+			throw new ObjectLoadingException(MessageFormat.format(
+					"Error loading the repository object data from TADIR for object {0} {1} {2}",
+					object.getProgramID(), object.getObjectTypeID(), object.getName()), e);				
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<RepositoryPackage> getPackages() {
@@ -205,54 +283,6 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			packages = new EObjectContainmentWithInverseEList<RepositoryPackage>(RepositoryPackage.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__PACKAGES, ROMPackage.REPOSITORY_PACKAGE__COLLECTION);
 		}
 		return packages;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Domain> getDomains() {
-		if (domains == null) {
-			domains = new EObjectContainmentWithInverseEList<Domain>(Domain.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__DOMAINS, DDICPackage.DOMAIN__COLLECTION);
-		}
-		return domains;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DataElement> getDataElements() {
-		if (dataElements == null) {
-			dataElements = new EObjectContainmentWithInverseEList<DataElement>(DataElement.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS, DDICPackage.DATA_ELEMENT__COLLECTION);
-		}
-		return dataElements;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Structure> getStructures() {
-		if (structures == null) {
-			structures = new EObjectContainmentWithInverseEList<Structure>(Structure.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__STRUCTURES, DDICPackage.STRUCTURE__COLLECTION);
-		}
-		return structures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Table> getTables() {
-		if (tables == null) {
-			tables = new EObjectContainmentWithInverseEList<Table>(Table.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES, DDICPackage.TABLE__COLLECTION);
-		}
-		return tables;
 	}
 
 	/**
@@ -295,7 +325,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			
 			TableReader reader = TableReaderBuffer.getInstance(getSourceConnection()).getTableReader("TDEVC");
 			ITableContents result = reader.read(MessageFormat.format("DEVCLASS = ''{0}''", pkg.getName()));
-
+	
 			if (result.isEmpty()) {
 				throw new ObjectNotFoundException(MessageFormat.format(
 						"Unable to read the package data (TDEVC) for package {0}", pkg.getName()));
@@ -304,7 +334,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				throw new ObjectLoadingException(MessageFormat.format(
 						"Received multiple lines while reading the package data (TDEVC) for package {0}", pkg.getName()));				
 			}
-
+	
 			try {
 				final ITableLine line = result.getLine(0);
 				// IMPORTANT - we overwrite the value from TADIR because that line (R3TR DEVC) always points to itself!
@@ -318,7 +348,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				pkg.setObjectCreationRestricted(line.getBooleanValue("RESTRICTED"));
 				pkg.setCheckedAsServer(line.getBooleanValue("SRV_CHECK"));
 				pkg.setCheckedAsClient(line.getBooleanValue("CLI_CHECK"));
-
+	
 				final String packtype = line.getValue("PACKTYPE");
 				if (packtype.equals("")) {
 					pkg.setPermittedObjectTypes(PackagePermittedObjectTypes.ALL);
@@ -342,7 +372,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 								packtype, pkg.getName())) ;				
 					}
 				}
-
+	
 				final String mainpack = line.getValue("MAINPACK");
 				if (mainpack.equals("")) {
 					pkg.setType(PackageType.STANDARD);
@@ -367,9 +397,9 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				throw new ObjectLoadingException(MessageFormat.format(
 						"Error converting the package data from TDEVC for package {0}", pkg.getName()), e);				
 			}		
-
+	
 			// --- read the package texts from TDEVCT ------------------------------------------------------------------
-
+	
 			reader = TableReaderBuffer.getInstance(getSourceConnection()).getTableReader("TDEVCT");
 			result = reader.read(MessageFormat.format("DEVCLASS = ''{0}''", pkg.getName()));
 			
@@ -399,7 +429,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 							"Error reading the sub-packages of package {0}", pkg.getName()), e);				
 				}		
 			}
-
+	
 			// --- read the contained objects --------------------------------------------------------------------------
 			
 			reader = TableReaderBuffer.getInstance(getSourceConnection()).getTableReader("TADIR");
@@ -427,6 +457,18 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Domain> getDomains() {
+		if (domains == null) {
+			domains = new EObjectContainmentWithInverseEList<Domain>(Domain.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__DOMAINS, DDICPackage.DOMAIN__COLLECTION);
+		}
+		return domains;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated and changed
 	 */
 	public Domain getDomain(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
@@ -447,7 +489,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			dom.setName(name);
 			loadDomain(dom);
 			return dom;
-
+	
 		}
 		throw new ObjectNotFoundException("Domain " + name + " not found.");
 	}
@@ -464,7 +506,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			reader.setDomainName(dom.getName());
 			reader.setLocaleID(dom.getOriginalLocale().getID());
 			reader.execute(getSourceConnection());
-
+	
 			final RFCDomainData data = reader.getDomainData();
 			dom.getDescription().put(dom.getOriginalLocale(), data.getDescription());
 			dom.setDictionaryDataType(DictionaryDataType.get(data.getDataType()));
@@ -503,6 +545,18 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<DataElement> getDataElements() {
+		if (dataElements == null) {
+			dataElements = new EObjectContainmentWithInverseEList<DataElement>(DataElement.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS, DDICPackage.DATA_ELEMENT__COLLECTION);
+		}
+		return dataElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated and changed
 	 */
 	public DataElement getDataElement(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
@@ -528,27 +582,6 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated and changed 
-	 */
-	public RepositoryObject loadObject(RepositoryObjectKey key) throws ObjectNotFoundException, ObjectLoadingException {
-		if (key.getProgramID().equals("R3TR")) {
-			if (key.getObjectTypeID().equals("DEVC")) {
-				return getPackage(key.getName(), true);
-			}
-			if (key.getObjectTypeID().equals("DOMA")) {
-				return getDomain(key.getName(), true);
-			}
-			if (key.getObjectTypeID().equals("DTEL")) {
-				return getDomain(key.getName(), true);
-			}
-		}
-		throw new ObjectLoadingException(MessageFormat.format("Unable to load repository object {0} {1} {2}.",
-				key.getProgramID(), key.getObjectTypeID(), key.getName()));
-	}
-
-	/**
 	 * Loads the data of a data element from the SAP R/3 system.
 	 * @param elem
 	 * @generated no
@@ -560,7 +593,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			reader.setDataElementName(elem.getName());
 			reader.setLocaleID(elem.getOriginalLocale().getID());
 			reader.execute(getSourceConnection());
-
+	
 			final RFCDataElementData data = reader.getDataElementData();
 			elem.setTypeName(data.getTypeName());
 			elem.setParameterID(data.getParameterID());
@@ -583,7 +616,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			elem.setConversionExit(data.getConversionExit());
 			elem.setTypeKind(TypeKind.get(data.getTypeKind()));
 			elem.setReferredType(ReferredObjectType.get(data.getReferenceKind()));
-
+	
 			for (final RFCDataElementText text: reader.getTexts()) {
 				Locale locale = LocaleRegistry.getInstance().getLocaleByID(text.getLocaleID());
 				elem.getDescription().put(locale, text.getDescription());
@@ -597,6 +630,264 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			throw new ObjectLoadingException(MessageFormat.format("Error loading data element {0}", elem.getName()), e);				
 		} catch (LocaleNotFoundException e) {
 			throw new ObjectLoadingException(MessageFormat.format("Error loading data element {0}", elem.getName()), e);				
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Structure> getStructures() {
+		if (structures == null) {
+			structures = new EObjectContainmentWithInverseEList<Structure>(Structure.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__STRUCTURES, DDICPackage.STRUCTURE__COLLECTION);
+		}
+		return structures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated and changed
+	 */
+	public Structure getStructure(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
+		if (load && getSourceConnection() == null) {
+			throw new IllegalArgumentException("Source connection must be set when requesting loading of objects.");
+		}
+		for (Structure structure: getStructures()) {
+			if (structure.getName().equals(name)) {
+				if (load && !structure.isLoaded()) {
+					loadStructure(structure);
+				}
+				return structure;
+			}
+		}
+		// structure was not found so far
+		if (load) {
+			Structure structure = DDICFactory.eINSTANCE.createStructure();
+			structure.setName(name);
+			loadStructure(structure);
+			return structure;
+		}
+		throw new ObjectNotFoundException("Structure " + name + " not found.");
+	}
+
+	
+	
+	/**
+	 * Loads a structure from the SAP R/3 system.
+	 * @param structure
+	 * @generated no
+	 */
+	private void loadStructure(Structure structure) throws ObjectNotFoundException, ObjectLoadingException {
+		loadRepositoryData(structure);
+		try {
+			// read the type info from the system
+			RFCDataStructureReader reader = prepareStructureReader(structure.getName(), structure.getOriginalLocale());
+			reader.execute(getSourceConnection());
+			// double-check whether this is a structure after all
+			final String type = reader.getHeader().getStructureType();
+			if (type.equals("INTTAB") || type.equals("APPEND")) {
+				loadStructure(structure, reader);
+			} else {
+				throw new ObjectLoadingException(MessageFormat.format("{0} is not a structure (INTTAB or APPEND), but a {1}.",
+						structure.getName(), type));
+			}
+		} catch (JCoException e) {
+			throw new ObjectLoadingException(MessageFormat.format("Error loading structure {0}", structure.getName()), e);				
+		}
+	}
+
+	/**
+	 * Prepares a {@link RFCDataStructureReader} to read a structure or table.
+	 * @param name
+	 * @return
+	 * @generated no
+	 */
+	private RFCDataStructureReader prepareStructureReader(String name, Locale locale) {
+		RFCDataStructureReader reader = new RFCDataStructureReader();
+		reader.setName(name);
+		reader.setAddText(true);
+		reader.setAddTypeInfo(false);
+		RFCStructureStates states = new RFCStructureStates();
+		states.setTABL("M");
+		reader.setRequestedStates(states);
+		reader.setLocaleID(locale.getID());
+		return reader;
+	}
+
+	/**
+	 * Loads a structure from the SAP R/3 system.
+	 * @param structure
+	 * @param reader
+	 * @generated no
+	 */
+	private void loadStructure(Structure structure, RFCDataStructureReader reader) throws ObjectNotFoundException, ObjectLoadingException {
+		for (RFCDataStructureField srcField: reader.getFields()) {
+			// only consider root objects, not the components of included structures
+			if (srcField.getNestingDepth().equals("0") && (srcField.getTypeDepth() == 0)) {
+				// determine the field type
+				if (srcField.getFieldName().startsWith(".INC")) {
+					// this is an inclusion of another structure
+					StructureInclusion inclusion = DDICFactory.eINSTANCE.createStructureInclusion();
+					inclusion.setIncludedStructureName(srcField.getIncludedStructure());
+					inclusion.setGroupName(srcField.getGroupName());
+					String[] parts = srcField.getFieldName().split("-");
+					if (parts.length > 1) {
+						inclusion.setSuffix(parts[1]);
+					}
+					structure.getFields().add(inclusion);
+				} else {
+					if (srcField.getDataType().equalsIgnoreCase("STRU")) {
+						// this is a named structure
+						StructuredField field = DDICFactory.eINSTANCE.createStructuredField();
+						field.setName(srcField.getFieldName());
+						field.setStructureName(srcField.getDataElementName());
+						structure.getFields().add(field);
+						
+					} else if (srcField.getDataType().equalsIgnoreCase("TTYP")) {
+						// this is a tabular field
+						TabularField field = DDICFactory.eINSTANCE.createTabularField();
+						field.setName(srcField.getFieldName());
+						field.setTableTypeName(srcField.getDataElementName());
+						structure.getFields().add(field);
+						
+					} else if (srcField.getDataElementName().length() > 0) {
+						// this is a field based on a data element
+						DataElementField field = DDICFactory.eINSTANCE.createDataElementField();
+						field.setName(srcField.getFieldName());
+						field.setDataElementName(srcField.getDataElementName());
+						// TODO transfer the search help information
+						field.setReferenceTableName(srcField.getReferenceTable());
+						field.setReferenceFieldName(srcField.getReferenceField());
+						structure.getFields().add(field);
+						
+					} else {
+						// this is a field with direct type entry
+						DirectField field = DDICFactory.eINSTANCE.createDirectField();
+						field.setName(srcField.getNestingDepth());
+						field.setDictionaryDataType(DictionaryDataType.get(srcField.getDataType()));
+						field.setLength(srcField.getLength());
+						field.setDecimals(srcField.getDecimals());
+						field.setReferenceTableName(srcField.getReferenceTable());
+						field.setReferenceFieldName(srcField.getReferenceField());
+						structure.getFields().add(field);
+						
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Table> getTables() {
+		if (tables == null) {
+			tables = new EObjectContainmentWithInverseEList<Table>(Table.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES, DDICPackage.TABLE__COLLECTION);
+		}
+		return tables;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated and changed
+	 */
+	public Table getTable(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
+		if (load && getSourceConnection() == null) {
+			throw new IllegalArgumentException("Source connection must be set when requesting loading of objects.");
+		}
+		for (Table table: getTables()) {
+			if (table.getName().equals(name)) {
+				if (load && !table.isLoaded()) {
+					loadTable(table);
+				}
+				return table;
+			}
+		}
+		// table was not found so far
+		if (load) {
+			Table table = DDICFactory.eINSTANCE.createTable();
+			table.setName(name);
+			loadTable(table);
+			return table;
+		}
+		throw new ObjectNotFoundException("Structure " + name + " not found.");
+	}
+
+	/**
+	 * Loads a table from the SAP R/3 system.
+	 * @param table
+	 * @generated no
+	 */
+	private void loadTable(Table table) throws ObjectNotFoundException, ObjectLoadingException {
+		loadRepositoryData(table);
+		try {
+			// read the type info from the system
+			RFCDataStructureReader reader = prepareStructureReader(table.getName(), table.getOriginalLocale());
+			reader.execute(getSourceConnection());
+			// double-check whether this is a structure after all
+			final String type = reader.getHeader().getStructureType();
+			if (type.equals("TRANSP")) {
+				loadTransparentTable(table, reader);
+			} else {
+				throw new ObjectLoadingException(MessageFormat.format("{0} is not a transparent table (TRANSP), but a {1}.",
+						table.getName(), type));
+			}
+		} catch (JCoException e) {
+			throw new ObjectLoadingException(MessageFormat.format("Error loading table {0}", table.getName()), e);				
+		}
+	}
+
+	/**
+	 * Loads a transparent table from the SAP R/3 system.
+	 * @param table
+	 * @param reader
+	 * @generated no
+	 */
+	private void loadTransparentTable(Table table, RFCDataStructureReader reader) throws ObjectNotFoundException, ObjectLoadingException {
+		for (RFCDataStructureField srcField: reader.getFields()) {
+			// only consider root objects, not the components of included structures
+			if (srcField.getNestingDepth().equals("0") && (srcField.getTypeDepth() == 0)) {
+				// determine the field type
+				if (srcField.getFieldName().startsWith(".INC")) {
+					// this is an inclusion of another structure
+					StructureInclusion inclusion = DDICFactory.eINSTANCE.createStructureInclusion();
+					inclusion.setIncludedStructureName(srcField.getIncludedStructure());
+					inclusion.setGroupName(srcField.getGroupName());
+					String[] parts = srcField.getFieldName().split("-");
+					if (parts.length > 1) {
+						inclusion.setSuffix(parts[1]);
+					}
+					table.getFields().add(inclusion);
+				} else {
+					if (srcField.getDataElementName().length() > 0) {
+						// this is a field based on a data element
+						DataElementField field = DDICFactory.eINSTANCE.createDataElementField();
+						field.setName(srcField.getFieldName());
+						field.setDataElementName(srcField.getDataElementName());
+						// TODO transfer the search help information
+						field.setReferenceTableName(srcField.getReferenceTable());
+						field.setReferenceFieldName(srcField.getReferenceField());
+						table.getFields().add(field);
+						
+					} else {
+						// this is a field with direct type entry
+						DirectField field = DDICFactory.eINSTANCE.createDirectField();
+						field.setName(srcField.getNestingDepth());
+						field.setDictionaryDataType(DictionaryDataType.get(srcField.getDataType()));
+						field.setLength(srcField.getLength());
+						field.setDecimals(srcField.getDecimals());
+						field.setReferenceTableName(srcField.getReferenceTable());
+						field.setReferenceFieldName(srcField.getReferenceField());
+						table.getFields().add(field);
+						
+					}
+				}
+			}
 		}
 	}
 
@@ -773,55 +1064,6 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 		result.append(sourceConnection);
 		result.append(')');
 		return result.toString();
-	}
-	
-	/**
-	 * Loads the repository header data of the object from table TADIR. 
-	 * @throws ObjectLoadingException 
-	 * @generated no
-	 */
-	protected void loadRepositoryData(RepositoryObject object) throws ObjectLoadingException {
-		try {
-			List<String> criteria = new ArrayList<String>();
-			criteria.add(MessageFormat.format("PGMID    = ''{0}'' AND", object.getProgramID()));
-			criteria.add(MessageFormat.format("OBJECT   = ''{0}'' AND", object.getObjectTypeID()));
-			criteria.add(MessageFormat.format("OBJ_NAME = ''{0}''",     object.getName()));
-			TableReader reader = TableReaderBuffer.getInstance(getSourceConnection()).getTableReader("TADIR");
-			ITableContents result = reader.read(criteria);
-
-			if (result.isEmpty()) {
-				throw new ObjectLoadingException(MessageFormat.format(
-						"Unable to read the repository data (TADIR) for object {0} {1} {2}",
-						object.getProgramID(), object.getObjectTypeID(), object.getName()));
-			}
-			if (result.size() > 1) {
-				throw new ObjectLoadingException(MessageFormat.format(
-						"Received multiple lines while reading the repository data (TADIR) for object {0} {1} {2}",
-						object.getProgramID(), object.getObjectTypeID(), object.getName()));				
-			}
-
-			try {
-				final ITableLine line = result.getLine(0);
-				object.setSourceSystem(line.getValue("SRCSYSTEM"));
-				object.setAuthor(line.getValue("AUTHOR"));
-				object.setGenerated(line.getBooleanValue("GENFLAG"));
-				final String masterlang = line.getValue("MASTERLANG");
-				if (masterlang.length() > 0) {
-					object.setOriginalLocale(LocaleRegistry.getInstance().getLocaleByID(masterlang));
-				}
-				object.setSoftwareComponent(line.getValue("COMPONENT"));
-				object.setComponentRelease(line.getValue("CRELEASE"));
-				object.setPackageName(line.getValue("DEVCLASS"));
-			} catch (Exception e) {
-				throw new ObjectLoadingException(MessageFormat.format(
-						"Error converting the repository object data from TADIR for object {0} {1} {2}",
-						object.getProgramID(), object.getObjectTypeID(), object.getName()), e);				
-			}		
-		} catch (JCoException e) {
-			throw new ObjectLoadingException(MessageFormat.format(
-					"Error loading the repository object data from TADIR for object {0} {1} {2}",
-					object.getProgramID(), object.getObjectTypeID(), object.getName()), e);				
-		}
 	}
 	
 

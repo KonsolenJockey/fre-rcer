@@ -35,6 +35,7 @@ public class RFCDataStructureReader {
 	private String localeID;
 	private boolean addText;
 	private boolean addTypeInfo;
+	private RFCStructureStates requestedStates;
 	private RFCDataStructureHeader header;
 	private RFCTableTechSettings techSettings;
 	private List<RFCDataStructureField> fields = new ArrayList<RFCDataStructureField>();
@@ -114,6 +115,22 @@ public class RFCDataStructureReader {
 	public void setAddTypeInfo(boolean newAddTypeInfo) {
 		_pcs.firePropertyChange("addTypeInfo", this.addTypeInfo, newAddTypeInfo);
 		this.addTypeInfo = newAddTypeInfo;
+	}
+	
+	/**
+	 * @return the requested states (GET_STATE)
+	 */
+	public RFCStructureStates getRequestedStates() {
+		return this.requestedStates;
+	}
+	
+	/**
+	 * Changes the requested states (GET_STATE).
+	 * @param newRequestedStates the new requested states to set
+	 */
+	public void setRequestedStates(RFCStructureStates newRequestedStates) {
+		_pcs.firePropertyChange("requestedStates", this.requestedStates, newRequestedStates);
+		this.requestedStates = newRequestedStates;
 	}
 	
 	/**
@@ -271,6 +288,7 @@ public class RFCDataStructureReader {
 		function.getImportParameterList().setValue("LANGU", localeID);
 		function.getImportParameterList().setValue("WITHTEXT", addText ? "X" : " ");
 		function.getImportParameterList().setValue("ADD_TYPEINFO", addTypeInfo ? "X" : " ");
+		requestedStates.toStructure(function.getImportParameterList().getStructure("GET_STATE"));
 		RFCDataStructureField.toTable(fields, function.getTableParameterList().getTable("DD03P_TAB_A"));
 		RFCForeignKeyHeader.toTable(foreignKeyHeaders, function.getTableParameterList().getTable("DD08V_TAB_A"));
 		RFCForeignKeyField.toTable(foreignKeyFields, function.getTableParameterList().getTable("DD05M_TAB_A"));

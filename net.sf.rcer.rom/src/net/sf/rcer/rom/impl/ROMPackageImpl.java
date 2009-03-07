@@ -852,6 +852,18 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		addEException(op, this.getObjectNotFoundException());
 		addEException(op, this.getObjectLoadingException());
 
+		op = addEOperation(repositoryObjectCollectionEClass, theDDICPackage.getStructure(), "getStructure", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "load", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEException(op, this.getObjectNotFoundException());
+		addEException(op, this.getObjectLoadingException());
+
+		op = addEOperation(repositoryObjectCollectionEClass, theDDICPackage.getTable(), "getTable", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "load", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEException(op, this.getObjectNotFoundException());
+		addEException(op, this.getObjectLoadingException());
+
 		initEClass(repositoryPackageEClass, RepositoryPackage.class, "RepositoryPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getRepositoryPackage_Description(), this.getLocalizedString(), null, "description", null, 0, -1, RepositoryPackage.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getRepositoryPackage_ObjectKeys(), this.getRepositoryObjectKey(), null, "objectKeys", null, 0, -1, RepositoryPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$

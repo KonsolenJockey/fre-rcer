@@ -193,4 +193,20 @@ public interface RepositoryObjectCollection extends EObject {
 	 * @generated
 	 */
 	RepositoryObject loadObject(RepositoryObjectKey key) throws ObjectNotFoundException, ObjectLoadingException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false" required="true" ordered="false" exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" nameUnique="false" nameRequired="true" nameOrdered="false" loadUnique="false" loadRequired="true" loadOrdered="false"
+	 * @generated
+	 */
+	Structure getStructure(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false" required="true" ordered="false" exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" nameUnique="false" nameRequired="true" nameOrdered="false" loadUnique="false" loadRequired="true" loadOrdered="false"
+	 * @generated
+	 */
+	Table getTable(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException;
 } // RepositoryObjectCollection

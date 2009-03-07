@@ -236,9 +236,15 @@
         <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getDataElement/load"/>
       </genOperations>
       <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/loadObject">
-        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/loadObject/programID"/>
-        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/loadObject/objectTypeID"/>
-        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/loadObject/objectName"/>
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/loadObject/key"/>
+      </genOperations>
+      <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/getStructure">
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getStructure/name"/>
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getStructure/load"/>
+      </genOperations>
+      <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/getTable">
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getTable/name"/>
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getTable/load"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="rom.ecore#//RepositoryPackage">

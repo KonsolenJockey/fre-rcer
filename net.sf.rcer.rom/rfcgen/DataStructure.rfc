@@ -197,12 +197,26 @@ structure "DD36M" {
 	}
 }
 
+structure "DCTABLGET" {
+	class RFCStructureStates {
+		field "TABL" = String TABL comment "Status of the ABAP Dictionary object";
+		field "TABD" = String TABD comment "Status of the ABAP Dictionary object";
+		field "TBHD" = String TBHD comment "Status of the ABAP Dictionary object";
+		field "TBFD" = String TBFD comment "Status of the ABAP Dictionary object";
+		field "TBFK" = String TBFK comment "Status of the ABAP Dictionary object";
+		field "TBSH" = String TBSH comment "Status of the ABAP Dictionary object";
+		field "TBIX" = String TBIX comment "Status of the ABAP Dictionary object";
+		field "TABT" = String TABT comment "Status of the ABAP Dictionary object";
+	}
+}
+
 function module "DD_TABL_GET" {
 	class RFCDataStructureReader {
 		import field     "TABL_NAME"    = String                 name              comment "the name of the structure (strucutre, table, view, ...)";
 		import field     "LANGU"        = String                 localeID          comment "locale ID";
 		import field     "WITHTEXT"     = boolean                addText           comment "whether to read the texts";
 		import field     "ADD_TYPEINFO" = boolean                addTypeInfo       comment "whether to read the type information";
+		import structure "GET_STATE"    = RFCStructureStates     requestedStates   comment "requested states";
 		export structure "DD02V_WA_A"   = RFCDataStructureHeader header            comment "the header of the structure";
 		export structure "DD09L_WA_A"   = RFCTableTechSettings   techSettings      comment "the technical settings of a table";
 		table            "DD03P_TAB_A"  = RFCDataStructureField  fields            comment "the fields of the structure";
