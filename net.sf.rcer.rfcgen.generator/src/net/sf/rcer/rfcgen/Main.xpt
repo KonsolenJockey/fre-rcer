@@ -469,7 +469,7 @@ public class «responseClassName» {
 «IF isTable-»
 		«type».toTable(function.getImportParameterList().getTable("«name»"));
 «ELSEIF isStructure-»
-		«attribute».toStructure(«attribute», function.getImportParameterList().getStructure("«name»"));
+		«attribute».toStructure(function.getImportParameterList().getStructure("«name»"));
 «ELSEIF isBoolean()-»
 		function.getImportParameterList().setValue("«name»", «attribute» ? "X" : " ");
 «ELSE-»
