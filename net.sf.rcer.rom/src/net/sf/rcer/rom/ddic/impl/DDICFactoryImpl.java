@@ -71,6 +71,13 @@ public class DDICFactoryImpl extends EFactoryImpl implements DDICFactory {
 			case DDICPackage.DOMAIN_VALUE_SINGLE: return createDomainValueSingle();
 			case DDICPackage.DOMAIN_VALUE_RANGE: return createDomainValueRange();
 			case DDICPackage.DATA_ELEMENT: return createDataElement();
+			case DDICPackage.STRUCTURE: return createStructure();
+			case DDICPackage.TABLE: return createTable();
+			case DDICPackage.STRUCTURE_INCLUSION: return createStructureInclusion();
+			case DDICPackage.DATA_ELEMENT_FIELD: return createDataElementField();
+			case DDICPackage.DIRECT_FIELD: return createDirectField();
+			case DDICPackage.STRUCTURED_FIELD: return createStructuredField();
+			case DDICPackage.TABULAR_FIELD: return createTabularField();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -152,6 +159,76 @@ public class DDICFactoryImpl extends EFactoryImpl implements DDICFactory {
 	public DataElement createDataElement() {
 		DataElementImpl dataElement = new DataElementImpl();
 		return dataElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Structure createStructure() {
+		StructureImpl structure = new StructureImpl();
+		return structure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Table createTable() {
+		TableImpl table = new TableImpl();
+		return table;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StructureInclusion createStructureInclusion() {
+		StructureInclusionImpl structureInclusion = new StructureInclusionImpl();
+		return structureInclusion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DataElementField createDataElementField() {
+		DataElementFieldImpl dataElementField = new DataElementFieldImpl();
+		return dataElementField;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DirectField createDirectField() {
+		DirectFieldImpl directField = new DirectFieldImpl();
+		return directField;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StructuredField createStructuredField() {
+		StructuredFieldImpl structuredField = new StructuredFieldImpl();
+		return structuredField;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TabularField createTabularField() {
+		TabularFieldImpl tabularField = new TabularFieldImpl();
+		return tabularField;
 	}
 
 	/**

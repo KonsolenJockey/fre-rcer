@@ -113,6 +113,45 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/typeKind"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElement/referredType"/>
     </genClasses>
+    <genClasses ecoreClass="ddic.ecore#//Structure">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ddic.ecore#//Structure/fields"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//Structure/collection"/>
+    </genClasses>
+    <genClasses ecoreClass="ddic.ecore#//Table">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ddic.ecore#//Table/fields"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//Table/collection"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ddic.ecore#//StructureField"/>
+    <genClasses image="false" ecoreClass="ddic.ecore#//TableField"/>
+    <genClasses image="false" ecoreClass="ddic.ecore#//NamedField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//NamedField/name"/>
+    </genClasses>
+    <genClasses ecoreClass="ddic.ecore#//StructureInclusion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//StructureInclusion/includedStructureName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//StructureInclusion/groupName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//StructureInclusion/suffix"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ddic.ecore#//SingleField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//SingleField/referenceTableName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//SingleField/referenceFieldName"/>
+    </genClasses>
+    <genClasses ecoreClass="ddic.ecore#//DataElementField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElementField/dataElementName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElementField/searchHelpName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DataElementField/searchHelpField"/>
+    </genClasses>
+    <genClasses ecoreClass="ddic.ecore#//DirectField">
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//DirectField/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DirectField/dictionaryDataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DirectField/length"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//DirectField/decimals"/>
+    </genClasses>
+    <genClasses ecoreClass="ddic.ecore#//StructuredField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//StructuredField/structureName"/>
+    </genClasses>
+    <genClasses ecoreClass="ddic.ecore#//TabularField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//TabularField/tableTypeName"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="ROM" basePackage="net.sf.rcer" disposableProviderFactory="true"
       contentTypeIdentifier="" ecorePackage="rom.ecore#/">
@@ -121,6 +160,8 @@
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/PACKAGE"/>
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/DOMAIN"/>
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/DATA_ELEMENT"/>
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/TABLE"/>
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/STRUCTURE"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="rom.ecore#//PackageType">
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//PackageType/STANDARD"/>
@@ -136,9 +177,16 @@
     <genDataTypes ecoreDataType="rom.ecore#//Locale"/>
     <genDataTypes ecoreDataType="rom.ecore#//IStatus"/>
     <genDataTypes ecoreDataType="rom.ecore#//JCoDestination"/>
+    <genDataTypes ecoreDataType="rom.ecore#//ObjectNotFoundException"/>
+    <genDataTypes ecoreDataType="rom.ecore#//ObjectLoadingException"/>
     <genClasses ecoreClass="rom.ecore#//LocalizedString">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//LocalizedString/key"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//LocalizedString/value"/>
+    </genClasses>
+    <genClasses ecoreClass="rom.ecore#//RepositoryObjectKey">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObjectKey/programID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObjectKey/objectTypeID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObjectKey/name"/>
     </genClasses>
     <genClasses image="false" ecoreClass="rom.ecore#//RepositoryObject">
       <genFeatures property="Readonly" createChild="false" propertyCategory="General"
@@ -147,12 +195,6 @@
       <genFeatures createChild="false" propertyCategory="General" propertyDescription="The name of the repository object."
           ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/name"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/loaded"/>
-      <genFeatures property="Readonly" createChild="false" propertyCategory="General"
-          propertyDescription="The program ID as used in the repository header data (typically R3TR)."
-          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/programID"/>
-      <genFeatures property="Readonly" createChild="false" propertyCategory="General"
-          propertyDescription="The object type ID as used in the repository header data (like DOMA, CLAS, INTF, ...)."
-          ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/objectTypeID"/>
       <genFeatures createChild="false" propertyCategory="Repository Header Data" propertyDescription="The name of the source system (usually SAP if it's a standard object)."
           ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/sourceSystem"/>
       <genFeatures createChild="false" propertyCategory="Repository Header Data" propertyDescription="The user name of the author (usually SAP if it's a standard object)."
@@ -167,32 +209,44 @@
           ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/componentRelease"/>
       <genFeatures createChild="false" propertyCategory="Repository Header Data" propertyDescription="The name of the package this object is contained in."
           ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObject/packageName"/>
-      <genFeatures property="Readonly" createChild="false" propertyCategory="Repository Header Data"
-          propertyDescription="The package this object is contained in." ecoreFeature="ecore:EReference rom.ecore#//RepositoryObject/package"/>
       <genOperations ecoreOperation="rom.ecore#//RepositoryObject/getCollection"/>
+      <genOperations ecoreOperation="rom.ecore#//RepositoryObject/getPackage">
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObject/getPackage/load"/>
+      </genOperations>
+      <genOperations ecoreOperation="rom.ecore#//RepositoryObject/getProgramID"/>
+      <genOperations ecoreOperation="rom.ecore#//RepositoryObject/getObjectTypeID"/>
     </genClasses>
     <genClasses ecoreClass="rom.ecore#//RepositoryObjectCollection">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryObjectCollection/sourceConnection"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObjectCollection/packages"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObjectCollection/domains"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObjectCollection/dataElements"/>
-      <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/getPackageByName">
-        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getPackageByName/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObjectCollection/structures"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObjectCollection/tables"/>
+      <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/getPackage">
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getPackage/name"/>
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getPackage/load"/>
       </genOperations>
       <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/getDomain">
         <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getDomain/name"/>
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getDomain/load"/>
       </genOperations>
       <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/getDataElement">
         <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getDataElement/name"/>
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getDataElement/load"/>
+      </genOperations>
+      <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/loadObject">
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/loadObject/programID"/>
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/loadObject/objectTypeID"/>
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/loadObject/objectName"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="rom.ecore#//RepositoryPackage">
       <genFeatures property="None" children="true" createChild="true" propertyCategory="Package Properties"
           propertyDescription="The (localized) description of the package." ecoreFeature="ecore:EReference rom.ecore#//RepositoryPackage/description"/>
-      <genFeatures notify="false" createChild="false" propertyCategory="Package Properties"
-          propertyDescription="The packages contained in this package." propertySortChoices="true"
-          ecoreFeature="ecore:EReference rom.ecore#//RepositoryPackage/subPackages"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryPackage/objectKeys"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryPackage/objects"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/subPackageNames"/>
       <genFeatures createChild="false" propertyCategory="Package Properties" propertyDescription="Whether changes to objects in this package should be recorded."
           ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/changeRecodingEnabled"/>
       <genFeatures createChild="false" propertyCategory="Package Properties" propertyDescription="The name of the user reponsible for the contents of this package."
@@ -214,6 +268,7 @@
       <genFeatures createChild="false" propertyCategory="Package Properties" propertyDescription="Whether package access checks assume a server role for this package."
           ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/checkedAsClient"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rom.ecore#//RepositoryPackage/collection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/objectsLoaded"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

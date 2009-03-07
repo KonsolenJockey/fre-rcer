@@ -74,6 +74,7 @@ public class ROMFactoryImpl extends EFactoryImpl implements ROMFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ROMPackage.LOCALIZED_STRING: return (EObject)createLocalizedString();
+			case ROMPackage.REPOSITORY_OBJECT_KEY: return createRepositoryObjectKey();
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION: return createRepositoryObjectCollection();
 			case ROMPackage.REPOSITORY_PACKAGE: return createRepositoryPackage();
 			default:
@@ -139,6 +140,16 @@ public class ROMFactoryImpl extends EFactoryImpl implements ROMFactory {
 	public Map.Entry<Locale, String> createLocalizedString() {
 		LocalizedStringImpl localizedString = new LocalizedStringImpl();
 		return localizedString;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RepositoryObjectKey createRepositoryObjectKey() {
+		RepositoryObjectKeyImpl repositoryObjectKey = new RepositoryObjectKeyImpl();
+		return repositoryObjectKey;
 	}
 
 	/**

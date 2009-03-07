@@ -162,4 +162,65 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="referredType" ordered="false"
         unique="false" eType="#//ReferredObjectType"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Structure" eSuperTypes="rom.ecore#//RepositoryObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
+        eType="#//StructureField" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collection" ordered="false"
+        unique="false" eType="ecore:EClass rom.ecore#//RepositoryObjectCollection"
+        changeable="false" derived="true" resolveProxies="false" eOpposite="rom.ecore#//RepositoryObjectCollection/structures"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="rom.ecore#//RepositoryObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
+        eType="#//TableField" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collection" ordered="false"
+        unique="false" eType="ecore:EClass rom.ecore#//RepositoryObjectCollection"
+        changeable="false" derived="true" resolveProxies="false" eOpposite="rom.ecore#//RepositoryObjectCollection/tables"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructureField" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TableField" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedField" abstract="true" eSuperTypes="#//StructureField">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructureInclusion" eSuperTypes="#//StructureField #//TableField">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="includedStructureName"
+        ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="groupName" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="suffix" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleField" abstract="true" eSuperTypes="#//NamedField #//TableField">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="referenceTableName" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="referenceFieldName" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataElementField" eSuperTypes="#//SingleField">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataElementName" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="searchHelpName" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="searchHelpField" ordered="false"
+        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DirectField" eSuperTypes="#//SingleField">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="description" ordered="false"
+        unique="false" upperBound="-1" eType="ecore:EClass rom.ecore#//LocalizedString"
+        changeable="false" containment="true" eKeys="rom.ecore#//LocalizedString/key"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dictionaryDataType" ordered="false"
+        unique="false" eType="#//DictionaryDataType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="decimals" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructuredField" eSuperTypes="#//NamedField">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="structureName" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TabularField" eSuperTypes="#//NamedField">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tableTypeName" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>

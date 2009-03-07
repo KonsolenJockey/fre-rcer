@@ -36,8 +36,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getObjectType <em>Object Type</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getName <em>Name</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#isLoaded <em>Loaded</em>}</li>
- *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getProgramID <em>Program ID</em>}</li>
- *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getObjectTypeID <em>Object Type ID</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getSourceSystem <em>Source System</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#getAuthor <em>Author</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectImpl#isGenerated <em>Generated</em>}</li>
@@ -100,26 +98,6 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 	 * @ordered
 	 */
 	protected boolean loaded = LOADED_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getProgramID() <em>Program ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProgramID()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String PROGRAM_ID_EDEFAULT = ""; //$NON-NLS-1$
-
-	/**
-	 * The default value of the '{@link #getObjectTypeID() <em>Object Type ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getObjectTypeID()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String OBJECT_TYPE_ID_EDEFAULT = ""; //$NON-NLS-1$
 
 	/**
 	 * The default value of the '{@link #getSourceSystem() <em>Source System</em>}' attribute.
@@ -527,10 +505,6 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 				return getName();
 			case ROMPackage.REPOSITORY_OBJECT__LOADED:
 				return isLoaded() ? Boolean.TRUE : Boolean.FALSE;
-			case ROMPackage.REPOSITORY_OBJECT__PROGRAM_ID:
-				return getProgramID();
-			case ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE_ID:
-				return getObjectTypeID();
 			case ROMPackage.REPOSITORY_OBJECT__SOURCE_SYSTEM:
 				return getSourceSystem();
 			case ROMPackage.REPOSITORY_OBJECT__AUTHOR:
@@ -641,10 +615,6 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ROMPackage.REPOSITORY_OBJECT__LOADED:
 				return loaded != LOADED_EDEFAULT;
-			case ROMPackage.REPOSITORY_OBJECT__PROGRAM_ID:
-				return PROGRAM_ID_EDEFAULT == null ? getProgramID() != null : !PROGRAM_ID_EDEFAULT.equals(getProgramID());
-			case ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE_ID:
-				return OBJECT_TYPE_ID_EDEFAULT == null ? getObjectTypeID() != null : !OBJECT_TYPE_ID_EDEFAULT.equals(getObjectTypeID());
 			case ROMPackage.REPOSITORY_OBJECT__SOURCE_SYSTEM:
 				return SOURCE_SYSTEM_EDEFAULT == null ? sourceSystem != null : !SOURCE_SYSTEM_EDEFAULT.equals(sourceSystem);
 			case ROMPackage.REPOSITORY_OBJECT__AUTHOR:

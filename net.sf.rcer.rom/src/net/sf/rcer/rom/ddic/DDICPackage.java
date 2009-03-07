@@ -106,24 +106,6 @@ public interface DDICPackage extends EPackage {
 	int DOMAIN__LOADED = ROMPackage.REPOSITORY_OBJECT__LOADED;
 
 	/**
-	 * The feature id for the '<em><b>Program ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOMAIN__PROGRAM_ID = ROMPackage.REPOSITORY_OBJECT__PROGRAM_ID;
-
-	/**
-	 * The feature id for the '<em><b>Object Type ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOMAIN__OBJECT_TYPE_ID = ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE_ID;
-
-	/**
 	 * The feature id for the '<em><b>Source System</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -533,24 +515,6 @@ public interface DDICPackage extends EPackage {
 	int DATA_ELEMENT__LOADED = ROMPackage.REPOSITORY_OBJECT__LOADED;
 
 	/**
-	 * The feature id for the '<em><b>Program ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_ELEMENT__PROGRAM_ID = ROMPackage.REPOSITORY_OBJECT__PROGRAM_ID;
-
-	/**
-	 * The feature id for the '<em><b>Object Type ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_ELEMENT__OBJECT_TYPE_ID = ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE_ID;
-
-	/**
 	 * The feature id for the '<em><b>Source System</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -866,6 +830,647 @@ public interface DDICPackage extends EPackage {
 	int DATA_ELEMENT_FEATURE_COUNT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 27;
 
 	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.StructureImpl <em>Structure</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.StructureImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getStructure()
+	 * @generated
+	 */
+	int STRUCTURE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Object Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE__OBJECT_TYPE = ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE__NAME = ROMPackage.REPOSITORY_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Loaded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE__LOADED = ROMPackage.REPOSITORY_OBJECT__LOADED;
+
+	/**
+	 * The feature id for the '<em><b>Source System</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE__SOURCE_SYSTEM = ROMPackage.REPOSITORY_OBJECT__SOURCE_SYSTEM;
+
+	/**
+	 * The feature id for the '<em><b>Author</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE__AUTHOR = ROMPackage.REPOSITORY_OBJECT__AUTHOR;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE__GENERATED = ROMPackage.REPOSITORY_OBJECT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Original Locale</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE__ORIGINAL_LOCALE = ROMPackage.REPOSITORY_OBJECT__ORIGINAL_LOCALE;
+
+	/**
+	 * The feature id for the '<em><b>Software Component</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE__SOFTWARE_COMPONENT = ROMPackage.REPOSITORY_OBJECT__SOFTWARE_COMPONENT;
+
+	/**
+	 * The feature id for the '<em><b>Component Release</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE__COMPONENT_RELEASE = ROMPackage.REPOSITORY_OBJECT__COMPONENT_RELEASE;
+
+	/**
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE__PACKAGE_NAME = ROMPackage.REPOSITORY_OBJECT__PACKAGE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE__FIELDS = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Collection</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE__COLLECTION = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Structure</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE_FEATURE_COUNT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.TableImpl <em>Table</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.TableImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getTable()
+	 * @generated
+	 */
+	int TABLE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Object Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__OBJECT_TYPE = ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__NAME = ROMPackage.REPOSITORY_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Loaded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__LOADED = ROMPackage.REPOSITORY_OBJECT__LOADED;
+
+	/**
+	 * The feature id for the '<em><b>Source System</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__SOURCE_SYSTEM = ROMPackage.REPOSITORY_OBJECT__SOURCE_SYSTEM;
+
+	/**
+	 * The feature id for the '<em><b>Author</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__AUTHOR = ROMPackage.REPOSITORY_OBJECT__AUTHOR;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__GENERATED = ROMPackage.REPOSITORY_OBJECT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Original Locale</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__ORIGINAL_LOCALE = ROMPackage.REPOSITORY_OBJECT__ORIGINAL_LOCALE;
+
+	/**
+	 * The feature id for the '<em><b>Software Component</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__SOFTWARE_COMPONENT = ROMPackage.REPOSITORY_OBJECT__SOFTWARE_COMPONENT;
+
+	/**
+	 * The feature id for the '<em><b>Component Release</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__COMPONENT_RELEASE = ROMPackage.REPOSITORY_OBJECT__COMPONENT_RELEASE;
+
+	/**
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__PACKAGE_NAME = ROMPackage.REPOSITORY_OBJECT__PACKAGE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__FIELDS = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Collection</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__COLLECTION = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Table</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_FEATURE_COUNT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.StructureFieldImpl <em>Structure Field</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.StructureFieldImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getStructureField()
+	 * @generated
+	 */
+	int STRUCTURE_FIELD = 7;
+
+	/**
+	 * The number of structural features of the '<em>Structure Field</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE_FIELD_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.TableFieldImpl <em>Table Field</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.TableFieldImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getTableField()
+	 * @generated
+	 */
+	int TABLE_FIELD = 8;
+
+	/**
+	 * The number of structural features of the '<em>Table Field</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_FIELD_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.NamedFieldImpl <em>Named Field</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.NamedFieldImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getNamedField()
+	 * @generated
+	 */
+	int NAMED_FIELD = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_FIELD__NAME = STRUCTURE_FIELD_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Named Field</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_FIELD_FEATURE_COUNT = STRUCTURE_FIELD_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.StructureInclusionImpl <em>Structure Inclusion</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.StructureInclusionImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getStructureInclusion()
+	 * @generated
+	 */
+	int STRUCTURE_INCLUSION = 10;
+
+	/**
+	 * The feature id for the '<em><b>Included Structure Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE_INCLUSION__INCLUDED_STRUCTURE_NAME = STRUCTURE_FIELD_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Group Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE_INCLUSION__GROUP_NAME = STRUCTURE_FIELD_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Suffix</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE_INCLUSION__SUFFIX = STRUCTURE_FIELD_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Structure Inclusion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURE_INCLUSION_FEATURE_COUNT = STRUCTURE_FIELD_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.SingleFieldImpl <em>Single Field</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.SingleFieldImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getSingleField()
+	 * @generated
+	 */
+	int SINGLE_FIELD = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_FIELD__NAME = NAMED_FIELD__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Reference Table Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_FIELD__REFERENCE_TABLE_NAME = NAMED_FIELD_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Reference Field Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_FIELD__REFERENCE_FIELD_NAME = NAMED_FIELD_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Single Field</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_FIELD_FEATURE_COUNT = NAMED_FIELD_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.DataElementFieldImpl <em>Data Element Field</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.DataElementFieldImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getDataElementField()
+	 * @generated
+	 */
+	int DATA_ELEMENT_FIELD = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_ELEMENT_FIELD__NAME = SINGLE_FIELD__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Reference Table Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_ELEMENT_FIELD__REFERENCE_TABLE_NAME = SINGLE_FIELD__REFERENCE_TABLE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Reference Field Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_ELEMENT_FIELD__REFERENCE_FIELD_NAME = SINGLE_FIELD__REFERENCE_FIELD_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Data Element Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_ELEMENT_FIELD__DATA_ELEMENT_NAME = SINGLE_FIELD_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Search Help Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_ELEMENT_FIELD__SEARCH_HELP_NAME = SINGLE_FIELD_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Search Help Field</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_ELEMENT_FIELD__SEARCH_HELP_FIELD = SINGLE_FIELD_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Data Element Field</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_ELEMENT_FIELD_FEATURE_COUNT = SINGLE_FIELD_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.DirectFieldImpl <em>Direct Field</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.DirectFieldImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getDirectField()
+	 * @generated
+	 */
+	int DIRECT_FIELD = 13;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_FIELD__NAME = SINGLE_FIELD__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Reference Table Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_FIELD__REFERENCE_TABLE_NAME = SINGLE_FIELD__REFERENCE_TABLE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Reference Field Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_FIELD__REFERENCE_FIELD_NAME = SINGLE_FIELD__REFERENCE_FIELD_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_FIELD__DESCRIPTION = SINGLE_FIELD_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Dictionary Data Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_FIELD__DICTIONARY_DATA_TYPE = SINGLE_FIELD_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_FIELD__LENGTH = SINGLE_FIELD_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Decimals</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_FIELD__DECIMALS = SINGLE_FIELD_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Direct Field</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_FIELD_FEATURE_COUNT = SINGLE_FIELD_FEATURE_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.StructuredFieldImpl <em>Structured Field</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.StructuredFieldImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getStructuredField()
+	 * @generated
+	 */
+	int STRUCTURED_FIELD = 14;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_FIELD__NAME = NAMED_FIELD__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Structure Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_FIELD__STRUCTURE_NAME = NAMED_FIELD_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Structured Field</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_FIELD_FEATURE_COUNT = NAMED_FIELD_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.TabularFieldImpl <em>Tabular Field</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.TabularFieldImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getTabularField()
+	 * @generated
+	 */
+	int TABULAR_FIELD = 15;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABULAR_FIELD__NAME = NAMED_FIELD__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Table Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABULAR_FIELD__TABLE_TYPE_NAME = NAMED_FIELD_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Tabular Field</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABULAR_FIELD_FEATURE_COUNT = NAMED_FIELD_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.DictionaryDataType <em>Dictionary Data Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -873,7 +1478,7 @@ public interface DDICPackage extends EPackage {
 	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getDictionaryDataType()
 	 * @generated
 	 */
-	int DICTIONARY_DATA_TYPE = 5;
+	int DICTIONARY_DATA_TYPE = 16;
 
 
 	/**
@@ -884,7 +1489,7 @@ public interface DDICPackage extends EPackage {
 	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getReferredObjectType()
 	 * @generated
 	 */
-	int REFERRED_OBJECT_TYPE = 6;
+	int REFERRED_OBJECT_TYPE = 17;
 
 	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.TypeKind <em>Type Kind</em>}' enum.
@@ -894,7 +1499,7 @@ public interface DDICPackage extends EPackage {
 	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getTypeKind()
 	 * @generated
 	 */
-	int TYPE_KIND = 7;
+	int TYPE_KIND = 18;
 
 
 	/**
@@ -1454,6 +2059,325 @@ public interface DDICPackage extends EPackage {
 	EAttribute getDataElement_ReferredType();
 
 	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.Structure <em>Structure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Structure</em>'.
+	 * @see net.sf.rcer.rom.ddic.Structure
+	 * @generated
+	 */
+	EClass getStructure();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link net.sf.rcer.rom.ddic.Structure#getFields <em>Fields</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Fields</em>'.
+	 * @see net.sf.rcer.rom.ddic.Structure#getFields()
+	 * @see #getStructure()
+	 * @generated
+	 */
+	EReference getStructure_Fields();
+
+	/**
+	 * Returns the meta object for the container reference '{@link net.sf.rcer.rom.ddic.Structure#getCollection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Collection</em>'.
+	 * @see net.sf.rcer.rom.ddic.Structure#getCollection()
+	 * @see #getStructure()
+	 * @generated
+	 */
+	EReference getStructure_Collection();
+
+	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.Table <em>Table</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Table</em>'.
+	 * @see net.sf.rcer.rom.ddic.Table
+	 * @generated
+	 */
+	EClass getTable();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link net.sf.rcer.rom.ddic.Table#getFields <em>Fields</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Fields</em>'.
+	 * @see net.sf.rcer.rom.ddic.Table#getFields()
+	 * @see #getTable()
+	 * @generated
+	 */
+	EReference getTable_Fields();
+
+	/**
+	 * Returns the meta object for the container reference '{@link net.sf.rcer.rom.ddic.Table#getCollection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Collection</em>'.
+	 * @see net.sf.rcer.rom.ddic.Table#getCollection()
+	 * @see #getTable()
+	 * @generated
+	 */
+	EReference getTable_Collection();
+
+	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.StructureField <em>Structure Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Structure Field</em>'.
+	 * @see net.sf.rcer.rom.ddic.StructureField
+	 * @generated
+	 */
+	EClass getStructureField();
+
+	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.TableField <em>Table Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Table Field</em>'.
+	 * @see net.sf.rcer.rom.ddic.TableField
+	 * @generated
+	 */
+	EClass getTableField();
+
+	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.NamedField <em>Named Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Named Field</em>'.
+	 * @see net.sf.rcer.rom.ddic.NamedField
+	 * @generated
+	 */
+	EClass getNamedField();
+
+	/**
+	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.ddic.NamedField#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see net.sf.rcer.rom.ddic.NamedField#getName()
+	 * @see #getNamedField()
+	 * @generated
+	 */
+	EAttribute getNamedField_Name();
+
+	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.StructureInclusion <em>Structure Inclusion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Structure Inclusion</em>'.
+	 * @see net.sf.rcer.rom.ddic.StructureInclusion
+	 * @generated
+	 */
+	EClass getStructureInclusion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.ddic.StructureInclusion#getIncludedStructureName <em>Included Structure Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Included Structure Name</em>'.
+	 * @see net.sf.rcer.rom.ddic.StructureInclusion#getIncludedStructureName()
+	 * @see #getStructureInclusion()
+	 * @generated
+	 */
+	EAttribute getStructureInclusion_IncludedStructureName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.ddic.StructureInclusion#getGroupName <em>Group Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Group Name</em>'.
+	 * @see net.sf.rcer.rom.ddic.StructureInclusion#getGroupName()
+	 * @see #getStructureInclusion()
+	 * @generated
+	 */
+	EAttribute getStructureInclusion_GroupName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.ddic.StructureInclusion#getSuffix <em>Suffix</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Suffix</em>'.
+	 * @see net.sf.rcer.rom.ddic.StructureInclusion#getSuffix()
+	 * @see #getStructureInclusion()
+	 * @generated
+	 */
+	EAttribute getStructureInclusion_Suffix();
+
+	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.SingleField <em>Single Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Single Field</em>'.
+	 * @see net.sf.rcer.rom.ddic.SingleField
+	 * @generated
+	 */
+	EClass getSingleField();
+
+	/**
+	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.ddic.SingleField#getReferenceTableName <em>Reference Table Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reference Table Name</em>'.
+	 * @see net.sf.rcer.rom.ddic.SingleField#getReferenceTableName()
+	 * @see #getSingleField()
+	 * @generated
+	 */
+	EAttribute getSingleField_ReferenceTableName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.ddic.SingleField#getReferenceFieldName <em>Reference Field Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reference Field Name</em>'.
+	 * @see net.sf.rcer.rom.ddic.SingleField#getReferenceFieldName()
+	 * @see #getSingleField()
+	 * @generated
+	 */
+	EAttribute getSingleField_ReferenceFieldName();
+
+	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.DataElementField <em>Data Element Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Data Element Field</em>'.
+	 * @see net.sf.rcer.rom.ddic.DataElementField
+	 * @generated
+	 */
+	EClass getDataElementField();
+
+	/**
+	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.ddic.DataElementField#getDataElementName <em>Data Element Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Element Name</em>'.
+	 * @see net.sf.rcer.rom.ddic.DataElementField#getDataElementName()
+	 * @see #getDataElementField()
+	 * @generated
+	 */
+	EAttribute getDataElementField_DataElementName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.ddic.DataElementField#getSearchHelpName <em>Search Help Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Search Help Name</em>'.
+	 * @see net.sf.rcer.rom.ddic.DataElementField#getSearchHelpName()
+	 * @see #getDataElementField()
+	 * @generated
+	 */
+	EAttribute getDataElementField_SearchHelpName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.ddic.DataElementField#getSearchHelpField <em>Search Help Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Search Help Field</em>'.
+	 * @see net.sf.rcer.rom.ddic.DataElementField#getSearchHelpField()
+	 * @see #getDataElementField()
+	 * @generated
+	 */
+	EAttribute getDataElementField_SearchHelpField();
+
+	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.DirectField <em>Direct Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Direct Field</em>'.
+	 * @see net.sf.rcer.rom.ddic.DirectField
+	 * @generated
+	 */
+	EClass getDirectField();
+
+	/**
+	 * Returns the meta object for the map '{@link net.sf.rcer.rom.ddic.DirectField#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Description</em>'.
+	 * @see net.sf.rcer.rom.ddic.DirectField#getDescription()
+	 * @see #getDirectField()
+	 * @generated
+	 */
+	EReference getDirectField_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.ddic.DirectField#getDictionaryDataType <em>Dictionary Data Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dictionary Data Type</em>'.
+	 * @see net.sf.rcer.rom.ddic.DirectField#getDictionaryDataType()
+	 * @see #getDirectField()
+	 * @generated
+	 */
+	EAttribute getDirectField_DictionaryDataType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.ddic.DirectField#getLength <em>Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Length</em>'.
+	 * @see net.sf.rcer.rom.ddic.DirectField#getLength()
+	 * @see #getDirectField()
+	 * @generated
+	 */
+	EAttribute getDirectField_Length();
+
+	/**
+	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.ddic.DirectField#getDecimals <em>Decimals</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Decimals</em>'.
+	 * @see net.sf.rcer.rom.ddic.DirectField#getDecimals()
+	 * @see #getDirectField()
+	 * @generated
+	 */
+	EAttribute getDirectField_Decimals();
+
+	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.StructuredField <em>Structured Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Structured Field</em>'.
+	 * @see net.sf.rcer.rom.ddic.StructuredField
+	 * @generated
+	 */
+	EClass getStructuredField();
+
+	/**
+	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.ddic.StructuredField#getStructureName <em>Structure Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Structure Name</em>'.
+	 * @see net.sf.rcer.rom.ddic.StructuredField#getStructureName()
+	 * @see #getStructuredField()
+	 * @generated
+	 */
+	EAttribute getStructuredField_StructureName();
+
+	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.TabularField <em>Tabular Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tabular Field</em>'.
+	 * @see net.sf.rcer.rom.ddic.TabularField
+	 * @generated
+	 */
+	EClass getTabularField();
+
+	/**
+	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.ddic.TabularField#getTableTypeName <em>Table Type Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Table Type Name</em>'.
+	 * @see net.sf.rcer.rom.ddic.TabularField#getTableTypeName()
+	 * @see #getTabularField()
+	 * @generated
+	 */
+	EAttribute getTabularField_TableTypeName();
+
+	/**
 	 * Returns the meta object for enum '{@link net.sf.rcer.rom.ddic.DictionaryDataType <em>Dictionary Data Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1922,6 +2846,268 @@ public interface DDICPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DATA_ELEMENT__REFERRED_TYPE = eINSTANCE.getDataElement_ReferredType();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.StructureImpl <em>Structure</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.StructureImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getStructure()
+		 * @generated
+		 */
+		EClass STRUCTURE = eINSTANCE.getStructure();
+
+		/**
+		 * The meta object literal for the '<em><b>Fields</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRUCTURE__FIELDS = eINSTANCE.getStructure_Fields();
+
+		/**
+		 * The meta object literal for the '<em><b>Collection</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRUCTURE__COLLECTION = eINSTANCE.getStructure_Collection();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.TableImpl <em>Table</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.TableImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getTable()
+		 * @generated
+		 */
+		EClass TABLE = eINSTANCE.getTable();
+
+		/**
+		 * The meta object literal for the '<em><b>Fields</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE__FIELDS = eINSTANCE.getTable_Fields();
+
+		/**
+		 * The meta object literal for the '<em><b>Collection</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE__COLLECTION = eINSTANCE.getTable_Collection();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.StructureFieldImpl <em>Structure Field</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.StructureFieldImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getStructureField()
+		 * @generated
+		 */
+		EClass STRUCTURE_FIELD = eINSTANCE.getStructureField();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.TableFieldImpl <em>Table Field</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.TableFieldImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getTableField()
+		 * @generated
+		 */
+		EClass TABLE_FIELD = eINSTANCE.getTableField();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.NamedFieldImpl <em>Named Field</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.NamedFieldImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getNamedField()
+		 * @generated
+		 */
+		EClass NAMED_FIELD = eINSTANCE.getNamedField();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMED_FIELD__NAME = eINSTANCE.getNamedField_Name();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.StructureInclusionImpl <em>Structure Inclusion</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.StructureInclusionImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getStructureInclusion()
+		 * @generated
+		 */
+		EClass STRUCTURE_INCLUSION = eINSTANCE.getStructureInclusion();
+
+		/**
+		 * The meta object literal for the '<em><b>Included Structure Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRUCTURE_INCLUSION__INCLUDED_STRUCTURE_NAME = eINSTANCE.getStructureInclusion_IncludedStructureName();
+
+		/**
+		 * The meta object literal for the '<em><b>Group Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRUCTURE_INCLUSION__GROUP_NAME = eINSTANCE.getStructureInclusion_GroupName();
+
+		/**
+		 * The meta object literal for the '<em><b>Suffix</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRUCTURE_INCLUSION__SUFFIX = eINSTANCE.getStructureInclusion_Suffix();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.SingleFieldImpl <em>Single Field</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.SingleFieldImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getSingleField()
+		 * @generated
+		 */
+		EClass SINGLE_FIELD = eINSTANCE.getSingleField();
+
+		/**
+		 * The meta object literal for the '<em><b>Reference Table Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SINGLE_FIELD__REFERENCE_TABLE_NAME = eINSTANCE.getSingleField_ReferenceTableName();
+
+		/**
+		 * The meta object literal for the '<em><b>Reference Field Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SINGLE_FIELD__REFERENCE_FIELD_NAME = eINSTANCE.getSingleField_ReferenceFieldName();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.DataElementFieldImpl <em>Data Element Field</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.DataElementFieldImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getDataElementField()
+		 * @generated
+		 */
+		EClass DATA_ELEMENT_FIELD = eINSTANCE.getDataElementField();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Element Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_ELEMENT_FIELD__DATA_ELEMENT_NAME = eINSTANCE.getDataElementField_DataElementName();
+
+		/**
+		 * The meta object literal for the '<em><b>Search Help Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_ELEMENT_FIELD__SEARCH_HELP_NAME = eINSTANCE.getDataElementField_SearchHelpName();
+
+		/**
+		 * The meta object literal for the '<em><b>Search Help Field</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_ELEMENT_FIELD__SEARCH_HELP_FIELD = eINSTANCE.getDataElementField_SearchHelpField();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.DirectFieldImpl <em>Direct Field</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.DirectFieldImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getDirectField()
+		 * @generated
+		 */
+		EClass DIRECT_FIELD = eINSTANCE.getDirectField();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DIRECT_FIELD__DESCRIPTION = eINSTANCE.getDirectField_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Dictionary Data Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIRECT_FIELD__DICTIONARY_DATA_TYPE = eINSTANCE.getDirectField_DictionaryDataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIRECT_FIELD__LENGTH = eINSTANCE.getDirectField_Length();
+
+		/**
+		 * The meta object literal for the '<em><b>Decimals</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIRECT_FIELD__DECIMALS = eINSTANCE.getDirectField_Decimals();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.StructuredFieldImpl <em>Structured Field</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.StructuredFieldImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getStructuredField()
+		 * @generated
+		 */
+		EClass STRUCTURED_FIELD = eINSTANCE.getStructuredField();
+
+		/**
+		 * The meta object literal for the '<em><b>Structure Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRUCTURED_FIELD__STRUCTURE_NAME = eINSTANCE.getStructuredField_StructureName();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.TabularFieldImpl <em>Tabular Field</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.TabularFieldImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getTabularField()
+		 * @generated
+		 */
+		EClass TABULAR_FIELD = eINSTANCE.getTabularField();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Type Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABULAR_FIELD__TABLE_TYPE_NAME = eINSTANCE.getTabularField_TableTypeName();
 
 		/**
 		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.DictionaryDataType <em>Dictionary Data Type</em>}' enum.

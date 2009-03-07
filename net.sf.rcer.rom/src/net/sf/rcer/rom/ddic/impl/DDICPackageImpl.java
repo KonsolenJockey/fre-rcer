@@ -17,13 +17,24 @@ import net.sf.rcer.rom.ROMPackage;
 import net.sf.rcer.rom.ddic.DDICFactory;
 import net.sf.rcer.rom.ddic.DDICPackage;
 import net.sf.rcer.rom.ddic.DataElement;
+import net.sf.rcer.rom.ddic.DataElementField;
 import net.sf.rcer.rom.ddic.DictionaryDataType;
+import net.sf.rcer.rom.ddic.DirectField;
 import net.sf.rcer.rom.ddic.Domain;
 import net.sf.rcer.rom.ddic.DomainValue;
 import net.sf.rcer.rom.ddic.DomainValueRange;
 import net.sf.rcer.rom.ddic.DomainValueSingle;
 
+import net.sf.rcer.rom.ddic.NamedField;
 import net.sf.rcer.rom.ddic.ReferredObjectType;
+import net.sf.rcer.rom.ddic.SingleField;
+import net.sf.rcer.rom.ddic.Structure;
+import net.sf.rcer.rom.ddic.StructureField;
+import net.sf.rcer.rom.ddic.StructureInclusion;
+import net.sf.rcer.rom.ddic.StructuredField;
+import net.sf.rcer.rom.ddic.Table;
+import net.sf.rcer.rom.ddic.TableField;
+import net.sf.rcer.rom.ddic.TabularField;
 import net.sf.rcer.rom.ddic.TypeKind;
 import net.sf.rcer.rom.impl.ROMPackageImpl;
 
@@ -76,6 +87,83 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * @generated
 	 */
 	private EClass dataElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass structureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass structureFieldEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tableFieldEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass namedFieldEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass structureInclusionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass singleFieldEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dataElementFieldEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass directFieldEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass structuredFieldEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tabularFieldEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -635,6 +723,276 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getStructure() {
+		return structureEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStructure_Fields() {
+		return (EReference)structureEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStructure_Collection() {
+		return (EReference)structureEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTable() {
+		return tableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTable_Fields() {
+		return (EReference)tableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTable_Collection() {
+		return (EReference)tableEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStructureField() {
+		return structureFieldEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTableField() {
+		return tableFieldEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNamedField() {
+		return namedFieldEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNamedField_Name() {
+		return (EAttribute)namedFieldEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStructureInclusion() {
+		return structureInclusionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStructureInclusion_IncludedStructureName() {
+		return (EAttribute)structureInclusionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStructureInclusion_GroupName() {
+		return (EAttribute)structureInclusionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStructureInclusion_Suffix() {
+		return (EAttribute)structureInclusionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSingleField() {
+		return singleFieldEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSingleField_ReferenceTableName() {
+		return (EAttribute)singleFieldEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSingleField_ReferenceFieldName() {
+		return (EAttribute)singleFieldEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDataElementField() {
+		return dataElementFieldEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElementField_DataElementName() {
+		return (EAttribute)dataElementFieldEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElementField_SearchHelpName() {
+		return (EAttribute)dataElementFieldEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataElementField_SearchHelpField() {
+		return (EAttribute)dataElementFieldEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDirectField() {
+		return directFieldEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDirectField_Description() {
+		return (EReference)directFieldEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDirectField_DictionaryDataType() {
+		return (EAttribute)directFieldEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDirectField_Length() {
+		return (EAttribute)directFieldEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDirectField_Decimals() {
+		return (EAttribute)directFieldEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStructuredField() {
+		return structuredFieldEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStructuredField_StructureName() {
+		return (EAttribute)structuredFieldEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTabularField() {
+		return tabularFieldEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTabularField_TableTypeName() {
+		return (EAttribute)tabularFieldEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getDictionaryDataType() {
 		return dictionaryDataTypeEEnum;
 	}
@@ -741,6 +1099,47 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 		createEAttribute(dataElementEClass, DATA_ELEMENT__TYPE_KIND);
 		createEAttribute(dataElementEClass, DATA_ELEMENT__REFERRED_TYPE);
 
+		structureEClass = createEClass(STRUCTURE);
+		createEReference(structureEClass, STRUCTURE__FIELDS);
+		createEReference(structureEClass, STRUCTURE__COLLECTION);
+
+		tableEClass = createEClass(TABLE);
+		createEReference(tableEClass, TABLE__FIELDS);
+		createEReference(tableEClass, TABLE__COLLECTION);
+
+		structureFieldEClass = createEClass(STRUCTURE_FIELD);
+
+		tableFieldEClass = createEClass(TABLE_FIELD);
+
+		namedFieldEClass = createEClass(NAMED_FIELD);
+		createEAttribute(namedFieldEClass, NAMED_FIELD__NAME);
+
+		structureInclusionEClass = createEClass(STRUCTURE_INCLUSION);
+		createEAttribute(structureInclusionEClass, STRUCTURE_INCLUSION__INCLUDED_STRUCTURE_NAME);
+		createEAttribute(structureInclusionEClass, STRUCTURE_INCLUSION__GROUP_NAME);
+		createEAttribute(structureInclusionEClass, STRUCTURE_INCLUSION__SUFFIX);
+
+		singleFieldEClass = createEClass(SINGLE_FIELD);
+		createEAttribute(singleFieldEClass, SINGLE_FIELD__REFERENCE_TABLE_NAME);
+		createEAttribute(singleFieldEClass, SINGLE_FIELD__REFERENCE_FIELD_NAME);
+
+		dataElementFieldEClass = createEClass(DATA_ELEMENT_FIELD);
+		createEAttribute(dataElementFieldEClass, DATA_ELEMENT_FIELD__DATA_ELEMENT_NAME);
+		createEAttribute(dataElementFieldEClass, DATA_ELEMENT_FIELD__SEARCH_HELP_NAME);
+		createEAttribute(dataElementFieldEClass, DATA_ELEMENT_FIELD__SEARCH_HELP_FIELD);
+
+		directFieldEClass = createEClass(DIRECT_FIELD);
+		createEReference(directFieldEClass, DIRECT_FIELD__DESCRIPTION);
+		createEAttribute(directFieldEClass, DIRECT_FIELD__DICTIONARY_DATA_TYPE);
+		createEAttribute(directFieldEClass, DIRECT_FIELD__LENGTH);
+		createEAttribute(directFieldEClass, DIRECT_FIELD__DECIMALS);
+
+		structuredFieldEClass = createEClass(STRUCTURED_FIELD);
+		createEAttribute(structuredFieldEClass, STRUCTURED_FIELD__STRUCTURE_NAME);
+
+		tabularFieldEClass = createEClass(TABULAR_FIELD);
+		createEAttribute(tabularFieldEClass, TABULAR_FIELD__TABLE_TYPE_NAME);
+
 		// Create enums
 		dictionaryDataTypeEEnum = createEEnum(DICTIONARY_DATA_TYPE);
 		referredObjectTypeEEnum = createEEnum(REFERRED_OBJECT_TYPE);
@@ -782,6 +1181,17 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 		domainValueSingleEClass.getESuperTypes().add(this.getDomainValue());
 		domainValueRangeEClass.getESuperTypes().add(this.getDomainValue());
 		dataElementEClass.getESuperTypes().add(theROMPackage.getRepositoryObject());
+		structureEClass.getESuperTypes().add(theROMPackage.getRepositoryObject());
+		tableEClass.getESuperTypes().add(theROMPackage.getRepositoryObject());
+		namedFieldEClass.getESuperTypes().add(this.getStructureField());
+		structureInclusionEClass.getESuperTypes().add(this.getStructureField());
+		structureInclusionEClass.getESuperTypes().add(this.getTableField());
+		singleFieldEClass.getESuperTypes().add(this.getNamedField());
+		singleFieldEClass.getESuperTypes().add(this.getTableField());
+		dataElementFieldEClass.getESuperTypes().add(this.getSingleField());
+		directFieldEClass.getESuperTypes().add(this.getSingleField());
+		structuredFieldEClass.getESuperTypes().add(this.getNamedField());
+		tabularFieldEClass.getESuperTypes().add(this.getNamedField());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(domainEClass, Domain.class, "Domain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -847,6 +1257,48 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 		initEAttribute(getDataElement_ConversionExit(), ecorePackage.getEString(), "conversionExit", null, 0, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDataElement_TypeKind(), this.getTypeKind(), "typeKind", null, 0, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDataElement_ReferredType(), this.getReferredObjectType(), "referredType", null, 0, 1, DataElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(structureEClass, Structure.class, "Structure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getStructure_Fields(), this.getStructureField(), null, "fields", null, 0, -1, Structure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getStructure_Collection(), theROMPackage.getRepositoryObjectCollection(), theROMPackage.getRepositoryObjectCollection_Structures(), "collection", null, 0, 1, Structure.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(tableEClass, Table.class, "Table", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getTable_Fields(), this.getTableField(), null, "fields", null, 0, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTable_Collection(), theROMPackage.getRepositoryObjectCollection(), theROMPackage.getRepositoryObjectCollection_Tables(), "collection", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(structureFieldEClass, StructureField.class, "StructureField", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(tableFieldEClass, TableField.class, "TableField", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(namedFieldEClass, NamedField.class, "NamedField", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getNamedField_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(structureInclusionEClass, StructureInclusion.class, "StructureInclusion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getStructureInclusion_IncludedStructureName(), ecorePackage.getEString(), "includedStructureName", null, 1, 1, StructureInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getStructureInclusion_GroupName(), ecorePackage.getEString(), "groupName", null, 0, 1, StructureInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getStructureInclusion_Suffix(), ecorePackage.getEString(), "suffix", null, 0, 1, StructureInclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(singleFieldEClass, SingleField.class, "SingleField", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getSingleField_ReferenceTableName(), ecorePackage.getEString(), "referenceTableName", null, 0, 1, SingleField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getSingleField_ReferenceFieldName(), ecorePackage.getEString(), "referenceFieldName", null, 0, 1, SingleField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(dataElementFieldEClass, DataElementField.class, "DataElementField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getDataElementField_DataElementName(), ecorePackage.getEString(), "dataElementName", null, 1, 1, DataElementField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElementField_SearchHelpName(), ecorePackage.getEString(), "searchHelpName", null, 0, 1, DataElementField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDataElementField_SearchHelpField(), ecorePackage.getEString(), "searchHelpField", null, 0, 1, DataElementField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(directFieldEClass, DirectField.class, "DirectField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getDirectField_Description(), theROMPackage.getLocalizedString(), null, "description", null, 0, -1, DirectField.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getDirectField_Description().getEKeys().add(theROMPackage.getLocalizedString_Key());
+		initEAttribute(getDirectField_DictionaryDataType(), this.getDictionaryDataType(), "dictionaryDataType", null, 0, 1, DirectField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDirectField_Length(), ecorePackage.getEInt(), "length", null, 1, 1, DirectField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDirectField_Decimals(), ecorePackage.getEInt(), "decimals", null, 1, 1, DirectField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(structuredFieldEClass, StructuredField.class, "StructuredField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getStructuredField_StructureName(), ecorePackage.getEString(), "structureName", null, 1, 1, StructuredField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(tabularFieldEClass, TabularField.class, "TabularField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getTabularField_TableTypeName(), ecorePackage.getEString(), "tableTypeName", null, 1, 1, TabularField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(dictionaryDataTypeEEnum, DictionaryDataType.class, "DictionaryDataType"); //$NON-NLS-1$

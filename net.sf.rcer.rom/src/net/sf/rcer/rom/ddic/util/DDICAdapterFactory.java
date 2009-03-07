@@ -100,6 +100,50 @@ public class DDICAdapterFactory extends AdapterFactoryImpl {
 				return createDataElementAdapter();
 			}
 			@Override
+			public Adapter caseStructure(Structure object) {
+				return createStructureAdapter();
+			}
+			@Override
+			public Adapter caseTable(Table object) {
+				return createTableAdapter();
+			}
+			@Override
+			public Adapter caseStructureField(StructureField object) {
+				return createStructureFieldAdapter();
+			}
+			@Override
+			public Adapter caseTableField(TableField object) {
+				return createTableFieldAdapter();
+			}
+			@Override
+			public Adapter caseNamedField(NamedField object) {
+				return createNamedFieldAdapter();
+			}
+			@Override
+			public Adapter caseStructureInclusion(StructureInclusion object) {
+				return createStructureInclusionAdapter();
+			}
+			@Override
+			public Adapter caseSingleField(SingleField object) {
+				return createSingleFieldAdapter();
+			}
+			@Override
+			public Adapter caseDataElementField(DataElementField object) {
+				return createDataElementFieldAdapter();
+			}
+			@Override
+			public Adapter caseDirectField(DirectField object) {
+				return createDirectFieldAdapter();
+			}
+			@Override
+			public Adapter caseStructuredField(StructuredField object) {
+				return createStructuredFieldAdapter();
+			}
+			@Override
+			public Adapter caseTabularField(TabularField object) {
+				return createTabularFieldAdapter();
+			}
+			@Override
 			public Adapter caseRepositoryObject(RepositoryObject object) {
 				return createRepositoryObjectAdapter();
 			}
@@ -190,6 +234,160 @@ public class DDICAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDataElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.Structure <em>Structure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.Structure
+	 * @generated
+	 */
+	public Adapter createStructureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.Table <em>Table</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.Table
+	 * @generated
+	 */
+	public Adapter createTableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.StructureField <em>Structure Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.StructureField
+	 * @generated
+	 */
+	public Adapter createStructureFieldAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.TableField <em>Table Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.TableField
+	 * @generated
+	 */
+	public Adapter createTableFieldAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.NamedField <em>Named Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.NamedField
+	 * @generated
+	 */
+	public Adapter createNamedFieldAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.StructureInclusion <em>Structure Inclusion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.StructureInclusion
+	 * @generated
+	 */
+	public Adapter createStructureInclusionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.SingleField <em>Single Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.SingleField
+	 * @generated
+	 */
+	public Adapter createSingleFieldAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.DataElementField <em>Data Element Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.DataElementField
+	 * @generated
+	 */
+	public Adapter createDataElementFieldAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.DirectField <em>Direct Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.DirectField
+	 * @generated
+	 */
+	public Adapter createDirectFieldAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.StructuredField <em>Structured Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.StructuredField
+	 * @generated
+	 */
+	public Adapter createStructuredFieldAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.TabularField <em>Tabular Field</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.TabularField
+	 * @generated
+	 */
+	public Adapter createTabularFieldAdapter() {
 		return null;
 	}
 

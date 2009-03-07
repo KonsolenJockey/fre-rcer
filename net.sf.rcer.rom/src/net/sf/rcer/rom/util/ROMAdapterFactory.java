@@ -86,6 +86,10 @@ public class ROMAdapterFactory extends AdapterFactoryImpl {
 				return createLocalizedStringAdapter();
 			}
 			@Override
+			public Adapter caseRepositoryObjectKey(RepositoryObjectKey object) {
+				return createRepositoryObjectKeyAdapter();
+			}
+			@Override
 			public Adapter caseRepositoryObject(RepositoryObject object) {
 				return createRepositoryObjectAdapter();
 			}
@@ -128,6 +132,20 @@ public class ROMAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLocalizedStringAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.RepositoryObjectKey <em>Repository Object Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.RepositoryObjectKey
+	 * @generated
+	 */
+	public Adapter createRepositoryObjectKeyAdapter() {
 		return null;
 	}
 

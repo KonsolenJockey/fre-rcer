@@ -68,6 +68,69 @@ public interface DDICFactory extends EFactory {
 	DataElement createDataElement();
 
 	/**
+	 * Returns a new object of class '<em>Structure</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Structure</em>'.
+	 * @generated
+	 */
+	Structure createStructure();
+
+	/**
+	 * Returns a new object of class '<em>Table</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Table</em>'.
+	 * @generated
+	 */
+	Table createTable();
+
+	/**
+	 * Returns a new object of class '<em>Structure Inclusion</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Structure Inclusion</em>'.
+	 * @generated
+	 */
+	StructureInclusion createStructureInclusion();
+
+	/**
+	 * Returns a new object of class '<em>Data Element Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Data Element Field</em>'.
+	 * @generated
+	 */
+	DataElementField createDataElementField();
+
+	/**
+	 * Returns a new object of class '<em>Direct Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Direct Field</em>'.
+	 * @generated
+	 */
+	DirectField createDirectField();
+
+	/**
+	 * Returns a new object of class '<em>Structured Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Structured Field</em>'.
+	 * @generated
+	 */
+	StructuredField createStructuredField();
+
+	/**
+	 * Returns a new object of class '<em>Tabular Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tabular Field</em>'.
+	 * @generated
+	 */
+	TabularField createTabularField();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

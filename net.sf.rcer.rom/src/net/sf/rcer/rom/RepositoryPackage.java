@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EMap;
  * The following features are supported:
  * <ul>
  *   <li>{@link net.sf.rcer.rom.RepositoryPackage#getDescription <em>Description</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.RepositoryPackage#getObjectKeys <em>Object Keys</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryPackage#getObjects <em>Objects</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryPackage#getSubPackageNames <em>Sub Package Names</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryPackage#isChangeRecodingEnabled <em>Change Recoding Enabled</em>}</li>
@@ -39,6 +40,7 @@ import org.eclipse.emf.common.util.EMap;
  *   <li>{@link net.sf.rcer.rom.RepositoryPackage#isCheckedAsServer <em>Checked As Server</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryPackage#isCheckedAsClient <em>Checked As Client</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryPackage#getCollection <em>Collection</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.RepositoryPackage#isObjectsLoaded <em>Objects Loaded</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,6 +65,22 @@ public interface RepositoryPackage extends RepositoryObject {
 	 * @generated
 	 */
 	EMap<Locale, String> getDescription();
+
+	/**
+	 * Returns the value of the '<em><b>Object Keys</b></em>' reference list.
+	 * The list contents are of type {@link net.sf.rcer.rom.RepositoryObjectKey}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Object Keys</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Object Keys</em>' reference list.
+	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryPackage_ObjectKeys()
+	 * @model keys="programID objectTypeID name" ordered="false"
+	 * @generated
+	 */
+	EList<RepositoryObjectKey> getObjectKeys();
 
 	/**
 	 * Returns the value of the '<em><b>Change Recoding Enabled</b></em>' attribute.
@@ -352,6 +370,33 @@ public interface RepositoryPackage extends RepositoryObject {
 	 * @generated
 	 */
 	RepositoryObjectCollection getCollection();
+
+	/**
+	 * Returns the value of the '<em><b>Objects Loaded</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Objects Loaded</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Objects Loaded</em>' attribute.
+	 * @see #setObjectsLoaded(boolean)
+	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryPackage_ObjectsLoaded()
+	 * @model default="false" unique="false" required="true" transient="true" ordered="false"
+	 * @generated
+	 */
+	boolean isObjectsLoaded();
+
+	/**
+	 * Sets the value of the '{@link net.sf.rcer.rom.RepositoryPackage#isObjectsLoaded <em>Objects Loaded</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Objects Loaded</em>' attribute.
+	 * @see #isObjectsLoaded()
+	 * @generated
+	 */
+	void setObjectsLoaded(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Objects</b></em>' reference list.

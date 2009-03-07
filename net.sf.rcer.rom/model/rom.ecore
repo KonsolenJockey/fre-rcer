@@ -16,11 +16,21 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RepositoryObjectKey">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="programID" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectTypeID" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="RepositoryObjectType">
     <eLiterals name="UNKNOWN"/>
     <eLiterals name="PACKAGE" value="10"/>
     <eLiterals name="DOMAIN" value="20"/>
     <eLiterals name="DATA_ELEMENT" value="21"/>
+    <eLiterals name="TABLE" value="22" literal="TABLE"/>
+    <eLiterals name="STRUCTURE" value="23" literal="STRUCTURE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RepositoryObject" abstract="true">
     <eOperations name="getCollection" ordered="false" unique="false" lowerBound="1"
@@ -29,6 +39,8 @@
         eExceptions="#//ObjectNotFoundException #//ObjectLoadingException">
       <eParameters name="load" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
+    <eOperations name="getProgramID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="getObjectTypeID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectType" ordered="false"
         unique="false" lowerBound="1" eType="#//RepositoryObjectType" changeable="false"
         volatile="true" transient="true" defaultValueLiteral="" derived="true"/>
@@ -38,14 +50,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="loaded" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         transient="true" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="programID" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        changeable="false" volatile="true" transient="true" defaultValueLiteral=""
-        derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectTypeID" ordered="false"
-        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        changeable="false" volatile="true" transient="true" defaultValueLiteral=""
-        derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceSystem" ordered="false"
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="author" ordered="false"
@@ -80,12 +84,7 @@
     </eOperations>
     <eOperations name="loadObject" ordered="false" unique="false" lowerBound="1" eType="#//RepositoryObject"
         eExceptions="#//ObjectNotFoundException #//ObjectLoadingException">
-      <eParameters name="programID" ordered="false" unique="false" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="objectTypeID" ordered="false" unique="false" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eParameters name="objectName" ordered="false" unique="false" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="key" ordered="false" unique="false" lowerBound="1" eType="#//RepositoryObjectKey"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceConnection" ordered="false"
         unique="false" eType="#//JCoDestination" transient="true" unsettable="true"/>
@@ -98,6 +97,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataElements" ordered="false"
         upperBound="-1" eType="ecore:EClass ddic.ecore#//DataElement" containment="true"
         eOpposite="ddic.ecore#//DataElement/collection" eKeys="#//RepositoryObject/name"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="structures" ordered="false"
+        upperBound="-1" eType="ecore:EClass ddic.ecore#//Structure" containment="true"
+        eOpposite="ddic.ecore#//Structure/collection" eKeys="#//RepositoryObject/name"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tables" ordered="false"
+        upperBound="-1" eType="ecore:EClass ddic.ecore#//Table" containment="true"
+        eOpposite="ddic.ecore#//Table/collection" eKeys="#//RepositoryObject/name"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PackageType">
     <eLiterals name="STANDARD"/>
@@ -114,6 +119,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="description" ordered="false"
         unique="false" upperBound="-1" eType="#//LocalizedString" changeable="false"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectKeys" ordered="false"
+        upperBound="-1" eType="#//RepositoryObjectKey" eKeys="#//RepositoryObjectKey/programID #//RepositoryObjectKey/objectTypeID #//RepositoryObjectKey/name"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="objects" ordered="false"
         upperBound="-1" eType="#//RepositoryObject" eKeys="#//RepositoryObject/objectType #//RepositoryObject/name"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="subPackageNames" ordered="false"
@@ -145,5 +152,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="collection" ordered="false"
         unique="false" eType="#//RepositoryObjectCollection" changeable="false" derived="true"
         eOpposite="#//RepositoryObjectCollection/packages"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectsLoaded" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        transient="true" defaultValueLiteral="false"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -102,6 +102,12 @@ public class ROMSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ROMPackage.REPOSITORY_OBJECT_KEY: {
+				RepositoryObjectKey repositoryObjectKey = (RepositoryObjectKey)theEObject;
+				T result = caseRepositoryObjectKey(repositoryObjectKey);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ROMPackage.REPOSITORY_OBJECT: {
 				RepositoryObject repositoryObject = (RepositoryObject)theEObject;
 				T result = caseRepositoryObject(repositoryObject);
@@ -137,6 +143,21 @@ public class ROMSwitch<T> {
 	 * @generated
 	 */
 	public T caseLocalizedString(Map.Entry<Locale, String> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Repository Object Key</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Repository Object Key</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRepositoryObjectKey(RepositoryObjectKey object) {
 		return null;
 	}
 

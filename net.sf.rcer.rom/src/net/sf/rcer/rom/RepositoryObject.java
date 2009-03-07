@@ -29,8 +29,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#getObjectType <em>Object Type</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#getName <em>Name</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#isLoaded <em>Loaded</em>}</li>
- *   <li>{@link net.sf.rcer.rom.RepositoryObject#getProgramID <em>Program ID</em>}</li>
- *   <li>{@link net.sf.rcer.rom.RepositoryObject#getObjectTypeID <em>Object Type ID</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#getSourceSystem <em>Source System</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#getAuthor <em>Author</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObject#isGenerated <em>Generated</em>}</li>
@@ -92,33 +90,25 @@ public interface RepositoryObject extends EObject {
 	void setLoaded(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Program ID</b></em>' attribute.
-	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Program ID</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Program ID</em>' attribute.
-	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryObject_ProgramID()
-	 * @model default="" unique="false" required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
+	 * @model kind="operation" required="true"
 	 * @generated
 	 */
 	String getProgramID();
 
 	/**
-	 * Returns the value of the '<em><b>Object Type ID</b></em>' attribute.
-	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Object Type ID</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Object Type ID</em>' attribute.
-	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryObject_ObjectTypeID()
-	 * @model default="" unique="false" required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
+	 * @model kind="operation" required="true"
 	 * @generated
 	 */
 	String getObjectTypeID();

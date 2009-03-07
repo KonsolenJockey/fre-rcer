@@ -32,6 +32,15 @@ public interface ROMFactory extends EFactory {
 	ROMFactory eINSTANCE = net.sf.rcer.rom.impl.ROMFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Repository Object Key</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Repository Object Key</em>'.
+	 * @generated
+	 */
+	RepositoryObjectKey createRepositoryObjectKey();
+
+	/**
 	 * Returns a new object of class '<em>Repository Object Collection</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

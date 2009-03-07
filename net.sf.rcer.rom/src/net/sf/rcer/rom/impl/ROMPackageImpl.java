@@ -21,6 +21,7 @@ import net.sf.rcer.rom.ROMFactory;
 import net.sf.rcer.rom.ROMPackage;
 import net.sf.rcer.rom.RepositoryObject;
 import net.sf.rcer.rom.RepositoryObjectCollection;
+import net.sf.rcer.rom.RepositoryObjectKey;
 import net.sf.rcer.rom.RepositoryObjectType;
 import net.sf.rcer.rom.RepositoryPackage;
 import net.sf.rcer.rom.ddic.DDICPackage;
@@ -53,6 +54,13 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * @generated
 	 */
 	private EClass localizedStringEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass repositoryObjectKeyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -236,6 +244,42 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRepositoryObjectKey() {
+		return repositoryObjectKeyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRepositoryObjectKey_ProgramID() {
+		return (EAttribute)repositoryObjectKeyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRepositoryObjectKey_ObjectTypeID() {
+		return (EAttribute)repositoryObjectKeyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRepositoryObjectKey_Name() {
+		return (EAttribute)repositoryObjectKeyEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRepositoryObject() {
 		return repositoryObjectEClass;
 	}
@@ -263,24 +307,6 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRepositoryObject_ProgramID() {
-		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRepositoryObject_ObjectTypeID() {
-		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getRepositoryObject_Name() {
 		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(1);
 	}
@@ -291,7 +317,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * @generated
 	 */
 	public EAttribute getRepositoryObject_SourceSystem() {
-		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -300,7 +326,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * @generated
 	 */
 	public EAttribute getRepositoryObject_Author() {
-		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -353,8 +379,26 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getRepositoryObjectCollection_Structures() {
+		return (EReference)repositoryObjectCollectionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRepositoryObjectCollection_Tables() {
+		return (EReference)repositoryObjectCollectionEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getRepositoryObject_Generated() {
-		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(7);
+		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -363,7 +407,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * @generated
 	 */
 	public EAttribute getRepositoryObject_OriginalLocale() {
-		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(8);
+		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -372,7 +416,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * @generated
 	 */
 	public EAttribute getRepositoryObject_SoftwareComponent() {
-		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(9);
+		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -381,7 +425,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * @generated
 	 */
 	public EAttribute getRepositoryObject_ComponentRelease() {
-		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(10);
+		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -390,7 +434,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * @generated
 	 */
 	public EAttribute getRepositoryObject_PackageName() {
-		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(11);
+		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -416,106 +460,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRepositoryPackage_ChangeRecodingEnabled() {
-		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRepositoryPackage_ResponsibleUser() {
-		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRepositoryPackage_TransportLayer() {
-		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRepositoryPackage_Namespace() {
-		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRepositoryPackage_InterfacePrefix() {
-		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRepositoryPackage_PermittedObjectTypes() {
-		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRepositoryPackage_ObjectCreationRestricted() {
-		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRepositoryPackage_Type() {
-		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRepositoryPackage_CheckedAsServer() {
-		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRepositoryPackage_CheckedAsClient() {
-		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(12);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRepositoryPackage_Collection() {
-		return (EReference)repositoryPackageEClass.getEStructuralFeatures().get(13);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRepositoryPackage_Objects() {
+	public EReference getRepositoryPackage_ObjectKeys() {
 		return (EReference)repositoryPackageEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -524,8 +469,125 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getRepositoryPackage_ChangeRecodingEnabled() {
+		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRepositoryPackage_ResponsibleUser() {
+		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRepositoryPackage_TransportLayer() {
+		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRepositoryPackage_Namespace() {
+		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRepositoryPackage_InterfacePrefix() {
+		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRepositoryPackage_PermittedObjectTypes() {
+		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRepositoryPackage_ObjectCreationRestricted() {
+		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRepositoryPackage_Type() {
+		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRepositoryPackage_CheckedAsServer() {
+		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRepositoryPackage_CheckedAsClient() {
+		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRepositoryPackage_Collection() {
+		return (EReference)repositoryPackageEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRepositoryPackage_ObjectsLoaded() {
+		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRepositoryPackage_Objects() {
+		return (EReference)repositoryPackageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getRepositoryPackage_SubPackageNames() {
-		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)repositoryPackageEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -632,12 +694,15 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		createEAttribute(localizedStringEClass, LOCALIZED_STRING__KEY);
 		createEAttribute(localizedStringEClass, LOCALIZED_STRING__VALUE);
 
+		repositoryObjectKeyEClass = createEClass(REPOSITORY_OBJECT_KEY);
+		createEAttribute(repositoryObjectKeyEClass, REPOSITORY_OBJECT_KEY__PROGRAM_ID);
+		createEAttribute(repositoryObjectKeyEClass, REPOSITORY_OBJECT_KEY__OBJECT_TYPE_ID);
+		createEAttribute(repositoryObjectKeyEClass, REPOSITORY_OBJECT_KEY__NAME);
+
 		repositoryObjectEClass = createEClass(REPOSITORY_OBJECT);
 		createEAttribute(repositoryObjectEClass, REPOSITORY_OBJECT__OBJECT_TYPE);
 		createEAttribute(repositoryObjectEClass, REPOSITORY_OBJECT__NAME);
 		createEAttribute(repositoryObjectEClass, REPOSITORY_OBJECT__LOADED);
-		createEAttribute(repositoryObjectEClass, REPOSITORY_OBJECT__PROGRAM_ID);
-		createEAttribute(repositoryObjectEClass, REPOSITORY_OBJECT__OBJECT_TYPE_ID);
 		createEAttribute(repositoryObjectEClass, REPOSITORY_OBJECT__SOURCE_SYSTEM);
 		createEAttribute(repositoryObjectEClass, REPOSITORY_OBJECT__AUTHOR);
 		createEAttribute(repositoryObjectEClass, REPOSITORY_OBJECT__GENERATED);
@@ -651,9 +716,12 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__PACKAGES);
 		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__DOMAINS);
 		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS);
+		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__STRUCTURES);
+		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__TABLES);
 
 		repositoryPackageEClass = createEClass(REPOSITORY_PACKAGE);
 		createEReference(repositoryPackageEClass, REPOSITORY_PACKAGE__DESCRIPTION);
+		createEReference(repositoryPackageEClass, REPOSITORY_PACKAGE__OBJECT_KEYS);
 		createEReference(repositoryPackageEClass, REPOSITORY_PACKAGE__OBJECTS);
 		createEAttribute(repositoryPackageEClass, REPOSITORY_PACKAGE__SUB_PACKAGE_NAMES);
 		createEAttribute(repositoryPackageEClass, REPOSITORY_PACKAGE__CHANGE_RECODING_ENABLED);
@@ -667,6 +735,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		createEAttribute(repositoryPackageEClass, REPOSITORY_PACKAGE__CHECKED_AS_SERVER);
 		createEAttribute(repositoryPackageEClass, REPOSITORY_PACKAGE__CHECKED_AS_CLIENT);
 		createEReference(repositoryPackageEClass, REPOSITORY_PACKAGE__COLLECTION);
+		createEAttribute(repositoryPackageEClass, REPOSITORY_PACKAGE__OBJECTS_LOADED);
 
 		// Create enums
 		repositoryObjectTypeEEnum = createEEnum(REPOSITORY_OBJECT_TYPE);
@@ -719,12 +788,15 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		initEAttribute(getLocalizedString_Key(), this.getLocale(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getLocalizedString_Value(), ecorePackage.getEString(), "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(repositoryObjectKeyEClass, RepositoryObjectKey.class, "RepositoryObjectKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getRepositoryObjectKey_ProgramID(), ecorePackage.getEString(), "programID", null, 1, 1, RepositoryObjectKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getRepositoryObjectKey_ObjectTypeID(), ecorePackage.getEString(), "objectTypeID", null, 1, 1, RepositoryObjectKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getRepositoryObjectKey_Name(), ecorePackage.getEString(), "name", null, 1, 1, RepositoryObjectKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(repositoryObjectEClass, RepositoryObject.class, "RepositoryObject", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getRepositoryObject_ObjectType(), this.getRepositoryObjectType(), "objectType", "", 1, 1, RepositoryObject.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getRepositoryObject_Name(), ecorePackage.getEString(), "name", "", 1, 1, RepositoryObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getRepositoryObject_Loaded(), ecorePackage.getEBoolean(), "loaded", "false", 1, 1, RepositoryObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getRepositoryObject_ProgramID(), ecorePackage.getEString(), "programID", "", 1, 1, RepositoryObject.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getRepositoryObject_ObjectTypeID(), ecorePackage.getEString(), "objectTypeID", "", 1, 1, RepositoryObject.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getRepositoryObject_SourceSystem(), ecorePackage.getEString(), "sourceSystem", null, 0, 1, RepositoryObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getRepositoryObject_Author(), ecorePackage.getEString(), "author", null, 0, 1, RepositoryObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getRepositoryObject_Generated(), ecorePackage.getEBoolean(), "generated", "false", 1, 1, RepositoryObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
@@ -740,6 +812,10 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		addEException(op, this.getObjectNotFoundException());
 		addEException(op, this.getObjectLoadingException());
 
+		addEOperation(repositoryObjectEClass, ecorePackage.getEString(), "getProgramID", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		addEOperation(repositoryObjectEClass, ecorePackage.getEString(), "getObjectTypeID", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(repositoryObjectCollectionEClass, RepositoryObjectCollection.class, "RepositoryObjectCollection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getRepositoryObjectCollection_SourceConnection(), this.getJCoDestination(), "sourceConnection", null, 0, 1, RepositoryObjectCollection.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getRepositoryObjectCollection_Packages(), this.getRepositoryPackage(), this.getRepositoryPackage_Collection(), "packages", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -748,6 +824,10 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		getRepositoryObjectCollection_Domains().getEKeys().add(this.getRepositoryObject_Name());
 		initEReference(getRepositoryObjectCollection_DataElements(), theDDICPackage.getDataElement(), theDDICPackage.getDataElement_Collection(), "dataElements", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		getRepositoryObjectCollection_DataElements().getEKeys().add(this.getRepositoryObject_Name());
+		initEReference(getRepositoryObjectCollection_Structures(), theDDICPackage.getStructure(), theDDICPackage.getStructure_Collection(), "structures", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getRepositoryObjectCollection_Structures().getEKeys().add(this.getRepositoryObject_Name());
+		initEReference(getRepositoryObjectCollection_Tables(), theDDICPackage.getTable(), theDDICPackage.getTable_Collection(), "tables", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getRepositoryObjectCollection_Tables().getEKeys().add(this.getRepositoryObject_Name());
 
 		op = addEOperation(repositoryObjectCollectionEClass, this.getRepositoryPackage(), "getPackage", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
@@ -768,14 +848,16 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		addEException(op, this.getObjectLoadingException());
 
 		op = addEOperation(repositoryObjectCollectionEClass, this.getRepositoryObject(), "loadObject", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "programID", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "objectTypeID", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "objectName", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getRepositoryObjectKey(), "key", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEException(op, this.getObjectNotFoundException());
 		addEException(op, this.getObjectLoadingException());
 
 		initEClass(repositoryPackageEClass, RepositoryPackage.class, "RepositoryPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getRepositoryPackage_Description(), this.getLocalizedString(), null, "description", null, 0, -1, RepositoryPackage.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getRepositoryPackage_ObjectKeys(), this.getRepositoryObjectKey(), null, "objectKeys", null, 0, -1, RepositoryPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getRepositoryPackage_ObjectKeys().getEKeys().add(this.getRepositoryObjectKey_ProgramID());
+		getRepositoryPackage_ObjectKeys().getEKeys().add(this.getRepositoryObjectKey_ObjectTypeID());
+		getRepositoryPackage_ObjectKeys().getEKeys().add(this.getRepositoryObjectKey_Name());
 		initEReference(getRepositoryPackage_Objects(), this.getRepositoryObject(), null, "objects", null, 0, -1, RepositoryPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		getRepositoryPackage_Objects().getEKeys().add(this.getRepositoryObject_ObjectType());
 		getRepositoryPackage_Objects().getEKeys().add(this.getRepositoryObject_Name());
@@ -791,6 +873,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		initEAttribute(getRepositoryPackage_CheckedAsServer(), ecorePackage.getEBoolean(), "checkedAsServer", "false", 1, 1, RepositoryPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getRepositoryPackage_CheckedAsClient(), ecorePackage.getEBoolean(), "checkedAsClient", "false", 1, 1, RepositoryPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getRepositoryPackage_Collection(), this.getRepositoryObjectCollection(), this.getRepositoryObjectCollection_Packages(), "collection", null, 0, 1, RepositoryPackage.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getRepositoryPackage_ObjectsLoaded(), ecorePackage.getEBoolean(), "objectsLoaded", "false", 1, 1, RepositoryPackage.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		// Initialize enums and add enum literals
 		initEEnum(repositoryObjectTypeEEnum, RepositoryObjectType.class, "RepositoryObjectType"); //$NON-NLS-1$
@@ -798,6 +881,8 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.PACKAGE);
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.DOMAIN);
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.DATA_ELEMENT);
+		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.TABLE);
+		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.STRUCTURE);
 
 		initEEnum(packageTypeEEnum, PackageType.class, "PackageType"); //$NON-NLS-1$
 		addEEnumLiteral(packageTypeEEnum, PackageType.STANDARD);

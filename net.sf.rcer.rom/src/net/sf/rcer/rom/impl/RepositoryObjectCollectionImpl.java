@@ -30,6 +30,7 @@ import net.sf.rcer.rom.ROMFactory;
 import net.sf.rcer.rom.ROMPackage;
 import net.sf.rcer.rom.RepositoryObject;
 import net.sf.rcer.rom.RepositoryObjectCollection;
+import net.sf.rcer.rom.RepositoryObjectKey;
 import net.sf.rcer.rom.RepositoryPackage;
 import net.sf.rcer.rom.ddic.DDICFactory;
 import net.sf.rcer.rom.ddic.DDICPackage;
@@ -39,6 +40,8 @@ import net.sf.rcer.rom.ddic.Domain;
 import net.sf.rcer.rom.ddic.DomainValueRange;
 import net.sf.rcer.rom.ddic.DomainValueSingle;
 import net.sf.rcer.rom.ddic.ReferredObjectType;
+import net.sf.rcer.rom.ddic.Structure;
+import net.sf.rcer.rom.ddic.Table;
 import net.sf.rcer.rom.ddic.TypeKind;
 import net.sf.rcer.rom.ddic.rfc.RFCDataElementData;
 import net.sf.rcer.rom.ddic.rfc.RFCDataElementReader;
@@ -73,6 +76,8 @@ import com.sap.conn.jco.JCoException;
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getPackages <em>Packages</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getDomains <em>Domains</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getDataElements <em>Data Elements</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getStructures <em>Structures</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getTables <em>Tables</em>}</li>
  * </ul>
  * </p>
  *
@@ -128,6 +133,26 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	 * @ordered
 	 */
 	protected EList<DataElement> dataElements;
+
+	/**
+	 * The cached value of the '{@link #getStructures() <em>Structures</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStructures()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Structure> structures;
+
+	/**
+	 * The cached value of the '{@link #getTables() <em>Tables</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTables()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Table> tables;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -204,6 +229,30 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			dataElements = new EObjectContainmentWithInverseEList<DataElement>(DataElement.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS, DDICPackage.DATA_ELEMENT__COLLECTION);
 		}
 		return dataElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Structure> getStructures() {
+		if (structures == null) {
+			structures = new EObjectContainmentWithInverseEList<Structure>(Structure.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__STRUCTURES, DDICPackage.STRUCTURE__COLLECTION);
+		}
+		return structures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Table> getTables() {
+		if (tables == null) {
+			tables = new EObjectContainmentWithInverseEList<Table>(Table.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES, DDICPackage.TABLE__COLLECTION);
+		}
+		return tables;
 	}
 
 	/**
@@ -358,11 +407,11 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			
 			for (final ITableLine line: result) {
 				try {
-					final String pgmid   = line.getValue("PGMID");
-					final String object  = line.getValue("OBJECT");
-					final String objName = line.getValue("OBJ_NAME");
-					RepositoryObject obj = loadObject(pgmid, object, objName);
-					pkg.getObjects().add(obj);
+					RepositoryObjectKey key = ROMFactory.eINSTANCE.createRepositoryObjectKey();
+					key.setProgramID(line.getValue("PGMID"));
+					key.setObjectTypeID(line.getValue("OBJECT"));
+					key.setName(line.getValue("OBJ_NAME"));
+					pkg.getObjectKeys().add(key);
 				} catch (Exception e) {
 					throw new ObjectLoadingException(MessageFormat.format(
 							"Error reading the contents of package {0}", pkg.getName()), e);				
@@ -404,14 +453,13 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	}
 
 	/**
-	 * loads a domain from the SAP R/3 system.
+	 * Loads a domain from the SAP R/3 system.
 	 * @param dom
 	 * @generated no
 	 */
 	private void loadDomain(Domain dom) throws ObjectNotFoundException, ObjectLoadingException {
 		loadRepositoryData(dom);
 		try {
-			// TODO Support reading of other locales than the master locale.
 			RFCDomainReader reader = new RFCDomainReader();
 			reader.setDomainName(dom.getName());
 			reader.setLocaleID(dom.getOriginalLocale().getID());
@@ -480,6 +528,27 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated and changed 
+	 */
+	public RepositoryObject loadObject(RepositoryObjectKey key) throws ObjectNotFoundException, ObjectLoadingException {
+		if (key.getProgramID().equals("R3TR")) {
+			if (key.getObjectTypeID().equals("DEVC")) {
+				return getPackage(key.getName(), true);
+			}
+			if (key.getObjectTypeID().equals("DOMA")) {
+				return getDomain(key.getName(), true);
+			}
+			if (key.getObjectTypeID().equals("DTEL")) {
+				return getDomain(key.getName(), true);
+			}
+		}
+		throw new ObjectLoadingException(MessageFormat.format("Unable to load repository object {0} {1} {2}.",
+				key.getProgramID(), key.getObjectTypeID(), key.getName()));
+	}
+
+	/**
 	 * Loads the data of a data element from the SAP R/3 system.
 	 * @param elem
 	 * @generated no
@@ -534,27 +603,6 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated and changed
-	 */
-	public RepositoryObject loadObject(String programID, String objectTypeID, String objectName) throws ObjectNotFoundException, ObjectLoadingException {
-		if (programID.equals("R3TR")) {
-			if (objectTypeID.equals("DEVC")) {
-				return getPackage(objectName, true);
-			}
-			if (objectTypeID.equals("DOMA")) {
-				return getDomain(objectName, true);
-			}
-			if (objectTypeID.equals("DTEL")) {
-				return getDomain(objectName, true);
-			}
-		}
-		throw new ObjectLoadingException(MessageFormat.format("Unable to load repository object {0} {1} {2}.",
-				programID, objectTypeID, objectName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -567,6 +615,10 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDomains()).basicAdd(otherEnd, msgs);
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDataElements()).basicAdd(otherEnd, msgs);
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__STRUCTURES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getStructures()).basicAdd(otherEnd, msgs);
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTables()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -585,6 +637,10 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				return ((InternalEList<?>)getDomains()).basicRemove(otherEnd, msgs);
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS:
 				return ((InternalEList<?>)getDataElements()).basicRemove(otherEnd, msgs);
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__STRUCTURES:
+				return ((InternalEList<?>)getStructures()).basicRemove(otherEnd, msgs);
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
+				return ((InternalEList<?>)getTables()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -605,6 +661,10 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				return getDomains();
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS:
 				return getDataElements();
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__STRUCTURES:
+				return getStructures();
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
+				return getTables();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -633,6 +693,14 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				getDataElements().clear();
 				getDataElements().addAll((Collection<? extends DataElement>)newValue);
 				return;
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__STRUCTURES:
+				getStructures().clear();
+				getStructures().addAll((Collection<? extends Structure>)newValue);
+				return;
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
+				getTables().clear();
+				getTables().addAll((Collection<? extends Table>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -657,6 +725,12 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS:
 				getDataElements().clear();
 				return;
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__STRUCTURES:
+				getStructures().clear();
+				return;
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
+				getTables().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -677,6 +751,10 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				return domains != null && !domains.isEmpty();
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS:
 				return dataElements != null && !dataElements.isEmpty();
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__STRUCTURES:
+				return structures != null && !structures.isEmpty();
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
+				return tables != null && !tables.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

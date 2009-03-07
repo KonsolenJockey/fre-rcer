@@ -62,7 +62,23 @@ public enum RepositoryObjectType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DATA_ELEMENT(21, "DATA_ELEMENT", "DATA_ELEMENT"); //$NON-NLS-1$ //$NON-NLS-2$
+	DATA_ELEMENT(21, "DATA_ELEMENT", "DATA_ELEMENT"), /**
+	 * The '<em><b>TABLE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TABLE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	TABLE(22, "TABLE", "TABLE"), /**
+	 * The '<em><b>STRUCTURE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #STRUCTURE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	STRUCTURE(23, "STRUCTURE", "STRUCTURE"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>UNKNOWN</b></em>' literal value.
@@ -125,6 +141,36 @@ public enum RepositoryObjectType implements Enumerator {
 	public static final int DATA_ELEMENT_VALUE = 21;
 
 	/**
+	 * The '<em><b>TABLE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TABLE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TABLE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TABLE_VALUE = 22;
+
+	/**
+	 * The '<em><b>STRUCTURE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STRUCTURE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STRUCTURE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STRUCTURE_VALUE = 23;
+
+	/**
 	 * An array of all the '<em><b>Repository Object Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -136,6 +182,8 @@ public enum RepositoryObjectType implements Enumerator {
 			PACKAGE,
 			DOMAIN,
 			DATA_ELEMENT,
+			TABLE,
+			STRUCTURE,
 		};
 
 	/**
@@ -190,6 +238,8 @@ public enum RepositoryObjectType implements Enumerator {
 			case PACKAGE_VALUE: return PACKAGE;
 			case DOMAIN_VALUE: return DOMAIN;
 			case DATA_ELEMENT_VALUE: return DATA_ELEMENT;
+			case TABLE_VALUE: return TABLE;
+			case STRUCTURE_VALUE: return STRUCTURE;
 		}
 		return null;
 	}

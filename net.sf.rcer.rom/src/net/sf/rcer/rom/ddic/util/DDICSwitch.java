@@ -129,6 +129,92 @@ public class DDICSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DDICPackage.STRUCTURE: {
+				Structure structure = (Structure)theEObject;
+				T result = caseStructure(structure);
+				if (result == null) result = caseRepositoryObject(structure);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DDICPackage.TABLE: {
+				Table table = (Table)theEObject;
+				T result = caseTable(table);
+				if (result == null) result = caseRepositoryObject(table);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DDICPackage.STRUCTURE_FIELD: {
+				StructureField structureField = (StructureField)theEObject;
+				T result = caseStructureField(structureField);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DDICPackage.TABLE_FIELD: {
+				TableField tableField = (TableField)theEObject;
+				T result = caseTableField(tableField);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DDICPackage.NAMED_FIELD: {
+				NamedField namedField = (NamedField)theEObject;
+				T result = caseNamedField(namedField);
+				if (result == null) result = caseStructureField(namedField);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DDICPackage.STRUCTURE_INCLUSION: {
+				StructureInclusion structureInclusion = (StructureInclusion)theEObject;
+				T result = caseStructureInclusion(structureInclusion);
+				if (result == null) result = caseStructureField(structureInclusion);
+				if (result == null) result = caseTableField(structureInclusion);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DDICPackage.SINGLE_FIELD: {
+				SingleField singleField = (SingleField)theEObject;
+				T result = caseSingleField(singleField);
+				if (result == null) result = caseNamedField(singleField);
+				if (result == null) result = caseTableField(singleField);
+				if (result == null) result = caseStructureField(singleField);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DDICPackage.DATA_ELEMENT_FIELD: {
+				DataElementField dataElementField = (DataElementField)theEObject;
+				T result = caseDataElementField(dataElementField);
+				if (result == null) result = caseSingleField(dataElementField);
+				if (result == null) result = caseNamedField(dataElementField);
+				if (result == null) result = caseTableField(dataElementField);
+				if (result == null) result = caseStructureField(dataElementField);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DDICPackage.DIRECT_FIELD: {
+				DirectField directField = (DirectField)theEObject;
+				T result = caseDirectField(directField);
+				if (result == null) result = caseSingleField(directField);
+				if (result == null) result = caseNamedField(directField);
+				if (result == null) result = caseTableField(directField);
+				if (result == null) result = caseStructureField(directField);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DDICPackage.STRUCTURED_FIELD: {
+				StructuredField structuredField = (StructuredField)theEObject;
+				T result = caseStructuredField(structuredField);
+				if (result == null) result = caseNamedField(structuredField);
+				if (result == null) result = caseStructureField(structuredField);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DDICPackage.TABULAR_FIELD: {
+				TabularField tabularField = (TabularField)theEObject;
+				T result = caseTabularField(tabularField);
+				if (result == null) result = caseNamedField(tabularField);
+				if (result == null) result = caseStructureField(tabularField);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -205,6 +291,171 @@ public class DDICSwitch<T> {
 	 * @generated
 	 */
 	public T caseDataElement(DataElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Structure</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Structure</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStructure(Structure object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Table</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Table</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTable(Table object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Structure Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Structure Field</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStructureField(StructureField object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Table Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Table Field</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTableField(TableField object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Field</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedField(NamedField object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Structure Inclusion</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Structure Inclusion</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStructureInclusion(StructureInclusion object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Single Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Single Field</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSingleField(SingleField object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Data Element Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Data Element Field</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDataElementField(DataElementField object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Direct Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Direct Field</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDirectField(DirectField object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Structured Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Structured Field</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStructuredField(StructuredField object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tabular Field</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tabular Field</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTabularField(TabularField object) {
 		return null;
 	}
 

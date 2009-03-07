@@ -20,6 +20,7 @@ import net.sf.rcer.rom.PackageType;
 import net.sf.rcer.rom.ROMPackage;
 import net.sf.rcer.rom.RepositoryObject;
 import net.sf.rcer.rom.RepositoryObjectCollection;
+import net.sf.rcer.rom.RepositoryObjectKey;
 import net.sf.rcer.rom.RepositoryObjectType;
 import net.sf.rcer.rom.RepositoryPackage;
 
@@ -43,6 +44,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#getObjectKeys <em>Object Keys</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#getObjects <em>Objects</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#getSubPackageNames <em>Sub Package Names</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#isChangeRecodingEnabled <em>Change Recoding Enabled</em>}</li>
@@ -56,6 +58,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#isCheckedAsServer <em>Checked As Server</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#isCheckedAsClient <em>Checked As Client</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#getCollection <em>Collection</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.impl.RepositoryPackageImpl#isObjectsLoaded <em>Objects Loaded</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,6 +74,16 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	 * @ordered
 	 */
 	protected EMap<Locale, String> description;
+
+	/**
+	 * The cached value of the '{@link #getObjectKeys() <em>Object Keys</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getObjectKeys()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<RepositoryObjectKey> objectKeys;
 
 	/**
 	 * The cached value of the '{@link #getObjects() <em>Objects</em>}' reference list.
@@ -293,6 +306,26 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	protected boolean checkedAsClient = CHECKED_AS_CLIENT_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #isObjectsLoaded() <em>Objects Loaded</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isObjectsLoaded()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean OBJECTS_LOADED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isObjectsLoaded() <em>Objects Loaded</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isObjectsLoaded()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean objectsLoaded = OBJECTS_LOADED_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -345,6 +378,18 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 			description = new EcoreEMap<Locale,String>(ROMPackage.Literals.LOCALIZED_STRING, LocalizedStringImpl.class, this, ROMPackage.REPOSITORY_PACKAGE__DESCRIPTION);
 		}
 		return description;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<RepositoryObjectKey> getObjectKeys() {
+		if (objectKeys == null) {
+			objectKeys = new EObjectResolvingEList<RepositoryObjectKey>(RepositoryObjectKey.class, this, ROMPackage.REPOSITORY_PACKAGE__OBJECT_KEYS);
+		}
+		return objectKeys;
 	}
 
 	/**
@@ -573,6 +618,27 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isObjectsLoaded() {
+		return objectsLoaded;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setObjectsLoaded(boolean newObjectsLoaded) {
+		boolean oldObjectsLoaded = objectsLoaded;
+		objectsLoaded = newObjectsLoaded;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ROMPackage.REPOSITORY_PACKAGE__OBJECTS_LOADED, oldObjectsLoaded, objectsLoaded));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -625,6 +691,8 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 			case ROMPackage.REPOSITORY_PACKAGE__DESCRIPTION:
 				if (coreType) return getDescription();
 				else return getDescription().map();
+			case ROMPackage.REPOSITORY_PACKAGE__OBJECT_KEYS:
+				return getObjectKeys();
 			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS:
 				return getObjects();
 			case ROMPackage.REPOSITORY_PACKAGE__SUB_PACKAGE_NAMES:
@@ -651,6 +719,8 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 				return isCheckedAsClient() ? Boolean.TRUE : Boolean.FALSE;
 			case ROMPackage.REPOSITORY_PACKAGE__COLLECTION:
 				return getCollection();
+			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS_LOADED:
+				return isObjectsLoaded() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -664,6 +734,10 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ROMPackage.REPOSITORY_PACKAGE__OBJECT_KEYS:
+				getObjectKeys().clear();
+				getObjectKeys().addAll((Collection<? extends RepositoryObjectKey>)newValue);
+				return;
 			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS:
 				getObjects().clear();
 				getObjects().addAll((Collection<? extends RepositoryObject>)newValue);
@@ -702,6 +776,9 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 			case ROMPackage.REPOSITORY_PACKAGE__CHECKED_AS_CLIENT:
 				setCheckedAsClient(((Boolean)newValue).booleanValue());
 				return;
+			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS_LOADED:
+				setObjectsLoaded(((Boolean)newValue).booleanValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -714,6 +791,9 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ROMPackage.REPOSITORY_PACKAGE__OBJECT_KEYS:
+				getObjectKeys().clear();
+				return;
 			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS:
 				getObjects().clear();
 				return;
@@ -750,6 +830,9 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 			case ROMPackage.REPOSITORY_PACKAGE__CHECKED_AS_CLIENT:
 				setCheckedAsClient(CHECKED_AS_CLIENT_EDEFAULT);
 				return;
+			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS_LOADED:
+				setObjectsLoaded(OBJECTS_LOADED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -764,6 +847,8 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 		switch (featureID) {
 			case ROMPackage.REPOSITORY_PACKAGE__DESCRIPTION:
 				return description != null && !description.isEmpty();
+			case ROMPackage.REPOSITORY_PACKAGE__OBJECT_KEYS:
+				return objectKeys != null && !objectKeys.isEmpty();
 			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS:
 				return objects != null && !objects.isEmpty();
 			case ROMPackage.REPOSITORY_PACKAGE__SUB_PACKAGE_NAMES:
@@ -790,6 +875,8 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 				return checkedAsClient != CHECKED_AS_CLIENT_EDEFAULT;
 			case ROMPackage.REPOSITORY_PACKAGE__COLLECTION:
 				return getCollection() != null;
+			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS_LOADED:
+				return objectsLoaded != OBJECTS_LOADED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -826,6 +913,8 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 		result.append(checkedAsServer);
 		result.append(", checkedAsClient: "); //$NON-NLS-1$
 		result.append(checkedAsClient);
+		result.append(", objectsLoaded: "); //$NON-NLS-1$
+		result.append(objectsLoaded);
 		result.append(')');
 		return result.toString();
 	}
