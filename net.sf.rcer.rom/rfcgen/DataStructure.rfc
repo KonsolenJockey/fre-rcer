@@ -1,0 +1,217 @@
+//
+// Copyright (c) 2008 The RCER Development Team.
+//
+// All rights reserved. This program and the accompanying materials
+// are made available under the terms of the Eclipse Public License v1.0
+// which accompanies this distribution, and is available at
+// http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,
+// this entire header must remain intact.
+//
+// $Id$
+//
+package "net.sf.rcer.rom.ddic.rfc"
+
+structure "DD02V" {
+	class RFCDataStructureHeader {
+		field "TABCLASS"   = String  structureType          comment "structure type (structure, table, view, ...)";
+		field "SQLTAB"     = String  databaseTableName      comment "name of the database table or extended table";
+		field "DATMIN"     = int     minEntries             comment "minimum number of entries";
+		field "DATMAX"     = int     maxEntries             comment "maximum number of entries";
+		field "DATAVG"     = int     avgEntries             comment "average number of entries";
+		field "CLIDEP"     = boolean clientDependent        comment "whether the table is client-specific";
+		field "BUFFERED"   = String  bufferSetting          comment "buffering flag";
+		field "COMPRFLAG"  = boolean compressed             comment "field compression indicator";
+		field "LANGDEP"    = boolean languageDependent      comment "whether the table is language-dependent";
+		field "DDTEXT"     = String  description            comment "description";
+		field "MAINFLAG"   = String  maintenanceSetting     comment "to which extent maintenance with standard tools is allowed";
+		field "CONTFLAG"   = String  deliveryClass          comment "delivery class";
+		field "PROZPUFF"   = int     bufferPercentage       comment "percentage for buffers";
+		field "VIEWCLASS"  = String  viewClass              comment "view type";
+		field "VIEWGRANT"  = String  viewMaintenanceSetting comment "maintenance status for view data";
+		field "MULTIPLEX"  = String  multiplexSetting       comment "whether multiplexing is possible for a table";
+		field "SHLPEXI"    = boolean searchHelpAttached     comment "whether a search help attachment to table exists";
+	}
+}
+
+structure "DD09L" {
+	class RFCTableTechSettings {
+		field "TABKAT"     = String  sizeCategory      comment "size category";
+		field "TABART"     = String  dataClass         comment "data class in technical settings";
+		field "PUFFERUNG"  = String  bufferSetting     comment "buffering type indicator";
+		field "SCHFELDANZ" = int     bufferedKeyFields comment "number of key fields for generic buffers";
+		field "PROTOKOLL"  = boolean changeLogActive   comment "whether to log data changes";
+		field "SPEICHPUFF" = boolean bufferCompressed  comment "whether the buffered data may be compressed";
+		field "TRANSPFLAG" = boolean transparentTable  comment "whether to convert to transparent table or maintain transparency";
+		field "UEBERSETZ"  = boolean translated        comment "whether table is relevant for translation";
+		field "BUFALLOW"   = String  bufferStatus      comment "indicator for buffering enabled/disabled/not allowed";
+	}
+}
+
+structure "DD03P" {
+	class RFCDataStructureField {
+		field "FIELDNAME"  = String  fieldName         comment "field name";
+		field "POSITION"   = int     position          comment "position of the field in the table";
+		field "KEYFLAG"    = boolean keyField          comment "whether the field is a key field";
+		field "MANDATORY"  = String  mandatory         comment "whether the field is required";
+		field "ROLLNAME"   = String  dataElementName   comment "Data element (semantic domain)";
+		
+		field "CHECKTABLE" = String  checkTableName    comment "Check table name of the foreign key";
+		field "ADMINFIELD" = String  nestingDepth      comment "Nesting depth for includes";
+		field "INTTYPE"    = String  internalType      comment "ABAP data type (C,D,N,...)";
+		field "INTLEN"     = int     internalLength    comment "Internal length in bytes";
+		field "REFTABLE"   = String  referenceTable    comment "Table for reference field";
+		field "PRECFIELD"  = String  includedStructure comment "Name of included table";
+		field "REFFIELD"   = String  referenceField    comment "Reference field for currency and qty fields";
+		field "NOTNULL"    = boolean notNull           comment "Indicator that NOT NULL is forced for this field";
+		
+		// data element data
+		field "DOMNAME"    = String  domainName        comment "domain name";
+//		field "ROUTPUTLEN" = String  ROUTPUTLEN        comment "Length (no. of characters)";
+		field "MEMORYID"   = String  parameterID       comment "SET/GET parameter ID";
+		field "LOGFLAG"    = boolean logged            comment "whether this field occurs in change documents";
+		field "HEADLEN"    = int     headingLength     comment "maximum length of heading";
+		field "SCRLEN1"    = int     shortTextLength   comment "maximum length of short field label";
+		field "SCRLEN2"    = int     mediumTextLength  comment "maximum length of medium field label";
+		field "SCRLEN3"    = int     longTextLength    comment "maximum length of long field label";
+
+		// domain data
+		field "DATATYPE"   = String  dataType          comment "data type in ABAP Dictionary";
+		field "LENG"       = int     length            comment "length (number of characters)";
+		field "OUTPUTLEN"  = int     outputLength      comment "output length";
+		field "DECIMALS"   = int     decimals          comment "number of decimal places";
+		field "LOWERCASE"  = boolean caseSensitive     comment "whether lower case letters are allowed";
+		field "SIGNFLAG"   = boolean signed            comment "whether a numerical field is signed";
+		field "VALEXI"     = boolean valueListFixed    comment "whether fixed values exist";
+		field "ENTITYTAB"  = String  valueTable        comment "name of the value table";
+		field "CONVEXIT"   = String  conversionExit    comment "conversion routine";
+		
+//		field "MASK"       = String  MASK              comment "Template (not used)";
+//		field "MASKLEN"    = String  MASKLEN           comment "Template length (not used)";
+//		field "ACTFLAG"    = String  ACTFLAG           comment "Activation flag";
+
+		field "DDTEXT"     = String  description       comment "description";
+		
+//      the texts are not required	
+//		field "REPTEXT"    = String  heading           comment "heading";
+//		field "SCRTEXT_S"  = String  shortText         comment "short field label";
+//		field "SCRTEXT_M"  = String  mediumText        comment "medium field label";
+//		field "SCRTEXT_L"  = String  longText          comment "long field label";
+
+//		field "DOMMASTER"  = String  DOMMASTER         comment "Original language in Repository objects";
+//		field "DOMNAME3L"  = String  DOMNAME3L         comment "Domain name";
+
+		field "SHLPORIGIN" = String  searchHelpOrigin  comment "Origin of an input help";
+		field "SHLPNAME"   = String  searchHelpName    comment "Name of a search help";
+		field "SHLPFIELD"  = String  searchHelpField   comment "Name of a search help parameter";
+		field "TABLETYPE"  = boolean nestedTable       comment "DD: Flag if it is a table";
+		field "DEPTH"      = int     typeDepth         comment "DD: Depth for structured types";
+		field "COMPTYPE"   = String  componentType     comment "DD: Component type";
+		field "DEFFDNAME"  = String  defaultFieldName  comment "nefault name for components using the data element";
+		field "GROUPNAME"  = String  groupName         comment "Group name for named includes";
+		field "REFTYPE"    = String  referenceKind     comment "type of object referenced";
+
+	}
+}
+
+structure "DD08V" {
+	class RFCForeignKeyHeader {
+		field "FIELDNAME"  = String  fieldName           comment "name of the field to be checked";
+		field "CHECKTABLE" = String  tableName           comment "check table name of the foreign key";
+		field "FRKART"     = String  foreignKeyType      comment "dependency factor for semantic foreign keys";
+//		field "CLASFIELD"  = String  CLASFIELD           comment "Internal classification of foreign keys: partial, etc.";
+//		field "CLASVALUE"  = String  CLASVALUE           comment "Values for classif. field of CLAS relationship type";
+		field "CARD"       = String  cardinalityRight    comment "cardinality of a relationship";
+		field "CHECKFLAG"  = boolean screenCheckDisabled comment "whether the check in screen processing is disabled";
+		field "DDTEXT"     = String  description         comment "description";
+		field "ARBGB"      = String  messageID           comment "message class";
+		field "MSGNR"      = String  messageNumber       comment "message number";
+		field "NOINHERIT"  = String  inheritance         comment "foreign key inheritance setting";
+		field "CARDLEFT"   = String  cardinalityLeft     comment "Cardinality of a relationship";
+	}
+}
+
+structure "DD05M" {
+	class RFCForeignKeyField {
+		field "FIELDNAME"  = String  fieldName        comment "name of the field to be checked";
+		field "FORTABLE"   = String  foreignTableName comment "Table of the foreign key field";
+		field "FORKEY"     = String  foreignFieldName comment "Names of the foreign key fields";
+		field "CHECKTABLE" = String  checkTableName   comment "Check table name of the foreign key";
+		field "CHECKFIELD" = String  checkFieldName   comment "Field name";
+		field "PRIMPOS"    = int     position         comment "Position of corresp. foreign key field in primary key";
+//		field "DOMNAME"    = String  domainName       comment "Domain name";
+//		field "DATATYPE"   = String  dataType         comment "Data type in ABAP Dictionary";
+//		field "LENG"       = int     length           comment "Length (no. of characters)";
+	}
+}
+
+structure "DD12V" {
+	class RFCIndexHeader {
+		field "INDEXNAME"  = String  indexName            comment "index ID";
+		field "UNIQUEFLAG" = boolean unique               comment "whether the index is a unique index";
+		field "DBINDEX"    = String  databaseIndexName    comment "database index";
+		field "DBSTATE"    = String  databaseIndexState   comment "status of index on the database";
+		field "DBINCLEXCL" = String  databaseInclExclSign comment "whether the list of DB systems used as list of inclusions/exclusions";
+		field "DBSYSSEL1"  = String  databaseSystem1      comment "an included or excluded DB system";
+		field "DBSYSSEL2"  = String  databaseSystem2      comment "an included or excluded DB system";
+		field "DBSYSSEL3"  = String  databaseSystem3      comment "an included or excluded DB system";
+		field "DBSYSSEL4"  = String  databaseSystem4      comment "an included or excluded DB system";
+		field "DDTEXT"     = String  description          comment "explanatory short text";
+	}
+}
+
+structure "DD17V" {
+	class RFCIndexField {
+		field "INDEXNAME"  = String  indexName  comment "index ID";
+		field "POSITION"   = int     position   comment "position of the field in the table";
+		field "FIELDNAME"  = String  fieldName  comment "field name";
+		field "DESCFLAG"   = boolean descending comment "whether the index field is sorted in descending order";
+	}
+}
+
+structure "DD35V" {
+	class RFCSearchHelpHeader {
+		field "FIELDNAME" = String  fieldName         comment "field name";
+		field "SHLPNAME"  = String  searchHelpName    comment "name of a search help";
+		field "SHLPINHER" = boolean inherited         comment "whether the search help attachment is inherited";
+	}
+}
+
+structure "DD36M" {
+	class RFCSearchHelpField {
+		field "FIELDNAME"  = String  fieldName        comment "field name";
+		field "SHLPNAME"   = String  searchHelp       comment "name of a search help";
+		field "SHLPFIELD"  = String  searchHelpField  comment "name of a search help parameter";
+		field "FLPOSITION" = int     position         comment "position of a search help field";
+		field "SHTYPE"     = String  assignmentType   comment "type of parameter field assignment";
+		field "SHTABLE"    = String  tableName        comment "Structure with field assigned to a search help field";
+		field "SHFIELD"    = String  tableField       comment "Structure field assigned to a search help field";
+		field "SHLPINPUT"  = boolean importField      comment "Flag for IMPORT parameter of the search help";
+		field "SHLPOUTPUT" = boolean exportField      comment "Flag for EXPORT parameter of the search help";
+		field "ROLLNAME"   = String  dataElement      comment "data element name";
+		field "DOMNAME"    = String  domain           comment "domain name";
+		field "DATATYPE"   = String  dataType         comment "data type";
+		field "LENG"       = int     length           comment "length";
+		field "DECIMALS"   = int     decimals         comment "number of decimals";
+		field "DEFAULTVAL" = String  defaultValue     comment "Default value for a search help parameter";
+		field "DEFAULTTYP" = String  defaultValueType comment "Default type of a search help parameter";
+	}
+}
+
+function module "DD_TABL_GET" {
+	class RFCDataStructureReader {
+		import field     "TABL_NAME"    = String                 name              comment "the name of the structure (strucutre, table, view, ...)";
+		import field     "LANGU"        = String                 localeID          comment "locale ID";
+		import field     "WITHTEXT"     = boolean                addText           comment "whether to read the texts";
+		import field     "ADD_TYPEINFO" = boolean                addTypeInfo       comment "whether to read the type information";
+		export structure "DD02V_WA_A"   = RFCDataStructureHeader header            comment "the header of the structure";
+		export structure "DD09L_WA_A"   = RFCTableTechSettings   techSettings      comment "the technical settings of a table";
+		table            "DD03P_TAB_A"  = RFCDataStructureField  fields            comment "the fields of the structure";
+		table            "DD08V_TAB_A"  = RFCForeignKeyHeader    foreignKeyHeaders comment "the headers of the foreign key definitions";
+		table            "DD05M_TAB_A"  = RFCForeignKeyField     foreignKeyFields  comment "the fields of the foreign keys";
+		table            "DD12V_TAB_A"  = RFCIndexHeader         indexHeaders      comment "the headers of the index definitions";
+		table            "DD17V_TAB_A"  = RFCIndexField          indexFields       comment "the fields of the index definitions";
+		table            "DD35V_TAB_A"  = RFCSearchHelpHeader    searchHelpHeaders comment "the headers of the search help assignments";
+		table            "DD36M_TAB_A"  = RFCSearchHelpField     searchHelpFields  comment "the fields of the search help assignments";
+	}
+}
+
