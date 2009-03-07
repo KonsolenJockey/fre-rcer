@@ -31,6 +31,7 @@
     <eLiterals name="DATA_ELEMENT" value="21"/>
     <eLiterals name="TABLE" value="22" literal="TABLE"/>
     <eLiterals name="STRUCTURE" value="23" literal="STRUCTURE"/>
+    <eLiterals name="INTERFACE" value="30"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RepositoryObject" abstract="true">
     <eOperations name="getCollection" ordered="false" unique="false" lowerBound="1"
@@ -96,6 +97,11 @@
       <eParameters name="name" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="load" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
+    <eOperations name="getInterface" ordered="false" unique="false" lowerBound="1"
+        eType="ecore:EClass abapobj.ecore#//ABAPInterface" eExceptions="#//ObjectNotFoundException #//ObjectLoadingException">
+      <eParameters name="name" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="load" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceConnection" ordered="false"
         unique="false" eType="#//JCoDestination" transient="true" unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="packages" ordered="false"
@@ -113,6 +119,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="tables" ordered="false"
         upperBound="-1" eType="ecore:EClass ddic.ecore#//Table" containment="true"
         eOpposite="ddic.ecore#//Table/collection" eKeys="#//RepositoryObject/name"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" ordered="false"
+        upperBound="-1" eType="ecore:EClass abapobj.ecore#//ABAPInterface" containment="true"
+        eKeys="#//RepositoryObject/name"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PackageType">
     <eLiterals name="STANDARD"/>

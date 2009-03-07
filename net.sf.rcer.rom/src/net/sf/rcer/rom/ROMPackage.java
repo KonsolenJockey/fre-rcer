@@ -331,13 +331,22 @@ public interface ROMPackage extends EPackage {
 	int REPOSITORY_OBJECT_COLLECTION__TABLES = 5;
 
 	/**
+	 * The feature id for the '<em><b>Interfaces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY_OBJECT_COLLECTION__INTERFACES = 6;
+
+	/**
 	 * The number of structural features of the '<em>Repository Object Collection</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_OBJECT_COLLECTION_FEATURE_COUNT = 6;
+	int REPOSITORY_OBJECT_COLLECTION_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.impl.RepositoryPackageImpl <em>Repository Package</em>}' class.
@@ -895,6 +904,17 @@ public interface ROMPackage extends EPackage {
 	EReference getRepositoryObjectCollection_Tables();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link net.sf.rcer.rom.RepositoryObjectCollection#getInterfaces <em>Interfaces</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Interfaces</em>'.
+	 * @see net.sf.rcer.rom.RepositoryObjectCollection#getInterfaces()
+	 * @see #getRepositoryObjectCollection()
+	 * @generated
+	 */
+	EReference getRepositoryObjectCollection_Interfaces();
+
+	/**
 	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.RepositoryObject#isGenerated <em>Generated</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1409,6 +1429,14 @@ public interface ROMPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REPOSITORY_OBJECT_COLLECTION__TABLES = eINSTANCE.getRepositoryObjectCollection_Tables();
+
+		/**
+		 * The meta object literal for the '<em><b>Interfaces</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPOSITORY_OBJECT_COLLECTION__INTERFACES = eINSTANCE.getRepositoryObjectCollection_Interfaces();
 
 		/**
 		 * The meta object literal for the '<em><b>Generated</b></em>' attribute feature.

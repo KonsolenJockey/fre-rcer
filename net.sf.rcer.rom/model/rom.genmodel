@@ -9,6 +9,7 @@
     copyrightFields="false" language="">
   <foreignModel>ddic.ecore</foreignModel>
   <foreignModel>rom.ecore</foreignModel>
+  <foreignModel>abapobj.ecore</foreignModel>
   <genPackages prefix="DDIC" basePackage="net.sf.rcer.rom" disposableProviderFactory="true"
       ecorePackage="ddic.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="ddic.ecore#//DictionaryDataType">
@@ -162,6 +163,7 @@
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/DATA_ELEMENT"/>
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/TABLE"/>
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/STRUCTURE"/>
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/INTERFACE"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="rom.ecore#//PackageType">
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//PackageType/STANDARD"/>
@@ -275,6 +277,89 @@
           ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/checkedAsClient"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rom.ecore#//RepositoryPackage/collection"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rom.ecore#//RepositoryPackage/objectsLoaded"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="ABAPObjects" basePackage="net.sf.rcer.rom" disposableProviderFactory="true"
+      ecorePackage="abapobj.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="abapobj.ecore#//AttributeScope">
+      <genEnumLiterals ecoreEnumLiteral="abapobj.ecore#//AttributeScope/INSTANCE_ATTRIBUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="abapobj.ecore#//AttributeScope/STATIC_ATTRIBUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="abapobj.ecore#//AttributeScope/CONSTANT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="abapobj.ecore#//AttributeTypingType">
+      <genEnumLiterals ecoreEnumLiteral="abapobj.ecore#//AttributeTypingType/LIKE"/>
+      <genEnumLiterals ecoreEnumLiteral="abapobj.ecore#//AttributeTypingType/TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="abapobj.ecore#//AttributeTypingType/TYPE_REF_TO"/>
+      <genEnumLiterals ecoreEnumLiteral="abapobj.ecore#//AttributeTypingType/CODING"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="abapobj.ecore#//MethodScope">
+      <genEnumLiterals ecoreEnumLiteral="abapobj.ecore#//MethodScope/INSTANCE"/>
+      <genEnumLiterals ecoreEnumLiteral="abapobj.ecore#//MethodScope/STATIC"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="abapobj.ecore#//MethodParameterDeclarationType">
+      <genEnumLiterals ecoreEnumLiteral="abapobj.ecore#//MethodParameterDeclarationType/IMPORTING"/>
+      <genEnumLiterals ecoreEnumLiteral="abapobj.ecore#//MethodParameterDeclarationType/EXPORTING"/>
+      <genEnumLiterals ecoreEnumLiteral="abapobj.ecore#//MethodParameterDeclarationType/CHANGING"/>
+      <genEnumLiterals ecoreEnumLiteral="abapobj.ecore#//MethodParameterDeclarationType/RETURNING"/>
+    </genEnums>
+    <genClasses ecoreClass="abapobj.ecore#//ABAPInterface">
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference abapobj.ecore#//ABAPInterface/description"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference abapobj.ecore#//ABAPInterface/collection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterface/exitInterface"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterface/unicodeChecked"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterface/interfaces"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterface/forwardDeclarations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference abapobj.ecore#//ABAPInterface/attributes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference abapobj.ecore#//ABAPInterface/methods"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference abapobj.ecore#//ABAPInterface/events"/>
+    </genClasses>
+    <genClasses ecoreClass="abapobj.ecore#//ABAPInterfaceAttribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterfaceAttribute/name"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference abapobj.ecore#//ABAPInterfaceAttribute/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterfaceAttribute/typing"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterfaceAttribute/typeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterfaceAttribute/scope"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterfaceAttribute/readOnly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterfaceAttribute/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="abapobj.ecore#//ABAPInterfaceMethod">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterfaceMethod/name"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference abapobj.ecore#//ABAPInterfaceMethod/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterfaceMethod/scope"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterfaceMethod/eventHandler"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterfaceMethod/eventClass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterfaceMethod/eventName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterfaceMethod/classBasedExceptions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference abapobj.ecore#//ABAPInterfaceMethod/parameters"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference abapobj.ecore#//ABAPInterfaceMethod/exceptions"/>
+    </genClasses>
+    <genClasses ecoreClass="abapobj.ecore#//ABAPInterfaceEvent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterfaceEvent/name"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference abapobj.ecore#//ABAPInterfaceEvent/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPInterfaceEvent/scope"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference abapobj.ecore#//ABAPInterfaceEvent/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="abapobj.ecore#//ABAPMethodParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPMethodParameter/name"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference abapobj.ecore#//ABAPMethodParameter/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPMethodParameter/declarationType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPMethodParameter/callByValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPMethodParameter/typing"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPMethodParameter/typeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPMethodParameter/defaultValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPMethodParameter/optional"/>
+    </genClasses>
+    <genClasses ecoreClass="abapobj.ecore#//ABAPMethodException">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPMethodException/name"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference abapobj.ecore#//ABAPMethodException/description"/>
+    </genClasses>
+    <genClasses ecoreClass="abapobj.ecore#//ABAPEventParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPEventParameter/name"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference abapobj.ecore#//ABAPEventParameter/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPEventParameter/typing"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPEventParameter/typeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPEventParameter/defaultValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapobj.ecore#//ABAPEventParameter/optional"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

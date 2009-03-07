@@ -14,6 +14,8 @@ package net.sf.rcer.rom.ddic.impl;
 
 import net.sf.rcer.rom.ROMPackage;
 
+import net.sf.rcer.rom.abapobj.ABAPObjectsPackage;
+import net.sf.rcer.rom.abapobj.impl.ABAPObjectsPackageImpl;
 import net.sf.rcer.rom.ddic.DDICFactory;
 import net.sf.rcer.rom.ddic.DDICPackage;
 import net.sf.rcer.rom.ddic.DataElement;
@@ -244,14 +246,17 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 
 		// Obtain or create and register interdependencies
 		ROMPackageImpl theROMPackage = (ROMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ROMPackage.eNS_URI) instanceof ROMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ROMPackage.eNS_URI) : ROMPackage.eINSTANCE);
+		ABAPObjectsPackageImpl theABAPObjectsPackage = (ABAPObjectsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ABAPObjectsPackage.eNS_URI) instanceof ABAPObjectsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ABAPObjectsPackage.eNS_URI) : ABAPObjectsPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theDDICPackage.createPackageContents();
 		theROMPackage.createPackageContents();
+		theABAPObjectsPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theDDICPackage.initializePackageContents();
 		theROMPackage.initializePackageContents();
+		theABAPObjectsPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theDDICPackage.freeze();

@@ -15,11 +15,14 @@ package net.sf.rcer.rom.impl;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.sf.rcer.conn.locales.Locale;
 import net.sf.rcer.conn.locales.LocaleNotFoundException;
 import net.sf.rcer.conn.locales.LocaleRegistry;
+import net.sf.rcer.conn.tools.FieldNotFoundException;
 import net.sf.rcer.conn.tools.ITableContents;
 import net.sf.rcer.conn.tools.ITableLine;
 import net.sf.rcer.conn.tools.TableReader;
@@ -32,6 +35,18 @@ import net.sf.rcer.rom.RepositoryObject;
 import net.sf.rcer.rom.RepositoryObjectCollection;
 import net.sf.rcer.rom.RepositoryObjectKey;
 import net.sf.rcer.rom.RepositoryPackage;
+import net.sf.rcer.rom.abapobj.ABAPInterface;
+import net.sf.rcer.rom.abapobj.ABAPObjectsFactory;
+import net.sf.rcer.rom.abapobj.AttributeScope;
+import net.sf.rcer.rom.abapobj.AttributeTypingType;
+import net.sf.rcer.rom.abapobj.EventParameter;
+import net.sf.rcer.rom.abapobj.InterfaceAttribute;
+import net.sf.rcer.rom.abapobj.InterfaceEvent;
+import net.sf.rcer.rom.abapobj.InterfaceMethod;
+import net.sf.rcer.rom.abapobj.MethodException;
+import net.sf.rcer.rom.abapobj.MethodParameter;
+import net.sf.rcer.rom.abapobj.MethodParameterDeclarationType;
+import net.sf.rcer.rom.abapobj.MethodScope;
 import net.sf.rcer.rom.ddic.DDICFactory;
 import net.sf.rcer.rom.ddic.DDICPackage;
 import net.sf.rcer.rom.ddic.DataElement;
@@ -67,6 +82,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -86,6 +102,7 @@ import com.sap.conn.jco.JCoException;
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getDataElements <em>Data Elements</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getStructures <em>Structures</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getTables <em>Tables</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getInterfaces <em>Interfaces</em>}</li>
  * </ul>
  * </p>
  *
@@ -163,6 +180,16 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	protected EList<Table> tables;
 
 	/**
+	 * The cached value of the '{@link #getInterfaces() <em>Interfaces</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInterfaces()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ABAPInterface> interfaces;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -212,12 +239,14 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 		if (key.getProgramID().equals("R3TR")) {
 			if (key.getObjectTypeID().equals("DEVC")) {
 				return getPackage(key.getName(), true);
-			}
-			if (key.getObjectTypeID().equals("DOMA")) {
+			} else if (key.getObjectTypeID().equals("DOMA")) {
 				return getDomain(key.getName(), true);
-			}
-			if (key.getObjectTypeID().equals("DTEL")) {
+			} else if (key.getObjectTypeID().equals("DTEL")) {
 				return getDomain(key.getName(), true);
+			} else if (key.getObjectTypeID().equals("TABL")) {
+				// TODO load structure or table
+			} else if (key.getObjectTypeID().equals("INTF")) {
+				return getInterface(key.getName(), true);
 			}
 		}
 		throw new ObjectLoadingException(MessageFormat.format("Unable to load repository object {0} {1} {2}.",
@@ -491,7 +520,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			return dom;
 	
 		}
-		throw new ObjectNotFoundException("Domain " + name + " not found.");
+		throw new ObjectNotFoundException(MessageFormat.format("Domain {0} not found.", name));
 	}
 
 	/**
@@ -578,7 +607,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			loadDataElement(elem);
 			return elem;
 		}
-		throw new ObjectNotFoundException("Data Element " + name + " not found.");
+		throw new ObjectNotFoundException(MessageFormat.format("Data Element {0} not found.", name));
 	}
 
 	/**
@@ -669,7 +698,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			loadStructure(structure);
 			return structure;
 		}
-		throw new ObjectNotFoundException("Structure " + name + " not found.");
+		throw new ObjectNotFoundException(MessageFormat.format("Structure {0} not found.", name));
 	}
 
 	
@@ -794,6 +823,18 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ABAPInterface> getInterfaces() {
+		if (interfaces == null) {
+			interfaces = new EObjectContainmentEList<ABAPInterface>(ABAPInterface.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__INTERFACES);
+		}
+		return interfaces;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated and changed
 	 */
 	public Table getTable(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
@@ -815,7 +856,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			loadTable(table);
 			return table;
 		}
-		throw new ObjectNotFoundException("Structure " + name + " not found.");
+		throw new ObjectNotFoundException(MessageFormat.format("Structure {0} not found.", name));
 	}
 
 	/**
@@ -894,6 +935,312 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated and changed
+	 */
+	public ABAPInterface getInterface(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
+		if (load && getSourceConnection() == null) {
+			throw new IllegalArgumentException("Source connection must be set when requesting loading of objects.");
+		}
+		for (ABAPInterface iface: getInterfaces()) {
+			if (iface.getName().equals(name)) {
+				if (load && !iface.isLoaded()) {
+					loadInterface(iface);
+				}
+				return iface;
+			}
+		}
+		// table was not found so far
+		if (load) {
+			ABAPInterface iface = ABAPObjectsFactory.eINSTANCE.createABAPInterface();
+			iface.setName(name);
+			loadInterface(iface);
+			return iface;
+		}
+		throw new ObjectNotFoundException(MessageFormat.format("Interface {0} not found.", name));
+	}
+
+	/**
+	 * Loads an interface from the SAP R/3 system.
+	 * @param dom
+	 * @generated no
+	 */
+	private void loadInterface(ABAPInterface iface) throws ObjectNotFoundException, ObjectLoadingException {
+		loadRepositoryData(iface);
+		try {
+			
+			TableReaderBuffer readerBuffer = TableReaderBuffer.getInstance(getSourceConnection());
+			TableReader reader;
+			ITableContents result;
+			
+			// --- VSEOINTERF --- interface header ---------------------------------------------------------------------
+			
+			reader = readerBuffer.getTableReader("VSEOINTERF");
+			result = reader.read(MessageFormat.format("CLSNAME = ''{0}'' AND VERSION = ''1''", iface.getName()));
+			if (result.size() == 0) {
+				throw new ObjectNotFoundException(MessageFormat.format("Interface {0} not found.", iface.getName()));
+			} 
+			for (ITableLine line: result) {
+				Locale locale = LocaleRegistry.getInstance().getLocaleByID(line.getValue("LANGU"));
+				iface.getDescription().put(locale, line.getValue("DESCRIPT"));
+				iface.setExitInterface(line.getValue("CATEGORY").equals("01"));
+				iface.setUnicodeChecked(line.getBooleanValue("UNICODE"));
+			}
+			
+			// --- VSEOCOMPRI --- comprised interfaces -----------------------------------------------------------------
+			
+			reader = readerBuffer.getTableReader("VSEOCOMPRI");
+			result = reader.read(MessageFormat.format("CLSNAME = ''{0}'' AND VERSION = ''1''", iface.getName()));
+			for (ITableLine line: result) {
+				iface.getInterfaces().add(line.getValue("REFCLSNAME"));
+			}
+
+			// --- VSEOTYPEP --- type pools ---------------------------------------------------------------------------- 
+			
+			reader = readerBuffer.getTableReader("VSEOTYPEP");
+			result = reader.read(MessageFormat.format("CLSNAME = ''{0}'' AND VERSION = ''1''", iface.getName()));
+			for (ITableLine line: result) {
+				iface.getTypePools().add(line.getValue("TYPEGROUP"));
+			}
+			
+			// --- VSEOCDEFER --- forward declarations of classes ------------------------------------------------------ 
+			
+			reader = readerBuffer.getTableReader("VSEOCDEFER");
+			result = reader.read(MessageFormat.format("CLSNAME = ''{0}'' AND VERSION = ''1''", iface.getName()));
+			for (ITableLine line: result) {
+				iface.getClassForwardDefinitions().add(line.getValue("TYPEGROUP"));
+			}
+			
+			// --- VSEOIDEFER --- forward declarations of interfaces --------------------------------------------------- 
+			
+			reader = readerBuffer.getTableReader("VSEOIDEFER");
+			result = reader.read(MessageFormat.format("CLSNAME = ''{0}'' AND VERSION = ''1''", iface.getName()));
+			for (ITableLine line: result) {
+				iface.getInterfaceForwardDefinitions().add(line.getValue("TYPEGROUP"));
+			}
+			
+			// --- VSEOATTRIB --- attributes ---------------------------------------------------------------------------
+				
+			Map<String, InterfaceAttribute> attribs = new HashMap<String, InterfaceAttribute>();
+
+			reader = readerBuffer.getTableReader("VSEOATTRIB");
+			reader.clearFieldSelection();
+			reader.addField("CMPNAME");
+			reader.addField("LANGU");
+			reader.addField("DESCRIPT");
+			reader.addField("ATTDECLTYP");
+			reader.addField("ATTRDONLY");
+			reader.addField("ATTVALUE");
+			reader.addField("TYPTYPE");
+			reader.addField("TYPE");
+			result = reader.read(MessageFormat.format("CLSNAME = ''{0}'' AND VERSION = ''1''", iface.getName()));
+			for (ITableLine line: result) {
+				final String name = line.getValue("CMPNAME");
+				Locale locale = LocaleRegistry.getInstance().getLocaleByID(line.getValue("LANGU"));
+				if (attribs.containsKey(name)) {
+					attribs.get(name).getDescription().put(locale, line.getValue("DESCRIPT"));
+				} else {
+					InterfaceAttribute attrib = ABAPObjectsFactory.eINSTANCE.createInterfaceAttribute();
+					attribs.put(name, attrib);
+					iface.getAttributes().add(attrib);
+					attrib.setName(name);
+					attrib.getDescription().put(locale, line.getValue("DESCRIPT"));
+					attrib.setScope(AttributeScope.get(line.getIntegerValue("ATTDECLTYP")));
+					attrib.setReadOnly(line.getBooleanValue("ATTRDONLY"));
+					attrib.setDefaultValue(line.getValue("ATTVALUE"));
+					attrib.setTyping(AttributeTypingType.get(line.getIntegerValue("TYPTYPE")));
+					attrib.setTypeName(line.getValue("TYPE"));
+				}
+			}			
+			
+			// --- VSEOMETHOD --- method headers -----------------------------------------------------------------------
+			
+			Map<String, InterfaceMethod> methods = new HashMap<String, InterfaceMethod>();
+
+			reader = readerBuffer.getTableReader("VSEOMETHOD");
+			reader.clearFieldSelection();
+			reader.addField("CMPNAME");
+			reader.addField("LANGU");
+			reader.addField("DESCRIPT");
+			reader.addField("MTDTYPE");
+			reader.addField("MTDDECLTYP");
+			reader.addField("MTDNEWEXC");
+			reader.addField("REFCLSNAME");
+			reader.addField("REFCMPNAME");
+			result = reader.read(MessageFormat.format("CLSNAME = ''{0}'' AND VERSION = ''1'' AND ALIAS = '' ''", iface.getName()));
+			for (ITableLine line: result) {
+				final String name = line.getValue("CMPNAME");
+				Locale locale = LocaleRegistry.getInstance().getLocaleByID(line.getValue("LANGU"));
+				if (methods.containsKey(name)) {
+					methods.get(name).getDescription().put(locale, line.getValue("DESCRIPT"));
+				} else {
+					InterfaceMethod method = ABAPObjectsFactory.eINSTANCE.createInterfaceMethod();
+					methods.put(name, method);
+					iface.getMethods().add(method);
+					
+					method.setName(name);
+					method.getDescription().put(locale, line.getValue("DESCRIPT"));
+					method.setScope(MethodScope.get(line.getIntegerValue("MTDDECLTYP")));
+					method.setClassBasedExceptions(line.getBooleanValue("MTDNEWEXC"));
+					method.setEventHandler(line.getIntegerValue("MTDTYPE") == 1);
+					method.setEventClass(line.getValue("REFCLSNAME"));
+					method.setEventName(line.getValue("REFCMPNAME"));
+				}
+			}			
+
+			// --- VSEOMEPARA --- method parameters --------------------------------------------------------------------
+			
+			Map<String, Map<String, MethodParameter>> methodParams = new HashMap<String, Map<String, MethodParameter>>(); 
+			for(String methodName: methods.keySet()) {
+				methodParams.put(methodName, new HashMap<String, MethodParameter>());
+			}
+
+			reader = readerBuffer.getTableReader("VSEOMEPARA");
+			reader.clearFieldSelection();
+			reader.addField("CMPNAME");
+			reader.addField("SCONAME");
+			reader.addField("LANGU");
+			reader.addField("DESCRIPT");
+			reader.addField("PARDECLTYP");
+			reader.addField("PARPASSTYP");
+			reader.addField("TYPTYPE");
+			reader.addField("TYPE");
+			reader.addField("PARVALUE");
+			reader.addField("PAROPTIONL");
+			result = reader.read(MessageFormat.format("CLSNAME = ''{0}'' AND VERSION = ''1''", iface.getName()));
+			for (ITableLine line: result) {
+				final String methodName = line.getValue("CMPNAME");
+				final String paramName  = line.getValue("SCONAME");
+				Locale locale = LocaleRegistry.getInstance().getLocaleByID(line.getValue("LANGU"));
+				if (methodParams.get(methodName).containsKey(paramName)) {
+					methodParams.get(methodName).get(paramName).getDescription().put(locale, line.getValue("DESCRIPT"));
+				} else {
+					InterfaceMethod method = methods.get(methodName);
+					MethodParameter param = ABAPObjectsFactory.eINSTANCE.createMethodParameter();
+					methodParams.get(methodName).put(paramName, param);
+					method.getParameters().add(param);
+					
+					param.setName(paramName);
+					param.getDescription().put(locale, line.getValue("DESCRIPT"));
+					param.setDeclarationType(MethodParameterDeclarationType.get(line.getIntegerValue("PARDECLTYP")));
+					param.setCallByValue(line.getIntegerValue("PARPASSTYP") == 0);
+					param.setTyping(AttributeTypingType.get(line.getIntegerValue("TYPTYPE")));
+					param.setTypeName(line.getValue("TYPE"));
+					param.setDefaultValue(line.getValue("PARVALUE"));
+					param.setOptional(line.getBooleanValue("PAROPTIONL"));
+				}
+			}
+
+			// --- VSEOEXCEP --- method exceptions ---------------------------------------------------------------------
+			
+			Map<String, Map<String, MethodException>> methodExceptions = new HashMap<String, Map<String, MethodException>>(); 
+			for(String methodName: methods.keySet()) {
+				methodExceptions.put(methodName, new HashMap<String, MethodException>());
+			}
+
+			reader = readerBuffer.getTableReader("VSEOEXCEP");
+			reader.clearFieldSelection();
+			reader.addField("CMPNAME");
+			reader.addField("SCONAME");
+			reader.addField("LANGU");
+			reader.addField("DESCRIPT");
+			result = reader.read(MessageFormat.format("CLSNAME = ''{0}'' AND VERSION = ''1''", iface.getName()));
+			for (ITableLine line: result) {
+				final String methodName = line.getValue("CMPNAME");
+				final String exceptionName  = line.getValue("SCONAME");
+				Locale locale = LocaleRegistry.getInstance().getLocaleByID(line.getValue("LANGU"));
+				if (methodExceptions.get(methodName).containsKey(exceptionName)) {
+					methodExceptions.get(methodName).get(exceptionName).getDescription().put(locale, line.getValue("DESCRIPT"));
+				} else {
+					InterfaceMethod method = methods.get(methodName);
+					MethodException exception = ABAPObjectsFactory.eINSTANCE.createMethodException();
+					methodExceptions.get(methodName).put(exceptionName, exception);
+					method.getExceptions().add(exception);
+					
+					exception.setName(exceptionName);
+					exception.getDescription().put(locale, line.getValue("DESCRIPT"));
+				}
+			}
+
+			// --- VSEOEVENT --- event headers -------------------------------------------------------------------------
+			
+			Map<String, InterfaceEvent> events = new HashMap<String, InterfaceEvent>();
+
+			reader = readerBuffer.getTableReader("VSEOEVENT");
+			reader.clearFieldSelection();
+			reader.addField("CMPNAME");
+			reader.addField("LANGU");
+			reader.addField("DESCRIPT");
+			reader.addField("EVTDECLTYP");
+			result = reader.read(MessageFormat.format("CLSNAME = ''{0}'' AND VERSION = ''1'' AND ALIAS = '' ''", iface.getName()));
+			for (ITableLine line: result) {
+				final String name = line.getValue("CMPNAME");
+				Locale locale = LocaleRegistry.getInstance().getLocaleByID(line.getValue("LANGU"));
+				if (events.containsKey(name)) {
+					events.get(name).getDescription().put(locale, line.getValue("DESCRIPT"));
+				} else {
+					InterfaceEvent event = ABAPObjectsFactory.eINSTANCE.createInterfaceEvent();
+					events.put(name, event);
+					iface.getEvents().add(event);
+					
+					event.setName(name);
+					event.getDescription().put(locale, line.getValue("DESCRIPT"));
+					event.setScope(MethodScope.get(line.getIntegerValue("EVTDECLTYP")));
+				}
+			}	
+			
+			// --- VSEOEPARAM --- event parameters ---------------------------------------------------------------------
+			
+			Map<String, Map<String, EventParameter>> eventParams = new HashMap<String, Map<String, EventParameter>>(); 
+			for(String eventName: events.keySet()) {
+				eventParams.put(eventName, new HashMap<String, EventParameter>());
+			}
+
+			reader = readerBuffer.getTableReader("VSEOEPARAM");
+			reader.clearFieldSelection();
+			reader.addField("CMPNAME");
+			reader.addField("SCONAME");
+			reader.addField("LANGU");
+			reader.addField("DESCRIPT");
+			reader.addField("TYPTYPE");
+			reader.addField("TYPE");
+			reader.addField("PARVALUE");
+			reader.addField("PAROPTIONL");
+			result = reader.read(MessageFormat.format("CLSNAME = ''{0}'' AND VERSION = ''1''", iface.getName()));
+			for (ITableLine line: result) {
+				final String eventName = line.getValue("CMPNAME");
+				final String paramName = line.getValue("SCONAME");
+				Locale locale = LocaleRegistry.getInstance().getLocaleByID(line.getValue("LANGU"));
+				if (eventParams.get(eventName).containsKey(paramName)) {
+					eventParams.get(eventName).get(paramName).getDescription().put(locale, line.getValue("DESCRIPT"));
+				} else {
+					InterfaceEvent event = events.get(eventName);
+					EventParameter param = ABAPObjectsFactory.eINSTANCE.createEventParameter();
+					eventParams.get(eventName).put(paramName, param);
+					event.getParameters().add(param);
+					
+					param.setName(paramName);
+					param.getDescription().put(locale, line.getValue("DESCRIPT"));
+					param.setTyping(AttributeTypingType.get(line.getIntegerValue("TYPTYPE")));
+					param.setTypeName(line.getValue("TYPE"));
+					param.setDefaultValue(line.getValue("PARVALUE"));
+					param.setOptional(line.getBooleanValue("PAROPTIONL"));
+				}
+			}
+			
+			// TODO support aliases - still missing in the model
+
+		} catch (JCoException e) {
+			throw new ObjectLoadingException(MessageFormat.format("Error loading interface {0}.", iface.getName()), e);				
+		} catch (LocaleNotFoundException e) {
+			throw new ObjectLoadingException(MessageFormat.format("Error loading interface {0}.", iface.getName()), e);				
+		} catch (FieldNotFoundException e) {
+			throw new ObjectLoadingException(MessageFormat.format("Error loading interface {0}.", iface.getName()), e);				
+		}
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -932,6 +1279,8 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				return ((InternalEList<?>)getStructures()).basicRemove(otherEnd, msgs);
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
 				return ((InternalEList<?>)getTables()).basicRemove(otherEnd, msgs);
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__INTERFACES:
+				return ((InternalEList<?>)getInterfaces()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -956,6 +1305,8 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				return getStructures();
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
 				return getTables();
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__INTERFACES:
+				return getInterfaces();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -992,6 +1343,10 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				getTables().clear();
 				getTables().addAll((Collection<? extends Table>)newValue);
 				return;
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__INTERFACES:
+				getInterfaces().clear();
+				getInterfaces().addAll((Collection<? extends ABAPInterface>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1022,6 +1377,9 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
 				getTables().clear();
 				return;
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__INTERFACES:
+				getInterfaces().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1046,6 +1404,8 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				return structures != null && !structures.isEmpty();
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
 				return tables != null && !tables.isEmpty();
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__INTERFACES:
+				return interfaces != null && !interfaces.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

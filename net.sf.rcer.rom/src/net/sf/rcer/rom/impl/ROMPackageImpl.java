@@ -24,6 +24,8 @@ import net.sf.rcer.rom.RepositoryObjectCollection;
 import net.sf.rcer.rom.RepositoryObjectKey;
 import net.sf.rcer.rom.RepositoryObjectType;
 import net.sf.rcer.rom.RepositoryPackage;
+import net.sf.rcer.rom.abapobj.ABAPObjectsPackage;
+import net.sf.rcer.rom.abapobj.impl.ABAPObjectsPackageImpl;
 import net.sf.rcer.rom.ddic.DDICPackage;
 import net.sf.rcer.rom.ddic.impl.DDICPackageImpl;
 import net.sf.rcer.rom.util.ObjectLoadingException;
@@ -197,14 +199,17 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 
 		// Obtain or create and register interdependencies
 		DDICPackageImpl theDDICPackage = (DDICPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DDICPackage.eNS_URI) instanceof DDICPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DDICPackage.eNS_URI) : DDICPackage.eINSTANCE);
+		ABAPObjectsPackageImpl theABAPObjectsPackage = (ABAPObjectsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ABAPObjectsPackage.eNS_URI) instanceof ABAPObjectsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ABAPObjectsPackage.eNS_URI) : ABAPObjectsPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theROMPackage.createPackageContents();
 		theDDICPackage.createPackageContents();
+		theABAPObjectsPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theROMPackage.initializePackageContents();
 		theDDICPackage.initializePackageContents();
+		theABAPObjectsPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theROMPackage.freeze();
@@ -390,6 +395,15 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 */
 	public EReference getRepositoryObjectCollection_Tables() {
 		return (EReference)repositoryObjectCollectionEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRepositoryObjectCollection_Interfaces() {
+		return (EReference)repositoryObjectCollectionEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -718,6 +732,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS);
 		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__STRUCTURES);
 		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__TABLES);
+		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__INTERFACES);
 
 		repositoryPackageEClass = createEClass(REPOSITORY_PACKAGE);
 		createEReference(repositoryPackageEClass, REPOSITORY_PACKAGE__DESCRIPTION);
@@ -775,6 +790,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 
 		// Obtain other dependent packages
 		DDICPackage theDDICPackage = (DDICPackage)EPackage.Registry.INSTANCE.getEPackage(DDICPackage.eNS_URI);
+		ABAPObjectsPackage theABAPObjectsPackage = (ABAPObjectsPackage)EPackage.Registry.INSTANCE.getEPackage(ABAPObjectsPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -828,6 +844,8 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		getRepositoryObjectCollection_Structures().getEKeys().add(this.getRepositoryObject_Name());
 		initEReference(getRepositoryObjectCollection_Tables(), theDDICPackage.getTable(), theDDICPackage.getTable_Collection(), "tables", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		getRepositoryObjectCollection_Tables().getEKeys().add(this.getRepositoryObject_Name());
+		initEReference(getRepositoryObjectCollection_Interfaces(), theABAPObjectsPackage.getABAPInterface(), null, "interfaces", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getRepositoryObjectCollection_Interfaces().getEKeys().add(this.getRepositoryObject_Name());
 
 		op = addEOperation(repositoryObjectCollectionEClass, this.getRepositoryPackage(), "getPackage", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
@@ -864,6 +882,12 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		addEException(op, this.getObjectNotFoundException());
 		addEException(op, this.getObjectLoadingException());
 
+		op = addEOperation(repositoryObjectCollectionEClass, theABAPObjectsPackage.getABAPInterface(), "getInterface", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "load", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEException(op, this.getObjectNotFoundException());
+		addEException(op, this.getObjectLoadingException());
+
 		initEClass(repositoryPackageEClass, RepositoryPackage.class, "RepositoryPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getRepositoryPackage_Description(), this.getLocalizedString(), null, "description", null, 0, -1, RepositoryPackage.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getRepositoryPackage_ObjectKeys(), this.getRepositoryObjectKey(), null, "objectKeys", null, 0, -1, RepositoryPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -895,6 +919,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.DATA_ELEMENT);
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.TABLE);
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.STRUCTURE);
+		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.INTERFACE);
 
 		initEEnum(packageTypeEEnum, PackageType.class, "PackageType"); //$NON-NLS-1$
 		addEEnumLiteral(packageTypeEEnum, PackageType.STANDARD);
