@@ -1,11 +1,12 @@
 /**
  * 
  */
-package net.sf.rcer.rom;
+package net.sf.rcer.rom.abapobj;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import net.sf.rcer.rom.ROMTest;
 import net.sf.rcer.rom.abapobj.ABAPInterface;
 
 import org.junit.Test;

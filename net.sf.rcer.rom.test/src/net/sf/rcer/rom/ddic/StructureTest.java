@@ -1,9 +1,10 @@
 /**
  * 
  */
-package net.sf.rcer.rom;
+package net.sf.rcer.rom.ddic;
 
 import static org.junit.Assert.assertEquals;
+import net.sf.rcer.rom.ROMTest;
 import net.sf.rcer.rom.ddic.DataElementField;
 import net.sf.rcer.rom.ddic.Structure;
 import net.sf.rcer.rom.ddic.StructureField;

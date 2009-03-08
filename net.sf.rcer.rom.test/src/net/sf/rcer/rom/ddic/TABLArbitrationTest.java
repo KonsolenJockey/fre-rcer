@@ -1,10 +1,15 @@
 /**
  * 
  */
-package net.sf.rcer.rom;
+package net.sf.rcer.rom.ddic;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import net.sf.rcer.rom.ROMFactory;
+import net.sf.rcer.rom.ROMTest;
+import net.sf.rcer.rom.RepositoryObject;
+import net.sf.rcer.rom.RepositoryObjectCollection;
+import net.sf.rcer.rom.RepositoryObjectKey;
 import net.sf.rcer.rom.ddic.Structure;
 import net.sf.rcer.rom.ddic.Table;
 import net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl;
