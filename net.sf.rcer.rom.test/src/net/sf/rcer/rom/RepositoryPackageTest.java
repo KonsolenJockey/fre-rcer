@@ -41,4 +41,13 @@ public class RepositoryPackageTest extends ROMTest {
 		assertEquals("Name of sub-package", "SAPBC_DATAMODEL_SERVICE", subPackages.get(0));
 	}
 	
+	/**
+	 * @throws Exception
+	 */
+	@Test
+	public void testLoadPackageContents() throws Exception {
+		RepositoryPackage pkg = collection.getPackage("SAPBC_DATAMODEL", true);
+		pkg.loadContents(false);
+	}
+
 }

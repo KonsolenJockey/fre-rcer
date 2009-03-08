@@ -402,7 +402,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRepositoryObjectCollection_Interfaces() {
+	public EReference getRepositoryObjectCollection_TableTypes() {
 		return (EReference)repositoryObjectCollectionEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -411,8 +411,44 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRepositoryObjectCollection_Classes() {
+	public EReference getRepositoryObjectCollection_Views() {
 		return (EReference)repositoryObjectCollectionEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRepositoryObjectCollection_SeachHelps() {
+		return (EReference)repositoryObjectCollectionEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRepositoryObjectCollection_EnqueueObjects() {
+		return (EReference)repositoryObjectCollectionEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRepositoryObjectCollection_Interfaces() {
+		return (EReference)repositoryObjectCollectionEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRepositoryObjectCollection_Classes() {
+		return (EReference)repositoryObjectCollectionEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -741,6 +777,10 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS);
 		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__STRUCTURES);
 		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__TABLES);
+		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__TABLE_TYPES);
+		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__VIEWS);
+		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__SEACH_HELPS);
+		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__ENQUEUE_OBJECTS);
 		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__INTERFACES);
 		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__CLASSES);
 
@@ -842,6 +882,8 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 
 		addEOperation(repositoryObjectEClass, ecorePackage.getEString(), "getObjectTypeID", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
+		addEOperation(repositoryObjectEClass, this.getRepositoryObjectKey(), "getKey", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(repositoryObjectCollectionEClass, RepositoryObjectCollection.class, "RepositoryObjectCollection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getRepositoryObjectCollection_SourceConnection(), this.getJCoDestination(), "sourceConnection", null, 0, 1, RepositoryObjectCollection.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getRepositoryObjectCollection_Packages(), this.getRepositoryPackage(), this.getRepositoryPackage_Collection(), "packages", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -854,10 +896,23 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		getRepositoryObjectCollection_Structures().getEKeys().add(this.getRepositoryObject_Name());
 		initEReference(getRepositoryObjectCollection_Tables(), theDDICPackage.getTable(), theDDICPackage.getTable_Collection(), "tables", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		getRepositoryObjectCollection_Tables().getEKeys().add(this.getRepositoryObject_Name());
+		initEReference(getRepositoryObjectCollection_TableTypes(), theDDICPackage.getTableType(), theDDICPackage.getTableType_Collection(), "tableTypes", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getRepositoryObjectCollection_TableTypes().getEKeys().add(this.getRepositoryObject_Name());
+		initEReference(getRepositoryObjectCollection_Views(), theDDICPackage.getView(), theDDICPackage.getView_Collection(), "views", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getRepositoryObjectCollection_Views().getEKeys().add(this.getRepositoryObject_Name());
+		initEReference(getRepositoryObjectCollection_SeachHelps(), theDDICPackage.getSearchHelp(), theDDICPackage.getSearchHelp_Collection(), "seachHelps", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getRepositoryObjectCollection_SeachHelps().getEKeys().add(this.getRepositoryObject_Name());
+		initEReference(getRepositoryObjectCollection_EnqueueObjects(), theDDICPackage.getEnqueueObject(), theDDICPackage.getEnqueueObject_Collection(), "enqueueObjects", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getRepositoryObjectCollection_EnqueueObjects().getEKeys().add(this.getRepositoryObject_Name());
 		initEReference(getRepositoryObjectCollection_Interfaces(), theABAPObjectsPackage.getABAPInterface(), null, "interfaces", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		getRepositoryObjectCollection_Interfaces().getEKeys().add(this.getRepositoryObject_Name());
 		initEReference(getRepositoryObjectCollection_Classes(), theABAPObjectsPackage.getABAPClass(), null, "classes", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		getRepositoryObjectCollection_Classes().getEKeys().add(this.getRepositoryObject_Name());
+
+		op = addEOperation(repositoryObjectCollectionEClass, this.getRepositoryObject(), "loadObject", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getRepositoryObjectKey(), "key", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEException(op, this.getObjectNotFoundException());
+		addEException(op, this.getObjectLoadingException());
 
 		op = addEOperation(repositoryObjectCollectionEClass, this.getRepositoryPackage(), "getPackage", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
@@ -877,11 +932,6 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		addEException(op, this.getObjectNotFoundException());
 		addEException(op, this.getObjectLoadingException());
 
-		op = addEOperation(repositoryObjectCollectionEClass, this.getRepositoryObject(), "loadObject", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, this.getRepositoryObjectKey(), "key", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-		addEException(op, this.getObjectNotFoundException());
-		addEException(op, this.getObjectLoadingException());
-
 		op = addEOperation(repositoryObjectCollectionEClass, theDDICPackage.getStructure(), "getStructure", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEBoolean(), "load", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
@@ -889,6 +939,30 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		addEException(op, this.getObjectLoadingException());
 
 		op = addEOperation(repositoryObjectCollectionEClass, theDDICPackage.getTable(), "getTable", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "load", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEException(op, this.getObjectNotFoundException());
+		addEException(op, this.getObjectLoadingException());
+
+		op = addEOperation(repositoryObjectCollectionEClass, theDDICPackage.getTableType(), "getTableType", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "load", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEException(op, this.getObjectNotFoundException());
+		addEException(op, this.getObjectLoadingException());
+
+		op = addEOperation(repositoryObjectCollectionEClass, theDDICPackage.getView(), "getView", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "load", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEException(op, this.getObjectNotFoundException());
+		addEException(op, this.getObjectLoadingException());
+
+		op = addEOperation(repositoryObjectCollectionEClass, theDDICPackage.getSearchHelp(), "getSearchHelp", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "load", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEException(op, this.getObjectNotFoundException());
+		addEException(op, this.getObjectLoadingException());
+
+		op = addEOperation(repositoryObjectCollectionEClass, theDDICPackage.getEnqueueObject(), "getEnqueueObject", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEBoolean(), "load", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEException(op, this.getObjectNotFoundException());
@@ -929,6 +1003,11 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		initEReference(getRepositoryPackage_Collection(), this.getRepositoryObjectCollection(), this.getRepositoryObjectCollection_Packages(), "collection", null, 0, 1, RepositoryPackage.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getRepositoryPackage_ObjectsLoaded(), ecorePackage.getEBoolean(), "objectsLoaded", "false", 1, 1, RepositoryPackage.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
+		op = addEOperation(repositoryPackageEClass, null, "loadContents", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "failOnError", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEException(op, this.getObjectNotFoundException());
+		addEException(op, this.getObjectLoadingException());
+
 		// Initialize enums and add enum literals
 		initEEnum(repositoryObjectTypeEEnum, RepositoryObjectType.class, "RepositoryObjectType"); //$NON-NLS-1$
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.UNKNOWN);
@@ -937,6 +1016,10 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.DATA_ELEMENT);
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.TABLE);
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.STRUCTURE);
+		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.TABLE_TYPE);
+		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.VIEW);
+		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.SEARCH_HELP);
+		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.ENQUEUE_OBJECT);
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.INTERFACE);
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.CLASS);
 

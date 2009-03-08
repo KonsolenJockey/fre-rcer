@@ -79,6 +79,38 @@ public enum RepositoryObjectType implements Enumerator {
 	 * @ordered
 	 */
 	STRUCTURE(23, "STRUCTURE", "STRUCTURE"), /**
+	 * The '<em><b>TABLE TYPE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TABLE_TYPE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	TABLE_TYPE(24, "TABLE_TYPE", "TABLE_TYPE"), /**
+	 * The '<em><b>VIEW</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #VIEW_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	VIEW(25, "VIEW", "VIEW"), /**
+	 * The '<em><b>SEARCH HELP</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SEARCH_HELP_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SEARCH_HELP(26, "SEARCH_HELP", "SEARCH_HELP"), /**
+	 * The '<em><b>ENQUEUE OBJECT</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ENQUEUE_OBJECT_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ENQUEUE_OBJECT(27, "ENQUEUE_OBJECT", "ENQUEUE_OBJECT"), /**
 	 * The '<em><b>INTERFACE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,7 +118,7 @@ public enum RepositoryObjectType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERFACE(30, "INTERFACE", "INTERFACE"), /**
+	INTERFACE(40, "INTERFACE", "INTERFACE"), /**
 	 * The '<em><b>CLASS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,7 +126,7 @@ public enum RepositoryObjectType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CLASS(31, "CLASS", "CLASS"); //$NON-NLS-1$ //$NON-NLS-2$
+	CLASS(41, "CLASS", "CLASS"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>UNKNOWN</b></em>' literal value.
@@ -187,6 +219,66 @@ public enum RepositoryObjectType implements Enumerator {
 	public static final int STRUCTURE_VALUE = 23;
 
 	/**
+	 * The '<em><b>TABLE TYPE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TABLE TYPE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TABLE_TYPE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TABLE_TYPE_VALUE = 24;
+
+	/**
+	 * The '<em><b>VIEW</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>VIEW</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #VIEW
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int VIEW_VALUE = 25;
+
+	/**
+	 * The '<em><b>SEARCH HELP</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SEARCH HELP</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SEARCH_HELP
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SEARCH_HELP_VALUE = 26;
+
+	/**
+	 * The '<em><b>ENQUEUE OBJECT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ENQUEUE OBJECT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ENQUEUE_OBJECT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ENQUEUE_OBJECT_VALUE = 27;
+
+	/**
 	 * The '<em><b>INTERFACE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -199,7 +291,7 @@ public enum RepositoryObjectType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INTERFACE_VALUE = 30;
+	public static final int INTERFACE_VALUE = 40;
 
 	/**
 	 * The '<em><b>CLASS</b></em>' literal value.
@@ -214,7 +306,7 @@ public enum RepositoryObjectType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CLASS_VALUE = 31;
+	public static final int CLASS_VALUE = 41;
 
 	/**
 	 * An array of all the '<em><b>Repository Object Type</b></em>' enumerators.
@@ -230,6 +322,10 @@ public enum RepositoryObjectType implements Enumerator {
 			DATA_ELEMENT,
 			TABLE,
 			STRUCTURE,
+			TABLE_TYPE,
+			VIEW,
+			SEARCH_HELP,
+			ENQUEUE_OBJECT,
 			INTERFACE,
 			CLASS,
 		};
@@ -288,6 +384,10 @@ public enum RepositoryObjectType implements Enumerator {
 			case DATA_ELEMENT_VALUE: return DATA_ELEMENT;
 			case TABLE_VALUE: return TABLE;
 			case STRUCTURE_VALUE: return STRUCTURE;
+			case TABLE_TYPE_VALUE: return TABLE_TYPE;
+			case VIEW_VALUE: return VIEW;
+			case SEARCH_HELP_VALUE: return SEARCH_HELP;
+			case ENQUEUE_OBJECT_VALUE: return ENQUEUE_OBJECT;
 			case INTERFACE_VALUE: return INTERFACE;
 			case CLASS_VALUE: return CLASS;
 		}

@@ -65,13 +65,17 @@ import net.sf.rcer.rom.ddic.DirectField;
 import net.sf.rcer.rom.ddic.Domain;
 import net.sf.rcer.rom.ddic.DomainValueRange;
 import net.sf.rcer.rom.ddic.DomainValueSingle;
+import net.sf.rcer.rom.ddic.EnqueueObject;
 import net.sf.rcer.rom.ddic.ReferredObjectType;
+import net.sf.rcer.rom.ddic.SearchHelp;
 import net.sf.rcer.rom.ddic.Structure;
 import net.sf.rcer.rom.ddic.StructureInclusion;
 import net.sf.rcer.rom.ddic.StructuredField;
 import net.sf.rcer.rom.ddic.Table;
+import net.sf.rcer.rom.ddic.TableType;
 import net.sf.rcer.rom.ddic.TabularField;
 import net.sf.rcer.rom.ddic.TypeKind;
+import net.sf.rcer.rom.ddic.View;
 import net.sf.rcer.rom.ddic.rfc.RFCDataElementData;
 import net.sf.rcer.rom.ddic.rfc.RFCDataElementReader;
 import net.sf.rcer.rom.ddic.rfc.RFCDataElementText;
@@ -111,6 +115,10 @@ import com.sap.conn.jco.JCoException;
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getDataElements <em>Data Elements</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getStructures <em>Structures</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getTables <em>Tables</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getTableTypes <em>Table Types</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getViews <em>Views</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getSeachHelps <em>Seach Helps</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getEnqueueObjects <em>Enqueue Objects</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getInterfaces <em>Interfaces</em>}</li>
  *   <li>{@link net.sf.rcer.rom.impl.RepositoryObjectCollectionImpl#getClasses <em>Classes</em>}</li>
  * </ul>
@@ -190,6 +198,46 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	protected EList<Table> tables;
 
 	/**
+	 * The cached value of the '{@link #getTableTypes() <em>Table Types</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTableTypes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TableType> tableTypes;
+
+	/**
+	 * The cached value of the '{@link #getViews() <em>Views</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getViews()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<View> views;
+
+	/**
+	 * The cached value of the '{@link #getSeachHelps() <em>Seach Helps</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSeachHelps()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SearchHelp> seachHelps;
+
+	/**
+	 * The cached value of the '{@link #getEnqueueObjects() <em>Enqueue Objects</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEnqueueObjects()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EnqueueObject> enqueueObjects;
+
+	/**
 	 * The cached value of the '{@link #getInterfaces() <em>Interfaces</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -249,6 +297,16 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			eNotify(new ENotificationImpl(this, Notification.SET, ROMPackage.REPOSITORY_OBJECT_COLLECTION__SOURCE_CONNECTION, oldSourceConnection, sourceConnection));
 	}
 
+	/**
+	 * Ensures that a connection is set when loading objects. 
+	 * @param load
+	 * @generated no
+	 */
+	private void checkConnection(boolean load) {
+		if (load && getSourceConnection() == null) {
+			throw new IllegalArgumentException("Source connection must be set when requesting loading of objects.");
+		}
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -265,6 +323,18 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				return getDomain(key.getName(), true);
 			} else if (key.getObjectTypeID().equals("TABL")) {
 				return loadTABLObject(key);
+			} else if (key.getObjectTypeID().equals("TTYP")) {
+				// TODO Complete model of table types.
+				return loadGenericObject(key, getTableTypes(), DDICPackage.eINSTANCE.getTableType());
+			} else if (key.getObjectTypeID().equals("SHLP")) {
+				// TODO Complete model of search helps.
+				return loadGenericObject(key, getSeachHelps(), DDICPackage.eINSTANCE.getSearchHelp());
+			} else if (key.getObjectTypeID().equals("ENQU")) {
+				// TODO Complete model of enqueue objects.
+				return loadGenericObject(key, getEnqueueObjects(), DDICPackage.eINSTANCE.getEnqueueObject());
+			} else if (key.getObjectTypeID().equals("VIEW")) {
+				// TODO Complete model of views.
+				return loadGenericObject(key, getViews(), DDICPackage.eINSTANCE.getView());
 			} else if (key.getObjectTypeID().equals("INTF")) {
 				return getABAPInterface(key.getName(), true);
 			} else if (key.getObjectTypeID().equals("CLAS")) {
@@ -273,6 +343,24 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 		}
 		throw new ObjectLoadingException(MessageFormat.format("Unable to load repository object {0} {1} {2}.",
 				key.getProgramID(), key.getObjectTypeID(), key.getName()));
+	}
+
+	/**
+	 * Creates a generic repository object. This method is used as a temporary measure only. 
+	 * @param key
+	 * @param list 
+	 * @param clazz
+	 * @return
+	 * @throws ObjectLoadingException 
+	 * @generated no 
+	 */
+	@SuppressWarnings("unchecked")
+	private RepositoryObject loadGenericObject(RepositoryObjectKey key, EList list, EClass clazz) throws ObjectLoadingException {
+		RepositoryObject obj = (RepositoryObject) clazz.getEPackage().getEFactoryInstance().create(clazz);
+		obj.setName(key.getName());
+		loadRepositoryData(obj);
+		list.add(obj);
+		return obj;
 	}
 
 	/**
@@ -382,9 +470,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	 * @generated and changed
 	 */
 	public RepositoryPackage getPackage(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
-		if (load && getSourceConnection() == null) {
-			throw new IllegalArgumentException("Source connection must be set when requesting loading of objects.");
-		}
+		checkConnection(load);
 		for (RepositoryPackage pkg: getPackages()) {
 			if (pkg.getName().equals(name)) {
 				if (load && !pkg.isLoaded()) {
@@ -538,6 +624,8 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				}		
 			}
 			
+			getPackages().add(pkg);
+			
 		} catch (JCoException e) {
 			throw new ObjectLoadingException(MessageFormat.format(
 					"Error loading the package data from TDEVC/TDEVCT for package {0}", pkg.getName()), e);				
@@ -562,9 +650,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	 * @generated and changed
 	 */
 	public Domain getDomain(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
-		if (load && getSourceConnection() == null) {
-			throw new IllegalArgumentException("Source connection must be set when requesting loading of objects.");
-		}
+		checkConnection(load);
 		for (Domain dom: getDomains()) {
 			if (dom.getName().equals(name)) {
 				if (load && !dom.isLoaded()) {
@@ -627,6 +713,8 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 					}
 				}
 			}
+			
+			getDomains().add(dom);
 		} catch (JCoException e) {
 			throw new ObjectLoadingException(MessageFormat.format("Error loading domain {0}", dom.getName()), e);				
 		}
@@ -650,9 +738,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	 * @generated and changed
 	 */
 	public DataElement getDataElement(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
-		if (load && getSourceConnection() == null) {
-			throw new IllegalArgumentException("Source connection must be set when requesting loading of objects.");
-		}
+		checkConnection(load);
 		for (DataElement elem: getDataElements()) {
 			if (elem.getName().equals(name)) {
 				if (load && !elem.isLoaded()) {
@@ -716,6 +802,8 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				elem.getLongText().put(locale, text.getLongText());
 			}
 			
+			getDataElements().add(elem);
+			
 		} catch (JCoException e) {
 			throw new ObjectLoadingException(MessageFormat.format("Error loading data element {0}", elem.getName()), e);				
 		} catch (LocaleNotFoundException e) {
@@ -741,9 +829,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	 * @generated and changed
 	 */
 	public Structure getStructure(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
-		if (load && getSourceConnection() == null) {
-			throw new IllegalArgumentException("Source connection must be set when requesting loading of objects.");
-		}
+		checkConnection(load);
 		for (Structure structure: getStructures()) {
 			if (structure.getName().equals(name)) {
 				if (load && !structure.isLoaded()) {
@@ -867,6 +953,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				}
 			}
 		}
+		getStructures().add(structure);
 	}
 
 	/**
@@ -887,9 +974,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	 * @generated and changed
 	 */
 	public Table getTable(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
-		if (load && getSourceConnection() == null) {
-			throw new IllegalArgumentException("Source connection must be set when requesting loading of objects.");
-		}
+		checkConnection(load);
 		for (Table table: getTables()) {
 			if (table.getName().equals(name)) {
 				if (load && !table.isLoaded()) {
@@ -979,6 +1064,155 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				}
 			}
 		}
+		getTables().add(table);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TableType> getTableTypes() {
+		if (tableTypes == null) {
+			tableTypes = new EObjectContainmentWithInverseEList<TableType>(TableType.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLE_TYPES, DDICPackage.TABLE_TYPE__COLLECTION);
+		}
+		return tableTypes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated and changed
+	 */
+	public TableType getTableType(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
+		checkConnection(load);
+		for (TableType tableType: getTableTypes()) {
+			if (tableType.getName().equals(name)) {
+				if (load && !tableType.isLoaded()) {
+					// TODO Load table type.
+				}
+				return tableType;
+			}
+		}
+		// table type was not found so far
+		if (load) {
+			TableType tableType = DDICFactory.eINSTANCE.createTableType();
+			tableType.setName(name);
+			// TODO Load table type.
+			return tableType;
+		}
+		throw new ObjectNotFoundException("Table type " + name + " not found.");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<View> getViews() {
+		if (views == null) {
+			views = new EObjectContainmentWithInverseEList<View>(View.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__VIEWS, DDICPackage.VIEW__COLLECTION);
+		}
+		return views;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated and changed
+	 */
+	public View getView(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
+		checkConnection(load);
+		for (View view: getViews()) {
+			if (view.getName().equals(name)) {
+				if (load && !view.isLoaded()) {
+					// TODO Load view.
+				}
+				return view;
+			}
+		}
+		// view was not found so far
+		if (load) {
+			View view = DDICFactory.eINSTANCE.createView();
+			view.setName(name);
+			// TODO Load view.
+			return view;
+		}
+		throw new ObjectNotFoundException("View " + name + " not found.");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<SearchHelp> getSeachHelps() {
+		if (seachHelps == null) {
+			seachHelps = new EObjectContainmentWithInverseEList<SearchHelp>(SearchHelp.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__SEACH_HELPS, DDICPackage.SEARCH_HELP__COLLECTION);
+		}
+		return seachHelps;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated and changed
+	 */
+	public SearchHelp getSearchHelp(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
+		checkConnection(load);
+		for (SearchHelp searchHelp: getSeachHelps()) {
+			if (searchHelp.getName().equals(name)) {
+				if (load && !searchHelp.isLoaded()) {
+					// TODO Load search help.
+				}
+				return searchHelp;
+			}
+		}
+		// search help was not found so far
+		if (load) {
+			SearchHelp searchHelp = DDICFactory.eINSTANCE.createSearchHelp();
+			searchHelp.setName(name);
+			// TODO Load search help.
+			return searchHelp;
+		}
+		throw new ObjectNotFoundException("Search help " + name + " not found.");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<EnqueueObject> getEnqueueObjects() {
+		if (enqueueObjects == null) {
+			enqueueObjects = new EObjectContainmentWithInverseEList<EnqueueObject>(EnqueueObject.class, this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__ENQUEUE_OBJECTS, DDICPackage.ENQUEUE_OBJECT__COLLECTION);
+		}
+		return enqueueObjects;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated and changed
+	 */
+	public EnqueueObject getEnqueueObject(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
+		checkConnection(load);
+		for (EnqueueObject enq: getEnqueueObjects()) {
+			if (enq.getName().equals(name)) {
+				if (load && !enq.isLoaded()) {
+					// TODO Load enqueue object.
+				}
+				return enq;
+			}
+		}
+		// enqueue object was not found so far
+		if (load) {
+			EnqueueObject enq = DDICFactory.eINSTANCE.createEnqueueObject();
+			enq.setName(name);
+			// TODO Load enqueue object.
+			return enq;
+		}
+		throw new ObjectNotFoundException("Enqueue object " + name + " not found.");
 	}
 
 	/**
@@ -999,9 +1233,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	 * @generated and changed
 	 */
 	public ABAPInterface getABAPInterface(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
-		if (load && getSourceConnection() == null) {
-			throw new IllegalArgumentException("Source connection must be set when requesting loading of objects.");
-		}
+		checkConnection(load);
 		for (ABAPInterface iface: getInterfaces()) {
 			if (iface.getName().equals(name)) {
 				if (load && !iface.isLoaded()) {
@@ -1077,6 +1309,8 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			
 			// TODO support aliases - still missing in the model
 	
+			getInterfaces().add(iface);
+			
 		} catch (JCoException e) {
 			throw new ObjectLoadingException(MessageFormat.format("Error loading interface {0}.", interfaceName), e);				
 		} catch (LocaleNotFoundException e) {
@@ -1443,9 +1677,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 	 * @generated and changed
 	 */
 	public ABAPClass getABAPClass(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException {
-		if (load && getSourceConnection() == null) {
-			throw new IllegalArgumentException("Source connection must be set when requesting loading of objects.");
-		}
+		checkConnection(load);
 		for (ABAPClass clazz: getClasses()) {
 			if (clazz.getName().equals(name)) {
 				if (load && !clazz.isLoaded()) {
@@ -1547,6 +1779,8 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			
 			// TODO support aliases - still missing in the model
 	
+			getClasses().add(clazz);
+			
 		} catch (JCoException e) {
 			throw new ObjectLoadingException(MessageFormat.format("Error loading class {0}.", className), e);				
 		} catch (LocaleNotFoundException e) {
@@ -1575,6 +1809,14 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getStructures()).basicAdd(otherEnd, msgs);
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTables()).basicAdd(otherEnd, msgs);
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLE_TYPES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTableTypes()).basicAdd(otherEnd, msgs);
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__VIEWS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getViews()).basicAdd(otherEnd, msgs);
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__SEACH_HELPS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSeachHelps()).basicAdd(otherEnd, msgs);
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__ENQUEUE_OBJECTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEnqueueObjects()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -1597,6 +1839,14 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				return ((InternalEList<?>)getStructures()).basicRemove(otherEnd, msgs);
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
 				return ((InternalEList<?>)getTables()).basicRemove(otherEnd, msgs);
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLE_TYPES:
+				return ((InternalEList<?>)getTableTypes()).basicRemove(otherEnd, msgs);
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__VIEWS:
+				return ((InternalEList<?>)getViews()).basicRemove(otherEnd, msgs);
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__SEACH_HELPS:
+				return ((InternalEList<?>)getSeachHelps()).basicRemove(otherEnd, msgs);
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__ENQUEUE_OBJECTS:
+				return ((InternalEList<?>)getEnqueueObjects()).basicRemove(otherEnd, msgs);
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__INTERFACES:
 				return ((InternalEList<?>)getInterfaces()).basicRemove(otherEnd, msgs);
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__CLASSES:
@@ -1625,6 +1875,14 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				return getStructures();
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
 				return getTables();
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLE_TYPES:
+				return getTableTypes();
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__VIEWS:
+				return getViews();
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__SEACH_HELPS:
+				return getSeachHelps();
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__ENQUEUE_OBJECTS:
+				return getEnqueueObjects();
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__INTERFACES:
 				return getInterfaces();
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__CLASSES:
@@ -1665,6 +1923,22 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				getTables().clear();
 				getTables().addAll((Collection<? extends Table>)newValue);
 				return;
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLE_TYPES:
+				getTableTypes().clear();
+				getTableTypes().addAll((Collection<? extends TableType>)newValue);
+				return;
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__VIEWS:
+				getViews().clear();
+				getViews().addAll((Collection<? extends View>)newValue);
+				return;
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__SEACH_HELPS:
+				getSeachHelps().clear();
+				getSeachHelps().addAll((Collection<? extends SearchHelp>)newValue);
+				return;
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__ENQUEUE_OBJECTS:
+				getEnqueueObjects().clear();
+				getEnqueueObjects().addAll((Collection<? extends EnqueueObject>)newValue);
+				return;
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__INTERFACES:
 				getInterfaces().clear();
 				getInterfaces().addAll((Collection<? extends ABAPInterface>)newValue);
@@ -1703,6 +1977,18 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
 				getTables().clear();
 				return;
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLE_TYPES:
+				getTableTypes().clear();
+				return;
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__VIEWS:
+				getViews().clear();
+				return;
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__SEACH_HELPS:
+				getSeachHelps().clear();
+				return;
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__ENQUEUE_OBJECTS:
+				getEnqueueObjects().clear();
+				return;
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__INTERFACES:
 				getInterfaces().clear();
 				return;
@@ -1733,6 +2019,14 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 				return structures != null && !structures.isEmpty();
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLES:
 				return tables != null && !tables.isEmpty();
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLE_TYPES:
+				return tableTypes != null && !tableTypes.isEmpty();
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__VIEWS:
+				return views != null && !views.isEmpty();
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__SEACH_HELPS:
+				return seachHelps != null && !seachHelps.isEmpty();
+			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__ENQUEUE_OBJECTS:
+				return enqueueObjects != null && !enqueueObjects.isEmpty();
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__INTERFACES:
 				return interfaces != null && !interfaces.isEmpty();
 			case ROMPackage.REPOSITORY_OBJECT_COLLECTION__CLASSES:

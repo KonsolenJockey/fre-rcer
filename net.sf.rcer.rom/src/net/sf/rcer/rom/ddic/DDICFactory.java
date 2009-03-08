@@ -131,6 +131,42 @@ public interface DDICFactory extends EFactory {
 	TabularField createTabularField();
 
 	/**
+	 * Returns a new object of class '<em>Table Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Table Type</em>'.
+	 * @generated
+	 */
+	TableType createTableType();
+
+	/**
+	 * Returns a new object of class '<em>View</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>View</em>'.
+	 * @generated
+	 */
+	View createView();
+
+	/**
+	 * Returns a new object of class '<em>Search Help</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Search Help</em>'.
+	 * @generated
+	 */
+	SearchHelp createSearchHelp();
+
+	/**
+	 * Returns a new object of class '<em>Enqueue Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Enqueue Object</em>'.
+	 * @generated
+	 */
+	EnqueueObject createEnqueueObject();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

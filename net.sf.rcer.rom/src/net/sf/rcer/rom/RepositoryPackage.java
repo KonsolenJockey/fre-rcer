@@ -14,6 +14,8 @@ package net.sf.rcer.rom;
 
 import net.sf.rcer.conn.locales.Locale;
 
+import net.sf.rcer.rom.util.ObjectLoadingException;
+import net.sf.rcer.rom.util.ObjectNotFoundException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
@@ -397,6 +399,14 @@ public interface RepositoryPackage extends RepositoryObject {
 	 * @generated
 	 */
 	void setObjectsLoaded(boolean value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" failOnErrorUnique="false" failOnErrorRequired="true" failOnErrorOrdered="false"
+	 * @generated
+	 */
+	void loadContents(boolean failOnError) throws ObjectNotFoundException, ObjectLoadingException;
 
 	/**
 	 * Returns the value of the '<em><b>Objects</b></em>' reference list.

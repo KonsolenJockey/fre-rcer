@@ -144,6 +144,22 @@ public class DDICAdapterFactory extends AdapterFactoryImpl {
 				return createTabularFieldAdapter();
 			}
 			@Override
+			public Adapter caseTableType(TableType object) {
+				return createTableTypeAdapter();
+			}
+			@Override
+			public Adapter caseView(View object) {
+				return createViewAdapter();
+			}
+			@Override
+			public Adapter caseSearchHelp(SearchHelp object) {
+				return createSearchHelpAdapter();
+			}
+			@Override
+			public Adapter caseEnqueueObject(EnqueueObject object) {
+				return createEnqueueObjectAdapter();
+			}
+			@Override
 			public Adapter caseRepositoryObject(RepositoryObject object) {
 				return createRepositoryObjectAdapter();
 			}
@@ -388,6 +404,62 @@ public class DDICAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTabularFieldAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.TableType <em>Table Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.TableType
+	 * @generated
+	 */
+	public Adapter createTableTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.View <em>View</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.View
+	 * @generated
+	 */
+	public Adapter createViewAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.SearchHelp <em>Search Help</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.SearchHelp
+	 * @generated
+	 */
+	public Adapter createSearchHelpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.ddic.EnqueueObject <em>Enqueue Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.ddic.EnqueueObject
+	 * @generated
+	 */
+	public Adapter createEnqueueObjectAdapter() {
 		return null;
 	}
 

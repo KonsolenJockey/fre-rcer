@@ -331,13 +331,49 @@ public interface ROMPackage extends EPackage {
 	int REPOSITORY_OBJECT_COLLECTION__TABLES = 5;
 
 	/**
+	 * The feature id for the '<em><b>Table Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY_OBJECT_COLLECTION__TABLE_TYPES = 6;
+
+	/**
+	 * The feature id for the '<em><b>Views</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY_OBJECT_COLLECTION__VIEWS = 7;
+
+	/**
+	 * The feature id for the '<em><b>Seach Helps</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY_OBJECT_COLLECTION__SEACH_HELPS = 8;
+
+	/**
+	 * The feature id for the '<em><b>Enqueue Objects</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY_OBJECT_COLLECTION__ENQUEUE_OBJECTS = 9;
+
+	/**
 	 * The feature id for the '<em><b>Interfaces</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_OBJECT_COLLECTION__INTERFACES = 6;
+	int REPOSITORY_OBJECT_COLLECTION__INTERFACES = 10;
 
 	/**
 	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
@@ -346,7 +382,7 @@ public interface ROMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_OBJECT_COLLECTION__CLASSES = 7;
+	int REPOSITORY_OBJECT_COLLECTION__CLASSES = 11;
 
 	/**
 	 * The number of structural features of the '<em>Repository Object Collection</em>' class.
@@ -355,7 +391,7 @@ public interface ROMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_OBJECT_COLLECTION_FEATURE_COUNT = 8;
+	int REPOSITORY_OBJECT_COLLECTION_FEATURE_COUNT = 12;
 
 	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.impl.RepositoryPackageImpl <em>Repository Package</em>}' class.
@@ -913,6 +949,50 @@ public interface ROMPackage extends EPackage {
 	EReference getRepositoryObjectCollection_Tables();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link net.sf.rcer.rom.RepositoryObjectCollection#getTableTypes <em>Table Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Table Types</em>'.
+	 * @see net.sf.rcer.rom.RepositoryObjectCollection#getTableTypes()
+	 * @see #getRepositoryObjectCollection()
+	 * @generated
+	 */
+	EReference getRepositoryObjectCollection_TableTypes();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link net.sf.rcer.rom.RepositoryObjectCollection#getViews <em>Views</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Views</em>'.
+	 * @see net.sf.rcer.rom.RepositoryObjectCollection#getViews()
+	 * @see #getRepositoryObjectCollection()
+	 * @generated
+	 */
+	EReference getRepositoryObjectCollection_Views();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link net.sf.rcer.rom.RepositoryObjectCollection#getSeachHelps <em>Seach Helps</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Seach Helps</em>'.
+	 * @see net.sf.rcer.rom.RepositoryObjectCollection#getSeachHelps()
+	 * @see #getRepositoryObjectCollection()
+	 * @generated
+	 */
+	EReference getRepositoryObjectCollection_SeachHelps();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link net.sf.rcer.rom.RepositoryObjectCollection#getEnqueueObjects <em>Enqueue Objects</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Enqueue Objects</em>'.
+	 * @see net.sf.rcer.rom.RepositoryObjectCollection#getEnqueueObjects()
+	 * @see #getRepositoryObjectCollection()
+	 * @generated
+	 */
+	EReference getRepositoryObjectCollection_EnqueueObjects();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link net.sf.rcer.rom.RepositoryObjectCollection#getInterfaces <em>Interfaces</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1449,6 +1529,38 @@ public interface ROMPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REPOSITORY_OBJECT_COLLECTION__TABLES = eINSTANCE.getRepositoryObjectCollection_Tables();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Types</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPOSITORY_OBJECT_COLLECTION__TABLE_TYPES = eINSTANCE.getRepositoryObjectCollection_TableTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Views</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPOSITORY_OBJECT_COLLECTION__VIEWS = eINSTANCE.getRepositoryObjectCollection_Views();
+
+		/**
+		 * The meta object literal for the '<em><b>Seach Helps</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPOSITORY_OBJECT_COLLECTION__SEACH_HELPS = eINSTANCE.getRepositoryObjectCollection_SeachHelps();
+
+		/**
+		 * The meta object literal for the '<em><b>Enqueue Objects</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPOSITORY_OBJECT_COLLECTION__ENQUEUE_OBJECTS = eINSTANCE.getRepositoryObjectCollection_EnqueueObjects();
 
 		/**
 		 * The meta object literal for the '<em><b>Interfaces</b></em>' containment reference list feature.

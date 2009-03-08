@@ -153,6 +153,18 @@
     <genClasses ecoreClass="ddic.ecore#//TabularField">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ddic.ecore#//TabularField/tableTypeName"/>
     </genClasses>
+    <genClasses ecoreClass="ddic.ecore#//TableType">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//TableType/collection"/>
+    </genClasses>
+    <genClasses ecoreClass="ddic.ecore#//View">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//View/collection"/>
+    </genClasses>
+    <genClasses ecoreClass="ddic.ecore#//SearchHelp">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//SearchHelp/collection"/>
+    </genClasses>
+    <genClasses ecoreClass="ddic.ecore#//EnqueueObject">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ddic.ecore#//EnqueueObject/collection"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="ROM" basePackage="net.sf.rcer" disposableProviderFactory="true"
       contentTypeIdentifier="" ecorePackage="rom.ecore#/">
@@ -163,6 +175,10 @@
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/DATA_ELEMENT"/>
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/TABLE"/>
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/STRUCTURE"/>
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/TABLE_TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/VIEW"/>
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/SEARCH_HELP"/>
+      <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/ENQUEUE_OBJECT"/>
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/INTERFACE"/>
       <genEnumLiterals ecoreEnumLiteral="rom.ecore#//RepositoryObjectType/CLASS"/>
     </genEnums>
@@ -226,6 +242,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObjectCollection/dataElements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObjectCollection/structures"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObjectCollection/tables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObjectCollection/tableTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObjectCollection/views"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObjectCollection/seachHelps"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObjectCollection/enqueueObjects"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObjectCollection/interfaces"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rom.ecore#//RepositoryObjectCollection/classes"/>
       <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/getPackage">
@@ -250,6 +270,22 @@
       <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/getTable">
         <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getTable/name"/>
         <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getTable/load"/>
+      </genOperations>
+      <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/getTableType">
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getTableType/name"/>
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getTableType/load"/>
+      </genOperations>
+      <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/getView">
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getView/name"/>
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getView/load"/>
+      </genOperations>
+      <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/getSearchHelp">
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getSearchHelp/name"/>
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getSearchHelp/load"/>
+      </genOperations>
+      <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/getEnqueueObject">
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getEnqueueObject/name"/>
+        <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getEnqueueObject/load"/>
       </genOperations>
       <genOperations ecoreOperation="rom.ecore#//RepositoryObjectCollection/getABAPInterface">
         <genParameters ecoreParameter="rom.ecore#//RepositoryObjectCollection/getABAPInterface/name"/>

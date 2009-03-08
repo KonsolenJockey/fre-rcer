@@ -1471,6 +1471,478 @@ public interface DDICPackage extends EPackage {
 	int TABULAR_FIELD_FEATURE_COUNT = NAMED_FIELD_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.TableTypeImpl <em>Table Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.TableTypeImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getTableType()
+	 * @generated
+	 */
+	int TABLE_TYPE = 16;
+
+	/**
+	 * The feature id for the '<em><b>Object Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_TYPE__OBJECT_TYPE = ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_TYPE__NAME = ROMPackage.REPOSITORY_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Loaded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_TYPE__LOADED = ROMPackage.REPOSITORY_OBJECT__LOADED;
+
+	/**
+	 * The feature id for the '<em><b>Source System</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_TYPE__SOURCE_SYSTEM = ROMPackage.REPOSITORY_OBJECT__SOURCE_SYSTEM;
+
+	/**
+	 * The feature id for the '<em><b>Author</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_TYPE__AUTHOR = ROMPackage.REPOSITORY_OBJECT__AUTHOR;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_TYPE__GENERATED = ROMPackage.REPOSITORY_OBJECT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Original Locale</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_TYPE__ORIGINAL_LOCALE = ROMPackage.REPOSITORY_OBJECT__ORIGINAL_LOCALE;
+
+	/**
+	 * The feature id for the '<em><b>Software Component</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_TYPE__SOFTWARE_COMPONENT = ROMPackage.REPOSITORY_OBJECT__SOFTWARE_COMPONENT;
+
+	/**
+	 * The feature id for the '<em><b>Component Release</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_TYPE__COMPONENT_RELEASE = ROMPackage.REPOSITORY_OBJECT__COMPONENT_RELEASE;
+
+	/**
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_TYPE__PACKAGE_NAME = ROMPackage.REPOSITORY_OBJECT__PACKAGE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Collection</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_TYPE__COLLECTION = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Table Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_TYPE_FEATURE_COUNT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.ViewImpl <em>View</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.ViewImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getView()
+	 * @generated
+	 */
+	int VIEW = 17;
+
+	/**
+	 * The feature id for the '<em><b>Object Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__OBJECT_TYPE = ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__NAME = ROMPackage.REPOSITORY_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Loaded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__LOADED = ROMPackage.REPOSITORY_OBJECT__LOADED;
+
+	/**
+	 * The feature id for the '<em><b>Source System</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__SOURCE_SYSTEM = ROMPackage.REPOSITORY_OBJECT__SOURCE_SYSTEM;
+
+	/**
+	 * The feature id for the '<em><b>Author</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__AUTHOR = ROMPackage.REPOSITORY_OBJECT__AUTHOR;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__GENERATED = ROMPackage.REPOSITORY_OBJECT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Original Locale</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__ORIGINAL_LOCALE = ROMPackage.REPOSITORY_OBJECT__ORIGINAL_LOCALE;
+
+	/**
+	 * The feature id for the '<em><b>Software Component</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__SOFTWARE_COMPONENT = ROMPackage.REPOSITORY_OBJECT__SOFTWARE_COMPONENT;
+
+	/**
+	 * The feature id for the '<em><b>Component Release</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__COMPONENT_RELEASE = ROMPackage.REPOSITORY_OBJECT__COMPONENT_RELEASE;
+
+	/**
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__PACKAGE_NAME = ROMPackage.REPOSITORY_OBJECT__PACKAGE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Collection</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW__COLLECTION = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>View</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_FEATURE_COUNT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.SearchHelpImpl <em>Search Help</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.SearchHelpImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getSearchHelp()
+	 * @generated
+	 */
+	int SEARCH_HELP = 18;
+
+	/**
+	 * The feature id for the '<em><b>Object Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_HELP__OBJECT_TYPE = ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_HELP__NAME = ROMPackage.REPOSITORY_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Loaded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_HELP__LOADED = ROMPackage.REPOSITORY_OBJECT__LOADED;
+
+	/**
+	 * The feature id for the '<em><b>Source System</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_HELP__SOURCE_SYSTEM = ROMPackage.REPOSITORY_OBJECT__SOURCE_SYSTEM;
+
+	/**
+	 * The feature id for the '<em><b>Author</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_HELP__AUTHOR = ROMPackage.REPOSITORY_OBJECT__AUTHOR;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_HELP__GENERATED = ROMPackage.REPOSITORY_OBJECT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Original Locale</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_HELP__ORIGINAL_LOCALE = ROMPackage.REPOSITORY_OBJECT__ORIGINAL_LOCALE;
+
+	/**
+	 * The feature id for the '<em><b>Software Component</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_HELP__SOFTWARE_COMPONENT = ROMPackage.REPOSITORY_OBJECT__SOFTWARE_COMPONENT;
+
+	/**
+	 * The feature id for the '<em><b>Component Release</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_HELP__COMPONENT_RELEASE = ROMPackage.REPOSITORY_OBJECT__COMPONENT_RELEASE;
+
+	/**
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_HELP__PACKAGE_NAME = ROMPackage.REPOSITORY_OBJECT__PACKAGE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Collection</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_HELP__COLLECTION = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Search Help</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_HELP_FEATURE_COUNT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.impl.EnqueueObjectImpl <em>Enqueue Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.sf.rcer.rom.ddic.impl.EnqueueObjectImpl
+	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getEnqueueObject()
+	 * @generated
+	 */
+	int ENQUEUE_OBJECT = 19;
+
+	/**
+	 * The feature id for the '<em><b>Object Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENQUEUE_OBJECT__OBJECT_TYPE = ROMPackage.REPOSITORY_OBJECT__OBJECT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENQUEUE_OBJECT__NAME = ROMPackage.REPOSITORY_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Loaded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENQUEUE_OBJECT__LOADED = ROMPackage.REPOSITORY_OBJECT__LOADED;
+
+	/**
+	 * The feature id for the '<em><b>Source System</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENQUEUE_OBJECT__SOURCE_SYSTEM = ROMPackage.REPOSITORY_OBJECT__SOURCE_SYSTEM;
+
+	/**
+	 * The feature id for the '<em><b>Author</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENQUEUE_OBJECT__AUTHOR = ROMPackage.REPOSITORY_OBJECT__AUTHOR;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENQUEUE_OBJECT__GENERATED = ROMPackage.REPOSITORY_OBJECT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Original Locale</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENQUEUE_OBJECT__ORIGINAL_LOCALE = ROMPackage.REPOSITORY_OBJECT__ORIGINAL_LOCALE;
+
+	/**
+	 * The feature id for the '<em><b>Software Component</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENQUEUE_OBJECT__SOFTWARE_COMPONENT = ROMPackage.REPOSITORY_OBJECT__SOFTWARE_COMPONENT;
+
+	/**
+	 * The feature id for the '<em><b>Component Release</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENQUEUE_OBJECT__COMPONENT_RELEASE = ROMPackage.REPOSITORY_OBJECT__COMPONENT_RELEASE;
+
+	/**
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENQUEUE_OBJECT__PACKAGE_NAME = ROMPackage.REPOSITORY_OBJECT__PACKAGE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Collection</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENQUEUE_OBJECT__COLLECTION = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Enqueue Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENQUEUE_OBJECT_FEATURE_COUNT = ROMPackage.REPOSITORY_OBJECT_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.DictionaryDataType <em>Dictionary Data Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1478,7 +1950,7 @@ public interface DDICPackage extends EPackage {
 	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getDictionaryDataType()
 	 * @generated
 	 */
-	int DICTIONARY_DATA_TYPE = 16;
+	int DICTIONARY_DATA_TYPE = 20;
 
 
 	/**
@@ -1489,7 +1961,7 @@ public interface DDICPackage extends EPackage {
 	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getReferredObjectType()
 	 * @generated
 	 */
-	int REFERRED_OBJECT_TYPE = 17;
+	int REFERRED_OBJECT_TYPE = 21;
 
 	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.ddic.TypeKind <em>Type Kind</em>}' enum.
@@ -1499,7 +1971,7 @@ public interface DDICPackage extends EPackage {
 	 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getTypeKind()
 	 * @generated
 	 */
-	int TYPE_KIND = 18;
+	int TYPE_KIND = 22;
 
 
 	/**
@@ -2378,6 +2850,90 @@ public interface DDICPackage extends EPackage {
 	EAttribute getTabularField_TableTypeName();
 
 	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.TableType <em>Table Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Table Type</em>'.
+	 * @see net.sf.rcer.rom.ddic.TableType
+	 * @generated
+	 */
+	EClass getTableType();
+
+	/**
+	 * Returns the meta object for the container reference '{@link net.sf.rcer.rom.ddic.TableType#getCollection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Collection</em>'.
+	 * @see net.sf.rcer.rom.ddic.TableType#getCollection()
+	 * @see #getTableType()
+	 * @generated
+	 */
+	EReference getTableType_Collection();
+
+	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.View <em>View</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>View</em>'.
+	 * @see net.sf.rcer.rom.ddic.View
+	 * @generated
+	 */
+	EClass getView();
+
+	/**
+	 * Returns the meta object for the container reference '{@link net.sf.rcer.rom.ddic.View#getCollection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Collection</em>'.
+	 * @see net.sf.rcer.rom.ddic.View#getCollection()
+	 * @see #getView()
+	 * @generated
+	 */
+	EReference getView_Collection();
+
+	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.SearchHelp <em>Search Help</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Search Help</em>'.
+	 * @see net.sf.rcer.rom.ddic.SearchHelp
+	 * @generated
+	 */
+	EClass getSearchHelp();
+
+	/**
+	 * Returns the meta object for the container reference '{@link net.sf.rcer.rom.ddic.SearchHelp#getCollection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Collection</em>'.
+	 * @see net.sf.rcer.rom.ddic.SearchHelp#getCollection()
+	 * @see #getSearchHelp()
+	 * @generated
+	 */
+	EReference getSearchHelp_Collection();
+
+	/**
+	 * Returns the meta object for class '{@link net.sf.rcer.rom.ddic.EnqueueObject <em>Enqueue Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Enqueue Object</em>'.
+	 * @see net.sf.rcer.rom.ddic.EnqueueObject
+	 * @generated
+	 */
+	EClass getEnqueueObject();
+
+	/**
+	 * Returns the meta object for the container reference '{@link net.sf.rcer.rom.ddic.EnqueueObject#getCollection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Collection</em>'.
+	 * @see net.sf.rcer.rom.ddic.EnqueueObject#getCollection()
+	 * @see #getEnqueueObject()
+	 * @generated
+	 */
+	EReference getEnqueueObject_Collection();
+
+	/**
 	 * Returns the meta object for enum '{@link net.sf.rcer.rom.ddic.DictionaryDataType <em>Dictionary Data Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3108,6 +3664,78 @@ public interface DDICPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TABULAR_FIELD__TABLE_TYPE_NAME = eINSTANCE.getTabularField_TableTypeName();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.TableTypeImpl <em>Table Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.TableTypeImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getTableType()
+		 * @generated
+		 */
+		EClass TABLE_TYPE = eINSTANCE.getTableType();
+
+		/**
+		 * The meta object literal for the '<em><b>Collection</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_TYPE__COLLECTION = eINSTANCE.getTableType_Collection();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.ViewImpl <em>View</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.ViewImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getView()
+		 * @generated
+		 */
+		EClass VIEW = eINSTANCE.getView();
+
+		/**
+		 * The meta object literal for the '<em><b>Collection</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VIEW__COLLECTION = eINSTANCE.getView_Collection();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.SearchHelpImpl <em>Search Help</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.SearchHelpImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getSearchHelp()
+		 * @generated
+		 */
+		EClass SEARCH_HELP = eINSTANCE.getSearchHelp();
+
+		/**
+		 * The meta object literal for the '<em><b>Collection</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SEARCH_HELP__COLLECTION = eINSTANCE.getSearchHelp_Collection();
+
+		/**
+		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.impl.EnqueueObjectImpl <em>Enqueue Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.sf.rcer.rom.ddic.impl.EnqueueObjectImpl
+		 * @see net.sf.rcer.rom.ddic.impl.DDICPackageImpl#getEnqueueObject()
+		 * @generated
+		 */
+		EClass ENQUEUE_OBJECT = eINSTANCE.getEnqueueObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Collection</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENQUEUE_OBJECT__COLLECTION = eINSTANCE.getEnqueueObject_Collection();
 
 		/**
 		 * The meta object literal for the '{@link net.sf.rcer.rom.ddic.DictionaryDataType <em>Dictionary Data Type</em>}' enum.

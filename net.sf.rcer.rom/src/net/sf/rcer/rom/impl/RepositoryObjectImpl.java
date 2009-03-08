@@ -13,9 +13,11 @@
 package net.sf.rcer.rom.impl;
 
 import net.sf.rcer.conn.locales.Locale;
+import net.sf.rcer.rom.ROMFactory;
 import net.sf.rcer.rom.ROMPackage;
 import net.sf.rcer.rom.RepositoryObject;
 import net.sf.rcer.rom.RepositoryObjectCollection;
+import net.sf.rcer.rom.RepositoryObjectKey;
 import net.sf.rcer.rom.RepositoryObjectType;
 import net.sf.rcer.rom.RepositoryPackage;
 import net.sf.rcer.rom.util.ObjectLoadingException;
@@ -299,6 +301,19 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 	 * @generated and changed
 	 */
 	public abstract String getObjectTypeID();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated and changed
+	 */
+	public RepositoryObjectKey getKey() {
+		RepositoryObjectKey key = ROMFactory.eINSTANCE.createRepositoryObjectKey();
+		key.setProgramID(getProgramID());
+		key.setObjectTypeID(getObjectTypeID());
+		key.setName(getName());
+		return key;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

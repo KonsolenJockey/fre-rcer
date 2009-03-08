@@ -78,6 +78,10 @@ public class DDICFactoryImpl extends EFactoryImpl implements DDICFactory {
 			case DDICPackage.DIRECT_FIELD: return createDirectField();
 			case DDICPackage.STRUCTURED_FIELD: return createStructuredField();
 			case DDICPackage.TABULAR_FIELD: return createTabularField();
+			case DDICPackage.TABLE_TYPE: return createTableType();
+			case DDICPackage.VIEW: return createView();
+			case DDICPackage.SEARCH_HELP: return createSearchHelp();
+			case DDICPackage.ENQUEUE_OBJECT: return createEnqueueObject();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -229,6 +233,46 @@ public class DDICFactoryImpl extends EFactoryImpl implements DDICFactory {
 	public TabularField createTabularField() {
 		TabularFieldImpl tabularField = new TabularFieldImpl();
 		return tabularField;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TableType createTableType() {
+		TableTypeImpl tableType = new TableTypeImpl();
+		return tableType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public View createView() {
+		ViewImpl view = new ViewImpl();
+		return view;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SearchHelp createSearchHelp() {
+		SearchHelpImpl searchHelp = new SearchHelpImpl();
+		return searchHelp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EnqueueObject createEnqueueObject() {
+		EnqueueObjectImpl enqueueObject = new EnqueueObjectImpl();
+		return enqueueObject;
 	}
 
 	/**

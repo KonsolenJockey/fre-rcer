@@ -13,6 +13,8 @@
 package net.sf.rcer.rom.impl;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Vector;
 
 import net.sf.rcer.conn.locales.Locale;
 import net.sf.rcer.rom.PackagePermittedObjectTypes;
@@ -23,6 +25,8 @@ import net.sf.rcer.rom.RepositoryObjectCollection;
 import net.sf.rcer.rom.RepositoryObjectKey;
 import net.sf.rcer.rom.RepositoryObjectType;
 import net.sf.rcer.rom.RepositoryPackage;
+import net.sf.rcer.rom.util.ObjectLoadingException;
+import net.sf.rcer.rom.util.ObjectNotFoundException;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -632,6 +636,30 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 		objectsLoaded = newObjectsLoaded;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ROMPackage.REPOSITORY_PACKAGE__OBJECTS_LOADED, oldObjectsLoaded, objectsLoaded));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated and changed
+	 */
+	public void loadContents(boolean failOnError) throws ObjectNotFoundException, ObjectLoadingException {
+		List<RepositoryObjectKey> keys = new Vector<RepositoryObjectKey>(getObjectKeys());
+		for (RepositoryObjectKey key: keys) {
+			try {
+				RepositoryObject obj = getCollection().loadObject(key);
+				getObjects().add(obj);
+				getObjectKeys().remove(key);
+			} catch (ObjectNotFoundException e) {
+				if (failOnError) {
+					throw e;
+				}
+			} catch (ObjectLoadingException e) {
+				if (failOnError) {
+					throw e;
+				}
+			}
+		}
 	}
 
 	/**

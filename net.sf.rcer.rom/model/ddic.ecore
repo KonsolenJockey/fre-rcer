@@ -223,4 +223,24 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tableTypeName" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TableType" eSuperTypes="rom.ecore#//RepositoryObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collection" ordered="false"
+        unique="false" eType="ecore:EClass rom.ecore#//RepositoryObjectCollection"
+        changeable="false" derived="true" eOpposite="rom.ecore#//RepositoryObjectCollection/tableTypes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="rom.ecore#//RepositoryObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collection" ordered="false"
+        unique="false" eType="ecore:EClass rom.ecore#//RepositoryObjectCollection"
+        changeable="false" derived="true" eOpposite="rom.ecore#//RepositoryObjectCollection/views"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SearchHelp" eSuperTypes="rom.ecore#//RepositoryObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collection" ordered="false"
+        unique="false" eType="ecore:EClass rom.ecore#//RepositoryObjectCollection"
+        changeable="false" derived="true" eOpposite="rom.ecore#//RepositoryObjectCollection/seachHelps"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnqueueObject" eSuperTypes="rom.ecore#//RepositoryObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collection" ordered="false"
+        unique="false" eType="ecore:EClass rom.ecore#//RepositoryObjectCollection"
+        changeable="false" derived="true" eOpposite="rom.ecore#//RepositoryObjectCollection/enqueueObjects"/>
+  </eClassifiers>
 </ecore:EPackage>

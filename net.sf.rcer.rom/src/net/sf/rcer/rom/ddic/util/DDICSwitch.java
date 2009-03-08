@@ -215,6 +215,34 @@ public class DDICSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DDICPackage.TABLE_TYPE: {
+				TableType tableType = (TableType)theEObject;
+				T result = caseTableType(tableType);
+				if (result == null) result = caseRepositoryObject(tableType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DDICPackage.VIEW: {
+				View view = (View)theEObject;
+				T result = caseView(view);
+				if (result == null) result = caseRepositoryObject(view);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DDICPackage.SEARCH_HELP: {
+				SearchHelp searchHelp = (SearchHelp)theEObject;
+				T result = caseSearchHelp(searchHelp);
+				if (result == null) result = caseRepositoryObject(searchHelp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DDICPackage.ENQUEUE_OBJECT: {
+				EnqueueObject enqueueObject = (EnqueueObject)theEObject;
+				T result = caseEnqueueObject(enqueueObject);
+				if (result == null) result = caseRepositoryObject(enqueueObject);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -456,6 +484,66 @@ public class DDICSwitch<T> {
 	 * @generated
 	 */
 	public T caseTabularField(TabularField object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Table Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Table Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTableType(TableType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>View</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>View</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseView(View object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Search Help</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Search Help</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSearchHelp(SearchHelp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Enqueue Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Enqueue Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEnqueueObject(EnqueueObject object) {
 		return null;
 	}
 

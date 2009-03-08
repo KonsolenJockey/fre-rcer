@@ -17,8 +17,12 @@ import net.sf.rcer.rom.abapobj.ABAPClass;
 import net.sf.rcer.rom.abapobj.ABAPInterface;
 import net.sf.rcer.rom.ddic.DataElement;
 import net.sf.rcer.rom.ddic.Domain;
+import net.sf.rcer.rom.ddic.EnqueueObject;
+import net.sf.rcer.rom.ddic.SearchHelp;
 import net.sf.rcer.rom.ddic.Structure;
 import net.sf.rcer.rom.ddic.Table;
+import net.sf.rcer.rom.ddic.TableType;
+import net.sf.rcer.rom.ddic.View;
 import net.sf.rcer.rom.util.ObjectLoadingException;
 import net.sf.rcer.rom.util.ObjectNotFoundException;
 import org.eclipse.emf.common.util.EList;
@@ -39,6 +43,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getDataElements <em>Data Elements</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getStructures <em>Structures</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getTables <em>Tables</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getTableTypes <em>Table Types</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getViews <em>Views</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getSeachHelps <em>Seach Helps</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getEnqueueObjects <em>Enqueue Objects</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getInterfaces <em>Interfaces</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getClasses <em>Classes</em>}</li>
  * </ul>
@@ -167,6 +175,78 @@ public interface RepositoryObjectCollection extends EObject {
 	EList<Table> getTables();
 
 	/**
+	 * Returns the value of the '<em><b>Table Types</b></em>' containment reference list.
+	 * The list contents are of type {@link net.sf.rcer.rom.ddic.TableType}.
+	 * It is bidirectional and its opposite is '{@link net.sf.rcer.rom.ddic.TableType#getCollection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Table Types</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Table Types</em>' containment reference list.
+	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryObjectCollection_TableTypes()
+	 * @see net.sf.rcer.rom.ddic.TableType#getCollection
+	 * @model opposite="collection" containment="true" keys="name" ordered="false"
+	 * @generated
+	 */
+	EList<TableType> getTableTypes();
+
+	/**
+	 * Returns the value of the '<em><b>Views</b></em>' containment reference list.
+	 * The list contents are of type {@link net.sf.rcer.rom.ddic.View}.
+	 * It is bidirectional and its opposite is '{@link net.sf.rcer.rom.ddic.View#getCollection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Views</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Views</em>' containment reference list.
+	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryObjectCollection_Views()
+	 * @see net.sf.rcer.rom.ddic.View#getCollection
+	 * @model opposite="collection" containment="true" keys="name" ordered="false"
+	 * @generated
+	 */
+	EList<View> getViews();
+
+	/**
+	 * Returns the value of the '<em><b>Seach Helps</b></em>' containment reference list.
+	 * The list contents are of type {@link net.sf.rcer.rom.ddic.SearchHelp}.
+	 * It is bidirectional and its opposite is '{@link net.sf.rcer.rom.ddic.SearchHelp#getCollection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Seach Helps</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Seach Helps</em>' containment reference list.
+	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryObjectCollection_SeachHelps()
+	 * @see net.sf.rcer.rom.ddic.SearchHelp#getCollection
+	 * @model opposite="collection" containment="true" keys="name" ordered="false"
+	 * @generated
+	 */
+	EList<SearchHelp> getSeachHelps();
+
+	/**
+	 * Returns the value of the '<em><b>Enqueue Objects</b></em>' containment reference list.
+	 * The list contents are of type {@link net.sf.rcer.rom.ddic.EnqueueObject}.
+	 * It is bidirectional and its opposite is '{@link net.sf.rcer.rom.ddic.EnqueueObject#getCollection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Enqueue Objects</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Enqueue Objects</em>' containment reference list.
+	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryObjectCollection_EnqueueObjects()
+	 * @see net.sf.rcer.rom.ddic.EnqueueObject#getCollection
+	 * @model opposite="collection" containment="true" keys="name" ordered="false"
+	 * @generated
+	 */
+	EList<EnqueueObject> getEnqueueObjects();
+
+	/**
 	 * Returns the value of the '<em><b>Interfaces</b></em>' containment reference list.
 	 * The list contents are of type {@link net.sf.rcer.rom.abapobj.ABAPInterface}.
 	 * <!-- begin-user-doc -->
@@ -245,6 +325,38 @@ public interface RepositoryObjectCollection extends EObject {
 	 * @generated
 	 */
 	Table getTable(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false" required="true" ordered="false" exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" nameUnique="false" nameRequired="true" nameOrdered="false" loadUnique="false" loadRequired="true" loadOrdered="false"
+	 * @generated
+	 */
+	TableType getTableType(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false" required="true" ordered="false" exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" nameUnique="false" nameRequired="true" nameOrdered="false" loadUnique="false" loadRequired="true" loadOrdered="false"
+	 * @generated
+	 */
+	View getView(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false" required="true" ordered="false" exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" nameUnique="false" nameRequired="true" nameOrdered="false" loadUnique="false" loadRequired="true" loadOrdered="false"
+	 * @generated
+	 */
+	SearchHelp getSearchHelp(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false" required="true" ordered="false" exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" nameUnique="false" nameRequired="true" nameOrdered="false" loadUnique="false" loadRequired="true" loadOrdered="false"
+	 * @generated
+	 */
+	EnqueueObject getEnqueueObject(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException;
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -27,8 +27,10 @@ import net.sf.rcer.rom.ddic.DomainValue;
 import net.sf.rcer.rom.ddic.DomainValueRange;
 import net.sf.rcer.rom.ddic.DomainValueSingle;
 
+import net.sf.rcer.rom.ddic.EnqueueObject;
 import net.sf.rcer.rom.ddic.NamedField;
 import net.sf.rcer.rom.ddic.ReferredObjectType;
+import net.sf.rcer.rom.ddic.SearchHelp;
 import net.sf.rcer.rom.ddic.SingleField;
 import net.sf.rcer.rom.ddic.Structure;
 import net.sf.rcer.rom.ddic.StructureField;
@@ -36,8 +38,10 @@ import net.sf.rcer.rom.ddic.StructureInclusion;
 import net.sf.rcer.rom.ddic.StructuredField;
 import net.sf.rcer.rom.ddic.Table;
 import net.sf.rcer.rom.ddic.TableField;
+import net.sf.rcer.rom.ddic.TableType;
 import net.sf.rcer.rom.ddic.TabularField;
 import net.sf.rcer.rom.ddic.TypeKind;
+import net.sf.rcer.rom.ddic.View;
 import net.sf.rcer.rom.impl.ROMPackageImpl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -166,6 +170,34 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * @generated
 	 */
 	private EClass tabularFieldEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tableTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass viewEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass searchHelpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass enqueueObjectEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -998,6 +1030,78 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTableType() {
+		return tableTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTableType_Collection() {
+		return (EReference)tableTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getView() {
+		return viewEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getView_Collection() {
+		return (EReference)viewEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSearchHelp() {
+		return searchHelpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSearchHelp_Collection() {
+		return (EReference)searchHelpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEnqueueObject() {
+		return enqueueObjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEnqueueObject_Collection() {
+		return (EReference)enqueueObjectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getDictionaryDataType() {
 		return dictionaryDataTypeEEnum;
 	}
@@ -1145,6 +1249,18 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 		tabularFieldEClass = createEClass(TABULAR_FIELD);
 		createEAttribute(tabularFieldEClass, TABULAR_FIELD__TABLE_TYPE_NAME);
 
+		tableTypeEClass = createEClass(TABLE_TYPE);
+		createEReference(tableTypeEClass, TABLE_TYPE__COLLECTION);
+
+		viewEClass = createEClass(VIEW);
+		createEReference(viewEClass, VIEW__COLLECTION);
+
+		searchHelpEClass = createEClass(SEARCH_HELP);
+		createEReference(searchHelpEClass, SEARCH_HELP__COLLECTION);
+
+		enqueueObjectEClass = createEClass(ENQUEUE_OBJECT);
+		createEReference(enqueueObjectEClass, ENQUEUE_OBJECT__COLLECTION);
+
 		// Create enums
 		dictionaryDataTypeEEnum = createEEnum(DICTIONARY_DATA_TYPE);
 		referredObjectTypeEEnum = createEEnum(REFERRED_OBJECT_TYPE);
@@ -1197,6 +1313,10 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 		directFieldEClass.getESuperTypes().add(this.getSingleField());
 		structuredFieldEClass.getESuperTypes().add(this.getNamedField());
 		tabularFieldEClass.getESuperTypes().add(this.getNamedField());
+		tableTypeEClass.getESuperTypes().add(theROMPackage.getRepositoryObject());
+		viewEClass.getESuperTypes().add(theROMPackage.getRepositoryObject());
+		searchHelpEClass.getESuperTypes().add(theROMPackage.getRepositoryObject());
+		enqueueObjectEClass.getESuperTypes().add(theROMPackage.getRepositoryObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(domainEClass, Domain.class, "Domain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -1304,6 +1424,18 @@ public class DDICPackageImpl extends EPackageImpl implements DDICPackage {
 
 		initEClass(tabularFieldEClass, TabularField.class, "TabularField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTabularField_TableTypeName(), ecorePackage.getEString(), "tableTypeName", null, 1, 1, TabularField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(tableTypeEClass, TableType.class, "TableType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getTableType_Collection(), theROMPackage.getRepositoryObjectCollection(), theROMPackage.getRepositoryObjectCollection_TableTypes(), "collection", null, 0, 1, TableType.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(viewEClass, View.class, "View", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getView_Collection(), theROMPackage.getRepositoryObjectCollection(), theROMPackage.getRepositoryObjectCollection_Views(), "collection", null, 0, 1, View.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(searchHelpEClass, SearchHelp.class, "SearchHelp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getSearchHelp_Collection(), theROMPackage.getRepositoryObjectCollection(), theROMPackage.getRepositoryObjectCollection_SeachHelps(), "collection", null, 0, 1, SearchHelp.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(enqueueObjectEClass, EnqueueObject.class, "EnqueueObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getEnqueueObject_Collection(), theROMPackage.getRepositoryObjectCollection(), theROMPackage.getRepositoryObjectCollection_EnqueueObjects(), "collection", null, 0, 1, EnqueueObject.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(dictionaryDataTypeEEnum, DictionaryDataType.class, "DictionaryDataType"); //$NON-NLS-1$
