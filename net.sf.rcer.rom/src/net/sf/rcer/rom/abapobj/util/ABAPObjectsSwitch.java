@@ -95,10 +95,17 @@ public class ABAPObjectsSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case ABAPObjectsPackage.FORWARD_DECLARATIONS: {
+				ForwardDeclarations forwardDeclarations = (ForwardDeclarations)theEObject;
+				T result = caseForwardDeclarations(forwardDeclarations);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ABAPObjectsPackage.ABAP_INTERFACE: {
 				ABAPInterface abapInterface = (ABAPInterface)theEObject;
 				T result = caseABAPInterface(abapInterface);
 				if (result == null) result = caseRepositoryObject(abapInterface);
+				if (result == null) result = caseForwardDeclarations(abapInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -108,15 +115,36 @@ public class ABAPObjectsSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ABAPObjectsPackage.CLASS_ATTRIBUTE: {
+				ClassAttribute classAttribute = (ClassAttribute)theEObject;
+				T result = caseClassAttribute(classAttribute);
+				if (result == null) result = caseInterfaceAttribute(classAttribute);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ABAPObjectsPackage.INTERFACE_METHOD: {
 				InterfaceMethod interfaceMethod = (InterfaceMethod)theEObject;
 				T result = caseInterfaceMethod(interfaceMethod);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ABAPObjectsPackage.CLASS_METHOD: {
+				ClassMethod classMethod = (ClassMethod)theEObject;
+				T result = caseClassMethod(classMethod);
+				if (result == null) result = caseInterfaceMethod(classMethod);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ABAPObjectsPackage.INTERFACE_EVENT: {
 				InterfaceEvent interfaceEvent = (InterfaceEvent)theEObject;
 				T result = caseInterfaceEvent(interfaceEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ABAPObjectsPackage.CLASS_EVENT: {
+				ClassEvent classEvent = (ClassEvent)theEObject;
+				T result = caseClassEvent(classEvent);
+				if (result == null) result = caseInterfaceEvent(classEvent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -138,8 +166,37 @@ public class ABAPObjectsSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ABAPObjectsPackage.ABAP_CLASS: {
+				ABAPClass abapClass = (ABAPClass)theEObject;
+				T result = caseABAPClass(abapClass);
+				if (result == null) result = caseRepositoryObject(abapClass);
+				if (result == null) result = caseForwardDeclarations(abapClass);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ABAPObjectsPackage.INTERFACE_IMPLEMENTATION: {
+				InterfaceImplementation interfaceImplementation = (InterfaceImplementation)theEObject;
+				T result = caseInterfaceImplementation(interfaceImplementation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Forward Declarations</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Forward Declarations</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseForwardDeclarations(ForwardDeclarations object) {
+		return null;
 	}
 
 	/**
@@ -173,6 +230,21 @@ public class ABAPObjectsSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Class Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Class Attribute</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassAttribute(ClassAttribute object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Interface Method</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -188,6 +260,21 @@ public class ABAPObjectsSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Class Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Class Method</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassMethod(ClassMethod object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Interface Event</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -199,6 +286,21 @@ public class ABAPObjectsSwitch<T> {
 	 * @generated
 	 */
 	public T caseInterfaceEvent(InterfaceEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Class Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Class Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassEvent(ClassEvent object) {
 		return null;
 	}
 
@@ -244,6 +346,36 @@ public class ABAPObjectsSwitch<T> {
 	 * @generated
 	 */
 	public T caseEventParameter(EventParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ABAP Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ABAP Class</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseABAPClass(ABAPClass object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Interface Implementation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Interface Implementation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInterfaceImplementation(InterfaceImplementation object) {
 		return null;
 	}
 

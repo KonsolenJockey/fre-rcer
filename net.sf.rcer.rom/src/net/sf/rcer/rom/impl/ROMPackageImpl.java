@@ -411,6 +411,15 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getRepositoryObjectCollection_Classes() {
+		return (EReference)repositoryObjectCollectionEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getRepositoryObject_Generated() {
 		return (EAttribute)repositoryObjectEClass.getEStructuralFeatures().get(5);
 	}
@@ -733,6 +742,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__STRUCTURES);
 		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__TABLES);
 		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__INTERFACES);
+		createEReference(repositoryObjectCollectionEClass, REPOSITORY_OBJECT_COLLECTION__CLASSES);
 
 		repositoryPackageEClass = createEClass(REPOSITORY_PACKAGE);
 		createEReference(repositoryPackageEClass, REPOSITORY_PACKAGE__DESCRIPTION);
@@ -846,6 +856,8 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		getRepositoryObjectCollection_Tables().getEKeys().add(this.getRepositoryObject_Name());
 		initEReference(getRepositoryObjectCollection_Interfaces(), theABAPObjectsPackage.getABAPInterface(), null, "interfaces", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		getRepositoryObjectCollection_Interfaces().getEKeys().add(this.getRepositoryObject_Name());
+		initEReference(getRepositoryObjectCollection_Classes(), theABAPObjectsPackage.getABAPClass(), null, "classes", null, 0, -1, RepositoryObjectCollection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		getRepositoryObjectCollection_Classes().getEKeys().add(this.getRepositoryObject_Name());
 
 		op = addEOperation(repositoryObjectCollectionEClass, this.getRepositoryPackage(), "getPackage", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
@@ -882,7 +894,13 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		addEException(op, this.getObjectNotFoundException());
 		addEException(op, this.getObjectLoadingException());
 
-		op = addEOperation(repositoryObjectCollectionEClass, theABAPObjectsPackage.getABAPInterface(), "getInterface", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(repositoryObjectCollectionEClass, theABAPObjectsPackage.getABAPInterface(), "getABAPInterface", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "load", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEException(op, this.getObjectNotFoundException());
+		addEException(op, this.getObjectLoadingException());
+
+		op = addEOperation(repositoryObjectCollectionEClass, theABAPObjectsPackage.getABAPClass(), "getABAPClass", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEBoolean(), "load", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEException(op, this.getObjectNotFoundException());
@@ -920,6 +938,7 @@ public class ROMPackageImpl extends EPackageImpl implements ROMPackage {
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.TABLE);
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.STRUCTURE);
 		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.INTERFACE);
+		addEEnumLiteral(repositoryObjectTypeEEnum, RepositoryObjectType.CLASS);
 
 		initEEnum(packageTypeEEnum, PackageType.class, "PackageType"); //$NON-NLS-1$
 		addEEnumLiteral(packageTypeEEnum, PackageType.STANDARD);

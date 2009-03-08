@@ -35,9 +35,6 @@ import org.eclipse.emf.common.util.EMap;
  *   <li>{@link net.sf.rcer.rom.abapobj.ABAPInterface#getInterfaces <em>Interfaces</em>}</li>
  *   <li>{@link net.sf.rcer.rom.abapobj.ABAPInterface#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link net.sf.rcer.rom.abapobj.ABAPInterface#getEvents <em>Events</em>}</li>
- *   <li>{@link net.sf.rcer.rom.abapobj.ABAPInterface#getTypePools <em>Type Pools</em>}</li>
- *   <li>{@link net.sf.rcer.rom.abapobj.ABAPInterface#getInterfaceForwardDefinitions <em>Interface Forward Definitions</em>}</li>
- *   <li>{@link net.sf.rcer.rom.abapobj.ABAPInterface#getClassForwardDefinitions <em>Class Forward Definitions</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,7 +42,7 @@ import org.eclipse.emf.common.util.EMap;
  * @model
  * @generated
  */
-public interface ABAPInterface extends RepositoryObject {
+public interface ABAPInterface extends RepositoryObject, ForwardDeclarations {
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' map.
 	 * The key is of type {@link net.sf.rcer.conn.locales.Locale},
@@ -195,53 +192,5 @@ public interface ABAPInterface extends RepositoryObject {
 	 * @generated
 	 */
 	EList<InterfaceEvent> getEvents();
-
-	/**
-	 * Returns the value of the '<em><b>Type Pools</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type Pools</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type Pools</em>' attribute list.
-	 * @see net.sf.rcer.rom.abapobj.ABAPObjectsPackage#getABAPInterface_TypePools()
-	 * @model
-	 * @generated
-	 */
-	EList<String> getTypePools();
-
-	/**
-	 * Returns the value of the '<em><b>Interface Forward Definitions</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Interface Forward Definitions</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Interface Forward Definitions</em>' attribute list.
-	 * @see net.sf.rcer.rom.abapobj.ABAPObjectsPackage#getABAPInterface_InterfaceForwardDefinitions()
-	 * @model
-	 * @generated
-	 */
-	EList<String> getInterfaceForwardDefinitions();
-
-	/**
-	 * Returns the value of the '<em><b>Class Forward Definitions</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Class Forward Definitions</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class Forward Definitions</em>' attribute list.
-	 * @see net.sf.rcer.rom.abapobj.ABAPObjectsPackage#getABAPInterface_ClassForwardDefinitions()
-	 * @model
-	 * @generated
-	 */
-	EList<String> getClassForwardDefinitions();
 
 } // ABAPInterface

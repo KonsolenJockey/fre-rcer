@@ -340,13 +340,22 @@ public interface ROMPackage extends EPackage {
 	int REPOSITORY_OBJECT_COLLECTION__INTERFACES = 6;
 
 	/**
+	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPOSITORY_OBJECT_COLLECTION__CLASSES = 7;
+
+	/**
 	 * The number of structural features of the '<em>Repository Object Collection</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPOSITORY_OBJECT_COLLECTION_FEATURE_COUNT = 7;
+	int REPOSITORY_OBJECT_COLLECTION_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link net.sf.rcer.rom.impl.RepositoryPackageImpl <em>Repository Package</em>}' class.
@@ -915,6 +924,17 @@ public interface ROMPackage extends EPackage {
 	EReference getRepositoryObjectCollection_Interfaces();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link net.sf.rcer.rom.RepositoryObjectCollection#getClasses <em>Classes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Classes</em>'.
+	 * @see net.sf.rcer.rom.RepositoryObjectCollection#getClasses()
+	 * @see #getRepositoryObjectCollection()
+	 * @generated
+	 */
+	EReference getRepositoryObjectCollection_Classes();
+
+	/**
 	 * Returns the meta object for the attribute '{@link net.sf.rcer.rom.RepositoryObject#isGenerated <em>Generated</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1437,6 +1457,14 @@ public interface ROMPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REPOSITORY_OBJECT_COLLECTION__INTERFACES = eINSTANCE.getRepositoryObjectCollection_Interfaces();
+
+		/**
+		 * The meta object literal for the '<em><b>Classes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPOSITORY_OBJECT_COLLECTION__CLASSES = eINSTANCE.getRepositoryObjectCollection_Classes();
 
 		/**
 		 * The meta object literal for the '<em><b>Generated</b></em>' attribute feature.

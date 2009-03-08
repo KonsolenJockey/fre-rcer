@@ -50,6 +50,15 @@ public interface ABAPObjectsFactory extends EFactory {
 	InterfaceAttribute createInterfaceAttribute();
 
 	/**
+	 * Returns a new object of class '<em>Class Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Class Attribute</em>'.
+	 * @generated
+	 */
+	ClassAttribute createClassAttribute();
+
+	/**
 	 * Returns a new object of class '<em>Interface Method</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -59,6 +68,15 @@ public interface ABAPObjectsFactory extends EFactory {
 	InterfaceMethod createInterfaceMethod();
 
 	/**
+	 * Returns a new object of class '<em>Class Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Class Method</em>'.
+	 * @generated
+	 */
+	ClassMethod createClassMethod();
+
+	/**
 	 * Returns a new object of class '<em>Interface Event</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,6 +84,15 @@ public interface ABAPObjectsFactory extends EFactory {
 	 * @generated
 	 */
 	InterfaceEvent createInterfaceEvent();
+
+	/**
+	 * Returns a new object of class '<em>Class Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Class Event</em>'.
+	 * @generated
+	 */
+	ClassEvent createClassEvent();
 
 	/**
 	 * Returns a new object of class '<em>Method Parameter</em>'.
@@ -93,6 +120,24 @@ public interface ABAPObjectsFactory extends EFactory {
 	 * @generated
 	 */
 	EventParameter createEventParameter();
+
+	/**
+	 * Returns a new object of class '<em>ABAP Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ABAP Class</em>'.
+	 * @generated
+	 */
+	ABAPClass createABAPClass();
+
+	/**
+	 * Returns a new object of class '<em>Interface Implementation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interface Implementation</em>'.
+	 * @generated
+	 */
+	InterfaceImplementation createInterfaceImplementation();
 
 	/**
 	 * Returns the package supported by this factory.

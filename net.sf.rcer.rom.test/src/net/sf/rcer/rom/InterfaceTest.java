@@ -22,7 +22,7 @@ public class InterfaceTest extends ROMTest {
 	 */
 	@Test
 	public void testInterface() throws Exception {
-		ABAPInterface iface = collection.getInterface("IF_PACKAGE", true);
+		ABAPInterface iface = collection.getABAPInterface("IF_PACKAGE", true);
 		assertEquals("interface name", "IF_PACKAGE", iface.getName());
 		assertFalse("exit interface flag", iface.isExitInterface());
 		assertTrue("attributes read", iface.getAttributes().size() > 0);
@@ -33,7 +33,7 @@ public class InterfaceTest extends ROMTest {
 	 */
 	@Test
 	public void testBAdIInterface() throws Exception {
-		ABAPInterface iface = collection.getInterface("IF_EX_CLIF_ACTIVATED", true);
+		ABAPInterface iface = collection.getABAPInterface("IF_EX_CLIF_ACTIVATED", true);
 		assertEquals("interface name", "IF_EX_CLIF_ACTIVATED", iface.getName());
 		assertTrue("exit interface flag", iface.isExitInterface());
 	}

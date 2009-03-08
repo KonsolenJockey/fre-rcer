@@ -86,7 +86,15 @@ public enum RepositoryObjectType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERFACE(30, "INTERFACE", "INTERFACE"); //$NON-NLS-1$ //$NON-NLS-2$
+	INTERFACE(30, "INTERFACE", "INTERFACE"), /**
+	 * The '<em><b>CLASS</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CLASS_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	CLASS(31, "CLASS", "CLASS"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>UNKNOWN</b></em>' literal value.
@@ -194,6 +202,21 @@ public enum RepositoryObjectType implements Enumerator {
 	public static final int INTERFACE_VALUE = 30;
 
 	/**
+	 * The '<em><b>CLASS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CLASS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CLASS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CLASS_VALUE = 31;
+
+	/**
 	 * An array of all the '<em><b>Repository Object Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -208,6 +231,7 @@ public enum RepositoryObjectType implements Enumerator {
 			TABLE,
 			STRUCTURE,
 			INTERFACE,
+			CLASS,
 		};
 
 	/**
@@ -265,6 +289,7 @@ public enum RepositoryObjectType implements Enumerator {
 			case TABLE_VALUE: return TABLE;
 			case STRUCTURE_VALUE: return STRUCTURE;
 			case INTERFACE_VALUE: return INTERFACE;
+			case CLASS_VALUE: return CLASS;
 		}
 		return null;
 	}

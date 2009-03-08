@@ -20,6 +20,7 @@ import net.sf.rcer.rom.RepositoryObjectCollection;
 import net.sf.rcer.rom.RepositoryObjectType;
 import net.sf.rcer.rom.abapobj.ABAPInterface;
 import net.sf.rcer.rom.abapobj.ABAPObjectsPackage;
+import net.sf.rcer.rom.abapobj.ForwardDeclarations;
 import net.sf.rcer.rom.abapobj.InterfaceAttribute;
 import net.sf.rcer.rom.abapobj.InterfaceEvent;
 import net.sf.rcer.rom.abapobj.InterfaceMethod;
@@ -46,6 +47,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link net.sf.rcer.rom.abapobj.impl.ABAPInterfaceImpl#getTypePools <em>Type Pools</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.abapobj.impl.ABAPInterfaceImpl#getInterfaceForwardDefinitions <em>Interface Forward Definitions</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.abapobj.impl.ABAPInterfaceImpl#getClassForwardDefinitions <em>Class Forward Definitions</em>}</li>
  *   <li>{@link net.sf.rcer.rom.abapobj.impl.ABAPInterfaceImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link net.sf.rcer.rom.abapobj.impl.ABAPInterfaceImpl#getCollection <em>Collection</em>}</li>
  *   <li>{@link net.sf.rcer.rom.abapobj.impl.ABAPInterfaceImpl#isExitInterface <em>Exit Interface</em>}</li>
@@ -54,15 +58,42 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link net.sf.rcer.rom.abapobj.impl.ABAPInterfaceImpl#getInterfaces <em>Interfaces</em>}</li>
  *   <li>{@link net.sf.rcer.rom.abapobj.impl.ABAPInterfaceImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link net.sf.rcer.rom.abapobj.impl.ABAPInterfaceImpl#getEvents <em>Events</em>}</li>
- *   <li>{@link net.sf.rcer.rom.abapobj.impl.ABAPInterfaceImpl#getTypePools <em>Type Pools</em>}</li>
- *   <li>{@link net.sf.rcer.rom.abapobj.impl.ABAPInterfaceImpl#getInterfaceForwardDefinitions <em>Interface Forward Definitions</em>}</li>
- *   <li>{@link net.sf.rcer.rom.abapobj.impl.ABAPInterfaceImpl#getClassForwardDefinitions <em>Class Forward Definitions</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ABAPInterfaceImpl extends RepositoryObjectImpl implements ABAPInterface {
+	/**
+	 * The cached value of the '{@link #getTypePools() <em>Type Pools</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypePools()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> typePools;
+
+	/**
+	 * The cached value of the '{@link #getInterfaceForwardDefinitions() <em>Interface Forward Definitions</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInterfaceForwardDefinitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> interfaceForwardDefinitions;
+
+	/**
+	 * The cached value of the '{@link #getClassForwardDefinitions() <em>Class Forward Definitions</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClassForwardDefinitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> classForwardDefinitions;
+
 	/**
 	 * The cached value of the '{@link #getDescription() <em>Description</em>}' map.
 	 * <!-- begin-user-doc -->
@@ -162,36 +193,6 @@ public class ABAPInterfaceImpl extends RepositoryObjectImpl implements ABAPInter
 	 * @ordered
 	 */
 	protected EList<InterfaceEvent> events;
-
-	/**
-	 * The cached value of the '{@link #getTypePools() <em>Type Pools</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypePools()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> typePools;
-
-	/**
-	 * The cached value of the '{@link #getInterfaceForwardDefinitions() <em>Interface Forward Definitions</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInterfaceForwardDefinitions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> interfaceForwardDefinitions;
-
-	/**
-	 * The cached value of the '{@link #getClassForwardDefinitions() <em>Class Forward Definitions</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getClassForwardDefinitions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> classForwardDefinitions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -402,6 +403,12 @@ public class ABAPInterfaceImpl extends RepositoryObjectImpl implements ABAPInter
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case ABAPObjectsPackage.ABAP_INTERFACE__TYPE_POOLS:
+				return getTypePools();
+			case ABAPObjectsPackage.ABAP_INTERFACE__INTERFACE_FORWARD_DEFINITIONS:
+				return getInterfaceForwardDefinitions();
+			case ABAPObjectsPackage.ABAP_INTERFACE__CLASS_FORWARD_DEFINITIONS:
+				return getClassForwardDefinitions();
 			case ABAPObjectsPackage.ABAP_INTERFACE__DESCRIPTION:
 				if (coreType) return getDescription();
 				else return getDescription().map();
@@ -420,12 +427,6 @@ public class ABAPInterfaceImpl extends RepositoryObjectImpl implements ABAPInter
 				return getAttributes();
 			case ABAPObjectsPackage.ABAP_INTERFACE__EVENTS:
 				return getEvents();
-			case ABAPObjectsPackage.ABAP_INTERFACE__TYPE_POOLS:
-				return getTypePools();
-			case ABAPObjectsPackage.ABAP_INTERFACE__INTERFACE_FORWARD_DEFINITIONS:
-				return getInterfaceForwardDefinitions();
-			case ABAPObjectsPackage.ABAP_INTERFACE__CLASS_FORWARD_DEFINITIONS:
-				return getClassForwardDefinitions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -439,6 +440,18 @@ public class ABAPInterfaceImpl extends RepositoryObjectImpl implements ABAPInter
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ABAPObjectsPackage.ABAP_INTERFACE__TYPE_POOLS:
+				getTypePools().clear();
+				getTypePools().addAll((Collection<? extends String>)newValue);
+				return;
+			case ABAPObjectsPackage.ABAP_INTERFACE__INTERFACE_FORWARD_DEFINITIONS:
+				getInterfaceForwardDefinitions().clear();
+				getInterfaceForwardDefinitions().addAll((Collection<? extends String>)newValue);
+				return;
+			case ABAPObjectsPackage.ABAP_INTERFACE__CLASS_FORWARD_DEFINITIONS:
+				getClassForwardDefinitions().clear();
+				getClassForwardDefinitions().addAll((Collection<? extends String>)newValue);
+				return;
 			case ABAPObjectsPackage.ABAP_INTERFACE__EXIT_INTERFACE:
 				setExitInterface(((Boolean)newValue).booleanValue());
 				return;
@@ -461,18 +474,6 @@ public class ABAPInterfaceImpl extends RepositoryObjectImpl implements ABAPInter
 				getEvents().clear();
 				getEvents().addAll((Collection<? extends InterfaceEvent>)newValue);
 				return;
-			case ABAPObjectsPackage.ABAP_INTERFACE__TYPE_POOLS:
-				getTypePools().clear();
-				getTypePools().addAll((Collection<? extends String>)newValue);
-				return;
-			case ABAPObjectsPackage.ABAP_INTERFACE__INTERFACE_FORWARD_DEFINITIONS:
-				getInterfaceForwardDefinitions().clear();
-				getInterfaceForwardDefinitions().addAll((Collection<? extends String>)newValue);
-				return;
-			case ABAPObjectsPackage.ABAP_INTERFACE__CLASS_FORWARD_DEFINITIONS:
-				getClassForwardDefinitions().clear();
-				getClassForwardDefinitions().addAll((Collection<? extends String>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -485,6 +486,15 @@ public class ABAPInterfaceImpl extends RepositoryObjectImpl implements ABAPInter
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ABAPObjectsPackage.ABAP_INTERFACE__TYPE_POOLS:
+				getTypePools().clear();
+				return;
+			case ABAPObjectsPackage.ABAP_INTERFACE__INTERFACE_FORWARD_DEFINITIONS:
+				getInterfaceForwardDefinitions().clear();
+				return;
+			case ABAPObjectsPackage.ABAP_INTERFACE__CLASS_FORWARD_DEFINITIONS:
+				getClassForwardDefinitions().clear();
+				return;
 			case ABAPObjectsPackage.ABAP_INTERFACE__EXIT_INTERFACE:
 				setExitInterface(EXIT_INTERFACE_EDEFAULT);
 				return;
@@ -503,15 +513,6 @@ public class ABAPInterfaceImpl extends RepositoryObjectImpl implements ABAPInter
 			case ABAPObjectsPackage.ABAP_INTERFACE__EVENTS:
 				getEvents().clear();
 				return;
-			case ABAPObjectsPackage.ABAP_INTERFACE__TYPE_POOLS:
-				getTypePools().clear();
-				return;
-			case ABAPObjectsPackage.ABAP_INTERFACE__INTERFACE_FORWARD_DEFINITIONS:
-				getInterfaceForwardDefinitions().clear();
-				return;
-			case ABAPObjectsPackage.ABAP_INTERFACE__CLASS_FORWARD_DEFINITIONS:
-				getClassForwardDefinitions().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -524,6 +525,12 @@ public class ABAPInterfaceImpl extends RepositoryObjectImpl implements ABAPInter
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ABAPObjectsPackage.ABAP_INTERFACE__TYPE_POOLS:
+				return typePools != null && !typePools.isEmpty();
+			case ABAPObjectsPackage.ABAP_INTERFACE__INTERFACE_FORWARD_DEFINITIONS:
+				return interfaceForwardDefinitions != null && !interfaceForwardDefinitions.isEmpty();
+			case ABAPObjectsPackage.ABAP_INTERFACE__CLASS_FORWARD_DEFINITIONS:
+				return classForwardDefinitions != null && !classForwardDefinitions.isEmpty();
 			case ABAPObjectsPackage.ABAP_INTERFACE__DESCRIPTION:
 				return description != null && !description.isEmpty();
 			case ABAPObjectsPackage.ABAP_INTERFACE__COLLECTION:
@@ -540,14 +547,44 @@ public class ABAPInterfaceImpl extends RepositoryObjectImpl implements ABAPInter
 				return attributes != null && !attributes.isEmpty();
 			case ABAPObjectsPackage.ABAP_INTERFACE__EVENTS:
 				return events != null && !events.isEmpty();
-			case ABAPObjectsPackage.ABAP_INTERFACE__TYPE_POOLS:
-				return typePools != null && !typePools.isEmpty();
-			case ABAPObjectsPackage.ABAP_INTERFACE__INTERFACE_FORWARD_DEFINITIONS:
-				return interfaceForwardDefinitions != null && !interfaceForwardDefinitions.isEmpty();
-			case ABAPObjectsPackage.ABAP_INTERFACE__CLASS_FORWARD_DEFINITIONS:
-				return classForwardDefinitions != null && !classForwardDefinitions.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == ForwardDeclarations.class) {
+			switch (derivedFeatureID) {
+				case ABAPObjectsPackage.ABAP_INTERFACE__TYPE_POOLS: return ABAPObjectsPackage.FORWARD_DECLARATIONS__TYPE_POOLS;
+				case ABAPObjectsPackage.ABAP_INTERFACE__INTERFACE_FORWARD_DEFINITIONS: return ABAPObjectsPackage.FORWARD_DECLARATIONS__INTERFACE_FORWARD_DEFINITIONS;
+				case ABAPObjectsPackage.ABAP_INTERFACE__CLASS_FORWARD_DEFINITIONS: return ABAPObjectsPackage.FORWARD_DECLARATIONS__CLASS_FORWARD_DEFINITIONS;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == ForwardDeclarations.class) {
+			switch (baseFeatureID) {
+				case ABAPObjectsPackage.FORWARD_DECLARATIONS__TYPE_POOLS: return ABAPObjectsPackage.ABAP_INTERFACE__TYPE_POOLS;
+				case ABAPObjectsPackage.FORWARD_DECLARATIONS__INTERFACE_FORWARD_DEFINITIONS: return ABAPObjectsPackage.ABAP_INTERFACE__INTERFACE_FORWARD_DEFINITIONS;
+				case ABAPObjectsPackage.FORWARD_DECLARATIONS__CLASS_FORWARD_DEFINITIONS: return ABAPObjectsPackage.ABAP_INTERFACE__CLASS_FORWARD_DEFINITIONS;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -560,18 +597,18 @@ public class ABAPInterfaceImpl extends RepositoryObjectImpl implements ABAPInter
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (exitInterface: "); //$NON-NLS-1$
-		result.append(exitInterface);
-		result.append(", unicodeChecked: "); //$NON-NLS-1$
-		result.append(unicodeChecked);
-		result.append(", interfaces: "); //$NON-NLS-1$
-		result.append(interfaces);
-		result.append(", typePools: "); //$NON-NLS-1$
+		result.append(" (typePools: "); //$NON-NLS-1$
 		result.append(typePools);
 		result.append(", interfaceForwardDefinitions: "); //$NON-NLS-1$
 		result.append(interfaceForwardDefinitions);
 		result.append(", classForwardDefinitions: "); //$NON-NLS-1$
 		result.append(classForwardDefinitions);
+		result.append(", exitInterface: "); //$NON-NLS-1$
+		result.append(exitInterface);
+		result.append(", unicodeChecked: "); //$NON-NLS-1$
+		result.append(unicodeChecked);
+		result.append(", interfaces: "); //$NON-NLS-1$
+		result.append(interfaces);
 		result.append(')');
 		return result.toString();
 	}

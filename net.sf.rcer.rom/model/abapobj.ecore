@@ -8,6 +8,11 @@
     <eLiterals name="STATIC_ATTRIBUTE" value="1"/>
     <eLiterals name="CONSTANT" value="2"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
+    <eLiterals name="PRIVATE"/>
+    <eLiterals name="PROTECTED" value="1"/>
+    <eLiterals name="PUBLIC" value="2"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AttributeTypingType">
     <eLiterals name="LIKE"/>
     <eLiterals name="TYPE" value="1"/>
@@ -24,7 +29,15 @@
     <eLiterals name="CHANGING" value="2"/>
     <eLiterals name="RETURNING" value="3"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ABAPInterface" eSuperTypes="rom.ecore#//RepositoryObject">
+  <eClassifiers xsi:type="ecore:EClass" name="ForwardDeclarations" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typePools" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interfaceForwardDefinitions"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classForwardDefinitions"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ABAPInterface" eSuperTypes="rom.ecore#//RepositoryObject #//ForwardDeclarations">
     <eStructuralFeatures xsi:type="ecore:EReference" name="description" ordered="false"
         unique="false" upperBound="-1" eType="ecore:EClass rom.ecore#//LocalizedString"
         changeable="false" containment="true"/>
@@ -45,12 +58,6 @@
         eType="#//InterfaceAttribute" containment="true" eKeys="#//InterfaceAttribute/name"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
         eType="#//InterfaceEvent" containment="true" eKeys="#//InterfaceEvent/name"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typePools" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interfaceForwardDefinitions"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classForwardDefinitions"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InterfaceAttribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
@@ -69,6 +76,10 @@
         defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassAttribute" eSuperTypes="#//InterfaceAttribute">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" lowerBound="1"
+        eType="#//Visibility" defaultValueLiteral="PUBLIC"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InterfaceMethod">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
@@ -91,6 +102,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="exceptions" upperBound="-1"
         eType="#//MethodException" eKeys="#//MethodException/name"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassMethod" eSuperTypes="#//InterfaceMethod">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" ordered="false"
+        unique="false" lowerBound="1" eType="#//Visibility"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="final" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InterfaceEvent">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -101,6 +122,10 @@
         unique="false" lowerBound="1" eType="#//MethodScope"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//EventParameter" eKeys="#//EventParameter/name"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassEvent" eSuperTypes="#//InterfaceEvent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" ordered="false"
+        unique="false" lowerBound="1" eType="#//Visibility"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MethodParameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
@@ -143,6 +168,52 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ClassCreationScope">
+    <eLiterals name="PRIVATE"/>
+    <eLiterals name="PROTECTED" value="1"/>
+    <eLiterals name="PUBLIC" value="2"/>
+    <eLiterals name="ABSTRACT" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ABAPClass" eSuperTypes="rom.ecore#//RepositoryObject #//ForwardDeclarations">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="description" ordered="false"
+        unique="false" upperBound="-1" eType="ecore:EClass rom.ecore#//LocalizedString"
+        changeable="false" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collection" ordered="false"
+        unique="false" eType="ecore:EClass rom.ecore#//RepositoryObjectCollection"
+        changeable="false" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="superClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="creationScope" ordered="false"
+        unique="false" lowerBound="1" eType="#//ClassCreationScope" defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="final" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fixedPointArithmetics"
+        ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unicodeChecked" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" upperBound="-1"
+        eType="#//InterfaceImplementation" containment="true" eKeys="#//InterfaceImplementation/interfaceName"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="friendClassNames" ordered="false"
+        unique="false" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+        eType="#//ClassAttribute" containment="true" eKeys="#//InterfaceAttribute/name"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
+        eType="#//ClassMethod" eKeys="#//InterfaceMethod/name"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
+        eType="#//ClassEvent" containment="true" eKeys="#//InterfaceEvent/name"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InterfaceImplementation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interfaceName" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="final" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
   </eClassifiers>

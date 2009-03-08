@@ -80,6 +80,10 @@ public class ABAPObjectsAdapterFactory extends AdapterFactoryImpl {
 	protected ABAPObjectsSwitch<Adapter> modelSwitch =
 		new ABAPObjectsSwitch<Adapter>() {
 			@Override
+			public Adapter caseForwardDeclarations(ForwardDeclarations object) {
+				return createForwardDeclarationsAdapter();
+			}
+			@Override
 			public Adapter caseABAPInterface(ABAPInterface object) {
 				return createABAPInterfaceAdapter();
 			}
@@ -88,12 +92,24 @@ public class ABAPObjectsAdapterFactory extends AdapterFactoryImpl {
 				return createInterfaceAttributeAdapter();
 			}
 			@Override
+			public Adapter caseClassAttribute(ClassAttribute object) {
+				return createClassAttributeAdapter();
+			}
+			@Override
 			public Adapter caseInterfaceMethod(InterfaceMethod object) {
 				return createInterfaceMethodAdapter();
 			}
 			@Override
+			public Adapter caseClassMethod(ClassMethod object) {
+				return createClassMethodAdapter();
+			}
+			@Override
 			public Adapter caseInterfaceEvent(InterfaceEvent object) {
 				return createInterfaceEventAdapter();
+			}
+			@Override
+			public Adapter caseClassEvent(ClassEvent object) {
+				return createClassEventAdapter();
 			}
 			@Override
 			public Adapter caseMethodParameter(MethodParameter object) {
@@ -106,6 +122,14 @@ public class ABAPObjectsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseEventParameter(EventParameter object) {
 				return createEventParameterAdapter();
+			}
+			@Override
+			public Adapter caseABAPClass(ABAPClass object) {
+				return createABAPClassAdapter();
+			}
+			@Override
+			public Adapter caseInterfaceImplementation(InterfaceImplementation object) {
+				return createInterfaceImplementationAdapter();
 			}
 			@Override
 			public Adapter caseRepositoryObject(RepositoryObject object) {
@@ -130,6 +154,20 @@ public class ABAPObjectsAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.abapobj.ForwardDeclarations <em>Forward Declarations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.abapobj.ForwardDeclarations
+	 * @generated
+	 */
+	public Adapter createForwardDeclarationsAdapter() {
+		return null;
+	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.abapobj.ABAPInterface <em>ABAP Interface</em>}'.
@@ -160,6 +198,20 @@ public class ABAPObjectsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.abapobj.ClassAttribute <em>Class Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.abapobj.ClassAttribute
+	 * @generated
+	 */
+	public Adapter createClassAttributeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.abapobj.InterfaceMethod <em>Interface Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -174,6 +226,20 @@ public class ABAPObjectsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.abapobj.ClassMethod <em>Class Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.abapobj.ClassMethod
+	 * @generated
+	 */
+	public Adapter createClassMethodAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.abapobj.InterfaceEvent <em>Interface Event</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -184,6 +250,20 @@ public class ABAPObjectsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInterfaceEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.abapobj.ClassEvent <em>Class Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.abapobj.ClassEvent
+	 * @generated
+	 */
+	public Adapter createClassEventAdapter() {
 		return null;
 	}
 
@@ -226,6 +306,34 @@ public class ABAPObjectsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEventParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.abapobj.ABAPClass <em>ABAP Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.abapobj.ABAPClass
+	 * @generated
+	 */
+	public Adapter createABAPClassAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link net.sf.rcer.rom.abapobj.InterfaceImplementation <em>Interface Implementation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see net.sf.rcer.rom.abapobj.InterfaceImplementation
+	 * @generated
+	 */
+	public Adapter createInterfaceImplementationAdapter() {
 		return null;
 	}
 

@@ -32,6 +32,7 @@
     <eLiterals name="TABLE" value="22" literal="TABLE"/>
     <eLiterals name="STRUCTURE" value="23" literal="STRUCTURE"/>
     <eLiterals name="INTERFACE" value="30"/>
+    <eLiterals name="CLASS" value="31"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RepositoryObject" abstract="true">
     <eOperations name="getCollection" ordered="false" unique="false" lowerBound="1"
@@ -97,8 +98,13 @@
       <eParameters name="name" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="load" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
-    <eOperations name="getInterface" ordered="false" unique="false" lowerBound="1"
+    <eOperations name="getABAPInterface" ordered="false" unique="false" lowerBound="1"
         eType="ecore:EClass abapobj.ecore#//ABAPInterface" eExceptions="#//ObjectNotFoundException #//ObjectLoadingException">
+      <eParameters name="name" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="load" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="getABAPClass" ordered="false" unique="false" lowerBound="1"
+        eType="ecore:EClass abapobj.ecore#//ABAPClass" eExceptions="#//ObjectNotFoundException #//ObjectLoadingException">
       <eParameters name="name" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="load" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
@@ -121,6 +127,9 @@
         eOpposite="ddic.ecore#//Table/collection" eKeys="#//RepositoryObject/name"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" ordered="false"
         upperBound="-1" eType="ecore:EClass abapobj.ecore#//ABAPInterface" containment="true"
+        eKeys="#//RepositoryObject/name"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classes" ordered="false"
+        upperBound="-1" eType="ecore:EClass abapobj.ecore#//ABAPClass" containment="true"
         eKeys="#//RepositoryObject/name"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PackageType">

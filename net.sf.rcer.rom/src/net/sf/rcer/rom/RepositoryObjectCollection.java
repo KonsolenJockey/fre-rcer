@@ -13,6 +13,7 @@
 package net.sf.rcer.rom;
 
 import com.sap.conn.jco.JCoDestination;
+import net.sf.rcer.rom.abapobj.ABAPClass;
 import net.sf.rcer.rom.abapobj.ABAPInterface;
 import net.sf.rcer.rom.ddic.DataElement;
 import net.sf.rcer.rom.ddic.Domain;
@@ -39,6 +40,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getStructures <em>Structures</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getTables <em>Tables</em>}</li>
  *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getInterfaces <em>Interfaces</em>}</li>
+ *   <li>{@link net.sf.rcer.rom.RepositoryObjectCollection#getClasses <em>Classes</em>}</li>
  * </ul>
  * </p>
  *
@@ -181,6 +183,22 @@ public interface RepositoryObjectCollection extends EObject {
 	EList<ABAPInterface> getInterfaces();
 
 	/**
+	 * Returns the value of the '<em><b>Classes</b></em>' containment reference list.
+	 * The list contents are of type {@link net.sf.rcer.rom.abapobj.ABAPClass}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Classes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Classes</em>' containment reference list.
+	 * @see net.sf.rcer.rom.ROMPackage#getRepositoryObjectCollection_Classes()
+	 * @model containment="true" keys="name" ordered="false"
+	 * @generated
+	 */
+	EList<ABAPClass> getClasses();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model unique="false" required="true" ordered="false" exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" nameUnique="false" nameRequired="true" nameOrdered="false" loadUnique="false" loadRequired="true" loadOrdered="false"
@@ -234,5 +252,13 @@ public interface RepositoryObjectCollection extends EObject {
 	 * @model unique="false" required="true" ordered="false" exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" nameUnique="false" nameRequired="true" nameOrdered="false" loadUnique="false" loadRequired="true" loadOrdered="false"
 	 * @generated
 	 */
-	ABAPInterface getInterface(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException;
+	ABAPInterface getABAPInterface(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model unique="false" required="true" ordered="false" exceptions="net.sf.rcer.rom.ObjectNotFoundException net.sf.rcer.rom.ObjectLoadingException" nameUnique="false" nameRequired="true" nameOrdered="false" loadUnique="false" loadRequired="true" loadOrdered="false"
+	 * @generated
+	 */
+	ABAPClass getABAPClass(String name, boolean load) throws ObjectNotFoundException, ObjectLoadingException;
 } // RepositoryObjectCollection
