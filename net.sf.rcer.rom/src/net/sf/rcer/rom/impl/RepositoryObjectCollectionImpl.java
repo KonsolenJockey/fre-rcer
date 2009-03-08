@@ -244,13 +244,52 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			} else if (key.getObjectTypeID().equals("DTEL")) {
 				return getDomain(key.getName(), true);
 			} else if (key.getObjectTypeID().equals("TABL")) {
-				// TODO load structure or table
+				return loadTABLObject(key);
 			} else if (key.getObjectTypeID().equals("INTF")) {
 				return getInterface(key.getName(), true);
 			}
 		}
 		throw new ObjectLoadingException(MessageFormat.format("Unable to load repository object {0} {1} {2}.",
 				key.getProgramID(), key.getObjectTypeID(), key.getName()));
+	}
+
+	/**
+	 * Tries to determine what an object with the object type ID TABL is and load the appropriate object.
+	 * @param key
+	 * @return
+	 * @throws ObjectLoadingException 
+	 * @throws ObjectNotFoundException 
+	 * @generated no
+	 */
+	private RepositoryObject loadTABLObject(RepositoryObjectKey key) throws ObjectLoadingException, ObjectNotFoundException {
+		try {
+			// assume that it's a structure
+			Structure structure = DDICFactory.eINSTANCE.createStructure();
+			structure.setName(key.getName());
+			loadRepositoryData(structure);
+
+			RFCDataStructureReader reader = prepareStructureReader(key.getName(), structure.getOriginalLocale());
+			reader.execute(getSourceConnection());
+			final String type = reader.getHeader().getStructureType();
+			if (type.equals("TRANSP")) {
+				// it's not a structure, it's a table - we have to start over, but can re-use the reader
+				Table table = DDICFactory.eINSTANCE.createTable();
+				table.setName(key.getName());
+				loadRepositoryData(table);
+				loadTransparentTable(table, reader);
+				return table;
+			} else if (type.equals("INTTAB") || type.equals("APPEND")) {
+				loadStructure(structure, reader);
+				return structure;
+			} else {
+				throw new ObjectLoadingException(MessageFormat.format(
+								"Unable to load structure {0}: unsupported structure type {1}",
+								key.getName(), type));
+			}
+		} catch (JCoException e) {
+			throw new ObjectLoadingException(MessageFormat.format("Unable to load repository object R3TR TABL {0}.",
+					key.getName()), e);
+		}		
 	}
 
 	/**
