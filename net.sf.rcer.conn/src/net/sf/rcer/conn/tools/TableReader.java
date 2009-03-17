@@ -11,6 +11,7 @@
  */
 package net.sf.rcer.conn.tools;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -56,6 +57,13 @@ public class TableReader {
 	}
 
 	/**
+	 * @return the structure of the table
+	 */
+	public ITableStructure getStructure() {
+		return structure;
+	}
+	
+	/**
 	 * Resets the list of selected fields so that no field is selected for retrieval.
 	 */
 	public void clearFieldSelection() {
@@ -81,6 +89,35 @@ public class TableReader {
 		structure.getField(field.getFieldName()); // to ensure that the field exists
 		selectedFields.add(field.getFieldName());
 	}
+	
+	/**
+	 * Executes RFC_READ_TABLE with a set of selection criteria specified as strings. 
+	 * @param selectionCriteria
+	 * @return the contents read
+	 * @throws JCoException
+	 */
+	public ITableContents read(String ... selectionCriteria) throws JCoException {
+		JCoFunction readFunction = template.getFunction();
+		readFunction.getImportParameterList().setValue("QUERY_TABLE", tableName);
+
+		JCoTable options = readFunction.getTableParameterList().getTable("OPTIONS");
+		options.clear();
+		if (selectionCriteria != null) {
+			for (final String criterion: selectionCriteria) {
+				if (criterion.length() > 72) {
+					throw new IllegalArgumentException("The selection criteria may not exceed 72 characters per row (limitation of RFC_READ_TABLE).");
+				}
+				options.appendRow();
+				options.setValue("TEXT", criterion);
+			}
+		}
+
+		setFieldList(readFunction);
+		readFunction.execute(destination);
+		return new TableContents(tableName, 
+				readFunction.getTableParameterList().getTable("FIELDS"), 
+				readFunction.getTableParameterList().getTable("DATA"));
+	}
 
 	/**
 	 * Executes RFC_READ_TABLE with a set of selection criteria specified as strings. 
@@ -91,30 +128,22 @@ public class TableReader {
 	public ITableContents read(Collection<String> selectionCriteria) throws JCoException {
 
 		JCoFunction readFunction = template.getFunction();
-
-		// prepare the import parameters
 		readFunction.getImportParameterList().setValue("QUERY_TABLE", tableName);
 
 		JCoTable options = readFunction.getTableParameterList().getTable("OPTIONS");
 		options.clear();
 		if (selectionCriteria != null) {
 			for (final String criterion: selectionCriteria) {
+				if (criterion.length() > 72) {
+					throw new IllegalArgumentException("The selection criteria may not exceed 72 characters per row (limitation of RFC_READ_TABLE).");
+				}
 				options.appendRow();
 				options.setValue("TEXT", criterion);
 			}
 		}
 
-		JCoTable fields = readFunction.getTableParameterList().getTable("FIELDS");
-		fields.clear();
-		if (!selectedFields.isEmpty()) {
-			for (final String field: selectedFields) {
-				fields.appendRow();
-				fields.setValue("FIELDNAME", field);
-			}
-		}
-
+		setFieldList(readFunction);
 		readFunction.execute(destination);
-
 		return new TableContents(tableName, 
 				readFunction.getTableParameterList().getTable("FIELDS"), 
 				readFunction.getTableParameterList().getTable("DATA"));
@@ -129,9 +158,11 @@ public class TableReader {
 	 */
 	public ITableContents read(String criterion) throws JCoException {
 
-		JCoFunction readFunction = template.getFunction();
+		if ((criterion != null) && (criterion.length() > 72)) {
+			throw new IllegalArgumentException("The selection criteria may not exceed 72 characters per row (limitation of RFC_READ_TABLE).");
+		}
 
-		// prepare the import parameters
+		JCoFunction readFunction = template.getFunction();
 		readFunction.getImportParameterList().setValue("QUERY_TABLE", tableName);
 
 		JCoTable options = readFunction.getTableParameterList().getTable("OPTIONS");
@@ -141,17 +172,8 @@ public class TableReader {
 			options.setValue("TEXT", criterion);
 		}
 
-		JCoTable fields = readFunction.getTableParameterList().getTable("FIELDS");
-		fields.clear();
-		if (!selectedFields.isEmpty()) {
-			for (final String field: selectedFields) {
-				fields.appendRow();
-				fields.setValue("FIELDNAME", field);
-			}
-		}
-
+		setFieldList(readFunction);
 		readFunction.execute(destination);
-
 		return new TableContents(tableName, 
 				readFunction.getTableParameterList().getTable("FIELDS"), 
 				readFunction.getTableParameterList().getTable("DATA"));
@@ -163,29 +185,44 @@ public class TableReader {
 	 * @throws JCoException 
 	 */
 	public ITableContents read() throws JCoException {
-
 		JCoFunction readFunction = template.getFunction();
-
-		// prepare the import parameters
 		readFunction.getImportParameterList().setValue("QUERY_TABLE", tableName);
-
-		JCoTable options = readFunction.getTableParameterList().getTable("OPTIONS");
-		options.clear();
-
-		JCoTable fields = readFunction.getTableParameterList().getTable("FIELDS");
-		fields.clear();
-		if (!selectedFields.isEmpty()) {
-			for (final String field: selectedFields) {
-				fields.appendRow();
-				fields.setValue("FIELDNAME", field);
-			}
-		}
-
+		readFunction.getTableParameterList().getTable("OPTIONS").clear();
+		setFieldList(readFunction);
 		readFunction.execute(destination);
-
 		return new TableContents(tableName, 
 				readFunction.getTableParameterList().getTable("FIELDS"), 
 				readFunction.getTableParameterList().getTable("DATA"));
+	}
+
+	/**
+	 * Adjusts the field list so that only the selected fields are read.
+	 * @param readFunction
+	 */
+	private void setFieldList(JCoFunction readFunction) {
+		int length = 0;
+		JCoTable fields = readFunction.getTableParameterList().getTable("FIELDS");
+		fields.clear();
+		if (selectedFields.isEmpty()) {
+			for (final ITableField field: structure.getFieldList()) {
+				length += field.getLength();
+				fields.appendRow();
+				fields.setValue("FIELDNAME", field.getFieldName());				
+			}
+		} else {
+			for (final String field: selectedFields) {
+				try {
+					length += structure.getField(field).getLength();
+					fields.appendRow();
+					fields.setValue("FIELDNAME", field);
+				} catch (FieldNotFoundException e) {
+					throw new IllegalArgumentException(MessageFormat.format("Unknown field {0} selected.", field), e);
+				}
+			}
+		}
+		if (length > 512) {
+			throw new IllegalArgumentException("The total lenght of the selected fields may not exceed 512 characters (limitation of RFC_READ_TABLE).");
+		}
 	}
 
 	/**
