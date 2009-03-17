@@ -320,7 +320,7 @@ public class RepositoryObjectCollectionImpl extends EObjectImpl implements Repos
 			} else if (key.getObjectTypeID().equals("DOMA")) {
 				return getDomain(key.getName(), true);
 			} else if (key.getObjectTypeID().equals("DTEL")) {
-				return getDomain(key.getName(), true);
+				return getDataElement(key.getName(), true);
 			} else if (key.getObjectTypeID().equals("TABL")) {
 				return loadTABLObject(key);
 			} else if (key.getObjectTypeID().equals("TTYP")) {
