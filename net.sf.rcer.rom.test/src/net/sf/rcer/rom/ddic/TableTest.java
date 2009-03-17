@@ -4,10 +4,9 @@
 package net.sf.rcer.rom.ddic;
 
 import static org.junit.Assert.assertEquals;
+import net.sf.rcer.rom.ROMFactory;
 import net.sf.rcer.rom.ROMTest;
-import net.sf.rcer.rom.ddic.DataElementField;
-import net.sf.rcer.rom.ddic.Table;
-import net.sf.rcer.rom.ddic.TableField;
+import net.sf.rcer.rom.RepositoryObjectKey;
 
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
@@ -20,11 +19,36 @@ import org.junit.Test;
 public class TableTest extends ROMTest {
 	
 	/**
+	 * @return the repository object key for the table
+	 */
+	private RepositoryObjectKey createKey(String tableName) {
+		RepositoryObjectKey key = ROMFactory.eINSTANCE.createRepositoryObjectKey();
+		key.setProgramID("R3TR");
+		key.setObjectTypeID("TABL");
+		key.setName(tableName);
+		return key;
+	}
+
+	/**
 	 * @throws Exception
 	 */
 	@Test
-	public void testTableSFLIGHT() throws Exception {
-		Table table = collection.getTable("SFLIGHT", true);
+	public void testTableSFLIGHTDirect() throws Exception {
+		checkSFLIGHT(collection.getTable("SFLIGHT", true));
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	@Test
+	public void testTableSFLIGHTGeneric() throws Exception {
+		checkSFLIGHT((Table) collection.loadObject(createKey("SFLIGHT")));
+	}
+
+	/**
+	 * @param table
+	 */
+	private void checkSFLIGHT(Table table) {
 		assertEquals("table name", "SFLIGHT", table.getName());
 		
 		EList<TableField> fields = table.getFields();

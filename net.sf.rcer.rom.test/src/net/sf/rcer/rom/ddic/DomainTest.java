@@ -6,9 +6,9 @@ package net.sf.rcer.rom.ddic;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import net.sf.rcer.rom.ROMFactory;
 import net.sf.rcer.rom.ROMTest;
-import net.sf.rcer.rom.ddic.DictionaryDataType;
-import net.sf.rcer.rom.ddic.Domain;
+import net.sf.rcer.rom.RepositoryObjectKey;
 
 import org.junit.Test;
 
@@ -18,13 +18,38 @@ import org.junit.Test;
  *
  */
 public class DomainTest extends ROMTest {
-	
+
+	/**
+	 * @return the repository object key for the domain
+	 */
+	private RepositoryObjectKey createKey(String domainName) {
+		RepositoryObjectKey key = ROMFactory.eINSTANCE.createRepositoryObjectKey();
+		key.setProgramID("R3TR");
+		key.setObjectTypeID("DOMA");
+		key.setName(domainName);
+		return key;
+	}
+
 	/**
 	 * @throws Exception
 	 */
 	@Test
-	public void testDomainCHAR10() throws Exception {
-		Domain dom = collection.getDomain("CHAR10", true);
+	public void testCHAR10Direct() throws Exception {
+		checkCHAR10(collection.getDomain("CHAR10", true));
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	@Test
+	public void testCHAR10Generic() throws Exception {
+		checkCHAR10((Domain) collection.loadObject(createKey("CHAR10")));
+	}
+
+	/**
+	 * @param dom
+	 */
+	private void checkCHAR10(Domain dom) {
 		assertEquals("domain name", "CHAR10", dom.getName());
 		assertEquals("data type", DictionaryDataType.CHARACTER, dom.getDictionaryDataType());
 		assertEquals("length", 10, dom.getLength());
@@ -37,8 +62,22 @@ public class DomainTest extends ROMTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testDomainTEXT10() throws Exception {
-		Domain dom = collection.getDomain("TEXT10", true);
+	public void testTEXT10Direct() throws Exception {
+		checkTEXT10(collection.getDomain("TEXT10", true));
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	@Test
+	public void testTEXT10Generic() throws Exception {
+		checkTEXT10((Domain) collection.loadObject(createKey("TEXT10")));
+	}
+
+	/**
+	 * @param dom
+	 */
+	private void checkTEXT10(Domain dom) {
 		assertEquals("domain name", "TEXT10", dom.getName());
 		assertEquals("data type", DictionaryDataType.CHARACTER, dom.getDictionaryDataType());
 		assertEquals("length", 10, dom.getLength());
@@ -51,8 +90,22 @@ public class DomainTest extends ROMTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testDomainNUMC5() throws Exception {
-		Domain dom = collection.getDomain("NUMC5", true);
+	public void testNUMC5Direct() throws Exception {
+		checkNUMC5(collection.getDomain("NUMC5", true));
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	@Test
+	public void testNUMC5Generic() throws Exception {
+		checkNUMC5((Domain) collection.loadObject(createKey("NUMC5")));
+	}
+
+	/**
+	 * @param dom
+	 */
+	private void checkNUMC5(Domain dom) {
 		assertEquals("domain name", "NUMC5", dom.getName());
 		assertEquals("data type", DictionaryDataType.NUMERICAL_CHARACTER, dom.getDictionaryDataType());
 		assertEquals("length", 5, dom.getLength());
@@ -65,8 +118,22 @@ public class DomainTest extends ROMTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testDomainCHAR1_X() throws Exception {
-		Domain dom = collection.getDomain("CHAR1_X", true);
+	public void testCHAR1_XDirect() throws Exception {
+		checkCHAR1_X(collection.getDomain("CHAR1_X", true));
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	@Test
+	public void testCHAR1_XGeneric() throws Exception {
+		checkCHAR1_X((Domain) collection.loadObject(createKey("CHAR1_X")));
+	}
+
+	/**
+	 * @param dom
+	 */
+	private void checkCHAR1_X(Domain dom) {
 		assertEquals("domain name", "CHAR1_X", dom.getName());
 		assertEquals("data type", DictionaryDataType.CHARACTER, dom.getDictionaryDataType());
 		assertEquals("length", 1, dom.getLength());

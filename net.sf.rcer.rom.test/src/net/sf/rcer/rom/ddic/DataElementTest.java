@@ -5,11 +5,9 @@ package net.sf.rcer.rom.ddic;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import net.sf.rcer.rom.ROMFactory;
 import net.sf.rcer.rom.ROMTest;
-import net.sf.rcer.rom.ddic.DataElement;
-import net.sf.rcer.rom.ddic.DictionaryDataType;
-import net.sf.rcer.rom.ddic.ReferredObjectType;
-import net.sf.rcer.rom.ddic.TypeKind;
+import net.sf.rcer.rom.RepositoryObjectKey;
 
 import org.junit.Test;
 
@@ -21,11 +19,36 @@ import org.junit.Test;
 public class DataElementTest extends ROMTest {
 	
 	/**
+	 * @return the repository object key for the data element
+	 */
+	private RepositoryObjectKey createKey(String dataElementName) {
+		RepositoryObjectKey key = ROMFactory.eINSTANCE.createRepositoryObjectKey();
+		key.setProgramID("R3TR");
+		key.setObjectTypeID("DTEL");
+		key.setName(dataElementName);
+		return key;
+	}
+
+	/**
 	 * @throws Exception
 	 */
 	@Test
-	public void testDataElementCHAR10() throws Exception {
-		DataElement elem = collection.getDataElement("CHAR10", true);
+	public void testCHAR10Direct() throws Exception {
+		checkCHAR10(collection.getDataElement("CHAR10", true));
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	@Test
+	public void testCHAR10Generic() throws Exception {
+		checkCHAR10((DataElement) collection.loadObject(createKey("CHAR10")));
+	}
+
+	/**
+	 * @param elem
+	 */
+	private void checkCHAR10(DataElement elem) {
 		assertEquals("data element name", "CHAR10", elem.getName());
 		assertEquals("type kind", TypeKind.DOMAIN, elem.getTypeKind());
 		assertEquals("domain name", "CHAR10", elem.getTypeName());
@@ -35,8 +58,22 @@ public class DataElementTest extends ROMTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testDataElementCHAR_50() throws Exception {
-		DataElement elem = collection.getDataElement("CHAR_50", true);
+	public void testCHAR_50Direct() throws Exception {
+		checkCHAR_50(collection.getDataElement("CHAR_50", true));
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	@Test
+	public void testCHAR_50Generic() throws Exception {
+		checkCHAR_50((DataElement) collection.loadObject(createKey("CHAR_50")));
+	}
+
+	/**
+	 * @param elem
+	 */
+	private void checkCHAR_50(DataElement elem) {
 		assertEquals("data element name", "CHAR_50", elem.getName());
 		assertEquals("type kind", TypeKind.DICTIONARY_TYPE, elem.getTypeKind());
 		assertEquals("type name", "", elem.getTypeName());
@@ -50,8 +87,22 @@ public class DataElementTest extends ROMTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testDataElementSWFRCNTREF() throws Exception {
-		DataElement elem = collection.getDataElement("SWFRCNTREF", true);
+	public void testSWFRCNTREFDirect() throws Exception {
+		checkSWFRCNTREF(collection.getDataElement("SWFRCNTREF", true));
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	@Test
+	public void testSWFRCNTREFGeneric() throws Exception {
+		checkSWFRCNTREF((DataElement) collection.loadObject(createKey("SWFRCNTREF")));
+	}
+
+	/**
+	 * @param elem
+	 */
+	private void checkSWFRCNTREF(DataElement elem) {
 		assertEquals("data element name", "SWFRCNTREF", elem.getName());
 		assertEquals("type kind", TypeKind.REFERENCE, elem.getTypeKind());
 		assertEquals("reference type", ReferredObjectType.INTERFACE, elem.getReferredType());
@@ -62,8 +113,22 @@ public class DataElementTest extends ROMTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testDataElementTREEMNREF() throws Exception {
-		DataElement elem = collection.getDataElement("TREEMNREF", true);
+	public void testTREEMNREFDirect() throws Exception {
+		checkTREEMNREF(collection.getDataElement("TREEMNREF", true));
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	@Test
+	public void testTREEMNREFGeneric() throws Exception {
+		checkTREEMNREF((DataElement) collection.loadObject(createKey("TREEMNREF")));
+	}
+
+	/**
+	 * @param elem
+	 */
+	private void checkTREEMNREF(DataElement elem) {
 		assertEquals("data element name", "TREEMNREF", elem.getName());
 		assertEquals("type kind", TypeKind.REFERENCE, elem.getTypeKind());
 		assertEquals("reference type", ReferredObjectType.CLASS, elem.getReferredType());
