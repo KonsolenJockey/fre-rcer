@@ -12,6 +12,7 @@
 package net.sf.rcer.conn.tools;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -69,14 +70,25 @@ public class TableReaderTest {
 		TableReader reader = new TableReader(destination, "T000");
 		assertEquals("table name", "T000", reader.getTableName());
 		ITableStructure structure = reader.getStructure();
+		assertEquals("table name", "T000", structure.getTableName());
+		assertEquals(structure.getFieldList().size(), structure.getFieldArray().length);
 		ITableField clientField = structure.getField("MANDT");
-		assertEquals("client field name", "MANDT", clientField.getFieldName());
-		assertEquals("client field type", DataType.CHAR, clientField.getDataType());
-		assertEquals("client field length", 3, clientField.getLength());
+		checkClientField(clientField);
 		clientField = structure.getFieldList().get(0);
+		checkClientField(clientField);
+		clientField = structure.getFieldArray()[0];
+		checkClientField(clientField);
+	}
+
+	/**
+	 * @param clientField
+	 */
+	private void checkClientField(ITableField clientField) {
 		assertEquals("client field name", "MANDT", clientField.getFieldName());
 		assertEquals("client field type", DataType.CHAR, clientField.getDataType());
 		assertEquals("client field length", 3, clientField.getLength());
+		assertEquals("client field description", "Mandant", clientField.getFieldText());
+		assertEquals("client field table name", "T000", clientField.getTableName());
 	}
 
 	/**
@@ -91,6 +103,7 @@ public class TableReaderTest {
 		assertEquals("name of the result table", "T000", contents.getTableName());
 		assertEquals("number of fields", 17, contents.getStructure().getFieldList().size());
 		assertTrue("number of clients > 0", contents.size() > 0);
+		assertFalse("client table empty", contents.isEmpty());
 	}
 
 	/**
@@ -122,7 +135,46 @@ public class TableReaderTest {
 		assertEquals("name of the field", "MTEXT", field.getFieldName());
 	}
 
+	/**
+	 * Tries to read some boolean flag.
+	 * @throws Exception
+	 */
+	@Test
+	public void testGetBooleanField() throws Exception {
+		TableReader reader = new TableReader(destination, "T000");
+		ITableContents contents = reader.read();
+		assertNotNull(contents);
+		for (ITableLine line: contents) {
+			line.getBooleanValue("CCTEMPLOCK");
+		}
+	}
 
+	/**
+	 * Tries to read some integer value.
+	 * @throws Exception
+	 */
+	@Test
+	public void testGetIntegerField() throws Exception {
+		TableReader reader = new TableReader(destination, "SFLIGHT");
+		ITableContents contents = reader.read();
+		assertNotNull(contents);
+		for (ITableLine line: contents) {
+			line.getIntegerValue("CONNID");
+		}
+	}
+
+	/**
+	 * Tries to read the description of the clients. 
+	 * @throws Exception
+	 */
+	@Test(expected=FieldNotFoundException.class)
+	public void testReadInvalidField() throws Exception {
+		TableReader reader = new TableReader(destination, "T000");
+		ITableContents contents = reader.read();
+		assertNotNull(contents);
+		assertTrue("number of clients", contents.size() > 0);
+		contents.getLine(0).getValue("FOOBARBAZ");
+	}
 
 	/**
 	 * Checks whether an exception is thrown if the field list too long.
