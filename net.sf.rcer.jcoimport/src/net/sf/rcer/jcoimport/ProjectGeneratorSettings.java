@@ -24,14 +24,14 @@ public class ProjectGeneratorSettings {
 
 	private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
-	private String win32FileName = "";
-	private String win64IAFileName = "";
-	private String win64x86FileName = "";
-	private String linux32FileName = "";
-	private String linux64IAFileName = "";
-	private String linux64x86FileName = "";
-	private String darwin32FileName = "";
-	private String darwin64FileName = "";
+	private String win32FileName = ""; //$NON-NLS-1$
+	private String win64IAFileName = ""; //$NON-NLS-1$
+	private String win64x86FileName = ""; //$NON-NLS-1$
+	private String linux32FileName = ""; //$NON-NLS-1$
+	private String linux64IAFileName = ""; //$NON-NLS-1$
+	private String linux64x86FileName = ""; //$NON-NLS-1$
+	private String darwin32FileName = ""; //$NON-NLS-1$
+	private String darwin64FileName = ""; //$NON-NLS-1$
 
 	private boolean pluginProjectSelected;
 	private boolean win32FragmentSelected;
@@ -62,7 +62,7 @@ public class ProjectGeneratorSettings {
 	public void setWin32FileName(String win32FileName) {
 		String oldValue = win32FileName;
 		this.win32FileName = win32FileName;
-		propertyChangeSupport.firePropertyChange("win32FileName", oldValue, win32FileName);
+		propertyChangeSupport.firePropertyChange("win32FileName", oldValue, win32FileName); //$NON-NLS-1$
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class ProjectGeneratorSettings {
 	public void setWin64IAFileName(String win64IAFileName) {
 		String oldValue = win64IAFileName;
 		this.win64IAFileName = win64IAFileName;
-		propertyChangeSupport.firePropertyChange("win64IAFileName", oldValue, win64IAFileName);
+		propertyChangeSupport.firePropertyChange("win64IAFileName", oldValue, win64IAFileName); //$NON-NLS-1$
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class ProjectGeneratorSettings {
 	public void setWin64x86FileName(String win64x86FileName) {
 		String oldValue = win64x86FileName;
 		this.win64x86FileName = win64x86FileName;
-		propertyChangeSupport.firePropertyChange("win64x86FileName", oldValue, win64x86FileName);
+		propertyChangeSupport.firePropertyChange("win64x86FileName", oldValue, win64x86FileName); //$NON-NLS-1$
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class ProjectGeneratorSettings {
 	public void setLinux32FileName(String linux32FileName) {
 		String oldValue = linux32FileName;
 		this.linux32FileName = linux32FileName;
-		propertyChangeSupport.firePropertyChange("linux32FileName", oldValue, linux32FileName);
+		propertyChangeSupport.firePropertyChange("linux32FileName", oldValue, linux32FileName); //$NON-NLS-1$
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class ProjectGeneratorSettings {
 	public void setLinux64IAFileName(String linux64IAFileName) {
 		String oldValue = linux64IAFileName;
 		this.linux64IAFileName = linux64IAFileName;
-		propertyChangeSupport.firePropertyChange("linux64IAFileName", oldValue, linux64IAFileName);
+		propertyChangeSupport.firePropertyChange("linux64IAFileName", oldValue, linux64IAFileName); //$NON-NLS-1$
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class ProjectGeneratorSettings {
 		String oldValue = linux64x86FileName;
 		this.linux64x86FileName = linux64x86FileName;
 		propertyChangeSupport
-				.firePropertyChange("linux64x86FileName", oldValue, linux64x86FileName);
+				.firePropertyChange("linux64x86FileName", oldValue, linux64x86FileName); //$NON-NLS-1$
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class ProjectGeneratorSettings {
 	public void setDarwin32FileName(String darwin32FileName) {
 		String oldValue = darwin32FileName;
 		this.darwin32FileName = darwin32FileName;
-		propertyChangeSupport.firePropertyChange("darwin32FileName", oldValue,
+		propertyChangeSupport.firePropertyChange("darwin32FileName", oldValue, //$NON-NLS-1$
 				darwin32FileName);
 	}
 
@@ -197,7 +197,7 @@ public class ProjectGeneratorSettings {
 	public void setDarwin64FileName(String darwin64FileName) {
 		String oldValue = darwin64FileName;
 		this.darwin64FileName = darwin64FileName;
-		propertyChangeSupport.firePropertyChange("darwin64FileName", oldValue,
+		propertyChangeSupport.firePropertyChange("darwin64FileName", oldValue, //$NON-NLS-1$
 				darwin64FileName);
 	}
 
@@ -215,7 +215,7 @@ public class ProjectGeneratorSettings {
 	public void setPluginProjectSelected(boolean pluginProjectSelected) {
 		boolean oldValue = pluginProjectSelected;
 		this.pluginProjectSelected = pluginProjectSelected;
-		propertyChangeSupport.firePropertyChange("pluginProjectSelected", oldValue,
+		propertyChangeSupport.firePropertyChange("pluginProjectSelected", oldValue, //$NON-NLS-1$
 				pluginProjectSelected);
 	}
 
@@ -233,7 +233,7 @@ public class ProjectGeneratorSettings {
 	public void setWin32FragmentSelected(boolean win32FragmentSelected) {
 		boolean oldValue = win32FragmentSelected;
 		this.win32FragmentSelected = win32FragmentSelected;
-		propertyChangeSupport.firePropertyChange("win32FragmentSelected", oldValue,
+		propertyChangeSupport.firePropertyChange("win32FragmentSelected", oldValue, //$NON-NLS-1$
 				win32FragmentSelected);
 	}
 
@@ -251,7 +251,7 @@ public class ProjectGeneratorSettings {
 	public void setWin64IAFragmentSelected(boolean win64IAFragmentSelected) {
 		boolean oldValue = win64IAFragmentSelected;
 		this.win64IAFragmentSelected = win64IAFragmentSelected;
-		propertyChangeSupport.firePropertyChange("win64IAFragmentSelected", oldValue,
+		propertyChangeSupport.firePropertyChange("win64IAFragmentSelected", oldValue, //$NON-NLS-1$
 				win64IAFragmentSelected);
 	}
 
@@ -269,7 +269,7 @@ public class ProjectGeneratorSettings {
 	public void setWin64x86FragmentSelected(boolean win64x86FragmentSelected) {
 		boolean oldValue = win64x86FragmentSelected;
 		this.win64x86FragmentSelected = win64x86FragmentSelected;
-		propertyChangeSupport.firePropertyChange("win64x86FragmentSelected", oldValue,
+		propertyChangeSupport.firePropertyChange("win64x86FragmentSelected", oldValue, //$NON-NLS-1$
 				win64x86FragmentSelected);
 	}
 
@@ -287,7 +287,7 @@ public class ProjectGeneratorSettings {
 	public void setLinux32FragmentSelected(boolean linux32FragmentSelected) {
 		boolean oldValue = linux32FragmentSelected;
 		this.linux32FragmentSelected = linux32FragmentSelected;
-		propertyChangeSupport.firePropertyChange("linux32FragmentSelected", oldValue,
+		propertyChangeSupport.firePropertyChange("linux32FragmentSelected", oldValue, //$NON-NLS-1$
 				linux32FragmentSelected);
 	}
 
@@ -305,7 +305,7 @@ public class ProjectGeneratorSettings {
 	public void setLinux64IAFragmentSelected(boolean linux64IAFragmentSelected) {
 		boolean oldValue = linux64IAFragmentSelected;
 		this.linux64IAFragmentSelected = linux64IAFragmentSelected;
-		propertyChangeSupport.firePropertyChange("linux64IAFragmentSelected", oldValue,
+		propertyChangeSupport.firePropertyChange("linux64IAFragmentSelected", oldValue, //$NON-NLS-1$
 				linux64IAFragmentSelected);
 	}
 
@@ -323,7 +323,7 @@ public class ProjectGeneratorSettings {
 	public void setLinux64x86FragmentSelected(boolean linux64x86FragmentSelected) {
 		boolean oldValue = linux64x86FragmentSelected;
 		this.linux64x86FragmentSelected = linux64x86FragmentSelected;
-		propertyChangeSupport.firePropertyChange("linux64x86FragmentSelected", oldValue,
+		propertyChangeSupport.firePropertyChange("linux64x86FragmentSelected", oldValue, //$NON-NLS-1$
 				linux64x86FragmentSelected);
 	}
 
@@ -341,7 +341,7 @@ public class ProjectGeneratorSettings {
 	public void setDarwin32FragmentSelected(boolean darwin32FragmentSelected) {
 		boolean oldValue = darwin32FragmentSelected;
 		this.darwin32FragmentSelected = darwin32FragmentSelected;
-		propertyChangeSupport.firePropertyChange("darwin32FragmentSelected", oldValue,
+		propertyChangeSupport.firePropertyChange("darwin32FragmentSelected", oldValue, //$NON-NLS-1$
 				darwin32FragmentSelected);
 	}
 
@@ -359,7 +359,7 @@ public class ProjectGeneratorSettings {
 	public void setDarwin64FragmentSelected(boolean darwin64FragmentSelected) {
 		boolean oldValue = darwin64FragmentSelected;
 		this.darwin64FragmentSelected = darwin64FragmentSelected;
-		propertyChangeSupport.firePropertyChange("darwin64FragmentSelected", oldValue,
+		propertyChangeSupport.firePropertyChange("darwin64FragmentSelected", oldValue, //$NON-NLS-1$
 				darwin64FragmentSelected);
 	}
 
@@ -376,7 +376,7 @@ public class ProjectGeneratorSettings {
 	public void setBundleExportSelected(boolean bundleExportSelected) {
 		boolean oldValue = bundleExportSelected;
 		this.bundleExportSelected = bundleExportSelected;
-		propertyChangeSupport.firePropertyChange("bundleExportSelected", oldValue,
+		propertyChangeSupport.firePropertyChange("bundleExportSelected", oldValue, //$NON-NLS-1$
 				bundleExportSelected);
 	}
 	
@@ -393,7 +393,7 @@ public class ProjectGeneratorSettings {
 	public void setExportPath(String exportPath) {
 		String oldValue = exportPath;
 		this.exportPath = exportPath;
-		propertyChangeSupport.firePropertyChange("exportPath", oldValue, exportPath);
+		propertyChangeSupport.firePropertyChange("exportPath", oldValue, exportPath); //$NON-NLS-1$
 	}
 	
 	/**

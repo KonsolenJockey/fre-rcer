@@ -48,14 +48,14 @@ public class JCoImportWizard extends Wizard implements IImportWizard {
 	 * @see org.eclipse.ui.IWorkbenchWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		setWindowTitle("Java Connector Import Wizard");
+		setWindowTitle(Messages.JCoImportWizard_WindowTitle);
 		setNeedsProgressMonitor(true);
 		
 		generatorSettings = new ProjectGeneratorSettings();
 		if (Platform.getInstallLocation() != null) {
 			generatorSettings.setBundleExportSelected(true);
 			// TODO use some API to locate the dropins folder
-			generatorSettings.setExportPath(Platform.getInstallLocation().getURL().getFile() + "dropins");
+			generatorSettings.setExportPath(Platform.getInstallLocation().getURL().getFile() + "dropins"); //$NON-NLS-1$
 		}
 		
 		context = new DataBindingContext();
@@ -93,11 +93,11 @@ public class JCoImportWizard extends Wizard implements IImportWizard {
 			getContainer().run(true, true, new ProjectGenerator(generatorSettings));
 			return true;
 		} catch (InvocationTargetException e) {
-			ErrorDialog.openError(getShell(), "SAP JCo Import", e.getLocalizedMessage(), 
-					new Status(IStatus.ERROR, "net.sf.rcer.jcoimport", "Error importing the SAP Java Connector.", e));
+			ErrorDialog.openError(getShell(), Messages.JCoImportWizard_DialogTitle, e.getLocalizedMessage(), 
+					new Status(IStatus.ERROR, "net.sf.rcer.jcoimport", Messages.JCoImportWizard_ErrorMessage, e)); //$NON-NLS-1$
 			return false;
 		} catch (InterruptedException e) {
-			MessageDialog.openWarning(getShell(), "SAP JCo Import", "The import was cancelled. You may have to remove incomplete plug-in projects manually.");
+			MessageDialog.openWarning(getShell(), Messages.JCoImportWizard_DialogTitle, Messages.JCoImportWizard_ImportCancelledMessage);
 			return false;
 		}
 	}

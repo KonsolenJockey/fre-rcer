@@ -61,10 +61,10 @@ public class SummaryPage extends WizardPage {
 	 * @param generatorSettings 
 	 */
 	SummaryPage(DataBindingContext context, ProjectGeneratorSettings generatorSettings) {
-		super("Summary Page");
+		super(Messages.SummaryPage_PageName);
 		this.generatorSettings = generatorSettings;
 		this.context = context;
-		setTitle("Import Summary");
+		setTitle(Messages.SummaryPage_PageTitle);
 		setPageComplete(true);
 		workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 	}
@@ -77,51 +77,51 @@ public class SummaryPage extends WizardPage {
 		GridLayoutFactory.swtDefaults().applyTo(top);
 		
 		Label info = new Label(top, SWT.NONE);
-		info.setText("Review the actions you want the wizard to perform:");
+		info.setText(Messages.SummaryPage_InfoLabel);
 		
 		checkboxPlugin = new Button(top, SWT.CHECK);
 		context.bindValue(SWTObservables.observeSelection(checkboxPlugin), 
-				BeansObservables.observeValue(generatorSettings, "pluginProjectSelected"),
+				BeansObservables.observeValue(generatorSettings, "pluginProjectSelected"), //$NON-NLS-1$
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
 		checkboxFragmentWin32 = new Button(top, SWT.CHECK);
 		context.bindValue(SWTObservables.observeSelection(checkboxFragmentWin32), 
-				BeansObservables.observeValue(generatorSettings, "win32FragmentSelected"),
+				BeansObservables.observeValue(generatorSettings, "win32FragmentSelected"), //$NON-NLS-1$
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
 		checkboxFragmentWin64IA = new Button(top, SWT.CHECK);
 		context.bindValue(SWTObservables.observeSelection(checkboxFragmentWin64IA), 
-				BeansObservables.observeValue(generatorSettings, "win64IAFragmentSelected"),
+				BeansObservables.observeValue(generatorSettings, "win64IAFragmentSelected"), //$NON-NLS-1$
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
 		checkboxFragmentWin64x86 = new Button(top, SWT.CHECK);
 		context.bindValue(SWTObservables.observeSelection(checkboxFragmentWin64x86), 
-				BeansObservables.observeValue(generatorSettings, "win64x86FragmentSelected"),
+				BeansObservables.observeValue(generatorSettings, "win64x86FragmentSelected"), //$NON-NLS-1$
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
 		checkboxFragmentLinux32 = new Button(top, SWT.CHECK);
 		context.bindValue(SWTObservables.observeSelection(checkboxFragmentWin64x86), 
-				BeansObservables.observeValue(generatorSettings, "linux32FragmentSelected"),
+				BeansObservables.observeValue(generatorSettings, "linux32FragmentSelected"), //$NON-NLS-1$
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
 		checkboxFragmentLinux64IA = new Button(top, SWT.CHECK);
 		context.bindValue(SWTObservables.observeSelection(checkboxFragmentLinux64IA), 
-				BeansObservables.observeValue(generatorSettings, "linux64IAFragmentSelected"),
+				BeansObservables.observeValue(generatorSettings, "linux64IAFragmentSelected"), //$NON-NLS-1$
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
 		checkboxFragmentLinux64x86 = new Button(top, SWT.CHECK);
 		context.bindValue(SWTObservables.observeSelection(checkboxFragmentLinux64x86), 
-				BeansObservables.observeValue(generatorSettings, "linux64x86FragmentSelected"),
+				BeansObservables.observeValue(generatorSettings, "linux64x86FragmentSelected"), //$NON-NLS-1$
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
 		checkboxFragmentDarwin32 = new Button(top, SWT.CHECK);
 		context.bindValue(SWTObservables.observeSelection(checkboxFragmentDarwin32), 
-				BeansObservables.observeValue(generatorSettings, "darwin32FragmentSelected"),
+				BeansObservables.observeValue(generatorSettings, "darwin32FragmentSelected"), //$NON-NLS-1$
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
 		checkboxFragmentDarwin64 = new Button(top, SWT.CHECK);
 		context.bindValue(SWTObservables.observeSelection(checkboxFragmentDarwin64), 
-				BeansObservables.observeValue(generatorSettings, "darwin64FragmentSelected"),
+				BeansObservables.observeValue(generatorSettings, "darwin64FragmentSelected"), //$NON-NLS-1$
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 
 		@SuppressWarnings("unused")
@@ -132,18 +132,18 @@ public class SummaryPage extends WizardPage {
 		
 		checkboxExportBundles = new Button(export, SWT.CHECK);
 		GridDataFactory.swtDefaults().span(2, 1).applyTo(checkboxExportBundles);
-		checkboxExportBundles.setText("Export plug-ins and fragments to dropins folder of current installation.");
+		checkboxExportBundles.setText(Messages.SummaryPage_ExportToDropinsLabel);
 		context.bindValue(SWTObservables.observeSelection(checkboxExportBundles), 
-				BeansObservables.observeValue(generatorSettings, "bundleExportSelected"),
+				BeansObservables.observeValue(generatorSettings, "bundleExportSelected"), //$NON-NLS-1$
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
 		Label exportLabel = new Label(export, SWT.NONE);
-		exportLabel.setText("Target Path:");
+		exportLabel.setText(Messages.SummaryPage_TargetPathLabel);
 		
 		Text exportPathText = new Text(export, SWT.SINGLE | SWT.BORDER);
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.CENTER).applyTo(exportPathText);
 		context.bindValue(SWTObservables.observeText(exportPathText, SWT.Modify), 
-				BeansObservables.observeValue(generatorSettings, "exportPath"),
+				BeansObservables.observeValue(generatorSettings, "exportPath"), //$NON-NLS-1$
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		// TODO validate the target path
 		
@@ -157,7 +157,7 @@ public class SummaryPage extends WizardPage {
 	 */
 	private void updateCheckboxes() {
 		// TODO use databinding mechanisms to update the checkboxes
-		updateCheckbox(checkboxPlugin, "foo", IProjectNames.PLUGIN_JCO);
+		updateCheckbox(checkboxPlugin, "foo", IProjectNames.PLUGIN_JCO); //$NON-NLS-1$
 		updateCheckbox(checkboxFragmentWin32, 			
 				generatorSettings.getWin32FileName(), 
 				IProjectNames.FRAGMENT_WINDOWS_32);
@@ -192,16 +192,16 @@ public class SummaryPage extends WizardPage {
 	 */
 	private void updateCheckbox(Button checkbox, String fileName, String projectName) {
 		if (fileName.length() == 0) {
-			checkbox.setText(MessageFormat.format("No source archive available to generate project {0}.", projectName));
+			checkbox.setText(MessageFormat.format(Messages.SummaryPage_NoSourceLabel, projectName));
 			checkbox.setSelection(false);
 			checkbox.setEnabled(false);
 		} else {
 			checkbox.setEnabled(true);
 			if (workspaceRoot.getProject(projectName).exists()) {
-				checkbox.setText(MessageFormat.format("Replace existing project {0}.", projectName));
+				checkbox.setText(MessageFormat.format(Messages.SummaryPage_ReplaceProjectLabel, projectName));
 				checkbox.setSelection(false);
 			} else {
-				checkbox.setText(MessageFormat.format("Create new project {0}.", projectName));
+				checkbox.setText(MessageFormat.format(Messages.SummaryPage_CreateProjectLabel, projectName));
 				checkbox.setSelection(true);
 			}
 		}

@@ -63,7 +63,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 	/**
 	 * The ID of the plug-in project nature as used by the PDE. 
 	 */
-	public static final String PLUGIN_NATURE_ID = "org.eclipse.pde.PluginNature";
+	public static final String PLUGIN_NATURE_ID = "org.eclipse.pde.PluginNature"; //$NON-NLS-1$
 	
 	private ProjectGeneratorSettings settings;
 	private IWorkspaceRoot workspaceRoot;
@@ -87,7 +87,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 
 		exportableBundles.clear();
 		
-		monitor.beginTask("Importing the SAP Java Connector", getNumberOfSteps());
+		monitor.beginTask(Messages.ProjectGenerator_TaskDescription, getNumberOfSteps());
 
 		try {
 			if (settings.isPluginProjectSelected()) {
@@ -109,7 +109,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 				} else if (settings.isDarwin64FragmentSelected())  {
 					createPluginProject(monitor, settings.getDarwin64FileName(), IProjectNames.PLUGIN_JCO);
 				} else {
-					throw new InvocationTargetException(null, "No input file was selected - should never have happened.");
+					throw new InvocationTargetException(null, Messages.ProjectGenerator_NoInputFileError);
 				}
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
@@ -122,56 +122,56 @@ public class ProjectGenerator implements IRunnableWithProgress {
 			if (settings.isWin32FragmentSelected()) {
 				createFragmentProject(monitor, settings.getWin32FileName(), 
 						IProjectNames.FRAGMENT_WINDOWS_32,
-						"sapjco3.dll", "Windows (32-bit)", "(& (osgi.os=win32) (osgi.arch=x86))");
+						"sapjco3.dll", Messages.ProjectGenerator_Win32Description, "(& (osgi.os=win32) (osgi.arch=x86))"); //$NON-NLS-1$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
 			if (settings.isWin64IAFragmentSelected())  {
 				createFragmentProject(monitor, settings.getWin64IAFileName(), 
 						IProjectNames.FRAGMENT_WINDOWS_64IA,
-						"sapjco3.dll", "Windows (64-bit Itanium)", "(& (osgi.os=win32) (osgi.arch=ia64n))");
+						"sapjco3.dll", Messages.ProjectGenerator_Win64IADescription, "(& (osgi.os=win32) (osgi.arch=ia64n))"); //$NON-NLS-1$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
 			if (settings.isWin64x86FragmentSelected())  {
 				createFragmentProject(monitor, settings.getWin64x86FileName(), 
 						IProjectNames.FRAGMENT_WINDOWS_64X86,
-						"sapjco3.dll", "Windows (64-bit x86)", "(& (osgi.os=win32) (osgi.arch=x86-64))");
+						"sapjco3.dll", Messages.ProjectGenerator_Win64x86Description, "(& (osgi.os=win32) (osgi.arch=x86-64))"); //$NON-NLS-1$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
 			if (settings.isLinux32FragmentSelected())  {
 				createFragmentProject(monitor, settings.getLinux32FileName(), 
 						IProjectNames.FRAGMENT_LINUX_32,
-						"libsapjco3.so", "Linux (32-bit)", "(& (osgi.os=linux) (osgi.arch=x86))");
+						"libsapjco3.so", Messages.ProjectGenerator_Linux32Description, "(& (osgi.os=linux) (osgi.arch=x86))"); //$NON-NLS-1$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
 			if (settings.isLinux64IAFragmentSelected())  {
 				createFragmentProject(monitor, settings.getLinux64IAFileName(), 
 						IProjectNames.FRAGMENT_LINUX_64IA,
-						"libsapjco3.so", "Linux (64-bit Itanium)", "(& (osgi.os=linux) (osgi.arch=ia64n))");
+						"libsapjco3.so", Messages.ProjectGenerator_Linux64IADescription, "(& (osgi.os=linux) (osgi.arch=ia64n))"); //$NON-NLS-1$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
 			if (settings.isLinux64x86FragmentSelected())  {
 				createFragmentProject(monitor, settings.getLinux64x86FileName(), 
 						IProjectNames.FRAGMENT_LINUX_64X86,
-						"libsapjco3.so", "Linux (64-bit x86)", "(& (osgi.os=linux) (osgi.arch=x86-64))");
+						"libsapjco3.so", Messages.ProjectGenerator_Linux64x86Description, "(& (osgi.os=linux) (osgi.arch=x86-64))"); //$NON-NLS-1$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
 			if (settings.isDarwin32FragmentSelected())  {
 				createFragmentProject(monitor, settings.getDarwin32FileName(), 
 						IProjectNames.FRAGMENT_DARWIN_32,
-						"libsapjco3.jnilib", "OS X (32-bit Intel)", "(& (osgi.os=macosx) (osgi.arch=x86))");
+						"libsapjco3.jnilib", Messages.ProjectGenerator_Darwin32Description, "(& (osgi.os=macosx) (osgi.arch=x86))"); //$NON-NLS-1$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
 			if (settings.isDarwin64FragmentSelected())  {
 				createFragmentProject(monitor, settings.getDarwin64FileName(), 
 						IProjectNames.FRAGMENT_DARWIN_64,
-						"libsapjco3.jnilib", "OS X (64-bit Intel)", "(& (osgi.os=macosx) (osgi.arch=x86-64))");
+						"libsapjco3.jnilib", Messages.ProjectGenerator_Darwin64Description, "(& (osgi.os=macosx) (osgi.arch=x86-64))"); //$NON-NLS-1$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 			
@@ -198,7 +198,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 	 * @throws IOException 
 	 */
 	private void createPluginProject(IProgressMonitor monitor, String sourceFileName, String pluginName) throws CoreException, IOException {
-		monitor.subTask(MessageFormat.format("Creating plug-in project {0}...", pluginName));
+		monitor.subTask(MessageFormat.format(Messages.ProjectGenerator_CreatePluginTaskDescription, pluginName));
 
 		// read the source file                                                                              10
 		final Map<String, byte[]> files = readArchiveFile(sourceFileName);
@@ -223,53 +223,53 @@ public class ProjectGenerator implements IRunnableWithProgress {
 
 		// set the basic Java project properties                                                              5
 		IJavaProject javaProject = JavaCore.create(project);
-		IFolder binDir = project.getFolder("bin");
+		IFolder binDir = project.getFolder("bin"); //$NON-NLS-1$
 		IPath binPath = binDir.getFullPath();
 		javaProject.setOutputLocation(binPath, new SubProgressMonitor(monitor, 5));
 
 		// create empty jni folder                                                                            5
-		project.getFolder("jni").create(true, true, new SubProgressMonitor(monitor, 5));
+		project.getFolder("jni").create(true, true, new SubProgressMonitor(monitor, 5)); //$NON-NLS-1$
 
 		// copy sapjco3.jar                                                                                  10
-		project.getFile("sapjco3.jar").create(new ByteArrayInputStream(files.get("sapjco3.jar")), 
+		project.getFile("sapjco3.jar").create(new ByteArrayInputStream(files.get("sapjco3.jar")),  //$NON-NLS-1$ //$NON-NLS-2$
 				true, new SubProgressMonitor(monitor, 10));
 
 		// create META-INF and MANIFEST.MF                                                                   10
 		// TODO use the version information from the MANIFEST.MF file in the archive
-		IFolder metaInfFolder = project.getFolder("META-INF");
+		IFolder metaInfFolder = project.getFolder("META-INF"); //$NON-NLS-1$
 		metaInfFolder.create(true, true, new SubProgressMonitor(monitor, 5));
 		StringBuilder manifest = new StringBuilder();
-		manifest.append("Manifest-Version: 1.0\n");
-		manifest.append("Bundle-ManifestVersion: 2\n");
-		manifest.append("Bundle-Name: SAP Java Connector v3\n"); 
-		manifest.append(MessageFormat.format("Bundle-SymbolicName: {0}\n", pluginName));
-		manifest.append("Bundle-Version: 7.11.0\n");
-		manifest.append("Bundle-ClassPath: bin/,\n");
-		manifest.append(" sapjco3.jar,\n");
-		manifest.append(" jni/\n");
-		manifest.append("Bundle-Vendor: SAP AG, Walldorf (packaged using RCER)\n");
-		manifest.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n");
-		manifest.append("Export-Package: com.sap.conn.jco,\n");
-		manifest.append(" com.sap.conn.jco.ext,\n");
-		manifest.append(" com.sap.conn.jco.monitor,\n");
-		manifest.append(" com.sap.conn.jco.server\n");
-		manifest.append("Bundle-ActivationPolicy: lazy\n");
-		writeTextFile(monitor, manifest, metaInfFolder.getFile("MANIFEST.MF"));
+		manifest.append("Manifest-Version: 1.0\n"); //$NON-NLS-1$
+		manifest.append("Bundle-ManifestVersion: 2\n"); //$NON-NLS-1$
+		manifest.append("Bundle-Name: SAP Java Connector v3\n");  //$NON-NLS-1$
+		manifest.append(MessageFormat.format("Bundle-SymbolicName: {0}\n", pluginName)); //$NON-NLS-1$
+		manifest.append("Bundle-Version: 7.11.0\n"); //$NON-NLS-1$
+		manifest.append("Bundle-ClassPath: bin/,\n"); //$NON-NLS-1$
+		manifest.append(" sapjco3.jar,\n"); //$NON-NLS-1$
+		manifest.append(" jni/\n"); //$NON-NLS-1$
+		manifest.append("Bundle-Vendor: SAP AG, Walldorf (packaged using RCER)\n"); //$NON-NLS-1$
+		manifest.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n"); //$NON-NLS-1$
+		manifest.append("Export-Package: com.sap.conn.jco,\n"); //$NON-NLS-1$
+		manifest.append(" com.sap.conn.jco.ext,\n"); //$NON-NLS-1$
+		manifest.append(" com.sap.conn.jco.monitor,\n"); //$NON-NLS-1$
+		manifest.append(" com.sap.conn.jco.server\n"); //$NON-NLS-1$
+		manifest.append("Bundle-ActivationPolicy: lazy\n"); //$NON-NLS-1$
+		writeTextFile(monitor, manifest, metaInfFolder.getFile("MANIFEST.MF")); //$NON-NLS-1$
 
 		// set classpath                                                                                      5
-		final IPath jcoPath = new Path(MessageFormat.format("/{0}/sapjco3.jar", pluginName));
+		final IPath jcoPath = new Path(MessageFormat.format("/{0}/sapjco3.jar", pluginName)); //$NON-NLS-1$
 		IClasspathEntry jcoEntry = JavaCore.newLibraryEntry(jcoPath, Path.EMPTY, Path.EMPTY, true);
-		final IPath jniPath = new Path(MessageFormat.format("/{0}/jni", pluginName));
+		final IPath jniPath = new Path(MessageFormat.format("/{0}/jni", pluginName)); //$NON-NLS-1$
 		IClasspathEntry jniEntry = JavaCore.newLibraryEntry(jniPath, Path.EMPTY, Path.EMPTY, true);
 		javaProject.setRawClasspath(new IClasspathEntry[] { jcoEntry, jniEntry }, new SubProgressMonitor(monitor, 5));
 
 		// create build.properties                                                                            5
 		StringBuilder buildProperties = new StringBuilder();
-		buildProperties.append("bin.includes = META-INF/,\\\n");
-		buildProperties.append("               sapjco3.jar,\\\n");
-		buildProperties.append("               jni/,\\\n");
-		buildProperties.append("               .\n");
-		writeTextFile(monitor, buildProperties, project.getFile("build.properties"));
+		buildProperties.append("bin.includes = META-INF/,\\\n"); //$NON-NLS-1$
+		buildProperties.append("               sapjco3.jar,\\\n"); //$NON-NLS-1$
+		buildProperties.append("               jni/,\\\n"); //$NON-NLS-1$
+		buildProperties.append("               .\n"); //$NON-NLS-1$
+		writeTextFile(monitor, buildProperties, project.getFile("build.properties")); //$NON-NLS-1$
 		
 		// collect the plug-in for export
 		exportableBundles.add(modelManager.findModel(project));
@@ -289,7 +289,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 	private void createFragmentProject(IProgressMonitor monitor, String sourceFileName, 
 			String fragmentName, String nativeLibraryFilename, String platformName, String platformFilter) 
 	throws CoreException, IOException {
-		monitor.subTask(MessageFormat.format("Creating fragment project {0}...", fragmentName));
+		monitor.subTask(MessageFormat.format(Messages.ProjectGenerator_CreateFragmentTaskDescription, fragmentName));
 
 		// read the source file                                                                              10
 		final Map<String, byte[]> files = readArchiveFile(sourceFileName);
@@ -313,7 +313,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 		project.setDescription(description, new SubProgressMonitor(monitor, 5));
 
 		// create jni folder                                                                                  5
-		IFolder jniFolder = project.getFolder("jni");
+		IFolder jniFolder = project.getFolder("jni"); //$NON-NLS-1$
 		jniFolder.create(true, true, new SubProgressMonitor(monitor, 5));
 
 		// copy native library file                                                                          10
@@ -322,26 +322,26 @@ public class ProjectGenerator implements IRunnableWithProgress {
 
 		// create META-INF and MANIFEST.MF                                                                   10
 		// TODO use the version information from the MANIFEST.MF file in the archive
-		IFolder metaInfFolder = project.getFolder("META-INF");
+		IFolder metaInfFolder = project.getFolder("META-INF"); //$NON-NLS-1$
 		metaInfFolder.create(true, true, new SubProgressMonitor(monitor, 5));
 		StringBuilder manifest = new StringBuilder();
-		manifest.append("Manifest-Version: 1.0\n");
-		manifest.append("Bundle-ManifestVersion: 2\n");
-		manifest.append(MessageFormat.format("Bundle-Name: SAP Java Connector v3 - Native Libraries for {0}\n", platformName)); 
-		manifest.append(MessageFormat.format("Bundle-SymbolicName: {0}\n", fragmentName));
-		manifest.append("Bundle-Version: 7.11.0\n");
-		manifest.append("Bundle-Vendor: SAP AG, Walldorf (packaged using RCER)\n");
-		manifest.append("Fragment-Host: com.sap.conn.jco;bundle-version=\"7.11.0\"\n"); 
-		manifest.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n");
-		manifest.append(MessageFormat.format("Bundle-NativeCode: jni/{0}\n", nativeLibraryFilename));
-		manifest.append(MessageFormat.format("Eclipse-PlatformFilter: {0}\n", platformFilter));
-		writeTextFile(monitor, manifest, metaInfFolder.getFile("MANIFEST.MF"));
+		manifest.append("Manifest-Version: 1.0\n"); //$NON-NLS-1$
+		manifest.append("Bundle-ManifestVersion: 2\n"); //$NON-NLS-1$
+		manifest.append(MessageFormat.format("Bundle-Name: SAP Java Connector v3 - Native Libraries for {0}\n", platformName));  //$NON-NLS-1$
+		manifest.append(MessageFormat.format("Bundle-SymbolicName: {0}\n", fragmentName)); //$NON-NLS-1$
+		manifest.append("Bundle-Version: 7.11.0\n"); //$NON-NLS-1$
+		manifest.append("Bundle-Vendor: SAP AG, Walldorf (packaged using RCER)\n"); //$NON-NLS-1$
+		manifest.append("Fragment-Host: com.sap.conn.jco;bundle-version=\"7.11.0\"\n");  //$NON-NLS-1$
+		manifest.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n"); //$NON-NLS-1$
+		manifest.append(MessageFormat.format("Bundle-NativeCode: jni/{0}\n", nativeLibraryFilename)); //$NON-NLS-1$
+		manifest.append(MessageFormat.format("Eclipse-PlatformFilter: {0}\n", platformFilter)); //$NON-NLS-1$
+		writeTextFile(monitor, manifest, metaInfFolder.getFile("MANIFEST.MF")); //$NON-NLS-1$
 		
 		// create build.properties                                                                            5
 		StringBuilder buildProperties = new StringBuilder();
-		buildProperties.append("bin.includes = META-INF/,\\\n");
-		buildProperties.append("               jni/\n");
-		writeTextFile(monitor, buildProperties, project.getFile("build.properties"));
+		buildProperties.append("bin.includes = META-INF/,\\\n"); //$NON-NLS-1$
+		buildProperties.append("               jni/\n"); //$NON-NLS-1$
+		writeTextFile(monitor, buildProperties, project.getFile("build.properties")); //$NON-NLS-1$
 
 		// collect the fragment for export
 		exportableBundles.add(modelManager.findModel(project));
@@ -401,14 +401,14 @@ public class ProjectGenerator implements IRunnableWithProgress {
 	 * @throws IOException
 	 */
 	private Map<String, byte[]> readArchiveFile(String filename) throws IOException {
-		if (filename.toLowerCase().endsWith(".zip")) {
+		if (filename.toLowerCase().endsWith(".zip")) { //$NON-NLS-1$
 			return readZIPFile(filename);
-		} else if (filename.toLowerCase().endsWith(".tgz")) {
+		} else if (filename.toLowerCase().endsWith(".tgz")) { //$NON-NLS-1$
 			return readTGZFile(filename);
-		} else if (filename.toLowerCase().endsWith(".tar.gz")) {
+		} else if (filename.toLowerCase().endsWith(".tar.gz")) { //$NON-NLS-1$
 			return readTGZFile(filename);
 		} else {
-			throw new UnsupportedOperationException(MessageFormat.format("Unknown file type: {0}", filename));
+			throw new UnsupportedOperationException(MessageFormat.format(Messages.ProjectGenerator_UnknownFileTypeMessage, filename));
 		}
 	}
 	

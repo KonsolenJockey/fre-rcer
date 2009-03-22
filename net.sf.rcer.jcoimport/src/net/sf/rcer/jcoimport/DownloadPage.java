@@ -39,19 +39,19 @@ public class DownloadPage extends WizardPage {
 	/**
 	 * The ID of the plug-in - we don't have an Activator...
 	 */
-	public static final String PLUGIN_ID = "net.sf.rcer.jcoimport";
+	public static final String PLUGIN_ID = "net.sf.rcer.jcoimport"; //$NON-NLS-1$
 	
 	/**
 	 * The URL of the JCo download page.
 	 */
-	public static final String JCO_DOWNLOAD_PAGE = "http://service.sap.com/connectors";
+	public static final String JCO_DOWNLOAD_PAGE = Messages.DownloadPage_URL;
 	
 	/**
 	 * Default constructor.
 	 */
 	DownloadPage() {
-		super("Download Page");
-		setTitle("Download the SAP Java Connector");
+		super(Messages.DownloadPage_PageName);
+		setTitle(Messages.DownloadPage_PageTitle);
 		setPageComplete(true);
 	}
 
@@ -63,11 +63,11 @@ public class DownloadPage extends WizardPage {
 		GridLayoutFactory.swtDefaults().applyTo(top);
 		
 		Label intro = new Label(top, SWT.WRAP);
-		intro.setText("Due to license restrictions, the SAP Java Connector (JCo) may not be delivered as part of the connector package. Please visit the following URL and download the packages for the operating systems you want to support.");
+		intro.setText(Messages.DownloadPage_Intro);
 		GridDataFactory.swtDefaults().hint(parent.getSize().x, SWT.DEFAULT).applyTo(intro);
 		
 		Link link = new Link(top, SWT.NONE); 
-		link.setText(MessageFormat.format("<A>{0}</A>", JCO_DOWNLOAD_PAGE));
+		link.setText(MessageFormat.format("<A>{0}</A>", JCO_DOWNLOAD_PAGE)); //$NON-NLS-1$
 		link.setEnabled(true);
 		GridDataFactory.swtDefaults().applyTo(link);
 		link.addSelectionListener(new SelectionAdapter() {
@@ -79,18 +79,18 @@ public class DownloadPage extends WizardPage {
 				try {
 					PlatformUI.getWorkbench().getBrowserSupport().getExternalBrowser().openURL(new URL(JCO_DOWNLOAD_PAGE));
 				} catch (Exception ex) {
-					ErrorDialog.openError(getShell(), "JCo Import Wizard", "Error opening the JCo download page.", 
+					ErrorDialog.openError(getShell(), Messages.DownloadPage_DialogTitle, Messages.DownloadPage_OpenURLErrorMessage, 
 							new Status(IStatus.ERROR, PLUGIN_ID, ex.getMessage(), ex));
 				}
 			}
 		});
 		
 		Label notes = new Label(top, SWT.WRAP);
-		notes.setText("Please note that you'll need a valid SAPnet user account to download the packages. Also note that JCo versions prior to 3.0.0 are not supported by the connector plug-ins.");
+		notes.setText(Messages.DownloadPage_Notes);
 		GridDataFactory.swtDefaults().hint(parent.getSize().x, SWT.DEFAULT).applyTo(notes);
 		
 		Label cont = new Label(top, SWT.WRAP);
-		cont.setText("When you have completed the download, continue to the next page.");
+		cont.setText(Messages.DownloadPage_Continue);
 		GridDataFactory.swtDefaults().hint(parent.getSize().x, SWT.DEFAULT).applyTo(cont);
 		
 		setControl(top);

@@ -61,10 +61,10 @@ public class ArchiveFilesPage extends WizardPage {
 	 * @param generatorSettings 
 	 */
 	protected ArchiveFilesPage(DataBindingContext context, ProjectGeneratorSettings generatorSettings) {
-		super("Archive Files");
+		super(Messages.ArchiveFilesPage_PageName);
 		this.context = context;
 		this.generatorSettings = generatorSettings;
-		setTitle("Specify JCo Archive Files");
+		setTitle(Messages.ArchiveFilesPage_Title);
 		setPageComplete(false);
 	}
 
@@ -76,7 +76,7 @@ public class ArchiveFilesPage extends WizardPage {
 		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(top);
 
 		Label info = new Label(top, SWT.NONE);
-		info.setText("Please specify the location of the downloaded packages.");
+		info.setText(Messages.ArchiveFilesPage_InfoLabel);
 		GridDataFactory.swtDefaults().span(3, 1).applyTo(info);
 
 		// TODO use databinding mechanisms for this
@@ -93,7 +93,7 @@ public class ArchiveFilesPage extends WizardPage {
 						(linux64x86FilenameText.getText().length() == 0) && 
 						(darwin32FilenameText.getText().length() == 0) && 
 						(darwin64FilenameText.getText().length() == 0)) {
-					setErrorMessage("You must specify at least one package file.");
+					setErrorMessage(Messages.ArchiveFilesPage_NoFilesSpecifiedError);
 					setPageComplete(false);
 				} else {
 					setErrorMessage(null);
@@ -117,31 +117,31 @@ public class ArchiveFilesPage extends WizardPage {
 				if (name.length() > 0) {
 					File f = new File(name);
 					if (!f.canRead()) {
-						setErrorMessage(MessageFormat.format("Unable to read file {0}.", name));
+						setErrorMessage(MessageFormat.format(Messages.ArchiveFilesPage_FileReadError, name));
 						setPageComplete(false);
 					}
 				}
 			}
 		};
 		
-		win32FilenameText = addFileRow(top, "win32FileName", "Windows (32-bit)",
-				"sapjco3-ntintel-3.x.x.zip", "*.zip");
-		win64IAFilenameText = addFileRow(top, "win64IAFileName",
-				"Windows (64-bit Itanium)", "sapjco3-ntia64-3.x.x.zip", "*.zip");
-		win64x86FilenameText = addFileRow(top, "win64x86FileName", "Windows (64-bit x86)",
-				"sapjco3-ntamd64-3.x.x.zip", "*.zip");
+		win32FilenameText = addFileRow(top, "win32FileName", Messages.ArchiveFilesPage_Win32Label, //$NON-NLS-1$
+				"sapjco3-ntintel-3.x.x.zip", "*.zip"); //$NON-NLS-1$ //$NON-NLS-2$
+		win64IAFilenameText = addFileRow(top, "win64IAFileName", //$NON-NLS-1$
+				Messages.ArchiveFilesPage_Win64IALabel, "sapjco3-ntia64-3.x.x.zip", "*.zip");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		win64x86FilenameText = addFileRow(top, "win64x86FileName", Messages.ArchiveFilesPage_Win64x86Label, //$NON-NLS-1$
+				"sapjco3-ntamd64-3.x.x.zip", "*.zip"); //$NON-NLS-1$ //$NON-NLS-2$
 
-		linux32FilenameText = addFileRow(top, "linux32FileName", "Linux (32-bit)",
-				"sapjco3-linuxintel-3.x.x.tgz", "*.tgz");
-		linux64IAFilenameText = addFileRow(top, "linux64IAFileName",
-				"Linux (64-bit Itanium)", "sapjco3-linuxia64-3.x.x.tgz", "*.tgz");
-		linux64x86FilenameText = addFileRow(top, "linux64x86FileName",
-				"Linux (64-bit x86)", "sapjco3-linuxx86_64-3.x.x.tgz", "*.tgz");
+		linux32FilenameText = addFileRow(top, "linux32FileName", Messages.ArchiveFilesPage_Linux32Label, //$NON-NLS-1$
+				"sapjco3-linuxintel-3.x.x.tgz", "*.tgz"); //$NON-NLS-1$ //$NON-NLS-2$
+		linux64IAFilenameText = addFileRow(top, "linux64IAFileName", //$NON-NLS-1$
+				Messages.ArchiveFilesPage_Linux64IALabel, "sapjco3-linuxia64-3.x.x.tgz", "*.tgz");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		linux64x86FilenameText = addFileRow(top, "linux64x86FileName", //$NON-NLS-1$
+				Messages.ArchiveFilesPage_Linux64x86Label, "sapjco3-linuxx86_64-3.x.x.tgz", "*.tgz");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 
-		darwin32FilenameText = addFileRow(top, "darwin32FileName",
-				"Max OS X (32-bit Intel)", "sapjco3-darwinintel-3.x.x.zip", "*.zip");
-		darwin64FilenameText = addFileRow(top, "darwin64FileName",
-				"Mac OS X (64-bit Intel)", "sapjco3-darwinx64-3.x.x.zip", "*.zip");
+		darwin32FilenameText = addFileRow(top, "darwin32FileName", //$NON-NLS-1$
+				Messages.ArchiveFilesPage_Dawin32Label, "sapjco3-darwinintel-3.x.x.zip", "*.zip");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		darwin64FilenameText = addFileRow(top, "darwin64FileName", //$NON-NLS-1$
+				Messages.ArchiveFilesPage_Darwin64Label, "sapjco3-darwinx64-3.x.x.zip", "*.zip");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 
 		setControl(top);
 		Dialog.applyDialogFont(top);
@@ -160,7 +160,7 @@ public class ArchiveFilesPage extends WizardPage {
 			String platform, String filenameHint, final String filenameFilter) {
 		
 		Label rowLabel = new Label(parent, SWT.NONE);
-		rowLabel.setText(MessageFormat.format("{0}:", platform));
+		rowLabel.setText(MessageFormat.format("{0}:", platform)); //$NON-NLS-1$
 		GridDataFactory.swtDefaults().applyTo(rowLabel);
 
 		final Text filenameText = new Text(parent, SWT.BORDER | SWT.SINGLE);
@@ -172,7 +172,7 @@ public class ArchiveFilesPage extends WizardPage {
 				new UpdateValueStrategy());
 
 		Button browseButton = new Button(parent, SWT.PUSH);
-		browseButton.setText("Browse...");
+		browseButton.setText(Messages.ArchiveFilesPage_BrowseButton);
 		GridDataFactory.swtDefaults().applyTo(browseButton);
 		browseButton.addSelectionListener(new SelectionAdapter() {
 			/* (non-Javadoc)
@@ -181,7 +181,7 @@ public class ArchiveFilesPage extends WizardPage {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				FileDialog dialog = new FileDialog(getShell(), SWT.OPEN);
-				dialog.setText("Browse for SAP JCo Archive");
+				dialog.setText(Messages.ArchiveFilesPage_OpenDialogTitle);
 				dialog.setFilterExtensions(new String[] { filenameFilter });
 				String result = dialog.open();
 				if (result != null) {
@@ -194,7 +194,7 @@ public class ArchiveFilesPage extends WizardPage {
 		Label spacer = new Label(parent, SWT.NONE);
 
 		Label hintLabel = new Label(parent, SWT.NONE);
-		hintLabel.setText(MessageFormat.format("(should be {0})", filenameHint));
+		hintLabel.setText(MessageFormat.format(Messages.ArchiveFilesPage_FileNameHintLabel, filenameHint));
 		GridDataFactory.swtDefaults().span(2, 1).applyTo(hintLabel);
 
 		return filenameText;
