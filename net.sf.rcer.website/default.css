@@ -13,7 +13,7 @@ a {
 body {
 	background: #CCC url(img/bg.gif) repeat-y fixed bottom center;
 	color: #333; margin: 20px 0;
-	text-align: center; font: normal 0.6em sans-serif,Arial;
+	text-align: center; font: normal 0.8em sans-serif,Arial;
 }
 .gfx a {
 	background: #F5F5F5 url(img/bright_pixel.gif) no-repeat; display: block; height: 240px;
@@ -76,7 +76,7 @@ body {
 	font: bold 1.0em sans-serif,Arial;
 	color: #666;
 }
-.content p {
+.content p li {
 	margin: 3px 0 6px; color: #666;
 }
 .item {
@@ -87,4 +87,5 @@ body {
 	padding: 5px;
 	background: #F5F5F5;
 	color: #666;
+	font: normal 0.6em sans-serif,Arial;
 } 
