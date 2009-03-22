@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: SAP R/3 Connection Management Documentation
+Bundle-Name: %bundle.name
 Bundle-SymbolicName: net.sf.rcer.conn.doc;singleton:=true
 Bundle-Version: 0.1.0.qualifier
-Bundle-Vendor: http://www.sf.net/projects/rcer
+Bundle-Vendor: %bundle.vendor
 Require-Bundle: net.sf.rcer.doc;bundle-version="0.1.0"
+Bundle-Localization: plugin

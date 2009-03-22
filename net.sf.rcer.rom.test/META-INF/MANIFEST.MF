@@ -1,10 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Unit Tests for net.sf.rcer.rom
+Bundle-Name: %bundle.name
 Bundle-SymbolicName: net.sf.rcer.rom.test;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Fragment-Host: net.sf.rcer.rom;bundle-version="0.1.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: http://www.sf.net/projects/rcer
+Bundle-Vendor: %bundle.vendor
 Require-Bundle: org.junit4;bundle-version="4.3.1",
  net.sf.rcer.test.provider;bundle-version="0.1.0"
+Bundle-Localization: plugin
