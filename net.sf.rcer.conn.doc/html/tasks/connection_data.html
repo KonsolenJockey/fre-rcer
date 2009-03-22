@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<!-- $Id: installoverview.html 103 2009-02-01 15:47:29Z vwegert $ -->
+<!-- $Id$ -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -12,98 +12,36 @@
 <body>
 <h2>Connection Data</h2>
 
-<!-- TODO -->
+<p>The connector provides a preference page to edit the settings used to connecto to the 
+SAP R/3 system. Every connection requires a description and the system ID. It is possible
+to add multiple connections with the same system ID.</p>
 
-<!--  
-<p>Unfortunately, SAP licensing restrictions do not permit
-redistribution of the SAP Java Connector (JCo). This makes the
-installation process a bit more complex than for the usual Eclipse
-extension. You'll have to perform three steps to get a working
-installation of the SAP R/3 Connector:</p>
-<ul>
-	<li>Download and install the Import Wizard.</li>
-	<li>Generate the JCo bundles and fragments.</li>
-	<li>Download and install the remaining parts of the connector SDK.</li>
-</ul>
-<p>Note that these instructions assume that you have already <a
-	href="http://service.sap.com/connectors" target=_new"> downloaded
-the JCo archives</a> (registration required).
-<h3>Requirements</h3>
+<p>A connection is either a direct connection to a dispatcher process or a load-balanced 
+connection to a message server. The settings required differ depending on the connection type.</p>
 
-<p>You'll need a recent version of Eclipse 3.4 to install and use
-the SDK. You'll also need the Eclipse Modeling Framework and a recent
-version of openArchitectureWare.org 4.3 to use the SDK. Both EMF and oAW
-are development-time dependencies only; applications developed with the
-Connector SDK can be distributed withouth EMF and oAW.</p>
+<p>The connection data is saved in the workspace metadata of the application, using the standard
+preferences mechanism.</p>
 
-<h3>Installation of the Import Wizard</h3>
+<h3>Direct Connections</h3>
 
-<p>If you are reading this in the on-line help system of your
-Eclipse installation, you already have the Import Wizard installed. In
-this case, you can skip to the next step, generating the JCo Bundles.</p>
+<img src="direct_connection_data.png"/>
 
-<ol>
-	<li>Add <tt>http://rcer.sf.net/update-site</tt> to the list of
-	update sites: Select <i>Help</i> - <i>Software Updates</i>, switch to
-	the <i>Available Software</i> tab, press <i>Add Site</i> and add the
-	location.</li>
-	<li>Expand the update site entry and the category and select <i>Import
-	Wizard for SAP Java Connector</i>. <b>Important:</b> Do <b>NOT</b> select
-	the SDK yet - you won't be able to install it because of missing
-	dependencies.</li>
-	<li>Perform the installation and restart the Eclipse Workbench.</li>
-</ol>
+<p>To connect to a SAP R/3 system directly (without using a message server), you have to specify
+the application server and the system number. Depending on your network setup, you may also have 
+to set a router string.</p>
 
-<h3>Generating the JCo Bundles and Fragments</h3>
+<h3>Load-Balanced Connections</h3>
 
-<ol>
-	<li>In your Eclipse Workbench, select <i>File</i> - <i>Import...</i>.</li>
-	<li>From the list of import sources, select <i>SAP R/3
-	Connector</i> - <i>Create SAP Java Connector Plug-ins</i> and choose <i>Next</i>.</li>
-	<li>If you haven't done so yet, <a
-		href="http://service.sap.com/connectors" target=_new">download the
-	JCo archives</a> for the platforms you want to support (registration
-	required). Note that the Connector was designed to use JCo versions 3
-	and up - it will <b>not</b> work with versions prior to 3.0.0.</li>
-	<li>Select the locations of the downloaded archives. Obviously,
-	you need to specify at least one file before continuing.</li>
-	<li>
-	<p>On the last page, you can choose whether you want to create the
-	plug-in and fragment projects for the platforms you have selected
-	archive files for. If the projects already exist in your workspace,
-	you'll be prompted whether you want to replace the existing projects
-	instead.</p>
-	<p>You can also select whether you want to export the generated
-	plug-ins to the <tt>dropins</tt> folder of your Eclipse installation
-	automatically. If you deselect this option, you'll have to install the
-	plug-ins manually before you can install the SDK. <b>Please provide
-	feedback if the export to the <tt>dropins</tt> folder works - this is
-	more or less experimental coding with a lot of guesswork regarding the
-	location of the <tt>dropins</tt> folder.</b></p>
-	<p>Select <i>Finish</i>. This will generate the projects and export
-	them if you have selected the corresponding option. This might take
-	some time.</p>
-	</li>
-	<li>Restart the Eclipse Workbench.</li>
-</ol>
+<img src="load_balanced_connection_data.png"/>
 
-<h3>Installation of the Connector SDK</h3>
+<p>To use a message server, you have to specify the message server name and port and the name of 
+the logon group. Depending on your network setup, you may also have to set a router string.</p>
 
-<ol>
-	<li>Select <i>Help</i> - <i>Software Updates</i>, switch to the <i>Available
-	Software</i> tab.</li>
-	<li>Expand the update site entry added when installing the wizard
-	and the category below. Select <i>SAP R/3 Connector SDK</i>.</li>
-	<li>Perform the installation and restart the Eclipse Workbench.</li>
-</ol>
+<h3>Default Logon Settings</h3>
 
-<h3>Further Reading</h3>
+<img src="logon_defaults.png"/>
 
-<p>After the installation is completed, select <i>Help</i> - <i>Help
-Contents</i> and visit the online documentation topic <i>SAP R/3
-Connector</i> for more information.
-
--->
+<p>You can optionally specify some default data to preset the login dialog.</p>
 
 </body>
 </html>
