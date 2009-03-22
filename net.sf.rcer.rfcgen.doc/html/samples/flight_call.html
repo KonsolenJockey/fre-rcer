@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<!-- $Id: installoverview.html 103 2009-02-01 15:47:29Z vwegert $ -->
+<!-- $Id$ -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -12,98 +12,46 @@
 <body>
 <h2>Flight Data Access Using Call-Style Mapping</h2>
 
-<!-- TODO -->
+<p>The plug-in <tt>net.sf.rcer.example.rfcgen.pojo.call</tt> contains an example demonstrating the use of 
+call-style mapping to retrieve a list of flights from the standard example tables of the SAP R/3 system. 
+Use a launch configuration pointing to the application ID <tt>net.sf.rcer.example.rfcgen.pojo.call.application</tt>
+if you want to try out this example.</p>
 
-<!--  
-<p>Unfortunately, SAP licensing restrictions do not permit
-redistribution of the SAP Java Connector (JCo). This makes the
-installation process a bit more complex than for the usual Eclipse
-extension. You'll have to perform three steps to get a working
-installation of the SAP R/3 Connector:</p>
+<p>The project contains two source folders - it's generally a good idea to keep the generated code and the
+manually written code separated to prevent accidental destruction of the latter. The mapping definition is kept
+in the source folder in a file named <tt>model.rfc</tt> and is executed using the workflow 
+<tt>generate-mapping.oaw</tt>.</p> 
+
+<p>The following classes are standard parts of the RCP application and are not of special interest:</p>
 <ul>
-	<li>Download and install the Import Wizard.</li>
-	<li>Generate the JCo bundles and fragments.</li>
-	<li>Download and install the remaining parts of the connector SDK.</li>
+<li><tt>Activator</tt></li>
+<li><tt>Application</tt></li>
+<li><tt>ApplicationActionBarAdvisor</tt></li>
+<li><tt>ApplicationWorkbenchAdvisor</tt></li>
+<li><tt>ApplicationWorkbenchWindowAdvisor</tt></li>
+<li><tt>Perspective</tt></li>
 </ul>
-<p>Note that these instructions assume that you have already <a
-	href="http://service.sap.com/connectors" target=_new"> downloaded
-the JCo archives</a> (registration required).
-<h3>Requirements</h3>
 
-<p>You'll need a recent version of Eclipse 3.4 to install and use
-the SDK. You'll also need the Eclipse Modeling Framework and a recent
-version of openArchitectureWare.org 4.3 to use the SDK. Both EMF and oAW
-are development-time dependencies only; applications developed with the
-Connector SDK can be distributed withouth EMF and oAW.</p>
+<p>The class <tt>View</tt> is an adapted view that contains the user interface. When the search function is
+invoked, the view uses the generated <tt>GetFlightListCall</tt> to obtain the contents of the list:</p>
 
-<h3>Installation of the Import Wizard</h3>
-
-<p>If you are reading this in the on-line help system of your
-Eclipse installation, you already have the Import Wizard installed. In
-this case, you can skip to the next step, generating the JCo Bundles.</p>
-
-<ol>
-	<li>Add <tt>http://rcer.sf.net/update-site</tt> to the list of
-	update sites: Select <i>Help</i> - <i>Software Updates</i>, switch to
-	the <i>Available Software</i> tab, press <i>Add Site</i> and add the
-	location.</li>
-	<li>Expand the update site entry and the category and select <i>Import
-	Wizard for SAP Java Connector</i>. <b>Important:</b> Do <b>NOT</b> select
-	the SDK yet - you won't be able to install it because of missing
-	dependencies.</li>
-	<li>Perform the installation and restart the Eclipse Workbench.</li>
-</ol>
-
-<h3>Generating the JCo Bundles and Fragments</h3>
-
-<ol>
-	<li>In your Eclipse Workbench, select <i>File</i> - <i>Import...</i>.</li>
-	<li>From the list of import sources, select <i>SAP R/3
-	Connector</i> - <i>Create SAP Java Connector Plug-ins</i> and choose <i>Next</i>.</li>
-	<li>If you haven't done so yet, <a
-		href="http://service.sap.com/connectors" target=_new">download the
-	JCo archives</a> for the platforms you want to support (registration
-	required). Note that the Connector was designed to use JCo versions 3
-	and up - it will <b>not</b> work with versions prior to 3.0.0.</li>
-	<li>Select the locations of the downloaded archives. Obviously,
-	you need to specify at least one file before continuing.</li>
-	<li>
-	<p>On the last page, you can choose whether you want to create the
-	plug-in and fragment projects for the platforms you have selected
-	archive files for. If the projects already exist in your workspace,
-	you'll be prompted whether you want to replace the existing projects
-	instead.</p>
-	<p>You can also select whether you want to export the generated
-	plug-ins to the <tt>dropins</tt> folder of your Eclipse installation
-	automatically. If you deselect this option, you'll have to install the
-	plug-ins manually before you can install the SDK. <b>Please provide
-	feedback if the export to the <tt>dropins</tt> folder works - this is
-	more or less experimental coding with a lot of guesswork regarding the
-	location of the <tt>dropins</tt> folder.</b></p>
-	<p>Select <i>Finish</i>. This will generate the projects and export
-	them if you have selected the corresponding option. This might take
-	some time.</p>
-	</li>
-	<li>Restart the Eclipse Workbench.</li>
-</ol>
-
-<h3>Installation of the Connector SDK</h3>
-
-<ol>
-	<li>Select <i>Help</i> - <i>Software Updates</i>, switch to the <i>Available
-	Software</i> tab.</li>
-	<li>Expand the update site entry added when installing the wizard
-	and the category below. Select <i>SAP R/3 Connector SDK</i>.</li>
-	<li>Perform the installation and restart the Eclipse Workbench.</li>
-</ol>
-
-<h3>Further Reading</h3>
-
-<p>After the installation is completed, select <i>Help</i> - <i>Help
-Contents</i> and visit the online documentation topic <i>SAP R/3
-Connector</i> for more information.
-
--->
+<pre>
+	public void widgetSelected(SelectionEvent e) {
+		GetFlightListCall call = new GetFlightListCall();
+		call.setFromCountry(fromCountryText.getText());
+		call.setFromCity(fromCityText.getText());
+		call.setToCity(toCityText.getText());
+		call.setToCountry(toCountryText.getText());
+		try {
+			call.execute(ConnectionManager.getInstance().getDestination());
+			viewer.setInput(new WritableList(call.getFlights(), FlightData.class));
+		} catch (Exception ex) {
+			ErrorDialog.openError(getSite().getShell(), getSite().getShell().getText(), 
+					"Unable to search for flights.", 
+					new Status(IStatus.ERROR, Activator.PLUGIN_ID, ex.getLocalizedMessage(), ex));
+			}
+	}
+</pre>
 
 </body>
 </html>

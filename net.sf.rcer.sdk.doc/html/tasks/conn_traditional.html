@@ -12,6 +12,10 @@
 <body>
 <h2>Traditional RFC Calls</h2>
 
+<p>To use the SAP R/3 Connector, you have to add a dependency to <tt>net.sf.rcer.conn</tt> to access the central 
+classes like the <tt>ConnectionManager</tt>. For RCP and other UI-enabled applicationy, you'll ususally also want to
+add a dependency to <tt>net.sf.rcer.conn.ui</tt>.</p>
+
 <p>If you want to use the methods provided by the SAP Java Connector (JCo) directly, you can obtain the 
 <tt>JCoDestination</tt> directly from the <tt>ConnectionManager</tt>, typically using <tt>getDestination()</tt>. 
 Invoking this method either returns the active connection or opens the login dialog if no connection is present.  

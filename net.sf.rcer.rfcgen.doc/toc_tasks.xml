@@ -2,6 +2,7 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 <!-- $Id: toc.xml 103 2009-02-01 15:47:29Z vwegert $ -->
 <toc link_to="../net.sf.rcer.sdk.doc/toc_tasks.xml#using_conns" label="Tasks">
+	<topic label="RFC Mapping Language Concepts" href="html/tasks/rfcgen_concept.html" />
 	<topic label="Call-Style Mapping" href="html/tasks/conn_call.html" />
 	<topic label="Request-Response-Style Mapping" href="html/tasks/conn_rr.html" />
 </toc>

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- $Id$ -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="STYLESHEET" HREF="../book.css" CHARSET="ISO-8859-1"
+	TYPE="text/css">
+<title>RFC Mapping Language Concepts</title>
+</head>
+
+<body>
+<h2>RFC Mapping Language Concepts</h2>
+
+<p>The SAP R/3 Connector SDK contains a tool to facilitate the task of performing RFC calls. Instead of writing
+the Java coding to perform the input and output mapping manually, you can generate the classes from a mapping 
+definition that is written in a compact language. The SDK even contains a wizard that generates a basic mapping
+definition by examining the function module definition.</p>
+
+<p>Before writing the mapping definition, you have to decide whether you want to use <i>call-style mapping</i> or
+<i>request-response-style mapping</i>. If you use call-style mapping, a single call class is generated. You 
+prepare an instance of this class by setting the input parameters, then execute the call. The results of the 
+function module execution are written into the instance of the call class. In other words, this mapping style
+works in-place. If you use request-response-style mapping, you have to use two classes. You prepare an instance of 
+a request class - much the same way you would with a call class - and then execute the call. This does not change
+the request, but creates an instance of a response class instead. The following chapters contain detailed examples
+of both mapping styles.</p> 
+
+<p>To generate a basic mapping definition, make sure you're able to connect to a SAP R/3 system. Then, execute the 
+following steps:</p>
+
+<ol>
+<li>Select <i>File</i> - <i>New</i> - <i>Project</i> and choose <i>SAP R/3 Connector</i> - <i>RFC Wrapper Project</i>.</li>
+<li>Remove the empty <tt>model.rfc</tt> from the source directory.</li>
+<li>Select <i>File</i> - <i>Import</i> and choose <i>SAP R/3 Connector</i> - <i>Create RFC Mapping Definition</i>.</li>
+<li>Enter one or more function modules you want to include into your mapping definition.</li>
+<li>Enter the name of the target Java package for the generated classes and choose the mapping style.</li>
+<li>Place the file as <tt>model.rfc</tt> into the source directory.</li>
+<li>Right-click on the generated <tt>workflow.oaw</tt> and choose <i>Run as</i> - <i>oAW Workflow</i>.</li>
+</ol>
+
+<p>This will generate the mapping definition and the classes. Now you can examine the generated classes and,
+if necessary, change the mapping definition and repeat the last step as often as you like.</p>
+
+<p>The generated classes support property change notification and can therefore be used in JFace data binding
+contexts without further adaption.</p>
+
+<p>Note that you can use multiple mapping definitions to keep the definitions organized - just adapt the workflow
+definition accordingly</p>.
+
+</body>
+</html>
