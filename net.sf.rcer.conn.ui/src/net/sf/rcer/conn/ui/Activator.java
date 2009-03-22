@@ -24,7 +24,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The ID of the plug-in.
 	 */
-	public static final String PLUGIN_ID = "net.sf.rcer.conn.ui";
+	public static final String PLUGIN_ID = "net.sf.rcer.conn.ui"; //$NON-NLS-1$
 	
 	/**
 	 * The de-facto singleton instance. 

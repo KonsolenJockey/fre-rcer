@@ -11,6 +11,8 @@
  */
 package net.sf.rcer.conn.ui.preferences;
 
+import net.sf.rcer.conn.ui.Messages;
+
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.swt.SWT;
@@ -34,7 +36,7 @@ public class TopLevelPreferencePage extends PreferencePage implements IWorkbench
 	 */
 	public TopLevelPreferencePage() {
 		super();
-		setDescription("Use the detail pages to set the preferences of the connector.");
+		setDescription(Messages.TopLevelPreferencePage_Description);
 	}
 
 	/* (non-Javadoc)
@@ -46,7 +48,7 @@ public class TopLevelPreferencePage extends PreferencePage implements IWorkbench
 		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(top);
 		
 		Label label = new Label(top, SWT.NONE);
-		label.setText("JCo Version:");
+		label.setText(Messages.TopLevelPreferencePage_JCoVersionLabel);
 		
 		label = new Label(top, SWT.NONE);
 		label.setText(JCo.getVersion());

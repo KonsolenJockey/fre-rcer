@@ -22,6 +22,7 @@ import net.sf.rcer.conn.connections.IConnection;
 import net.sf.rcer.conn.connections.IConnectionData;
 import net.sf.rcer.conn.connections.IConnectionStateListener;
 import net.sf.rcer.conn.ui.Activator;
+import net.sf.rcer.conn.ui.Messages;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -75,8 +76,8 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 		label = new Label(composite, SWT.BORDER | SWT.CENTER);
 		label.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_GRAY));
 		label.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_WHITE));
-		label.setText("  ---.---  ");
-		label.setToolTipText("not connected");
+		label.setText(Messages.ConnectionStatusDisplay_NotConnectedText);
+		label.setToolTipText(Messages.ConnectionStatusDisplay_NotConnectedTooltip);
 
 		composite.addMenuDetectListener(this);
 		label.addMenuDetectListener(this);
@@ -95,7 +96,7 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 		createDisconnectMenuEntries(menu);
 
 		MenuItem itemSystemStatus = new MenuItem(menu, SWT.PUSH);
-		itemSystemStatus.setText("Display System Information...");
+		itemSystemStatus.setText(Messages.ConnectionStatusDisplay_DisplaySystemInformationItem);
 		itemSystemStatus.setEnabled(ConnectionManager.getInstance().isConnected());
 		itemSystemStatus.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -119,7 +120,7 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 		switch(registeredConnections.size()) {
 		case 0: {
 			MenuItem itemConnect = new MenuItem(menu, SWT.PUSH);
-			itemConnect.setText("Connect: no connections available");
+			itemConnect.setText(Messages.ConnectionStatusDisplay_NoConnectionsAvailableItem);
 			itemConnect.setEnabled(false);
 			break;
 		}
@@ -127,7 +128,7 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 			// only one connection available - create a very simple menu
 			IConnectionData connectionData = registeredConnections.iterator().next();
 			MenuItem itemConnect = new MenuItem(menu, SWT.PUSH);
-			itemConnect.setText(MessageFormat.format("Connect to {0}...", connectionData.getDescription()));
+			itemConnect.setText(MessageFormat.format(Messages.ConnectionStatusDisplay_ConnectItem, connectionData.getDescription()));
 			itemConnect.setData(connectionData);
 			itemConnect.addSelectionListener(new SelectionAdapter() {
 				@Override
@@ -142,7 +143,7 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 		default: {
 			// more than one connection available - menu gets a bit more complex...
 			MenuItem itemConnect = new MenuItem(menu, SWT.CASCADE);
-			itemConnect.setText("Connect");
+			itemConnect.setText(Messages.ConnectionStatusDisplay_ConnectMenu);
 			Menu menuConnect = new Menu(getWorkbenchWindow().getShell(), SWT.DROP_DOWN);
 			for (IConnectionData connectionData: registeredConnections) {
 				MenuItem item = new MenuItem(menuConnect, SWT.PUSH);
@@ -172,7 +173,7 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 		if (activeConnections.size() > 1) {
 			// submenu to select the primary connection
 			MenuItem itemSelectPrimary = new MenuItem(menu, SWT.CASCADE);
-			itemSelectPrimary.setText("Select Primary Connection");
+			itemSelectPrimary.setText(Messages.ConnectionStatusDisplay_SelectPrimaryConnectionItem);
 			Menu menuSelectPrimary = new Menu(getWorkbenchWindow().getShell(), SWT.DROP_DOWN);
 			for (IConnection connection: activeConnections) {
 				if (!ConnectionManager.getInstance().isPrimaryConnection(connection)) { 
@@ -206,7 +207,7 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 		case 1: {
 			final IConnection connection = activeConnections.iterator().next();
 			MenuItem itemDisconnectSingle = new MenuItem(menu, SWT.PUSH);
-			itemDisconnectSingle.setText(MessageFormat.format("Disconnect from {0}", connection.toString()));
+			itemDisconnectSingle.setText(MessageFormat.format(Messages.ConnectionStatusDisplay_DisconnectItem, connection.toString()));
 			itemDisconnectSingle.setData(connection);
 			itemDisconnectSingle.addSelectionListener(new SelectionAdapter() {
 				@Override
@@ -221,7 +222,7 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 		default: {
 			// submenu to disconnect
 			MenuItem itemDisconnectMultiple = new MenuItem(menu, SWT.CASCADE);
-			itemDisconnectMultiple.setText("Disconnect");
+			itemDisconnectMultiple.setText(Messages.ConnectionStatusDisplay_DisconnectMenu);
 			Menu menuDisconnectMultiple = new Menu(getWorkbenchWindow().getShell(), SWT.DROP_DOWN);
 			for (IConnectionData connection: activeConnections) {
 				MenuItem itemDisconnectSingle = new MenuItem(menuDisconnectMultiple, SWT.PUSH);
@@ -249,12 +250,12 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 		try {
 			ConnectionManager.getInstance().getDestination(connectionData, false);
 		} catch (JCoException e) {
-			ErrorDialog.openError(getWorkbenchWindow().getShell(), "SAP R/3 Connection", 
-					"Unable to connect to the SAP R/3 system.", 
+			ErrorDialog.openError(getWorkbenchWindow().getShell(), Messages.ConnectionStatusDisplay_ErrorTitle, 
+					Messages.ConnectionStatusDisplay_ConnectionErrorMessage, 
 					new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 		} catch (ConnectionException e) {
-			ErrorDialog.openError(getWorkbenchWindow().getShell(), "SAP R/3 Connection", 
-					"Unable to connect to the SAP R/3 system.", 
+			ErrorDialog.openError(getWorkbenchWindow().getShell(), Messages.ConnectionStatusDisplay_ErrorTitle, 
+					Messages.ConnectionStatusDisplay_ConnectionErrorMessage, 
 					new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 		}
 	}
@@ -267,12 +268,12 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 		try {
 			ConnectionManager.getInstance().setPrimaryConnection(connection);
 		} catch (JCoException e) {
-			ErrorDialog.openError(getWorkbenchWindow().getShell(), "SAP R/3 Connection", 
-					"Unable to connect to the SAP R/3 system.", 
+			ErrorDialog.openError(getWorkbenchWindow().getShell(), Messages.ConnectionStatusDisplay_ErrorTitle, 
+					Messages.ConnectionStatusDisplay_ConnectionErrorMessage, 
 					new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 		} catch (ConnectionException e) {
-			ErrorDialog.openError(getWorkbenchWindow().getShell(), "SAP R/3 Connection", 
-					"Unable to connect to the SAP R/3 system.", 
+			ErrorDialog.openError(getWorkbenchWindow().getShell(), Messages.ConnectionStatusDisplay_ErrorTitle, 
+					Messages.ConnectionStatusDisplay_ConnectionErrorMessage, 
 					new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 		}
 	}
@@ -320,12 +321,12 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 					if (newPrimaryConnection == null) {
 						label.setBackground(display.getSystemColor(SWT.COLOR_GRAY));
 						label.setForeground(display.getSystemColor(SWT.COLOR_WHITE));
-						label.setText("  ---.---  ");
-						label.setToolTipText("not connected");
+						label.setText(Messages.ConnectionStatusDisplay_NotConnectedText);
+						label.setToolTipText(Messages.ConnectionStatusDisplay_NotConnectedTooltip);
 					} else {
 						label.setBackground(display.getSystemColor(SWT.COLOR_DARK_GREEN));
 						label.setForeground(display.getSystemColor(SWT.COLOR_WHITE));
-						label.setText(MessageFormat.format("  {0}.{1}  ", 
+						label.setText(MessageFormat.format(Messages.ConnectionStatusDisplay_DisplayFormat, 
 								newPrimaryConnection.getSystemID(), newPrimaryConnection.getClient()));
 						label.setToolTipText(newPrimaryConnection.toString());
 					}

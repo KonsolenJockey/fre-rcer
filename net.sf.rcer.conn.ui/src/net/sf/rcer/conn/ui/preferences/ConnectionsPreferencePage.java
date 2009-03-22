@@ -20,6 +20,7 @@ import net.sf.rcer.conn.connections.ConnectionType;
 import net.sf.rcer.conn.locales.Locale;
 import net.sf.rcer.conn.locales.LocaleRegistry;
 import net.sf.rcer.conn.preferences.PreferencesConnectionManager;
+import net.sf.rcer.conn.ui.Messages;
 
 import org.eclipse.core.databinding.AggregateValidationStatus;
 import org.eclipse.core.databinding.DataBindingContext;
@@ -202,7 +203,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 				return errorStatus;
 			}
 			if (value instanceof String) {
-				if (((String) value).equals("")) {
+				if (((String) value).equals("")) { //$NON-NLS-1$
 					return errorStatus;
 				}
 			}
@@ -241,7 +242,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 					return errorStatus;
 				}
 				if (value instanceof String) {
-					if (((String) value).equals("")) {
+					if (((String) value).equals("")) { //$NON-NLS-1$
 						return errorStatus;
 					}
 				}
@@ -281,15 +282,15 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 				String string = (String) value;
 				if (string.length() < minLength) {
 					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
-							MessageFormat.format("{0} must be at least {1} characters.", description, minLength));
+							MessageFormat.format(Messages.ConnectionsPreferencePage_StringLengthValidator_TooShortError, description, minLength));
 				}
 				if (string.length() > maxLength) {
 					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
-							MessageFormat.format("{0} may not exceed {1} characters.", description, maxLength));
+							MessageFormat.format(Messages.ConnectionsPreferencePage_StringLengthValidator_TooLongError, description, maxLength));
 				}
 				return Status.OK_STATUS;
 			}
-			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Value is not a String");
+			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.ConnectionsPreferencePage_StringLengthValidator_NoStringError);
 		}
 	}
 
@@ -324,11 +325,11 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 				Integer intValue = (Integer) value;
 				if ((intValue < min) || (intValue > max)) {
 					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
-							MessageFormat.format("{0} must be between {1} and {2}.", description, min, max)) ;
+							MessageFormat.format(Messages.ConnectionsPreferencePage_IntegerRangeValidator_NotInRangeError, description, min, max)) ;
 				}
 				return Status.OK_STATUS;
 			}
-			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Value is not an Integer");		
+			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.ConnectionsPreferencePage_IntegerRangeValidator_NoIntegerError);		
 		}
 	}
 
@@ -392,7 +393,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		addButton = new Button(masterButtons, SWT.PUSH);
 		GridDataFactory.fillDefaults().applyTo(addButton);
-		addButton.setText("Add...");
+		addButton.setText(Messages.ConnectionsPreferencePage_AddButton);
 		addButton.addSelectionListener(new SelectionAdapter() {
 			/* (non-Javadoc)
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
@@ -407,13 +408,13 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		importButton = new Button(masterButtons, SWT.PUSH);
 		GridDataFactory.fillDefaults().applyTo(importButton);
-		importButton.setText("Import...");
+		importButton.setText(Messages.ConnectionsPreferencePage_ImportButton);
 		importButton.setEnabled(false);
 		// TODO #001 Support import of connection data
 
 		removeButton = new Button(masterButtons, SWT.PUSH);
 		GridDataFactory.fillDefaults().applyTo(removeButton);
-		removeButton.setText("Remove...");
+		removeButton.setText(Messages.ConnectionsPreferencePage_RemoveButton);
 		removeButton.addSelectionListener(new SelectionAdapter() {
 			/* (non-Javadoc)
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
@@ -424,8 +425,8 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 				if ((sel != null) && (sel instanceof IStructuredSelection)) {
 					final IStructuredSelection selection = (IStructuredSelection) sel;
 					if (MessageDialog.openConfirm(getShell(), 
-							"Delete Connection", 
-							"Do you want to delete the selected connection?")) {
+							Messages.ConnectionsPreferencePage_DeleteConfirmationTitle, 
+							Messages.ConnectionsPreferencePage_DeleteConfirmationText)) {
 						connections.remove(selection.getFirstElement());
 					}
 				}
@@ -460,14 +461,14 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		descriptionLabel = new Label(common, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(descriptionLabel);
-		descriptionLabel.setText("Description:");
+		descriptionLabel.setText(Messages.ConnectionsPreferencePage_DescriptionLabel);
 
 		descriptionText = new Text(common, SWT.SINGLE | SWT.BORDER);
 		GridDataFactory.fillDefaults().span(3, 1).grab(true, false).applyTo(descriptionText);
 
 		connectionTypeLabel = new Label(common, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(connectionTypeLabel);
-		connectionTypeLabel.setText("Connection Type:");
+		connectionTypeLabel.setText(Messages.ConnectionsPreferencePage_ConnectionTypeLabel);
 
 		connectionTypeCombo = new Combo(common, SWT.READ_ONLY);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(connectionTypeCombo);
@@ -475,7 +476,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		sidLabel = new Label(common, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(sidLabel);
-		sidLabel.setText("System ID:");
+		sidLabel.setText(Messages.ConnectionsPreferencePage_SystemIDLabel);
 
 		sidText = new Text(common, SWT.SINGLE | SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(sidText);
@@ -489,46 +490,46 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 		connectionDataGroup = new Group(parent, SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(connectionDataGroup);
 		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(connectionDataGroup);
-		connectionDataGroup.setText("Connection Data");
+		connectionDataGroup.setText(Messages.ConnectionsPreferencePage_ConnectionDataGroup);
 
 		routerLabel = new Label(connectionDataGroup, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(routerLabel);
-		routerLabel.setText("Router:");
+		routerLabel.setText(Messages.ConnectionsPreferencePage_RouterLabel);
 
 		routerText = new Text(connectionDataGroup, SWT.SINGLE | SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(routerText);
 
 		applicationServerLabel = new Label(connectionDataGroup, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(applicationServerLabel);
-		applicationServerLabel.setText("Application Server:");
+		applicationServerLabel.setText(Messages.ConnectionsPreferencePage_ApplicationServerLabel);
 
 		applicationServerText = new Text(connectionDataGroup, SWT.SINGLE | SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(applicationServerText);
 
 		systemNumberLabel = new Label(connectionDataGroup, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(systemNumberLabel);
-		systemNumberLabel.setText("System Number:");
+		systemNumberLabel.setText(Messages.ConnectionsPreferencePage_SystemNumberLabel);
 
 		systemNumberText = new Text(connectionDataGroup, SWT.SINGLE | SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(systemNumberText);
 
 		messageServerLabel = new Label(connectionDataGroup, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(messageServerLabel);
-		messageServerLabel.setText("Message Server:");
+		messageServerLabel.setText(Messages.ConnectionsPreferencePage_MessageServerLabel);
 
 		messageServerText = new Text(connectionDataGroup, SWT.SINGLE | SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(messageServerText);
 
 		messageServerPortLabel = new Label(connectionDataGroup, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(messageServerPortLabel);
-		messageServerPortLabel.setText("Message Server Port:");
+		messageServerPortLabel.setText(Messages.ConnectionsPreferencePage_MessageServerPortLabel);
 
 		messageServerPortText = new Text(connectionDataGroup, SWT.SINGLE | SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(messageServerPortText);
 
 		logonGroupLabel = new Label(connectionDataGroup, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(logonGroupLabel);
-		logonGroupLabel.setText("Logon Group:");
+		logonGroupLabel.setText(Messages.ConnectionsPreferencePage_LogonGroupLabel);
 
 		logonGroupText = new Text(connectionDataGroup, SWT.SINGLE | SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(logonGroupText);
@@ -542,31 +543,31 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 		defaultsDataGroup = new Group(parent, SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(defaultsDataGroup);
 		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(defaultsDataGroup);
-		defaultsDataGroup.setText("Logon Defaults");
+		defaultsDataGroup.setText(Messages.ConnectionsPreferencePage_LogonDefaultsGroup);
 
 		defaultClientLabel = new Label(defaultsDataGroup, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(defaultClientLabel);
-		defaultClientLabel.setText("Client:");
+		defaultClientLabel.setText(Messages.ConnectionsPreferencePage_ClientLabel);
 
 		defaultClientText = new Text(defaultsDataGroup, SWT.SINGLE | SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(defaultClientText);
 
 		defaultUserLabel = new Label(defaultsDataGroup, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(defaultUserLabel);
-		defaultUserLabel.setText("User:");
+		defaultUserLabel.setText(Messages.ConnectionsPreferencePage_UserLabel);
 
 		defaultUserText = new Text(defaultsDataGroup, SWT.SINGLE | SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(defaultUserText);
 
 		defaultLocaleLabel = new Label(defaultsDataGroup, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(defaultLocaleLabel);
-		defaultLocaleLabel.setText("Locale:");
+		defaultLocaleLabel.setText(Messages.ConnectionsPreferencePage_LocaleLabel);
 
 		defaultLocaleCombo = new Combo(defaultsDataGroup, SWT.READ_ONLY);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(defaultLocaleCombo);
 		final Collection<String> locales = LocaleRegistry.getInstance().getISOCodes();
 		String[] entries = locales.toArray(new String[locales.size() + 1]);
-		entries[locales.size()] = "";
+		entries[locales.size()] = ""; //$NON-NLS-1$
 		defaultLocaleCombo.setItems(entries);
 	}
 
@@ -594,13 +595,13 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		// bind the description (String, may not be empty)
 		context.bindValue(SWTObservables.observeText(descriptionText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "description", String.class), 
-				new UpdateValueStrategy().setBeforeSetValidator(new NotEmptyValidator("Description may not be empty.")), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "description", String.class),  //$NON-NLS-1$
+				new UpdateValueStrategy().setBeforeSetValidator(new NotEmptyValidator(Messages.ConnectionsPreferencePage_DescriptionEmptyError)), 
 				new UpdateValueStrategy());
 
 		// bind the connection type
 		IObservableValue connectionTypeObservable = BeansObservables.observeDetailValue(Realm.getDefault(), 
-				selection, "connectionType", ConnectionType.class);
+				selection, "connectionType", ConnectionType.class); //$NON-NLS-1$
 		context.bindValue(SWTObservables.observeSelection(connectionTypeCombo), 
 				connectionTypeObservable, 
 				new UpdateValueStrategy().setConverter(new ConnectionType.FromStringConverter()), 
@@ -608,19 +609,19 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		// bind the system ID
 		context.bindValue(SWTObservables.observeText(sidText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "systemID", String.class), 
-				new UpdateValueStrategy().setBeforeSetValidator(new StringLengthValidator("System ID", 3, 3)), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "systemID", String.class),  //$NON-NLS-1$
+				new UpdateValueStrategy().setBeforeSetValidator(new StringLengthValidator(Messages.ConnectionsPreferencePage_SystemIDValidator, 3, 3)), 
 				new UpdateValueStrategy());
 
 		// bind the router
 		context.bindValue(SWTObservables.observeText(routerText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "router", String.class), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "router", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 
 		// bind the application server
 		context.bindValue(SWTObservables.observeText(applicationServerText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "applicationServer", String.class), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "applicationServer", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 		new VisibilityUpdater(details, applicationServerText, applicationServerLabel,
@@ -633,9 +634,9 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 		// TODO #002 ensure that the system number is required for direct connections
 		//		targetToModel.setAfterGetValidator(new ConditionalNotEmptyValidator(
 		//				connectionTypeObservable, ConnectionType.DIRECT, "System Number must be set for direct connections."));
-		targetToModel.setBeforeSetValidator(new IntegerRangeValidator("System Number", 0, 99));
+		targetToModel.setBeforeSetValidator(new IntegerRangeValidator(Messages.ConnectionsPreferencePage_SystemNumberValidator, 0, 99));
 		context.bindValue(SWTObservables.observeText(systemNumberText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "systemNumber", null), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "systemNumber", null),  //$NON-NLS-1$
 				targetToModel, 
 				new UpdateValueStrategy().setConverter(NumberToStringConverter.fromInteger(true)));
 		new VisibilityUpdater(details, systemNumberText, systemNumberLabel, 
@@ -643,7 +644,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		// bind the message server 
 		context.bindValue(SWTObservables.observeText(messageServerText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "messageServer", String.class), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "messageServer", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 		new VisibilityUpdater(details, messageServerText, messageServerLabel, 
@@ -652,7 +653,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		// bind the message server port
 		context.bindValue(SWTObservables.observeText(messageServerPortText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "messageServerPort", null), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "messageServerPort", null),  //$NON-NLS-1$
 				new UpdateValueStrategy().setConverter(StringToNumberConverter.toInteger(true)), 
 				new UpdateValueStrategy().setConverter(NumberToStringConverter.fromInteger(true)));
 		new VisibilityUpdater(details, messageServerPortText, messageServerPortLabel, 
@@ -661,7 +662,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		// bind the logon group 
 		context.bindValue(SWTObservables.observeText(logonGroupText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "loadBalancingGroup", String.class), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "loadBalancingGroup", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 		new VisibilityUpdater(details, logonGroupText, logonGroupLabel, 
@@ -670,19 +671,19 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		// bind the default client 
 		context.bindValue(SWTObservables.observeText(defaultClientText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "defaultClient", String.class), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "defaultClient", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 
 		// bind the default user
 		context.bindValue(SWTObservables.observeText(defaultUserText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "defaultUser", String.class), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "defaultUser", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 
 		// bind the default locale 
 		context.bindValue(SWTObservables.observeSelection(defaultLocaleCombo), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "defaultLocale", Locale.class), 
+				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "defaultLocale", Locale.class),  //$NON-NLS-1$
 				new UpdateValueStrategy().setConverter(new Locale.FromStringConverter()), 
 				new UpdateValueStrategy().setConverter(new Locale.ToStringConverter(false)));
 

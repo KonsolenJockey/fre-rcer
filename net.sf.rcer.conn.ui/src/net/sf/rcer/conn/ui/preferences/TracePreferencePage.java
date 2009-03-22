@@ -13,6 +13,7 @@ package net.sf.rcer.conn.ui.preferences;
 
 
 import net.sf.rcer.conn.connections.ConnectionManager;
+import net.sf.rcer.conn.ui.Messages;
 
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -66,53 +67,53 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
 		Group globalGroup = new Group(master, SWT.NONE);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(globalGroup);
 		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(globalGroup);
-		globalGroup.setText("Global Settings");
+		globalGroup.setText(Messages.TracePreferencePage_GlobalSettingsGroup);
 		
 		Label globalTraceLevelLabel = new Label(globalGroup, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(globalTraceLevelLabel);
-		globalTraceLevelLabel.setText("RFC Trace Level:");
+		globalTraceLevelLabel.setText(Messages.TracePreferencePage_RFCTraceLevelLabel);
 		
 		globalTraceLevelCombo = new Combo(globalGroup, SWT.DROP_DOWN | SWT.READ_ONLY);
 		GridDataFactory.swtDefaults().grab(true, false).applyTo(globalTraceLevelCombo);
-		globalTraceLevelCombo.add("0 - nothing", 0);
-		globalTraceLevelCombo.add("1 - errors and warnings", 1);
-		globalTraceLevelCombo.add("2 - execution path, errors and warnings", 2);
-		globalTraceLevelCombo.add("3 - full execution path, errors and warnings", 3);
-		globalTraceLevelCombo.add("4 - execution path, info messages, errors and warnings", 4);
-		globalTraceLevelCombo.add("5", 5);
-		globalTraceLevelCombo.add("6 - full execution path, info messages, errors and warnings", 6);
-		globalTraceLevelCombo.add("7 - debug messages, full execution path, info messages, errors and warnings", 7);
-		globalTraceLevelCombo.add("8 - verbose debug messages, full execution path, info messages, errors and warnings", 8);
-		globalTraceLevelCombo.add("9", 9);
-		globalTraceLevelCombo.add("10", 10);
+		globalTraceLevelCombo.add(Messages.TracePreferencePage_RFCTraceLevel0Description, 0);
+		globalTraceLevelCombo.add(Messages.TracePreferencePage_RFCTraceLevel1Description, 1);
+		globalTraceLevelCombo.add(Messages.TracePreferencePage_RFCTraceLevel2Description, 2);
+		globalTraceLevelCombo.add(Messages.TracePreferencePage_RFCTraceLevel3Description, 3);
+		globalTraceLevelCombo.add(Messages.TracePreferencePage_RFCTraceLevel4Description, 4);
+		globalTraceLevelCombo.add(Messages.TracePreferencePage_RFCTraceLevel5Description, 5);
+		globalTraceLevelCombo.add(Messages.TracePreferencePage_RFCTraceLevel6Description, 6);
+		globalTraceLevelCombo.add(Messages.TracePreferencePage_RFCTraceLevel7Description, 7);
+		globalTraceLevelCombo.add(Messages.TracePreferencePage_RFCTraceLevel8Description, 8);
+		globalTraceLevelCombo.add(Messages.TracePreferencePage_RFCTraceLevel9Description, 9);
+		globalTraceLevelCombo.add(Messages.TracePreferencePage_RFCTraceLevel10Description, 10);
 		
 		// --- connection-level -------------------------------------------------------------------
 		
 		Group connectionGroup = new Group(master, SWT.NONE);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(connectionGroup);
 		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(connectionGroup);
-		connectionGroup.setText("Connection-Level Settings");
+		connectionGroup.setText(Messages.TracePreferencePage_ConnectionSettingsGroup);
 		
 		connectionRFCTraceCheckbox = new Button(connectionGroup, SWT.CHECK);
 		GridDataFactory.swtDefaults().span(2, 1).applyTo(connectionRFCTraceCheckbox);
-		connectionRFCTraceCheckbox.setText("Enable RFC Trace");
+		connectionRFCTraceCheckbox.setText(Messages.TracePreferencePage_EnableRFCTraceLabel);
 		
 		Label connectionCPICTraceLevelLabel = new Label(connectionGroup, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(connectionCPICTraceLevelLabel);
-		connectionCPICTraceLevelLabel.setText("CPI-C Trace Level:");
+		connectionCPICTraceLevelLabel.setText(Messages.TracePreferencePage_CPICTraceLevelLabel);
 		
 		connectionCPICTraceLevelCombo = new Combo(connectionGroup, SWT.DROP_DOWN | SWT.READ_ONLY);
 		GridDataFactory.swtDefaults().grab(true, false).applyTo(connectionCPICTraceLevelCombo);
-		connectionCPICTraceLevelCombo.add("0", 0);
-		connectionCPICTraceLevelCombo.add("1", 1);
-		connectionCPICTraceLevelCombo.add("2", 2);
-		connectionCPICTraceLevelCombo.add("3", 3);
+		connectionCPICTraceLevelCombo.add(Messages.TracePreferencePage_CPICTraceLevel0Description, 0);
+		connectionCPICTraceLevelCombo.add(Messages.TracePreferencePage_CPICTraceLevel1Description, 1);
+		connectionCPICTraceLevelCombo.add(Messages.TracePreferencePage_CPICTraceLevel2Description, 2);
+		connectionCPICTraceLevelCombo.add(Messages.TracePreferencePage_CPICTraceLevel3Description, 3);
 		
 		// --- hint -------------------------------------------------------------------------------
 		
 		Label errorLogLabel = new Label(master, SWT.WRAP);
 		GridDataFactory.swtDefaults().grab(true, false).applyTo(errorLogLabel);
-		errorLogLabel.setText("Use the Error Log view to display the logged events. The trace levels are reset to their default values (errors and warnings only) when exiting the application.");
+		errorLogLabel.setText(Messages.TracePreferencePage_TracingHintsLabel);
 		
 		// set the control contents
 		globalTraceLevelCombo.select(manager.getGlobalRFCTraceLevel());
