@@ -12,98 +12,78 @@
 <body>
 <h2>Flight Data Access Using Traditional RFC Calls</h2>
 
-<!-- TODO -->
+<p>The plug-in <tt>net.sf.rcer.example.traditional</tt> contains an example demonstrating the use of
+direct JCo calls to retrieve a list of flights from the standard example tables of the SAP R/3 system. 
+Use a launch configuration pointing to the application ID <tt>net.sf.rcer.example.traditional.application</tt>.</p>
 
-<!--  
-<p>Unfortunately, SAP licensing restrictions do not permit
-redistribution of the SAP Java Connector (JCo). This makes the
-installation process a bit more complex than for the usual Eclipse
-extension. You'll have to perform three steps to get a working
-installation of the SAP R/3 Connector:</p>
+<p>The following classes are standard parts of the RCP application and are not of special interest:</p>
 <ul>
-	<li>Download and install the Import Wizard.</li>
-	<li>Generate the JCo bundles and fragments.</li>
-	<li>Download and install the remaining parts of the connector SDK.</li>
+<li><tt>Activator</tt></li>
+<li><tt>Application</tt></li>
+<li><tt>ApplicationActionBarAdvisor</tt></li>
+<li><tt>ApplicationWorkbenchAdvisor</tt></li>
+<li><tt>ApplicationWorkbenchWindowAdvisor</tt></li>
+<li><tt>Perspective</tt></li>
 </ul>
-<p>Note that these instructions assume that you have already <a
-	href="http://service.sap.com/connectors" target=_new"> downloaded
-the JCo archives</a> (registration required).
-<h3>Requirements</h3>
 
-<p>You'll need a recent version of Eclipse 3.4 to install and use
-the SDK. You'll also need the Eclipse Modeling Framework and a recent
-version of openArchitectureWare.org 4.3 to use the SDK. Both EMF and oAW
-are development-time dependencies only; applications developed with the
-Connector SDK can be distributed withouth EMF and oAW.</p>
+<p>The class <tt>View</tt> is an adapted view that contains the user interface. When the search function is
+invoked, the view uses an instance of <tt>FlightDataReader</tt> to obtain the contents of the list. The reader 
+returns a list of <tt>FlightData</tt> objects.</p>
 
-<h3>Installation of the Import Wizard</h3>
+<p>A <tt>FlightData</tt> is just a simple data container class that is equipped with bean-style getters and setters
+and property change notification for easier use in JFace data binding contexts.</p>
 
-<p>If you are reading this in the on-line help system of your
-Eclipse installation, you already have the Import Wizard installed. In
-this case, you can skip to the next step, generating the JCo Bundles.</p>
+<p>The <tt>FlightDataReader</tt> is the class that is actually responsible for performing the RFC call. This is
+how the call is made (error handling code omitted for readability):</p>
 
-<ol>
-	<li>Add <tt>http://rcer.sf.net/update-site</tt> to the list of
-	update sites: Select <i>Help</i> - <i>Software Updates</i>, switch to
-	the <i>Available Software</i> tab, press <i>Add Site</i> and add the
-	location.</li>
-	<li>Expand the update site entry and the category and select <i>Import
-	Wizard for SAP Java Connector</i>. <b>Important:</b> Do <b>NOT</b> select
-	the SDK yet - you won't be able to install it because of missing
-	dependencies.</li>
-	<li>Perform the installation and restart the Eclipse Workbench.</li>
-</ol>
+<pre>
+	result = new Vector&lt;FlightData&gt;();
 
-<h3>Generating the JCo Bundles and Fragments</h3>
+	// get the destination
+	JCoDestination destination = ConnectionManager.getInstance().getDestination();
 
-<ol>
-	<li>In your Eclipse Workbench, select <i>File</i> - <i>Import...</i>.</li>
-	<li>From the list of import sources, select <i>SAP R/3
-	Connector</i> - <i>Create SAP Java Connector Plug-ins</i> and choose <i>Next</i>.</li>
-	<li>If you haven't done so yet, <a
-		href="http://service.sap.com/connectors" target=_new">download the
-	JCo archives</a> for the platforms you want to support (registration
-	required). Note that the Connector was designed to use JCo versions 3
-	and up - it will <b>not</b> work with versions prior to 3.0.0.</li>
-	<li>Select the locations of the downloaded archives. Obviously,
-	you need to specify at least one file before continuing.</li>
-	<li>
-	<p>On the last page, you can choose whether you want to create the
-	plug-in and fragment projects for the platforms you have selected
-	archive files for. If the projects already exist in your workspace,
-	you'll be prompted whether you want to replace the existing projects
-	instead.</p>
-	<p>You can also select whether you want to export the generated
-	plug-ins to the <tt>dropins</tt> folder of your Eclipse installation
-	automatically. If you deselect this option, you'll have to install the
-	plug-ins manually before you can install the SDK. <b>Please provide
-	feedback if the export to the <tt>dropins</tt> folder works - this is
-	more or less experimental coding with a lot of guesswork regarding the
-	location of the <tt>dropins</tt> folder.</b></p>
-	<p>Select <i>Finish</i>. This will generate the projects and export
-	them if you have selected the corresponding option. This might take
-	some time.</p>
-	</li>
-	<li>Restart the Eclipse Workbench.</li>
-</ol>
+	// get the function object
+	JCoFunction function destination.getRepository().getFunction("BAPI_SFLIGHT_GETLIST");
 
-<h3>Installation of the Connector SDK</h3>
+	// transfer the input parameters
+	function.getImportParameterList().setValue("FROMCOUNTRYKEY", fromCountry);
+	function.getImportParameterList().setValue("FROMCITY",       fromCity);
+	function.getImportParameterList().setValue("TOCOUNTRYKEY",   toCountry);
+	function.getImportParameterList().setValue("TOCITY",         toCity);
 
-<ol>
-	<li>Select <i>Help</i> - <i>Software Updates</i>, switch to the <i>Available
-	Software</i> tab.</li>
-	<li>Expand the update site entry added when installing the wizard
-	and the category below. Select <i>SAP R/3 Connector SDK</i>.</li>
-	<li>Perform the installation and restart the Eclipse Workbench.</li>
-</ol>
+	// execute the query
+	function.execute(destination);
 
-<h3>Further Reading</h3>
+	// check the message
+	JCoStructure message = function.getExportParameterList().getStructure("RETURN");
+	final String messageType = message.getString("TYPE");
+	if (!(messageType.equals("") || messageType.equals("S") || messageType.equals("W"))) {
+		return new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
+				message.getString("MESSAGE"));
+	}
 
-<p>After the installation is completed, select <i>Help</i> - <i>Help
-Contents</i> and visit the online documentation topic <i>SAP R/3
-Connector</i> for more information.
+	// transfer the returned values
+	JCoTable flightList = function.getTableParameterList().getTable("FLIGHTLIST");
+	if (!flightList.isEmpty()) {
+		for (int i = 1; i &lt;= flightList.getNumRows(); i++) {
+			flightList.setRow(i);
+			FlightData data = new FlightData();
+			data.setCarrier(flightList.getString("CARRID"));
+			data.setConnection(flightList.getString("CONNID"));
+			final Date date = flightList.getDate("FLDATE");
+			final Date time = flightList.getTime("DEPTIME");
+			data.setDeparture(new Date(date.getYear(), date.getMonth(), date.getDate(), 
+					time.getHours(), time.getMinutes(), time.getSeconds()));
+			data.setAirportFrom(flightList.getString("AIRPFROM"));
+			data.setAirportTo(flightList.getString("AIRPTO"));
+			data.setMaximumSeats(flightList.getInt("SEATSMAX"));
+			data.setOccupiedSeats(flightList.getInt("SEATSOCC"));
+			result.add(data);
+		}
+	}
 
--->
+	return Status.OK_STATUS;
+</pre>
 
 </body>
 </html>

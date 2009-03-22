@@ -2,7 +2,7 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 <!-- $Id: toc.xml 103 2009-02-01 15:47:29Z vwegert $ -->
 <toc link_to="../net.sf.rcer.doc/toc.xml#tasks" label="Tasks">
-	<topic label="Using RFC Connections" href="html/tasks/using_connections.html"> 
+	<topic label="Using RFC Connections"> 
 		<topic label="Traditional RFC Calls" href="html/tasks/conn_traditional.html" />
 		<anchor id="using_conns"/>
 	</topic>

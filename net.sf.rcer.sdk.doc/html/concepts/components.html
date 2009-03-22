@@ -12,105 +12,79 @@
 <body>
 <h2>Component Overview</h2>
 
-<!-- TODO 
+<p>The SAP R/3 Connector consists of a number of plug-ins and features with a complex set of dependencies.
+This chapter provides an overview of the components and gives some usage examples.</p>
 
-What components are there?
-Who installs and creates what?
-Dependencies
-Structure of doc plugins
+<p>The connector consists of runtime components and development tools. The runtime components are typically
+deployed along with any application created using the connector, while the development tools are built on 
+top of these runtime components and provide additional functions, but also require more dependencies to be 
+present e. g. the JDT or oAW). The runtime components depend on the SAP Java Connector (JCo) plug-ins to be
+present, and since the development tools depend on the runtime components, the same restriction applies to 
+them. To help creating these JCo plug-ins, there's a third component - the JCo Import Wizard - that is 
+completely independent of the other plug-ins and can be used to "bootstrap" the installation process.</p>
 
--->
 
-<!--  
-<p>Unfortunately, SAP licensing restrictions do not permit
-redistribution of the SAP Java Connector (JCo). This makes the
-installation process a bit more complex than for the usual Eclipse
-extension. You'll have to perform three steps to get a working
-installation of the SAP R/3 Connector:</p>
-<ul>
-	<li>Download and install the Import Wizard.</li>
-	<li>Generate the JCo bundles and fragments.</li>
-	<li>Download and install the remaining parts of the connector SDK.</li>
+<h3>JCo Import Wizard</h3>
+
+<p>The import wizard consists of two plug-ins and a feature. The feature <tt>net.sf.rcer.import</tt> is
+required to turn the import wizard into a separate deployment unit that can be installed from the update site. 
+The import wizard itself is contained in the plug-in <tt>net.sf.rcer.jcoimport</tt>, its documentation in a 
+separate plug-in <tt>net.sf.rcer.jcoimport.doc</tt>. The latter depends on a plug-in named <tt>net.sf.rcer.doc</tt>
+that provides a common structure for the documentation of the entire connector.</p>
+
+
+<h3>Runtime Components</h3>
+
+<p>The runtime components contain functions like connection management, tracing and some tools like the 
+<tt>TableReader</tt>. The runtime components are distributed into the plug-ins <tt>net.sf.rcer.conn</tt> 
+(for the UI-independent parts) and <tt>net.sf.rcer.conn.ui</tt> (for the parts that require the UI to be present). 
+The runtime components should also work without UI access, but that has not been extensively tested yet.</p>
+
+<p>The documentation of the runtime components is contained in the plug-in <tt>net.sf.rcer.conn.doc</tt> that 
+also depends on <tt>net.sf.rcer.doc</tt>.</p>
+
+<p>The runtime components are <b>not</b> contained in a special feature.</p> 
+
+
+<h3>Development Tools</h3>
+
+<p>The development tools are bundled in a feature named <tt>net.sf.rcer.sdk</tt>. This feature also contains
+the runtime components, the examples and the generated source plug-ins.</p>
+
+<p>The RFC mapping language is defined in <tt>net.sf.rcer.rfcgen</tt>; the editor and generator are contained
+in <tt>net.sf.rcer.rfcgen.editor</tt> and <tt>net.sf.rcer.rfcgen.generatory</tt> respectively.</p>
+
+<p>The documentation is distributed among several plug-ins: <tt>net.sf.rcer.sdk.doc</tt> for the general topics, 
+<tt>net.sf.rcer.rfcgen.doc</tt> for the RFC mapping language. These plug-ins each depend on a plug-in named 
+<tt>net.sf.rcer.doc</tt> that provides a common structure for the documentation of the entire connector.</p>
+
+<p>The development tools also contain an experimental repository object model that is contained in  
+<tt>net.sf.rcer.rom</tt>.</p>
+
+
+<h3>Examples</h3>
+
+<p>The examples are contained in several plug-ins that form separate RCP applications:</p>
+<ul> 
+<li><tt>net.sf.rcer.example.rfcgen.pojo.call</tt></li>
+<li><tt>net.sf.rcer.example.rfcgen.pojo.rr</tt></li>
+<li><tt>net.sf.rcer.example.traditional</tt></li>
 </ul>
-<p>Note that these instructions assume that you have already <a
-	href="http://service.sap.com/connectors" target=_new"> downloaded
-the JCo archives</a> (registration required).
-<h3>Requirements</h3>
 
-<p>You'll need a recent version of Eclipse 3.4 to install and use
-the SDK. You'll also need the Eclipse Modeling Framework and a recent
-version of openArchitectureWare.org 4.3 to use the SDK. Both EMF and oAW
-are development-time dependencies only; applications developed with the
-Connector SDK can be distributed withouth EMF and oAW.</p>
 
-<h3>Installation of the Import Wizard</h3>
+<h3>Other Plug-Ins</h3>
 
-<p>If you are reading this in the on-line help system of your
-Eclipse installation, you already have the Import Wizard installed. In
-this case, you can skip to the next step, generating the JCo Bundles.</p>
-
-<ol>
-	<li>Add <tt>http://rcer.sf.net/update-site</tt> to the list of
-	update sites: Select <i>Help</i> - <i>Software Updates</i>, switch to
-	the <i>Available Software</i> tab, press <i>Add Site</i> and add the
-	location.</li>
-	<li>Expand the update site entry and the category and select <i>Import
-	Wizard for SAP Java Connector</i>. <b>Important:</b> Do <b>NOT</b> select
-	the SDK yet - you won't be able to install it because of missing
-	dependencies.</li>
-	<li>Perform the installation and restart the Eclipse Workbench.</li>
-</ol>
-
-<h3>Generating the JCo Bundles and Fragments</h3>
-
-<ol>
-	<li>In your Eclipse Workbench, select <i>File</i> - <i>Import...</i>.</li>
-	<li>From the list of import sources, select <i>SAP R/3
-	Connector</i> - <i>Create SAP Java Connector Plug-ins</i> and choose <i>Next</i>.</li>
-	<li>If you haven't done so yet, <a
-		href="http://service.sap.com/connectors" target=_new">download the
-	JCo archives</a> for the platforms you want to support (registration
-	required). Note that the Connector was designed to use JCo versions 3
-	and up - it will <b>not</b> work with versions prior to 3.0.0.</li>
-	<li>Select the locations of the downloaded archives. Obviously,
-	you need to specify at least one file before continuing.</li>
-	<li>
-	<p>On the last page, you can choose whether you want to create the
-	plug-in and fragment projects for the platforms you have selected
-	archive files for. If the projects already exist in your workspace,
-	you'll be prompted whether you want to replace the existing projects
-	instead.</p>
-	<p>You can also select whether you want to export the generated
-	plug-ins to the <tt>dropins</tt> folder of your Eclipse installation
-	automatically. If you deselect this option, you'll have to install the
-	plug-ins manually before you can install the SDK. <b>Please provide
-	feedback if the export to the <tt>dropins</tt> folder works - this is
-	more or less experimental coding with a lot of guesswork regarding the
-	location of the <tt>dropins</tt> folder.</b></p>
-	<p>Select <i>Finish</i>. This will generate the projects and export
-	them if you have selected the corresponding option. This might take
-	some time.</p>
-	</li>
-	<li>Restart the Eclipse Workbench.</li>
-</ol>
-
-<h3>Installation of the Connector SDK</h3>
-
-<ol>
-	<li>Select <i>Help</i> - <i>Software Updates</i>, switch to the <i>Available
-	Software</i> tab.</li>
-	<li>Expand the update site entry added when installing the wizard
-	and the category below. Select <i>SAP R/3 Connector SDK</i>.</li>
-	<li>Perform the installation and restart the Eclipse Workbench.</li>
-</ol>
-
-<h3>Further Reading</h3>
-
-<p>After the installation is completed, select <i>Help</i> - <i>Help
-Contents</i> and visit the online documentation topic <i>SAP R/3
-Connector</i> for more information.
-
--->
+<p>If you start digging into the internals of the connector, you may encounter one of the following plug-ins:</p>
+<ul>
+<li><tt>net.sf.rcer</tt> is a feature that is used for the build process only.</li>
+<li><tt>net.sf.rcer.conn.test</tt> contains the automated tests for <tt>net.sf.rcer.conn</tt> that do not require
+a connection to a SAP R/3 system.</li> 
+<li><tt>net.sf.rcer.conn.test-r3</tt> contains the automated tests for <tt>net.sf.rcer.conn</tt> that require
+a connection to a SAP R/3 system.</li>
+<li><tt>net.sf.rcer.rom.test</tt> contains the automated tests for <tt>net.sf.rcer.rom</tt>. These tests require 
+a connection to a SAP R/3 system.</li>
+<li><tt>net.sf.rcer.test.provider</tt> contains the connection providers for the automated tests.</li>
+</ul>
 
 </body>
 </html>

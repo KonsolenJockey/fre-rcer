@@ -2,5 +2,5 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 <!-- $Id: toc.xml 103 2009-02-01 15:47:29Z vwegert $ -->
 <toc link_to="../net.sf.rcer.doc/toc.xml#reference" label="Reference">
-	<topic label="Component List" href="html/reference/componentlist.html" /> 
+	<topic label="API Reference" href="html/reference/index.html" /> 
 </toc>

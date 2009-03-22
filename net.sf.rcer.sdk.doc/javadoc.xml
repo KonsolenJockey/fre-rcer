@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="javadoc">
+<target name="javadoc">
+<javadoc 
+	access="public" 
+	author="true"
+	classpath="/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.core.databinding.beans_1.1.1.M20080827-0800a.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.core.jobs_3.4.1.R34x_v20081128.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.jface.databinding_1.2.1.M20080827-0800a.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.equinox.registry_3.4.0.v20080516-0950.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.core.commands_3.4.0.I20080509-2000.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.swt_3.4.2.v3452b.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.equinox.common_3.4.0.v20080421-2006.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.ui.workbench_3.4.2.M20090127-1700.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.swt.carbon.macosx_3.4.1.v3452b.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.jface_3.4.2.M20090107-0800.jar:../net.sf.rcer.conn/bin:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.ui_3.4.2.M20090204-0800.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.core.runtime_3.4.0.v20080512.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.core.contenttype_3.3.0.v20080604-1400.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.equinox.app_1.1.0.v20080421-2006.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.core.databinding_1.1.1.M20080827-0800b.jar:../com.sap.conn.jco/bin:../com.sap.conn.jco/sapjco3.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.equinox.preferences_3.2.201.R34x_v20080709.jar:../com.sap.conn.jco/jni:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.core.runtime.compatibility.registry_3.2.200.v20080610/runtime_registry_compatibility.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.osgi_3.4.3.R34x_v20081215-1030.jar" 
+	destdir="html/reference" 
+	doctitle="SAP R/3 Connector Runtime API" 
+	nodeprecated="false" 
+	nodeprecatedlist="false" 
+	noindex="false" 
+	nonavbar="false" 
+	notree="false" 
+	packagenames="net.sf.rcer.conn.preferences,net.sf.rcer.conn.ui,net.sf.rcer.conn.tools,net.sf.rcer.conn.ui.login,net.sf.rcer.conn.locales,net.sf.rcer.conn.ui.preferences,net.sf.rcer.conn.ui.status,net.sf.rcer.conn.connections"
+	source="1.5" 
+	sourcefiles="../net.sf.rcer.conn/src/net/sf/rcer/conn/Messages.java,../net.sf.rcer.conn/src/net/sf/rcer/conn/Activator.java" 
+	sourcepath="../net.sf.rcer.conn.ui/src:../net.sf.rcer.conn/src" 
+	splitindex="true" 
+	use="true" 
+	version="true"/>
+</target>
+</project>
