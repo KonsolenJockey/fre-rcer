@@ -13,6 +13,8 @@ package net.sf.rcer.conn.tools;
 
 import java.text.MessageFormat;
 
+import net.sf.rcer.conn.Messages;
+
 /**
  * This exception occurs whenever someone tries to access a table with RFC_READ_TABLE and 
  * requests a field that does not exist. 
@@ -32,7 +34,7 @@ public class FieldNotFoundException extends Exception {
 	 * @param fieldName the name of the field
 	 */
 	public FieldNotFoundException(String tableName, String fieldName) {
-		super(MessageFormat.format("No field named {0} exists in table {1}", fieldName, tableName));
+		super(MessageFormat.format(Messages.FieldNotFoundException_Message, fieldName, tableName));
 	}
 
 }

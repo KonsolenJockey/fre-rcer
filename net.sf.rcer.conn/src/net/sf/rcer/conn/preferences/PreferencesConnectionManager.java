@@ -20,6 +20,7 @@ import java.util.TreeMap;
 import java.util.Vector;
 
 import net.sf.rcer.conn.Activator;
+import net.sf.rcer.conn.Messages;
 import net.sf.rcer.conn.connections.ConnectionData;
 import net.sf.rcer.conn.connections.ConnectionNotFoundException;
 import net.sf.rcer.conn.connections.IConnectionData;
@@ -95,7 +96,7 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 			try {
 				connections.add(getConnectionData(i));
 			} catch (ConnectionNotFoundException e) {
-				logError(MessageFormat.format("Connection {0} contains errors.", i), e);
+				logError(MessageFormat.format(Messages.PreferencesConnectionManager_ConnectionContainsErrors, i), e);
 			}
 		}
 		return connections;		
@@ -126,18 +127,18 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 					getString(CONNECTION_LOAD_BALANCING_GROUP, position));
 		} else {
 			throw new ConnectionNotFoundException(MessageFormat.format(
-					"Connection {0} contains an invalid connection type ({1})",
+					Messages.PreferencesConnectionManager_InvalidConnectionType,
 					connectionID, getString(CONNECTION_TYPE, position)));			
 		}
 		connection.setDefaultUser(getString(CONNECTION_DEFAULT_USER, position), true); 
 		connection.setDefaultClient(getString(CONNECTION_DEFAULT_CLIENT, position), true);
 		final String localeISOCode = getString(CONNECTION_DEFAULT_LOCALE, position);
-		if ((localeISOCode != null) && (!localeISOCode.equals(""))) {
+		if ((localeISOCode != null) && (!localeISOCode.equals(""))) { //$NON-NLS-1$
 			try {
 				final Locale locale = LocaleRegistry.getInstance().getLocaleByISO(localeISOCode);
 				connection.setDefaultLocale(locale, true);
 			} catch (LocaleNotFoundException e) {
-				logError(MessageFormat.format("Connection {0} contains an invalid default locale, ignoring it.",
+				logError(MessageFormat.format(Messages.PreferencesConnectionManager_InvalidDefaultLocale,
 						connectionID), e);
 			}
 		}
@@ -259,12 +260,12 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 		try {
 			position = Integer.parseInt(connectionID);
 		} catch (NumberFormatException e) {
-			throw new ConnectionNotFoundException(MessageFormat.format("The connection ID {0} is not numeric.",
+			throw new ConnectionNotFoundException(MessageFormat.format(Messages.PreferencesConnectionManager_ConnectionIDNotNumeric,
 					connectionID), e);
 		}
 		if ((position <= 0) || (position > number)) {
 			throw new ConnectionNotFoundException(MessageFormat.format(
-					"The connection ID {0} exceeds the maximum number of stored connections (0..{1})",
+					Messages.PreferencesConnectionManager_ConnectionIDOutOfBounds,
 					connectionID, number));
 		}
 		return position;
@@ -286,7 +287,7 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * @return the string value
 	 */
 	private String getString(String prefix, int position) {
-		return getPreferences().getString(MessageFormat.format("{0}.{1}", prefix, position));
+		return getPreferences().getString(MessageFormat.format("{0}.{1}", prefix, position)); //$NON-NLS-1$
 	}
 
 	/**
@@ -296,7 +297,7 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * @return the integer value
 	 */
 	private int getInt(String prefix, int position) {
-		return getPreferences().getInt(MessageFormat.format("{0}.{1}", prefix, position));
+		return getPreferences().getInt(MessageFormat.format("{0}.{1}", prefix, position)); //$NON-NLS-1$
 	}
 	
 	/**
@@ -305,7 +306,7 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * @param position
 	 */
 	private void setToDefault(String prefix, int position) {
-		getPreferences().setToDefault(MessageFormat.format("{0}.{1}", prefix, position));
+		getPreferences().setToDefault(MessageFormat.format("{0}.{1}", prefix, position)); //$NON-NLS-1$
 	}
 
 	/**
@@ -315,7 +316,7 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * @param value
 	 */
 	private void setValue(String prefix, int position, String value) {
-		getPreferences().setValue(MessageFormat.format("{0}.{1}", prefix, position), value);
+		getPreferences().setValue(MessageFormat.format("{0}.{1}", prefix, position), value); //$NON-NLS-1$
 	}
 
 	/**
@@ -325,7 +326,7 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * @param value
 	 */
 	private void setValue(String prefix, int position, int value) {
-		getPreferences().setValue(MessageFormat.format("{0}.{1}", prefix, position), value);
+		getPreferences().setValue(MessageFormat.format("{0}.{1}", prefix, position), value); //$NON-NLS-1$
 	}
 
 	/**

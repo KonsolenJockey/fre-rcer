@@ -25,6 +25,7 @@ import java.util.TreeMap;
 import java.util.Vector;
 
 import net.sf.rcer.conn.Activator;
+import net.sf.rcer.conn.Messages;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -102,14 +103,14 @@ public class ConnectionManager  {
 			p.setProperty(JCO_SAPROUTER, connection.getRouter());
 
 			// TODO #005 Make advanced connection settings configurable.
-			p.setProperty(JCO_PEAK_LIMIT,    "5");    // Maximum number of active connections that can be created for a destination simultaneously
-			p.setProperty(JCO_POOL_CAPACITY, "1"); // Maximum number of idle connections kept open by the destination. A value of 0 has the effect that there is no connection pooling
+			p.setProperty(JCO_PEAK_LIMIT,    "5");    // Maximum number of active connections that can be created for a destination simultaneously //$NON-NLS-1$
+			p.setProperty(JCO_POOL_CAPACITY, "1"); // Maximum number of idle connections kept open by the destination. A value of 0 has the effect that there is no connection pooling //$NON-NLS-1$
 			// JCO_EXPIRATION_TIME   - Time in ms after that a free connections hold internally by the destination can be closed
 			// JCO_EXPIRATION_PERIOD - Period in ms after that the destination checks the released connections for expiration
 			// JCO_MAX_GET_TIME      - Max time in ms to wait for a connection, if the max allowed number of connections is allocated by the application
 			
 			p.setProperty(JCO_CPIC_TRACE, Integer.toString(parent.getConnectionCPICTraceLevel()));
-			p.setProperty(JCO_TRACE,      parent.isConnectionRFCTraceEnabled() ? "1" : "0");
+			p.setProperty(JCO_TRACE,      parent.isConnectionRFCTraceEnabled() ? "1" : "0"); //$NON-NLS-1$ //$NON-NLS-2$
 			return p;
 		}
 
@@ -233,7 +234,7 @@ public class ConnectionManager  {
 	public void setGlobalRFCTraceLevel(int level) {
 		if ((level < 0) || (level > 10)) {
 			throw new IllegalArgumentException(MessageFormat.format(
-					"Invalid global RFC trace level {0}. Valid values range from 0 to 10.", level));
+					Messages.ConnectionManager_InvalidRFCTraceLevelError, level));
 		}
 		JCo.setTrace(level, null);
 		this.globalRFCTraceLevel = level;
@@ -271,7 +272,7 @@ public class ConnectionManager  {
 	public void setConnectionCPICTraceLevel(int level) {
 		if ((level < 0) || (level > 3)) {
 			throw new IllegalArgumentException(MessageFormat.format(
-					"Invalid CPI-C trace level {0}. Valid values range from 0 to 3.", level));
+					Messages.ConnectionManager_InvalidCPICTraceLevelError, level));
 		}
 		this.connectionCPICTraceLevel = level;
 		updateConnectionTraceSettings();
@@ -295,7 +296,7 @@ public class ConnectionManager  {
 		final Set<IConnectionData> registeredConnectionData = ConnectionRegistry.getInstance().getConnectionData();
 		switch(registeredConnectionData.size()) {
 		case 0:
-			throw new ConnectionException("Unable to find connection data.");
+			throw new ConnectionException(Messages.ConnectionManager_ConnectionDataNotFoundError);
 		case 1:
 			return getDestination(registeredConnectionData.iterator().next());
 		default: {
@@ -306,14 +307,14 @@ public class ConnectionManager  {
 				try {
 					credentials = it.next().getCredentials();
 				} catch (OperationCanceledException e) {
-					throw new ConnectionException("Logon cancelled by the user.", e);
+					throw new ConnectionException(Messages.ConnectionManager_LogonCancelled, e);
 				} catch (Exception e) {
 					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
-							"Exception occurred trying to select a connection and determine the credentials.", e));
+							Messages.ConnectionManager_ConnectionSelectionException, e));
 				}
 			}
 			if (credentials == null) {
-				throw new ConnectionException("Unable to select a connection and determine the credentials.");
+				throw new ConnectionException(Messages.ConnectionManager_ConnectionSelectionError);
 			}
 			addConnectionInternal(credentials);
 			try {
@@ -357,17 +358,17 @@ public class ConnectionManager  {
 			try {
 				credentials = it.next().getCredentials(connectionData);
 			} catch (OperationCanceledException e) {
-				throw new ConnectionException("Logon cancelled by the user.", e);
+				throw new ConnectionException(Messages.ConnectionManager_LogonCancelled, e);
 			} catch (Exception e) {
 				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
 						MessageFormat.format(
-								"Exception occurred trying to determine the credentials for connection {0}.",
+								Messages.ConnectionManager_CredentialsSelectionException,
 								connectionData.getConnectionDataID()), e));
 			}
 		}
 		if (credentials == null) {
 			throw new ConnectionException(MessageFormat.format(
-					"Unable to determine the credentials for connection {0}.",
+					Messages.ConnectionManager_CredentialsSelectionError,
 					connectionData.getConnectionDataID()));
 		} 
 		if (!connections.containsKey(credentials.getConnectionID())) {
@@ -540,10 +541,10 @@ public class ConnectionManager  {
 	 */
 	public void setPrimaryConnection(String connectionID) throws ConnectionException, JCoException {
 		if (connectionID == null) {
-			throw new InvalidParameterException("The connection ID may not be null."); 
+			throw new InvalidParameterException(Messages.ConnectionManager_ConnectionIDNullError); 
 		}
 		if (!connections.containsKey(connectionID)) {
-			throw new ConnectionException(MessageFormat.format("No connection with ID {0} is active.", connectionID)); 
+			throw new ConnectionException(MessageFormat.format(Messages.ConnectionManager_ConnectionNotActiveError, connectionID)); 
 		}
 		setPrimaryConnectionInternal(connections.get(connectionID));
 	}
@@ -706,18 +707,18 @@ public class ConnectionManager  {
 		Map<String, ICredentialsProviderWithoutSelection> providers = 
 			new TreeMap<String, ICredentialsProviderWithoutSelection>();
 		for (final IConfigurationElement element: 
-			Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, "credentials")) {
-			if (element.getName().equals("credentialsProviderWithoutSelection")) {
-				final String id = element.getAttribute("id");
+			Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, "credentials")) { //$NON-NLS-1$
+			if (element.getName().equals("credentialsProviderWithoutSelection")) { //$NON-NLS-1$
+				final String id = element.getAttribute("id"); //$NON-NLS-1$
 				try {
-					final String prio = element.getAttribute("priority");
+					final String prio = element.getAttribute("priority"); //$NON-NLS-1$
 					final ICredentialsProviderWithoutSelection prov = 
-						(ICredentialsProviderWithoutSelection) element.createExecutableExtension("class");
+						(ICredentialsProviderWithoutSelection) element.createExecutableExtension("class"); //$NON-NLS-1$
 					providers.put(prio, prov);
 				} catch (CoreException e) {
 					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
 							MessageFormat.format(
-									"Exception occurred trying to instantiate connection provider {0}.", id), e));
+									Messages.ConnectionManager_ConnectionProviderException, id), e));
 				}
 
 			}
@@ -732,18 +733,18 @@ public class ConnectionManager  {
 		Map<String, ICredentialsProviderWithSelection> providers = 
 			new TreeMap<String, ICredentialsProviderWithSelection>();
 		for (final IConfigurationElement element: 
-			Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, "credentials")) {
-			if (element.getName().equals("credentialsProviderWithSelection")) {
-				final String id = element.getAttribute("id");
+			Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, "credentials")) { //$NON-NLS-1$
+			if (element.getName().equals("credentialsProviderWithSelection")) { //$NON-NLS-1$
+				final String id = element.getAttribute("id"); //$NON-NLS-1$
 				try {
-					final String prio = element.getAttribute("priority");
+					final String prio = element.getAttribute("priority"); //$NON-NLS-1$
 					final ICredentialsProviderWithSelection prov = 
-						(ICredentialsProviderWithSelection) element.createExecutableExtension("class");
+						(ICredentialsProviderWithSelection) element.createExecutableExtension("class"); //$NON-NLS-1$
 					providers.put(prio, prov);
 				} catch (CoreException e) {
 					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
 							MessageFormat.format(
-									"Exception occurred trying to instantiate connection provider {0}.", id), e));
+									Messages.ConnectionManager_ConnectionProviderException, id), e));
 				}
 
 			}

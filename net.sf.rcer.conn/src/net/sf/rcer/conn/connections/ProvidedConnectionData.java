@@ -52,7 +52,7 @@ public class ProvidedConnectionData implements IConnectionData {
 	 * @see net.sf.rcer.conn.IConnectionData#getConnectionDataID()
 	 */
 	public String getConnectionDataID() {
-		return providerID + "#" + connectionData.getConnectionDataID();
+		return providerID + "#" + connectionData.getConnectionDataID(); //$NON-NLS-1$
 	}
 
 	/* (non-Javadoc)

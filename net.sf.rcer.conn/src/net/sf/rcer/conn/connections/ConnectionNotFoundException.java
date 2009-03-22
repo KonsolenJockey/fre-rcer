@@ -13,6 +13,8 @@ package net.sf.rcer.conn.connections;
 
 import java.text.MessageFormat;
 
+import net.sf.rcer.conn.Messages;
+
 /**
  * This exception occurs if an undefined connection is requested from the {@link ConnectionRegistry} 
  * or a {@link IConnectionProvider}. 
@@ -30,7 +32,7 @@ public class ConnectionNotFoundException extends Exception {
 	 * @param connectionID
 	 */
 	public ConnectionNotFoundException(String connectionID) {
-		super(MessageFormat.format("No connection with ID {0} defined.", connectionID));
+		super(MessageFormat.format(Messages.ConnectionNotFoundException_Message, connectionID));
 	}
 	
 	/**
@@ -38,7 +40,7 @@ public class ConnectionNotFoundException extends Exception {
 	 * @param cause
 	 */
 	public ConnectionNotFoundException(String connectionID, Throwable cause) {
-		super(MessageFormat.format("No connection with ID {0} defined.", connectionID), cause);
+		super(MessageFormat.format(Messages.ConnectionNotFoundException_Message, connectionID), cause);
 	}
 	
 }

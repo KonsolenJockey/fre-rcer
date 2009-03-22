@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Set;
 
 import net.sf.rcer.conn.Activator;
+import net.sf.rcer.conn.Messages;
 import net.sf.rcer.conn.locales.Locale;
 import net.sf.rcer.conn.locales.LocaleNotFoundException;
 import net.sf.rcer.conn.locales.LocaleRegistry;
@@ -41,7 +42,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 	/**
 	 * The name of the extension point used to define the connections and connection providers.
 	 */
-	public static final String CONNECTIONS_EXTENSION_POINT = "net.sf.rcer.conn.connections";
+	public static final String CONNECTIONS_EXTENSION_POINT = "net.sf.rcer.conn.connections"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance.
@@ -125,34 +126,34 @@ public class ConnectionRegistry implements IRegistryEventListener {
 			final IConfigurationElement[] elements = extension.getConfigurationElements();
 			for(final IConfigurationElement element: elements) {
 
-				if (element.getName().equals("connection")) {
+				if (element.getName().equals("connection")) { //$NON-NLS-1$
 					// add or modify a static connection
-					final String localID = element.getAttribute("id");
-					final String globalID = pluginID + "." + localID;
+					final String localID = element.getAttribute("id"); //$NON-NLS-1$
+					final String globalID = pluginID + "." + localID; //$NON-NLS-1$
 					if (staticConnectionData.containsKey(globalID)) {
 						updateStaticConnection(element, globalID);
 					} else {
 						addStaticConnection(element, globalID);
 					}
 
-				} else if (element.getName().equals("provider")) {
+				} else if (element.getName().equals("provider")) { //$NON-NLS-1$
 					// add a connection provider (can't modify it if it already exists)
-					final String localID = element.getAttribute("id");
-					final String globalID = pluginID + "." + localID;
+					final String localID = element.getAttribute("id"); //$NON-NLS-1$
+					final String globalID = pluginID + "." + localID; //$NON-NLS-1$
 					if (connectionProviders.containsKey(globalID)) {
-						final String nominalClass = element.getAttribute("provider");
+						final String nominalClass = element.getAttribute("provider"); //$NON-NLS-1$
 						final String actualClass  = connectionProviders.get(globalID).getClass().getName();
 						if (!actualClass.equals(nominalClass)) {
-							logError(MessageFormat.format("Unable to replace the current implementation {0} of connection provider {1} with new implementation {2}",
+							logError(MessageFormat.format(Messages.ConnectionRegistry_ReplaceConnectionProviderError,
 									actualClass, globalID, nominalClass), null);
 						}
 					} else {
 						try {
-							IConnectionProvider provider = (IConnectionProvider) element.createExecutableExtension("provider");
+							IConnectionProvider provider = (IConnectionProvider) element.createExecutableExtension("provider"); //$NON-NLS-1$
 							connectionProviders.put(globalID, provider);
 						} catch (CoreException e) {
-							logError(MessageFormat.format("Unable to instantiate the connection provider {0} (implementation class {1})",
-									globalID, element.getAttribute("provider")), e);
+							logError(MessageFormat.format(Messages.ConnectionRegistry_LoadConnectionProviderError,
+									globalID, element.getAttribute("provider")), e); //$NON-NLS-1$
 						}
 					}
 
@@ -173,18 +174,18 @@ public class ConnectionRegistry implements IRegistryEventListener {
 			final IConfigurationElement[] elements = extension.getConfigurationElements();
 			for(final IConfigurationElement element: elements) {
 
-				if (element.getName().equals("connection")) {
+				if (element.getName().equals("connection")) { //$NON-NLS-1$
 					// remove a static connection
-					final String localID = element.getAttribute("id");
-					final String globalID = pluginID + "." + localID;
+					final String localID = element.getAttribute("id"); //$NON-NLS-1$
+					final String globalID = pluginID + "." + localID; //$NON-NLS-1$
 					if (staticConnectionData.containsKey(globalID)) {
 						staticConnectionData.remove(globalID);
 					}
 
-				} else if (element.getName().equals("provider")) {
+				} else if (element.getName().equals("provider")) { //$NON-NLS-1$
 					// remove a connection provider
-					final String localID = element.getAttribute("id");
-					final String globalID = pluginID + "." + localID;
+					final String localID = element.getAttribute("id"); //$NON-NLS-1$
+					final String globalID = pluginID + "." + localID; //$NON-NLS-1$
 					if (connectionProviders.containsKey(globalID)) {
 						connectionProviders.remove(globalID);
 					}
@@ -201,52 +202,52 @@ public class ConnectionRegistry implements IRegistryEventListener {
 	 */
 	private void addStaticConnection(final IConfigurationElement configurationElement, final String connectionID) {
 		ConnectionData connection = null;
-		if (configurationElement.getAttribute("connectionType").equals("direct")) {
+		if (configurationElement.getAttribute("connectionType").equals("direct")) { //$NON-NLS-1$ //$NON-NLS-2$
 			try {
-				int systemNumber = Integer.parseInt(configurationElement.getAttribute("systemNumber"));
+				int systemNumber = Integer.parseInt(configurationElement.getAttribute("systemNumber")); //$NON-NLS-1$
 				connection = new ConnectionData(connectionID,
-						configurationElement.getAttribute("description"),
-						configurationElement.getAttribute("systemID"),
-						configurationElement.getAttribute("router"),
-						configurationElement.getAttribute("applicationServer"),
+						configurationElement.getAttribute("description"), //$NON-NLS-1$
+						configurationElement.getAttribute("systemID"), //$NON-NLS-1$
+						configurationElement.getAttribute("router"), //$NON-NLS-1$
+						configurationElement.getAttribute("applicationServer"), //$NON-NLS-1$
 						systemNumber);
 			} catch (NumberFormatException e) {
 				logError(MessageFormat.format(
-						"Connection {0} contains an invalid system number ({1})",
-						connectionID, configurationElement.getAttribute("systemNumber")), e);
+						Messages.ConnectionRegistry_InvalidSystemNumberError,
+						connectionID, configurationElement.getAttribute("systemNumber")), e); //$NON-NLS-1$
 				return;
 			}
 		} else {
 			try {
-				int messageServerPort = Integer.parseInt(configurationElement.getAttribute("messageServerPort"));
+				int messageServerPort = Integer.parseInt(configurationElement.getAttribute("messageServerPort")); //$NON-NLS-1$
 				connection = new ConnectionData(connectionID,
-						configurationElement.getAttribute("description"),
-						configurationElement.getAttribute("systemID"),
-						configurationElement.getAttribute("router"),
-						configurationElement.getAttribute("messageServer"),
+						configurationElement.getAttribute("description"), //$NON-NLS-1$
+						configurationElement.getAttribute("systemID"), //$NON-NLS-1$
+						configurationElement.getAttribute("router"), //$NON-NLS-1$
+						configurationElement.getAttribute("messageServer"), //$NON-NLS-1$
 						messageServerPort,
-						configurationElement.getAttribute("loadBalancingGroup"));
+						configurationElement.getAttribute("loadBalancingGroup")); //$NON-NLS-1$
 			} catch (NumberFormatException e) {
 				logError(MessageFormat.format(
-						"Connection {0} contains an invalid message server port ({1})",
-						connectionID, configurationElement.getAttribute("messageServerPort")), e);
+						Messages.ConnectionRegistry_InvalidMessageServerPortError,
+						connectionID, configurationElement.getAttribute("messageServerPort")), e); //$NON-NLS-1$
 				return;
 			}
 		}
 
-		connection.setDefaultUser(configurationElement.getAttribute("defaultUser"), 
-				configurationElement.getAttribute("defaultUserEditable").equalsIgnoreCase("true"));
-		connection.setDefaultClient(configurationElement.getAttribute("defaultClient"), 
-				configurationElement.getAttribute("defaultClientEditable").equalsIgnoreCase("true"));
+		connection.setDefaultUser(configurationElement.getAttribute("defaultUser"),  //$NON-NLS-1$
+				configurationElement.getAttribute("defaultUserEditable").equalsIgnoreCase("true")); //$NON-NLS-1$ //$NON-NLS-2$
+		connection.setDefaultClient(configurationElement.getAttribute("defaultClient"),  //$NON-NLS-1$
+				configurationElement.getAttribute("defaultClientEditable").equalsIgnoreCase("true")); //$NON-NLS-1$ //$NON-NLS-2$
 
-		final String localeISOCode = configurationElement.getAttribute("defaultLocale");
-		if ((localeISOCode != null) && (!localeISOCode.equals(""))) {
+		final String localeISOCode = configurationElement.getAttribute("defaultLocale"); //$NON-NLS-1$
+		if ((localeISOCode != null) && (!localeISOCode.equals(""))) { //$NON-NLS-1$
 			try {
 				final Locale locale = LocaleRegistry.getInstance().getLocaleByISO(localeISOCode);
 				connection.setDefaultLocale(locale,  
-						configurationElement.getAttribute("defaultLocaleEditable").equalsIgnoreCase("true"));
+						configurationElement.getAttribute("defaultLocaleEditable").equalsIgnoreCase("true")); //$NON-NLS-1$ //$NON-NLS-2$
 			} catch (LocaleNotFoundException e) {
-				logError(MessageFormat.format("Connection {0} contains an invalid default locale, ignoring it.",
+				logError(MessageFormat.format(Messages.ConnectionRegistry_InvalidLocaleError,
 						connectionID), e);
 			}
 		}
@@ -287,14 +288,14 @@ public class ConnectionRegistry implements IRegistryEventListener {
 	 * @throws ProviderNotFoundException 
 	 */
 	public Set<String> getConnectionDataIDs(String providerID) throws ProviderNotFoundException {
-		if ((providerID == null) || (providerID.equals(""))) {
+		if ((providerID == null) || (providerID.equals(""))) { //$NON-NLS-1$
 			return getConnectionDataIDs();
 		} else if (!connectionProviders.containsKey(providerID)) {
 			throw new ProviderNotFoundException(providerID);
 		} else { 
 			Set<String> connectionIDs = new HashSet<String>();
 			for(final String localID: connectionProviders.get(providerID).getConnectionIDs()) {
-				connectionIDs.add(providerID + "#" + localID);
+				connectionIDs.add(providerID + "#" + localID); //$NON-NLS-1$
 			}
 			return connectionIDs;
 		}
@@ -313,7 +314,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 		for(final String providerID: connectionProviders.keySet()) {
 			final IConnectionProvider provider = connectionProviders.get(providerID);
 			for(final String connectionID: provider.getConnectionIDs()) {
-				connectionIDs.add(providerID + "#" + connectionID);
+				connectionIDs.add(providerID + "#" + connectionID); //$NON-NLS-1$
 			}
 		}
 
@@ -327,12 +328,12 @@ public class ConnectionRegistry implements IRegistryEventListener {
 	 * @throws ProviderNotFoundException 
 	 */
 	public IConnectionData getConnectionData(String connectionID) throws ConnectionNotFoundException, ProviderNotFoundException {
-		if ((connectionID == null) || (connectionID.equals(""))) {
+		if ((connectionID == null) || (connectionID.equals(""))) { //$NON-NLS-1$
 			throw new ConnectionNotFoundException(connectionID);
-		} else if (connectionID.contains("#")) {
-			String[] parts = connectionID.split("#");
+		} else if (connectionID.contains("#")) { //$NON-NLS-1$
+			String[] parts = connectionID.split("#"); //$NON-NLS-1$
 			if (parts.length != 2) {
-				logError(MessageFormat.format("Attempt to retrieve connection with invalid ID {0}",
+				logError(MessageFormat.format(Messages.ConnectionRegistry_InvalidConnectionIDError,
 						connectionID), null);
 				throw new ConnectionNotFoundException(connectionID);				
 			}
@@ -358,10 +359,10 @@ public class ConnectionRegistry implements IRegistryEventListener {
 				connectionData.add(getConnectionData(id));
 			} catch (ConnectionNotFoundException e) {
 				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
-						MessageFormat.format("Exception occurred retrieving details of connection {0}.", id), e));
+						MessageFormat.format(Messages.ConnectionRegistry_ConnectionRetrievalError, id), e));
 			} catch (ProviderNotFoundException e) {
 				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
-						MessageFormat.format("Exception occurred retrieving details of connection {0}.", id), e));
+						MessageFormat.format(Messages.ConnectionRegistry_ConnectionRetrievalError, id), e));
 			}
 		}
 		return connectionData;

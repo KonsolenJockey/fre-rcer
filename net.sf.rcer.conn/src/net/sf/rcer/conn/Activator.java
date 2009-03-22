@@ -61,7 +61,7 @@ public class Activator extends Plugin {
 	/**
 	 * The ID of the plug-in.
 	 */
-	public static final String PLUGIN_ID = "net.sf.rcer.conn";
+	public static final String PLUGIN_ID = "net.sf.rcer.conn"; //$NON-NLS-1$
 	
 	/**
 	 * The de-facto singleton instance. 

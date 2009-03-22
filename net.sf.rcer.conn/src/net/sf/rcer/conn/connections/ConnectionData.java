@@ -15,6 +15,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.text.MessageFormat;
 
+import net.sf.rcer.conn.Messages;
 import net.sf.rcer.conn.locales.Locale;
 
 /**
@@ -117,7 +118,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	 * Default constructor (creates a direct connection with dummy data).
 	 */
 	public ConnectionData() {
-		this("REPLACE_ME", "", "", "", "", 0);
+		this("REPLACE_ME", "", "", "", "", 0); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 	}
 	
 	/**
@@ -210,7 +211,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	public void setConnectionDataID(String connectionDataID) {
 		final String oldValue = this.connectionDataID;
 		this.connectionDataID = connectionDataID;
-		propertyChangeSupport.firePropertyChange("connectionDataID", oldValue, connectionDataID);
+		propertyChangeSupport.firePropertyChange("connectionDataID", oldValue, connectionDataID); //$NON-NLS-1$
 	}
 		
 	/* (non-Javadoc)
@@ -226,7 +227,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	public void setDescription(String description) {
 		final String oldValue = this.description;
 		this.description = description;
-		propertyChangeSupport.firePropertyChange("description", oldValue, description);
+		propertyChangeSupport.firePropertyChange("description", oldValue, description); //$NON-NLS-1$
 	}
 
 	/* (non-Javadoc)
@@ -242,7 +243,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	public void setSystemID(String systemID) {
 		final String oldValue = this.systemID;
 		this.systemID = systemID;
-		propertyChangeSupport.firePropertyChange("systemID", oldValue, systemID);
+		propertyChangeSupport.firePropertyChange("systemID", oldValue, systemID); //$NON-NLS-1$
 	}
 
 	/* (non-Javadoc)
@@ -272,7 +273,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	public void setConnectionType(ConnectionType connectionType) {
 		final ConnectionType oldValue = this.connectionType;
 		this.connectionType = connectionType;
-		propertyChangeSupport.firePropertyChange("connectionType", oldValue, connectionType);
+		propertyChangeSupport.firePropertyChange("connectionType", oldValue, connectionType); //$NON-NLS-1$
 		switch(connectionType) {
 		case DIRECT:
 			this.messageServer = null;
@@ -299,7 +300,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	public void setRouter(String router) {
 		final String oldValue = this.router;
 		this.router = router;
-		propertyChangeSupport.firePropertyChange("router", oldValue, router);
+		propertyChangeSupport.firePropertyChange("router", oldValue, router); //$NON-NLS-1$
 	}
 
 	/* (non-Javadoc)
@@ -314,10 +315,10 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	 */
 	public void setApplicationServer(String applicationServer) {
 		if (connectionType != ConnectionType.DIRECT) 
-			throw new IllegalArgumentException("This parameter is only supported for direct connections.");
+			throw new IllegalArgumentException(Messages.ConnectionData_ParameterNotSupportedForDirectError);
 		final String oldValue = this.applicationServer;
 		this.applicationServer = applicationServer;
-		propertyChangeSupport.firePropertyChange("applicationServer", oldValue, applicationServer);
+		propertyChangeSupport.firePropertyChange("applicationServer", oldValue, applicationServer); //$NON-NLS-1$
 	}
 	
 	/* (non-Javadoc)
@@ -332,12 +333,12 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	 */
 	public void setSystemNumber(int systemNumber) {
 		if (connectionType != ConnectionType.DIRECT) 
-			throw new IllegalArgumentException("This parameter is only supported for direct connections.");
+			throw new IllegalArgumentException(Messages.ConnectionData_ParameterNotSupportedForDirectError);
 		if ((systemNumber < 0) || (systemNumber > 99))
-			throw new IllegalArgumentException("System number must be 0..99.");
+			throw new IllegalArgumentException(Messages.ConnectionData_InvalidSystemNumberError);
 		final int oldValue = this.systemNumber;
 		this.systemNumber = systemNumber;
-		propertyChangeSupport.firePropertyChange("systemNumber", oldValue, systemNumber);
+		propertyChangeSupport.firePropertyChange("systemNumber", oldValue, systemNumber); //$NON-NLS-1$
 	}	
 	
 	/* (non-Javadoc)
@@ -352,10 +353,10 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	 */
 	public void setMessageServer(String messageServer) {
 		if (connectionType != ConnectionType.LOAD_BALANCED) 
-			throw new IllegalArgumentException("This parameter is only supported for load-balanced connections.");
+			throw new IllegalArgumentException(Messages.ConnectionData_ParameterNotSupportedForBalancedError);
 		final String oldValue = this.messageServer;
 		this.messageServer = messageServer;
-		propertyChangeSupport.firePropertyChange("messageServer", oldValue, messageServer);
+		propertyChangeSupport.firePropertyChange("messageServer", oldValue, messageServer); //$NON-NLS-1$
 	}
 	
 	/* (non-Javadoc)
@@ -370,12 +371,12 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	 */
 	public void setMessageServerPort(int messageServerPort) {
 		if (connectionType != ConnectionType.LOAD_BALANCED) 
-			throw new IllegalArgumentException("This parameter is only supported for load-balanced connections.");
+			throw new IllegalArgumentException(Messages.ConnectionData_ParameterNotSupportedForBalancedError);
 		if ((messageServerPort < 0) || (messageServerPort > 65535)) 
-			throw new IllegalArgumentException("Message server port must be 0..65535");
+			throw new IllegalArgumentException(Messages.ConnectionData_InvalidMessageServerPortError);
 		final int oldValue = this.messageServerPort;
 		this.messageServerPort = messageServerPort;
-		propertyChangeSupport.firePropertyChange("messageServerPort", oldValue, messageServerPort);
+		propertyChangeSupport.firePropertyChange("messageServerPort", oldValue, messageServerPort); //$NON-NLS-1$
 	}
 	
 	/* (non-Javadoc)
@@ -390,10 +391,10 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	 */
 	public void setLoadBalancingGroup(String loadBalancingGroup) {
 		if (connectionType != ConnectionType.LOAD_BALANCED) 
-			throw new IllegalArgumentException("This parameter is only supported for load-balanced connections.");
+			throw new IllegalArgumentException(Messages.ConnectionData_ParameterNotSupportedForBalancedError);
 		final String oldValue = this.loadBalancingGroup;
 		this.loadBalancingGroup = loadBalancingGroup;
-		propertyChangeSupport.firePropertyChange("loadBalancingGroup", oldValue, loadBalancingGroup);
+		propertyChangeSupport.firePropertyChange("loadBalancingGroup", oldValue, loadBalancingGroup); //$NON-NLS-1$
 	}
 	
 	/* (non-Javadoc)
@@ -409,7 +410,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	public void setDefaultUser(String defaultUser) {
 		final String oldValue = this.defaultUser;
 		this.defaultUser = defaultUser;
-		propertyChangeSupport.firePropertyChange("defaultUser", oldValue, defaultUser);
+		propertyChangeSupport.firePropertyChange("defaultUser", oldValue, defaultUser); //$NON-NLS-1$
 	}
 	
 	/* (non-Javadoc)
@@ -425,7 +426,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	public void setDefaultUserEditable(boolean defaultUserEditable) {
 		final boolean oldValue = this.defaultUserEditable;
 		this.defaultUserEditable = defaultUserEditable;
-		propertyChangeSupport.firePropertyChange("defaultUserEditable", oldValue, defaultUserEditable);
+		propertyChangeSupport.firePropertyChange("defaultUserEditable", oldValue, defaultUserEditable); //$NON-NLS-1$
 	}
 	
 	/**
@@ -450,7 +451,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	public void setDefaultClient(String defaultClient) {
 		final String oldValue = this.defaultClient;
 		this.defaultClient = defaultClient;
-		propertyChangeSupport.firePropertyChange("defaultClient", oldValue, defaultClient);
+		propertyChangeSupport.firePropertyChange("defaultClient", oldValue, defaultClient); //$NON-NLS-1$
 	}
 	
 	/* (non-Javadoc)
@@ -466,7 +467,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	public void setDefaultClientEditable(boolean defaultClientEditable) {
 		final boolean oldValue = this.defaultClientEditable;
 		this.defaultClientEditable = defaultClientEditable;
-		propertyChangeSupport.firePropertyChange("defaultClientEditable", oldValue, defaultClientEditable);
+		propertyChangeSupport.firePropertyChange("defaultClientEditable", oldValue, defaultClientEditable); //$NON-NLS-1$
 	}
 	
 	/**
@@ -491,7 +492,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	public void setDefaultLocale(Locale defaultLocale) {
 		final Locale oldValue = this.defaultLocale;
 		this.defaultLocale = defaultLocale;
-		propertyChangeSupport.firePropertyChange("defaultLocale", oldValue, defaultLocale);
+		propertyChangeSupport.firePropertyChange("defaultLocale", oldValue, defaultLocale); //$NON-NLS-1$
 	}
 	
 	/* (non-Javadoc)
@@ -507,7 +508,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	public void setDefaultLocaleEditable(boolean defaultLocaleEditable) {
 		final boolean oldValue = this.defaultLocaleEditable;
 		this.defaultLocaleEditable = defaultLocaleEditable;
-		propertyChangeSupport.firePropertyChange("defaultLocaleEditable", oldValue, defaultLocaleEditable);
+		propertyChangeSupport.firePropertyChange("defaultLocaleEditable", oldValue, defaultLocaleEditable); //$NON-NLS-1$
 	}
 	
 	/**
@@ -524,7 +525,7 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	 */
 	@Override
 	public String toString() {
-		return MessageFormat.format("{0} - {1}", getSystemID(), getDescription());
+		return MessageFormat.format(Messages.ConnectionData_StringFormat, getSystemID(), getDescription());
 	}
 	
 	/* (non-Javadoc)

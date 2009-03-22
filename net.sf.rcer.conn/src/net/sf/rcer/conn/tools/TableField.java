@@ -13,6 +13,8 @@ package net.sf.rcer.conn.tools;
 
 import java.text.MessageFormat;
 
+import net.sf.rcer.conn.Messages;
+
 /**
  * The description of a table field as used by RFC_READ_TABLE.
  * @author vwegert
@@ -94,7 +96,7 @@ class TableField implements Cloneable, ITableField {
 	 */
 	@Override
 	public String toString() {
-		return MessageFormat.format("{0}-{1} ({2})", tableName, fieldName, fieldText);
+		return MessageFormat.format(Messages.TableField_StringFormat, tableName, fieldName, fieldText);
 	}
 	
 	/* (non-Javadoc)

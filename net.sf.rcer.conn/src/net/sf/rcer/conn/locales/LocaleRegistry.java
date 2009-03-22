@@ -20,6 +20,8 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import net.sf.rcer.conn.Messages;
+
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
@@ -37,7 +39,7 @@ public class LocaleRegistry implements IRegistryEventListener {
 	/**
 	 * The name of the extension point used to define the locales.
 	 */
-	public static final String SAPLOCALES_EXTENSION_POINT = "net.sf.rcer.conn.saplocales";
+	public static final String SAPLOCALES_EXTENSION_POINT = "net.sf.rcer.conn.saplocales"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance.
@@ -115,7 +117,7 @@ public class LocaleRegistry implements IRegistryEventListener {
 		if (localesByISO.containsKey(isoCode)) {
 			return localesByISO.get(isoCode);
 		}
-		throw new LocaleNotFoundException(MessageFormat.format("No SAP Locale for ISO code {0} defined.", isoCode));
+		throw new LocaleNotFoundException(MessageFormat.format(Messages.LocaleRegistry_NoLocaleForISOCode, isoCode));
 	}
 
 	/**
@@ -127,7 +129,7 @@ public class LocaleRegistry implements IRegistryEventListener {
 		if (localesByID.containsKey(id)) {
 			return localesByID.get(id);
 		}
-		throw new LocaleNotFoundException(MessageFormat.format("No SAP Locale for internal ID {0} defined.", id));
+		throw new LocaleNotFoundException(MessageFormat.format(Messages.LocaleRegistry_NoLocaleForInternalID, id));
 	}
 
 	/* (non-Javadoc)
@@ -167,10 +169,10 @@ public class LocaleRegistry implements IRegistryEventListener {
 			assert extension.getExtensionPointUniqueIdentifier().equals(SAPLOCALES_EXTENSION_POINT);
 			final IConfigurationElement[] elements = extension.getConfigurationElements();
 			for(final IConfigurationElement element: elements) {
-				if (element.getName().equals("locale")) {
-					final String id = element.getAttribute("id");
-					final String isoCode = element.getAttribute("iso");
-					final String description = element.getAttribute("description");
+				if (element.getName().equals("locale")) { //$NON-NLS-1$
+					final String id = element.getAttribute("id"); //$NON-NLS-1$
+					final String isoCode = element.getAttribute("iso"); //$NON-NLS-1$
+					final String description = element.getAttribute("description"); //$NON-NLS-1$
 
 					if (localesByID.containsKey(id)) {
 						locales.remove(localesByID.get(id));
@@ -200,9 +202,9 @@ public class LocaleRegistry implements IRegistryEventListener {
 			assert extension.getExtensionPointUniqueIdentifier().equals(SAPLOCALES_EXTENSION_POINT);
 			final IConfigurationElement[] elements = extension.getConfigurationElements();
 			for(final IConfigurationElement element: elements) {
-				if (element.getName().equals("locale")) {
-					final String id = element.getAttribute("id");
-					final String isoCode = element.getAttribute("iso");
+				if (element.getName().equals("locale")) { //$NON-NLS-1$
+					final String id = element.getAttribute("id"); //$NON-NLS-1$
+					final String isoCode = element.getAttribute("iso"); //$NON-NLS-1$
 
 					if (localesByID.containsKey(id)) {
 						locales.remove(localesByID.get(id));

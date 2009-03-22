@@ -13,6 +13,7 @@ package net.sf.rcer.conn.connections;
 
 import java.text.MessageFormat;
 
+import net.sf.rcer.conn.Messages;
 import net.sf.rcer.conn.locales.Locale;
 
 /**
@@ -78,7 +79,7 @@ public class Connection extends ConnectionData implements IConnection {
 	 * @see net.sf.rcer.conn.connections.IConnection#getConnectionID()
 	 */
 	public String getConnectionID() {
-		return MessageFormat.format("{0}$C={1}$U={2}", getConnectionDataID(), getClient(), getUserName());
+		return MessageFormat.format("{0}$C={1}$U={2}", getConnectionDataID(), getClient(), getUserName()); //$NON-NLS-1$
 	}
 
 	/* (non-Javadoc)
@@ -93,11 +94,11 @@ public class Connection extends ConnectionData implements IConnection {
 	 */
 	public void setClient(String client) {
 		if (!isDefaultClientEditable()) {
-			throw new UnsupportedOperationException("The default client may not be changed.");
+			throw new UnsupportedOperationException(Messages.Connection_DefaultClientUnchangeableError);
 		}
 		final String oldValue = this.client;
 		this.client = client;
-		propertyChangeSupport.firePropertyChange("client", oldValue, client);
+		propertyChangeSupport.firePropertyChange("client", oldValue, client); //$NON-NLS-1$
 	}
 
 	/* (non-Javadoc)
@@ -112,11 +113,11 @@ public class Connection extends ConnectionData implements IConnection {
 	 */
 	public void setUserName(String userName) {
 		if (!isDefaultUserEditable()) {
-			throw new UnsupportedOperationException("The default user name may not be changed.");
+			throw new UnsupportedOperationException(Messages.Connection_DefaultUserUnchangeable);
 		}
 		final String oldValue = this.userName;
 		this.userName = userName;
-		propertyChangeSupport.firePropertyChange("userName", oldValue, userName);
+		propertyChangeSupport.firePropertyChange("userName", oldValue, userName); //$NON-NLS-1$
 	}
 
 	/* (non-Javadoc)
@@ -131,11 +132,11 @@ public class Connection extends ConnectionData implements IConnection {
 	 */
 	public void setLocale(Locale locale) {
 		if (!isDefaultLocaleEditable()) {
-			throw new UnsupportedOperationException("The default locale may not be changed.");
+			throw new UnsupportedOperationException(Messages.Connection_DefaultLocaleUnchangeable);
 		}
 		final Locale oldValue = this.locale;
 		this.locale = locale;
-		propertyChangeSupport.firePropertyChange("locale", oldValue, locale);
+		propertyChangeSupport.firePropertyChange("locale", oldValue, locale); //$NON-NLS-1$
 	}
 
 	/* (non-Javadoc)
@@ -143,17 +144,17 @@ public class Connection extends ConnectionData implements IConnection {
 	 */
 	@Override
 	public String toString() {
-		if (getClient().equals("")) {
-			return MessageFormat.format("{0} {1} ({2})", getSystemID(), getUserName(), getDescription());
+		if (getClient().equals("")) { //$NON-NLS-1$
+			return MessageFormat.format(Messages.Connection_ShortStringFormat, getSystemID(), getUserName(), getDescription());
 		}
-		return MessageFormat.format("{0}.{1} {2} ({3})", getSystemID(), getClient(), getUserName(), getDescription());
+		return MessageFormat.format(Messages.Connection_LongStringFormat, getSystemID(), getClient(), getUserName(), getDescription());
 	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.conn.connections.IConnection#isClientEditable()
 	 */
 	public boolean isClientEditable() {
-		if (getDefaultClient() == null || getDefaultClient().equals("")) {
+		if (getDefaultClient() == null || getDefaultClient().equals("")) { //$NON-NLS-1$
 			return true;
 		}
 		return isDefaultClientEditable();
@@ -173,7 +174,7 @@ public class Connection extends ConnectionData implements IConnection {
 	 * @see net.sf.rcer.conn.connections.IConnection#isUserEditable()
 	 */
 	public boolean isUserEditable() {
-		if (getDefaultUser() == null || getDefaultUser().equals("")) {
+		if (getDefaultUser() == null || getDefaultUser().equals("")) { //$NON-NLS-1$
 			return true;
 		}
 		return isDefaultUserEditable();

@@ -13,6 +13,8 @@ package net.sf.rcer.conn.connections;
 
 import java.text.MessageFormat;
 
+import net.sf.rcer.conn.Messages;
+
 /**
  * This exception occurs if an undefined connection provider is requested from the 
  * {@link ConnectionRegistry}. 
@@ -30,7 +32,7 @@ public class ProviderNotFoundException extends Exception {
 	 * @param providerID
 	 */
 	public ProviderNotFoundException(String providerID) {
-		super(MessageFormat.format("No conection provider with ID {0} defined.", providerID));
+		super(MessageFormat.format(Messages.ProviderNotFoundException_Message, providerID));
 	}
 	
 }

@@ -13,6 +13,8 @@ package net.sf.rcer.conn.locales;
 
 import java.text.MessageFormat;
 
+import net.sf.rcer.conn.Messages;
+
 import org.eclipse.core.databinding.conversion.Converter;
 
 /**
@@ -98,7 +100,7 @@ public class Locale {
 	 */
 	@Override
 	public String toString() {
-		return MessageFormat.format("{0} ({1})", getISOCode(), getDescription());
+		return MessageFormat.format(Messages.Locale_StringFormat, getISOCode(), getDescription());
 	}
 
 
@@ -123,7 +125,7 @@ public class Locale {
 				return null;
 			} else if (fromObject instanceof String) {
 				String isoCode = (String) fromObject;
-				if (isoCode.equals("")) {
+				if (isoCode.equals("")) { //$NON-NLS-1$
 					return null;
 				}
 				try {
@@ -137,7 +139,7 @@ public class Locale {
 					}
 				}
 			}
-			throw new IllegalArgumentException(MessageFormat.format("Unsupported value {0}", fromObject));
+			throw new IllegalArgumentException(MessageFormat.format(Messages.Locale_UnsupportedStringValue, fromObject));
 		}
 	}
 
@@ -164,15 +166,15 @@ public class Locale {
 		 */
 		public Object convert(Object fromObject) {
 			if (fromObject == null) {
-				return "";
+				return ""; //$NON-NLS-1$
 			} else if (fromObject instanceof Locale) {
 				if (includeDescription) {
 					final Locale locale = (Locale) fromObject; 
-					return MessageFormat.format("{0} ({1})", locale.getISOCode(), locale.getDescription());
+					return MessageFormat.format(Messages.Locale_StringFormat, locale.getISOCode(), locale.getDescription());
 				}
 				return ((Locale) fromObject).getISOCode();
 			}
-			throw new IllegalArgumentException(MessageFormat.format("Unsupported class {0}", fromObject.getClass().getName()));
+			throw new IllegalArgumentException(MessageFormat.format(Messages.Locale_UnsupportedClass, fromObject.getClass().getName()));
 		}
 
 	}

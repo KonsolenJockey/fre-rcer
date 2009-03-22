@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import net.sf.rcer.conn.Messages;
+
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunction;
@@ -45,7 +47,7 @@ public class TableReader {
 		super();
 		this.destination = destination;
 		this.tableName = tableName;
-		this.template = destination.getRepository().getFunctionTemplate("RFC_READ_TABLE");
+		this.template = destination.getRepository().getFunctionTemplate("RFC_READ_TABLE"); //$NON-NLS-1$
 		loadStructure();
 	}
 
@@ -98,25 +100,25 @@ public class TableReader {
 	 */
 	public ITableContents read(String ... selectionCriteria) throws JCoException {
 		JCoFunction readFunction = template.getFunction();
-		readFunction.getImportParameterList().setValue("QUERY_TABLE", tableName);
+		readFunction.getImportParameterList().setValue("QUERY_TABLE", tableName); //$NON-NLS-1$
 
-		JCoTable options = readFunction.getTableParameterList().getTable("OPTIONS");
+		JCoTable options = readFunction.getTableParameterList().getTable("OPTIONS"); //$NON-NLS-1$
 		options.clear();
 		if (selectionCriteria != null) {
 			for (final String criterion: selectionCriteria) {
 				if (criterion.length() > 72) {
-					throw new IllegalArgumentException("The selection criteria may not exceed 72 characters per row (limitation of RFC_READ_TABLE).");
+					throw new IllegalArgumentException(Messages.TableReader_SelectionCriteriaTooLong);
 				}
 				options.appendRow();
-				options.setValue("TEXT", criterion);
+				options.setValue("TEXT", criterion); //$NON-NLS-1$
 			}
 		}
 
 		setFieldList(readFunction);
 		readFunction.execute(destination);
 		return new TableContents(tableName, 
-				readFunction.getTableParameterList().getTable("FIELDS"), 
-				readFunction.getTableParameterList().getTable("DATA"));
+				readFunction.getTableParameterList().getTable("FIELDS"),  //$NON-NLS-1$
+				readFunction.getTableParameterList().getTable("DATA")); //$NON-NLS-1$
 	}
 
 	/**
@@ -128,25 +130,25 @@ public class TableReader {
 	public ITableContents read(Collection<String> selectionCriteria) throws JCoException {
 
 		JCoFunction readFunction = template.getFunction();
-		readFunction.getImportParameterList().setValue("QUERY_TABLE", tableName);
+		readFunction.getImportParameterList().setValue("QUERY_TABLE", tableName); //$NON-NLS-1$
 
-		JCoTable options = readFunction.getTableParameterList().getTable("OPTIONS");
+		JCoTable options = readFunction.getTableParameterList().getTable("OPTIONS"); //$NON-NLS-1$
 		options.clear();
 		if (selectionCriteria != null) {
 			for (final String criterion: selectionCriteria) {
 				if (criterion.length() > 72) {
-					throw new IllegalArgumentException("The selection criteria may not exceed 72 characters per row (limitation of RFC_READ_TABLE).");
+					throw new IllegalArgumentException(Messages.TableReader_SelectionCriteriaTooLong);
 				}
 				options.appendRow();
-				options.setValue("TEXT", criterion);
+				options.setValue("TEXT", criterion); //$NON-NLS-1$
 			}
 		}
 
 		setFieldList(readFunction);
 		readFunction.execute(destination);
 		return new TableContents(tableName, 
-				readFunction.getTableParameterList().getTable("FIELDS"), 
-				readFunction.getTableParameterList().getTable("DATA"));
+				readFunction.getTableParameterList().getTable("FIELDS"),  //$NON-NLS-1$
+				readFunction.getTableParameterList().getTable("DATA")); //$NON-NLS-1$
 
 	}
 
@@ -159,24 +161,24 @@ public class TableReader {
 	public ITableContents read(String criterion) throws JCoException {
 
 		if ((criterion != null) && (criterion.length() > 72)) {
-			throw new IllegalArgumentException("The selection criteria may not exceed 72 characters per row (limitation of RFC_READ_TABLE).");
+			throw new IllegalArgumentException(Messages.TableReader_SelectionCriteriaTooLong);
 		}
 
 		JCoFunction readFunction = template.getFunction();
-		readFunction.getImportParameterList().setValue("QUERY_TABLE", tableName);
+		readFunction.getImportParameterList().setValue("QUERY_TABLE", tableName); //$NON-NLS-1$
 
-		JCoTable options = readFunction.getTableParameterList().getTable("OPTIONS");
+		JCoTable options = readFunction.getTableParameterList().getTable("OPTIONS"); //$NON-NLS-1$
 		options.clear();
 		if ((criterion != null) && (criterion.length() > 0)) {
 			options.appendRow();
-			options.setValue("TEXT", criterion);
+			options.setValue("TEXT", criterion); //$NON-NLS-1$
 		}
 
 		setFieldList(readFunction);
 		readFunction.execute(destination);
 		return new TableContents(tableName, 
-				readFunction.getTableParameterList().getTable("FIELDS"), 
-				readFunction.getTableParameterList().getTable("DATA"));
+				readFunction.getTableParameterList().getTable("FIELDS"),  //$NON-NLS-1$
+				readFunction.getTableParameterList().getTable("DATA")); //$NON-NLS-1$
 	}
 
 	/**
@@ -186,13 +188,13 @@ public class TableReader {
 	 */
 	public ITableContents read() throws JCoException {
 		JCoFunction readFunction = template.getFunction();
-		readFunction.getImportParameterList().setValue("QUERY_TABLE", tableName);
-		readFunction.getTableParameterList().getTable("OPTIONS").clear();
+		readFunction.getImportParameterList().setValue("QUERY_TABLE", tableName); //$NON-NLS-1$
+		readFunction.getTableParameterList().getTable("OPTIONS").clear(); //$NON-NLS-1$
 		setFieldList(readFunction);
 		readFunction.execute(destination);
 		return new TableContents(tableName, 
-				readFunction.getTableParameterList().getTable("FIELDS"), 
-				readFunction.getTableParameterList().getTable("DATA"));
+				readFunction.getTableParameterList().getTable("FIELDS"),  //$NON-NLS-1$
+				readFunction.getTableParameterList().getTable("DATA")); //$NON-NLS-1$
 	}
 
 	/**
@@ -201,27 +203,27 @@ public class TableReader {
 	 */
 	private void setFieldList(JCoFunction readFunction) {
 		int length = 0;
-		JCoTable fields = readFunction.getTableParameterList().getTable("FIELDS");
+		JCoTable fields = readFunction.getTableParameterList().getTable("FIELDS"); //$NON-NLS-1$
 		fields.clear();
 		if (selectedFields.isEmpty()) {
 			for (final ITableField field: structure.getFieldList()) {
 				length += field.getLength();
 				fields.appendRow();
-				fields.setValue("FIELDNAME", field.getFieldName());				
+				fields.setValue("FIELDNAME", field.getFieldName());				 //$NON-NLS-1$
 			}
 		} else {
 			for (final String field: selectedFields) {
 				try {
 					length += structure.getField(field).getLength();
 					fields.appendRow();
-					fields.setValue("FIELDNAME", field);
+					fields.setValue("FIELDNAME", field); //$NON-NLS-1$
 				} catch (FieldNotFoundException e) {
-					throw new IllegalArgumentException(MessageFormat.format("Unknown field {0} selected.", field), e);
+					throw new IllegalArgumentException(MessageFormat.format(Messages.TableReader_UnknownField, field), e);
 				}
 			}
 		}
 		if (length > 512) {
-			throw new IllegalArgumentException("The total lenght of the selected fields may not exceed 512 characters (limitation of RFC_READ_TABLE).");
+			throw new IllegalArgumentException(Messages.TableReader_ResultTooLong);
 		}
 	}
 
@@ -232,10 +234,10 @@ public class TableReader {
 	private void loadStructure() throws JCoException {
 		// call RFC_READ_TABLE without requesting any data
 		JCoFunction readFieldListFunction = template.getFunction();
-		readFieldListFunction.getImportParameterList().setValue("QUERY_TABLE", tableName);
-		readFieldListFunction.getImportParameterList().setValue("NO_DATA", tableName);
+		readFieldListFunction.getImportParameterList().setValue("QUERY_TABLE", tableName); //$NON-NLS-1$
+		readFieldListFunction.getImportParameterList().setValue("NO_DATA", tableName); //$NON-NLS-1$
 		readFieldListFunction.execute(destination);
-		structure = new TableStructure(tableName, readFieldListFunction.getTableParameterList().getTable("FIELDS"));
+		structure = new TableStructure(tableName, readFieldListFunction.getTableParameterList().getTable("FIELDS")); //$NON-NLS-1$
 	}
 
 }

@@ -78,7 +78,7 @@ public class Credentials implements ICredentials {
 	public void setPassword(String password) {
 		final String oldValue = this.password;
 		this.password = password;
-		propertyChangeSupport.firePropertyChange("password", oldValue, password);
+		propertyChangeSupport.firePropertyChange("password", oldValue, password); //$NON-NLS-1$
 	}
 
 	/**

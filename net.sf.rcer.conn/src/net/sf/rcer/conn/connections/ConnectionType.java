@@ -13,6 +13,8 @@ package net.sf.rcer.conn.connections;
 
 import java.text.MessageFormat;
 
+import net.sf.rcer.conn.Messages;
+
 import org.eclipse.core.databinding.conversion.Converter;
 
 /**
@@ -39,9 +41,9 @@ public enum ConnectionType {
 	public String toString() {
 		switch (this) {
 		case DIRECT:
-			return "direct";
+			return Messages.ConnectionType_Direct;
 		case LOAD_BALANCED:
-			return "load-balanced";
+			return Messages.ConnectionType_LoadBalanced;
 		default:
 			return super.toString();
 		}
@@ -78,14 +80,14 @@ public enum ConnectionType {
 		 * @see org.eclipse.core.databinding.conversion.IConverter#convert(java.lang.Object)
 		 */
 		public Object convert(Object fromObject) {
-			if ((fromObject == null) || ("".equals(fromObject))) {
+			if ((fromObject == null) || ("".equals(fromObject))) { //$NON-NLS-1$
 				return null;
 			} else if (ConnectionType.DIRECT.toString().equals(fromObject)) {
 				return ConnectionType.DIRECT;
 			} else if (ConnectionType.LOAD_BALANCED.toString().equals(fromObject)) {
 				return ConnectionType.LOAD_BALANCED;
 			} else {
-				throw new IllegalArgumentException(MessageFormat.format("Unsupported value {0}", fromObject));
+				throw new IllegalArgumentException(MessageFormat.format(Messages.ConnectionType_UnsupportedValue, fromObject));
 			}
 		}
 	}
@@ -109,11 +111,11 @@ public enum ConnectionType {
 		 */
 		public Object convert(Object fromObject) {
 			if (fromObject == null) {
-				return "";
+				return ""; //$NON-NLS-1$
 			} else if (fromObject instanceof ConnectionType) {
 				return fromObject.toString();
 			} else {
-				throw new IllegalArgumentException(MessageFormat.format("Unsupported value {0}", fromObject));
+				throw new IllegalArgumentException(MessageFormat.format(Messages.ConnectionType_UnsupportedValue, fromObject));
 			}
 		}
 

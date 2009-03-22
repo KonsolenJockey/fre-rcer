@@ -40,7 +40,7 @@ class TableContents implements ITableContents{
 		if (!data.isEmpty()) {
 			data.firstRow();
 			do {
-				lines.add(new TableLine(this.structure, data.getString("WA")));
+				lines.add(new TableLine(this.structure, data.getString("WA"))); //$NON-NLS-1$
 			} while (data.nextRow());
 		}
 	}

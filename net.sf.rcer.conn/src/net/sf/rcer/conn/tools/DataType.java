@@ -13,6 +13,8 @@ package net.sf.rcer.conn.tools;
 
 import java.text.MessageFormat;
 
+import net.sf.rcer.conn.Messages;
+
 /**
  * The data type of a field (see R/3 domain INTTYPE).
  * @author vwegert
@@ -134,7 +136,7 @@ public enum DataType {
 		case 'V': return VARC;
 		case 'r': return REF_CLASS_IFACE;
 		case 'l': return REF_DATA;
-		default: throw new IllegalArgumentException(MessageFormat.format("''{0}'' is not a valid data type.", 
+		default: throw new IllegalArgumentException(MessageFormat.format(Messages.DataType_0, 
 				internalRepresentation));
 		}
 	}

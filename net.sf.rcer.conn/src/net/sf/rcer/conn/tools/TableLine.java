@@ -37,7 +37,7 @@ public class TableLine implements ITableLine {
 			final int endIndex = field.getOffset() + field.getLength();
 			String value;
 			if (startIndex >= rawData.length()) {
-				value = "";
+				value = ""; //$NON-NLS-1$
 			} else {
 				if (endIndex <= rawData.length()) {
 					value = rawData.substring(startIndex, endIndex).trim();
@@ -63,7 +63,7 @@ public class TableLine implements ITableLine {
 	 * @see net.sf.rcer.conn.tools.ITableLine#getBooleanValue(java.lang.String)
 	 */
 	public boolean getBooleanValue(String fieldName) throws FieldNotFoundException {
-		return getValue(fieldName).equalsIgnoreCase("X");
+		return getValue(fieldName).equalsIgnoreCase("X"); //$NON-NLS-1$
 	}
 
 	/* (non-Javadoc)

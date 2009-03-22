@@ -40,12 +40,12 @@ class TableStructure implements ITableStructure {
 		int position = 0;
 		do {
 			tableFields.add(new TableField(tableName,
-					fields.getString("FIELDNAME"),
-					fields.getInt("OFFSET"),
-					fields.getInt("LENGTH"),
-					DataType.fromChar(fields.getChar("TYPE")),
-					fields.getString("FIELDTEXT")));
-			tableFieldPositions.put(fields.getString("FIELDNAME"), position);
+					fields.getString("FIELDNAME"), //$NON-NLS-1$
+					fields.getInt("OFFSET"), //$NON-NLS-1$
+					fields.getInt("LENGTH"), //$NON-NLS-1$
+					DataType.fromChar(fields.getChar("TYPE")), //$NON-NLS-1$
+					fields.getString("FIELDTEXT"))); //$NON-NLS-1$
+			tableFieldPositions.put(fields.getString("FIELDNAME"), position); //$NON-NLS-1$
 			position++;
 		} while (fields.nextRow());
 	}
