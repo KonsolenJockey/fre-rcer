@@ -5,3 +5,4 @@ Bundle-SymbolicName: net.sf.rcer.jcoimport.doc;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Require-Bundle: net.sf.rcer.doc;bundle-version="0.1.0"
 Bundle-Localization: plugin
+Bundle-Vendor: %bundle.vendor
