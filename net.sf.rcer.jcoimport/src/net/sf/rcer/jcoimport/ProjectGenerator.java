@@ -48,8 +48,9 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.internal.core.PDECore;
 import org.eclipse.pde.internal.core.PluginModelManager;
 import org.eclipse.pde.internal.core.exports.FeatureExportInfo;
+import org.eclipse.pde.internal.core.exports.PluginExportOperation;
 import org.eclipse.pde.internal.ui.PDEPluginImages;
-import org.eclipse.pde.internal.ui.build.PluginExportJob;
+import org.eclipse.pde.internal.ui.PDEUIMessages;
 import org.eclipse.ui.progress.IProgressConstants;
 
 /**
@@ -358,7 +359,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 		info.exportSource = false;
 		info.destinationDirectory = settings.getExportPath();
 		info.items = exportableBundles.toArray();
-		PluginExportJob job = new PluginExportJob(info);
+		PluginExportOperation job = new PluginExportOperation(info, PDEUIMessages.PluginExportJob_name);
 		job.setUser(true);
 		job.schedule();
 		job.setProperty(IProgressConstants.ICON_PROPERTY, PDEPluginImages.DESC_PLUGIN_OBJ);
