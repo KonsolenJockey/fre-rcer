@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %bundle.name
+Bundle-Vendor: %bundle.vendor
+Bundle-Version: 0.1.0.qualifier
+Bundle-SymbolicName: net.sf.rcer.rfcgen.ui; singleton:=true
+Eclipse-RegisterBuddy: org.eclipse.xtext.log4j
+Bundle-ActivationPolicy: lazy
+Require-Bundle: net.sf.rcer.rfcgen;visibility:=reexport,
+ org.eclipse.xtext.ui.core,
+ org.eclipse.xtext.ui.common,
+ org.eclipse.xtext.log4j;bundle-version="1.2.15",
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.ui,
+ org.antlr.runtime,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.xtend,
+ org.eclipse.xpand,
+ net.sf.rcer.conn;bundle-version="0.1.0",
+ net.sf.rcer.conn.ui;bundle-version="0.1.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: net.sf.rcer.contentassist,
+ net.sf.rcer.contentassist.antlr
+Bundle-Activator: net.sf.rcer.internal.RFCMappingActivator

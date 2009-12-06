@@ -1,0 +1,226 @@
+«REM»
+ *
+ * Copyright (c) 2009 The RCER Development Team.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,
+ * this entire header must remain intact.
+ *
+ * $Id$
+ *
+«ENDREM»
+«IMPORT net::sf::rcer::ui::wizard»
+
+«REM» This file has to be encoded using ISO-8859-1 - see https://bugs.eclipse.org/bugs/show_bug.cgi?id=297018. «ENDREM»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE main FOR ExtendedRFCMappingProjectInfo»
+«EXPAND model FOR this»
+«EXPAND workflow FOR this»
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE model FOR ExtendedRFCMappingProjectInfo»
+«FILE "src/Model.rfcgen"-»
+package "«packageName»"
+«IF connected-»
+«EXPAND dynamicMapping FOR this-»
+«ELSE-»
+«IF callStyleMappingSelected-»
+«EXPAND staticCallStyleMapping FOR this-»
+«ELSE-»
+«EXPAND staticRequestReturnStyleMapping FOR this-»
+«ENDIF-»
+«ENDIF-»
+«ENDFILE»
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE dynamicMapping FOR ExtendedRFCMappingProjectInfo»
+«FOREACH structures AS s-»
+«EXPAND structure FOR s»
+«ENDFOREACH-»
+«FOREACH functions AS f-»
+«EXPAND function(callStyleMappingSelected) FOR f»
+«ENDFOREACH»
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE structure FOR StructureInfo-»
+structure "«structureName»" {
+	class «className» {
+«FOREACH fields AS f-»
+«EXPAND structureField FOR f-»
+«ENDFOREACH-»
+	}
+}
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE structureField FOR StructureFieldInfo-»
+		field «paddedFieldName» = «paddedFieldType» «paddedAttributeName» comment "«comment»";
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE function(boolean callStyleMappingSelected) FOR FunctionModuleInfo-»
+function module "«functionModuleName»" {
+«IF callStyleMappingSelected-»
+«EXPAND functionCallStyleMapping FOR this-»
+«ELSE-»
+«EXPAND functionRequestReturnStyleMapping FOR this-»
+«ENDIF-»
+}
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE functionCallStyleMapping FOR FunctionModuleInfo-»
+	class «callClassName» {
+«EXPAND importParameters FOR this-»
+«EXPAND exportParameters FOR this-»
+«EXPAND changeParameters FOR this-»
+«EXPAND tableParameters FOR this-»
+	}
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE functionRequestReturnStyleMapping FOR FunctionModuleInfo-»
+	request class «requestClassName» {
+«EXPAND importParameters FOR this-»
+«EXPAND changeParameters FOR this-»
+«EXPAND tableParameters FOR this-»
+	}
+	response class «responseClassName» {
+«EXPAND exportParameters FOR this-»
+«EXPAND changeParameters FOR this-»
+«EXPAND tableParameters FOR this-»
+	}
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE importParameters FOR FunctionModuleInfo-»
+«FOREACH parameters.select(p|p.importing) AS p-»
+«IF p.table-»
+		import table «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+«ELSE-»
+		import field «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE exportParameters FOR FunctionModuleInfo-»
+«FOREACH parameters.select(p|p.exporting) AS p-»
+«IF p.table-»
+		export table «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+«ELSE-»
+		export field «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE changeParameters FOR FunctionModuleInfo-»
+«FOREACH parameters.select(p|p.changing) AS p-»
+«IF p.table-»
+		change table «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+«ELSE-»
+		change field «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE tableParameters FOR FunctionModuleInfo-»
+«FOREACH parameters.select(p|p.tables) AS p-»
+		table        «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+«ENDFOREACH-»
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE staticCallStyleMapping FOR ExtendedRFCMappingProjectInfo»
+structure "BAPISFLIST" { 
+	class FlightData { 
+		field "CARRID"   = String carrierID    comment "carrier ID";
+		field "CONNID"   = String connectionID comment "connection ID";
+		field "FLDATE"   = Date flightDate     comment "flight date";
+		field "DEPTIME"  = Date departureTime  comment "departure time";
+		field "AIRPFROM" = String origin       comment "originating airport";
+		field "AIRPTO"   = String destination  comment "destination airport";
+		field "SEATSMAX" = int maximumSeats    comment "maximum number of seats";
+		field "SEATSOCC" = int occupiedSeats   comment "number of seats occupied";
+	}
+}
+
+function module "BAPI_SFLIGHT_GETLIST" {
+	class GetFlightListCall {
+		import field "FROMCOUNTRYKEY" = String fromCountry comment "country code of origin";
+		import field "FROMCITY"       = String fromCity    comment "city of origin";
+		import field "TOCOUNTRYKEY"   = String toCountry   comment "country code of destination";
+		import field "TOCITY"         = String toCity      comment "destination city";
+		import field "AFTERNOON"      = boolean afternoon  comment "restrict search to afternoon flights";
+		table "FLIGHTLIST"            = FlightData flights comment "list of flights";
+	}
+}
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE staticRequestReturnStyleMapping FOR ExtendedRFCMappingProjectInfo»
+structure "BAPISFLIST" {
+	class FlightData { 
+		field "CARRID"   = String carrierID    comment "carrier ID";
+		field "CONNID"   = String connectionID comment "connection ID";
+		field "FLDATE"   = Date flightDate     comment "flight date";
+		field "DEPTIME"  = Date departureTime  comment "departure time";
+		field "AIRPFROM" = String origin       comment "originating airport";
+		field "AIRPTO"   = String destination  comment "destination airport";
+		field "SEATSMAX" = int maximumSeats    comment "maximum number of seats";
+		field "SEATSOCC" = int occupiedSeats   comment "number of seats occupied";
+	}
+}
+
+function module "BAPI_SFLIGHT_GETLIST" {
+	request class GetFlightListRequest {
+		import field "FROMCOUNTRYKEY" = String fromCountry comment "country code of origin";
+		import field "FROMCITY"       = String fromCity    comment "city of origin";
+		import field "TOCOUNTRYKEY"   = String toCountry   comment "country code of destination";
+		import field "TOCITY"         = String toCity      comment "destination city";
+		import field "AFTERNOON"      = boolean afternoon  comment "restrict search to afternoon flights";
+	}
+	response class GetFlightListResponse {
+		table "FLIGHTLIST"            = FlightData flights comment "list of flights";
+	}
+}
+«ENDDEFINE»
+
+«REM» ============================================================================================= «ENDREM»
+
+«DEFINE workflow FOR ExtendedRFCMappingProjectInfo»
+«FILE "src/Generator.mwe"-»
+<workflow>
+	<property name="modelFile" value="src/Model.rfcgen"/>
+	<property name="targetDir" value="src-gen"/>
+
+	<component class="org.eclipse.emf.mwe.utils.DirectoryCleaner" directory="${targetDir}"/>
+	<workflow file="workflow/RFCMappingGenerator.mwe">
+		<modelFile value="${modelFile}"/>
+		<targetDir value="${targetDir}"/>
+	</workflow>
+</workflow>
+«ENDFILE»
+«ENDDEFINE»
