@@ -29,7 +29,6 @@ import net.sf.rcer.conn.ui.Messages;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.beans.BeansObservables;
-import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
@@ -231,41 +230,44 @@ public class LoginDialog extends TitleAreaDialog {
 
 		// observe changes in the selection of the connection combo
 		IObservableValue selection = ViewersObservables.observeSingleSelection(connectionComboViewer);
-		IObservableValue connection = BeansObservables.observeDetailValue(Realm.getDefault(), selection, 
+		IObservableValue connection = BeansObservables.observeDetailValue(selection, 
 				"connection", IConnection.class); //$NON-NLS-1$
 
 		// bind the client 
 		context.bindValue(SWTObservables.observeText(clientText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), connection, "client", String.class),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(connection, "client", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 		context.bindValue(SWTObservables.observeEnabled(clientText), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), connection, "clientEditable", boolean.class),  //$NON-NLS-1$
-				null, new UpdateValueStrategy());
+				BeansObservables.observeDetailValue(connection, "clientEditable", boolean.class),  //$NON-NLS-1$
+				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), 
+				new UpdateValueStrategy());
 
 		// bind the user name
 		context.bindValue(SWTObservables.observeText(userText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), connection, "userName", String.class),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(connection, "userName", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 		context.bindValue(SWTObservables.observeEnabled(userText), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), connection, "userEditable", boolean.class),  //$NON-NLS-1$
-				null, new UpdateValueStrategy());
+				BeansObservables.observeDetailValue(connection, "userEditable", boolean.class),  //$NON-NLS-1$
+				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), 
+				new UpdateValueStrategy());
 
 		// bind the password
 		context.bindValue(SWTObservables.observeText(passwordText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "password", String.class),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(selection, "password", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 
 		// bind the locale 
 		context.bindValue(SWTObservables.observeSelection(localeCombo), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), connection, "locale", Locale.class),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(connection, "locale", Locale.class),  //$NON-NLS-1$
 				new UpdateValueStrategy().setConverter(new Locale.FromStringConverter()), 
 				new UpdateValueStrategy().setConverter(new Locale.ToStringConverter(true)));
 		context.bindValue(SWTObservables.observeEnabled(localeCombo), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), connection, "localeEditable", boolean.class),  //$NON-NLS-1$
-				null, new UpdateValueStrategy());
+				BeansObservables.observeDetailValue(connection, "localeEditable", boolean.class),  //$NON-NLS-1$
+				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), 
+				new UpdateValueStrategy());
 
 		// provide the connection list with input data
 		connectionComboViewer.setContentProvider(new ObservableListContentProvider());
