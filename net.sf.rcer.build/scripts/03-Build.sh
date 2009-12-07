@@ -24,9 +24,9 @@ jar xf ${RCER_BUILD_HOME}/distfiles/com.sap.*.jar
 
 echo "Launching antRunner..."
 cd ${RCER_BUILD_HOME}/build
-java -jar ${RCER_BUILD_HOME}/base/eclipse/plugins/org.eclipse.equinox.launcher_1.0.101.R34x_v20080819.jar \
+java -jar ${RCER_BUILD_HOME}/base/eclipse/plugins/org.eclipse.equinox.launcher_1.0.201.R35x_v20090715.jar \
      -application org.eclipse.ant.core.antRunner \
-     -buildfile ${RCER_BUILD_HOME}/base/eclipse/plugins/org.eclipse.pde.build_3.4.1.R34x_v20080805/scripts/build.xml \
+     -buildfile ${RCER_BUILD_HOME}/base/eclipse/plugins/org.eclipse.pde.build_3.5.1.R35x_20090820/scripts/build.xml \
      -Dbuilder=${RCER_BUILD_HOME}/config \
      -Dbase=${RCER_BUILD_HOME}/base \
      -DbuildDirectory=${RCER_BUILD_HOME}/build \

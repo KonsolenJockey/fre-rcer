@@ -5,9 +5,7 @@
 # $Id$
 #
 
-export ECLIPSE="eclipse-SDK-3.4.1-linux-gtk.tar.gz"
-export EMF="emf-sdo-xsd-SDK-2.4.1.zip"
-export OAW="org.openarchitectureware.sdk.feature-4.3.1.20090107-2000PRD.zip"
+export ECLIPSE="eclipse-modeling-galileo-SR1-incubation-linux-gtk.tar.gz"
 export JCO="com.sap.conn.jco_7.11.0.jar"
 
 check_distfile() {
@@ -24,8 +22,6 @@ if [ "x${RCER_BUILD_HOME}" = "x" ] ; then
 fi 
 
 check_distfile ${ECLIPSE} 
-check_distfile ${EMF} 
-check_distfile ${OAW}
 check_distfile ${JCO}
 
 echo "Deleting old installation..."
@@ -35,12 +31,6 @@ cd ${RCER_BUILD_HOME}/base
 
 echo "Extracting Eclipse SDK..."
 tar xzf ${RCER_BUILD_HOME}/distfiles/${ECLIPSE}
-
-echo "Extracting EMF SDK..."
-unzip -q -o ${RCER_BUILD_HOME}/distfiles/${EMF}
-
-echo "Extracting openArchitectureWare SDK..."
-unzip -q -o ${RCER_BUILD_HOME}/distfiles/${OAW}
 
 echo "Adding JCo..."
 cp ${RCER_BUILD_HOME}/distfiles/${JCO} ${RCER_BUILD_HOME}/base/eclipse/plugins/

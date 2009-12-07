@@ -38,8 +38,8 @@ svn_export net.sf.rcer.jcoimport
 svn_export net.sf.rcer.jcoimport.doc
 svn_export net.sf.rcer.rfcgen
 svn_export net.sf.rcer.rfcgen.doc
-svn_export net.sf.rcer.rfcgen.editor
 svn_export net.sf.rcer.rfcgen.generator
+svn_export net.sf.rcer.rfcgen.ui
 svn_export net.sf.rcer.rom
 svn_export net.sf.rcer.sdk.doc
 echo "OK."
