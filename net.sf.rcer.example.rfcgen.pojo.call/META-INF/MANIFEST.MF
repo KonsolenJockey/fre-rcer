@@ -12,8 +12,7 @@ Require-Bundle: org.eclipse.core.runtime,
  net.sf.rcer.conn,
  net.sf.rcer.conn.ui,
  net.sf.rcer.rfcgen;resolution:=optional,
- net.sf.rcer.rfcgen.generator;resolution:=optional,
- org.openarchitectureware.dependencies;resolution=optional
+ net.sf.rcer.rfcgen.generator;resolution:=optional
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %bundle.vendor
 Bundle-Activator: net.sf.rcer.example.rfcgen.pojo.call.Activator
