@@ -3,16 +3,26 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %bundle.name
 Bundle-SymbolicName: net.sf.rcer.example.rfcgen.pojo.rr;singleton:=true
 Bundle-Version: 0.1.0.qualifier
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.ui,
+Require-Bundle: com.ibm.icu,
  com.sap.conn.jco,
+ org.eclipse.core.runtime,
+ org.eclipse.ui,
  org.eclipse.core.databinding,
  org.eclipse.core.databinding.beans,
  org.eclipse.jface.databinding,
- net.sf.rcer.conn,
+ org.eclipse.xtext.log4j;bundle-version="1.2.15",
+ org.eclipse.xtext,
+ org.eclipse.xtext.generator,
+ org.eclipse.xtend,
+ org.eclipse.xtend.typesystem.emf,
+ org.eclipse.xpand,
+ org.apache.commons.logging,
+ de.itemis.xtext.antlr;resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.xtend.util.stdlib,
+ net.sf.rcer.rfcgen.generator,
  net.sf.rcer.conn.ui,
- net.sf.rcer.rfcgen;resolution:=optional,
- net.sf.rcer.rfcgen.generator;resolution:=optional
+ net.sf.rcer.conn
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %bundle.vendor
 Bundle-Activator: net.sf.rcer.example.rfcgen.pojo.rr.Activator

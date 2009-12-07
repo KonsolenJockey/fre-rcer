@@ -176,7 +176,7 @@ public class GetFlightListCall {
 	}
 
 	/**
-	 * @return
+	 * @return the list of property change listeners
 	 * @see java.beans.PropertyChangeSupport#getPropertyChangeListeners()
 	 */
 	public PropertyChangeListener[] getPropertyChangeListeners() {
@@ -185,7 +185,7 @@ public class GetFlightListCall {
 
 	/**
 	 * @param propertyName
-	 * @return
+	 * @return the list of property change listeners for a certain property
 	 * @see java.beans.PropertyChangeSupport#getPropertyChangeListeners(java.lang.String)
 	 */
 	public PropertyChangeListener[] getPropertyChangeListeners(String propertyName) {
@@ -194,7 +194,7 @@ public class GetFlightListCall {
 
 	/**
 	 * @param propertyName
-	 * @return
+	 * @return <code>true</code> if any property change listeners are registered
 	 * @see java.beans.PropertyChangeSupport#hasListeners(java.lang.String)
 	 */
 	public boolean hasListeners(String propertyName) {
