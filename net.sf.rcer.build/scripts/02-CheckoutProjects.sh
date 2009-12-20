@@ -30,6 +30,8 @@ cd ${RCER_BUILD_HOME}/export/plugins
 svn_export net.sf.rcer.conn
 svn_export net.sf.rcer.conn.doc
 svn_export net.sf.rcer.conn.ui
+svn_export net.sf.rcer.cts
+svn_export net.sf.rcer.cts.ui
 svn_export net.sf.rcer.doc
 svn_export net.sf.rcer.example.rfcgen.pojo.call
 svn_export net.sf.rcer.example.rfcgen.pojo.rr
