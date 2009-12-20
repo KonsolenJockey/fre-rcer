@@ -144,7 +144,7 @@ public class Connection extends ConnectionData implements IConnection {
 	 */
 	@Override
 	public String toString() {
-		if (getClient().equals("")) { //$NON-NLS-1$
+		if (getClient() == null || getClient().equals("")) { //$NON-NLS-1$
 			return MessageFormat.format(Messages.Connection_ShortStringFormat, getSystemID(), getUserName(), getDescription());
 		}
 		return MessageFormat.format(Messages.Connection_LongStringFormat, getSystemID(), getClient(), getUserName(), getDescription());
