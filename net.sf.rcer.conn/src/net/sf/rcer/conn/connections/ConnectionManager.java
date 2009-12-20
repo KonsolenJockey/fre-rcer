@@ -285,14 +285,19 @@ public class ConnectionManager  {
 	 * connection, an {@link ICredentialsProviderWithSelection} is used to determine which connection to activate.
 	 * @return the primary connection
 	 * @throws ConnectionException 
-	 * @throws JCoException 
 	 * @see #closeConnection()
 	 * @see #setPrimaryDestination(String)
 	 */
-	public JCoDestination getDestination() throws ConnectionException, JCoException {
+	public JCoDestination getDestination() throws ConnectionException {
+		
 		if (primaryConnectionID != null) {
-			return getCheckedDestination(primaryConnectionID);
+			try {
+				return getCheckedDestination(primaryConnectionID);
+			} catch (JCoException e) {
+				throw new ConnectionException("Primary connection is invalid.", e);
+			}
 		}
+		
 		final Set<IConnectionData> registeredConnectionData = ConnectionRegistry.getInstance().getConnectionData();
 		switch(registeredConnectionData.size()) {
 		case 0:
@@ -321,7 +326,7 @@ public class ConnectionManager  {
 				return getCheckedDestination(credentials.getConnectionID());
 			} catch (JCoException e) {
 				removeConnectionInternal(credentials);
-				throw e;
+				throw new ConnectionException("Unable to obtain the connection.", e);
 			}
 		}
 		}
@@ -337,16 +342,19 @@ public class ConnectionManager  {
 	 * @param connectionData
 	 * @param reuseConnection if <code>true</code>, an existing connection is reused 
 	 * @return the connection
-	 * @throws JCoException 
 	 * @throws ConnectionException 
 	 */
-	public JCoDestination getDestination(IConnectionData connectionData, boolean reuseConnection) throws JCoException, ConnectionException {
+	public JCoDestination getDestination(IConnectionData connectionData, boolean reuseConnection) throws ConnectionException {
 		if (reuseConnection) {
 			// see whether a connection for the connection data ID already exists
 			if (connectionLists.containsKey(connectionData.getConnectionDataID())) {
 				final Collection<ICredentials> coll = connectionLists.get(connectionData.getConnectionDataID());
 				if (!coll.isEmpty()) {
-					return getCheckedDestination(coll.iterator().next().getConnectionID());
+					try {
+						return getCheckedDestination(coll.iterator().next().getConnectionID());
+					} catch (JCoException e) {
+						throw new ConnectionException("The connection is invalid.", e);
+					}
 				}
 			}
 		}
@@ -378,7 +386,7 @@ public class ConnectionManager  {
 			return getCheckedDestination(credentials.getConnectionID());
 		} catch (JCoException e) {
 			removeConnectionInternal(credentials);
-			throw e;			
+			throw new ConnectionException("The connection is invalid.", e);
 		}
 	}
 
@@ -389,10 +397,9 @@ public class ConnectionManager  {
 	 * the case, any of the connections is chosen arbitrarily.
 	 * @param connectionData
 	 * @return the connection
-	 * @throws JCoException 
 	 * @throws ConnectionException 
 	 */
-	public JCoDestination getDestination(IConnectionData connectionData) throws JCoException, ConnectionException {
+	public JCoDestination getDestination(IConnectionData connectionData) throws ConnectionException {
 		return getDestination(connectionData, true);
 	}
 
@@ -404,12 +411,11 @@ public class ConnectionManager  {
 	 * @param reuseConnection if <code>true</code>, an existing connection is reused 
 	 * @return the connection
 	 * @throws ConnectionException 
-	 * @throws JCoException 
 	 * @throws ProviderNotFoundException 
 	 * @throws ConnectionNotFoundException 
 	 */
 	public JCoDestination getDestination(String connectionID, boolean reuseConnection) 
-	throws ConnectionException, JCoException, ConnectionNotFoundException, ProviderNotFoundException {
+	throws ConnectionException, ConnectionNotFoundException, ProviderNotFoundException {
 		return getDestination(ConnectionRegistry.getInstance().getConnectionData(connectionID), reuseConnection);
 	}
 
@@ -419,12 +425,11 @@ public class ConnectionManager  {
 	 * @param connectionID
 	 * @return the connection
 	 * @throws ConnectionException 
-	 * @throws JCoException 
 	 * @throws ProviderNotFoundException 
 	 * @throws ConnectionNotFoundException 
 	 */
 	public JCoDestination getDestination(String connectionID) 
-	throws ConnectionException, JCoException, ConnectionNotFoundException, ProviderNotFoundException {
+	throws ConnectionException, ConnectionNotFoundException, ProviderNotFoundException {
 		return getDestination(connectionID, true);
 	}
 
@@ -516,30 +521,27 @@ public class ConnectionManager  {
 	/**
 	 * Makes the connection the primary connection.
 	 * @param destination
-	 * @throws JCoException 
 	 * @throws ConnectionException 
 	 */
-	public void setPrimaryConnection(JCoDestination destination) throws ConnectionException, JCoException {
+	public void setPrimaryConnection(JCoDestination destination) throws ConnectionException {
 		setPrimaryConnection(destination.getDestinationName());
 	}
 
 	/**
 	 * Makes the connection the primary connection.
 	 * @param connection
-	 * @throws JCoException 
 	 * @throws ConnectionException 
 	 */
-	public void setPrimaryConnection(IConnection connection) throws ConnectionException, JCoException {
+	public void setPrimaryConnection(IConnection connection) throws ConnectionException {
 		setPrimaryConnection(connection.getConnectionID());
 	}
 
 	/**
 	 * Makes the connection the primary connection. 
 	 * @param connectionID
-	 * @throws JCoException 
 	 * @throws ConnectionException 
 	 */
-	public void setPrimaryConnection(String connectionID) throws ConnectionException, JCoException {
+	public void setPrimaryConnection(String connectionID) throws ConnectionException {
 		if (connectionID == null) {
 			throw new InvalidParameterException(Messages.ConnectionManager_ConnectionIDNullError); 
 		}

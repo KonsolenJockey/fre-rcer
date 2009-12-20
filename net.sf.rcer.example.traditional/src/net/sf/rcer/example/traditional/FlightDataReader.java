@@ -61,9 +61,6 @@ public class FlightDataReader {
 		} catch (ConnectionException e) {
 			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
 					"Unable to connect to the SAP R/3 system.", e);
-		} catch (JCoException e) {
-			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
-					"Unable to connect to the SAP R/3 system.", e);
 		}		
 
 		// get the function object

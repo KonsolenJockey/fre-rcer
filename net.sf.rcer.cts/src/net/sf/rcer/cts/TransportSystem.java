@@ -47,9 +47,8 @@ public class TransportSystem {
 	/**
 	 * Default constructor that tries to use the current primary connection.
 	 * @throws ConnectionException
-	 * @throws JCoException
 	 */
-	public TransportSystem() throws ConnectionException, JCoException {
+	public TransportSystem() throws ConnectionException {
 		this.destination = ConnectionManager.getInstance().getDestination();
 	}
 	

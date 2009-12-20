@@ -23,7 +23,6 @@ import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.xtext.ui.core.wizard.IProjectInfo;
 
 import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
 
 /**
  * An adapted version of the New Project wizard that asks for function modules, target package name and 
@@ -48,8 +47,6 @@ public class ExtendedRFCMappingNewProjectWizard extends	RFCMappingNewProjectWiza
 		try {
 			this.destination = ConnectionManager.getInstance().getDestination();
 		} catch (ConnectionException e) {
-			this.destination = null;
-		} catch (JCoException e) {
 			this.destination = null;
 		}
 	}

@@ -41,8 +41,6 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.menus.WorkbenchWindowControlContribution;
 
-import com.sap.conn.jco.JCoException;
-
 /**
  * The trim widget that displays the connection status and provides a context menu to log on and log off.
  * @author vwegert
@@ -249,10 +247,6 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 	protected void connect(IConnectionData connectionData) {
 		try {
 			ConnectionManager.getInstance().getDestination(connectionData, false);
-		} catch (JCoException e) {
-			ErrorDialog.openError(getWorkbenchWindow().getShell(), Messages.ConnectionStatusDisplay_ErrorTitle, 
-					Messages.ConnectionStatusDisplay_ConnectionErrorMessage, 
-					new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 		} catch (ConnectionException e) {
 			ErrorDialog.openError(getWorkbenchWindow().getShell(), Messages.ConnectionStatusDisplay_ErrorTitle, 
 					Messages.ConnectionStatusDisplay_ConnectionErrorMessage, 
@@ -267,10 +261,6 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 	protected void setPrimaryConnection(IConnection connection) {
 		try {
 			ConnectionManager.getInstance().setPrimaryConnection(connection);
-		} catch (JCoException e) {
-			ErrorDialog.openError(getWorkbenchWindow().getShell(), Messages.ConnectionStatusDisplay_ErrorTitle, 
-					Messages.ConnectionStatusDisplay_ConnectionErrorMessage, 
-					new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 		} catch (ConnectionException e) {
 			ErrorDialog.openError(getWorkbenchWindow().getShell(), Messages.ConnectionStatusDisplay_ErrorTitle, 
 					Messages.ConnectionStatusDisplay_ConnectionErrorMessage, 

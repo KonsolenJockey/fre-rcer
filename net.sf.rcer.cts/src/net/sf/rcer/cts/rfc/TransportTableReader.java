@@ -148,8 +148,8 @@ public class TransportTableReader {
 		ITableContents table;
 		try {
 			table = reader.read(criteria);
-		} catch (JCoException e1) {
-			throw new TransportException(Messages.TransportTableReader_ErrorReadingContents, e1); 
+		} catch (JCoException e) {
+			throw new TransportException(Messages.TransportTableReader_ErrorReadingContents, e); 
 		}
 		
 		Set<String> transports = new HashSet<String>();
@@ -181,8 +181,8 @@ public class TransportTableReader {
 		ITableContents table;
 		try {
 			table = reader.read((MessageFormat.format("STRKORR = ''{0}''", orderID))); //$NON-NLS-1$
-		} catch (JCoException e1) {
-			throw new TransportException(Messages.TransportTableReader_ErrorReadingContents, e1); 
+		} catch (JCoException e) {
+			throw new TransportException(Messages.TransportTableReader_ErrorReadingContents, e); 
 		}
 		
 		Set<String> tasks = new HashSet<String>();
