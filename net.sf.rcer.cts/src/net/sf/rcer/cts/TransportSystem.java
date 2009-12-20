@@ -81,7 +81,7 @@ public class TransportSystem {
 			throw new TransportException(MessageFormat.format(Messages.TransportSystem_ErrorReadingTransportOrder,
 					id, e.getLocalizedMessage()), e);
 		}
-		if (!result.getException().isEmpty()) {
+		if (!result.getException().equals("")) {
 			throw new TransportException(MessageFormat.format(
 					Messages.TransportSystem_ExceptionReadingTransportOrder,
 					id, result.getException()));
@@ -93,7 +93,7 @@ public class TransportSystem {
 					id, result.getMessage().getText()));
 		}
 		
-		if (!result.getHeader().getParentID().isEmpty()) {
+		if (!result.getHeader().getParentID().equals("")) {
 			throw new TransportException(MessageFormat.format(
 					Messages.TransportSystem_ErrorTaskNotOrder, id));
 		}

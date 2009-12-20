@@ -71,7 +71,7 @@ public class TransportTableReader {
 		
 		List<String> criteria = new ArrayList<String>();
 		
-		if ((owner != null) && (!owner.isEmpty())) {
+		if ((owner != null) && (!owner.equals(""))) {
 			criteria.add(MessageFormat.format("AS4USER = ''{0}''", owner)); //$NON-NLS-1$
 		}
 		
@@ -104,7 +104,7 @@ public class TransportTableReader {
 		try {
 			for (ITableLine line: table) {
 				// safeguard against accidental selection of transport tasks
-				if (line.getValue("STRKORR").isEmpty()) { //$NON-NLS-1$
+				if (line.getValue("STRKORR").equals("")) { //$NON-NLS-1$
 					transports.add(line.getValue("TRKORR")); //$NON-NLS-1$
 				}
 			}
@@ -131,7 +131,7 @@ public class TransportTableReader {
 		
 		List<String> criteria = new ArrayList<String>();
 		
-		if ((user != null) && (!user.isEmpty())) {
+		if ((user != null) && (!user.equals(""))) {
 			criteria.add(MessageFormat.format("AS4USER = ''{0}''", user)); //$NON-NLS-1$
 		}
 		
@@ -157,7 +157,7 @@ public class TransportTableReader {
 			for (ITableLine line: table) {
 				final String type = line.getValue("TRFUNCTION"); //$NON-NLS-1$
 				if (TransportOrderType.isValidOrderType(type)) { // TODO add TransportTaskType 
-					if (line.getValue("STRKORR").isEmpty()) { //$NON-NLS-1$
+					if (line.getValue("STRKORR").equals("")) { //$NON-NLS-1$
 						transports.add(line.getValue("TRKORR")); //$NON-NLS-1$
 					} else {
 						transports.add(line.getValue("STRKORR")); //$NON-NLS-1$
