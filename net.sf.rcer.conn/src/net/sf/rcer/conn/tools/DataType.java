@@ -136,7 +136,7 @@ public enum DataType {
 		case 'V': return VARC;
 		case 'r': return REF_CLASS_IFACE;
 		case 'l': return REF_DATA;
-		default: throw new IllegalArgumentException(MessageFormat.format(Messages.DataType_0, 
+		default: throw new IllegalArgumentException(MessageFormat.format(Messages.DataType_ErrorInvalidDataType, 
 				internalRepresentation));
 		}
 	}

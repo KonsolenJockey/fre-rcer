@@ -22,16 +22,22 @@ public class Messages extends NLS {
 	
 	private static final String BUNDLE_NAME = "net.sf.rcer.conn.messages"; //$NON-NLS-1$
 	
+	public static String BAPIMessage_ErrorUnsupportedStructure;
+
+	public static String BAPIMessages_ErrorUnsupportedStructure;
+
 	public static String Connection_DefaultClientUnchangeableError;
 	public static String Connection_DefaultLocaleUnchangeable;
 	public static String Connection_DefaultUserUnchangeable;
 	public static String Connection_LongStringFormat;
 	public static String Connection_ShortStringFormat;
+	
 	public static String ConnectionData_InvalidMessageServerPortError;
 	public static String ConnectionData_InvalidSystemNumberError;
 	public static String ConnectionData_ParameterNotSupportedForBalancedError;
 	public static String ConnectionData_ParameterNotSupportedForDirectError;
 	public static String ConnectionData_StringFormat;
+	
 	public static String ConnectionManager_ConnectionDataNotFoundError;
 	public static String ConnectionManager_ConnectionIDNullError;
 	public static String ConnectionManager_ConnectionNotActiveError;
@@ -43,7 +49,9 @@ public class Messages extends NLS {
 	public static String ConnectionManager_InvalidCPICTraceLevelError;
 	public static String ConnectionManager_InvalidRFCTraceLevelError;
 	public static String ConnectionManager_LogonCancelled;
+	
 	public static String ConnectionNotFoundException_Message;
+	
 	public static String ConnectionRegistry_ConnectionRetrievalError;
 	public static String ConnectionRegistry_InvalidConnectionIDError;
 	public static String ConnectionRegistry_InvalidLocaleError;
@@ -51,23 +59,32 @@ public class Messages extends NLS {
 	public static String ConnectionRegistry_InvalidSystemNumberError;
 	public static String ConnectionRegistry_LoadConnectionProviderError;
 	public static String ConnectionRegistry_ReplaceConnectionProviderError;
+	
 	public static String ConnectionType_Direct;
 	public static String ConnectionType_LoadBalanced;
 	public static String ConnectionType_UnsupportedValue;
-	public static String DataType_0;
+	
+	public static String DataType_ErrorInvalidDataType;
+	
 	public static String FieldNotFoundException_Message;
+	
 	public static String Locale_StringFormat;
 	public static String Locale_UnsupportedClass;
 	public static String Locale_UnsupportedStringValue;
+	
 	public static String LocaleRegistry_NoLocaleForInternalID;
 	public static String LocaleRegistry_NoLocaleForISOCode;
+	
 	public static String PreferencesConnectionManager_ConnectionContainsErrors;
 	public static String PreferencesConnectionManager_ConnectionIDNotNumeric;
 	public static String PreferencesConnectionManager_ConnectionIDOutOfBounds;
 	public static String PreferencesConnectionManager_InvalidConnectionType;
 	public static String PreferencesConnectionManager_InvalidDefaultLocale;
+	
 	public static String ProviderNotFoundException_Message;
+	
 	public static String TableField_StringFormat;
+	
 	public static String TableReader_ResultTooLong;
 	public static String TableReader_SelectionCriteriaTooLong;
 	public static String TableReader_UnknownField;
