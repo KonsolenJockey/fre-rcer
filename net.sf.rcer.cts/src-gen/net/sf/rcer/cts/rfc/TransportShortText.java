@@ -43,15 +43,15 @@ public class TransportShortText {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("TRKORR", this.transportID);
-		target.setValue("LANGU", this.language);
-		target.setValue("AS4TEXT", this.text);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("TRKORR", this.transportID);
+		targetStructure.setValue("LANGU", this.language);
+		targetStructure.setValue("AS4TEXT", this.text);
 	}
 
 	/**
@@ -69,8 +69,8 @@ public class TransportShortText {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<TransportShortText> fromTable(JCoTable source) {
 		List<TransportShortText> list = new ArrayList<TransportShortText>();

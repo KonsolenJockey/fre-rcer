@@ -45,16 +45,16 @@ public class TransportMessage {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("MSGID", this.messageID);
-		target.setValue("MSGTY", this.messageType);
-		target.setValue("MSGNO", this.messageNumber);
-		target.setValue("MSGTEXT", this.text);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("MSGID", this.messageID);
+		targetStructure.setValue("MSGTY", this.messageType);
+		targetStructure.setValue("MSGNO", this.messageNumber);
+		targetStructure.setValue("MSGTEXT", this.text);
 	}
 
 	/**
@@ -72,8 +72,8 @@ public class TransportMessage {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<TransportMessage> fromTable(JCoTable source) {
 		List<TransportMessage> list = new ArrayList<TransportMessage>();

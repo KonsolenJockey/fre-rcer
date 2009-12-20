@@ -51,19 +51,19 @@ public class TaskUserListEntry {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("AS4USER", this.userName);
-		target.setValue("CORRECTION", this.correctionID);
-		target.setValue("CORRERRMSG", this.correctionErrorMessage);
-		target.setValue("REPAIR", this.repairID);
-		target.setValue("REPAERRMSG", this.repairErrorMessage);
-		target.setValue("UNCLASTASK", this.unclassifiedID);
-		target.setValue("UNCLERRMSG", this.unclassifiedErrorMessage);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("AS4USER", this.userName);
+		targetStructure.setValue("CORRECTION", this.correctionID);
+		targetStructure.setValue("CORRERRMSG", this.correctionErrorMessage);
+		targetStructure.setValue("REPAIR", this.repairID);
+		targetStructure.setValue("REPAERRMSG", this.repairErrorMessage);
+		targetStructure.setValue("UNCLASTASK", this.unclassifiedID);
+		targetStructure.setValue("UNCLERRMSG", this.unclassifiedErrorMessage);
 	}
 
 	/**
@@ -81,8 +81,8 @@ public class TaskUserListEntry {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<TaskUserListEntry> fromTable(JCoTable source) {
 		List<TaskUserListEntry> list = new ArrayList<TaskUserListEntry>();

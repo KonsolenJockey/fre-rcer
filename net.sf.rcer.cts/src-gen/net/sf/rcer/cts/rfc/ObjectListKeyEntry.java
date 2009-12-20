@@ -57,22 +57,22 @@ public class ObjectListKeyEntry {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("TRKORR", this.transportID);
-		target.setValue("PGMID", this.programID);
-		target.setValue("OBJECT", this.objectType);
-		target.setValue("OBJNAME", this.objectName);
-		target.setValue("AS4POS", this.row);
-		target.setValue("MASTERTYPE", this.masterObjectType);
-		target.setValue("MASTERNAME", this.masterObjectName);
-		target.setValue("VIEWNAME", this.viewName);
-		target.setValue("OBJFUNC", this.objectFunction);
-		target.setValue("TABKEY", this.tableKey);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("TRKORR", this.transportID);
+		targetStructure.setValue("PGMID", this.programID);
+		targetStructure.setValue("OBJECT", this.objectType);
+		targetStructure.setValue("OBJNAME", this.objectName);
+		targetStructure.setValue("AS4POS", this.row);
+		targetStructure.setValue("MASTERTYPE", this.masterObjectType);
+		targetStructure.setValue("MASTERNAME", this.masterObjectName);
+		targetStructure.setValue("VIEWNAME", this.viewName);
+		targetStructure.setValue("OBJFUNC", this.objectFunction);
+		targetStructure.setValue("TABKEY", this.tableKey);
 	}
 
 	/**
@@ -90,8 +90,8 @@ public class ObjectListKeyEntry {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<ObjectListKeyEntry> fromTable(JCoTable source) {
 		List<ObjectListKeyEntry> list = new ArrayList<ObjectListKeyEntry>();

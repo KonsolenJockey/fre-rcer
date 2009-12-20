@@ -51,19 +51,19 @@ public class ObjectListEntry {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("TRKORR", this.transportID);
-		target.setValue("AS4POS", this.row);
-		target.setValue("PGMID", this.programID);
-		target.setValue("OBJECT", this.objectType);
-		target.setValue("OBJ_NAME", this.objectName);
-		target.setValue("OBJFUNC", this.objectFunction);
-		target.setValue("LOCKFLAG", this.locked);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("TRKORR", this.transportID);
+		targetStructure.setValue("AS4POS", this.row);
+		targetStructure.setValue("PGMID", this.programID);
+		targetStructure.setValue("OBJECT", this.objectType);
+		targetStructure.setValue("OBJ_NAME", this.objectName);
+		targetStructure.setValue("OBJFUNC", this.objectFunction);
+		targetStructure.setValue("LOCKFLAG", this.locked);
 	}
 
 	/**
@@ -81,8 +81,8 @@ public class ObjectListEntry {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<ObjectListEntry> fromTable(JCoTable source) {
 		List<ObjectListEntry> list = new ArrayList<ObjectListEntry>();

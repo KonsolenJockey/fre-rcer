@@ -104,6 +104,7 @@ public class AddTaskRequest {
 	/**
 	 * Executes the RFC call and returns the response instance.
 	 * @param destination the RFC destination to use
+	 * @return the instance of the response class
 	 * @throws JCoException
 	 */
 	public AddTaskResponse execute(JCoDestination destination) throws JCoException {

@@ -56,21 +56,21 @@ public class TransportHeader {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("TRKORR", this.transportID);
-		target.setValue("TRFUNCTION", this.type);
-		target.setValue("TRSTATUS", this.status);
-		target.setValue("TARSYSTEM", this.target);
-		target.setValue("KORRDEV", this.category);
-		target.setValue("AS4USER", this.user);
-		target.setValue("AS4DATE", this.lastChangeDate);
-		target.setValue("AS4TIME", this.lastChangeTime);
-		target.setValue("STRKORR", this.parentID);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("TRKORR", this.transportID);
+		targetStructure.setValue("TRFUNCTION", this.type);
+		targetStructure.setValue("TRSTATUS", this.status);
+		targetStructure.setValue("TARSYSTEM", this.target);
+		targetStructure.setValue("KORRDEV", this.category);
+		targetStructure.setValue("AS4USER", this.user);
+		targetStructure.setValue("AS4DATE", this.lastChangeDate);
+		targetStructure.setValue("AS4TIME", this.lastChangeTime);
+		targetStructure.setValue("STRKORR", this.parentID);
 	}
 
 	/**
@@ -88,8 +88,8 @@ public class TransportHeader {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<TransportHeader> fromTable(JCoTable source) {
 		List<TransportHeader> list = new ArrayList<TransportHeader>();
