@@ -199,6 +199,9 @@ public class ProjectGenerator implements IRunnableWithProgress {
 	 * @throws IOException 
 	 */
 	private void createPluginProject(IProgressMonitor monitor, String sourceFileName, String pluginName) throws CoreException, IOException {
+		
+		// TODO use EclipseResourcesUtil for this?
+		
 		monitor.subTask(MessageFormat.format(Messages.ProjectGenerator_CreatePluginTaskDescription, pluginName));
 
 		// read the source file                                                                              10
