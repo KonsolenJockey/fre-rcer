@@ -157,14 +157,14 @@ public class «className» {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
 «FOREACH fields AS f-»
-		target.setValue("«f.name»", this.«f.attribute»);
+		targetStructure.setValue("«f.name»", this.«f.attribute»);
 «ENDFOREACH-»
 	}
 
@@ -183,8 +183,8 @@ public class «className» {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<«className»> fromTable(JCoTable source) {
 		List<«className»> list = new ArrayList<«className»>();
@@ -361,6 +361,7 @@ public class «requestClassName» {
 	/**
 	 * Executes the RFC call and returns the response instance.
 	 * @param destination the RFC destination to use
+	 * @return the instance of the response class
 	 * @throws JCoException
 	 */
 	public «responseClassName» execute(JCoDestination destination) throws JCoException {
