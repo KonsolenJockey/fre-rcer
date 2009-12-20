@@ -1,0 +1,172 @@
+//
+// Copyright (c) 2009 The RCER Development Team.
+//
+// All rights reserved. This program and the accompanying materials
+// are made available under the terms of the Eclipse Public License v1.0
+// which accompanies this distribution, and is available at
+// http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,
+// this entire header must remain intact.
+//
+// $Id$
+//
+package "net.sf.rcer.cts.rfc"
+
+structure "TR001" {
+	class TransportHeader {
+		field "TRKORR"     = String transportID    comment "Request or Task";
+		field "TRFUNCTION" = String type           comment "Transport Type (Function)";
+		field "TRSTATUS"   = String status         comment "Status";
+		field "TARSYSTEM"  = String target         comment "Transport destination";
+		field "KORRDEV"    = String category       comment "Category";
+		field "AS4USER"    = String user           comment "Last changed by";
+		field "AS4DATE"    = Date   lastChangeDate comment "Last changed on";
+		field "AS4TIME"    = Date   lastChangeTime comment "Last changed at";
+		field "STRKORR"    = String parentID       comment "Higher-level request";
+	}
+}
+
+structure "TR002" {
+	class ObjectListEntry {
+		field "TRKORR"   = String  transportID    comment "Request or Task";
+		field "AS4POS"   = int     row            comment "Row number";
+		field "PGMID"    = String  programID      comment "Program ID";
+		field "OBJECT"   = String  objectType     comment "Object Type";
+		field "OBJ_NAME" = String  objectName     comment "Object Name";
+		field "OBJFUNC"  = String  objectFunction comment "Object Function";
+		field "LOCKFLAG" = boolean locked         comment "Status";
+	//	field "GENNUM"   = String  GENNUM         comment "Language information";
+	}
+}
+
+structure "TR003" {
+	class ObjectListKeyEntry {
+		field "TRKORR"     = String transportID      comment "Request or Task";
+		field "PGMID"      = String programID        comment "Program ID";
+		field "OBJECT"     = String objectType       comment "Object Type";
+		field "OBJNAME"    = String objectName       comment "Object Name";
+		field "AS4POS"     = int    row              comment "Row number";
+		field "MASTERTYPE" = String masterObjectType comment "Master Object Type";
+		field "MASTERNAME" = String masterObjectName comment "Master Object Name";
+		field "VIEWNAME"   = String viewName         comment "View Name";
+		field "OBJFUNC"    = String objectFunction   comment "Object Function";
+		field "TABKEY"     = String tableKey         comment "Table Key";
+	//	field "SORTFLAG"   = String SORTFLAG         comment "Indicator";
+	//	field "FLAG"       = String FLAG             comment "Indicator";
+	}
+}
+
+structure "TR004" {
+	class TransportMessage {
+		field "MSGID"   = String messageID     comment "Message ID";
+		field "MSGTY"   = String messageType   comment "Message Type (E, I, W,...)";
+		field "MSGNO"   = String messageNumber comment "Message Number";
+		field "MSGTEXT" = String text          comment "Message Text";
+	}
+}
+
+structure "TR005" {
+	class TaskUserListEntry {
+		field "AS4USER"    = String userName                 comment "User Name";
+		field "CORRECTION" = String correctionID             comment "ID of Correction Task";
+		field "CORRERRMSG" = int    correctionErrorMessage   comment "Error Message (Correction Task)";
+		field "REPAIR"     = String repairID                 comment "ID of Repair Task";
+		field "REPAERRMSG" = int    repairErrorMessage       comment "Error Message (Repair Task)";
+		field "UNCLASTASK" = String unclassifiedID           comment "ID of Unclassified Task";
+		field "UNCLERRMSG" = int    unclassifiedErrorMessage comment "Error Message (Unclassified Task)";
+	}
+}
+
+structure "TR008" {
+	class TransportShortText {
+		field "TRKORR"  = String transportID comment "Request or Task";
+		field "LANGU"   = String language    comment "Language";
+		field "AS4TEXT" = String text        comment "Short Text";
+	}
+}
+
+function module "TR40_ORDER_CHANGE_OWNER" {
+	class ChangeOrderOwnerCall {
+		import field     "IV_TRKORR"    = String           orderID   comment "ID of the transport order";
+		import field     "IV_NEW_OWNER" = String           newOwner  comment "user name of the new owner";
+		export structure "ES_MSG"       = TransportMessage message   comment "message that occurred during execution, if any";
+		export field     "EV_EXCEPTION" = String           exception comment "exception that occurred during execution, if any";
+	}
+}
+
+function module "TR40_ORDER_CREATE" {
+	request class CreateOrderRequest {
+		import field "IV_CATEGORY"     = String             category            comment "category of the transport order";
+		import field "IV_KURZTEXT"     = String             text                comment "short text";
+		import field "IV_LAYER"        = String             transportLayer      comment "transport layer";
+		import field "IV_OWNER"        = String             owner               comment "owner of the transport";
+		import field "IV_CORRECTION"   = boolean            correctionRequested comment "whether to create a correction task";
+		import field "IV_REPAIR"       = boolean            repairRequested     comment "whether to create a repair task";
+		table        "TT_USERLIST"     = TaskUserListEntry  users               comment "list of users to create tasks for";
+	}
+	response class CreateOrderResponse {
+		export field "EV_TRKORR_ORDER" = String            orderID   comment "ID of the newly created order";
+		table        "TT_USERLIST"     = TaskUserListEntry users     comment "list of users and associated task IDs";
+		export field "EV_EXCEPTION"    = String            exception comment "exception that occurred during execution, if any";
+		table        "TT_MSG"          = TransportMessage  messages  comment "messages that occurred during execution, if any";
+	}
+}
+
+function module "TR40_ORDER_DELETE" {
+	class DeleteOrderCall {
+		import field     "IV_TRKORR"    = String           orderID   comment "ID of the order to delete";
+		export structure "ES_MSG"       = TransportMessage message   comment "message that occurred during execution, if any";
+		export field     "EV_EXCEPTION" = String           exception comment "exception that occurred during execution, if any";
+	}
+}
+
+function module "TR40_ORDER_RELEASE" {
+	class ReleaseOrderCall {
+		import field     "IV_TRKORR"    = String           orderID   comment "ID of the order to release";
+		export structure "ES_MSG"       = TransportMessage message   comment "message that occurred during execution, if any";
+		export field     "EV_EXCEPTION" = String           exception comment "exception that occurred during execution, if any";
+	}
+}
+
+function module "TR40_READ_COMM" {
+	request class ReadTransportRequest {
+		import field "IV_TRKORR"    = String orderID                  comment "ID of the order or task to read";
+		import field "IV_SEL_E070"  = boolean headerRequested         comment "whether to read the header";
+		import field "IV_SEL_E071"  = boolean objectListRequested     comment "whether to read the object list";
+		import field "IV_SEL_E071K" = boolean objectListKeysRequested comment "whether to read the keys";
+		import field "IV_SEL_E07T"  = boolean textRequested           comment "whether to read the texts";
+	}
+	response class ReadTransportResponse {
+		export structure "ES_E070"              = TransportHeader     header         comment "header of the transport";
+		export structure "ES_E07T"              = TransportShortText  text           comment "texts of the transport";
+		export field     "EV_E07T_DOESNT_EXIST" = boolean             textMissing    comment "whether the texts are missing";
+		table            "TT_E071"              = ObjectListEntry     objectList     comment "object list of the transport";
+		table            "TT_E071K"             = ObjectListKeyEntry  objectListKeys comment "key list of the transport";
+		export structure "ES_MSG"               = TransportMessage    message        comment "message that occurred during execution, if any";
+		export field     "EV_EXCEPTION"         = String              exception      comment "exception that occurred during execution, if any";
+	}
+}
+
+function module "TR40_TASK_ADD" {
+	request class AddTaskRequest {
+		import field "IV_TRKORR"     = String             orderID             comment "ID of the order to add the tasks to";
+		import field "IV_CORRECTION" = boolean            correctionRequested comment "whether to create a correction task";
+		import field "IV_REPAIR"     = boolean            repairRequested     comment "whether to create a repair task";
+		table        "TT_USERLIST"   = TaskUserListEntry  users               comment "list of users to create tasks for";
+	}
+	response class AddTaskResponse {
+		table        "TT_USERLIST"  = TaskUserListEntry users     comment "list of users and associated task IDs";
+		export field "EV_EXCEPTION" = String            exception comment "exception that occurred during execution, if any";
+		table        "TT_MSG"       = TransportMessage  messages  comment "messages that occurred during execution, if any";
+	}
+}
+
+function module "TR40_TASK_CHANGE_OWNER" {
+	class ChangeTaskOwnerRequest {
+		import field "IV_TRKORR"        = String taskID   comment "ID of the task";
+		import field "IV_OLD_OWNER"     = String oldOwner comment "old owner name";
+		import field "IV_NEW_OWNER"     = String newOwner comment "new owner name";
+		export structure "ES_MSG"       = TransportMessage message   comment "message that occurred during execution, if any";
+		export field     "EV_EXCEPTION" = String           exception comment "exception that occurred during execution, if any";
+	}
+}
+
