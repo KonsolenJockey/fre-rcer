@@ -1,9 +1,0 @@
-net.sf.rcer.conn
-net.sf.rcer.conn.connections
-net.sf.rcer.conn.locales
-net.sf.rcer.conn.preferences
-net.sf.rcer.conn.tools
-net.sf.rcer.conn.ui
-net.sf.rcer.conn.ui.login
-net.sf.rcer.conn.ui.preferences
-net.sf.rcer.conn.ui.status
