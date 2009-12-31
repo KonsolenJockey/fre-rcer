@@ -11,7 +11,7 @@
  * $Id$
  *
 «ENDREM»
-«IMPORT rFCMapping»;
+«IMPORT mapping»;
 «EXTENSION templates::Extensions»
 
 «REM» ============================================================================================= «ENDREM»
