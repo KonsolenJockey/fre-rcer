@@ -41,7 +41,7 @@ import org.eclipse.swt.widgets.TreeColumn;
 import com.sap.conn.jco.JCoDestination;
 
 /**
- * TODO Write documentation for type TransportSelectionDialog.
+ * A dialog to select transport orders and tasks. 
  * @author vwegert
  *
  */
