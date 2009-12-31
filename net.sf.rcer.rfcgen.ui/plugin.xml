@@ -6,42 +6,42 @@
     <extension
             point="org.eclipse.ui.editors">
         <editor
-            class="net.sf.rcer.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.ui.core.editor.XtextEditor"
+            class="net.sf.rcer.rfcgen.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.ui.core.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="rfcgen"
-            id="net.sf.rcer.RFCMapping"
+            id="net.sf.rcer.rfcgen.RFCMapping"
             name="%editor.name">
         </editor>
     </extension>
     <extension
         point="org.eclipse.ui.handlers">
         <handler
-            class="net.sf.rcer.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.ui.common.editor.hyperlinking.OpenDeclarationHandler"
+            class="net.sf.rcer.rfcgen.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.ui.common.editor.hyperlinking.OpenDeclarationHandler"
             commandId="org.eclipse.xtext.ui.common.editor.hyperlinking.OpenDeclaration">
             <activeWhen>
                 <reference
-                    definitionId="net.sf.rcer.RFCMapping.Editor.opened">
+                    definitionId="net.sf.rcer.rfcgen.RFCMapping.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
         <handler
-            class="net.sf.rcer.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.ui.core.editor.handler.ValidateActionHandler"
-            commandId="net.sf.rcer.RFCMapping.validate">
+            class="net.sf.rcer.rfcgen.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.ui.core.editor.handler.ValidateActionHandler"
+            commandId="net.sf.rcer.rfcgen.RFCMapping.validate">
          <activeWhen>
             <reference
-                    definitionId="net.sf.rcer.RFCMapping.Editor.opened">
+                    definitionId="net.sf.rcer.rfcgen.RFCMapping.Editor.opened">
             </reference>
          </activeWhen>
       </handler>
     </extension>
     <extension point="org.eclipse.core.expressions.definitions">
-        <definition id="net.sf.rcer.RFCMapping.Editor.opened">
+        <definition id="net.sf.rcer.rfcgen.RFCMapping.Editor.opened">
             <and>
                 <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.core.editor.XtextEditor.languageName" 
-                        value="net.sf.rcer.RFCMapping" 
+                        value="net.sf.rcer.rfcgen.RFCMapping" 
                         forcePluginActivation="true"/>
                 </with>        
             </and>
@@ -50,38 +50,38 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="net.sf.rcer.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.ui.core.editor.preferences.LanguageRootPreferencePage"
-            id="net.sf.rcer.RFCMapping"
+            class="net.sf.rcer.rfcgen.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.ui.core.editor.preferences.LanguageRootPreferencePage"
+            id="net.sf.rcer.rfcgen.RFCMapping"
             name="%preferences.root.name"
-            category="net.sf.rcer.conn.ui.preferences.TopLevelPreferencePage">
-            <keywordReference id="net.sf.rcer.ui.keyword_RFCMapping"/>
+            category="net.sf.rcer.rfcgen.conn.ui.preferences.TopLevelPreferencePage">
+            <keywordReference id="net.sf.rcer.rfcgen.ui.keyword_RFCMapping"/>
         </page>
         <page
-            category="net.sf.rcer.RFCMapping"
-            class="net.sf.rcer.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.ui.common.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-            id="net.sf.rcer.RFCMapping.coloring"
+            category="net.sf.rcer.rfcgen.RFCMapping"
+            class="net.sf.rcer.rfcgen.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.ui.common.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+            id="net.sf.rcer.rfcgen.RFCMapping.coloring"
             name="%preferences.coloring.name">
-            <keywordReference id="net.sf.rcer.ui.keyword_RFCMapping"/>
+            <keywordReference id="net.sf.rcer.rfcgen.ui.keyword_RFCMapping"/>
         </page>
         <page
-            category="net.sf.rcer.RFCMapping"
-            class="net.sf.rcer.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.ui.common.editor.templates.XtextTemplatePreferencePage"
-            id="net.sf.rcer.RFCMapping.templates"
+            category="net.sf.rcer.rfcgen.RFCMapping"
+            class="net.sf.rcer.rfcgen.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.ui.common.editor.templates.XtextTemplatePreferencePage"
+            id="net.sf.rcer.rfcgen.RFCMapping.templates"
             name="%preferences.templates.name">
-            <keywordReference id="net.sf.rcer.ui.keyword_RFCMapping"/>
+            <keywordReference id="net.sf.rcer.rfcgen.ui.keyword_RFCMapping"/>
         </page>
     </extension>
     <extension
         point="org.eclipse.ui.keywords">
         <keyword
-            id="net.sf.rcer.ui.keyword_RFCMapping"
+            id="net.sf.rcer.rfcgen.ui.keyword_RFCMapping"
             label="%keyword.label"/>
     </extension>
     <extension
          point="org.eclipse.ui.commands">
       <command
             description="%commands.validate.description"
-            id="net.sf.rcer.RFCMapping.validate"
+            id="net.sf.rcer.rfcgen.RFCMapping.validate"
             name="%commands.validate.name">
       </command>
     </extension>
@@ -89,12 +89,12 @@
         <menuContribution
             locationURI="popup:#TextEditorContext?after=group.open">
              <command
-                 commandId="net.sf.rcer.RFCMapping.validate"
+                 commandId="net.sf.rcer.rfcgen.RFCMapping.validate"
                  style="push"
                  tooltip="%commands.validate.tooltip">
             <visibleWhen checkEnabled="false">
                 <reference
-                    definitionId="net.sf.rcer.RFCMapping.Editor.opened">
+                    definitionId="net.sf.rcer.rfcgen.RFCMapping.Editor.opened">
                 </reference>
             </visibleWhen>
          </command>  
@@ -106,7 +106,7 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="net.sf.rcer.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.resource.XtextResourceFactory"
+			class="net.sf.rcer.rfcgen.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.resource.XtextResourceFactory"
 			type="rfcgen">
 		</parser>
 	</extension>
@@ -114,15 +114,15 @@
    <extension
          point="org.eclipse.ui.newWizards">
       <wizard
-            category="net.sf.rcer"
-            class="net.sf.rcer.RFCMappingExecutableExtensionFactory:net.sf.rcer.ui.wizard.ExtendedRFCMappingNewProjectWizard"
+            category="net.sf.rcer.rfcgen"
+            class="net.sf.rcer.rfcgen.RFCMappingExecutableExtensionFactory:net.sf.rcer.rfcgen.ui.wizard.ExtendedRFCMappingNewProjectWizard"
             icon="icons/editor.gif"
-            id="net.sf.rcer.ui.wizard.ExtendedRFCMappingNewProjectWizard"
+            id="net.sf.rcer.rfcgen.ui.wizard.ExtendedRFCMappingNewProjectWizard"
             name="%wizard.name"
             project="true">
       </wizard>
       <category
-            id="net.sf.rcer"
+            id="net.sf.rcer.rfcgen"
             name="%wizard.category.name">
       </category>
    </extension>
