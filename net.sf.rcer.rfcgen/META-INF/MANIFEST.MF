@@ -21,11 +21,11 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.common,
  org.antlr.runtime
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: net.sf.rcer,
- net.sf.rcer.services,
- net.sf.rcer.rFCMapping,
- net.sf.rcer.rFCMapping.impl,
- net.sf.rcer.rFCMapping.util,
- net.sf.rcer.parseTreeConstruction,
- net.sf.rcer.parser.antlr,
- net.sf.rcer.validation
+Export-Package: net.sf.rcer.rfcgen,
+ net.sf.rcer.rfcgen.services,
+ net.sf.rcer.rfcgen.parseTreeConstruction,
+ net.sf.rcer.rfcgen.parser.antlr,
+ net.sf.rcer.rfcgen.validation,
+ net.sf.rcer.rfcgen.mapping,
+ net.sf.rcer.rfcgen.mapping.impl,
+ net.sf.rcer.rfcgen.mapping.util

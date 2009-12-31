@@ -6,8 +6,8 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://www.sf.net/rcer/RFCMapping" 
-       class = "net.sf.rcer.rFCMapping.RFCMappingPackage"
-       genModel = "net/sf/rcer/RFCMapping.genmodel" /> 
+       class = "net.sf.rcer.rfcgen.mapping.MappingPackage"
+       genModel = "net/sf/rcer/rfcgen/RFCMapping.genmodel" /> 
 	
   </extension>
 
