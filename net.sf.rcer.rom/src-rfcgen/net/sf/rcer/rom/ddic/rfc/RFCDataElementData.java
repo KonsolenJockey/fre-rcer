@@ -85,33 +85,33 @@ public class RFCDataElementData {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("DOMNAME", this.typeName);
-		target.setValue("MEMORYID", this.parameterID);
-		target.setValue("LOGFLAG", this.logged);
-		target.setValue("HEADLEN", this.headingLength);
-		target.setValue("SCRLEN1", this.shortTextLength);
-		target.setValue("SCRLEN2", this.mediumTextLength);
-		target.setValue("SCRLEN3", this.longTextLength);
-		target.setValue("SHLPNAME", this.searchHelpName);
-		target.setValue("SHLPFIELD", this.searchHelpField);
-		target.setValue("DEFFDNAME", this.defaultFieldName);
-		target.setValue("DATATYPE", this.dataType);
-		target.setValue("LENG", this.length);
-		target.setValue("DECIMALS", this.decimals);
-		target.setValue("OUTPUTLEN", this.outputLength);
-		target.setValue("LOWERCASE", this.caseSensitive);
-		target.setValue("SIGNFLAG", this.signed);
-		target.setValue("CONVEXIT", this.conversionExit);
-		target.setValue("VALEXI", this.valueListFixed);
-		target.setValue("ENTITYTAB", this.valueTable);
-		target.setValue("REFKIND", this.typeKind);
-		target.setValue("REFTYPE", this.referenceKind);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("DOMNAME", this.typeName);
+		targetStructure.setValue("MEMORYID", this.parameterID);
+		targetStructure.setValue("LOGFLAG", this.logged);
+		targetStructure.setValue("HEADLEN", this.headingLength);
+		targetStructure.setValue("SCRLEN1", this.shortTextLength);
+		targetStructure.setValue("SCRLEN2", this.mediumTextLength);
+		targetStructure.setValue("SCRLEN3", this.longTextLength);
+		targetStructure.setValue("SHLPNAME", this.searchHelpName);
+		targetStructure.setValue("SHLPFIELD", this.searchHelpField);
+		targetStructure.setValue("DEFFDNAME", this.defaultFieldName);
+		targetStructure.setValue("DATATYPE", this.dataType);
+		targetStructure.setValue("LENG", this.length);
+		targetStructure.setValue("DECIMALS", this.decimals);
+		targetStructure.setValue("OUTPUTLEN", this.outputLength);
+		targetStructure.setValue("LOWERCASE", this.caseSensitive);
+		targetStructure.setValue("SIGNFLAG", this.signed);
+		targetStructure.setValue("CONVEXIT", this.conversionExit);
+		targetStructure.setValue("VALEXI", this.valueListFixed);
+		targetStructure.setValue("ENTITYTAB", this.valueTable);
+		targetStructure.setValue("REFKIND", this.typeKind);
+		targetStructure.setValue("REFTYPE", this.referenceKind);
 	}
 
 	/**
@@ -129,8 +129,8 @@ public class RFCDataElementData {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<RFCDataElementData> fromTable(JCoTable source) {
 		List<RFCDataElementData> list = new ArrayList<RFCDataElementData>();

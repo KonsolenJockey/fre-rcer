@@ -49,15 +49,15 @@ public class RFCSearchHelpHeader {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("FIELDNAME", this.fieldName);
-		target.setValue("SHLPNAME", this.searchHelpName);
-		target.setValue("SHLPINHER", this.inherited);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("FIELDNAME", this.fieldName);
+		targetStructure.setValue("SHLPNAME", this.searchHelpName);
+		targetStructure.setValue("SHLPINHER", this.inherited);
 	}
 
 	/**
@@ -75,8 +75,8 @@ public class RFCSearchHelpHeader {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<RFCSearchHelpHeader> fromTable(JCoTable source) {
 		List<RFCSearchHelpHeader> list = new ArrayList<RFCSearchHelpHeader>();

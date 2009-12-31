@@ -121,51 +121,51 @@ public class RFCDataStructureField {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("FIELDNAME", this.fieldName);
-		target.setValue("POSITION", this.position);
-		target.setValue("KEYFLAG", this.keyField);
-		target.setValue("MANDATORY", this.mandatory);
-		target.setValue("ROLLNAME", this.dataElementName);
-		target.setValue("CHECKTABLE", this.checkTableName);
-		target.setValue("ADMINFIELD", this.nestingDepth);
-		target.setValue("INTTYPE", this.internalType);
-		target.setValue("INTLEN", this.internalLength);
-		target.setValue("REFTABLE", this.referenceTable);
-		target.setValue("PRECFIELD", this.includedStructure);
-		target.setValue("REFFIELD", this.referenceField);
-		target.setValue("NOTNULL", this.notNull);
-		target.setValue("DOMNAME", this.domainName);
-		target.setValue("MEMORYID", this.parameterID);
-		target.setValue("LOGFLAG", this.logged);
-		target.setValue("HEADLEN", this.headingLength);
-		target.setValue("SCRLEN1", this.shortTextLength);
-		target.setValue("SCRLEN2", this.mediumTextLength);
-		target.setValue("SCRLEN3", this.longTextLength);
-		target.setValue("DATATYPE", this.dataType);
-		target.setValue("LENG", this.length);
-		target.setValue("OUTPUTLEN", this.outputLength);
-		target.setValue("DECIMALS", this.decimals);
-		target.setValue("LOWERCASE", this.caseSensitive);
-		target.setValue("SIGNFLAG", this.signed);
-		target.setValue("VALEXI", this.valueListFixed);
-		target.setValue("ENTITYTAB", this.valueTable);
-		target.setValue("CONVEXIT", this.conversionExit);
-		target.setValue("DDTEXT", this.description);
-		target.setValue("SHLPORIGIN", this.searchHelpOrigin);
-		target.setValue("SHLPNAME", this.searchHelpName);
-		target.setValue("SHLPFIELD", this.searchHelpField);
-		target.setValue("TABLETYPE", this.nestedTable);
-		target.setValue("DEPTH", this.typeDepth);
-		target.setValue("COMPTYPE", this.componentType);
-		target.setValue("DEFFDNAME", this.defaultFieldName);
-		target.setValue("GROUPNAME", this.groupName);
-		target.setValue("REFTYPE", this.referenceKind);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("FIELDNAME", this.fieldName);
+		targetStructure.setValue("POSITION", this.position);
+		targetStructure.setValue("KEYFLAG", this.keyField);
+		targetStructure.setValue("MANDATORY", this.mandatory);
+		targetStructure.setValue("ROLLNAME", this.dataElementName);
+		targetStructure.setValue("CHECKTABLE", this.checkTableName);
+		targetStructure.setValue("ADMINFIELD", this.nestingDepth);
+		targetStructure.setValue("INTTYPE", this.internalType);
+		targetStructure.setValue("INTLEN", this.internalLength);
+		targetStructure.setValue("REFTABLE", this.referenceTable);
+		targetStructure.setValue("PRECFIELD", this.includedStructure);
+		targetStructure.setValue("REFFIELD", this.referenceField);
+		targetStructure.setValue("NOTNULL", this.notNull);
+		targetStructure.setValue("DOMNAME", this.domainName);
+		targetStructure.setValue("MEMORYID", this.parameterID);
+		targetStructure.setValue("LOGFLAG", this.logged);
+		targetStructure.setValue("HEADLEN", this.headingLength);
+		targetStructure.setValue("SCRLEN1", this.shortTextLength);
+		targetStructure.setValue("SCRLEN2", this.mediumTextLength);
+		targetStructure.setValue("SCRLEN3", this.longTextLength);
+		targetStructure.setValue("DATATYPE", this.dataType);
+		targetStructure.setValue("LENG", this.length);
+		targetStructure.setValue("OUTPUTLEN", this.outputLength);
+		targetStructure.setValue("DECIMALS", this.decimals);
+		targetStructure.setValue("LOWERCASE", this.caseSensitive);
+		targetStructure.setValue("SIGNFLAG", this.signed);
+		targetStructure.setValue("VALEXI", this.valueListFixed);
+		targetStructure.setValue("ENTITYTAB", this.valueTable);
+		targetStructure.setValue("CONVEXIT", this.conversionExit);
+		targetStructure.setValue("DDTEXT", this.description);
+		targetStructure.setValue("SHLPORIGIN", this.searchHelpOrigin);
+		targetStructure.setValue("SHLPNAME", this.searchHelpName);
+		targetStructure.setValue("SHLPFIELD", this.searchHelpField);
+		targetStructure.setValue("TABLETYPE", this.nestedTable);
+		targetStructure.setValue("DEPTH", this.typeDepth);
+		targetStructure.setValue("COMPTYPE", this.componentType);
+		targetStructure.setValue("DEFFDNAME", this.defaultFieldName);
+		targetStructure.setValue("GROUPNAME", this.groupName);
+		targetStructure.setValue("REFTYPE", this.referenceKind);
 	}
 
 	/**
@@ -183,8 +183,8 @@ public class RFCDataStructureField {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<RFCDataStructureField> fromTable(JCoTable source) {
 		List<RFCDataStructureField> list = new ArrayList<RFCDataStructureField>();

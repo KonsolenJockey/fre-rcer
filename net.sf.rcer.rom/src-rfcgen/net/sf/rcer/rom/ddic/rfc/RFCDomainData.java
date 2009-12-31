@@ -63,22 +63,22 @@ public class RFCDomainData {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("DATATYPE", this.dataType);
-		target.setValue("LENG", this.length);
-		target.setValue("OUTPUTLEN", this.outputLength);
-		target.setValue("DECIMALS", this.decimals);
-		target.setValue("LOWERCASE", this.caseSensitive);
-		target.setValue("SIGNFLAG", this.signed);
-		target.setValue("VALEXI", this.valueListFixed);
-		target.setValue("ENTITYTAB", this.valueTable);
-		target.setValue("CONVEXIT", this.conversionExit);
-		target.setValue("DDTEXT", this.description);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("DATATYPE", this.dataType);
+		targetStructure.setValue("LENG", this.length);
+		targetStructure.setValue("OUTPUTLEN", this.outputLength);
+		targetStructure.setValue("DECIMALS", this.decimals);
+		targetStructure.setValue("LOWERCASE", this.caseSensitive);
+		targetStructure.setValue("SIGNFLAG", this.signed);
+		targetStructure.setValue("VALEXI", this.valueListFixed);
+		targetStructure.setValue("ENTITYTAB", this.valueTable);
+		targetStructure.setValue("CONVEXIT", this.conversionExit);
+		targetStructure.setValue("DDTEXT", this.description);
 	}
 
 	/**
@@ -96,8 +96,8 @@ public class RFCDomainData {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<RFCDomainData> fromTable(JCoTable source) {
 		List<RFCDomainData> list = new ArrayList<RFCDomainData>();

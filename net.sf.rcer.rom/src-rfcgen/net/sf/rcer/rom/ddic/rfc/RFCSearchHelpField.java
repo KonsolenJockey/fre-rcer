@@ -75,28 +75,28 @@ public class RFCSearchHelpField {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("FIELDNAME", this.fieldName);
-		target.setValue("SHLPNAME", this.searchHelp);
-		target.setValue("SHLPFIELD", this.searchHelpField);
-		target.setValue("FLPOSITION", this.position);
-		target.setValue("SHTYPE", this.assignmentType);
-		target.setValue("SHTABLE", this.tableName);
-		target.setValue("SHFIELD", this.tableField);
-		target.setValue("SHLPINPUT", this.importField);
-		target.setValue("SHLPOUTPUT", this.exportField);
-		target.setValue("ROLLNAME", this.dataElement);
-		target.setValue("DOMNAME", this.domain);
-		target.setValue("DATATYPE", this.dataType);
-		target.setValue("LENG", this.length);
-		target.setValue("DECIMALS", this.decimals);
-		target.setValue("DEFAULTVAL", this.defaultValue);
-		target.setValue("DEFAULTTYP", this.defaultValueType);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("FIELDNAME", this.fieldName);
+		targetStructure.setValue("SHLPNAME", this.searchHelp);
+		targetStructure.setValue("SHLPFIELD", this.searchHelpField);
+		targetStructure.setValue("FLPOSITION", this.position);
+		targetStructure.setValue("SHTYPE", this.assignmentType);
+		targetStructure.setValue("SHTABLE", this.tableName);
+		targetStructure.setValue("SHFIELD", this.tableField);
+		targetStructure.setValue("SHLPINPUT", this.importField);
+		targetStructure.setValue("SHLPOUTPUT", this.exportField);
+		targetStructure.setValue("ROLLNAME", this.dataElement);
+		targetStructure.setValue("DOMNAME", this.domain);
+		targetStructure.setValue("DATATYPE", this.dataType);
+		targetStructure.setValue("LENG", this.length);
+		targetStructure.setValue("DECIMALS", this.decimals);
+		targetStructure.setValue("DEFAULTVAL", this.defaultValue);
+		targetStructure.setValue("DEFAULTTYP", this.defaultValueType);
 	}
 
 	/**
@@ -114,8 +114,8 @@ public class RFCSearchHelpField {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<RFCSearchHelpField> fromTable(JCoTable source) {
 		List<RFCSearchHelpField> list = new ArrayList<RFCSearchHelpField>();

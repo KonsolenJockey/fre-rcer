@@ -63,22 +63,22 @@ public class RFCForeignKeyHeader {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("FIELDNAME", this.fieldName);
-		target.setValue("CHECKTABLE", this.tableName);
-		target.setValue("FRKART", this.foreignKeyType);
-		target.setValue("CARD", this.cardinalityRight);
-		target.setValue("CHECKFLAG", this.screenCheckDisabled);
-		target.setValue("DDTEXT", this.description);
-		target.setValue("ARBGB", this.messageID);
-		target.setValue("MSGNR", this.messageNumber);
-		target.setValue("NOINHERIT", this.inheritance);
-		target.setValue("CARDLEFT", this.cardinalityLeft);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("FIELDNAME", this.fieldName);
+		targetStructure.setValue("CHECKTABLE", this.tableName);
+		targetStructure.setValue("FRKART", this.foreignKeyType);
+		targetStructure.setValue("CARD", this.cardinalityRight);
+		targetStructure.setValue("CHECKFLAG", this.screenCheckDisabled);
+		targetStructure.setValue("DDTEXT", this.description);
+		targetStructure.setValue("ARBGB", this.messageID);
+		targetStructure.setValue("MSGNR", this.messageNumber);
+		targetStructure.setValue("NOINHERIT", this.inheritance);
+		targetStructure.setValue("CARDLEFT", this.cardinalityLeft);
 	}
 
 	/**
@@ -96,8 +96,8 @@ public class RFCForeignKeyHeader {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<RFCForeignKeyHeader> fromTable(JCoTable source) {
 		List<RFCForeignKeyHeader> list = new ArrayList<RFCForeignKeyHeader>();

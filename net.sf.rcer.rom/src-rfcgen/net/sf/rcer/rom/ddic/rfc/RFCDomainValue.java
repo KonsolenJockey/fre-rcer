@@ -53,17 +53,17 @@ public class RFCDomainValue {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("VALPOS", this.position);
-		target.setValue("DDLANGUAGE", this.localeID);
-		target.setValue("DOMVALUE_L", this.lowerValue);
-		target.setValue("DOMVALUE_H", this.upperValue);
-		target.setValue("DDTEXT", this.description);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("VALPOS", this.position);
+		targetStructure.setValue("DDLANGUAGE", this.localeID);
+		targetStructure.setValue("DOMVALUE_L", this.lowerValue);
+		targetStructure.setValue("DOMVALUE_H", this.upperValue);
+		targetStructure.setValue("DDTEXT", this.description);
 	}
 
 	/**
@@ -81,8 +81,8 @@ public class RFCDomainValue {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<RFCDomainValue> fromTable(JCoTable source) {
 		List<RFCDomainValue> list = new ArrayList<RFCDomainValue>();

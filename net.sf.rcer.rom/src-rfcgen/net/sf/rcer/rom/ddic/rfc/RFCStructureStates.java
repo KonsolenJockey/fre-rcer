@@ -59,20 +59,20 @@ public class RFCStructureStates {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("TABL", this.TABL);
-		target.setValue("TABD", this.TABD);
-		target.setValue("TBHD", this.TBHD);
-		target.setValue("TBFD", this.TBFD);
-		target.setValue("TBFK", this.TBFK);
-		target.setValue("TBSH", this.TBSH);
-		target.setValue("TBIX", this.TBIX);
-		target.setValue("TABT", this.TABT);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("TABL", this.TABL);
+		targetStructure.setValue("TABD", this.TABD);
+		targetStructure.setValue("TBHD", this.TBHD);
+		targetStructure.setValue("TBFD", this.TBFD);
+		targetStructure.setValue("TBFK", this.TBFK);
+		targetStructure.setValue("TBSH", this.TBSH);
+		targetStructure.setValue("TBIX", this.TBIX);
+		targetStructure.setValue("TABT", this.TABT);
 	}
 
 	/**
@@ -90,8 +90,8 @@ public class RFCStructureStates {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<RFCStructureStates> fromTable(JCoTable source) {
 		List<RFCStructureStates> list = new ArrayList<RFCStructureStates>();

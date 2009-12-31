@@ -55,18 +55,18 @@ public class RFCForeignKeyField {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("FIELDNAME", this.fieldName);
-		target.setValue("FORTABLE", this.foreignTableName);
-		target.setValue("FORKEY", this.foreignFieldName);
-		target.setValue("CHECKTABLE", this.checkTableName);
-		target.setValue("CHECKFIELD", this.checkFieldName);
-		target.setValue("PRIMPOS", this.position);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("FIELDNAME", this.fieldName);
+		targetStructure.setValue("FORTABLE", this.foreignTableName);
+		targetStructure.setValue("FORKEY", this.foreignFieldName);
+		targetStructure.setValue("CHECKTABLE", this.checkTableName);
+		targetStructure.setValue("CHECKFIELD", this.checkFieldName);
+		targetStructure.setValue("PRIMPOS", this.position);
 	}
 
 	/**
@@ -84,8 +84,8 @@ public class RFCForeignKeyField {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<RFCForeignKeyField> fromTable(JCoTable source) {
 		List<RFCForeignKeyField> list = new ArrayList<RFCForeignKeyField>();

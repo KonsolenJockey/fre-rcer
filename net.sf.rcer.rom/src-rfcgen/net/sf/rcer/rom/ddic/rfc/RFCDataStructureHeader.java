@@ -77,29 +77,29 @@ public class RFCDataStructureHeader {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("TABCLASS", this.structureType);
-		target.setValue("SQLTAB", this.databaseTableName);
-		target.setValue("DATMIN", this.minEntries);
-		target.setValue("DATMAX", this.maxEntries);
-		target.setValue("DATAVG", this.avgEntries);
-		target.setValue("CLIDEP", this.clientDependent);
-		target.setValue("BUFFERED", this.bufferSetting);
-		target.setValue("COMPRFLAG", this.compressed);
-		target.setValue("LANGDEP", this.languageDependent);
-		target.setValue("DDTEXT", this.description);
-		target.setValue("MAINFLAG", this.maintenanceSetting);
-		target.setValue("CONTFLAG", this.deliveryClass);
-		target.setValue("PROZPUFF", this.bufferPercentage);
-		target.setValue("VIEWCLASS", this.viewClass);
-		target.setValue("VIEWGRANT", this.viewMaintenanceSetting);
-		target.setValue("MULTIPLEX", this.multiplexSetting);
-		target.setValue("SHLPEXI", this.searchHelpAttached);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("TABCLASS", this.structureType);
+		targetStructure.setValue("SQLTAB", this.databaseTableName);
+		targetStructure.setValue("DATMIN", this.minEntries);
+		targetStructure.setValue("DATMAX", this.maxEntries);
+		targetStructure.setValue("DATAVG", this.avgEntries);
+		targetStructure.setValue("CLIDEP", this.clientDependent);
+		targetStructure.setValue("BUFFERED", this.bufferSetting);
+		targetStructure.setValue("COMPRFLAG", this.compressed);
+		targetStructure.setValue("LANGDEP", this.languageDependent);
+		targetStructure.setValue("DDTEXT", this.description);
+		targetStructure.setValue("MAINFLAG", this.maintenanceSetting);
+		targetStructure.setValue("CONTFLAG", this.deliveryClass);
+		targetStructure.setValue("PROZPUFF", this.bufferPercentage);
+		targetStructure.setValue("VIEWCLASS", this.viewClass);
+		targetStructure.setValue("VIEWGRANT", this.viewMaintenanceSetting);
+		targetStructure.setValue("MULTIPLEX", this.multiplexSetting);
+		targetStructure.setValue("SHLPEXI", this.searchHelpAttached);
 	}
 
 	/**
@@ -117,8 +117,8 @@ public class RFCDataStructureHeader {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<RFCDataStructureHeader> fromTable(JCoTable source) {
 		List<RFCDataStructureHeader> list = new ArrayList<RFCDataStructureHeader>();

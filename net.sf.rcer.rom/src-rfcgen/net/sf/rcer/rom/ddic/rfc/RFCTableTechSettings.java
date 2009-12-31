@@ -61,21 +61,21 @@ public class RFCTableTechSettings {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("TABKAT", this.sizeCategory);
-		target.setValue("TABART", this.dataClass);
-		target.setValue("PUFFERUNG", this.bufferSetting);
-		target.setValue("SCHFELDANZ", this.bufferedKeyFields);
-		target.setValue("PROTOKOLL", this.changeLogActive);
-		target.setValue("SPEICHPUFF", this.bufferCompressed);
-		target.setValue("TRANSPFLAG", this.transparentTable);
-		target.setValue("UEBERSETZ", this.translated);
-		target.setValue("BUFALLOW", this.bufferStatus);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("TABKAT", this.sizeCategory);
+		targetStructure.setValue("TABART", this.dataClass);
+		targetStructure.setValue("PUFFERUNG", this.bufferSetting);
+		targetStructure.setValue("SCHFELDANZ", this.bufferedKeyFields);
+		targetStructure.setValue("PROTOKOLL", this.changeLogActive);
+		targetStructure.setValue("SPEICHPUFF", this.bufferCompressed);
+		targetStructure.setValue("TRANSPFLAG", this.transparentTable);
+		targetStructure.setValue("UEBERSETZ", this.translated);
+		targetStructure.setValue("BUFALLOW", this.bufferStatus);
 	}
 
 	/**
@@ -93,8 +93,8 @@ public class RFCTableTechSettings {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<RFCTableTechSettings> fromTable(JCoTable source) {
 		List<RFCTableTechSettings> list = new ArrayList<RFCTableTechSettings>();

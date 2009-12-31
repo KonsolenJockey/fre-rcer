@@ -63,22 +63,22 @@ public class RFCIndexHeader {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("INDEXNAME", this.indexName);
-		target.setValue("UNIQUEFLAG", this.unique);
-		target.setValue("DBINDEX", this.databaseIndexName);
-		target.setValue("DBSTATE", this.databaseIndexState);
-		target.setValue("DBINCLEXCL", this.databaseInclExclSign);
-		target.setValue("DBSYSSEL1", this.databaseSystem1);
-		target.setValue("DBSYSSEL2", this.databaseSystem2);
-		target.setValue("DBSYSSEL3", this.databaseSystem3);
-		target.setValue("DBSYSSEL4", this.databaseSystem4);
-		target.setValue("DDTEXT", this.description);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("INDEXNAME", this.indexName);
+		targetStructure.setValue("UNIQUEFLAG", this.unique);
+		targetStructure.setValue("DBINDEX", this.databaseIndexName);
+		targetStructure.setValue("DBSTATE", this.databaseIndexState);
+		targetStructure.setValue("DBINCLEXCL", this.databaseInclExclSign);
+		targetStructure.setValue("DBSYSSEL1", this.databaseSystem1);
+		targetStructure.setValue("DBSYSSEL2", this.databaseSystem2);
+		targetStructure.setValue("DBSYSSEL3", this.databaseSystem3);
+		targetStructure.setValue("DBSYSSEL4", this.databaseSystem4);
+		targetStructure.setValue("DDTEXT", this.description);
 	}
 
 	/**
@@ -96,8 +96,8 @@ public class RFCIndexHeader {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<RFCIndexHeader> fromTable(JCoTable source) {
 		List<RFCIndexHeader> list = new ArrayList<RFCIndexHeader>();

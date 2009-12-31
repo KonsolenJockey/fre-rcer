@@ -51,16 +51,16 @@ public class RFCIndexField {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("INDEXNAME", this.indexName);
-		target.setValue("POSITION", this.position);
-		target.setValue("FIELDNAME", this.fieldName);
-		target.setValue("DESCFLAG", this.descending);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("INDEXNAME", this.indexName);
+		targetStructure.setValue("POSITION", this.position);
+		targetStructure.setValue("FIELDNAME", this.fieldName);
+		targetStructure.setValue("DESCFLAG", this.descending);
 	}
 
 	/**
@@ -78,8 +78,8 @@ public class RFCIndexField {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<RFCIndexField> fromTable(JCoTable source) {
 		List<RFCIndexField> list = new ArrayList<RFCIndexField>();

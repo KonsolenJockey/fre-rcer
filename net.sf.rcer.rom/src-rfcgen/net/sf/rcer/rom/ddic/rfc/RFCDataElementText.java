@@ -55,18 +55,18 @@ public class RFCDataElementText {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("DDLANGUAGE", this.localeID);
-		target.setValue("DDTEXT", this.description);
-		target.setValue("REPTEXT", this.heading);
-		target.setValue("SCRTEXT_S", this.shortText);
-		target.setValue("SCRTEXT_M", this.mediumText);
-		target.setValue("SCRTEXT_L", this.longText);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("DDLANGUAGE", this.localeID);
+		targetStructure.setValue("DDTEXT", this.description);
+		targetStructure.setValue("REPTEXT", this.heading);
+		targetStructure.setValue("SCRTEXT_S", this.shortText);
+		targetStructure.setValue("SCRTEXT_M", this.mediumText);
+		targetStructure.setValue("SCRTEXT_L", this.longText);
 	}
 
 	/**
@@ -84,8 +84,8 @@ public class RFCDataElementText {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<RFCDataElementText> fromTable(JCoTable source) {
 		List<RFCDataElementText> list = new ArrayList<RFCDataElementText>();
