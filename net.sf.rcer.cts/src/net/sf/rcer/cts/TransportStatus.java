@@ -12,6 +12,8 @@
 package net.sf.rcer.cts;
 
 import java.text.MessageFormat;
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * The status of a transport object (modifiable, released, ...).
@@ -24,28 +26,45 @@ public enum TransportStatus {
 	/**
 	 * The transport object can be modified.
 	 */
-	MODIFIABLE,
+	MODIFIABLE("D", Messages.TransportStatus_StatusTextModifiable), //$NON-NLS-1$
 
 	/**
 	 * The transport object is protected from modification.
 	 */
-	PROTECTED,
+	PROTECTED("L", Messages.TransportStatus_StatusTextProtected), //$NON-NLS-1$
 
 	/**
 	 * The transport object is currently being released.
 	 */
-	RELEASE_STARTED,
+	RELEASE_STARTED("O", Messages.TransportStatus_StatusReleaseTextStarted), //$NON-NLS-1$
 
 	/**
 	 * The transport object is released.
 	 */
-	RELEASED,
+	RELEASED("R", Messages.TransportStatus_StatusTextReleased), //$NON-NLS-1$
 
 	/**
 	 * The transport object is released; the import protection for modified objects is still in place.
 	 */
-	RELEASED_IMPORT_PROTECTED;
+	RELEASED_IMPORT_PROTECTED("N", Messages.TransportStatus_StatusTextReleasedImportProtection); //$NON-NLS-1$
 
+	private String internal;
+	private String description;
+
+	/**
+	 * A {@link Collection} of all available {@link TransportStatus}es.
+	 */
+	public static final Collection<TransportStatus> ALL_STATUSES = Arrays.asList(
+			new TransportStatus[]{MODIFIABLE, PROTECTED, RELEASE_STARTED, RELEASED, RELEASED_IMPORT_PROTECTED});
+
+	/**
+	 * Private constructor.
+	 */
+	private TransportStatus(String internal, String description) {
+		this.internal = internal;
+		this.description = description;
+	}
+	
 	/**
 	 * Parses the SAP R/3-internal string to return the enumeration value . 
 	 * @param str the internal string
@@ -53,27 +72,19 @@ public enum TransportStatus {
 	 * @throws TransportException 
 	 */
 	public static TransportStatus fromInternalString(final String str) throws TransportException {
-		if (str.equalsIgnoreCase("D")) return MODIFIABLE; //$NON-NLS-1$
-		if (str.equalsIgnoreCase("L")) return PROTECTED; //$NON-NLS-1$
-		if (str.equalsIgnoreCase("O")) return RELEASE_STARTED; //$NON-NLS-1$
-		if (str.equalsIgnoreCase("R")) return RELEASED; //$NON-NLS-1$
-		if (str.equalsIgnoreCase("N")) return RELEASED_IMPORT_PROTECTED; //$NON-NLS-1$
-		throw new TransportException(MessageFormat.format(Messages.TransportStatus_ErrorTransportStatusInvalid,
-				str));
+		for (final TransportStatus status: ALL_STATUSES) {
+			if (str.equalsIgnoreCase(status.internal)) {
+				return status;
+			}
+		}
+		throw new TransportException(MessageFormat.format(Messages.TransportStatus_ErrorTransportStatusInvalid,	str));
 	}
 
 	/**
 	 * @return the internal string matching the enumeration value
 	 */
-	public String toInternalString() {
-		switch (this) {
-		case MODIFIABLE: return "D"; //$NON-NLS-1$
-		case PROTECTED: return "L"; //$NON-NLS-1$
-		case RELEASE_STARTED: return "O"; //$NON-NLS-1$
-		case RELEASED: return "R"; //$NON-NLS-1$
-		case RELEASED_IMPORT_PROTECTED: return "N"; //$NON-NLS-1$
-		}
-		throw new UnsupportedOperationException();
+	public String getInternalString() {
+		return internal;
 
 	}
 
@@ -81,13 +92,6 @@ public enum TransportStatus {
 	 * @return the human-readable description of the status.
 	 */
 	public String getDescription() {
-		switch (this) {
-		case MODIFIABLE: return Messages.TransportStatus_StatusTextModifiable;
-		case PROTECTED: return Messages.TransportStatus_StatusTextProtected;
-		case RELEASE_STARTED: return Messages.TransportStatus_StatusReleaseTextStarted;
-		case RELEASED: return Messages.TransportStatus_StatusTextReleased;
-		case RELEASED_IMPORT_PROTECTED: return Messages.TransportStatus_StatusTextReleasedImportProtecteion;
-		}
-		throw new UnsupportedOperationException();
+		return description;
 	}
 }

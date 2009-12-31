@@ -52,28 +52,36 @@ public abstract class AbstractTransport {
 
 		// TODO parse the object list and object list keys
 //		table            "TT_E071"              = ObjectListEntry     objectList     comment "object list of the transport";
-//			field "TRKORR"   = String  transportID    comment "Request or Task";
-//			field "AS4POS"   = int     row            comment "Row number";
-//			field "PGMID"    = String  programID      comment "Program ID";
-//			field "OBJECT"   = String  objectType     comment "Object Type";
-//			field "OBJ_NAME" = String  objectName     comment "Object Name";
-//			field "OBJFUNC"  = String  objectFunction comment "Object Function";
-//			field "LOCKFLAG" = boolean locked         comment "Status";
+//		field "TRKORR"   = String  transportID    comment "Request or Task";
+//		field "AS4POS"   = int     row            comment "Row number";
+//		field "PGMID"    = String  programID      comment "Program ID";
+//		field "OBJECT"   = String  objectType     comment "Object Type";
+//		field "OBJ_NAME" = String  objectName     comment "Object Name";
+		
+//		field "OBJFUNC"  = String  objectFunction comment "Object Function";
+//		field "LOCKFLAG" = boolean locked         comment "Status";
 //
 //		table            "TT_E071K"             = ObjectListKeyEntry  objectListKeys comment "key list of the transport";
 //		field "TRKORR"     = String transportID      comment "Request or Task";
+//		field "AS4POS"     = int    row              comment "Row number";
 //		field "PGMID"      = String programID        comment "Program ID";
 //		field "OBJECT"     = String objectType       comment "Object Type";
 //		field "OBJNAME"    = String objectName       comment "Object Name";
-//		field "AS4POS"     = int    row              comment "Row number";
+		
 //		field "MASTERTYPE" = String masterObjectType comment "Master Object Type";
 //		field "MASTERNAME" = String masterObjectName comment "Master Object Name";
 //		field "VIEWNAME"   = String viewName         comment "View Name";
-//		field "OBJFUNC"    = String objectFunction   comment "Object Function";
 //		field "TABKEY"     = String tableKey         comment "Table Key";
 
 	}
 
+	/**
+	 * @return the {@link TransportSystem} instance
+	 */
+	TransportSystem getTransportSystem() {
+		return transportSystem;
+	}
+	
 	/**
 	 * @return the transport ID
 	 */

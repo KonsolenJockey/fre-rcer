@@ -3,10 +3,16 @@ package net.sf.rcer.cts.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+
 import java.text.MessageFormat;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.sap.conn.jco.JCoDestination;
+import com.sap.conn.jco.JCoException;
+import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -25,7 +31,6 @@ public class ObjectListKeyEntry {
 	private String masterObjectType;
 	private String masterObjectName;
 	private String viewName;
-	private String objectFunction;
 	private String tableKey;
 	
 	/**
@@ -51,7 +56,6 @@ public class ObjectListKeyEntry {
 		this.masterObjectType = source.getString("MASTERTYPE");
 		this.masterObjectName = source.getString("MASTERNAME");
 		this.viewName = source.getString("VIEWNAME");
-		this.objectFunction = source.getString("OBJFUNC");
 		this.tableKey = source.getString("TABKEY");
 	}
 
@@ -71,7 +75,6 @@ public class ObjectListKeyEntry {
 		targetStructure.setValue("MASTERTYPE", this.masterObjectType);
 		targetStructure.setValue("MASTERNAME", this.masterObjectName);
 		targetStructure.setValue("VIEWNAME", this.viewName);
-		targetStructure.setValue("OBJFUNC", this.objectFunction);
 		targetStructure.setValue("TABKEY", this.tableKey);
 	}
 
@@ -241,22 +244,6 @@ public class ObjectListKeyEntry {
 	public void setViewName(String newViewName) {
 		_pcs.firePropertyChange("viewName", this.viewName, newViewName);
 		this.viewName = newViewName;
-	}
-	
-	/**
-	 * @return the Object Function (TR003-OBJFUNC)
-	 */
-	public String getObjectFunction() {
-		return this.objectFunction;
-	}
-	
-	/**
-	 * Changes the Object Function (TR003-OBJFUNC).
-	 * @param newObjectFunction the new Object Function to set
-	 */
-	public void setObjectFunction(String newObjectFunction) {
-		_pcs.firePropertyChange("objectFunction", this.objectFunction, newObjectFunction);
-		this.objectFunction = newObjectFunction;
 	}
 	
 	/**

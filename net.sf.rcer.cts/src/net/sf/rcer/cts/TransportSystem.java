@@ -60,6 +60,39 @@ public class TransportSystem {
 	}
 	
 	/**
+	 * Wrapper around {@link ReadTransportRequest#execute(JCoDestination)} with additional error checks.
+	 * @param request the request to execute
+	 * @return the checked response
+	 * @throws TransportException
+	 */
+	private ReadTransportResponse readTransportRequest(ReadTransportRequest request) throws TransportException {
+		
+		ReadTransportResponse result;
+		try {
+			result = request.execute(destination);
+		} catch (JCoException e) {
+			throw new TransportException(MessageFormat.format(Messages.TransportSystem_ErrorReadingTransport,
+					request.getOrderID(), e.getLocalizedMessage()), e);
+		}
+
+		// check whether an exception was raised
+		if (!result.getException().equals("")) { //$NON-NLS-1$
+			throw new TransportException(MessageFormat.format(
+					Messages.TransportSystem_ExceptionReadingTransport,
+					request.getOrderID(), result.getException()));
+		}
+		
+		// check whether an error message was returned
+		if (result.getMessage().getMessageType().equals("E") ||  //$NON-NLS-1$
+				result.getMessage().getMessageType().equals("A") || //$NON-NLS-1$
+				result.getMessage().getMessageType().equals("X")) { //$NON-NLS-1$
+			throw new TransportException(MessageFormat.format(Messages.TransportSystem_ErrorReadingTransport,
+					request.getOrderID(), result.getMessage().getText()));
+		}
+		return result;
+	}
+
+	/**
 	 * Retrieves a single transport order 
 	 * @param id the ID of the transport order
 	 * @return the {@link TransportOrder} instance
@@ -73,32 +106,47 @@ public class TransportSystem {
 		request.setObjectListRequested(true);
 		request.setObjectListKeysRequested(true);
 		
-		ReadTransportResponse result;
-		try {
-			result = request.execute(destination);
-		} catch (JCoException e) {
-			throw new TransportException(MessageFormat.format(Messages.TransportSystem_ErrorReadingTransportOrder,
-					id, e.getLocalizedMessage()), e);
-		}
-		if (!result.getException().equals("")) {
-			throw new TransportException(MessageFormat.format(
-					Messages.TransportSystem_ExceptionReadingTransportOrder,
-					id, result.getException()));
-		}
-		if (result.getMessage().getMessageType().equals("E") ||  //$NON-NLS-1$
-				result.getMessage().getMessageType().equals("A") || //$NON-NLS-1$
-				result.getMessage().getMessageType().equals("X")) { //$NON-NLS-1$
-			throw new TransportException(MessageFormat.format(Messages.TransportSystem_ErrorReadingTransportOrder,
-					id, result.getMessage().getText()));
-		}
+		ReadTransportResponse result = readTransportRequest(request);
 		
-		if (!result.getHeader().getParentID().equals("")) {
+		if (!result.getHeader().getParentID().equals("")) { //$NON-NLS-1$
 			throw new TransportException(MessageFormat.format(
 					Messages.TransportSystem_ErrorTaskNotOrder, id));
 		}
 		
 		TransportOrder order = new TransportOrder(this, id, result);
+		
+		// read the tasks belonging to the order
+		TransportTableReader reader = new TransportTableReader(destination);
+		Set<String> taskIDs = reader.getTasksForOrder(id);
+		for (final String taskID: taskIDs) {
+			order.addTask(getTransportTask(order, taskID));
+		}
+		
 		return order;
+	}
+
+	/**
+	 * Retrieves a single transport task. 
+	 * @param id the ID of the transport task
+	 * @return the {@link TransportTask} instance
+	 * @throws TransportException
+	 */
+	private TransportTask getTransportTask(TransportOrder order, String id) throws TransportException {
+		ReadTransportRequest request = new ReadTransportRequest();
+		request.setOrderID(id);
+		request.setHeaderRequested(true);
+		request.setTextRequested(true);
+		request.setObjectListRequested(true);
+		request.setObjectListKeysRequested(true);
+		
+		ReadTransportResponse result = readTransportRequest(request);
+		
+		if (result.getHeader().getParentID().equals("")) { //$NON-NLS-1$
+			throw new TransportException(MessageFormat.format(
+					Messages.TransportSystem_ErrorOrderNotTask, id));
+		}
+		
+		return new TransportTask(order, id, result);
 	}
 
 	/**

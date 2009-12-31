@@ -35,17 +35,29 @@ public class Messages extends NLS {
 	public static String TransportStatus_StatusTextModifiable;
 	public static String TransportStatus_StatusTextProtected;
 	public static String TransportStatus_StatusTextReleased;
-	public static String TransportStatus_StatusTextReleasedImportProtecteion;
+	public static String TransportStatus_StatusTextReleasedImportProtection;
 
-	public static String TransportSystem_ErrorReadingTransportOrder;
+	public static String TransportSystem_ErrorReadingTransport;
 	public static String TransportSystem_ErrorTaskNotOrder;
-	public static String TransportSystem_ExceptionReadingTransportOrder;
+	public static String TransportSystem_ErrorOrderNotTask;
+	public static String TransportSystem_ExceptionReadingTransport;
 
 	public static String TransportTableReader_ErrorReadingContents;
 	public static String TransportTableReader_ErrorReadingStructure;
 	public static String TransportTableReader_ErrorStructureChanged;
 	
 	
+	public static String TransportTaskType_Correction;
+
+	public static String TransportTaskType_Customizing;
+
+	public static String TransportTaskType_ErrorNoValidTaskType;
+
+	public static String TransportTaskType_Repair;
+
+	public static String TransportTaskType_Unclassified;
+
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

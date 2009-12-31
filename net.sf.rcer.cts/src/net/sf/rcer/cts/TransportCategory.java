@@ -24,12 +24,21 @@ public enum TransportCategory {
 	/**
 	 * Customizing transport.
 	 */
-	CUSTOMIZING,
+	CUSTOMIZING("CUST"), //$NON-NLS-1$
 	
 	/**
 	 * System transport.
 	 */
-	SYSTEM;
+	SYSTEM("SYST"); //$NON-NLS-1$
+	
+	private String internal;
+	
+	/**
+	 * Private constructor.
+	 */
+	private TransportCategory(String internal) {
+		this.internal = internal;
+	}
 
 	/**
 	 * Parses the SAP R/3-internal string to return the enumeration value.
@@ -47,12 +56,8 @@ public enum TransportCategory {
 	/**
 	 * @return the internal string matching the enumeration value
 	 */
-	public String toInternalString() {
-		switch(this) {
-		case CUSTOMIZING: return "CUST"; //$NON-NLS-1$
-		case SYSTEM: return "SYST"; //$NON-NLS-1$
-		}
-		throw new UnsupportedOperationException();
+	public String getInternalString() {
+		return internal; 
 	}
 	
 }

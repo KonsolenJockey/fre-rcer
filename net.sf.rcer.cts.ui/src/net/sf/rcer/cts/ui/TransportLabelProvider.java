@@ -11,7 +11,7 @@
  */
 package net.sf.rcer.cts.ui;
 
-import net.sf.rcer.cts.TransportOrder;
+import net.sf.rcer.cts.AbstractTransport;
 
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -54,11 +54,9 @@ class TransportLabelProvider extends LabelProvider implements ITableLabelProvide
 			ITreeItem item = (ITreeItem) element;
 			return item.getKeyColumnText();
 		}
-		if (element instanceof TransportOrder) {
-			TransportOrder order = (TransportOrder) element;
-			return order.getID();
+		if (element instanceof AbstractTransport) {
+			return ((AbstractTransport) element).getID();
 		}
-		// TODO support transport tasks
 		return ""; //$NON-NLS-1$
 	}
 
@@ -70,11 +68,9 @@ class TransportLabelProvider extends LabelProvider implements ITableLabelProvide
 		if (element instanceof ITreeItem) {
 			return ""; //$NON-NLS-1$
 		}
-		if (element instanceof TransportOrder) {
-			TransportOrder order = (TransportOrder) element;
-			return order.getOwner();
+		if (element instanceof AbstractTransport) {
+			return ((AbstractTransport) element).getOwner();
 		}
-		// TODO support transport tasks
 		return ""; //$NON-NLS-1$
 	}
 
@@ -87,11 +83,9 @@ class TransportLabelProvider extends LabelProvider implements ITableLabelProvide
 			ITreeItem item = (ITreeItem) element;
 			return item.getDescriptionText();
 		}
-		if (element instanceof TransportOrder) {
-			TransportOrder order = (TransportOrder) element;
-			return order.getDescription();
+		if (element instanceof AbstractTransport) {
+			return ((AbstractTransport) element).getDescription();
 		}
-		// TODO support transport tasks
 		return ""; //$NON-NLS-1$
 	}
 

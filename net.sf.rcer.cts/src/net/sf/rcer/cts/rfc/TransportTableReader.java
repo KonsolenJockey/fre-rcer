@@ -27,6 +27,7 @@ import net.sf.rcer.cts.TransportCategory;
 import net.sf.rcer.cts.TransportException;
 import net.sf.rcer.cts.TransportOrderType;
 import net.sf.rcer.cts.TransportStatus;
+import net.sf.rcer.cts.TransportTaskType;
 
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
@@ -80,17 +81,17 @@ public class TransportTableReader {
 			criteria.add("TRFUNCTION = 'K' OR TRFUNCTION = 'W' OR TRFUNCTION = 'T'"); //$NON-NLS-1$
 		} else {
 			if (!criteria.isEmpty()) criteria.add("AND"); //$NON-NLS-1$
-			criteria.add(MessageFormat.format("TRFUNCTION = ''{0}''", type.toInternalString()));			 //$NON-NLS-1$
+			criteria.add(MessageFormat.format("TRFUNCTION = ''{0}''", type.getInternalString())); //$NON-NLS-1$
 		}
 
 		if (status != null) {
 			if (!criteria.isEmpty()) criteria.add("AND"); //$NON-NLS-1$
-			criteria.add(MessageFormat.format("TRSTATUS = ''{0}''", status.toInternalString())); //$NON-NLS-1$
+			criteria.add(MessageFormat.format("TRSTATUS = ''{0}''", status.getInternalString())); //$NON-NLS-1$
 		}
 		
 		if (category != null) {
 			if (!criteria.isEmpty()) criteria.add("AND"); //$NON-NLS-1$
-			criteria.add(MessageFormat.format("KORRDEV = ''{0}''", category.toInternalString())); //$NON-NLS-1$
+			criteria.add(MessageFormat.format("KORRDEV = ''{0}''", category.getInternalString())); //$NON-NLS-1$
 		}
 		
 		ITableContents table;
@@ -137,12 +138,12 @@ public class TransportTableReader {
 		
 		if (status != null) {
 			if (!criteria.isEmpty()) criteria.add("AND"); //$NON-NLS-1$
-			criteria.add(MessageFormat.format("TRSTATUS = ''{0}''", status.toInternalString())); //$NON-NLS-1$
+			criteria.add(MessageFormat.format("TRSTATUS = ''{0}''", status.getInternalString())); //$NON-NLS-1$
 		}
 		
 		if (category != null) {
 			if (!criteria.isEmpty()) criteria.add("AND"); //$NON-NLS-1$
-			criteria.add(MessageFormat.format("KORRDEV = ''{0}''", category.toInternalString())); //$NON-NLS-1$
+			criteria.add(MessageFormat.format("KORRDEV = ''{0}''", category.getInternalString())); //$NON-NLS-1$
 		}
 		
 		ITableContents table;
@@ -156,12 +157,10 @@ public class TransportTableReader {
 		try {
 			for (ITableLine line: table) {
 				final String type = line.getValue("TRFUNCTION"); //$NON-NLS-1$
-				if (TransportOrderType.isValidOrderType(type)) { // TODO add TransportTaskType 
-					if (line.getValue("STRKORR").equals("")) { //$NON-NLS-1$
-						transports.add(line.getValue("TRKORR")); //$NON-NLS-1$
-					} else {
-						transports.add(line.getValue("STRKORR")); //$NON-NLS-1$
-					}
+				if (TransportOrderType.isValidOrderType(type)) { 
+					transports.add(line.getValue("TRKORR")); //$NON-NLS-1$
+				} else if (TransportTaskType.isValidTaskType(type)) {
+					transports.add(line.getValue("STRKORR")); //$NON-NLS-1$
 				}
 			}
 		} catch (FieldNotFoundException e) {

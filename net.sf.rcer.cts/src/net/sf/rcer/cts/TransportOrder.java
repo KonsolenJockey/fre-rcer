@@ -11,6 +11,12 @@
  */
 package net.sf.rcer.cts;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.Vector;
+
 import net.sf.rcer.cts.rfc.ReadTransportResponse;
 
 /**
@@ -24,6 +30,8 @@ public class TransportOrder extends AbstractTransport {
 	private TransportOrderType type;
 	private String target;
 	
+	private Map<String, TransportTask> tasks = new TreeMap<String, TransportTask>();
+	
 	/**
 	 * Internal constructor.
 	 * @param transportSystem the parent {@link TransportSystem}
@@ -31,7 +39,7 @@ public class TransportOrder extends AbstractTransport {
 	 * @param result the RFC result to read the header data from
 	 * @throws TransportException 
 	 */
-	TransportOrder(TransportSystem transportSystem,	String id, ReadTransportResponse result) throws TransportException {
+	TransportOrder(TransportSystem transportSystem, String id, ReadTransportResponse result) throws TransportException {
 		super(transportSystem, id, result);
 		this.type = TransportOrderType.fromInternalString(result.getHeader().getType());
 		this.target = result.getHeader().getTarget();
@@ -49,6 +57,66 @@ public class TransportOrder extends AbstractTransport {
 	 */
 	public String getTarget() {
 		return target;
+	}
+
+	/**
+	 * @return the tasks of the transport order
+	 * @see java.util.Map#values()
+	 */
+	public Collection<TransportTask> getTasks() {
+		return tasks.values();
+	}
+	
+	/**
+	 * @param userName the name of the user
+	 * @return all tasks of this transport order belonging to the user specified
+	 */
+	public Collection<TransportTask> getTasks(String userName) {
+		List<TransportTask> result = new Vector<TransportTask>();
+		for (TransportTask task: tasks.values()) {
+			if (task.getOwner().equals(userName)) {
+				result.add(task);
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * @param taskType the {@link TransportTaskType} to look for
+	 * @return all tasks of this transport order of the type specified 
+	 */
+	public Collection<TransportTask> getTasks(TransportTaskType taskType) {
+		List<TransportTask> result = new Vector<TransportTask>();
+		for (TransportTask task: tasks.values()) {
+			if (task.getTaskType().equals(taskType)) {
+				result.add(task);
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * @param userName the user name to look for
+	 * @param taskType the {@link TransportTaskType} to look for
+	 * @return all tasks of this transport order belonging to the user specified and of the type specified
+	 */
+	public Collection<TransportTask> getTasks(String userName, TransportTaskType taskType) {
+		List<TransportTask> result = new Vector<TransportTask>();
+		for (TransportTask task: tasks.values()) {
+			if ((task.getOwner().equals(userName)) && (task.getTaskType().equals(taskType))) {
+				result.add(task);
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Adds a task to the transport order. 
+	 * @param task
+	 * @see 
+	 */
+	void addTask(TransportTask task) {
+		this.tasks.put(task.getID(), task);
 	}
 	
 }

@@ -12,6 +12,7 @@
 package net.sf.rcer.cts.ui;
 
 import net.sf.rcer.cts.TransportOrder;
+import net.sf.rcer.cts.TransportTask;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
@@ -35,9 +36,8 @@ class TransportContentProvider implements ITreeContentProvider {
 			return item.getChildren();
 		}
 		if (parentElement instanceof TransportOrder) {
-//			TransportOrder order = (TransportOrder) parentElement;
-			// TODO support transport tasks
-			return null;
+			TransportOrder order = (TransportOrder) parentElement;
+			return order.getTasks().toArray();
 		}
 		return null;
 	}
@@ -54,7 +54,10 @@ class TransportContentProvider implements ITreeContentProvider {
 			TransportOrder order = (TransportOrder) element;
 			return root.getContainerForTransport(order);
 		}
-		// TODO support transport tasks			
+		if (element instanceof TransportTask) {
+			TransportTask task = (TransportTask) element;
+			return task.getOrder();
+		}
 		return null;
 	}
 
@@ -67,9 +70,8 @@ class TransportContentProvider implements ITreeContentProvider {
 			return item.hasChildren();
 		}
 		if (element instanceof TransportOrder) {
-//			TransportOrder order = (TransportOrder) element;
-			// TODO support transport tasks
-			return false;
+			TransportOrder order = (TransportOrder) element;
+			return order.getTasks().size() > 0;
 		}
 		return false;
 	}

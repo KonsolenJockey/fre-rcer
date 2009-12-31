@@ -34,7 +34,6 @@ structure "TR002" {
 		field "OBJ_NAME" = String  objectName     comment "Object Name";
 		field "OBJFUNC"  = String  objectFunction comment "Object Function";
 		field "LOCKFLAG" = boolean locked         comment "Status";
-	//	field "GENNUM"   = String  GENNUM         comment "Language information";
 	}
 }
 
@@ -48,10 +47,7 @@ structure "TR003" {
 		field "MASTERTYPE" = String masterObjectType comment "Master Object Type";
 		field "MASTERNAME" = String masterObjectName comment "Master Object Name";
 		field "VIEWNAME"   = String viewName         comment "View Name";
-		field "OBJFUNC"    = String objectFunction   comment "Object Function";
 		field "TABKEY"     = String tableKey         comment "Table Key";
-	//	field "SORTFLAG"   = String SORTFLAG         comment "Indicator";
-	//	field "FLAG"       = String FLAG             comment "Indicator";
 	}
 }
 

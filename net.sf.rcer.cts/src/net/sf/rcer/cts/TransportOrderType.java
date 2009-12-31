@@ -26,18 +26,21 @@ public enum TransportOrderType {
 	/**
 	 * Transport order type 'workbench'. Contains client-independent objects.
 	 */
-	WORKBENCH,
+	WORKBENCH("K", Messages.TransportOrderType_TextWorkbench), //$NON-NLS-1$
 	
 	/**
 	 * Transport order type 'customizing'. Contains client-dependent settings.
 	 */
-	CUSTOMIZING,
+	CUSTOMIZING("W", Messages.TransportOrderType_TextCustomizing), //$NON-NLS-1$
 	
 	/**
 	 * Transport order type 'transport of copies'. Contains client-independent objects.
 	 */
-	TRANSPORT_OF_COPIES;
+	TRANSPORT_OF_COPIES("T", Messages.TransportOrderType_TextTransportOfCopies); //$NON-NLS-1$
 	
+	private String internal;
+	private String description;
+
 	/**
 	 * A {@link Collection} of all available {@link TransportOrderType}s.
 	 */
@@ -45,50 +48,54 @@ public enum TransportOrderType {
 			new TransportOrderType[]{WORKBENCH, CUSTOMIZING, TRANSPORT_OF_COPIES});
 	
 	/**
+	 * Private constructor.
+	 */
+	private TransportOrderType(String internal, String description) {
+		this.internal = internal;
+		this.description = description;
+	}
+
+	/**
 	 * Parses the SAP R/3-internal string to return the enumeration value.
 	 * @param str the internal string
 	 * @return the enumeration value matching the string
 	 * @throws TransportException
 	 */
 	public static TransportOrderType fromInternalString(final String str) throws TransportException {
-		if (str.equalsIgnoreCase("K")) return WORKBENCH;  //$NON-NLS-1$
-		if (str.equalsIgnoreCase("W")) return CUSTOMIZING; //$NON-NLS-1$
-		if (str.equalsIgnoreCase("T")) return TRANSPORT_OF_COPIES; //$NON-NLS-1$
-		throw new TransportException(MessageFormat.format(Messages.TransportOrderType_ErrorOrderTypeKeyInvalid,
-				str));
+		for (final TransportOrderType type: ALL_TYPES) {
+			if (str.equalsIgnoreCase(type.internal)) {
+				return type;
+			}
+		}
+		throw new TransportException(MessageFormat.format(Messages.TransportOrderType_ErrorOrderTypeKeyInvalid, str));
 	}
 
 	/**
 	 * @return the internal string matching the enumeration value
 	 */
-	public String toInternalString() {
-		switch(this) {
-		case WORKBENCH: return "K"; //$NON-NLS-1$
-		case CUSTOMIZING: return "W"; //$NON-NLS-1$
-		case TRANSPORT_OF_COPIES: return "T"; //$NON-NLS-1$
-		}
-		throw new UnsupportedOperationException();
+	public String getInternalString() {
+		return internal;
 	}
 
 	/**
 	 * Checks whether the given string is a valid internal transport order type. 
-	 * @param type the string to check
+	 * @param str the string to check
 	 * @return <code>true</code> if the string is a valid type
 	 */
-	public static boolean isValidOrderType(String type) {
-		return type.equalsIgnoreCase("K") || type.equalsIgnoreCase("W") || type.equalsIgnoreCase("T"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	public static boolean isValidOrderType(String str) {
+		for (final TransportOrderType type: ALL_TYPES) {
+			if (str.equalsIgnoreCase(type.internal)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
 	 * @return the human-readable description of the order type.
 	 */
 	public String getDescription() {
-		switch(this) {
-		case WORKBENCH: return Messages.TransportOrderType_TextWorkbench;
-		case CUSTOMIZING: return Messages.TransportOrderType_TextCustomizing;
-		case TRANSPORT_OF_COPIES: return Messages.TransportOrderType_TextTransportOfCopies;
-		}
-		throw new UnsupportedOperationException();
+		return description;
 	}
 	
 // TODO Support all transport order types.
