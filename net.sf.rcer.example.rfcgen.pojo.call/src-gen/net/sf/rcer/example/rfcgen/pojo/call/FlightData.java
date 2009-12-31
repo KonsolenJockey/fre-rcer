@@ -59,20 +59,20 @@ public class FlightData {
 
 	/**
 	 * Copy the values into a target record.
-	 * @param target the {@link JCoRecord} to copy the values to
+	 * @param targetStructure the {@link JCoRecord} to copy the values to
 	 * @throws UnsupportedOperationException if any other structure is passed as a target record
 	 */
-	public void toStructure(JCoRecord target) throws UnsupportedOperationException {
-		checkStructure(target);
-		target.clear();
-		target.setValue("CARRID", this.carrierID);
-		target.setValue("CONNID", this.connectionID);
-		target.setValue("FLDATE", this.flightDate);
-		target.setValue("DEPTIME", this.departureTime);
-		target.setValue("AIRPFROM", this.origin);
-		target.setValue("AIRPTO", this.destination);
-		target.setValue("SEATSMAX", this.maximumSeats);
-		target.setValue("SEATSOCC", this.occupiedSeats);
+	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
+		checkStructure(targetStructure);
+		targetStructure.clear();
+		targetStructure.setValue("CARRID", this.carrierID);
+		targetStructure.setValue("CONNID", this.connectionID);
+		targetStructure.setValue("FLDATE", this.flightDate);
+		targetStructure.setValue("DEPTIME", this.departureTime);
+		targetStructure.setValue("AIRPFROM", this.origin);
+		targetStructure.setValue("AIRPTO", this.destination);
+		targetStructure.setValue("SEATSMAX", this.maximumSeats);
+		targetStructure.setValue("SEATSOCC", this.occupiedSeats);
 	}
 
 	/**
@@ -90,8 +90,8 @@ public class FlightData {
 	
 	/**
 	 * Transfers the contents of a {@link JCoTable} into a typed list.
-	 * @param source
-	 * @param destination
+	 * @param source the {@link JCoTable} to read the data from
+	 * @return a new {@link List} instance containing the data from the table
 	 */
 	public static List<FlightData> fromTable(JCoTable source) {
 		List<FlightData> list = new ArrayList<FlightData>();
