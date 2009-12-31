@@ -43,12 +43,18 @@ import com.sap.conn.jco.ext.DestinationDataProvider;
 import com.sap.conn.jco.ext.Environment;
 
 /**
- * The central manager for all active connections to the SAP R/3 systems. Note that at any given time,
- * zero, one or many connections may be active. The first connection that is activated becomes the so-called
- * primary connection. The primary connection can be changed using {@link ConnectionManager#s}. If the primary 
- * connection is closed, any of the secondary connections becomes the new primary connection.
+ * The central manager for all active connections to the SAP R/3 systems. Note
+ * that at any given time, zero, one or many connections may be active. The
+ * first connection that is activated becomes the so-called primary connection.
+ * The primary connection can be changed using
+ * {@link ConnectionManager#setPrimaryConnection(IConnection)},
+ * {@link ConnectionManager#setPrimaryConnection(JCoDestination)} or
+ * {@link ConnectionManager#setPrimaryConnection(String)}. If the primary
+ * connection is closed, any of the secondary connections becomes the new
+ * primary connection.
+ * 
  * @author vwegert
- *
+ * 
  */
 public class ConnectionManager  {
 
@@ -286,7 +292,9 @@ public class ConnectionManager  {
 	 * @return the primary connection
 	 * @throws ConnectionException 
 	 * @see #closeConnection()
-	 * @see #setPrimaryDestination(String)
+	 * @see #setPrimaryConnection(IConnection)
+	 * @see #setPrimaryConnection(JCoDestination)
+	 * @see #setPrimaryConnection(String)
 	 */
 	public JCoDestination getDestination() throws ConnectionException {
 		
@@ -618,7 +626,7 @@ public class ConnectionManager  {
 
 	/**
 	 * Adds an object to the list of listeners to be notified when the state of a connection changes.
-	 * @see {@link IConnectionStateListener} 
+	 * @see IConnectionStateListener 
 	 * @param listener
 	 */
 	public void addConnectionStateListener(IConnectionStateListener listener) {

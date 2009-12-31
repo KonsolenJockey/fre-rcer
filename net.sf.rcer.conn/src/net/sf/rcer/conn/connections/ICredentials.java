@@ -22,7 +22,7 @@ public interface ICredentials {
 
 	/**
 	 * @return the ID of the actual connection. This ID should begin with the 
-	 * {@link #getConnectionDataID() connectionDataID} and contain the actual client and user.
+	 * {@link #getConnectionID() connection ID} and contain the actual client and user.
 	 * @see IConnection#getConnectionID()
 	 */
 	public String getConnectionID();

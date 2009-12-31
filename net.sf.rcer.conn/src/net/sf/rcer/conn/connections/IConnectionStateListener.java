@@ -13,8 +13,8 @@ package net.sf.rcer.conn.connections;
 
 /**
  * Interface for an Observer that wants to be notified when the state of a connection changes.
- * @see {@link ConnectionManager#addConnectionStateListener(IConnectionStateListener)}
- * @see {@link ConnectionManager#removeConnectionStateListener(IConnectionStateListener)}
+ * @see ConnectionManager#addConnectionStateListener(IConnectionStateListener)
+ * @see ConnectionManager#removeConnectionStateListener(IConnectionStateListener)
  * @author vwegert
  *
  */
