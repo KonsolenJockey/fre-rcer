@@ -1,23 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project default="javadoc">
-<target name="javadoc">
-<javadoc 
-	access="public" 
-	author="true"
-	classpath="/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.core.databinding.beans_1.1.1.M20080827-0800a.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.core.jobs_3.4.1.R34x_v20081128.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.jface.databinding_1.2.1.M20080827-0800a.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.equinox.registry_3.4.0.v20080516-0950.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.core.commands_3.4.0.I20080509-2000.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.swt_3.4.2.v3452b.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.equinox.common_3.4.0.v20080421-2006.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.ui.workbench_3.4.2.M20090127-1700.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.swt.carbon.macosx_3.4.1.v3452b.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.jface_3.4.2.M20090107-0800.jar:../net.sf.rcer.conn/bin:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.ui_3.4.2.M20090204-0800.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.core.runtime_3.4.0.v20080512.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.core.contenttype_3.3.0.v20080604-1400.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.equinox.app_1.1.0.v20080421-2006.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.core.databinding_1.1.1.M20080827-0800b.jar:../com.sap.conn.jco/bin:../com.sap.conn.jco/sapjco3.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.equinox.preferences_3.2.201.R34x_v20080709.jar:../com.sap.conn.jco/jni:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.core.runtime.compatibility.registry_3.2.200.v20080610/runtime_registry_compatibility.jar:/Users/vwegert/Entwicklung/eclipse-3.4/plugins/org.eclipse.osgi_3.4.3.R34x_v20081215-1030.jar" 
-	destdir="html/reference" 
-	doctitle="SAP R/3 Connector Runtime API" 
-	nodeprecated="false" 
-	nodeprecatedlist="false" 
-	noindex="false" 
-	nonavbar="false" 
-	notree="false" 
-	packagenames="net.sf.rcer.conn.preferences,net.sf.rcer.conn.ui,net.sf.rcer.conn.tools,net.sf.rcer.conn.ui.login,net.sf.rcer.conn.locales,net.sf.rcer.conn.ui.preferences,net.sf.rcer.conn.ui.status,net.sf.rcer.conn.connections"
-	source="1.5" 
-	sourcefiles="../net.sf.rcer.conn/src/net/sf/rcer/conn/Messages.java,../net.sf.rcer.conn/src/net/sf/rcer/conn/Activator.java" 
-	sourcepath="../net.sf.rcer.conn.ui/src:../net.sf.rcer.conn/src" 
-	splitindex="true" 
-	use="true" 
-	version="true"/>
-</target>
+	
+	<property environment="env"/>
+	
+	<target name="javadoc">
+		<javadoc 
+			access="public" 
+			author="true"
+			destdir="html/reference" 
+			doctitle="SAP R/3 Connector Java Documentation" 
+			maxmemory="128m"
+			nodeprecated="false" 
+			nodeprecatedlist="false" 
+			noindex="false" 
+			nonavbar="false" 
+			notree="false" 
+			source="1.5" 
+			splitindex="true" 
+			use="true" 
+			version="true">
+
+			<classpath>
+				<pathelement location="../com.sap.conn.jco/sapjco3.jar"/>
+				<fileset dir="${env.ECLIPSE_HOME}">
+				    <include name="**/*.jar"/>
+				</fileset>
+			</classpath>
+			
+			<group title="Connection Management" packages="net.sf.rcer.conn*"/>
+			<packageset dir="../net.sf.rcer.conn/src">
+				<include name="net/sf/rcer/conn/**"/>
+			</packageset>
+			<packageset dir="../net.sf.rcer.conn.ui/src">
+				<include name="net/sf/rcer/conn/ui/**"/>
+			</packageset>
+			
+			<group title="Change and Transport System Interface" packages="net.sf.rcer.cts*"/>
+			<packageset dir="../net.sf.rcer.cts/src">
+				<include name="net/sf/rcer/cts/**"/>
+			</packageset>
+			<packageset dir="../net.sf.rcer.cts/src-gen">
+				<include name="net/sf/rcer/cts/**"/>
+			</packageset>
+			<packageset dir="../net.sf.rcer.cts.ui/src">
+				<include name="net/sf/rcer/cts/ui/**"/>
+			</packageset>
+		
+			<group title="Example Projects" packages="net.sf.rcer.example*"/>
+			<packageset dir="../net.sf.rcer.example.rfcgen.pojo.call/src">
+				<include name="net/sf/rcer/example/rfcgen/pojo/call/**"/>
+			</packageset>
+			<packageset dir="../net.sf.rcer.example.rfcgen.pojo.call/src-gen">
+				<include name="net/sf/rcer/example/rfcgen/pojo/call/**"/>
+			</packageset>
+			<packageset dir="../net.sf.rcer.example.rfcgen.pojo.rr/src">
+				<include name="net/sf/rcer/example/rfcgen/pojo/rr/**"/>
+			</packageset>
+			<packageset dir="../net.sf.rcer.example.rfcgen.pojo.rr/src-gen">
+				<include name="net/sf/rcer/example/rfcgen/pojo/rr/**"/>
+			</packageset>
+			<packageset dir="../net.sf.rcer.example.traditional/src">
+				<include name="net/sf/rcer/example/traditional/**"/>
+			</packageset>
+		
+			<group title="Java Connector Import Tool" packages="net.sf.rcer.jcoimport*"/>
+			<packageset dir="../net.sf.rcer.jcoimport/src">
+				<include name="net/sf/rcer/jcoimport/**"/>
+			</packageset>
+			
+			<group title="RFC Mapping Language" packages="net.sf.rcer.rfcgen*"/>
+			<packageset dir="../net.sf.rcer.rfcgen/src">
+				<include name="net/sf/rcer/**"/>
+			</packageset>
+			<packageset dir="../net.sf.rcer.rfcgen/src-gen">
+				<include name="net/sf/rcer/**"/>
+			</packageset>
+			<packageset dir="../net.sf.rcer.rfcgen.generator/src">
+				<include name="net/sf/rcer/**"/>
+			</packageset>
+			<packageset dir="../net.sf.rcer.rfcgen.generator/src-gen">
+				<include name="net/sf/rcer/**"/>
+			</packageset>
+			<packageset dir="../net.sf.rcer.rfcgen.ui/src">
+				<include name="net/sf/rcer/**"/>
+			</packageset>
+			<packageset dir="../net.sf.rcer.rfcgen.ui/src-gen">
+				<include name="net/sf/rcer/**"/>
+			</packageset>
+			
+			<group title="Repository Object Model" packages="net.sf.rcer.rom*"/>
+			<packageset dir="../net.sf.rcer.rom/src">
+				<include name="net/sf/rcer/rom/**"/>
+			</packageset>
+			<packageset dir="../net.sf.rcer.rom/src-rfcgen">
+				<include name="net/sf/rcer/rom/**"/>
+			</packageset>
+		
+			<tag name="generated" description="Generated Element"/>
+			<tag name="model" description="Model Object"/>
+			<tag name="ordered" description="Ordered Property"/>
+			
+		</javadoc>
+		
+	</target>
 </project>
