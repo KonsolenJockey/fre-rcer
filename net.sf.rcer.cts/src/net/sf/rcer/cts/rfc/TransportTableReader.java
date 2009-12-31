@@ -117,7 +117,7 @@ public class TransportTableReader {
 	
 	/**
 	 * Retrieves transport orders for a set of selection criteria. This method is similar to 
-	 * {@link #getTransportOrders(String, TransportCategory, TransportOrderType, TransportStatus)},
+	 * {@link #getTransportOrders(String, TransportOrderType, TransportStatus, TransportCategory)},
 	 * but it considers all transports the user takes part in - whether the user owns the transport order 
 	 * itself or a subordinate transport task is irrelevant.
 	 * @param user the user name, or <code>null</code> for all users

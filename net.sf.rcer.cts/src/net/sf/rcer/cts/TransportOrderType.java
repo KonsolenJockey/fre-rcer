@@ -39,7 +39,7 @@ public enum TransportOrderType {
 	TRANSPORT_OF_COPIES;
 	
 	/**
-	 * A {@link Collection} of all avaliable {@link TransportOrderType}s.
+	 * A {@link Collection} of all available {@link TransportOrderType}s.
 	 */
 	public static final Collection<TransportOrderType> ALL_TYPES = Arrays.asList(
 			new TransportOrderType[]{WORKBENCH, CUSTOMIZING, TRANSPORT_OF_COPIES});
@@ -95,12 +95,6 @@ public enum TransportOrderType {
 //	C  	Umzug von Objekten ohne Paketwechsel                        
 //	O  	Umzug von Objekten mit Paketwechsel                         
 //	E  	Umzug eines kompletten Pakets                               
-	
-// TODO Support transport tasks.	
-//	S  	Entwicklung/Korrektur                                       
-//	R  	Reparatur                                                   
-//	X  	Unklassifizierte Aufgabe                                    
-//	Q  	Customizing-Aufgabe   
 	
 //	G  	Stckliste fr CTS-Projekt                                  
 //	M  	Auftrag fr Mandantentransport                              
