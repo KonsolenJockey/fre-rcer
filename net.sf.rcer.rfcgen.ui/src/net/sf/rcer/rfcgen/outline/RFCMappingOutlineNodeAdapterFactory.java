@@ -14,7 +14,7 @@ package net.sf.rcer.rfcgen.outline;
 import org.eclipse.xtext.ui.common.editor.outline.actions.DefaultContentOutlineNodeAdapterFactory;
 
 /**
- * TODO Write documentation for type RFCMappingOutlineNodeAdapterFactory.
+ * The adapter factory to add adapters to outline nodes.
  * @author vwegert
  *
  */
