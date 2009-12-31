@@ -20,6 +20,6 @@ Require-Bundle: com.ibm.icu,
  org.eclipse.xtend.util.stdlib;resolution:=optional,
  net.sf.rcer.rfcgen.generator;resolution:=optional,
  net.sf.rcer.conn;bundle-version="0.1.0",
- org.eclipse.osgi;bundle-version="3.5.1"
+ org.eclipse.osgi;bundle-version="3.5.1";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: net.sf.rcer.cts
