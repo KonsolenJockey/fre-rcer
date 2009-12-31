@@ -6,15 +6,15 @@ Bundle-Version: 0.1.0.qualifier
 Bundle-SymbolicName: net.sf.rcer.rfcgen; singleton:=true
 Eclipse-RegisterBuddy: org.eclipse.xtext.log4j
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.xtext,
+Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtext.generator;resolution:=optional,
  de.itemis.xtext.antlr;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
- org.eclipse.xtext.log4j;resolution:=optional,
+ org.eclipse.xtext.log4j;resolution:=optional;visibility:=reexport,
  org.eclipse.emf.mwe.utils;resolution:=optional,
  org.eclipse.emf.mwe.core;resolution:=optional,
- com.ibm.icu;resolution:=optional,
+ com.ibm.icu;resolution:=optional;visibility:=reexport,
  org.eclipse.xtext.xtend;resolution:=optional,
  org.eclipse.xtext.util,
  org.eclipse.emf.ecore,
