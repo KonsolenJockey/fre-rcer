@@ -18,8 +18,12 @@ import java.util.Set;
 
 import net.sf.rcer.conn.connections.ConnectionException;
 import net.sf.rcer.conn.connections.ConnectionManager;
+import net.sf.rcer.cts.rfc.AddTaskRequest;
+import net.sf.rcer.cts.rfc.AddTaskResponse;
 import net.sf.rcer.cts.rfc.ReadTransportRequest;
 import net.sf.rcer.cts.rfc.ReadTransportResponse;
+import net.sf.rcer.cts.rfc.TaskUserListEntry;
+import net.sf.rcer.cts.rfc.TransportMessage;
 import net.sf.rcer.cts.rfc.TransportTableReader;
 
 import com.sap.conn.jco.JCoDestination;
@@ -43,7 +47,7 @@ public class TransportSystem {
 	public TransportSystem(JCoDestination destination) {
 		this.destination = destination;
 	}
-	
+
 	/**
 	 * Default constructor that tries to use the current primary connection.
 	 * @throws ConnectionException
@@ -51,14 +55,14 @@ public class TransportSystem {
 	public TransportSystem() throws ConnectionException {
 		this.destination = ConnectionManager.getInstance().getDestination();
 	}
-	
+
 	/**
 	 * @return the destination
 	 */
 	public JCoDestination getDestination() {
 		return destination;
 	}
-	
+
 	/**
 	 * Wrapper around {@link ReadTransportRequest#execute(JCoDestination)} with additional error checks.
 	 * @param request the request to execute
@@ -66,7 +70,7 @@ public class TransportSystem {
 	 * @throws TransportException
 	 */
 	private ReadTransportResponse readTransportRequest(ReadTransportRequest request) throws TransportException {
-		
+
 		ReadTransportResponse result;
 		try {
 			result = request.execute(destination);
@@ -81,7 +85,7 @@ public class TransportSystem {
 					Messages.TransportSystem_ExceptionReadingTransport,
 					request.getOrderID(), result.getException()));
 		}
-		
+
 		// check whether an error message was returned
 		if (result.getMessage().getMessageType().equals("E") ||  //$NON-NLS-1$
 				result.getMessage().getMessageType().equals("A") || //$NON-NLS-1$
@@ -105,23 +109,23 @@ public class TransportSystem {
 		request.setTextRequested(true);
 		request.setObjectListRequested(true);
 		request.setObjectListKeysRequested(true);
-		
+
 		ReadTransportResponse result = readTransportRequest(request);
-		
+
 		if (!result.getHeader().getParentID().equals("")) { //$NON-NLS-1$
 			throw new TransportException(MessageFormat.format(
 					Messages.TransportSystem_ErrorTaskNotOrder, id));
 		}
-		
+
 		TransportOrder order = new TransportOrder(this, id, result);
-		
+
 		// read the tasks belonging to the order
 		TransportTableReader reader = new TransportTableReader(destination);
 		Set<String> taskIDs = reader.getTasksForOrder(id);
 		for (final String taskID: taskIDs) {
 			order.addTask(getTransportTask(order, taskID));
 		}
-		
+
 		return order;
 	}
 
@@ -138,14 +142,14 @@ public class TransportSystem {
 		request.setTextRequested(true);
 		request.setObjectListRequested(true);
 		request.setObjectListKeysRequested(true);
-		
+
 		ReadTransportResponse result = readTransportRequest(request);
-		
+
 		if (result.getHeader().getParentID().equals("")) { //$NON-NLS-1$
 			throw new TransportException(MessageFormat.format(
 					Messages.TransportSystem_ErrorOrderNotTask, id));
 		}
-		
+
 		return new TransportTask(order, id, result);
 	}
 
@@ -165,7 +169,7 @@ public class TransportSystem {
 	 */
 	public List<TransportOrder> getTransportOrders(String owner, TransportCategory category, 
 			TransportOrderType type, TransportStatus status) throws TransportException {
-		
+
 		if (transportTableReader == null) {
 			transportTableReader = new TransportTableReader(destination);
 		}
@@ -192,7 +196,7 @@ public class TransportSystem {
 	 */
 	public List<TransportOrder> getTransportsForUser(String user, 
 			TransportCategory category, TransportStatus status) throws TransportException {
-		
+
 		if (transportTableReader == null) {
 			transportTableReader = new TransportTableReader(destination);
 		}
@@ -203,7 +207,7 @@ public class TransportSystem {
 		}
 		return orders;
 	}
-	
+
 	/**
 	 * Retrieves transport orders for a set of selection criteria. This method is similar to 
 	 * {@link #getTransportOrders(String, TransportCategory, TransportOrderType, TransportStatus)},
@@ -219,7 +223,7 @@ public class TransportSystem {
 	 */
 	public List<TransportOrder> getTransportsForUser(String user, 
 			TransportOrderType type, TransportStatus status) throws TransportException {
-		
+
 		if (transportTableReader == null) {
 			transportTableReader = new TransportTableReader(destination);
 		}
@@ -237,5 +241,114 @@ public class TransportSystem {
 		}
 		return orders;
 	}
-		
+
+	/**
+	 * Adds a task to the transport order. This method does <b>not</b> check whether a task of that type for the user 
+	 * already exists. 
+	 * @param orderID the ID of the transport order to add the transport task to 
+	 * @param user the user who will be the new owner of the transport task
+	 * @param type the transport task type - note that <code>CUSTOMIZING</code> is not yet supported
+	 * @return the newly created {@link TransportTask}
+	 * @throws TransportException
+	 */
+	public TransportTask addTask(String orderID, String user, TransportTaskType type) throws TransportException {
+
+		// prepare the request
+		AddTaskRequest request = new AddTaskRequest();
+		request.setOrderID(orderID);
+		request.setUsers(getUserList(user));
+		switch(type) {
+		case CORRECTION:
+			request.setCorrectionRequested(true);
+			break;
+		case REPAIR: 
+			request.setRepairRequested(true);
+			break;
+		case UNCLASSIFIED:
+			break;
+		default:
+			throw new UnsupportedOperationException(MessageFormat
+					.format(
+							"Adding a transport task of type {0}is not supported at the moment.",
+							type.getDescription()));
+		}
+
+		// execute the call
+		AddTaskResponse response;
+		try {
+			response = request.execute(destination);
+		} catch (JCoException e) {
+			throw new TransportException(MessageFormat.format(
+					"Error adding {0} task for user {1} to transport order {2}.",
+					type.getDescription(), user, orderID), e);
+		}
+
+		// check whether an exception was raised
+		if (!response.getException().equals("")) { //$NON-NLS-1$
+			throw new TransportException(MessageFormat.format(
+					"ABAP exception adding {0} task for user {1} to transport order {2}.",
+					type.getDescription(), user, orderID));
+		}
+
+		// get the line from the users table
+		TaskUserListEntry entry = response.getUsers().get(0);
+		String taskID = "";
+		int messageLine = 0;
+		switch(type) {
+		case CORRECTION:
+			taskID = entry.getCorrectionID();
+			messageLine = entry.getCorrectionErrorMessage();
+			break;
+		case REPAIR: 
+			taskID = entry.getRepairID();
+			messageLine = entry.getRepairErrorMessage();
+			break;
+		case UNCLASSIFIED:
+			taskID = entry.getUnclassifiedID();
+			messageLine = entry.getUnclassifiedErrorMessage();
+			break;
+		default:
+			return null; // should never happen, see above.
+		}
+
+		// check whether an error message was returned
+		if (messageLine != 0) {
+			TransportMessage message = response.getMessages().get(messageLine);
+			if (message.getMessageType().equals("E") ||  //$NON-NLS-1$
+					message.getMessageType().equals("A") || //$NON-NLS-1$
+					message.getMessageType().equals("X")) { //$NON-NLS-1$
+				throw new TransportException(MessageFormat.format("Unable to add {0} task for user {1} to transport order {2}: {3}",
+						type.getDescription(), user, orderID, message.getText()));
+			}
+		}
+
+		// re-read the transport order and get the task
+		return getTransportOrder(orderID).getTask(taskID);
+	}
+
+	/**
+	 * Adds a task to the transport order. This method does <b>not</b> check whether a task of that type for the user 
+	 * already exists. 
+	 * @param order the transport order to add the transport task to 
+	 * @param user the user who will be the new owner of the transport task
+	 * @param type the transport task type - note that <code>CUSTOMIZING</code> is not yet supported
+	 * @return the newly created {@link TransportTask}
+	 * @throws TransportException
+	 */
+	public TransportTask addTask(TransportOrder order, String user, TransportTaskType type) throws TransportException {
+		return addTask(order.getID(), user, type);
+	}
+
+	/**
+	 * @param user a user name to create a list for
+	 * @return a list that contains a single entry for the user specified
+	 */
+	private List<TaskUserListEntry> getUserList(String user) {
+		List<TaskUserListEntry> list = new ArrayList<TaskUserListEntry>();
+		TaskUserListEntry entry = new TaskUserListEntry();
+		entry.setUserName(user);
+		list.add(entry);
+		return list;
+	}
+
 }
