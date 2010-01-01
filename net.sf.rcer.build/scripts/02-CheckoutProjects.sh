@@ -47,7 +47,8 @@ svn_export net.sf.rcer.rfcgen.ui
 svn_export net.sf.rcer.rom
 svn_export net.sf.rcer.sdk.doc
 
-cd ${RCER_BUILD_HOME}/website
+mkdir ${RCER_BUILD_HOME}/website/src
+cd ${RCER_BUILD_HOME}/website/src
 svn_export net.sf.rcer.website
 
 echo "OK."
