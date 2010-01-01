@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- $Id$ -->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+<meta name="description" content="description"/>
+<meta name="keywords" content="keywords"/> 
+<meta name="author" content="Arcsin, www.arcsin.se"/> 
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<title>RCER - SAP R/3 Connector for Eclipse</title>
+</head>
+<body>
+<div class="main">
+	<div class="container">
+		<div class="gfx"><a href="index.html"><span></span></a></div>
+		<div class="menu">
+			<a href="index.html"><span><img src="img/about.png" border="0" alt="About"/></span></a>
+			<a href="installation.html"><span><img src="img/installation.png" border="0" alt="Installation"/></span></a>
+			<a href="faq.html"><span><img src="img/faq.png" border="0" alt="FAQ"/></span></a>
+			<a href="links.html"><span><img src="img/links.png" border="0" alt="Links"/></span></a>
+		</div>
+		<div class="content">
+			<div class="item">
+				<h1>Installation</h1>
+				<p>Unfortunately, SAP licensing restrictions do not permit redistribution of the SAP Java Connector (JCo). This makes the installation process a bit more complex than for the usual Eclipse extension. You'll have to perform three steps to get a working installation of the SAP R/3 Connector:</p>
+				<ul>
+					<li><p>Download and install the Import Wizard.</p></li>
+					<li><p>Generate the JCo bundles and fragments.</p></li>
+					<li><p>Download and install the remaining parts of the connector SDK.</p></li>
+				</ul>
+				<p>Note that these instructions assume that you have already <a	href="http://service.sap.com/connectors" target="_new">downloaded the JCo archives</a>  (registration required).</p>
+			</div>
+			
+			<div class="item">
+				<h2>Requirements</h2>
+				<p>You'll need a recent version of <a href="http://www.eclipse.org/" target="_new">Eclipse</a> 3.5 to install and use the SDK. The SDK requires a lot of modeling components, so if you have the choice, grab the Modeling package. The modeling components are development-time dependencies only; applications developed with the Connector SDK can be distributed without them.</p>
+			</div>
+			
+			<div class="item">
+				<h2>Step 1: Installation of the Import Wizard</h2>
+				<ol>
+					<li><p>Add <tt>http://rcer.sf.net/update-site</tt> to the list of update sites: Select <i>Help</i> - <i>Software Updates</i>, switch to the <i>Available Software</i> tab, press <i>Add Site</i> and add the location.</p></li>
+					<li><p>Expand the update site entry and the category and select <i>Import Wizard for SAP Java Connector</i>. <b>Important:</b> Do <b>NOT</b> select the SDK yet - you won't be able to install it because of missing dependencies.</p></li>
+					<li><p>Perform the installation and restart the Eclipse Workbench.</p></li>
+				</ol>
+			</div>
+			
+			<div class="item">
+				<h2>Step 2: Generating the JCo Bundles and Fragments</h2>
+				<ol>
+					<li><p>In your Eclipse Workbench, select <i>File</i> - <i>Import...</i>.</p></li>
+					<li><p>From the list of import sources, select <i>SAP R/3 Connector</i> - <i>Create SAP Java Connector Plug-ins</i> and choose <i>Next</i>.</p></li>
+					<li><p>If you haven't done so yet, <a href="http://service.sap.com/connectors" target="_new">download the JCo archives</a> for the platforms you want to support (registration required). Note that the Connector was designed to use JCo versions 3 and up - it will <b>not</b> work with versions prior to 3.0.0.</p></li>
+					<li><p>Select the locations of the downloaded archives. Obviously,	you need to specify at least one file before continuing.</p></li>
+					<li>
+						<p>On the last page, you can choose whether you want to create the plug-in and fragment projects for the platforms you have selected archive files for. If the projects already exist in your workspace, you'll be prompted whether you want to replace the existing projects instead.</p>
+						<p>You can also select whether you want to export the generated plug-ins to the <tt>dropins</tt> folder of your Eclipse installation automatically. If you deselect this option, you'll have to install the plug-ins manually before you can install the SDK. <b>Please provide feedback if the export to the <tt>dropins</tt> folder works - this is more or less experimental coding with a lot of guesswork regarding the location of the <tt>dropins</tt> folder.</b></p>
+						<p>Select <i>Finish</i>. This will generate the projects and export them if you have selected the corresponding option. This might take some time.</p>
+					</li>
+					<li><p>Restart the Eclipse Workbench.</p></li>
+				</ol>
+			</div>
+			
+			<div class="item">
+				<h2>Step 3: Installation of the Connector SDK</h2>
+				<ol>
+					<li><p>Select <i>Help</i> - <i>Software Updates</i>, switch to the <i>Available Software</i> tab.</p></li>
+					<li><p>Expand the update site entry added when installing the wizard and the category below. Select <i>SAP R/3 Connector SDK</i>.</p></li>
+					<li><p>Perform the installation and restart the Eclipse Workbench.</p></li>
+				</ol>
+			</div>
+			
+			<div class="item">
+				<h2>Further Reading</h2>
+				<p>After the installation is completed, select <i>Help</i> - <i>Help Contents</i> and visit the online documentation topic <i>SAP R/3 Connector</i> for more information.
+			</div>
+		</div>
+		<div class="footer_logo">
+			<a href="http://sourceforge.net/projects/rcer"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=244035&amp;type=9" width="80" height="15" alt="Get RCER at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a
+		</div>
+		<div class="footer">
+			&copy; 2010 <a href="index.html">Volker Wegert</a>. Design by <a href="http://www.arcsin.se">Arcsin</a> - thanks for the excellent work and making it available freely.
+		</div>
+	</div>	
+</div>
+</body>
+</html>

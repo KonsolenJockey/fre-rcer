@@ -83,9 +83,16 @@ body {
 	background: #FCFCFC url(img/bgitem.gif) repeat-x;
 	padding: 10px;
 }
-.footer {
-	padding: 5px;
+.footer_logo {
 	background: #F5F5F5;
 	color: #666;
 	font: normal 0.6em sans-serif,Arial;
+	width: 100px;
+	display: inline;
+} 
+.footer {
+	background: #F5F5F5;
+	color: #666;
+	font: normal 0.6em sans-serif,Arial;
+	display: inline;
 } 

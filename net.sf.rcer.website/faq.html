@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- $Id$ -->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+<meta name="description" content="description"/>
+<meta name="keywords" content="keywords"/> 
+<meta name="author" content="Arcsin, www.arcsin.se"/> 
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<title>RCER - SAP R/3 Connector for Eclipse</title>
+</head>
+<body>
+<div class="main">
+	<div class="container">
+		<div class="gfx"><a href="index.html"><span></span></a></div>
+		<div class="menu">
+			<a href="index.html"><span><img src="img/about.png" border="0" alt="About"/></span></a>
+			<a href="installation.html"><span><img src="img/installation.png" border="0" alt="Installation"/></span></a>
+			<a href="faq.html"><span><img src="img/faq.png" border="0" alt="FAQ"/></span></a>
+			<a href="links.html"><span><img src="img/links.png" border="0" alt="Links"/></span></a>
+		</div>
+		<div class="content">
+			<div class="item">
+				<h1>Questions and Answers</h1>
+				<p>If you've got a question that's not listed here, please <a href="mailto:rcer@volker-wegert.de">drop me a note</a>.</p>
+				
+				<h2>What does it do?</h2>
+				<p>RCER is a set of plug-ins that facilitates the task of connecting an Eclipse-based application to a SAP R/3 system. Note that although the name contains RCP (the second 'R'), RCER is also usable for IDE plug-ins. In fact, the SDK itself relies on some of the basic RCER capabilities.</p>
+				<p>More specifically, RCER contains the following ready-to-use functions:</p>
+				<ul>
+					<li>import wizard to generate the plug-ins and fragments required to wrap up the SAP Java Connector (JCo)</li>
+					<li>connection data management, including storage and a preferences page to edit the connection data</li>
+					<li>login dialog and connection status display</li>
+					<li>handling of multiple connections simultaneously</li>
+					<li>functions and dialogs to interface with the Change & Transport System (CTS)</li>
+					<li>generic wrapper for <tt>RFC_READ_TABLE</tt> to access database tables and views comfortably</li>
+					<li>RFC mapping language that facilitates the tedious task of writing classes to perform remote function calls (RFC)</li>
+					<li>wizard to generate a basic mapping definition for a number of function modules</li>
+				</ul>
+				
+				<h2>Who needs it?</h2>
+				<p>This project is intended for developers only. It's only a library, it doesn't come with any business logic. If you want to connect some application to a SAP R/3 backend but don't know what plug-ins and fragments are and how to do it, then RCER is probably not for you. However, it might be interesting to the developer you should hire.</p>
+				
+				<h2>What is the current status?</h2>
+				<p>The status is currently somewhere between alpha and beta - the parts that are already there should work mostly, but the feature set is still growing. Therefore, the API still needs to settle, and this might take some time. However, you are free to take a snapshot of the project and build your application based on it. You'll have to setup some private repository anyway because you'll probably want to keep the generated SAP Java Connector projects somewhere.</p>
+				
+				<h2>What are the plans for the future?</h2>
+				<p>The incomplete, ever-changing list:</p>
+				<ul>
+					<li>more on-line documentation</li>
+					<li>some examples for the TableReader</li>
+					<li>more frequent releases</li>
+					<li>an example on how to use RCER in headless mode</li>
+					<li>a trace view that provides logging of the RFC calls</li>
+					<li>mapping between RFC calls and EMF classes</li>
+					<li>some kind of repository information system that provides access to R/3 internal structures</li>
+					<li>...</li>
+				</ul>
+				
+				<h2>What about licensing?</h2>
+				<p>The entire project is licensed under the Eclipse Public License (EPL).</p>
+				
+				<h2>Why the grey page?</h2>
+				<p>Because this was the first design that caught my interest when browsing <a href="http://www.oswd.org" target="_new">Open Source Web Design</a>. Many thanks to  Viktor Persson from <a href="http://www.arcsin.se" target="_new">Arcsin</a> for creating it and making it available freely.</p>
+			</div>
+		</div>
+		<div class="footer_logo">
+			<a href="http://sourceforge.net/projects/rcer"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=244035&amp;type=9" width="80" height="15" alt="Get RCER at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a
+		</div>
+		<div class="footer">
+			&copy; 2010 <a href="index.html">Volker Wegert</a>. Design by <a href="http://www.arcsin.se">Arcsin</a> - thanks for the excellent work and making it available freely.
+		</div>
+	</div>	
+</div>
+</body>
+</html>
