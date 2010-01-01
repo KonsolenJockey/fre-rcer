@@ -68,6 +68,14 @@ public class TransportOrder extends AbstractTransport {
 	}
 	
 	/**
+	 * @param id the task ID to search for
+	 * @return the task corresponding to the task ID
+	 */
+	public TransportTask getTask(String id) {
+		return tasks.get(id);
+	}
+	
+	/**
 	 * @param userName the name of the user
 	 * @return all tasks of this transport order belonging to the user specified
 	 */
