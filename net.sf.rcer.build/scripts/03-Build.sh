@@ -22,6 +22,11 @@ mkdir ${RCER_BUILD_HOME}/build/plugins/com.sap.conn.jco
 cd ${RCER_BUILD_HOME}/build/plugins/com.sap.conn.jco
 jar xf ${RCER_BUILD_HOME}/distfiles/com.sap.*.jar
 
+echo "Generating Java Documentation..."
+cd ${RCER_BUILD_HOME}/build/plugins/net.sf.rcer.sdk.doc
+export ECLIPSE_HOME=${RCER_BUILD_HOME}/base/eclipse
+ant -buildfile javadoc.xml 
+
 echo "Launching antRunner..."
 cd ${RCER_BUILD_HOME}/build
 java -jar ${RCER_BUILD_HOME}/base/eclipse/plugins/org.eclipse.equinox.launcher_1.0.201.R35x_v20090715.jar \
