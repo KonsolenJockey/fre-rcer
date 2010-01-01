@@ -37,9 +37,17 @@ public class Messages extends NLS {
 	public static String TransportStatus_StatusTextReleased;
 	public static String TransportStatus_StatusTextReleasedImportProtection;
 
+	public static String TransportSystem_ErrorAddingTaskForUser;
+
+	public static String TransportSystem_ErrorAddingTaskForUserWithMessage;
+
 	public static String TransportSystem_ErrorReadingTransport;
 	public static String TransportSystem_ErrorTaskNotOrder;
+
+	public static String TransportSystem_ErrorTaskTypeNotSupported;
 	public static String TransportSystem_ErrorOrderNotTask;
+	public static String TransportSystem_ExceptionAddingTaskForUser;
+
 	public static String TransportSystem_ExceptionReadingTransport;
 
 	public static String TransportTableReader_ErrorReadingContents;

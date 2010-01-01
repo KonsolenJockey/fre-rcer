@@ -269,7 +269,7 @@ public class TransportSystem {
 		default:
 			throw new UnsupportedOperationException(MessageFormat
 					.format(
-							"Adding a transport task of type {0}is not supported at the moment.",
+							Messages.TransportSystem_ErrorTaskTypeNotSupported,
 							type.getDescription()));
 		}
 
@@ -279,20 +279,20 @@ public class TransportSystem {
 			response = request.execute(destination);
 		} catch (JCoException e) {
 			throw new TransportException(MessageFormat.format(
-					"Error adding {0} task for user {1} to transport order {2}.",
+					Messages.TransportSystem_ErrorAddingTaskForUser,
 					type.getDescription(), user, orderID), e);
 		}
 
 		// check whether an exception was raised
 		if (!response.getException().equals("")) { //$NON-NLS-1$
 			throw new TransportException(MessageFormat.format(
-					"ABAP exception adding {0} task for user {1} to transport order {2}.",
+					Messages.TransportSystem_ExceptionAddingTaskForUser,
 					type.getDescription(), user, orderID));
 		}
 
 		// get the line from the users table
 		TaskUserListEntry entry = response.getUsers().get(0);
-		String taskID = "";
+		String taskID = ""; //$NON-NLS-1$
 		int messageLine = 0;
 		switch(type) {
 		case CORRECTION:
@@ -317,7 +317,7 @@ public class TransportSystem {
 			if (message.getMessageType().equals("E") ||  //$NON-NLS-1$
 					message.getMessageType().equals("A") || //$NON-NLS-1$
 					message.getMessageType().equals("X")) { //$NON-NLS-1$
-				throw new TransportException(MessageFormat.format("Unable to add {0} task for user {1} to transport order {2}: {3}",
+				throw new TransportException(MessageFormat.format(Messages.TransportSystem_ErrorAddingTaskForUserWithMessage,
 						type.getDescription(), user, orderID, message.getText()));
 			}
 		}
