@@ -3,16 +3,10 @@ package net.sf.rcer.cts.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -46,13 +40,13 @@ public class ObjectListEntry {
 	public ObjectListEntry(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.transportID = source.getString("TRKORR");
-		this.row = source.getInt("AS4POS");
-		this.programID = source.getString("PGMID");
-		this.objectType = source.getString("OBJECT");
-		this.objectName = source.getString("OBJ_NAME");
-		this.objectFunction = source.getString("OBJFUNC");
-		this.locked = source.getString("LOCKFLAG").equalsIgnoreCase("X");
+		this.transportID = source.getString("TRKORR"); //$NON-NLS-1$
+		this.row = source.getInt("AS4POS"); //$NON-NLS-1$
+		this.programID = source.getString("PGMID"); //$NON-NLS-1$
+		this.objectType = source.getString("OBJECT"); //$NON-NLS-1$
+		this.objectName = source.getString("OBJ_NAME"); //$NON-NLS-1$
+		this.objectFunction = source.getString("OBJFUNC"); //$NON-NLS-1$
+		this.locked = source.getString("LOCKFLAG").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -63,13 +57,13 @@ public class ObjectListEntry {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("TRKORR", this.transportID);
-		targetStructure.setValue("AS4POS", this.row);
-		targetStructure.setValue("PGMID", this.programID);
-		targetStructure.setValue("OBJECT", this.objectType);
-		targetStructure.setValue("OBJ_NAME", this.objectName);
-		targetStructure.setValue("OBJFUNC", this.objectFunction);
-		targetStructure.setValue("LOCKFLAG", this.locked);
+		targetStructure.setValue("TRKORR", this.transportID); //$NON-NLS-1$
+		targetStructure.setValue("AS4POS", this.row); //$NON-NLS-1$
+		targetStructure.setValue("PGMID", this.programID); //$NON-NLS-1$
+		targetStructure.setValue("OBJECT", this.objectType); //$NON-NLS-1$
+		targetStructure.setValue("OBJ_NAME", this.objectName); //$NON-NLS-1$
+		targetStructure.setValue("OBJFUNC", this.objectFunction); //$NON-NLS-1$
+		targetStructure.setValue("LOCKFLAG", this.locked); //$NON-NLS-1$
 	}
 
 	/**
@@ -106,7 +100,7 @@ public class ObjectListEntry {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("TR002")) {
+		if (!structureName.equals("TR002")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected TR002).", structureName));
 		}
@@ -124,7 +118,7 @@ public class ObjectListEntry {
 	 * @param newTransportID the new Request or Task to set
 	 */
 	public void setTransportID(String newTransportID) {
-		_pcs.firePropertyChange("transportID", this.transportID, newTransportID);
+		_pcs.firePropertyChange("transportID", this.transportID, newTransportID); //$NON-NLS-1$
 		this.transportID = newTransportID;
 	}
 	
@@ -140,7 +134,7 @@ public class ObjectListEntry {
 	 * @param newRow the new Row number to set
 	 */
 	public void setRow(int newRow) {
-		_pcs.firePropertyChange("row", this.row, newRow);
+		_pcs.firePropertyChange("row", this.row, newRow); //$NON-NLS-1$
 		this.row = newRow;
 	}
 	
@@ -156,7 +150,7 @@ public class ObjectListEntry {
 	 * @param newProgramID the new Program ID to set
 	 */
 	public void setProgramID(String newProgramID) {
-		_pcs.firePropertyChange("programID", this.programID, newProgramID);
+		_pcs.firePropertyChange("programID", this.programID, newProgramID); //$NON-NLS-1$
 		this.programID = newProgramID;
 	}
 	
@@ -172,7 +166,7 @@ public class ObjectListEntry {
 	 * @param newObjectType the new Object Type to set
 	 */
 	public void setObjectType(String newObjectType) {
-		_pcs.firePropertyChange("objectType", this.objectType, newObjectType);
+		_pcs.firePropertyChange("objectType", this.objectType, newObjectType); //$NON-NLS-1$
 		this.objectType = newObjectType;
 	}
 	
@@ -188,7 +182,7 @@ public class ObjectListEntry {
 	 * @param newObjectName the new Object Name to set
 	 */
 	public void setObjectName(String newObjectName) {
-		_pcs.firePropertyChange("objectName", this.objectName, newObjectName);
+		_pcs.firePropertyChange("objectName", this.objectName, newObjectName); //$NON-NLS-1$
 		this.objectName = newObjectName;
 	}
 	
@@ -204,7 +198,7 @@ public class ObjectListEntry {
 	 * @param newObjectFunction the new Object Function to set
 	 */
 	public void setObjectFunction(String newObjectFunction) {
-		_pcs.firePropertyChange("objectFunction", this.objectFunction, newObjectFunction);
+		_pcs.firePropertyChange("objectFunction", this.objectFunction, newObjectFunction); //$NON-NLS-1$
 		this.objectFunction = newObjectFunction;
 	}
 	
@@ -220,7 +214,7 @@ public class ObjectListEntry {
 	 * @param newLocked the new Status to set
 	 */
 	public void setLocked(boolean newLocked) {
-		_pcs.firePropertyChange("locked", this.locked, newLocked);
+		_pcs.firePropertyChange("locked", this.locked, newLocked); //$NON-NLS-1$
 		this.locked = newLocked;
 	}
 	

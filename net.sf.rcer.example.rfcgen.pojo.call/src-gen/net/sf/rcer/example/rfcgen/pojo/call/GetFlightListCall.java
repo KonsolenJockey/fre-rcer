@@ -3,18 +3,12 @@ package net.sf.rcer.example.rfcgen.pojo.call;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
-import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunction;
-import com.sap.conn.jco.JCoRecord;
-import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model a RFC call to BAPI_SFLIGHT_GETLIST. Use the setters to prepare the importing parameters, 
@@ -57,7 +51,7 @@ public class GetFlightListCall {
 	 * @param newFromCountry the new country code of origin to set
 	 */
 	public void setFromCountry(String newFromCountry) {
-		_pcs.firePropertyChange("fromCountry", this.fromCountry, newFromCountry);
+		_pcs.firePropertyChange("fromCountry", this.fromCountry, newFromCountry); //$NON-NLS-1$
 		this.fromCountry = newFromCountry;
 	}
 	
@@ -73,7 +67,7 @@ public class GetFlightListCall {
 	 * @param newFromCity the new city of origin to set
 	 */
 	public void setFromCity(String newFromCity) {
-		_pcs.firePropertyChange("fromCity", this.fromCity, newFromCity);
+		_pcs.firePropertyChange("fromCity", this.fromCity, newFromCity); //$NON-NLS-1$
 		this.fromCity = newFromCity;
 	}
 	
@@ -89,7 +83,7 @@ public class GetFlightListCall {
 	 * @param newToCountry the new country code of destination to set
 	 */
 	public void setToCountry(String newToCountry) {
-		_pcs.firePropertyChange("toCountry", this.toCountry, newToCountry);
+		_pcs.firePropertyChange("toCountry", this.toCountry, newToCountry); //$NON-NLS-1$
 		this.toCountry = newToCountry;
 	}
 	
@@ -105,7 +99,7 @@ public class GetFlightListCall {
 	 * @param newToCity the new destination city to set
 	 */
 	public void setToCity(String newToCity) {
-		_pcs.firePropertyChange("toCity", this.toCity, newToCity);
+		_pcs.firePropertyChange("toCity", this.toCity, newToCity); //$NON-NLS-1$
 		this.toCity = newToCity;
 	}
 	
@@ -121,7 +115,7 @@ public class GetFlightListCall {
 	 * @param newAfternoon the new restrict search to afternoon flights to set
 	 */
 	public void setAfternoon(boolean newAfternoon) {
-		_pcs.firePropertyChange("afternoon", this.afternoon, newAfternoon);
+		_pcs.firePropertyChange("afternoon", this.afternoon, newAfternoon); //$NON-NLS-1$
 		this.afternoon = newAfternoon;
 	}
 	
@@ -137,7 +131,7 @@ public class GetFlightListCall {
 	 * @param newFlights the new list of flights to set
 	 */
 	public void setFlights(List<FlightData> newFlights) {
-		_pcs.firePropertyChange("flights", this.flights, newFlights);
+		_pcs.firePropertyChange("flights", this.flights, newFlights); //$NON-NLS-1$
 		this.flights = newFlights;
 	}
 	
@@ -147,15 +141,15 @@ public class GetFlightListCall {
 	 * @throws JCoException
 	 */
 	public void execute(JCoDestination destination) throws JCoException {
-		JCoFunction function = destination.getRepository().getFunction("BAPI_SFLIGHT_GETLIST");
-		function.getImportParameterList().setValue("FROMCOUNTRYKEY", fromCountry);
-		function.getImportParameterList().setValue("FROMCITY", fromCity);
-		function.getImportParameterList().setValue("TOCOUNTRYKEY", toCountry);
-		function.getImportParameterList().setValue("TOCITY", toCity);
-		function.getImportParameterList().setValue("AFTERNOON", afternoon ? "X" : " ");
-		FlightData.toTable(flights, function.getTableParameterList().getTable("FLIGHTLIST"));
+		JCoFunction function = destination.getRepository().getFunction("BAPI_SFLIGHT_GETLIST"); //$NON-NLS-1$
+		function.getImportParameterList().setValue("FROMCOUNTRYKEY", fromCountry); //$NON-NLS-1$
+		function.getImportParameterList().setValue("FROMCITY", fromCity); //$NON-NLS-1$
+		function.getImportParameterList().setValue("TOCOUNTRYKEY", toCountry); //$NON-NLS-1$
+		function.getImportParameterList().setValue("TOCITY", toCity); //$NON-NLS-1$
+		function.getImportParameterList().setValue("AFTERNOON", afternoon ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		FlightData.toTable(flights, function.getTableParameterList().getTable("FLIGHTLIST")); //$NON-NLS-1$
 		function.execute(destination);
-		flights = FlightData.fromTable(function.getTableParameterList().getTable("FLIGHTLIST"));
+		flights = FlightData.fromTable(function.getTableParameterList().getTable("FLIGHTLIST")); //$NON-NLS-1$
 	}
 
 	/**

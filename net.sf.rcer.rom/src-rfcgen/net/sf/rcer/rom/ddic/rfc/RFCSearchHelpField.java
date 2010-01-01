@@ -3,16 +3,10 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -55,22 +49,22 @@ public class RFCSearchHelpField {
 	public RFCSearchHelpField(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.fieldName = source.getString("FIELDNAME");
-		this.searchHelp = source.getString("SHLPNAME");
-		this.searchHelpField = source.getString("SHLPFIELD");
-		this.position = source.getInt("FLPOSITION");
-		this.assignmentType = source.getString("SHTYPE");
-		this.tableName = source.getString("SHTABLE");
-		this.tableField = source.getString("SHFIELD");
-		this.importField = source.getString("SHLPINPUT").equalsIgnoreCase("X");
-		this.exportField = source.getString("SHLPOUTPUT").equalsIgnoreCase("X");
-		this.dataElement = source.getString("ROLLNAME");
-		this.domain = source.getString("DOMNAME");
-		this.dataType = source.getString("DATATYPE");
-		this.length = source.getInt("LENG");
-		this.decimals = source.getInt("DECIMALS");
-		this.defaultValue = source.getString("DEFAULTVAL");
-		this.defaultValueType = source.getString("DEFAULTTYP");
+		this.fieldName = source.getString("FIELDNAME"); //$NON-NLS-1$
+		this.searchHelp = source.getString("SHLPNAME"); //$NON-NLS-1$
+		this.searchHelpField = source.getString("SHLPFIELD"); //$NON-NLS-1$
+		this.position = source.getInt("FLPOSITION"); //$NON-NLS-1$
+		this.assignmentType = source.getString("SHTYPE"); //$NON-NLS-1$
+		this.tableName = source.getString("SHTABLE"); //$NON-NLS-1$
+		this.tableField = source.getString("SHFIELD"); //$NON-NLS-1$
+		this.importField = source.getString("SHLPINPUT").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.exportField = source.getString("SHLPOUTPUT").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.dataElement = source.getString("ROLLNAME"); //$NON-NLS-1$
+		this.domain = source.getString("DOMNAME"); //$NON-NLS-1$
+		this.dataType = source.getString("DATATYPE"); //$NON-NLS-1$
+		this.length = source.getInt("LENG"); //$NON-NLS-1$
+		this.decimals = source.getInt("DECIMALS"); //$NON-NLS-1$
+		this.defaultValue = source.getString("DEFAULTVAL"); //$NON-NLS-1$
+		this.defaultValueType = source.getString("DEFAULTTYP"); //$NON-NLS-1$
 	}
 
 	/**
@@ -81,22 +75,22 @@ public class RFCSearchHelpField {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("FIELDNAME", this.fieldName);
-		targetStructure.setValue("SHLPNAME", this.searchHelp);
-		targetStructure.setValue("SHLPFIELD", this.searchHelpField);
-		targetStructure.setValue("FLPOSITION", this.position);
-		targetStructure.setValue("SHTYPE", this.assignmentType);
-		targetStructure.setValue("SHTABLE", this.tableName);
-		targetStructure.setValue("SHFIELD", this.tableField);
-		targetStructure.setValue("SHLPINPUT", this.importField);
-		targetStructure.setValue("SHLPOUTPUT", this.exportField);
-		targetStructure.setValue("ROLLNAME", this.dataElement);
-		targetStructure.setValue("DOMNAME", this.domain);
-		targetStructure.setValue("DATATYPE", this.dataType);
-		targetStructure.setValue("LENG", this.length);
-		targetStructure.setValue("DECIMALS", this.decimals);
-		targetStructure.setValue("DEFAULTVAL", this.defaultValue);
-		targetStructure.setValue("DEFAULTTYP", this.defaultValueType);
+		targetStructure.setValue("FIELDNAME", this.fieldName); //$NON-NLS-1$
+		targetStructure.setValue("SHLPNAME", this.searchHelp); //$NON-NLS-1$
+		targetStructure.setValue("SHLPFIELD", this.searchHelpField); //$NON-NLS-1$
+		targetStructure.setValue("FLPOSITION", this.position); //$NON-NLS-1$
+		targetStructure.setValue("SHTYPE", this.assignmentType); //$NON-NLS-1$
+		targetStructure.setValue("SHTABLE", this.tableName); //$NON-NLS-1$
+		targetStructure.setValue("SHFIELD", this.tableField); //$NON-NLS-1$
+		targetStructure.setValue("SHLPINPUT", this.importField); //$NON-NLS-1$
+		targetStructure.setValue("SHLPOUTPUT", this.exportField); //$NON-NLS-1$
+		targetStructure.setValue("ROLLNAME", this.dataElement); //$NON-NLS-1$
+		targetStructure.setValue("DOMNAME", this.domain); //$NON-NLS-1$
+		targetStructure.setValue("DATATYPE", this.dataType); //$NON-NLS-1$
+		targetStructure.setValue("LENG", this.length); //$NON-NLS-1$
+		targetStructure.setValue("DECIMALS", this.decimals); //$NON-NLS-1$
+		targetStructure.setValue("DEFAULTVAL", this.defaultValue); //$NON-NLS-1$
+		targetStructure.setValue("DEFAULTTYP", this.defaultValueType); //$NON-NLS-1$
 	}
 
 	/**
@@ -133,7 +127,7 @@ public class RFCSearchHelpField {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("DD36M")) {
+		if (!structureName.equals("DD36M")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected DD36M).", structureName));
 		}
@@ -151,7 +145,7 @@ public class RFCSearchHelpField {
 	 * @param newFieldName the new field name to set
 	 */
 	public void setFieldName(String newFieldName) {
-		_pcs.firePropertyChange("fieldName", this.fieldName, newFieldName);
+		_pcs.firePropertyChange("fieldName", this.fieldName, newFieldName); //$NON-NLS-1$
 		this.fieldName = newFieldName;
 	}
 	
@@ -167,7 +161,7 @@ public class RFCSearchHelpField {
 	 * @param newSearchHelp the new name of a search help to set
 	 */
 	public void setSearchHelp(String newSearchHelp) {
-		_pcs.firePropertyChange("searchHelp", this.searchHelp, newSearchHelp);
+		_pcs.firePropertyChange("searchHelp", this.searchHelp, newSearchHelp); //$NON-NLS-1$
 		this.searchHelp = newSearchHelp;
 	}
 	
@@ -183,7 +177,7 @@ public class RFCSearchHelpField {
 	 * @param newSearchHelpField the new name of a search help parameter to set
 	 */
 	public void setSearchHelpField(String newSearchHelpField) {
-		_pcs.firePropertyChange("searchHelpField", this.searchHelpField, newSearchHelpField);
+		_pcs.firePropertyChange("searchHelpField", this.searchHelpField, newSearchHelpField); //$NON-NLS-1$
 		this.searchHelpField = newSearchHelpField;
 	}
 	
@@ -199,7 +193,7 @@ public class RFCSearchHelpField {
 	 * @param newPosition the new position of a search help field to set
 	 */
 	public void setPosition(int newPosition) {
-		_pcs.firePropertyChange("position", this.position, newPosition);
+		_pcs.firePropertyChange("position", this.position, newPosition); //$NON-NLS-1$
 		this.position = newPosition;
 	}
 	
@@ -215,7 +209,7 @@ public class RFCSearchHelpField {
 	 * @param newAssignmentType the new type of parameter field assignment to set
 	 */
 	public void setAssignmentType(String newAssignmentType) {
-		_pcs.firePropertyChange("assignmentType", this.assignmentType, newAssignmentType);
+		_pcs.firePropertyChange("assignmentType", this.assignmentType, newAssignmentType); //$NON-NLS-1$
 		this.assignmentType = newAssignmentType;
 	}
 	
@@ -231,7 +225,7 @@ public class RFCSearchHelpField {
 	 * @param newTableName the new Structure with field assigned to a search help field to set
 	 */
 	public void setTableName(String newTableName) {
-		_pcs.firePropertyChange("tableName", this.tableName, newTableName);
+		_pcs.firePropertyChange("tableName", this.tableName, newTableName); //$NON-NLS-1$
 		this.tableName = newTableName;
 	}
 	
@@ -247,7 +241,7 @@ public class RFCSearchHelpField {
 	 * @param newTableField the new Structure field assigned to a search help field to set
 	 */
 	public void setTableField(String newTableField) {
-		_pcs.firePropertyChange("tableField", this.tableField, newTableField);
+		_pcs.firePropertyChange("tableField", this.tableField, newTableField); //$NON-NLS-1$
 		this.tableField = newTableField;
 	}
 	
@@ -263,7 +257,7 @@ public class RFCSearchHelpField {
 	 * @param newImportField the new Flag for IMPORT parameter of the search help to set
 	 */
 	public void setImportField(boolean newImportField) {
-		_pcs.firePropertyChange("importField", this.importField, newImportField);
+		_pcs.firePropertyChange("importField", this.importField, newImportField); //$NON-NLS-1$
 		this.importField = newImportField;
 	}
 	
@@ -279,7 +273,7 @@ public class RFCSearchHelpField {
 	 * @param newExportField the new Flag for EXPORT parameter of the search help to set
 	 */
 	public void setExportField(boolean newExportField) {
-		_pcs.firePropertyChange("exportField", this.exportField, newExportField);
+		_pcs.firePropertyChange("exportField", this.exportField, newExportField); //$NON-NLS-1$
 		this.exportField = newExportField;
 	}
 	
@@ -295,7 +289,7 @@ public class RFCSearchHelpField {
 	 * @param newDataElement the new data element name to set
 	 */
 	public void setDataElement(String newDataElement) {
-		_pcs.firePropertyChange("dataElement", this.dataElement, newDataElement);
+		_pcs.firePropertyChange("dataElement", this.dataElement, newDataElement); //$NON-NLS-1$
 		this.dataElement = newDataElement;
 	}
 	
@@ -311,7 +305,7 @@ public class RFCSearchHelpField {
 	 * @param newDomain the new domain name to set
 	 */
 	public void setDomain(String newDomain) {
-		_pcs.firePropertyChange("domain", this.domain, newDomain);
+		_pcs.firePropertyChange("domain", this.domain, newDomain); //$NON-NLS-1$
 		this.domain = newDomain;
 	}
 	
@@ -327,7 +321,7 @@ public class RFCSearchHelpField {
 	 * @param newDataType the new data type to set
 	 */
 	public void setDataType(String newDataType) {
-		_pcs.firePropertyChange("dataType", this.dataType, newDataType);
+		_pcs.firePropertyChange("dataType", this.dataType, newDataType); //$NON-NLS-1$
 		this.dataType = newDataType;
 	}
 	
@@ -343,7 +337,7 @@ public class RFCSearchHelpField {
 	 * @param newLength the new length to set
 	 */
 	public void setLength(int newLength) {
-		_pcs.firePropertyChange("length", this.length, newLength);
+		_pcs.firePropertyChange("length", this.length, newLength); //$NON-NLS-1$
 		this.length = newLength;
 	}
 	
@@ -359,7 +353,7 @@ public class RFCSearchHelpField {
 	 * @param newDecimals the new number of decimals to set
 	 */
 	public void setDecimals(int newDecimals) {
-		_pcs.firePropertyChange("decimals", this.decimals, newDecimals);
+		_pcs.firePropertyChange("decimals", this.decimals, newDecimals); //$NON-NLS-1$
 		this.decimals = newDecimals;
 	}
 	
@@ -375,7 +369,7 @@ public class RFCSearchHelpField {
 	 * @param newDefaultValue the new Default value for a search help parameter to set
 	 */
 	public void setDefaultValue(String newDefaultValue) {
-		_pcs.firePropertyChange("defaultValue", this.defaultValue, newDefaultValue);
+		_pcs.firePropertyChange("defaultValue", this.defaultValue, newDefaultValue); //$NON-NLS-1$
 		this.defaultValue = newDefaultValue;
 	}
 	
@@ -391,7 +385,7 @@ public class RFCSearchHelpField {
 	 * @param newDefaultValueType the new Default type of a search help parameter to set
 	 */
 	public void setDefaultValueType(String newDefaultValueType) {
-		_pcs.firePropertyChange("defaultValueType", this.defaultValueType, newDefaultValueType);
+		_pcs.firePropertyChange("defaultValueType", this.defaultValueType, newDefaultValueType); //$NON-NLS-1$
 		this.defaultValueType = newDefaultValueType;
 	}
 	

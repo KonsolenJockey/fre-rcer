@@ -3,18 +3,8 @@ package net.sf.rcer.cts.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
-import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
-import com.sap.conn.jco.JCoRecord;
-import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model the output data of a RFC call to TR40_READ_COMM. See {@link ReadTransportRequest}
@@ -52,7 +42,7 @@ public class ReadTransportResponse {
 	 * @param newHeader the new header of the transport to set
 	 */
 	public void setHeader(TransportHeader newHeader) {
-		_pcs.firePropertyChange("header", this.header, newHeader);
+		_pcs.firePropertyChange("header", this.header, newHeader); //$NON-NLS-1$
 		this.header = newHeader;
 	}
 	
@@ -68,7 +58,7 @@ public class ReadTransportResponse {
 	 * @param newText the new texts of the transport to set
 	 */
 	public void setText(TransportShortText newText) {
-		_pcs.firePropertyChange("text", this.text, newText);
+		_pcs.firePropertyChange("text", this.text, newText); //$NON-NLS-1$
 		this.text = newText;
 	}
 	
@@ -84,7 +74,7 @@ public class ReadTransportResponse {
 	 * @param newTextMissing the new whether the texts are missing to set
 	 */
 	public void setTextMissing(boolean newTextMissing) {
-		_pcs.firePropertyChange("textMissing", this.textMissing, newTextMissing);
+		_pcs.firePropertyChange("textMissing", this.textMissing, newTextMissing); //$NON-NLS-1$
 		this.textMissing = newTextMissing;
 	}
 	
@@ -100,7 +90,7 @@ public class ReadTransportResponse {
 	 * @param newObjectList the new object list of the transport to set
 	 */
 	public void setObjectList(List<ObjectListEntry> newObjectList) {
-		_pcs.firePropertyChange("objectList", this.objectList, newObjectList);
+		_pcs.firePropertyChange("objectList", this.objectList, newObjectList); //$NON-NLS-1$
 		this.objectList = newObjectList;
 	}
 	
@@ -116,7 +106,7 @@ public class ReadTransportResponse {
 	 * @param newObjectListKeys the new key list of the transport to set
 	 */
 	public void setObjectListKeys(List<ObjectListKeyEntry> newObjectListKeys) {
-		_pcs.firePropertyChange("objectListKeys", this.objectListKeys, newObjectListKeys);
+		_pcs.firePropertyChange("objectListKeys", this.objectListKeys, newObjectListKeys); //$NON-NLS-1$
 		this.objectListKeys = newObjectListKeys;
 	}
 	
@@ -132,7 +122,7 @@ public class ReadTransportResponse {
 	 * @param newMessage the new message that occurred during execution, if any to set
 	 */
 	public void setMessage(TransportMessage newMessage) {
-		_pcs.firePropertyChange("message", this.message, newMessage);
+		_pcs.firePropertyChange("message", this.message, newMessage); //$NON-NLS-1$
 		this.message = newMessage;
 	}
 	
@@ -148,7 +138,7 @@ public class ReadTransportResponse {
 	 * @param newException the new exception that occurred during execution, if any to set
 	 */
 	public void setException(String newException) {
-		_pcs.firePropertyChange("exception", this.exception, newException);
+		_pcs.firePropertyChange("exception", this.exception, newException); //$NON-NLS-1$
 		this.exception = newException;
 	}
 	

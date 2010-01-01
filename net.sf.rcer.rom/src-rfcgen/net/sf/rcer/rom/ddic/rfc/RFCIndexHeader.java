@@ -3,16 +3,10 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -49,16 +43,16 @@ public class RFCIndexHeader {
 	public RFCIndexHeader(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.indexName = source.getString("INDEXNAME");
-		this.unique = source.getString("UNIQUEFLAG").equalsIgnoreCase("X");
-		this.databaseIndexName = source.getString("DBINDEX");
-		this.databaseIndexState = source.getString("DBSTATE");
-		this.databaseInclExclSign = source.getString("DBINCLEXCL");
-		this.databaseSystem1 = source.getString("DBSYSSEL1");
-		this.databaseSystem2 = source.getString("DBSYSSEL2");
-		this.databaseSystem3 = source.getString("DBSYSSEL3");
-		this.databaseSystem4 = source.getString("DBSYSSEL4");
-		this.description = source.getString("DDTEXT");
+		this.indexName = source.getString("INDEXNAME"); //$NON-NLS-1$
+		this.unique = source.getString("UNIQUEFLAG").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.databaseIndexName = source.getString("DBINDEX"); //$NON-NLS-1$
+		this.databaseIndexState = source.getString("DBSTATE"); //$NON-NLS-1$
+		this.databaseInclExclSign = source.getString("DBINCLEXCL"); //$NON-NLS-1$
+		this.databaseSystem1 = source.getString("DBSYSSEL1"); //$NON-NLS-1$
+		this.databaseSystem2 = source.getString("DBSYSSEL2"); //$NON-NLS-1$
+		this.databaseSystem3 = source.getString("DBSYSSEL3"); //$NON-NLS-1$
+		this.databaseSystem4 = source.getString("DBSYSSEL4"); //$NON-NLS-1$
+		this.description = source.getString("DDTEXT"); //$NON-NLS-1$
 	}
 
 	/**
@@ -69,16 +63,16 @@ public class RFCIndexHeader {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("INDEXNAME", this.indexName);
-		targetStructure.setValue("UNIQUEFLAG", this.unique);
-		targetStructure.setValue("DBINDEX", this.databaseIndexName);
-		targetStructure.setValue("DBSTATE", this.databaseIndexState);
-		targetStructure.setValue("DBINCLEXCL", this.databaseInclExclSign);
-		targetStructure.setValue("DBSYSSEL1", this.databaseSystem1);
-		targetStructure.setValue("DBSYSSEL2", this.databaseSystem2);
-		targetStructure.setValue("DBSYSSEL3", this.databaseSystem3);
-		targetStructure.setValue("DBSYSSEL4", this.databaseSystem4);
-		targetStructure.setValue("DDTEXT", this.description);
+		targetStructure.setValue("INDEXNAME", this.indexName); //$NON-NLS-1$
+		targetStructure.setValue("UNIQUEFLAG", this.unique); //$NON-NLS-1$
+		targetStructure.setValue("DBINDEX", this.databaseIndexName); //$NON-NLS-1$
+		targetStructure.setValue("DBSTATE", this.databaseIndexState); //$NON-NLS-1$
+		targetStructure.setValue("DBINCLEXCL", this.databaseInclExclSign); //$NON-NLS-1$
+		targetStructure.setValue("DBSYSSEL1", this.databaseSystem1); //$NON-NLS-1$
+		targetStructure.setValue("DBSYSSEL2", this.databaseSystem2); //$NON-NLS-1$
+		targetStructure.setValue("DBSYSSEL3", this.databaseSystem3); //$NON-NLS-1$
+		targetStructure.setValue("DBSYSSEL4", this.databaseSystem4); //$NON-NLS-1$
+		targetStructure.setValue("DDTEXT", this.description); //$NON-NLS-1$
 	}
 
 	/**
@@ -115,7 +109,7 @@ public class RFCIndexHeader {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("DD12V")) {
+		if (!structureName.equals("DD12V")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected DD12V).", structureName));
 		}
@@ -133,7 +127,7 @@ public class RFCIndexHeader {
 	 * @param newIndexName the new index ID to set
 	 */
 	public void setIndexName(String newIndexName) {
-		_pcs.firePropertyChange("indexName", this.indexName, newIndexName);
+		_pcs.firePropertyChange("indexName", this.indexName, newIndexName); //$NON-NLS-1$
 		this.indexName = newIndexName;
 	}
 	
@@ -149,7 +143,7 @@ public class RFCIndexHeader {
 	 * @param newUnique the new whether the index is a unique index to set
 	 */
 	public void setUnique(boolean newUnique) {
-		_pcs.firePropertyChange("unique", this.unique, newUnique);
+		_pcs.firePropertyChange("unique", this.unique, newUnique); //$NON-NLS-1$
 		this.unique = newUnique;
 	}
 	
@@ -165,7 +159,7 @@ public class RFCIndexHeader {
 	 * @param newDatabaseIndexName the new database index to set
 	 */
 	public void setDatabaseIndexName(String newDatabaseIndexName) {
-		_pcs.firePropertyChange("databaseIndexName", this.databaseIndexName, newDatabaseIndexName);
+		_pcs.firePropertyChange("databaseIndexName", this.databaseIndexName, newDatabaseIndexName); //$NON-NLS-1$
 		this.databaseIndexName = newDatabaseIndexName;
 	}
 	
@@ -181,7 +175,7 @@ public class RFCIndexHeader {
 	 * @param newDatabaseIndexState the new status of index on the database to set
 	 */
 	public void setDatabaseIndexState(String newDatabaseIndexState) {
-		_pcs.firePropertyChange("databaseIndexState", this.databaseIndexState, newDatabaseIndexState);
+		_pcs.firePropertyChange("databaseIndexState", this.databaseIndexState, newDatabaseIndexState); //$NON-NLS-1$
 		this.databaseIndexState = newDatabaseIndexState;
 	}
 	
@@ -197,7 +191,7 @@ public class RFCIndexHeader {
 	 * @param newDatabaseInclExclSign the new whether the list of DB systems used as list of inclusions/exclusions to set
 	 */
 	public void setDatabaseInclExclSign(String newDatabaseInclExclSign) {
-		_pcs.firePropertyChange("databaseInclExclSign", this.databaseInclExclSign, newDatabaseInclExclSign);
+		_pcs.firePropertyChange("databaseInclExclSign", this.databaseInclExclSign, newDatabaseInclExclSign); //$NON-NLS-1$
 		this.databaseInclExclSign = newDatabaseInclExclSign;
 	}
 	
@@ -213,7 +207,7 @@ public class RFCIndexHeader {
 	 * @param newDatabaseSystem1 the new an included or excluded DB system to set
 	 */
 	public void setDatabaseSystem1(String newDatabaseSystem1) {
-		_pcs.firePropertyChange("databaseSystem1", this.databaseSystem1, newDatabaseSystem1);
+		_pcs.firePropertyChange("databaseSystem1", this.databaseSystem1, newDatabaseSystem1); //$NON-NLS-1$
 		this.databaseSystem1 = newDatabaseSystem1;
 	}
 	
@@ -229,7 +223,7 @@ public class RFCIndexHeader {
 	 * @param newDatabaseSystem2 the new an included or excluded DB system to set
 	 */
 	public void setDatabaseSystem2(String newDatabaseSystem2) {
-		_pcs.firePropertyChange("databaseSystem2", this.databaseSystem2, newDatabaseSystem2);
+		_pcs.firePropertyChange("databaseSystem2", this.databaseSystem2, newDatabaseSystem2); //$NON-NLS-1$
 		this.databaseSystem2 = newDatabaseSystem2;
 	}
 	
@@ -245,7 +239,7 @@ public class RFCIndexHeader {
 	 * @param newDatabaseSystem3 the new an included or excluded DB system to set
 	 */
 	public void setDatabaseSystem3(String newDatabaseSystem3) {
-		_pcs.firePropertyChange("databaseSystem3", this.databaseSystem3, newDatabaseSystem3);
+		_pcs.firePropertyChange("databaseSystem3", this.databaseSystem3, newDatabaseSystem3); //$NON-NLS-1$
 		this.databaseSystem3 = newDatabaseSystem3;
 	}
 	
@@ -261,7 +255,7 @@ public class RFCIndexHeader {
 	 * @param newDatabaseSystem4 the new an included or excluded DB system to set
 	 */
 	public void setDatabaseSystem4(String newDatabaseSystem4) {
-		_pcs.firePropertyChange("databaseSystem4", this.databaseSystem4, newDatabaseSystem4);
+		_pcs.firePropertyChange("databaseSystem4", this.databaseSystem4, newDatabaseSystem4); //$NON-NLS-1$
 		this.databaseSystem4 = newDatabaseSystem4;
 	}
 	
@@ -277,7 +271,7 @@ public class RFCIndexHeader {
 	 * @param newDescription the new explanatory short text to set
 	 */
 	public void setDescription(String newDescription) {
-		_pcs.firePropertyChange("description", this.description, newDescription);
+		_pcs.firePropertyChange("description", this.description, newDescription); //$NON-NLS-1$
 		this.description = newDescription;
 	}
 	

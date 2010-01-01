@@ -3,18 +3,12 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
-import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunction;
-import com.sap.conn.jco.JCoRecord;
-import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model a RFC call to DD_DTEL_GET. Use the setters to prepare the importing parameters, 
@@ -55,7 +49,7 @@ public class RFCDataElementReader {
 	 * @param newDataElementName the new name to set
 	 */
 	public void setDataElementName(String newDataElementName) {
-		_pcs.firePropertyChange("dataElementName", this.dataElementName, newDataElementName);
+		_pcs.firePropertyChange("dataElementName", this.dataElementName, newDataElementName); //$NON-NLS-1$
 		this.dataElementName = newDataElementName;
 	}
 	
@@ -71,7 +65,7 @@ public class RFCDataElementReader {
 	 * @param newLocaleID the new locale ID to set
 	 */
 	public void setLocaleID(String newLocaleID) {
-		_pcs.firePropertyChange("localeID", this.localeID, newLocaleID);
+		_pcs.firePropertyChange("localeID", this.localeID, newLocaleID); //$NON-NLS-1$
 		this.localeID = newLocaleID;
 	}
 	
@@ -87,7 +81,7 @@ public class RFCDataElementReader {
 	 * @param newDataElementData the new the locale-independent data of the data element to set
 	 */
 	public void setDataElementData(RFCDataElementData newDataElementData) {
-		_pcs.firePropertyChange("dataElementData", this.dataElementData, newDataElementData);
+		_pcs.firePropertyChange("dataElementData", this.dataElementData, newDataElementData); //$NON-NLS-1$
 		this.dataElementData = newDataElementData;
 	}
 	
@@ -103,7 +97,7 @@ public class RFCDataElementReader {
 	 * @param newTexts the new the localized texts of the data element to set
 	 */
 	public void setTexts(List<RFCDataElementText> newTexts) {
-		_pcs.firePropertyChange("texts", this.texts, newTexts);
+		_pcs.firePropertyChange("texts", this.texts, newTexts); //$NON-NLS-1$
 		this.texts = newTexts;
 	}
 	
@@ -113,13 +107,13 @@ public class RFCDataElementReader {
 	 * @throws JCoException
 	 */
 	public void execute(JCoDestination destination) throws JCoException {
-		JCoFunction function = destination.getRepository().getFunction("DD_DTEL_GET");
-		function.getImportParameterList().setValue("ROLL_NAME", dataElementName);
-		function.getImportParameterList().setValue("LANGU", localeID);
-		RFCDataElementText.toTable(texts, function.getTableParameterList().getTable("DD04T_TAB_A"));
+		JCoFunction function = destination.getRepository().getFunction("DD_DTEL_GET"); //$NON-NLS-1$
+		function.getImportParameterList().setValue("ROLL_NAME", dataElementName); //$NON-NLS-1$
+		function.getImportParameterList().setValue("LANGU", localeID); //$NON-NLS-1$
+		RFCDataElementText.toTable(texts, function.getTableParameterList().getTable("DD04T_TAB_A")); //$NON-NLS-1$
 		function.execute(destination);
-		dataElementData = new RFCDataElementData(function.getExportParameterList().getStructure("DD04L_WA_A"));
-		texts = RFCDataElementText.fromTable(function.getTableParameterList().getTable("DD04T_TAB_A"));
+		dataElementData = new RFCDataElementData(function.getExportParameterList().getStructure("DD04L_WA_A")); //$NON-NLS-1$
+		texts = RFCDataElementText.fromTable(function.getTableParameterList().getTable("DD04T_TAB_A")); //$NON-NLS-1$
 	}
 
 	/**

@@ -3,16 +3,10 @@ package net.sf.rcer.cts.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -48,15 +42,15 @@ public class ObjectListKeyEntry {
 	public ObjectListKeyEntry(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.transportID = source.getString("TRKORR");
-		this.programID = source.getString("PGMID");
-		this.objectType = source.getString("OBJECT");
-		this.objectName = source.getString("OBJNAME");
-		this.row = source.getInt("AS4POS");
-		this.masterObjectType = source.getString("MASTERTYPE");
-		this.masterObjectName = source.getString("MASTERNAME");
-		this.viewName = source.getString("VIEWNAME");
-		this.tableKey = source.getString("TABKEY");
+		this.transportID = source.getString("TRKORR"); //$NON-NLS-1$
+		this.programID = source.getString("PGMID"); //$NON-NLS-1$
+		this.objectType = source.getString("OBJECT"); //$NON-NLS-1$
+		this.objectName = source.getString("OBJNAME"); //$NON-NLS-1$
+		this.row = source.getInt("AS4POS"); //$NON-NLS-1$
+		this.masterObjectType = source.getString("MASTERTYPE"); //$NON-NLS-1$
+		this.masterObjectName = source.getString("MASTERNAME"); //$NON-NLS-1$
+		this.viewName = source.getString("VIEWNAME"); //$NON-NLS-1$
+		this.tableKey = source.getString("TABKEY"); //$NON-NLS-1$
 	}
 
 	/**
@@ -67,15 +61,15 @@ public class ObjectListKeyEntry {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("TRKORR", this.transportID);
-		targetStructure.setValue("PGMID", this.programID);
-		targetStructure.setValue("OBJECT", this.objectType);
-		targetStructure.setValue("OBJNAME", this.objectName);
-		targetStructure.setValue("AS4POS", this.row);
-		targetStructure.setValue("MASTERTYPE", this.masterObjectType);
-		targetStructure.setValue("MASTERNAME", this.masterObjectName);
-		targetStructure.setValue("VIEWNAME", this.viewName);
-		targetStructure.setValue("TABKEY", this.tableKey);
+		targetStructure.setValue("TRKORR", this.transportID); //$NON-NLS-1$
+		targetStructure.setValue("PGMID", this.programID); //$NON-NLS-1$
+		targetStructure.setValue("OBJECT", this.objectType); //$NON-NLS-1$
+		targetStructure.setValue("OBJNAME", this.objectName); //$NON-NLS-1$
+		targetStructure.setValue("AS4POS", this.row); //$NON-NLS-1$
+		targetStructure.setValue("MASTERTYPE", this.masterObjectType); //$NON-NLS-1$
+		targetStructure.setValue("MASTERNAME", this.masterObjectName); //$NON-NLS-1$
+		targetStructure.setValue("VIEWNAME", this.viewName); //$NON-NLS-1$
+		targetStructure.setValue("TABKEY", this.tableKey); //$NON-NLS-1$
 	}
 
 	/**
@@ -112,7 +106,7 @@ public class ObjectListKeyEntry {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("TR003")) {
+		if (!structureName.equals("TR003")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected TR003).", structureName));
 		}
@@ -130,7 +124,7 @@ public class ObjectListKeyEntry {
 	 * @param newTransportID the new Request or Task to set
 	 */
 	public void setTransportID(String newTransportID) {
-		_pcs.firePropertyChange("transportID", this.transportID, newTransportID);
+		_pcs.firePropertyChange("transportID", this.transportID, newTransportID); //$NON-NLS-1$
 		this.transportID = newTransportID;
 	}
 	
@@ -146,7 +140,7 @@ public class ObjectListKeyEntry {
 	 * @param newProgramID the new Program ID to set
 	 */
 	public void setProgramID(String newProgramID) {
-		_pcs.firePropertyChange("programID", this.programID, newProgramID);
+		_pcs.firePropertyChange("programID", this.programID, newProgramID); //$NON-NLS-1$
 		this.programID = newProgramID;
 	}
 	
@@ -162,7 +156,7 @@ public class ObjectListKeyEntry {
 	 * @param newObjectType the new Object Type to set
 	 */
 	public void setObjectType(String newObjectType) {
-		_pcs.firePropertyChange("objectType", this.objectType, newObjectType);
+		_pcs.firePropertyChange("objectType", this.objectType, newObjectType); //$NON-NLS-1$
 		this.objectType = newObjectType;
 	}
 	
@@ -178,7 +172,7 @@ public class ObjectListKeyEntry {
 	 * @param newObjectName the new Object Name to set
 	 */
 	public void setObjectName(String newObjectName) {
-		_pcs.firePropertyChange("objectName", this.objectName, newObjectName);
+		_pcs.firePropertyChange("objectName", this.objectName, newObjectName); //$NON-NLS-1$
 		this.objectName = newObjectName;
 	}
 	
@@ -194,7 +188,7 @@ public class ObjectListKeyEntry {
 	 * @param newRow the new Row number to set
 	 */
 	public void setRow(int newRow) {
-		_pcs.firePropertyChange("row", this.row, newRow);
+		_pcs.firePropertyChange("row", this.row, newRow); //$NON-NLS-1$
 		this.row = newRow;
 	}
 	
@@ -210,7 +204,7 @@ public class ObjectListKeyEntry {
 	 * @param newMasterObjectType the new Master Object Type to set
 	 */
 	public void setMasterObjectType(String newMasterObjectType) {
-		_pcs.firePropertyChange("masterObjectType", this.masterObjectType, newMasterObjectType);
+		_pcs.firePropertyChange("masterObjectType", this.masterObjectType, newMasterObjectType); //$NON-NLS-1$
 		this.masterObjectType = newMasterObjectType;
 	}
 	
@@ -226,7 +220,7 @@ public class ObjectListKeyEntry {
 	 * @param newMasterObjectName the new Master Object Name to set
 	 */
 	public void setMasterObjectName(String newMasterObjectName) {
-		_pcs.firePropertyChange("masterObjectName", this.masterObjectName, newMasterObjectName);
+		_pcs.firePropertyChange("masterObjectName", this.masterObjectName, newMasterObjectName); //$NON-NLS-1$
 		this.masterObjectName = newMasterObjectName;
 	}
 	
@@ -242,7 +236,7 @@ public class ObjectListKeyEntry {
 	 * @param newViewName the new View Name to set
 	 */
 	public void setViewName(String newViewName) {
-		_pcs.firePropertyChange("viewName", this.viewName, newViewName);
+		_pcs.firePropertyChange("viewName", this.viewName, newViewName); //$NON-NLS-1$
 		this.viewName = newViewName;
 	}
 	
@@ -258,7 +252,7 @@ public class ObjectListKeyEntry {
 	 * @param newTableKey the new Table Key to set
 	 */
 	public void setTableKey(String newTableKey) {
-		_pcs.firePropertyChange("tableKey", this.tableKey, newTableKey);
+		_pcs.firePropertyChange("tableKey", this.tableKey, newTableKey); //$NON-NLS-1$
 		this.tableKey = newTableKey;
 	}
 	

@@ -3,16 +3,10 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -49,16 +43,16 @@ public class RFCDomainData {
 	public RFCDomainData(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.dataType = source.getString("DATATYPE");
-		this.length = source.getInt("LENG");
-		this.outputLength = source.getInt("OUTPUTLEN");
-		this.decimals = source.getInt("DECIMALS");
-		this.caseSensitive = source.getString("LOWERCASE").equalsIgnoreCase("X");
-		this.signed = source.getString("SIGNFLAG").equalsIgnoreCase("X");
-		this.valueListFixed = source.getString("VALEXI").equalsIgnoreCase("X");
-		this.valueTable = source.getString("ENTITYTAB");
-		this.conversionExit = source.getString("CONVEXIT");
-		this.description = source.getString("DDTEXT");
+		this.dataType = source.getString("DATATYPE"); //$NON-NLS-1$
+		this.length = source.getInt("LENG"); //$NON-NLS-1$
+		this.outputLength = source.getInt("OUTPUTLEN"); //$NON-NLS-1$
+		this.decimals = source.getInt("DECIMALS"); //$NON-NLS-1$
+		this.caseSensitive = source.getString("LOWERCASE").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.signed = source.getString("SIGNFLAG").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.valueListFixed = source.getString("VALEXI").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.valueTable = source.getString("ENTITYTAB"); //$NON-NLS-1$
+		this.conversionExit = source.getString("CONVEXIT"); //$NON-NLS-1$
+		this.description = source.getString("DDTEXT"); //$NON-NLS-1$
 	}
 
 	/**
@@ -69,16 +63,16 @@ public class RFCDomainData {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("DATATYPE", this.dataType);
-		targetStructure.setValue("LENG", this.length);
-		targetStructure.setValue("OUTPUTLEN", this.outputLength);
-		targetStructure.setValue("DECIMALS", this.decimals);
-		targetStructure.setValue("LOWERCASE", this.caseSensitive);
-		targetStructure.setValue("SIGNFLAG", this.signed);
-		targetStructure.setValue("VALEXI", this.valueListFixed);
-		targetStructure.setValue("ENTITYTAB", this.valueTable);
-		targetStructure.setValue("CONVEXIT", this.conversionExit);
-		targetStructure.setValue("DDTEXT", this.description);
+		targetStructure.setValue("DATATYPE", this.dataType); //$NON-NLS-1$
+		targetStructure.setValue("LENG", this.length); //$NON-NLS-1$
+		targetStructure.setValue("OUTPUTLEN", this.outputLength); //$NON-NLS-1$
+		targetStructure.setValue("DECIMALS", this.decimals); //$NON-NLS-1$
+		targetStructure.setValue("LOWERCASE", this.caseSensitive); //$NON-NLS-1$
+		targetStructure.setValue("SIGNFLAG", this.signed); //$NON-NLS-1$
+		targetStructure.setValue("VALEXI", this.valueListFixed); //$NON-NLS-1$
+		targetStructure.setValue("ENTITYTAB", this.valueTable); //$NON-NLS-1$
+		targetStructure.setValue("CONVEXIT", this.conversionExit); //$NON-NLS-1$
+		targetStructure.setValue("DDTEXT", this.description); //$NON-NLS-1$
 	}
 
 	/**
@@ -115,7 +109,7 @@ public class RFCDomainData {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("DD01V")) {
+		if (!structureName.equals("DD01V")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected DD01V).", structureName));
 		}
@@ -133,7 +127,7 @@ public class RFCDomainData {
 	 * @param newDataType the new data type in ABAP Dictionary to set
 	 */
 	public void setDataType(String newDataType) {
-		_pcs.firePropertyChange("dataType", this.dataType, newDataType);
+		_pcs.firePropertyChange("dataType", this.dataType, newDataType); //$NON-NLS-1$
 		this.dataType = newDataType;
 	}
 	
@@ -149,7 +143,7 @@ public class RFCDomainData {
 	 * @param newLength the new length (number of characters) to set
 	 */
 	public void setLength(int newLength) {
-		_pcs.firePropertyChange("length", this.length, newLength);
+		_pcs.firePropertyChange("length", this.length, newLength); //$NON-NLS-1$
 		this.length = newLength;
 	}
 	
@@ -165,7 +159,7 @@ public class RFCDomainData {
 	 * @param newOutputLength the new output length to set
 	 */
 	public void setOutputLength(int newOutputLength) {
-		_pcs.firePropertyChange("outputLength", this.outputLength, newOutputLength);
+		_pcs.firePropertyChange("outputLength", this.outputLength, newOutputLength); //$NON-NLS-1$
 		this.outputLength = newOutputLength;
 	}
 	
@@ -181,7 +175,7 @@ public class RFCDomainData {
 	 * @param newDecimals the new number of decimal places to set
 	 */
 	public void setDecimals(int newDecimals) {
-		_pcs.firePropertyChange("decimals", this.decimals, newDecimals);
+		_pcs.firePropertyChange("decimals", this.decimals, newDecimals); //$NON-NLS-1$
 		this.decimals = newDecimals;
 	}
 	
@@ -197,7 +191,7 @@ public class RFCDomainData {
 	 * @param newCaseSensitive the new whether lower case letters are allowed to set
 	 */
 	public void setCaseSensitive(boolean newCaseSensitive) {
-		_pcs.firePropertyChange("caseSensitive", this.caseSensitive, newCaseSensitive);
+		_pcs.firePropertyChange("caseSensitive", this.caseSensitive, newCaseSensitive); //$NON-NLS-1$
 		this.caseSensitive = newCaseSensitive;
 	}
 	
@@ -213,7 +207,7 @@ public class RFCDomainData {
 	 * @param newSigned the new whether a numerical field is signed to set
 	 */
 	public void setSigned(boolean newSigned) {
-		_pcs.firePropertyChange("signed", this.signed, newSigned);
+		_pcs.firePropertyChange("signed", this.signed, newSigned); //$NON-NLS-1$
 		this.signed = newSigned;
 	}
 	
@@ -229,7 +223,7 @@ public class RFCDomainData {
 	 * @param newValueListFixed the new whether fixed values exist to set
 	 */
 	public void setValueListFixed(boolean newValueListFixed) {
-		_pcs.firePropertyChange("valueListFixed", this.valueListFixed, newValueListFixed);
+		_pcs.firePropertyChange("valueListFixed", this.valueListFixed, newValueListFixed); //$NON-NLS-1$
 		this.valueListFixed = newValueListFixed;
 	}
 	
@@ -245,7 +239,7 @@ public class RFCDomainData {
 	 * @param newValueTable the new name of the value table to set
 	 */
 	public void setValueTable(String newValueTable) {
-		_pcs.firePropertyChange("valueTable", this.valueTable, newValueTable);
+		_pcs.firePropertyChange("valueTable", this.valueTable, newValueTable); //$NON-NLS-1$
 		this.valueTable = newValueTable;
 	}
 	
@@ -261,7 +255,7 @@ public class RFCDomainData {
 	 * @param newConversionExit the new conversion routine to set
 	 */
 	public void setConversionExit(String newConversionExit) {
-		_pcs.firePropertyChange("conversionExit", this.conversionExit, newConversionExit);
+		_pcs.firePropertyChange("conversionExit", this.conversionExit, newConversionExit); //$NON-NLS-1$
 		this.conversionExit = newConversionExit;
 	}
 	
@@ -277,7 +271,7 @@ public class RFCDomainData {
 	 * @param newDescription the new short text describing the domain to set
 	 */
 	public void setDescription(String newDescription) {
-		_pcs.firePropertyChange("description", this.description, newDescription);
+		_pcs.firePropertyChange("description", this.description, newDescription); //$NON-NLS-1$
 		this.description = newDescription;
 	}
 	

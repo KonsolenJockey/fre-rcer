@@ -3,18 +3,8 @@ package net.sf.rcer.example.rfcgen.pojo.rr;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
-import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
-import com.sap.conn.jco.JCoRecord;
-import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model the output data of a RFC call to BAPI_SFLIGHT_GETLIST. See {@link GetFlightListRequest}
@@ -46,7 +36,7 @@ public class GetFlightListResponse {
 	 * @param newFlights the new list of flights to set
 	 */
 	public void setFlights(List<FlightData> newFlights) {
-		_pcs.firePropertyChange("flights", this.flights, newFlights);
+		_pcs.firePropertyChange("flights", this.flights, newFlights); //$NON-NLS-1$
 		this.flights = newFlights;
 	}
 	

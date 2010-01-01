@@ -3,16 +3,10 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -45,12 +39,12 @@ public class RFCDataElementText {
 	public RFCDataElementText(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.localeID = source.getString("DDLANGUAGE");
-		this.description = source.getString("DDTEXT");
-		this.heading = source.getString("REPTEXT");
-		this.shortText = source.getString("SCRTEXT_S");
-		this.mediumText = source.getString("SCRTEXT_M");
-		this.longText = source.getString("SCRTEXT_L");
+		this.localeID = source.getString("DDLANGUAGE"); //$NON-NLS-1$
+		this.description = source.getString("DDTEXT"); //$NON-NLS-1$
+		this.heading = source.getString("REPTEXT"); //$NON-NLS-1$
+		this.shortText = source.getString("SCRTEXT_S"); //$NON-NLS-1$
+		this.mediumText = source.getString("SCRTEXT_M"); //$NON-NLS-1$
+		this.longText = source.getString("SCRTEXT_L"); //$NON-NLS-1$
 	}
 
 	/**
@@ -61,12 +55,12 @@ public class RFCDataElementText {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("DDLANGUAGE", this.localeID);
-		targetStructure.setValue("DDTEXT", this.description);
-		targetStructure.setValue("REPTEXT", this.heading);
-		targetStructure.setValue("SCRTEXT_S", this.shortText);
-		targetStructure.setValue("SCRTEXT_M", this.mediumText);
-		targetStructure.setValue("SCRTEXT_L", this.longText);
+		targetStructure.setValue("DDLANGUAGE", this.localeID); //$NON-NLS-1$
+		targetStructure.setValue("DDTEXT", this.description); //$NON-NLS-1$
+		targetStructure.setValue("REPTEXT", this.heading); //$NON-NLS-1$
+		targetStructure.setValue("SCRTEXT_S", this.shortText); //$NON-NLS-1$
+		targetStructure.setValue("SCRTEXT_M", this.mediumText); //$NON-NLS-1$
+		targetStructure.setValue("SCRTEXT_L", this.longText); //$NON-NLS-1$
 	}
 
 	/**
@@ -103,7 +97,7 @@ public class RFCDataElementText {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("DD04T")) {
+		if (!structureName.equals("DD04T")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected DD04T).", structureName));
 		}
@@ -121,7 +115,7 @@ public class RFCDataElementText {
 	 * @param newLocaleID the new locale ID to set
 	 */
 	public void setLocaleID(String newLocaleID) {
-		_pcs.firePropertyChange("localeID", this.localeID, newLocaleID);
+		_pcs.firePropertyChange("localeID", this.localeID, newLocaleID); //$NON-NLS-1$
 		this.localeID = newLocaleID;
 	}
 	
@@ -137,7 +131,7 @@ public class RFCDataElementText {
 	 * @param newDescription the new description to set
 	 */
 	public void setDescription(String newDescription) {
-		_pcs.firePropertyChange("description", this.description, newDescription);
+		_pcs.firePropertyChange("description", this.description, newDescription); //$NON-NLS-1$
 		this.description = newDescription;
 	}
 	
@@ -153,7 +147,7 @@ public class RFCDataElementText {
 	 * @param newHeading the new heading to set
 	 */
 	public void setHeading(String newHeading) {
-		_pcs.firePropertyChange("heading", this.heading, newHeading);
+		_pcs.firePropertyChange("heading", this.heading, newHeading); //$NON-NLS-1$
 		this.heading = newHeading;
 	}
 	
@@ -169,7 +163,7 @@ public class RFCDataElementText {
 	 * @param newShortText the new short field label to set
 	 */
 	public void setShortText(String newShortText) {
-		_pcs.firePropertyChange("shortText", this.shortText, newShortText);
+		_pcs.firePropertyChange("shortText", this.shortText, newShortText); //$NON-NLS-1$
 		this.shortText = newShortText;
 	}
 	
@@ -185,7 +179,7 @@ public class RFCDataElementText {
 	 * @param newMediumText the new medium field label to set
 	 */
 	public void setMediumText(String newMediumText) {
-		_pcs.firePropertyChange("mediumText", this.mediumText, newMediumText);
+		_pcs.firePropertyChange("mediumText", this.mediumText, newMediumText); //$NON-NLS-1$
 		this.mediumText = newMediumText;
 	}
 	
@@ -201,7 +195,7 @@ public class RFCDataElementText {
 	 * @param newLongText the new long field label to set
 	 */
 	public void setLongText(String newLongText) {
-		_pcs.firePropertyChange("longText", this.longText, newLongText);
+		_pcs.firePropertyChange("longText", this.longText, newLongText); //$NON-NLS-1$
 		this.longText = newLongText;
 	}
 	

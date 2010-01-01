@@ -3,16 +3,10 @@ package net.sf.rcer.cts.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -43,10 +37,10 @@ public class TransportMessage {
 	public TransportMessage(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.messageID = source.getString("MSGID");
-		this.messageType = source.getString("MSGTY");
-		this.messageNumber = source.getString("MSGNO");
-		this.text = source.getString("MSGTEXT");
+		this.messageID = source.getString("MSGID"); //$NON-NLS-1$
+		this.messageType = source.getString("MSGTY"); //$NON-NLS-1$
+		this.messageNumber = source.getString("MSGNO"); //$NON-NLS-1$
+		this.text = source.getString("MSGTEXT"); //$NON-NLS-1$
 	}
 
 	/**
@@ -57,10 +51,10 @@ public class TransportMessage {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("MSGID", this.messageID);
-		targetStructure.setValue("MSGTY", this.messageType);
-		targetStructure.setValue("MSGNO", this.messageNumber);
-		targetStructure.setValue("MSGTEXT", this.text);
+		targetStructure.setValue("MSGID", this.messageID); //$NON-NLS-1$
+		targetStructure.setValue("MSGTY", this.messageType); //$NON-NLS-1$
+		targetStructure.setValue("MSGNO", this.messageNumber); //$NON-NLS-1$
+		targetStructure.setValue("MSGTEXT", this.text); //$NON-NLS-1$
 	}
 
 	/**
@@ -97,7 +91,7 @@ public class TransportMessage {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("TR004")) {
+		if (!structureName.equals("TR004")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected TR004).", structureName));
 		}
@@ -115,7 +109,7 @@ public class TransportMessage {
 	 * @param newMessageID the new Message ID to set
 	 */
 	public void setMessageID(String newMessageID) {
-		_pcs.firePropertyChange("messageID", this.messageID, newMessageID);
+		_pcs.firePropertyChange("messageID", this.messageID, newMessageID); //$NON-NLS-1$
 		this.messageID = newMessageID;
 	}
 	
@@ -131,7 +125,7 @@ public class TransportMessage {
 	 * @param newMessageType the new Message Type (E, I, W,...) to set
 	 */
 	public void setMessageType(String newMessageType) {
-		_pcs.firePropertyChange("messageType", this.messageType, newMessageType);
+		_pcs.firePropertyChange("messageType", this.messageType, newMessageType); //$NON-NLS-1$
 		this.messageType = newMessageType;
 	}
 	
@@ -147,7 +141,7 @@ public class TransportMessage {
 	 * @param newMessageNumber the new Message Number to set
 	 */
 	public void setMessageNumber(String newMessageNumber) {
-		_pcs.firePropertyChange("messageNumber", this.messageNumber, newMessageNumber);
+		_pcs.firePropertyChange("messageNumber", this.messageNumber, newMessageNumber); //$NON-NLS-1$
 		this.messageNumber = newMessageNumber;
 	}
 	
@@ -163,7 +157,7 @@ public class TransportMessage {
 	 * @param newText the new Message Text to set
 	 */
 	public void setText(String newText) {
-		_pcs.firePropertyChange("text", this.text, newText);
+		_pcs.firePropertyChange("text", this.text, newText); //$NON-NLS-1$
 		this.text = newText;
 	}
 	

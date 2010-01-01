@@ -3,16 +3,11 @@ package net.sf.rcer.example.rfcgen.pojo.call;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -47,14 +42,14 @@ public class FlightData {
 	public FlightData(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.carrierID = source.getString("CARRID");
-		this.connectionID = source.getString("CONNID");
-		this.flightDate = source.getDate("FLDATE");
-		this.departureTime = source.getDate("DEPTIME");
-		this.origin = source.getString("AIRPFROM");
-		this.destination = source.getString("AIRPTO");
-		this.maximumSeats = source.getInt("SEATSMAX");
-		this.occupiedSeats = source.getInt("SEATSOCC");
+		this.carrierID = source.getString("CARRID"); //$NON-NLS-1$
+		this.connectionID = source.getString("CONNID"); //$NON-NLS-1$
+		this.flightDate = source.getDate("FLDATE"); //$NON-NLS-1$
+		this.departureTime = source.getDate("DEPTIME"); //$NON-NLS-1$
+		this.origin = source.getString("AIRPFROM"); //$NON-NLS-1$
+		this.destination = source.getString("AIRPTO"); //$NON-NLS-1$
+		this.maximumSeats = source.getInt("SEATSMAX"); //$NON-NLS-1$
+		this.occupiedSeats = source.getInt("SEATSOCC"); //$NON-NLS-1$
 	}
 
 	/**
@@ -65,14 +60,14 @@ public class FlightData {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("CARRID", this.carrierID);
-		targetStructure.setValue("CONNID", this.connectionID);
-		targetStructure.setValue("FLDATE", this.flightDate);
-		targetStructure.setValue("DEPTIME", this.departureTime);
-		targetStructure.setValue("AIRPFROM", this.origin);
-		targetStructure.setValue("AIRPTO", this.destination);
-		targetStructure.setValue("SEATSMAX", this.maximumSeats);
-		targetStructure.setValue("SEATSOCC", this.occupiedSeats);
+		targetStructure.setValue("CARRID", this.carrierID); //$NON-NLS-1$
+		targetStructure.setValue("CONNID", this.connectionID); //$NON-NLS-1$
+		targetStructure.setValue("FLDATE", this.flightDate); //$NON-NLS-1$
+		targetStructure.setValue("DEPTIME", this.departureTime); //$NON-NLS-1$
+		targetStructure.setValue("AIRPFROM", this.origin); //$NON-NLS-1$
+		targetStructure.setValue("AIRPTO", this.destination); //$NON-NLS-1$
+		targetStructure.setValue("SEATSMAX", this.maximumSeats); //$NON-NLS-1$
+		targetStructure.setValue("SEATSOCC", this.occupiedSeats); //$NON-NLS-1$
 	}
 
 	/**
@@ -109,7 +104,7 @@ public class FlightData {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("BAPISFLIST")) {
+		if (!structureName.equals("BAPISFLIST")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected BAPISFLIST).", structureName));
 		}
@@ -127,7 +122,7 @@ public class FlightData {
 	 * @param newCarrierID the new carrier ID to set
 	 */
 	public void setCarrierID(String newCarrierID) {
-		_pcs.firePropertyChange("carrierID", this.carrierID, newCarrierID);
+		_pcs.firePropertyChange("carrierID", this.carrierID, newCarrierID); //$NON-NLS-1$
 		this.carrierID = newCarrierID;
 	}
 	
@@ -143,7 +138,7 @@ public class FlightData {
 	 * @param newConnectionID the new connection ID to set
 	 */
 	public void setConnectionID(String newConnectionID) {
-		_pcs.firePropertyChange("connectionID", this.connectionID, newConnectionID);
+		_pcs.firePropertyChange("connectionID", this.connectionID, newConnectionID); //$NON-NLS-1$
 		this.connectionID = newConnectionID;
 	}
 	
@@ -159,7 +154,7 @@ public class FlightData {
 	 * @param newFlightDate the new flight date to set
 	 */
 	public void setFlightDate(Date newFlightDate) {
-		_pcs.firePropertyChange("flightDate", this.flightDate, newFlightDate);
+		_pcs.firePropertyChange("flightDate", this.flightDate, newFlightDate); //$NON-NLS-1$
 		this.flightDate = newFlightDate;
 	}
 	
@@ -175,7 +170,7 @@ public class FlightData {
 	 * @param newDepartureTime the new departure time to set
 	 */
 	public void setDepartureTime(Date newDepartureTime) {
-		_pcs.firePropertyChange("departureTime", this.departureTime, newDepartureTime);
+		_pcs.firePropertyChange("departureTime", this.departureTime, newDepartureTime); //$NON-NLS-1$
 		this.departureTime = newDepartureTime;
 	}
 	
@@ -191,7 +186,7 @@ public class FlightData {
 	 * @param newOrigin the new originating airport to set
 	 */
 	public void setOrigin(String newOrigin) {
-		_pcs.firePropertyChange("origin", this.origin, newOrigin);
+		_pcs.firePropertyChange("origin", this.origin, newOrigin); //$NON-NLS-1$
 		this.origin = newOrigin;
 	}
 	
@@ -207,7 +202,7 @@ public class FlightData {
 	 * @param newDestination the new destination airport to set
 	 */
 	public void setDestination(String newDestination) {
-		_pcs.firePropertyChange("destination", this.destination, newDestination);
+		_pcs.firePropertyChange("destination", this.destination, newDestination); //$NON-NLS-1$
 		this.destination = newDestination;
 	}
 	
@@ -223,7 +218,7 @@ public class FlightData {
 	 * @param newMaximumSeats the new maximum number of seats to set
 	 */
 	public void setMaximumSeats(int newMaximumSeats) {
-		_pcs.firePropertyChange("maximumSeats", this.maximumSeats, newMaximumSeats);
+		_pcs.firePropertyChange("maximumSeats", this.maximumSeats, newMaximumSeats); //$NON-NLS-1$
 		this.maximumSeats = newMaximumSeats;
 	}
 	
@@ -239,7 +234,7 @@ public class FlightData {
 	 * @param newOccupiedSeats the new number of seats occupied to set
 	 */
 	public void setOccupiedSeats(int newOccupiedSeats) {
-		_pcs.firePropertyChange("occupiedSeats", this.occupiedSeats, newOccupiedSeats);
+		_pcs.firePropertyChange("occupiedSeats", this.occupiedSeats, newOccupiedSeats); //$NON-NLS-1$
 		this.occupiedSeats = newOccupiedSeats;
 	}
 	

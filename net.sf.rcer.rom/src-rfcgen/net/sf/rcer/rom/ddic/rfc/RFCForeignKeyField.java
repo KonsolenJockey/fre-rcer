@@ -3,16 +3,10 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -45,12 +39,12 @@ public class RFCForeignKeyField {
 	public RFCForeignKeyField(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.fieldName = source.getString("FIELDNAME");
-		this.foreignTableName = source.getString("FORTABLE");
-		this.foreignFieldName = source.getString("FORKEY");
-		this.checkTableName = source.getString("CHECKTABLE");
-		this.checkFieldName = source.getString("CHECKFIELD");
-		this.position = source.getInt("PRIMPOS");
+		this.fieldName = source.getString("FIELDNAME"); //$NON-NLS-1$
+		this.foreignTableName = source.getString("FORTABLE"); //$NON-NLS-1$
+		this.foreignFieldName = source.getString("FORKEY"); //$NON-NLS-1$
+		this.checkTableName = source.getString("CHECKTABLE"); //$NON-NLS-1$
+		this.checkFieldName = source.getString("CHECKFIELD"); //$NON-NLS-1$
+		this.position = source.getInt("PRIMPOS"); //$NON-NLS-1$
 	}
 
 	/**
@@ -61,12 +55,12 @@ public class RFCForeignKeyField {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("FIELDNAME", this.fieldName);
-		targetStructure.setValue("FORTABLE", this.foreignTableName);
-		targetStructure.setValue("FORKEY", this.foreignFieldName);
-		targetStructure.setValue("CHECKTABLE", this.checkTableName);
-		targetStructure.setValue("CHECKFIELD", this.checkFieldName);
-		targetStructure.setValue("PRIMPOS", this.position);
+		targetStructure.setValue("FIELDNAME", this.fieldName); //$NON-NLS-1$
+		targetStructure.setValue("FORTABLE", this.foreignTableName); //$NON-NLS-1$
+		targetStructure.setValue("FORKEY", this.foreignFieldName); //$NON-NLS-1$
+		targetStructure.setValue("CHECKTABLE", this.checkTableName); //$NON-NLS-1$
+		targetStructure.setValue("CHECKFIELD", this.checkFieldName); //$NON-NLS-1$
+		targetStructure.setValue("PRIMPOS", this.position); //$NON-NLS-1$
 	}
 
 	/**
@@ -103,7 +97,7 @@ public class RFCForeignKeyField {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("DD05M")) {
+		if (!structureName.equals("DD05M")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected DD05M).", structureName));
 		}
@@ -121,7 +115,7 @@ public class RFCForeignKeyField {
 	 * @param newFieldName the new name of the field to be checked to set
 	 */
 	public void setFieldName(String newFieldName) {
-		_pcs.firePropertyChange("fieldName", this.fieldName, newFieldName);
+		_pcs.firePropertyChange("fieldName", this.fieldName, newFieldName); //$NON-NLS-1$
 		this.fieldName = newFieldName;
 	}
 	
@@ -137,7 +131,7 @@ public class RFCForeignKeyField {
 	 * @param newForeignTableName the new Table of the foreign key field to set
 	 */
 	public void setForeignTableName(String newForeignTableName) {
-		_pcs.firePropertyChange("foreignTableName", this.foreignTableName, newForeignTableName);
+		_pcs.firePropertyChange("foreignTableName", this.foreignTableName, newForeignTableName); //$NON-NLS-1$
 		this.foreignTableName = newForeignTableName;
 	}
 	
@@ -153,7 +147,7 @@ public class RFCForeignKeyField {
 	 * @param newForeignFieldName the new Names of the foreign key fields to set
 	 */
 	public void setForeignFieldName(String newForeignFieldName) {
-		_pcs.firePropertyChange("foreignFieldName", this.foreignFieldName, newForeignFieldName);
+		_pcs.firePropertyChange("foreignFieldName", this.foreignFieldName, newForeignFieldName); //$NON-NLS-1$
 		this.foreignFieldName = newForeignFieldName;
 	}
 	
@@ -169,7 +163,7 @@ public class RFCForeignKeyField {
 	 * @param newCheckTableName the new Check table name of the foreign key to set
 	 */
 	public void setCheckTableName(String newCheckTableName) {
-		_pcs.firePropertyChange("checkTableName", this.checkTableName, newCheckTableName);
+		_pcs.firePropertyChange("checkTableName", this.checkTableName, newCheckTableName); //$NON-NLS-1$
 		this.checkTableName = newCheckTableName;
 	}
 	
@@ -185,7 +179,7 @@ public class RFCForeignKeyField {
 	 * @param newCheckFieldName the new Field name to set
 	 */
 	public void setCheckFieldName(String newCheckFieldName) {
-		_pcs.firePropertyChange("checkFieldName", this.checkFieldName, newCheckFieldName);
+		_pcs.firePropertyChange("checkFieldName", this.checkFieldName, newCheckFieldName); //$NON-NLS-1$
 		this.checkFieldName = newCheckFieldName;
 	}
 	
@@ -201,7 +195,7 @@ public class RFCForeignKeyField {
 	 * @param newPosition the new Position of corresp. foreign key field in primary key to set
 	 */
 	public void setPosition(int newPosition) {
-		_pcs.firePropertyChange("position", this.position, newPosition);
+		_pcs.firePropertyChange("position", this.position, newPosition); //$NON-NLS-1$
 		this.position = newPosition;
 	}
 	

@@ -3,18 +3,12 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
-import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunction;
-import com.sap.conn.jco.JCoRecord;
-import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model a RFC call to DD_TABL_GET. Use the setters to prepare the importing parameters, 
@@ -65,7 +59,7 @@ public class RFCDataStructureReader {
 	 * @param newName the new the name of the structure (strucutre, table, view, ...) to set
 	 */
 	public void setName(String newName) {
-		_pcs.firePropertyChange("name", this.name, newName);
+		_pcs.firePropertyChange("name", this.name, newName); //$NON-NLS-1$
 		this.name = newName;
 	}
 	
@@ -81,7 +75,7 @@ public class RFCDataStructureReader {
 	 * @param newLocaleID the new locale ID to set
 	 */
 	public void setLocaleID(String newLocaleID) {
-		_pcs.firePropertyChange("localeID", this.localeID, newLocaleID);
+		_pcs.firePropertyChange("localeID", this.localeID, newLocaleID); //$NON-NLS-1$
 		this.localeID = newLocaleID;
 	}
 	
@@ -97,7 +91,7 @@ public class RFCDataStructureReader {
 	 * @param newAddText the new whether to read the texts to set
 	 */
 	public void setAddText(boolean newAddText) {
-		_pcs.firePropertyChange("addText", this.addText, newAddText);
+		_pcs.firePropertyChange("addText", this.addText, newAddText); //$NON-NLS-1$
 		this.addText = newAddText;
 	}
 	
@@ -113,7 +107,7 @@ public class RFCDataStructureReader {
 	 * @param newAddTypeInfo the new whether to read the type information to set
 	 */
 	public void setAddTypeInfo(boolean newAddTypeInfo) {
-		_pcs.firePropertyChange("addTypeInfo", this.addTypeInfo, newAddTypeInfo);
+		_pcs.firePropertyChange("addTypeInfo", this.addTypeInfo, newAddTypeInfo); //$NON-NLS-1$
 		this.addTypeInfo = newAddTypeInfo;
 	}
 	
@@ -129,7 +123,7 @@ public class RFCDataStructureReader {
 	 * @param newRequestedStates the new requested states to set
 	 */
 	public void setRequestedStates(RFCStructureStates newRequestedStates) {
-		_pcs.firePropertyChange("requestedStates", this.requestedStates, newRequestedStates);
+		_pcs.firePropertyChange("requestedStates", this.requestedStates, newRequestedStates); //$NON-NLS-1$
 		this.requestedStates = newRequestedStates;
 	}
 	
@@ -145,7 +139,7 @@ public class RFCDataStructureReader {
 	 * @param newHeader the new the header of the structure to set
 	 */
 	public void setHeader(RFCDataStructureHeader newHeader) {
-		_pcs.firePropertyChange("header", this.header, newHeader);
+		_pcs.firePropertyChange("header", this.header, newHeader); //$NON-NLS-1$
 		this.header = newHeader;
 	}
 	
@@ -161,7 +155,7 @@ public class RFCDataStructureReader {
 	 * @param newTechSettings the new the technical settings of a table to set
 	 */
 	public void setTechSettings(RFCTableTechSettings newTechSettings) {
-		_pcs.firePropertyChange("techSettings", this.techSettings, newTechSettings);
+		_pcs.firePropertyChange("techSettings", this.techSettings, newTechSettings); //$NON-NLS-1$
 		this.techSettings = newTechSettings;
 	}
 	
@@ -177,7 +171,7 @@ public class RFCDataStructureReader {
 	 * @param newFields the new the fields of the structure to set
 	 */
 	public void setFields(List<RFCDataStructureField> newFields) {
-		_pcs.firePropertyChange("fields", this.fields, newFields);
+		_pcs.firePropertyChange("fields", this.fields, newFields); //$NON-NLS-1$
 		this.fields = newFields;
 	}
 	
@@ -193,7 +187,7 @@ public class RFCDataStructureReader {
 	 * @param newForeignKeyHeaders the new the headers of the foreign key definitions to set
 	 */
 	public void setForeignKeyHeaders(List<RFCForeignKeyHeader> newForeignKeyHeaders) {
-		_pcs.firePropertyChange("foreignKeyHeaders", this.foreignKeyHeaders, newForeignKeyHeaders);
+		_pcs.firePropertyChange("foreignKeyHeaders", this.foreignKeyHeaders, newForeignKeyHeaders); //$NON-NLS-1$
 		this.foreignKeyHeaders = newForeignKeyHeaders;
 	}
 	
@@ -209,7 +203,7 @@ public class RFCDataStructureReader {
 	 * @param newForeignKeyFields the new the fields of the foreign keys to set
 	 */
 	public void setForeignKeyFields(List<RFCForeignKeyField> newForeignKeyFields) {
-		_pcs.firePropertyChange("foreignKeyFields", this.foreignKeyFields, newForeignKeyFields);
+		_pcs.firePropertyChange("foreignKeyFields", this.foreignKeyFields, newForeignKeyFields); //$NON-NLS-1$
 		this.foreignKeyFields = newForeignKeyFields;
 	}
 	
@@ -225,7 +219,7 @@ public class RFCDataStructureReader {
 	 * @param newIndexHeaders the new the headers of the index definitions to set
 	 */
 	public void setIndexHeaders(List<RFCIndexHeader> newIndexHeaders) {
-		_pcs.firePropertyChange("indexHeaders", this.indexHeaders, newIndexHeaders);
+		_pcs.firePropertyChange("indexHeaders", this.indexHeaders, newIndexHeaders); //$NON-NLS-1$
 		this.indexHeaders = newIndexHeaders;
 	}
 	
@@ -241,7 +235,7 @@ public class RFCDataStructureReader {
 	 * @param newIndexFields the new the fields of the index definitions to set
 	 */
 	public void setIndexFields(List<RFCIndexField> newIndexFields) {
-		_pcs.firePropertyChange("indexFields", this.indexFields, newIndexFields);
+		_pcs.firePropertyChange("indexFields", this.indexFields, newIndexFields); //$NON-NLS-1$
 		this.indexFields = newIndexFields;
 	}
 	
@@ -257,7 +251,7 @@ public class RFCDataStructureReader {
 	 * @param newSearchHelpHeaders the new the headers of the search help assignments to set
 	 */
 	public void setSearchHelpHeaders(List<RFCSearchHelpHeader> newSearchHelpHeaders) {
-		_pcs.firePropertyChange("searchHelpHeaders", this.searchHelpHeaders, newSearchHelpHeaders);
+		_pcs.firePropertyChange("searchHelpHeaders", this.searchHelpHeaders, newSearchHelpHeaders); //$NON-NLS-1$
 		this.searchHelpHeaders = newSearchHelpHeaders;
 	}
 	
@@ -273,7 +267,7 @@ public class RFCDataStructureReader {
 	 * @param newSearchHelpFields the new the fields of the search help assignments to set
 	 */
 	public void setSearchHelpFields(List<RFCSearchHelpField> newSearchHelpFields) {
-		_pcs.firePropertyChange("searchHelpFields", this.searchHelpFields, newSearchHelpFields);
+		_pcs.firePropertyChange("searchHelpFields", this.searchHelpFields, newSearchHelpFields); //$NON-NLS-1$
 		this.searchHelpFields = newSearchHelpFields;
 	}
 	
@@ -283,29 +277,29 @@ public class RFCDataStructureReader {
 	 * @throws JCoException
 	 */
 	public void execute(JCoDestination destination) throws JCoException {
-		JCoFunction function = destination.getRepository().getFunction("DD_TABL_GET");
-		function.getImportParameterList().setValue("TABL_NAME", name);
-		function.getImportParameterList().setValue("LANGU", localeID);
-		function.getImportParameterList().setValue("WITHTEXT", addText ? "X" : " ");
-		function.getImportParameterList().setValue("ADD_TYPEINFO", addTypeInfo ? "X" : " ");
-		requestedStates.toStructure(function.getImportParameterList().getStructure("GET_STATE"));
-		RFCDataStructureField.toTable(fields, function.getTableParameterList().getTable("DD03P_TAB_A"));
-		RFCForeignKeyHeader.toTable(foreignKeyHeaders, function.getTableParameterList().getTable("DD08V_TAB_A"));
-		RFCForeignKeyField.toTable(foreignKeyFields, function.getTableParameterList().getTable("DD05M_TAB_A"));
-		RFCIndexHeader.toTable(indexHeaders, function.getTableParameterList().getTable("DD12V_TAB_A"));
-		RFCIndexField.toTable(indexFields, function.getTableParameterList().getTable("DD17V_TAB_A"));
-		RFCSearchHelpHeader.toTable(searchHelpHeaders, function.getTableParameterList().getTable("DD35V_TAB_A"));
-		RFCSearchHelpField.toTable(searchHelpFields, function.getTableParameterList().getTable("DD36M_TAB_A"));
+		JCoFunction function = destination.getRepository().getFunction("DD_TABL_GET"); //$NON-NLS-1$
+		function.getImportParameterList().setValue("TABL_NAME", name); //$NON-NLS-1$
+		function.getImportParameterList().setValue("LANGU", localeID); //$NON-NLS-1$
+		function.getImportParameterList().setValue("WITHTEXT", addText ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		function.getImportParameterList().setValue("ADD_TYPEINFO", addTypeInfo ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		requestedStates.toStructure(function.getImportParameterList().getStructure("GET_STATE")); //$NON-NLS-1$
+		RFCDataStructureField.toTable(fields, function.getTableParameterList().getTable("DD03P_TAB_A")); //$NON-NLS-1$
+		RFCForeignKeyHeader.toTable(foreignKeyHeaders, function.getTableParameterList().getTable("DD08V_TAB_A")); //$NON-NLS-1$
+		RFCForeignKeyField.toTable(foreignKeyFields, function.getTableParameterList().getTable("DD05M_TAB_A")); //$NON-NLS-1$
+		RFCIndexHeader.toTable(indexHeaders, function.getTableParameterList().getTable("DD12V_TAB_A")); //$NON-NLS-1$
+		RFCIndexField.toTable(indexFields, function.getTableParameterList().getTable("DD17V_TAB_A")); //$NON-NLS-1$
+		RFCSearchHelpHeader.toTable(searchHelpHeaders, function.getTableParameterList().getTable("DD35V_TAB_A")); //$NON-NLS-1$
+		RFCSearchHelpField.toTable(searchHelpFields, function.getTableParameterList().getTable("DD36M_TAB_A")); //$NON-NLS-1$
 		function.execute(destination);
-		header = new RFCDataStructureHeader(function.getExportParameterList().getStructure("DD02V_WA_A"));
-		techSettings = new RFCTableTechSettings(function.getExportParameterList().getStructure("DD09L_WA_A"));
-		fields = RFCDataStructureField.fromTable(function.getTableParameterList().getTable("DD03P_TAB_A"));
-		foreignKeyHeaders = RFCForeignKeyHeader.fromTable(function.getTableParameterList().getTable("DD08V_TAB_A"));
-		foreignKeyFields = RFCForeignKeyField.fromTable(function.getTableParameterList().getTable("DD05M_TAB_A"));
-		indexHeaders = RFCIndexHeader.fromTable(function.getTableParameterList().getTable("DD12V_TAB_A"));
-		indexFields = RFCIndexField.fromTable(function.getTableParameterList().getTable("DD17V_TAB_A"));
-		searchHelpHeaders = RFCSearchHelpHeader.fromTable(function.getTableParameterList().getTable("DD35V_TAB_A"));
-		searchHelpFields = RFCSearchHelpField.fromTable(function.getTableParameterList().getTable("DD36M_TAB_A"));
+		header = new RFCDataStructureHeader(function.getExportParameterList().getStructure("DD02V_WA_A")); //$NON-NLS-1$
+		techSettings = new RFCTableTechSettings(function.getExportParameterList().getStructure("DD09L_WA_A")); //$NON-NLS-1$
+		fields = RFCDataStructureField.fromTable(function.getTableParameterList().getTable("DD03P_TAB_A")); //$NON-NLS-1$
+		foreignKeyHeaders = RFCForeignKeyHeader.fromTable(function.getTableParameterList().getTable("DD08V_TAB_A")); //$NON-NLS-1$
+		foreignKeyFields = RFCForeignKeyField.fromTable(function.getTableParameterList().getTable("DD05M_TAB_A")); //$NON-NLS-1$
+		indexHeaders = RFCIndexHeader.fromTable(function.getTableParameterList().getTable("DD12V_TAB_A")); //$NON-NLS-1$
+		indexFields = RFCIndexField.fromTable(function.getTableParameterList().getTable("DD17V_TAB_A")); //$NON-NLS-1$
+		searchHelpHeaders = RFCSearchHelpHeader.fromTable(function.getTableParameterList().getTable("DD35V_TAB_A")); //$NON-NLS-1$
+		searchHelpFields = RFCSearchHelpField.fromTable(function.getTableParameterList().getTable("DD36M_TAB_A")); //$NON-NLS-1$
 	}
 
 	/**

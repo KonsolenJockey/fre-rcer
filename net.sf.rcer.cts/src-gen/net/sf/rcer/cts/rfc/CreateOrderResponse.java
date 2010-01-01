@@ -3,18 +3,8 @@ package net.sf.rcer.cts.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
-import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
-import com.sap.conn.jco.JCoRecord;
-import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model the output data of a RFC call to TR40_ORDER_CREATE. See {@link CreateOrderRequest}
@@ -49,7 +39,7 @@ public class CreateOrderResponse {
 	 * @param newOrderID the new ID of the newly created order to set
 	 */
 	public void setOrderID(String newOrderID) {
-		_pcs.firePropertyChange("orderID", this.orderID, newOrderID);
+		_pcs.firePropertyChange("orderID", this.orderID, newOrderID); //$NON-NLS-1$
 		this.orderID = newOrderID;
 	}
 	
@@ -65,7 +55,7 @@ public class CreateOrderResponse {
 	 * @param newUsers the new list of users and associated task IDs to set
 	 */
 	public void setUsers(List<TaskUserListEntry> newUsers) {
-		_pcs.firePropertyChange("users", this.users, newUsers);
+		_pcs.firePropertyChange("users", this.users, newUsers); //$NON-NLS-1$
 		this.users = newUsers;
 	}
 	
@@ -81,7 +71,7 @@ public class CreateOrderResponse {
 	 * @param newException the new exception that occurred during execution, if any to set
 	 */
 	public void setException(String newException) {
-		_pcs.firePropertyChange("exception", this.exception, newException);
+		_pcs.firePropertyChange("exception", this.exception, newException); //$NON-NLS-1$
 		this.exception = newException;
 	}
 	
@@ -97,7 +87,7 @@ public class CreateOrderResponse {
 	 * @param newMessages the new messages that occurred during execution, if any to set
 	 */
 	public void setMessages(List<TransportMessage> newMessages) {
-		_pcs.firePropertyChange("messages", this.messages, newMessages);
+		_pcs.firePropertyChange("messages", this.messages, newMessages); //$NON-NLS-1$
 		this.messages = newMessages;
 	}
 	

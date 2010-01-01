@@ -3,16 +3,10 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -42,9 +36,9 @@ public class RFCSearchHelpHeader {
 	public RFCSearchHelpHeader(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.fieldName = source.getString("FIELDNAME");
-		this.searchHelpName = source.getString("SHLPNAME");
-		this.inherited = source.getString("SHLPINHER").equalsIgnoreCase("X");
+		this.fieldName = source.getString("FIELDNAME"); //$NON-NLS-1$
+		this.searchHelpName = source.getString("SHLPNAME"); //$NON-NLS-1$
+		this.inherited = source.getString("SHLPINHER").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -55,9 +49,9 @@ public class RFCSearchHelpHeader {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("FIELDNAME", this.fieldName);
-		targetStructure.setValue("SHLPNAME", this.searchHelpName);
-		targetStructure.setValue("SHLPINHER", this.inherited);
+		targetStructure.setValue("FIELDNAME", this.fieldName); //$NON-NLS-1$
+		targetStructure.setValue("SHLPNAME", this.searchHelpName); //$NON-NLS-1$
+		targetStructure.setValue("SHLPINHER", this.inherited); //$NON-NLS-1$
 	}
 
 	/**
@@ -94,7 +88,7 @@ public class RFCSearchHelpHeader {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("DD35V")) {
+		if (!structureName.equals("DD35V")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected DD35V).", structureName));
 		}
@@ -112,7 +106,7 @@ public class RFCSearchHelpHeader {
 	 * @param newFieldName the new field name to set
 	 */
 	public void setFieldName(String newFieldName) {
-		_pcs.firePropertyChange("fieldName", this.fieldName, newFieldName);
+		_pcs.firePropertyChange("fieldName", this.fieldName, newFieldName); //$NON-NLS-1$
 		this.fieldName = newFieldName;
 	}
 	
@@ -128,7 +122,7 @@ public class RFCSearchHelpHeader {
 	 * @param newSearchHelpName the new name of a search help to set
 	 */
 	public void setSearchHelpName(String newSearchHelpName) {
-		_pcs.firePropertyChange("searchHelpName", this.searchHelpName, newSearchHelpName);
+		_pcs.firePropertyChange("searchHelpName", this.searchHelpName, newSearchHelpName); //$NON-NLS-1$
 		this.searchHelpName = newSearchHelpName;
 	}
 	
@@ -144,7 +138,7 @@ public class RFCSearchHelpHeader {
 	 * @param newInherited the new whether the search help attachment is inherited to set
 	 */
 	public void setInherited(boolean newInherited) {
-		_pcs.firePropertyChange("inherited", this.inherited, newInherited);
+		_pcs.firePropertyChange("inherited", this.inherited, newInherited); //$NON-NLS-1$
 		this.inherited = newInherited;
 	}
 	

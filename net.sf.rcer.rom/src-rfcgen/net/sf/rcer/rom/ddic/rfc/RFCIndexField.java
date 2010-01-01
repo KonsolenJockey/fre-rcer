@@ -3,16 +3,10 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -43,10 +37,10 @@ public class RFCIndexField {
 	public RFCIndexField(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.indexName = source.getString("INDEXNAME");
-		this.position = source.getInt("POSITION");
-		this.fieldName = source.getString("FIELDNAME");
-		this.descending = source.getString("DESCFLAG").equalsIgnoreCase("X");
+		this.indexName = source.getString("INDEXNAME"); //$NON-NLS-1$
+		this.position = source.getInt("POSITION"); //$NON-NLS-1$
+		this.fieldName = source.getString("FIELDNAME"); //$NON-NLS-1$
+		this.descending = source.getString("DESCFLAG").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -57,10 +51,10 @@ public class RFCIndexField {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("INDEXNAME", this.indexName);
-		targetStructure.setValue("POSITION", this.position);
-		targetStructure.setValue("FIELDNAME", this.fieldName);
-		targetStructure.setValue("DESCFLAG", this.descending);
+		targetStructure.setValue("INDEXNAME", this.indexName); //$NON-NLS-1$
+		targetStructure.setValue("POSITION", this.position); //$NON-NLS-1$
+		targetStructure.setValue("FIELDNAME", this.fieldName); //$NON-NLS-1$
+		targetStructure.setValue("DESCFLAG", this.descending); //$NON-NLS-1$
 	}
 
 	/**
@@ -97,7 +91,7 @@ public class RFCIndexField {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("DD17V")) {
+		if (!structureName.equals("DD17V")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected DD17V).", structureName));
 		}
@@ -115,7 +109,7 @@ public class RFCIndexField {
 	 * @param newIndexName the new index ID to set
 	 */
 	public void setIndexName(String newIndexName) {
-		_pcs.firePropertyChange("indexName", this.indexName, newIndexName);
+		_pcs.firePropertyChange("indexName", this.indexName, newIndexName); //$NON-NLS-1$
 		this.indexName = newIndexName;
 	}
 	
@@ -131,7 +125,7 @@ public class RFCIndexField {
 	 * @param newPosition the new position of the field in the table to set
 	 */
 	public void setPosition(int newPosition) {
-		_pcs.firePropertyChange("position", this.position, newPosition);
+		_pcs.firePropertyChange("position", this.position, newPosition); //$NON-NLS-1$
 		this.position = newPosition;
 	}
 	
@@ -147,7 +141,7 @@ public class RFCIndexField {
 	 * @param newFieldName the new field name to set
 	 */
 	public void setFieldName(String newFieldName) {
-		_pcs.firePropertyChange("fieldName", this.fieldName, newFieldName);
+		_pcs.firePropertyChange("fieldName", this.fieldName, newFieldName); //$NON-NLS-1$
 		this.fieldName = newFieldName;
 	}
 	
@@ -163,7 +157,7 @@ public class RFCIndexField {
 	 * @param newDescending the new whether the index field is sorted in descending order to set
 	 */
 	public void setDescending(boolean newDescending) {
-		_pcs.firePropertyChange("descending", this.descending, newDescending);
+		_pcs.firePropertyChange("descending", this.descending, newDescending); //$NON-NLS-1$
 		this.descending = newDescending;
 	}
 	

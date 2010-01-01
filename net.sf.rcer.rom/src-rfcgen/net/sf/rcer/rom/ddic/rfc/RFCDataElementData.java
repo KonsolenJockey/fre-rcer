@@ -3,16 +3,10 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -60,27 +54,27 @@ public class RFCDataElementData {
 	public RFCDataElementData(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.typeName = source.getString("DOMNAME");
-		this.parameterID = source.getString("MEMORYID");
-		this.logged = source.getString("LOGFLAG").equalsIgnoreCase("X");
-		this.headingLength = source.getInt("HEADLEN");
-		this.shortTextLength = source.getInt("SCRLEN1");
-		this.mediumTextLength = source.getInt("SCRLEN2");
-		this.longTextLength = source.getInt("SCRLEN3");
-		this.searchHelpName = source.getString("SHLPNAME");
-		this.searchHelpField = source.getString("SHLPFIELD");
-		this.defaultFieldName = source.getString("DEFFDNAME");
-		this.dataType = source.getString("DATATYPE");
-		this.length = source.getInt("LENG");
-		this.decimals = source.getInt("DECIMALS");
-		this.outputLength = source.getInt("OUTPUTLEN");
-		this.caseSensitive = source.getString("LOWERCASE").equalsIgnoreCase("X");
-		this.signed = source.getString("SIGNFLAG").equalsIgnoreCase("X");
-		this.conversionExit = source.getString("CONVEXIT");
-		this.valueListFixed = source.getString("VALEXI").equalsIgnoreCase("X");
-		this.valueTable = source.getString("ENTITYTAB");
-		this.typeKind = source.getString("REFKIND");
-		this.referenceKind = source.getString("REFTYPE");
+		this.typeName = source.getString("DOMNAME"); //$NON-NLS-1$
+		this.parameterID = source.getString("MEMORYID"); //$NON-NLS-1$
+		this.logged = source.getString("LOGFLAG").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.headingLength = source.getInt("HEADLEN"); //$NON-NLS-1$
+		this.shortTextLength = source.getInt("SCRLEN1"); //$NON-NLS-1$
+		this.mediumTextLength = source.getInt("SCRLEN2"); //$NON-NLS-1$
+		this.longTextLength = source.getInt("SCRLEN3"); //$NON-NLS-1$
+		this.searchHelpName = source.getString("SHLPNAME"); //$NON-NLS-1$
+		this.searchHelpField = source.getString("SHLPFIELD"); //$NON-NLS-1$
+		this.defaultFieldName = source.getString("DEFFDNAME"); //$NON-NLS-1$
+		this.dataType = source.getString("DATATYPE"); //$NON-NLS-1$
+		this.length = source.getInt("LENG"); //$NON-NLS-1$
+		this.decimals = source.getInt("DECIMALS"); //$NON-NLS-1$
+		this.outputLength = source.getInt("OUTPUTLEN"); //$NON-NLS-1$
+		this.caseSensitive = source.getString("LOWERCASE").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.signed = source.getString("SIGNFLAG").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.conversionExit = source.getString("CONVEXIT"); //$NON-NLS-1$
+		this.valueListFixed = source.getString("VALEXI").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.valueTable = source.getString("ENTITYTAB"); //$NON-NLS-1$
+		this.typeKind = source.getString("REFKIND"); //$NON-NLS-1$
+		this.referenceKind = source.getString("REFTYPE"); //$NON-NLS-1$
 	}
 
 	/**
@@ -91,27 +85,27 @@ public class RFCDataElementData {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("DOMNAME", this.typeName);
-		targetStructure.setValue("MEMORYID", this.parameterID);
-		targetStructure.setValue("LOGFLAG", this.logged);
-		targetStructure.setValue("HEADLEN", this.headingLength);
-		targetStructure.setValue("SCRLEN1", this.shortTextLength);
-		targetStructure.setValue("SCRLEN2", this.mediumTextLength);
-		targetStructure.setValue("SCRLEN3", this.longTextLength);
-		targetStructure.setValue("SHLPNAME", this.searchHelpName);
-		targetStructure.setValue("SHLPFIELD", this.searchHelpField);
-		targetStructure.setValue("DEFFDNAME", this.defaultFieldName);
-		targetStructure.setValue("DATATYPE", this.dataType);
-		targetStructure.setValue("LENG", this.length);
-		targetStructure.setValue("DECIMALS", this.decimals);
-		targetStructure.setValue("OUTPUTLEN", this.outputLength);
-		targetStructure.setValue("LOWERCASE", this.caseSensitive);
-		targetStructure.setValue("SIGNFLAG", this.signed);
-		targetStructure.setValue("CONVEXIT", this.conversionExit);
-		targetStructure.setValue("VALEXI", this.valueListFixed);
-		targetStructure.setValue("ENTITYTAB", this.valueTable);
-		targetStructure.setValue("REFKIND", this.typeKind);
-		targetStructure.setValue("REFTYPE", this.referenceKind);
+		targetStructure.setValue("DOMNAME", this.typeName); //$NON-NLS-1$
+		targetStructure.setValue("MEMORYID", this.parameterID); //$NON-NLS-1$
+		targetStructure.setValue("LOGFLAG", this.logged); //$NON-NLS-1$
+		targetStructure.setValue("HEADLEN", this.headingLength); //$NON-NLS-1$
+		targetStructure.setValue("SCRLEN1", this.shortTextLength); //$NON-NLS-1$
+		targetStructure.setValue("SCRLEN2", this.mediumTextLength); //$NON-NLS-1$
+		targetStructure.setValue("SCRLEN3", this.longTextLength); //$NON-NLS-1$
+		targetStructure.setValue("SHLPNAME", this.searchHelpName); //$NON-NLS-1$
+		targetStructure.setValue("SHLPFIELD", this.searchHelpField); //$NON-NLS-1$
+		targetStructure.setValue("DEFFDNAME", this.defaultFieldName); //$NON-NLS-1$
+		targetStructure.setValue("DATATYPE", this.dataType); //$NON-NLS-1$
+		targetStructure.setValue("LENG", this.length); //$NON-NLS-1$
+		targetStructure.setValue("DECIMALS", this.decimals); //$NON-NLS-1$
+		targetStructure.setValue("OUTPUTLEN", this.outputLength); //$NON-NLS-1$
+		targetStructure.setValue("LOWERCASE", this.caseSensitive); //$NON-NLS-1$
+		targetStructure.setValue("SIGNFLAG", this.signed); //$NON-NLS-1$
+		targetStructure.setValue("CONVEXIT", this.conversionExit); //$NON-NLS-1$
+		targetStructure.setValue("VALEXI", this.valueListFixed); //$NON-NLS-1$
+		targetStructure.setValue("ENTITYTAB", this.valueTable); //$NON-NLS-1$
+		targetStructure.setValue("REFKIND", this.typeKind); //$NON-NLS-1$
+		targetStructure.setValue("REFTYPE", this.referenceKind); //$NON-NLS-1$
 	}
 
 	/**
@@ -148,7 +142,7 @@ public class RFCDataElementData {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("DD04L")) {
+		if (!structureName.equals("DD04L")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected DD04L).", structureName));
 		}
@@ -166,7 +160,7 @@ public class RFCDataElementData {
 	 * @param newTypeName the new domain or referenced data type name to set
 	 */
 	public void setTypeName(String newTypeName) {
-		_pcs.firePropertyChange("typeName", this.typeName, newTypeName);
+		_pcs.firePropertyChange("typeName", this.typeName, newTypeName); //$NON-NLS-1$
 		this.typeName = newTypeName;
 	}
 	
@@ -182,7 +176,7 @@ public class RFCDataElementData {
 	 * @param newParameterID the new SET/GET parameter ID to set
 	 */
 	public void setParameterID(String newParameterID) {
-		_pcs.firePropertyChange("parameterID", this.parameterID, newParameterID);
+		_pcs.firePropertyChange("parameterID", this.parameterID, newParameterID); //$NON-NLS-1$
 		this.parameterID = newParameterID;
 	}
 	
@@ -198,7 +192,7 @@ public class RFCDataElementData {
 	 * @param newLogged the new whether this field occurs in change documents to set
 	 */
 	public void setLogged(boolean newLogged) {
-		_pcs.firePropertyChange("logged", this.logged, newLogged);
+		_pcs.firePropertyChange("logged", this.logged, newLogged); //$NON-NLS-1$
 		this.logged = newLogged;
 	}
 	
@@ -214,7 +208,7 @@ public class RFCDataElementData {
 	 * @param newHeadingLength the new maximum length of heading to set
 	 */
 	public void setHeadingLength(int newHeadingLength) {
-		_pcs.firePropertyChange("headingLength", this.headingLength, newHeadingLength);
+		_pcs.firePropertyChange("headingLength", this.headingLength, newHeadingLength); //$NON-NLS-1$
 		this.headingLength = newHeadingLength;
 	}
 	
@@ -230,7 +224,7 @@ public class RFCDataElementData {
 	 * @param newShortTextLength the new maximum length of short field label to set
 	 */
 	public void setShortTextLength(int newShortTextLength) {
-		_pcs.firePropertyChange("shortTextLength", this.shortTextLength, newShortTextLength);
+		_pcs.firePropertyChange("shortTextLength", this.shortTextLength, newShortTextLength); //$NON-NLS-1$
 		this.shortTextLength = newShortTextLength;
 	}
 	
@@ -246,7 +240,7 @@ public class RFCDataElementData {
 	 * @param newMediumTextLength the new maximum length of medium field label to set
 	 */
 	public void setMediumTextLength(int newMediumTextLength) {
-		_pcs.firePropertyChange("mediumTextLength", this.mediumTextLength, newMediumTextLength);
+		_pcs.firePropertyChange("mediumTextLength", this.mediumTextLength, newMediumTextLength); //$NON-NLS-1$
 		this.mediumTextLength = newMediumTextLength;
 	}
 	
@@ -262,7 +256,7 @@ public class RFCDataElementData {
 	 * @param newLongTextLength the new maximum length of long field label to set
 	 */
 	public void setLongTextLength(int newLongTextLength) {
-		_pcs.firePropertyChange("longTextLength", this.longTextLength, newLongTextLength);
+		_pcs.firePropertyChange("longTextLength", this.longTextLength, newLongTextLength); //$NON-NLS-1$
 		this.longTextLength = newLongTextLength;
 	}
 	
@@ -278,7 +272,7 @@ public class RFCDataElementData {
 	 * @param newSearchHelpName the new name of a search help to set
 	 */
 	public void setSearchHelpName(String newSearchHelpName) {
-		_pcs.firePropertyChange("searchHelpName", this.searchHelpName, newSearchHelpName);
+		_pcs.firePropertyChange("searchHelpName", this.searchHelpName, newSearchHelpName); //$NON-NLS-1$
 		this.searchHelpName = newSearchHelpName;
 	}
 	
@@ -294,7 +288,7 @@ public class RFCDataElementData {
 	 * @param newSearchHelpField the new name of a search help parameter to set
 	 */
 	public void setSearchHelpField(String newSearchHelpField) {
-		_pcs.firePropertyChange("searchHelpField", this.searchHelpField, newSearchHelpField);
+		_pcs.firePropertyChange("searchHelpField", this.searchHelpField, newSearchHelpField); //$NON-NLS-1$
 		this.searchHelpField = newSearchHelpField;
 	}
 	
@@ -310,7 +304,7 @@ public class RFCDataElementData {
 	 * @param newDefaultFieldName the new nefault name for components using the data element to set
 	 */
 	public void setDefaultFieldName(String newDefaultFieldName) {
-		_pcs.firePropertyChange("defaultFieldName", this.defaultFieldName, newDefaultFieldName);
+		_pcs.firePropertyChange("defaultFieldName", this.defaultFieldName, newDefaultFieldName); //$NON-NLS-1$
 		this.defaultFieldName = newDefaultFieldName;
 	}
 	
@@ -326,7 +320,7 @@ public class RFCDataElementData {
 	 * @param newDataType the new data type in ABAP Dictionary to set
 	 */
 	public void setDataType(String newDataType) {
-		_pcs.firePropertyChange("dataType", this.dataType, newDataType);
+		_pcs.firePropertyChange("dataType", this.dataType, newDataType); //$NON-NLS-1$
 		this.dataType = newDataType;
 	}
 	
@@ -342,7 +336,7 @@ public class RFCDataElementData {
 	 * @param newLength the new length (number of characters) to set
 	 */
 	public void setLength(int newLength) {
-		_pcs.firePropertyChange("length", this.length, newLength);
+		_pcs.firePropertyChange("length", this.length, newLength); //$NON-NLS-1$
 		this.length = newLength;
 	}
 	
@@ -358,7 +352,7 @@ public class RFCDataElementData {
 	 * @param newDecimals the new number of decimal places to set
 	 */
 	public void setDecimals(int newDecimals) {
-		_pcs.firePropertyChange("decimals", this.decimals, newDecimals);
+		_pcs.firePropertyChange("decimals", this.decimals, newDecimals); //$NON-NLS-1$
 		this.decimals = newDecimals;
 	}
 	
@@ -374,7 +368,7 @@ public class RFCDataElementData {
 	 * @param newOutputLength the new output length to set
 	 */
 	public void setOutputLength(int newOutputLength) {
-		_pcs.firePropertyChange("outputLength", this.outputLength, newOutputLength);
+		_pcs.firePropertyChange("outputLength", this.outputLength, newOutputLength); //$NON-NLS-1$
 		this.outputLength = newOutputLength;
 	}
 	
@@ -390,7 +384,7 @@ public class RFCDataElementData {
 	 * @param newCaseSensitive the new whether lower case letters are allowed to set
 	 */
 	public void setCaseSensitive(boolean newCaseSensitive) {
-		_pcs.firePropertyChange("caseSensitive", this.caseSensitive, newCaseSensitive);
+		_pcs.firePropertyChange("caseSensitive", this.caseSensitive, newCaseSensitive); //$NON-NLS-1$
 		this.caseSensitive = newCaseSensitive;
 	}
 	
@@ -406,7 +400,7 @@ public class RFCDataElementData {
 	 * @param newSigned the new whether a numerical field is signed to set
 	 */
 	public void setSigned(boolean newSigned) {
-		_pcs.firePropertyChange("signed", this.signed, newSigned);
+		_pcs.firePropertyChange("signed", this.signed, newSigned); //$NON-NLS-1$
 		this.signed = newSigned;
 	}
 	
@@ -422,7 +416,7 @@ public class RFCDataElementData {
 	 * @param newConversionExit the new conversion routine to set
 	 */
 	public void setConversionExit(String newConversionExit) {
-		_pcs.firePropertyChange("conversionExit", this.conversionExit, newConversionExit);
+		_pcs.firePropertyChange("conversionExit", this.conversionExit, newConversionExit); //$NON-NLS-1$
 		this.conversionExit = newConversionExit;
 	}
 	
@@ -438,7 +432,7 @@ public class RFCDataElementData {
 	 * @param newValueListFixed the new whether fixed values exist to set
 	 */
 	public void setValueListFixed(boolean newValueListFixed) {
-		_pcs.firePropertyChange("valueListFixed", this.valueListFixed, newValueListFixed);
+		_pcs.firePropertyChange("valueListFixed", this.valueListFixed, newValueListFixed); //$NON-NLS-1$
 		this.valueListFixed = newValueListFixed;
 	}
 	
@@ -454,7 +448,7 @@ public class RFCDataElementData {
 	 * @param newValueTable the new name of the value table to set
 	 */
 	public void setValueTable(String newValueTable) {
-		_pcs.firePropertyChange("valueTable", this.valueTable, newValueTable);
+		_pcs.firePropertyChange("valueTable", this.valueTable, newValueTable); //$NON-NLS-1$
 		this.valueTable = newValueTable;
 	}
 	
@@ -470,7 +464,7 @@ public class RFCDataElementData {
 	 * @param newTypeKind the new category of dictionary type to set
 	 */
 	public void setTypeKind(String newTypeKind) {
-		_pcs.firePropertyChange("typeKind", this.typeKind, newTypeKind);
+		_pcs.firePropertyChange("typeKind", this.typeKind, newTypeKind); //$NON-NLS-1$
 		this.typeKind = newTypeKind;
 	}
 	
@@ -486,7 +480,7 @@ public class RFCDataElementData {
 	 * @param newReferenceKind the new type of object referenced to set
 	 */
 	public void setReferenceKind(String newReferenceKind) {
-		_pcs.firePropertyChange("referenceKind", this.referenceKind, newReferenceKind);
+		_pcs.firePropertyChange("referenceKind", this.referenceKind, newReferenceKind); //$NON-NLS-1$
 		this.referenceKind = newReferenceKind;
 	}
 	

@@ -3,16 +3,10 @@ package net.sf.rcer.cts.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -42,9 +36,9 @@ public class TransportShortText {
 	public TransportShortText(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.transportID = source.getString("TRKORR");
-		this.language = source.getString("LANGU");
-		this.text = source.getString("AS4TEXT");
+		this.transportID = source.getString("TRKORR"); //$NON-NLS-1$
+		this.language = source.getString("LANGU"); //$NON-NLS-1$
+		this.text = source.getString("AS4TEXT"); //$NON-NLS-1$
 	}
 
 	/**
@@ -55,9 +49,9 @@ public class TransportShortText {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("TRKORR", this.transportID);
-		targetStructure.setValue("LANGU", this.language);
-		targetStructure.setValue("AS4TEXT", this.text);
+		targetStructure.setValue("TRKORR", this.transportID); //$NON-NLS-1$
+		targetStructure.setValue("LANGU", this.language); //$NON-NLS-1$
+		targetStructure.setValue("AS4TEXT", this.text); //$NON-NLS-1$
 	}
 
 	/**
@@ -94,7 +88,7 @@ public class TransportShortText {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("TR008")) {
+		if (!structureName.equals("TR008")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected TR008).", structureName));
 		}
@@ -112,7 +106,7 @@ public class TransportShortText {
 	 * @param newTransportID the new Request or Task to set
 	 */
 	public void setTransportID(String newTransportID) {
-		_pcs.firePropertyChange("transportID", this.transportID, newTransportID);
+		_pcs.firePropertyChange("transportID", this.transportID, newTransportID); //$NON-NLS-1$
 		this.transportID = newTransportID;
 	}
 	
@@ -128,7 +122,7 @@ public class TransportShortText {
 	 * @param newLanguage the new Language to set
 	 */
 	public void setLanguage(String newLanguage) {
-		_pcs.firePropertyChange("language", this.language, newLanguage);
+		_pcs.firePropertyChange("language", this.language, newLanguage); //$NON-NLS-1$
 		this.language = newLanguage;
 	}
 	
@@ -144,7 +138,7 @@ public class TransportShortText {
 	 * @param newText the new Short Text to set
 	 */
 	public void setText(String newText) {
-		_pcs.firePropertyChange("text", this.text, newText);
+		_pcs.firePropertyChange("text", this.text, newText); //$NON-NLS-1$
 		this.text = newText;
 	}
 	

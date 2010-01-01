@@ -3,16 +3,10 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -49,16 +43,16 @@ public class RFCForeignKeyHeader {
 	public RFCForeignKeyHeader(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.fieldName = source.getString("FIELDNAME");
-		this.tableName = source.getString("CHECKTABLE");
-		this.foreignKeyType = source.getString("FRKART");
-		this.cardinalityRight = source.getString("CARD");
-		this.screenCheckDisabled = source.getString("CHECKFLAG").equalsIgnoreCase("X");
-		this.description = source.getString("DDTEXT");
-		this.messageID = source.getString("ARBGB");
-		this.messageNumber = source.getString("MSGNR");
-		this.inheritance = source.getString("NOINHERIT");
-		this.cardinalityLeft = source.getString("CARDLEFT");
+		this.fieldName = source.getString("FIELDNAME"); //$NON-NLS-1$
+		this.tableName = source.getString("CHECKTABLE"); //$NON-NLS-1$
+		this.foreignKeyType = source.getString("FRKART"); //$NON-NLS-1$
+		this.cardinalityRight = source.getString("CARD"); //$NON-NLS-1$
+		this.screenCheckDisabled = source.getString("CHECKFLAG").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.description = source.getString("DDTEXT"); //$NON-NLS-1$
+		this.messageID = source.getString("ARBGB"); //$NON-NLS-1$
+		this.messageNumber = source.getString("MSGNR"); //$NON-NLS-1$
+		this.inheritance = source.getString("NOINHERIT"); //$NON-NLS-1$
+		this.cardinalityLeft = source.getString("CARDLEFT"); //$NON-NLS-1$
 	}
 
 	/**
@@ -69,16 +63,16 @@ public class RFCForeignKeyHeader {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("FIELDNAME", this.fieldName);
-		targetStructure.setValue("CHECKTABLE", this.tableName);
-		targetStructure.setValue("FRKART", this.foreignKeyType);
-		targetStructure.setValue("CARD", this.cardinalityRight);
-		targetStructure.setValue("CHECKFLAG", this.screenCheckDisabled);
-		targetStructure.setValue("DDTEXT", this.description);
-		targetStructure.setValue("ARBGB", this.messageID);
-		targetStructure.setValue("MSGNR", this.messageNumber);
-		targetStructure.setValue("NOINHERIT", this.inheritance);
-		targetStructure.setValue("CARDLEFT", this.cardinalityLeft);
+		targetStructure.setValue("FIELDNAME", this.fieldName); //$NON-NLS-1$
+		targetStructure.setValue("CHECKTABLE", this.tableName); //$NON-NLS-1$
+		targetStructure.setValue("FRKART", this.foreignKeyType); //$NON-NLS-1$
+		targetStructure.setValue("CARD", this.cardinalityRight); //$NON-NLS-1$
+		targetStructure.setValue("CHECKFLAG", this.screenCheckDisabled); //$NON-NLS-1$
+		targetStructure.setValue("DDTEXT", this.description); //$NON-NLS-1$
+		targetStructure.setValue("ARBGB", this.messageID); //$NON-NLS-1$
+		targetStructure.setValue("MSGNR", this.messageNumber); //$NON-NLS-1$
+		targetStructure.setValue("NOINHERIT", this.inheritance); //$NON-NLS-1$
+		targetStructure.setValue("CARDLEFT", this.cardinalityLeft); //$NON-NLS-1$
 	}
 
 	/**
@@ -115,7 +109,7 @@ public class RFCForeignKeyHeader {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("DD08V")) {
+		if (!structureName.equals("DD08V")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected DD08V).", structureName));
 		}
@@ -133,7 +127,7 @@ public class RFCForeignKeyHeader {
 	 * @param newFieldName the new name of the field to be checked to set
 	 */
 	public void setFieldName(String newFieldName) {
-		_pcs.firePropertyChange("fieldName", this.fieldName, newFieldName);
+		_pcs.firePropertyChange("fieldName", this.fieldName, newFieldName); //$NON-NLS-1$
 		this.fieldName = newFieldName;
 	}
 	
@@ -149,7 +143,7 @@ public class RFCForeignKeyHeader {
 	 * @param newTableName the new check table name of the foreign key to set
 	 */
 	public void setTableName(String newTableName) {
-		_pcs.firePropertyChange("tableName", this.tableName, newTableName);
+		_pcs.firePropertyChange("tableName", this.tableName, newTableName); //$NON-NLS-1$
 		this.tableName = newTableName;
 	}
 	
@@ -165,7 +159,7 @@ public class RFCForeignKeyHeader {
 	 * @param newForeignKeyType the new dependency factor for semantic foreign keys to set
 	 */
 	public void setForeignKeyType(String newForeignKeyType) {
-		_pcs.firePropertyChange("foreignKeyType", this.foreignKeyType, newForeignKeyType);
+		_pcs.firePropertyChange("foreignKeyType", this.foreignKeyType, newForeignKeyType); //$NON-NLS-1$
 		this.foreignKeyType = newForeignKeyType;
 	}
 	
@@ -181,7 +175,7 @@ public class RFCForeignKeyHeader {
 	 * @param newCardinalityRight the new cardinality of a relationship to set
 	 */
 	public void setCardinalityRight(String newCardinalityRight) {
-		_pcs.firePropertyChange("cardinalityRight", this.cardinalityRight, newCardinalityRight);
+		_pcs.firePropertyChange("cardinalityRight", this.cardinalityRight, newCardinalityRight); //$NON-NLS-1$
 		this.cardinalityRight = newCardinalityRight;
 	}
 	
@@ -197,7 +191,7 @@ public class RFCForeignKeyHeader {
 	 * @param newScreenCheckDisabled the new whether the check in screen processing is disabled to set
 	 */
 	public void setScreenCheckDisabled(boolean newScreenCheckDisabled) {
-		_pcs.firePropertyChange("screenCheckDisabled", this.screenCheckDisabled, newScreenCheckDisabled);
+		_pcs.firePropertyChange("screenCheckDisabled", this.screenCheckDisabled, newScreenCheckDisabled); //$NON-NLS-1$
 		this.screenCheckDisabled = newScreenCheckDisabled;
 	}
 	
@@ -213,7 +207,7 @@ public class RFCForeignKeyHeader {
 	 * @param newDescription the new description to set
 	 */
 	public void setDescription(String newDescription) {
-		_pcs.firePropertyChange("description", this.description, newDescription);
+		_pcs.firePropertyChange("description", this.description, newDescription); //$NON-NLS-1$
 		this.description = newDescription;
 	}
 	
@@ -229,7 +223,7 @@ public class RFCForeignKeyHeader {
 	 * @param newMessageID the new message class to set
 	 */
 	public void setMessageID(String newMessageID) {
-		_pcs.firePropertyChange("messageID", this.messageID, newMessageID);
+		_pcs.firePropertyChange("messageID", this.messageID, newMessageID); //$NON-NLS-1$
 		this.messageID = newMessageID;
 	}
 	
@@ -245,7 +239,7 @@ public class RFCForeignKeyHeader {
 	 * @param newMessageNumber the new message number to set
 	 */
 	public void setMessageNumber(String newMessageNumber) {
-		_pcs.firePropertyChange("messageNumber", this.messageNumber, newMessageNumber);
+		_pcs.firePropertyChange("messageNumber", this.messageNumber, newMessageNumber); //$NON-NLS-1$
 		this.messageNumber = newMessageNumber;
 	}
 	
@@ -261,7 +255,7 @@ public class RFCForeignKeyHeader {
 	 * @param newInheritance the new foreign key inheritance setting to set
 	 */
 	public void setInheritance(String newInheritance) {
-		_pcs.firePropertyChange("inheritance", this.inheritance, newInheritance);
+		_pcs.firePropertyChange("inheritance", this.inheritance, newInheritance); //$NON-NLS-1$
 		this.inheritance = newInheritance;
 	}
 	
@@ -277,7 +271,7 @@ public class RFCForeignKeyHeader {
 	 * @param newCardinalityLeft the new Cardinality of a relationship to set
 	 */
 	public void setCardinalityLeft(String newCardinalityLeft) {
-		_pcs.firePropertyChange("cardinalityLeft", this.cardinalityLeft, newCardinalityLeft);
+		_pcs.firePropertyChange("cardinalityLeft", this.cardinalityLeft, newCardinalityLeft); //$NON-NLS-1$
 		this.cardinalityLeft = newCardinalityLeft;
 	}
 	

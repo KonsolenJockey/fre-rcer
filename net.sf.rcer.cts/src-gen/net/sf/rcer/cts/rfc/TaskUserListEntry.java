@@ -3,16 +3,10 @@ package net.sf.rcer.cts.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -46,13 +40,13 @@ public class TaskUserListEntry {
 	public TaskUserListEntry(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.userName = source.getString("AS4USER");
-		this.correctionID = source.getString("CORRECTION");
-		this.correctionErrorMessage = source.getInt("CORRERRMSG");
-		this.repairID = source.getString("REPAIR");
-		this.repairErrorMessage = source.getInt("REPAERRMSG");
-		this.unclassifiedID = source.getString("UNCLASTASK");
-		this.unclassifiedErrorMessage = source.getInt("UNCLERRMSG");
+		this.userName = source.getString("AS4USER"); //$NON-NLS-1$
+		this.correctionID = source.getString("CORRECTION"); //$NON-NLS-1$
+		this.correctionErrorMessage = source.getInt("CORRERRMSG"); //$NON-NLS-1$
+		this.repairID = source.getString("REPAIR"); //$NON-NLS-1$
+		this.repairErrorMessage = source.getInt("REPAERRMSG"); //$NON-NLS-1$
+		this.unclassifiedID = source.getString("UNCLASTASK"); //$NON-NLS-1$
+		this.unclassifiedErrorMessage = source.getInt("UNCLERRMSG"); //$NON-NLS-1$
 	}
 
 	/**
@@ -63,13 +57,13 @@ public class TaskUserListEntry {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("AS4USER", this.userName);
-		targetStructure.setValue("CORRECTION", this.correctionID);
-		targetStructure.setValue("CORRERRMSG", this.correctionErrorMessage);
-		targetStructure.setValue("REPAIR", this.repairID);
-		targetStructure.setValue("REPAERRMSG", this.repairErrorMessage);
-		targetStructure.setValue("UNCLASTASK", this.unclassifiedID);
-		targetStructure.setValue("UNCLERRMSG", this.unclassifiedErrorMessage);
+		targetStructure.setValue("AS4USER", this.userName); //$NON-NLS-1$
+		targetStructure.setValue("CORRECTION", this.correctionID); //$NON-NLS-1$
+		targetStructure.setValue("CORRERRMSG", this.correctionErrorMessage); //$NON-NLS-1$
+		targetStructure.setValue("REPAIR", this.repairID); //$NON-NLS-1$
+		targetStructure.setValue("REPAERRMSG", this.repairErrorMessage); //$NON-NLS-1$
+		targetStructure.setValue("UNCLASTASK", this.unclassifiedID); //$NON-NLS-1$
+		targetStructure.setValue("UNCLERRMSG", this.unclassifiedErrorMessage); //$NON-NLS-1$
 	}
 
 	/**
@@ -106,7 +100,7 @@ public class TaskUserListEntry {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("TR005")) {
+		if (!structureName.equals("TR005")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected TR005).", structureName));
 		}
@@ -124,7 +118,7 @@ public class TaskUserListEntry {
 	 * @param newUserName the new User Name to set
 	 */
 	public void setUserName(String newUserName) {
-		_pcs.firePropertyChange("userName", this.userName, newUserName);
+		_pcs.firePropertyChange("userName", this.userName, newUserName); //$NON-NLS-1$
 		this.userName = newUserName;
 	}
 	
@@ -140,7 +134,7 @@ public class TaskUserListEntry {
 	 * @param newCorrectionID the new ID of Correction Task to set
 	 */
 	public void setCorrectionID(String newCorrectionID) {
-		_pcs.firePropertyChange("correctionID", this.correctionID, newCorrectionID);
+		_pcs.firePropertyChange("correctionID", this.correctionID, newCorrectionID); //$NON-NLS-1$
 		this.correctionID = newCorrectionID;
 	}
 	
@@ -156,7 +150,7 @@ public class TaskUserListEntry {
 	 * @param newCorrectionErrorMessage the new Error Message (Correction Task) to set
 	 */
 	public void setCorrectionErrorMessage(int newCorrectionErrorMessage) {
-		_pcs.firePropertyChange("correctionErrorMessage", this.correctionErrorMessage, newCorrectionErrorMessage);
+		_pcs.firePropertyChange("correctionErrorMessage", this.correctionErrorMessage, newCorrectionErrorMessage); //$NON-NLS-1$
 		this.correctionErrorMessage = newCorrectionErrorMessage;
 	}
 	
@@ -172,7 +166,7 @@ public class TaskUserListEntry {
 	 * @param newRepairID the new ID of Repair Task to set
 	 */
 	public void setRepairID(String newRepairID) {
-		_pcs.firePropertyChange("repairID", this.repairID, newRepairID);
+		_pcs.firePropertyChange("repairID", this.repairID, newRepairID); //$NON-NLS-1$
 		this.repairID = newRepairID;
 	}
 	
@@ -188,7 +182,7 @@ public class TaskUserListEntry {
 	 * @param newRepairErrorMessage the new Error Message (Repair Task) to set
 	 */
 	public void setRepairErrorMessage(int newRepairErrorMessage) {
-		_pcs.firePropertyChange("repairErrorMessage", this.repairErrorMessage, newRepairErrorMessage);
+		_pcs.firePropertyChange("repairErrorMessage", this.repairErrorMessage, newRepairErrorMessage); //$NON-NLS-1$
 		this.repairErrorMessage = newRepairErrorMessage;
 	}
 	
@@ -204,7 +198,7 @@ public class TaskUserListEntry {
 	 * @param newUnclassifiedID the new ID of Unclassified Task to set
 	 */
 	public void setUnclassifiedID(String newUnclassifiedID) {
-		_pcs.firePropertyChange("unclassifiedID", this.unclassifiedID, newUnclassifiedID);
+		_pcs.firePropertyChange("unclassifiedID", this.unclassifiedID, newUnclassifiedID); //$NON-NLS-1$
 		this.unclassifiedID = newUnclassifiedID;
 	}
 	
@@ -220,7 +214,7 @@ public class TaskUserListEntry {
 	 * @param newUnclassifiedErrorMessage the new Error Message (Unclassified Task) to set
 	 */
 	public void setUnclassifiedErrorMessage(int newUnclassifiedErrorMessage) {
-		_pcs.firePropertyChange("unclassifiedErrorMessage", this.unclassifiedErrorMessage, newUnclassifiedErrorMessage);
+		_pcs.firePropertyChange("unclassifiedErrorMessage", this.unclassifiedErrorMessage, newUnclassifiedErrorMessage); //$NON-NLS-1$
 		this.unclassifiedErrorMessage = newUnclassifiedErrorMessage;
 	}
 	

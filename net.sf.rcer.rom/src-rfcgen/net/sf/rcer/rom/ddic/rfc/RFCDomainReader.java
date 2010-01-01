@@ -3,18 +3,12 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
-import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunction;
-import com.sap.conn.jco.JCoRecord;
-import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model a RFC call to DD_DOMA_GET. Use the setters to prepare the importing parameters, 
@@ -55,7 +49,7 @@ public class RFCDomainReader {
 	 * @param newDomainName the new name to set
 	 */
 	public void setDomainName(String newDomainName) {
-		_pcs.firePropertyChange("domainName", this.domainName, newDomainName);
+		_pcs.firePropertyChange("domainName", this.domainName, newDomainName); //$NON-NLS-1$
 		this.domainName = newDomainName;
 	}
 	
@@ -71,7 +65,7 @@ public class RFCDomainReader {
 	 * @param newLocaleID the new localeID to set
 	 */
 	public void setLocaleID(String newLocaleID) {
-		_pcs.firePropertyChange("localeID", this.localeID, newLocaleID);
+		_pcs.firePropertyChange("localeID", this.localeID, newLocaleID); //$NON-NLS-1$
 		this.localeID = newLocaleID;
 	}
 	
@@ -87,7 +81,7 @@ public class RFCDomainReader {
 	 * @param newDomainData the new the data of the domain to set
 	 */
 	public void setDomainData(RFCDomainData newDomainData) {
-		_pcs.firePropertyChange("domainData", this.domainData, newDomainData);
+		_pcs.firePropertyChange("domainData", this.domainData, newDomainData); //$NON-NLS-1$
 		this.domainData = newDomainData;
 	}
 	
@@ -103,7 +97,7 @@ public class RFCDomainReader {
 	 * @param newValues the new the fixed values of the domain to set
 	 */
 	public void setValues(List<RFCDomainValue> newValues) {
-		_pcs.firePropertyChange("values", this.values, newValues);
+		_pcs.firePropertyChange("values", this.values, newValues); //$NON-NLS-1$
 		this.values = newValues;
 	}
 	
@@ -113,13 +107,13 @@ public class RFCDomainReader {
 	 * @throws JCoException
 	 */
 	public void execute(JCoDestination destination) throws JCoException {
-		JCoFunction function = destination.getRepository().getFunction("DD_DOMA_GET");
-		function.getImportParameterList().setValue("DOMAIN_NAME", domainName);
-		function.getImportParameterList().setValue("LANGU", localeID);
-		RFCDomainValue.toTable(values, function.getTableParameterList().getTable("DD07V_TAB_A"));
+		JCoFunction function = destination.getRepository().getFunction("DD_DOMA_GET"); //$NON-NLS-1$
+		function.getImportParameterList().setValue("DOMAIN_NAME", domainName); //$NON-NLS-1$
+		function.getImportParameterList().setValue("LANGU", localeID); //$NON-NLS-1$
+		RFCDomainValue.toTable(values, function.getTableParameterList().getTable("DD07V_TAB_A")); //$NON-NLS-1$
 		function.execute(destination);
-		domainData = new RFCDomainData(function.getExportParameterList().getStructure("DD01V_WA_A"));
-		values = RFCDomainValue.fromTable(function.getTableParameterList().getTable("DD07V_TAB_A"));
+		domainData = new RFCDomainData(function.getExportParameterList().getStructure("DD01V_WA_A")); //$NON-NLS-1$
+		values = RFCDomainValue.fromTable(function.getTableParameterList().getTable("DD07V_TAB_A")); //$NON-NLS-1$
 	}
 
 	/**

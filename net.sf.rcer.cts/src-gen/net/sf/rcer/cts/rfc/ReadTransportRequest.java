@@ -4,17 +4,9 @@ package net.sf.rcer.cts.rfc;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import java.text.MessageFormat;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunction;
-import com.sap.conn.jco.JCoRecord;
-import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model the input data of a RFC call to TR40_READ_COMM. Use the setters to prepare 
@@ -56,7 +48,7 @@ public class ReadTransportRequest {
 	 * @param newOrderID the new ID of the order or task to read to set
 	 */
 	public void setOrderID(String newOrderID) {
-		_pcs.firePropertyChange("orderID", this.orderID, newOrderID);
+		_pcs.firePropertyChange("orderID", this.orderID, newOrderID); //$NON-NLS-1$
 		this.orderID = newOrderID;
 	}
 	
@@ -72,7 +64,7 @@ public class ReadTransportRequest {
 	 * @param newHeaderRequested the new whether to read the header to set
 	 */
 	public void setHeaderRequested(boolean newHeaderRequested) {
-		_pcs.firePropertyChange("headerRequested", this.headerRequested, newHeaderRequested);
+		_pcs.firePropertyChange("headerRequested", this.headerRequested, newHeaderRequested); //$NON-NLS-1$
 		this.headerRequested = newHeaderRequested;
 	}
 	
@@ -88,7 +80,7 @@ public class ReadTransportRequest {
 	 * @param newObjectListRequested the new whether to read the object list to set
 	 */
 	public void setObjectListRequested(boolean newObjectListRequested) {
-		_pcs.firePropertyChange("objectListRequested", this.objectListRequested, newObjectListRequested);
+		_pcs.firePropertyChange("objectListRequested", this.objectListRequested, newObjectListRequested); //$NON-NLS-1$
 		this.objectListRequested = newObjectListRequested;
 	}
 	
@@ -104,7 +96,7 @@ public class ReadTransportRequest {
 	 * @param newObjectListKeysRequested the new whether to read the keys to set
 	 */
 	public void setObjectListKeysRequested(boolean newObjectListKeysRequested) {
-		_pcs.firePropertyChange("objectListKeysRequested", this.objectListKeysRequested, newObjectListKeysRequested);
+		_pcs.firePropertyChange("objectListKeysRequested", this.objectListKeysRequested, newObjectListKeysRequested); //$NON-NLS-1$
 		this.objectListKeysRequested = newObjectListKeysRequested;
 	}
 	
@@ -120,7 +112,7 @@ public class ReadTransportRequest {
 	 * @param newTextRequested the new whether to read the texts to set
 	 */
 	public void setTextRequested(boolean newTextRequested) {
-		_pcs.firePropertyChange("textRequested", this.textRequested, newTextRequested);
+		_pcs.firePropertyChange("textRequested", this.textRequested, newTextRequested); //$NON-NLS-1$
 		this.textRequested = newTextRequested;
 	}
 	
@@ -131,21 +123,21 @@ public class ReadTransportRequest {
 	 * @throws JCoException
 	 */
 	public ReadTransportResponse execute(JCoDestination destination) throws JCoException {
-		JCoFunction function = destination.getRepository().getFunction("TR40_READ_COMM");
-		function.getImportParameterList().setValue("IV_TRKORR", orderID);
-		function.getImportParameterList().setValue("IV_SEL_E070", headerRequested ? "X" : " ");
-		function.getImportParameterList().setValue("IV_SEL_E071", objectListRequested ? "X" : " ");
-		function.getImportParameterList().setValue("IV_SEL_E071K", objectListKeysRequested ? "X" : " ");
-		function.getImportParameterList().setValue("IV_SEL_E07T", textRequested ? "X" : " ");
+		JCoFunction function = destination.getRepository().getFunction("TR40_READ_COMM"); //$NON-NLS-1$
+		function.getImportParameterList().setValue("IV_TRKORR", orderID); //$NON-NLS-1$
+		function.getImportParameterList().setValue("IV_SEL_E070", headerRequested ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		function.getImportParameterList().setValue("IV_SEL_E071", objectListRequested ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		function.getImportParameterList().setValue("IV_SEL_E071K", objectListKeysRequested ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		function.getImportParameterList().setValue("IV_SEL_E07T", textRequested ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		function.execute(destination);
 		ReadTransportResponse response = new ReadTransportResponse();
-		response.setHeader(new TransportHeader(function.getExportParameterList().getStructure("ES_E070")));
-		response.setText(new TransportShortText(function.getExportParameterList().getStructure("ES_E07T")));
-		response.setTextMissing(function.getExportParameterList().getString("EV_E07T_DOESNT_EXIST").equalsIgnoreCase("X"));
-		response.setObjectList(ObjectListEntry.fromTable(function.getTableParameterList().getTable("TT_E071")));
-		response.setObjectListKeys(ObjectListKeyEntry.fromTable(function.getTableParameterList().getTable("TT_E071K")));
-		response.setMessage(new TransportMessage(function.getExportParameterList().getStructure("ES_MSG")));
-		response.setException(function.getExportParameterList().getString("EV_EXCEPTION"));
+		response.setHeader(new TransportHeader(function.getExportParameterList().getStructure("ES_E070"))); //$NON-NLS-1$
+		response.setText(new TransportShortText(function.getExportParameterList().getStructure("ES_E07T"))); //$NON-NLS-1$
+		response.setTextMissing(function.getExportParameterList().getString("EV_E07T_DOESNT_EXIST").equalsIgnoreCase("X")); //$NON-NLS-1$ //$NON-NLS-2$
+		response.setObjectList(ObjectListEntry.fromTable(function.getTableParameterList().getTable("TT_E071"))); //$NON-NLS-1$
+		response.setObjectListKeys(ObjectListKeyEntry.fromTable(function.getTableParameterList().getTable("TT_E071K"))); //$NON-NLS-1$
+		response.setMessage(new TransportMessage(function.getExportParameterList().getStructure("ES_MSG"))); //$NON-NLS-1$
+		response.setException(function.getExportParameterList().getString("EV_EXCEPTION")); //$NON-NLS-1$
 		return response;
 	}
 

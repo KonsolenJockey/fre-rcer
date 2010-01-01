@@ -4,17 +4,9 @@ package net.sf.rcer.cts.rfc;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import java.text.MessageFormat;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunction;
-import com.sap.conn.jco.JCoRecord;
-import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model a RFC call to TR40_ORDER_CHANGE_OWNER. Use the setters to prepare the importing parameters, 
@@ -55,7 +47,7 @@ public class ChangeOrderOwnerCall {
 	 * @param newOrderID the new ID of the transport order to set
 	 */
 	public void setOrderID(String newOrderID) {
-		_pcs.firePropertyChange("orderID", this.orderID, newOrderID);
+		_pcs.firePropertyChange("orderID", this.orderID, newOrderID); //$NON-NLS-1$
 		this.orderID = newOrderID;
 	}
 	
@@ -71,7 +63,7 @@ public class ChangeOrderOwnerCall {
 	 * @param newNewOwner the new user name of the new owner to set
 	 */
 	public void setNewOwner(String newNewOwner) {
-		_pcs.firePropertyChange("newOwner", this.newOwner, newNewOwner);
+		_pcs.firePropertyChange("newOwner", this.newOwner, newNewOwner); //$NON-NLS-1$
 		this.newOwner = newNewOwner;
 	}
 	
@@ -87,7 +79,7 @@ public class ChangeOrderOwnerCall {
 	 * @param newMessage the new message that occurred during execution, if any to set
 	 */
 	public void setMessage(TransportMessage newMessage) {
-		_pcs.firePropertyChange("message", this.message, newMessage);
+		_pcs.firePropertyChange("message", this.message, newMessage); //$NON-NLS-1$
 		this.message = newMessage;
 	}
 	
@@ -103,7 +95,7 @@ public class ChangeOrderOwnerCall {
 	 * @param newException the new exception that occurred during execution, if any to set
 	 */
 	public void setException(String newException) {
-		_pcs.firePropertyChange("exception", this.exception, newException);
+		_pcs.firePropertyChange("exception", this.exception, newException); //$NON-NLS-1$
 		this.exception = newException;
 	}
 	
@@ -113,12 +105,12 @@ public class ChangeOrderOwnerCall {
 	 * @throws JCoException
 	 */
 	public void execute(JCoDestination destination) throws JCoException {
-		JCoFunction function = destination.getRepository().getFunction("TR40_ORDER_CHANGE_OWNER");
-		function.getImportParameterList().setValue("IV_TRKORR", orderID);
-		function.getImportParameterList().setValue("IV_NEW_OWNER", newOwner);
+		JCoFunction function = destination.getRepository().getFunction("TR40_ORDER_CHANGE_OWNER"); //$NON-NLS-1$
+		function.getImportParameterList().setValue("IV_TRKORR", orderID); //$NON-NLS-1$
+		function.getImportParameterList().setValue("IV_NEW_OWNER", newOwner); //$NON-NLS-1$
 		function.execute(destination);
-		message = new TransportMessage(function.getExportParameterList().getStructure("ES_MSG"));
-		exception = function.getExportParameterList().getString("EV_EXCEPTION");
+		message = new TransportMessage(function.getExportParameterList().getStructure("ES_MSG")); //$NON-NLS-1$
+		exception = function.getExportParameterList().getString("EV_EXCEPTION"); //$NON-NLS-1$
 	}
 
 	/**

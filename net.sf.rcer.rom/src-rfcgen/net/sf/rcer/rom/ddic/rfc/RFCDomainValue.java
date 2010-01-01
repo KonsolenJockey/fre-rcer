@@ -3,16 +3,10 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -44,11 +38,11 @@ public class RFCDomainValue {
 	public RFCDomainValue(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.position = source.getInt("VALPOS");
-		this.localeID = source.getString("DDLANGUAGE");
-		this.lowerValue = source.getString("DOMVALUE_L");
-		this.upperValue = source.getString("DOMVALUE_H");
-		this.description = source.getString("DDTEXT");
+		this.position = source.getInt("VALPOS"); //$NON-NLS-1$
+		this.localeID = source.getString("DDLANGUAGE"); //$NON-NLS-1$
+		this.lowerValue = source.getString("DOMVALUE_L"); //$NON-NLS-1$
+		this.upperValue = source.getString("DOMVALUE_H"); //$NON-NLS-1$
+		this.description = source.getString("DDTEXT"); //$NON-NLS-1$
 	}
 
 	/**
@@ -59,11 +53,11 @@ public class RFCDomainValue {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("VALPOS", this.position);
-		targetStructure.setValue("DDLANGUAGE", this.localeID);
-		targetStructure.setValue("DOMVALUE_L", this.lowerValue);
-		targetStructure.setValue("DOMVALUE_H", this.upperValue);
-		targetStructure.setValue("DDTEXT", this.description);
+		targetStructure.setValue("VALPOS", this.position); //$NON-NLS-1$
+		targetStructure.setValue("DDLANGUAGE", this.localeID); //$NON-NLS-1$
+		targetStructure.setValue("DOMVALUE_L", this.lowerValue); //$NON-NLS-1$
+		targetStructure.setValue("DOMVALUE_H", this.upperValue); //$NON-NLS-1$
+		targetStructure.setValue("DDTEXT", this.description); //$NON-NLS-1$
 	}
 
 	/**
@@ -100,7 +94,7 @@ public class RFCDomainValue {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("DD07V")) {
+		if (!structureName.equals("DD07V")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected DD07V).", structureName));
 		}
@@ -118,7 +112,7 @@ public class RFCDomainValue {
 	 * @param newPosition the new domain value key to set
 	 */
 	public void setPosition(int newPosition) {
-		_pcs.firePropertyChange("position", this.position, newPosition);
+		_pcs.firePropertyChange("position", this.position, newPosition); //$NON-NLS-1$
 		this.position = newPosition;
 	}
 	
@@ -134,7 +128,7 @@ public class RFCDomainValue {
 	 * @param newLocaleID the new locale key to set
 	 */
 	public void setLocaleID(String newLocaleID) {
-		_pcs.firePropertyChange("localeID", this.localeID, newLocaleID);
+		_pcs.firePropertyChange("localeID", this.localeID, newLocaleID); //$NON-NLS-1$
 		this.localeID = newLocaleID;
 	}
 	
@@ -150,7 +144,7 @@ public class RFCDomainValue {
 	 * @param newLowerValue the new single value or lower limit to set
 	 */
 	public void setLowerValue(String newLowerValue) {
-		_pcs.firePropertyChange("lowerValue", this.lowerValue, newLowerValue);
+		_pcs.firePropertyChange("lowerValue", this.lowerValue, newLowerValue); //$NON-NLS-1$
 		this.lowerValue = newLowerValue;
 	}
 	
@@ -166,7 +160,7 @@ public class RFCDomainValue {
 	 * @param newUpperValue the new upper limit to set
 	 */
 	public void setUpperValue(String newUpperValue) {
-		_pcs.firePropertyChange("upperValue", this.upperValue, newUpperValue);
+		_pcs.firePropertyChange("upperValue", this.upperValue, newUpperValue); //$NON-NLS-1$
 		this.upperValue = newUpperValue;
 	}
 	
@@ -182,7 +176,7 @@ public class RFCDomainValue {
 	 * @param newDescription the new short text for fixed values to set
 	 */
 	public void setDescription(String newDescription) {
-		_pcs.firePropertyChange("description", this.description, newDescription);
+		_pcs.firePropertyChange("description", this.description, newDescription); //$NON-NLS-1$
 		this.description = newDescription;
 	}
 	

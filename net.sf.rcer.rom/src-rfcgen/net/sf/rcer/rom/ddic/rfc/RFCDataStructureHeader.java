@@ -3,16 +3,10 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -56,23 +50,23 @@ public class RFCDataStructureHeader {
 	public RFCDataStructureHeader(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.structureType = source.getString("TABCLASS");
-		this.databaseTableName = source.getString("SQLTAB");
-		this.minEntries = source.getInt("DATMIN");
-		this.maxEntries = source.getInt("DATMAX");
-		this.avgEntries = source.getInt("DATAVG");
-		this.clientDependent = source.getString("CLIDEP").equalsIgnoreCase("X");
-		this.bufferSetting = source.getString("BUFFERED");
-		this.compressed = source.getString("COMPRFLAG").equalsIgnoreCase("X");
-		this.languageDependent = source.getString("LANGDEP").equalsIgnoreCase("X");
-		this.description = source.getString("DDTEXT");
-		this.maintenanceSetting = source.getString("MAINFLAG");
-		this.deliveryClass = source.getString("CONTFLAG");
-		this.bufferPercentage = source.getInt("PROZPUFF");
-		this.viewClass = source.getString("VIEWCLASS");
-		this.viewMaintenanceSetting = source.getString("VIEWGRANT");
-		this.multiplexSetting = source.getString("MULTIPLEX");
-		this.searchHelpAttached = source.getString("SHLPEXI").equalsIgnoreCase("X");
+		this.structureType = source.getString("TABCLASS"); //$NON-NLS-1$
+		this.databaseTableName = source.getString("SQLTAB"); //$NON-NLS-1$
+		this.minEntries = source.getInt("DATMIN"); //$NON-NLS-1$
+		this.maxEntries = source.getInt("DATMAX"); //$NON-NLS-1$
+		this.avgEntries = source.getInt("DATAVG"); //$NON-NLS-1$
+		this.clientDependent = source.getString("CLIDEP").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.bufferSetting = source.getString("BUFFERED"); //$NON-NLS-1$
+		this.compressed = source.getString("COMPRFLAG").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.languageDependent = source.getString("LANGDEP").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.description = source.getString("DDTEXT"); //$NON-NLS-1$
+		this.maintenanceSetting = source.getString("MAINFLAG"); //$NON-NLS-1$
+		this.deliveryClass = source.getString("CONTFLAG"); //$NON-NLS-1$
+		this.bufferPercentage = source.getInt("PROZPUFF"); //$NON-NLS-1$
+		this.viewClass = source.getString("VIEWCLASS"); //$NON-NLS-1$
+		this.viewMaintenanceSetting = source.getString("VIEWGRANT"); //$NON-NLS-1$
+		this.multiplexSetting = source.getString("MULTIPLEX"); //$NON-NLS-1$
+		this.searchHelpAttached = source.getString("SHLPEXI").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -83,23 +77,23 @@ public class RFCDataStructureHeader {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("TABCLASS", this.structureType);
-		targetStructure.setValue("SQLTAB", this.databaseTableName);
-		targetStructure.setValue("DATMIN", this.minEntries);
-		targetStructure.setValue("DATMAX", this.maxEntries);
-		targetStructure.setValue("DATAVG", this.avgEntries);
-		targetStructure.setValue("CLIDEP", this.clientDependent);
-		targetStructure.setValue("BUFFERED", this.bufferSetting);
-		targetStructure.setValue("COMPRFLAG", this.compressed);
-		targetStructure.setValue("LANGDEP", this.languageDependent);
-		targetStructure.setValue("DDTEXT", this.description);
-		targetStructure.setValue("MAINFLAG", this.maintenanceSetting);
-		targetStructure.setValue("CONTFLAG", this.deliveryClass);
-		targetStructure.setValue("PROZPUFF", this.bufferPercentage);
-		targetStructure.setValue("VIEWCLASS", this.viewClass);
-		targetStructure.setValue("VIEWGRANT", this.viewMaintenanceSetting);
-		targetStructure.setValue("MULTIPLEX", this.multiplexSetting);
-		targetStructure.setValue("SHLPEXI", this.searchHelpAttached);
+		targetStructure.setValue("TABCLASS", this.structureType); //$NON-NLS-1$
+		targetStructure.setValue("SQLTAB", this.databaseTableName); //$NON-NLS-1$
+		targetStructure.setValue("DATMIN", this.minEntries); //$NON-NLS-1$
+		targetStructure.setValue("DATMAX", this.maxEntries); //$NON-NLS-1$
+		targetStructure.setValue("DATAVG", this.avgEntries); //$NON-NLS-1$
+		targetStructure.setValue("CLIDEP", this.clientDependent); //$NON-NLS-1$
+		targetStructure.setValue("BUFFERED", this.bufferSetting); //$NON-NLS-1$
+		targetStructure.setValue("COMPRFLAG", this.compressed); //$NON-NLS-1$
+		targetStructure.setValue("LANGDEP", this.languageDependent); //$NON-NLS-1$
+		targetStructure.setValue("DDTEXT", this.description); //$NON-NLS-1$
+		targetStructure.setValue("MAINFLAG", this.maintenanceSetting); //$NON-NLS-1$
+		targetStructure.setValue("CONTFLAG", this.deliveryClass); //$NON-NLS-1$
+		targetStructure.setValue("PROZPUFF", this.bufferPercentage); //$NON-NLS-1$
+		targetStructure.setValue("VIEWCLASS", this.viewClass); //$NON-NLS-1$
+		targetStructure.setValue("VIEWGRANT", this.viewMaintenanceSetting); //$NON-NLS-1$
+		targetStructure.setValue("MULTIPLEX", this.multiplexSetting); //$NON-NLS-1$
+		targetStructure.setValue("SHLPEXI", this.searchHelpAttached); //$NON-NLS-1$
 	}
 
 	/**
@@ -136,7 +130,7 @@ public class RFCDataStructureHeader {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("DD02V")) {
+		if (!structureName.equals("DD02V")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected DD02V).", structureName));
 		}
@@ -154,7 +148,7 @@ public class RFCDataStructureHeader {
 	 * @param newStructureType the new structure type (structure, table, view, ...) to set
 	 */
 	public void setStructureType(String newStructureType) {
-		_pcs.firePropertyChange("structureType", this.structureType, newStructureType);
+		_pcs.firePropertyChange("structureType", this.structureType, newStructureType); //$NON-NLS-1$
 		this.structureType = newStructureType;
 	}
 	
@@ -170,7 +164,7 @@ public class RFCDataStructureHeader {
 	 * @param newDatabaseTableName the new name of the database table or extended table to set
 	 */
 	public void setDatabaseTableName(String newDatabaseTableName) {
-		_pcs.firePropertyChange("databaseTableName", this.databaseTableName, newDatabaseTableName);
+		_pcs.firePropertyChange("databaseTableName", this.databaseTableName, newDatabaseTableName); //$NON-NLS-1$
 		this.databaseTableName = newDatabaseTableName;
 	}
 	
@@ -186,7 +180,7 @@ public class RFCDataStructureHeader {
 	 * @param newMinEntries the new minimum number of entries to set
 	 */
 	public void setMinEntries(int newMinEntries) {
-		_pcs.firePropertyChange("minEntries", this.minEntries, newMinEntries);
+		_pcs.firePropertyChange("minEntries", this.minEntries, newMinEntries); //$NON-NLS-1$
 		this.minEntries = newMinEntries;
 	}
 	
@@ -202,7 +196,7 @@ public class RFCDataStructureHeader {
 	 * @param newMaxEntries the new maximum number of entries to set
 	 */
 	public void setMaxEntries(int newMaxEntries) {
-		_pcs.firePropertyChange("maxEntries", this.maxEntries, newMaxEntries);
+		_pcs.firePropertyChange("maxEntries", this.maxEntries, newMaxEntries); //$NON-NLS-1$
 		this.maxEntries = newMaxEntries;
 	}
 	
@@ -218,7 +212,7 @@ public class RFCDataStructureHeader {
 	 * @param newAvgEntries the new average number of entries to set
 	 */
 	public void setAvgEntries(int newAvgEntries) {
-		_pcs.firePropertyChange("avgEntries", this.avgEntries, newAvgEntries);
+		_pcs.firePropertyChange("avgEntries", this.avgEntries, newAvgEntries); //$NON-NLS-1$
 		this.avgEntries = newAvgEntries;
 	}
 	
@@ -234,7 +228,7 @@ public class RFCDataStructureHeader {
 	 * @param newClientDependent the new whether the table is client-specific to set
 	 */
 	public void setClientDependent(boolean newClientDependent) {
-		_pcs.firePropertyChange("clientDependent", this.clientDependent, newClientDependent);
+		_pcs.firePropertyChange("clientDependent", this.clientDependent, newClientDependent); //$NON-NLS-1$
 		this.clientDependent = newClientDependent;
 	}
 	
@@ -250,7 +244,7 @@ public class RFCDataStructureHeader {
 	 * @param newBufferSetting the new buffering flag to set
 	 */
 	public void setBufferSetting(String newBufferSetting) {
-		_pcs.firePropertyChange("bufferSetting", this.bufferSetting, newBufferSetting);
+		_pcs.firePropertyChange("bufferSetting", this.bufferSetting, newBufferSetting); //$NON-NLS-1$
 		this.bufferSetting = newBufferSetting;
 	}
 	
@@ -266,7 +260,7 @@ public class RFCDataStructureHeader {
 	 * @param newCompressed the new field compression indicator to set
 	 */
 	public void setCompressed(boolean newCompressed) {
-		_pcs.firePropertyChange("compressed", this.compressed, newCompressed);
+		_pcs.firePropertyChange("compressed", this.compressed, newCompressed); //$NON-NLS-1$
 		this.compressed = newCompressed;
 	}
 	
@@ -282,7 +276,7 @@ public class RFCDataStructureHeader {
 	 * @param newLanguageDependent the new whether the table is language-dependent to set
 	 */
 	public void setLanguageDependent(boolean newLanguageDependent) {
-		_pcs.firePropertyChange("languageDependent", this.languageDependent, newLanguageDependent);
+		_pcs.firePropertyChange("languageDependent", this.languageDependent, newLanguageDependent); //$NON-NLS-1$
 		this.languageDependent = newLanguageDependent;
 	}
 	
@@ -298,7 +292,7 @@ public class RFCDataStructureHeader {
 	 * @param newDescription the new description to set
 	 */
 	public void setDescription(String newDescription) {
-		_pcs.firePropertyChange("description", this.description, newDescription);
+		_pcs.firePropertyChange("description", this.description, newDescription); //$NON-NLS-1$
 		this.description = newDescription;
 	}
 	
@@ -314,7 +308,7 @@ public class RFCDataStructureHeader {
 	 * @param newMaintenanceSetting the new to which extent maintenance with standard tools is allowed to set
 	 */
 	public void setMaintenanceSetting(String newMaintenanceSetting) {
-		_pcs.firePropertyChange("maintenanceSetting", this.maintenanceSetting, newMaintenanceSetting);
+		_pcs.firePropertyChange("maintenanceSetting", this.maintenanceSetting, newMaintenanceSetting); //$NON-NLS-1$
 		this.maintenanceSetting = newMaintenanceSetting;
 	}
 	
@@ -330,7 +324,7 @@ public class RFCDataStructureHeader {
 	 * @param newDeliveryClass the new delivery class to set
 	 */
 	public void setDeliveryClass(String newDeliveryClass) {
-		_pcs.firePropertyChange("deliveryClass", this.deliveryClass, newDeliveryClass);
+		_pcs.firePropertyChange("deliveryClass", this.deliveryClass, newDeliveryClass); //$NON-NLS-1$
 		this.deliveryClass = newDeliveryClass;
 	}
 	
@@ -346,7 +340,7 @@ public class RFCDataStructureHeader {
 	 * @param newBufferPercentage the new percentage for buffers to set
 	 */
 	public void setBufferPercentage(int newBufferPercentage) {
-		_pcs.firePropertyChange("bufferPercentage", this.bufferPercentage, newBufferPercentage);
+		_pcs.firePropertyChange("bufferPercentage", this.bufferPercentage, newBufferPercentage); //$NON-NLS-1$
 		this.bufferPercentage = newBufferPercentage;
 	}
 	
@@ -362,7 +356,7 @@ public class RFCDataStructureHeader {
 	 * @param newViewClass the new view type to set
 	 */
 	public void setViewClass(String newViewClass) {
-		_pcs.firePropertyChange("viewClass", this.viewClass, newViewClass);
+		_pcs.firePropertyChange("viewClass", this.viewClass, newViewClass); //$NON-NLS-1$
 		this.viewClass = newViewClass;
 	}
 	
@@ -378,7 +372,7 @@ public class RFCDataStructureHeader {
 	 * @param newViewMaintenanceSetting the new maintenance status for view data to set
 	 */
 	public void setViewMaintenanceSetting(String newViewMaintenanceSetting) {
-		_pcs.firePropertyChange("viewMaintenanceSetting", this.viewMaintenanceSetting, newViewMaintenanceSetting);
+		_pcs.firePropertyChange("viewMaintenanceSetting", this.viewMaintenanceSetting, newViewMaintenanceSetting); //$NON-NLS-1$
 		this.viewMaintenanceSetting = newViewMaintenanceSetting;
 	}
 	
@@ -394,7 +388,7 @@ public class RFCDataStructureHeader {
 	 * @param newMultiplexSetting the new whether multiplexing is possible for a table to set
 	 */
 	public void setMultiplexSetting(String newMultiplexSetting) {
-		_pcs.firePropertyChange("multiplexSetting", this.multiplexSetting, newMultiplexSetting);
+		_pcs.firePropertyChange("multiplexSetting", this.multiplexSetting, newMultiplexSetting); //$NON-NLS-1$
 		this.multiplexSetting = newMultiplexSetting;
 	}
 	
@@ -410,7 +404,7 @@ public class RFCDataStructureHeader {
 	 * @param newSearchHelpAttached the new whether a search help attachment to table exists to set
 	 */
 	public void setSearchHelpAttached(boolean newSearchHelpAttached) {
-		_pcs.firePropertyChange("searchHelpAttached", this.searchHelpAttached, newSearchHelpAttached);
+		_pcs.firePropertyChange("searchHelpAttached", this.searchHelpAttached, newSearchHelpAttached); //$NON-NLS-1$
 		this.searchHelpAttached = newSearchHelpAttached;
 	}
 	

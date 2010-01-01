@@ -3,18 +3,12 @@ package net.sf.rcer.cts.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
-import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunction;
-import com.sap.conn.jco.JCoRecord;
-import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model the input data of a RFC call to TR40_ORDER_CREATE. Use the setters to prepare 
@@ -58,7 +52,7 @@ public class CreateOrderRequest {
 	 * @param newCategory the new category of the transport order to set
 	 */
 	public void setCategory(String newCategory) {
-		_pcs.firePropertyChange("category", this.category, newCategory);
+		_pcs.firePropertyChange("category", this.category, newCategory); //$NON-NLS-1$
 		this.category = newCategory;
 	}
 	
@@ -74,7 +68,7 @@ public class CreateOrderRequest {
 	 * @param newText the new short text to set
 	 */
 	public void setText(String newText) {
-		_pcs.firePropertyChange("text", this.text, newText);
+		_pcs.firePropertyChange("text", this.text, newText); //$NON-NLS-1$
 		this.text = newText;
 	}
 	
@@ -90,7 +84,7 @@ public class CreateOrderRequest {
 	 * @param newTransportLayer the new transport layer to set
 	 */
 	public void setTransportLayer(String newTransportLayer) {
-		_pcs.firePropertyChange("transportLayer", this.transportLayer, newTransportLayer);
+		_pcs.firePropertyChange("transportLayer", this.transportLayer, newTransportLayer); //$NON-NLS-1$
 		this.transportLayer = newTransportLayer;
 	}
 	
@@ -106,7 +100,7 @@ public class CreateOrderRequest {
 	 * @param newOwner the new owner of the transport to set
 	 */
 	public void setOwner(String newOwner) {
-		_pcs.firePropertyChange("owner", this.owner, newOwner);
+		_pcs.firePropertyChange("owner", this.owner, newOwner); //$NON-NLS-1$
 		this.owner = newOwner;
 	}
 	
@@ -122,7 +116,7 @@ public class CreateOrderRequest {
 	 * @param newCorrectionRequested the new whether to create a correction task to set
 	 */
 	public void setCorrectionRequested(boolean newCorrectionRequested) {
-		_pcs.firePropertyChange("correctionRequested", this.correctionRequested, newCorrectionRequested);
+		_pcs.firePropertyChange("correctionRequested", this.correctionRequested, newCorrectionRequested); //$NON-NLS-1$
 		this.correctionRequested = newCorrectionRequested;
 	}
 	
@@ -138,7 +132,7 @@ public class CreateOrderRequest {
 	 * @param newRepairRequested the new whether to create a repair task to set
 	 */
 	public void setRepairRequested(boolean newRepairRequested) {
-		_pcs.firePropertyChange("repairRequested", this.repairRequested, newRepairRequested);
+		_pcs.firePropertyChange("repairRequested", this.repairRequested, newRepairRequested); //$NON-NLS-1$
 		this.repairRequested = newRepairRequested;
 	}
 	
@@ -154,7 +148,7 @@ public class CreateOrderRequest {
 	 * @param newUsers the new list of users to create tasks for to set
 	 */
 	public void setUsers(List<TaskUserListEntry> newUsers) {
-		_pcs.firePropertyChange("users", this.users, newUsers);
+		_pcs.firePropertyChange("users", this.users, newUsers); //$NON-NLS-1$
 		this.users = newUsers;
 	}
 	
@@ -165,20 +159,20 @@ public class CreateOrderRequest {
 	 * @throws JCoException
 	 */
 	public CreateOrderResponse execute(JCoDestination destination) throws JCoException {
-		JCoFunction function = destination.getRepository().getFunction("TR40_ORDER_CREATE");
-		function.getImportParameterList().setValue("IV_CATEGORY", category);
-		function.getImportParameterList().setValue("IV_KURZTEXT", text);
-		function.getImportParameterList().setValue("IV_LAYER", transportLayer);
-		function.getImportParameterList().setValue("IV_OWNER", owner);
-		function.getImportParameterList().setValue("IV_CORRECTION", correctionRequested ? "X" : " ");
-		function.getImportParameterList().setValue("IV_REPAIR", repairRequested ? "X" : " ");
-		TaskUserListEntry.toTable(users, function.getTableParameterList().getTable("TT_USERLIST"));
+		JCoFunction function = destination.getRepository().getFunction("TR40_ORDER_CREATE"); //$NON-NLS-1$
+		function.getImportParameterList().setValue("IV_CATEGORY", category); //$NON-NLS-1$
+		function.getImportParameterList().setValue("IV_KURZTEXT", text); //$NON-NLS-1$
+		function.getImportParameterList().setValue("IV_LAYER", transportLayer); //$NON-NLS-1$
+		function.getImportParameterList().setValue("IV_OWNER", owner); //$NON-NLS-1$
+		function.getImportParameterList().setValue("IV_CORRECTION", correctionRequested ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		function.getImportParameterList().setValue("IV_REPAIR", repairRequested ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		TaskUserListEntry.toTable(users, function.getTableParameterList().getTable("TT_USERLIST")); //$NON-NLS-1$
 		function.execute(destination);
 		CreateOrderResponse response = new CreateOrderResponse();
-		response.setOrderID(function.getExportParameterList().getString("EV_TRKORR_ORDER"));
-		response.setUsers(TaskUserListEntry.fromTable(function.getTableParameterList().getTable("TT_USERLIST")));
-		response.setException(function.getExportParameterList().getString("EV_EXCEPTION"));
-		response.setMessages(TransportMessage.fromTable(function.getTableParameterList().getTable("TT_MSG")));
+		response.setOrderID(function.getExportParameterList().getString("EV_TRKORR_ORDER")); //$NON-NLS-1$
+		response.setUsers(TaskUserListEntry.fromTable(function.getTableParameterList().getTable("TT_USERLIST"))); //$NON-NLS-1$
+		response.setException(function.getExportParameterList().getString("EV_EXCEPTION")); //$NON-NLS-1$
+		response.setMessages(TransportMessage.fromTable(function.getTableParameterList().getTable("TT_MSG"))); //$NON-NLS-1$
 		return response;
 	}
 

@@ -3,16 +3,10 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -48,15 +42,15 @@ public class RFCTableTechSettings {
 	public RFCTableTechSettings(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.sizeCategory = source.getString("TABKAT");
-		this.dataClass = source.getString("TABART");
-		this.bufferSetting = source.getString("PUFFERUNG");
-		this.bufferedKeyFields = source.getInt("SCHFELDANZ");
-		this.changeLogActive = source.getString("PROTOKOLL").equalsIgnoreCase("X");
-		this.bufferCompressed = source.getString("SPEICHPUFF").equalsIgnoreCase("X");
-		this.transparentTable = source.getString("TRANSPFLAG").equalsIgnoreCase("X");
-		this.translated = source.getString("UEBERSETZ").equalsIgnoreCase("X");
-		this.bufferStatus = source.getString("BUFALLOW");
+		this.sizeCategory = source.getString("TABKAT"); //$NON-NLS-1$
+		this.dataClass = source.getString("TABART"); //$NON-NLS-1$
+		this.bufferSetting = source.getString("PUFFERUNG"); //$NON-NLS-1$
+		this.bufferedKeyFields = source.getInt("SCHFELDANZ"); //$NON-NLS-1$
+		this.changeLogActive = source.getString("PROTOKOLL").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.bufferCompressed = source.getString("SPEICHPUFF").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.transparentTable = source.getString("TRANSPFLAG").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.translated = source.getString("UEBERSETZ").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		this.bufferStatus = source.getString("BUFALLOW"); //$NON-NLS-1$
 	}
 
 	/**
@@ -67,15 +61,15 @@ public class RFCTableTechSettings {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("TABKAT", this.sizeCategory);
-		targetStructure.setValue("TABART", this.dataClass);
-		targetStructure.setValue("PUFFERUNG", this.bufferSetting);
-		targetStructure.setValue("SCHFELDANZ", this.bufferedKeyFields);
-		targetStructure.setValue("PROTOKOLL", this.changeLogActive);
-		targetStructure.setValue("SPEICHPUFF", this.bufferCompressed);
-		targetStructure.setValue("TRANSPFLAG", this.transparentTable);
-		targetStructure.setValue("UEBERSETZ", this.translated);
-		targetStructure.setValue("BUFALLOW", this.bufferStatus);
+		targetStructure.setValue("TABKAT", this.sizeCategory); //$NON-NLS-1$
+		targetStructure.setValue("TABART", this.dataClass); //$NON-NLS-1$
+		targetStructure.setValue("PUFFERUNG", this.bufferSetting); //$NON-NLS-1$
+		targetStructure.setValue("SCHFELDANZ", this.bufferedKeyFields); //$NON-NLS-1$
+		targetStructure.setValue("PROTOKOLL", this.changeLogActive); //$NON-NLS-1$
+		targetStructure.setValue("SPEICHPUFF", this.bufferCompressed); //$NON-NLS-1$
+		targetStructure.setValue("TRANSPFLAG", this.transparentTable); //$NON-NLS-1$
+		targetStructure.setValue("UEBERSETZ", this.translated); //$NON-NLS-1$
+		targetStructure.setValue("BUFALLOW", this.bufferStatus); //$NON-NLS-1$
 	}
 
 	/**
@@ -112,7 +106,7 @@ public class RFCTableTechSettings {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("DD09L")) {
+		if (!structureName.equals("DD09L")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected DD09L).", structureName));
 		}
@@ -130,7 +124,7 @@ public class RFCTableTechSettings {
 	 * @param newSizeCategory the new size category to set
 	 */
 	public void setSizeCategory(String newSizeCategory) {
-		_pcs.firePropertyChange("sizeCategory", this.sizeCategory, newSizeCategory);
+		_pcs.firePropertyChange("sizeCategory", this.sizeCategory, newSizeCategory); //$NON-NLS-1$
 		this.sizeCategory = newSizeCategory;
 	}
 	
@@ -146,7 +140,7 @@ public class RFCTableTechSettings {
 	 * @param newDataClass the new data class in technical settings to set
 	 */
 	public void setDataClass(String newDataClass) {
-		_pcs.firePropertyChange("dataClass", this.dataClass, newDataClass);
+		_pcs.firePropertyChange("dataClass", this.dataClass, newDataClass); //$NON-NLS-1$
 		this.dataClass = newDataClass;
 	}
 	
@@ -162,7 +156,7 @@ public class RFCTableTechSettings {
 	 * @param newBufferSetting the new buffering type indicator to set
 	 */
 	public void setBufferSetting(String newBufferSetting) {
-		_pcs.firePropertyChange("bufferSetting", this.bufferSetting, newBufferSetting);
+		_pcs.firePropertyChange("bufferSetting", this.bufferSetting, newBufferSetting); //$NON-NLS-1$
 		this.bufferSetting = newBufferSetting;
 	}
 	
@@ -178,7 +172,7 @@ public class RFCTableTechSettings {
 	 * @param newBufferedKeyFields the new number of key fields for generic buffers to set
 	 */
 	public void setBufferedKeyFields(int newBufferedKeyFields) {
-		_pcs.firePropertyChange("bufferedKeyFields", this.bufferedKeyFields, newBufferedKeyFields);
+		_pcs.firePropertyChange("bufferedKeyFields", this.bufferedKeyFields, newBufferedKeyFields); //$NON-NLS-1$
 		this.bufferedKeyFields = newBufferedKeyFields;
 	}
 	
@@ -194,7 +188,7 @@ public class RFCTableTechSettings {
 	 * @param newChangeLogActive the new whether to log data changes to set
 	 */
 	public void setChangeLogActive(boolean newChangeLogActive) {
-		_pcs.firePropertyChange("changeLogActive", this.changeLogActive, newChangeLogActive);
+		_pcs.firePropertyChange("changeLogActive", this.changeLogActive, newChangeLogActive); //$NON-NLS-1$
 		this.changeLogActive = newChangeLogActive;
 	}
 	
@@ -210,7 +204,7 @@ public class RFCTableTechSettings {
 	 * @param newBufferCompressed the new whether the buffered data may be compressed to set
 	 */
 	public void setBufferCompressed(boolean newBufferCompressed) {
-		_pcs.firePropertyChange("bufferCompressed", this.bufferCompressed, newBufferCompressed);
+		_pcs.firePropertyChange("bufferCompressed", this.bufferCompressed, newBufferCompressed); //$NON-NLS-1$
 		this.bufferCompressed = newBufferCompressed;
 	}
 	
@@ -226,7 +220,7 @@ public class RFCTableTechSettings {
 	 * @param newTransparentTable the new whether to convert to transparent table or maintain transparency to set
 	 */
 	public void setTransparentTable(boolean newTransparentTable) {
-		_pcs.firePropertyChange("transparentTable", this.transparentTable, newTransparentTable);
+		_pcs.firePropertyChange("transparentTable", this.transparentTable, newTransparentTable); //$NON-NLS-1$
 		this.transparentTable = newTransparentTable;
 	}
 	
@@ -242,7 +236,7 @@ public class RFCTableTechSettings {
 	 * @param newTranslated the new whether table is relevant for translation to set
 	 */
 	public void setTranslated(boolean newTranslated) {
-		_pcs.firePropertyChange("translated", this.translated, newTranslated);
+		_pcs.firePropertyChange("translated", this.translated, newTranslated); //$NON-NLS-1$
 		this.translated = newTranslated;
 	}
 	
@@ -258,7 +252,7 @@ public class RFCTableTechSettings {
 	 * @param newBufferStatus the new indicator for buffering enabled/disabled/not allowed to set
 	 */
 	public void setBufferStatus(String newBufferStatus) {
-		_pcs.firePropertyChange("bufferStatus", this.bufferStatus, newBufferStatus);
+		_pcs.firePropertyChange("bufferStatus", this.bufferStatus, newBufferStatus); //$NON-NLS-1$
 		this.bufferStatus = newBufferStatus;
 	}
 	

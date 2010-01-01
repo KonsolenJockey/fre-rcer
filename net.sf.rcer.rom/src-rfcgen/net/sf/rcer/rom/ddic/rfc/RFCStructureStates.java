@@ -3,16 +3,10 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -47,14 +41,14 @@ public class RFCStructureStates {
 	public RFCStructureStates(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.TABL = source.getString("TABL");
-		this.TABD = source.getString("TABD");
-		this.TBHD = source.getString("TBHD");
-		this.TBFD = source.getString("TBFD");
-		this.TBFK = source.getString("TBFK");
-		this.TBSH = source.getString("TBSH");
-		this.TBIX = source.getString("TBIX");
-		this.TABT = source.getString("TABT");
+		this.TABL = source.getString("TABL"); //$NON-NLS-1$
+		this.TABD = source.getString("TABD"); //$NON-NLS-1$
+		this.TBHD = source.getString("TBHD"); //$NON-NLS-1$
+		this.TBFD = source.getString("TBFD"); //$NON-NLS-1$
+		this.TBFK = source.getString("TBFK"); //$NON-NLS-1$
+		this.TBSH = source.getString("TBSH"); //$NON-NLS-1$
+		this.TBIX = source.getString("TBIX"); //$NON-NLS-1$
+		this.TABT = source.getString("TABT"); //$NON-NLS-1$
 	}
 
 	/**
@@ -65,14 +59,14 @@ public class RFCStructureStates {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("TABL", this.TABL);
-		targetStructure.setValue("TABD", this.TABD);
-		targetStructure.setValue("TBHD", this.TBHD);
-		targetStructure.setValue("TBFD", this.TBFD);
-		targetStructure.setValue("TBFK", this.TBFK);
-		targetStructure.setValue("TBSH", this.TBSH);
-		targetStructure.setValue("TBIX", this.TBIX);
-		targetStructure.setValue("TABT", this.TABT);
+		targetStructure.setValue("TABL", this.TABL); //$NON-NLS-1$
+		targetStructure.setValue("TABD", this.TABD); //$NON-NLS-1$
+		targetStructure.setValue("TBHD", this.TBHD); //$NON-NLS-1$
+		targetStructure.setValue("TBFD", this.TBFD); //$NON-NLS-1$
+		targetStructure.setValue("TBFK", this.TBFK); //$NON-NLS-1$
+		targetStructure.setValue("TBSH", this.TBSH); //$NON-NLS-1$
+		targetStructure.setValue("TBIX", this.TBIX); //$NON-NLS-1$
+		targetStructure.setValue("TABT", this.TABT); //$NON-NLS-1$
 	}
 
 	/**
@@ -109,7 +103,7 @@ public class RFCStructureStates {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("DCTABLGET")) {
+		if (!structureName.equals("DCTABLGET")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected DCTABLGET).", structureName));
 		}
@@ -127,7 +121,7 @@ public class RFCStructureStates {
 	 * @param newTABL the new Status of the ABAP Dictionary object to set
 	 */
 	public void setTABL(String newTABL) {
-		_pcs.firePropertyChange("TABL", this.TABL, newTABL);
+		_pcs.firePropertyChange("TABL", this.TABL, newTABL); //$NON-NLS-1$
 		this.TABL = newTABL;
 	}
 	
@@ -143,7 +137,7 @@ public class RFCStructureStates {
 	 * @param newTABD the new Status of the ABAP Dictionary object to set
 	 */
 	public void setTABD(String newTABD) {
-		_pcs.firePropertyChange("TABD", this.TABD, newTABD);
+		_pcs.firePropertyChange("TABD", this.TABD, newTABD); //$NON-NLS-1$
 		this.TABD = newTABD;
 	}
 	
@@ -159,7 +153,7 @@ public class RFCStructureStates {
 	 * @param newTBHD the new Status of the ABAP Dictionary object to set
 	 */
 	public void setTBHD(String newTBHD) {
-		_pcs.firePropertyChange("TBHD", this.TBHD, newTBHD);
+		_pcs.firePropertyChange("TBHD", this.TBHD, newTBHD); //$NON-NLS-1$
 		this.TBHD = newTBHD;
 	}
 	
@@ -175,7 +169,7 @@ public class RFCStructureStates {
 	 * @param newTBFD the new Status of the ABAP Dictionary object to set
 	 */
 	public void setTBFD(String newTBFD) {
-		_pcs.firePropertyChange("TBFD", this.TBFD, newTBFD);
+		_pcs.firePropertyChange("TBFD", this.TBFD, newTBFD); //$NON-NLS-1$
 		this.TBFD = newTBFD;
 	}
 	
@@ -191,7 +185,7 @@ public class RFCStructureStates {
 	 * @param newTBFK the new Status of the ABAP Dictionary object to set
 	 */
 	public void setTBFK(String newTBFK) {
-		_pcs.firePropertyChange("TBFK", this.TBFK, newTBFK);
+		_pcs.firePropertyChange("TBFK", this.TBFK, newTBFK); //$NON-NLS-1$
 		this.TBFK = newTBFK;
 	}
 	
@@ -207,7 +201,7 @@ public class RFCStructureStates {
 	 * @param newTBSH the new Status of the ABAP Dictionary object to set
 	 */
 	public void setTBSH(String newTBSH) {
-		_pcs.firePropertyChange("TBSH", this.TBSH, newTBSH);
+		_pcs.firePropertyChange("TBSH", this.TBSH, newTBSH); //$NON-NLS-1$
 		this.TBSH = newTBSH;
 	}
 	
@@ -223,7 +217,7 @@ public class RFCStructureStates {
 	 * @param newTBIX the new Status of the ABAP Dictionary object to set
 	 */
 	public void setTBIX(String newTBIX) {
-		_pcs.firePropertyChange("TBIX", this.TBIX, newTBIX);
+		_pcs.firePropertyChange("TBIX", this.TBIX, newTBIX); //$NON-NLS-1$
 		this.TBIX = newTBIX;
 	}
 	
@@ -239,7 +233,7 @@ public class RFCStructureStates {
 	 * @param newTABT the new Status of the ABAP Dictionary object to set
 	 */
 	public void setTABT(String newTABT) {
-		_pcs.firePropertyChange("TABT", this.TABT, newTABT);
+		_pcs.firePropertyChange("TABT", this.TABT, newTABT); //$NON-NLS-1$
 		this.TABT = newTABT;
 	}
 	

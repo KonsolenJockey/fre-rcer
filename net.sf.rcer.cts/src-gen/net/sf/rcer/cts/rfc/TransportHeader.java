@@ -3,16 +3,11 @@ package net.sf.rcer.cts.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -48,15 +43,15 @@ public class TransportHeader {
 	public TransportHeader(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-		this.transportID = source.getString("TRKORR");
-		this.type = source.getString("TRFUNCTION");
-		this.status = source.getString("TRSTATUS");
-		this.target = source.getString("TARSYSTEM");
-		this.category = source.getString("KORRDEV");
-		this.user = source.getString("AS4USER");
-		this.lastChangeDate = source.getDate("AS4DATE");
-		this.lastChangeTime = source.getDate("AS4TIME");
-		this.parentID = source.getString("STRKORR");
+		this.transportID = source.getString("TRKORR"); //$NON-NLS-1$
+		this.type = source.getString("TRFUNCTION"); //$NON-NLS-1$
+		this.status = source.getString("TRSTATUS"); //$NON-NLS-1$
+		this.target = source.getString("TARSYSTEM"); //$NON-NLS-1$
+		this.category = source.getString("KORRDEV"); //$NON-NLS-1$
+		this.user = source.getString("AS4USER"); //$NON-NLS-1$
+		this.lastChangeDate = source.getDate("AS4DATE"); //$NON-NLS-1$
+		this.lastChangeTime = source.getDate("AS4TIME"); //$NON-NLS-1$
+		this.parentID = source.getString("STRKORR"); //$NON-NLS-1$
 	}
 
 	/**
@@ -67,15 +62,15 @@ public class TransportHeader {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-		targetStructure.setValue("TRKORR", this.transportID);
-		targetStructure.setValue("TRFUNCTION", this.type);
-		targetStructure.setValue("TRSTATUS", this.status);
-		targetStructure.setValue("TARSYSTEM", this.target);
-		targetStructure.setValue("KORRDEV", this.category);
-		targetStructure.setValue("AS4USER", this.user);
-		targetStructure.setValue("AS4DATE", this.lastChangeDate);
-		targetStructure.setValue("AS4TIME", this.lastChangeTime);
-		targetStructure.setValue("STRKORR", this.parentID);
+		targetStructure.setValue("TRKORR", this.transportID); //$NON-NLS-1$
+		targetStructure.setValue("TRFUNCTION", this.type); //$NON-NLS-1$
+		targetStructure.setValue("TRSTATUS", this.status); //$NON-NLS-1$
+		targetStructure.setValue("TARSYSTEM", this.target); //$NON-NLS-1$
+		targetStructure.setValue("KORRDEV", this.category); //$NON-NLS-1$
+		targetStructure.setValue("AS4USER", this.user); //$NON-NLS-1$
+		targetStructure.setValue("AS4DATE", this.lastChangeDate); //$NON-NLS-1$
+		targetStructure.setValue("AS4TIME", this.lastChangeTime); //$NON-NLS-1$
+		targetStructure.setValue("STRKORR", this.parentID); //$NON-NLS-1$
 	}
 
 	/**
@@ -112,7 +107,7 @@ public class TransportHeader {
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
 		final String structureName = structure.getMetaData().getName(); 
-		if (!structureName.equals("TR001")) {
+		if (!structureName.equals("TR001")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected TR001).", structureName));
 		}
@@ -130,7 +125,7 @@ public class TransportHeader {
 	 * @param newTransportID the new Request or Task to set
 	 */
 	public void setTransportID(String newTransportID) {
-		_pcs.firePropertyChange("transportID", this.transportID, newTransportID);
+		_pcs.firePropertyChange("transportID", this.transportID, newTransportID); //$NON-NLS-1$
 		this.transportID = newTransportID;
 	}
 	
@@ -146,7 +141,7 @@ public class TransportHeader {
 	 * @param newType the new Transport Type (Function) to set
 	 */
 	public void setType(String newType) {
-		_pcs.firePropertyChange("type", this.type, newType);
+		_pcs.firePropertyChange("type", this.type, newType); //$NON-NLS-1$
 		this.type = newType;
 	}
 	
@@ -162,7 +157,7 @@ public class TransportHeader {
 	 * @param newStatus the new Status to set
 	 */
 	public void setStatus(String newStatus) {
-		_pcs.firePropertyChange("status", this.status, newStatus);
+		_pcs.firePropertyChange("status", this.status, newStatus); //$NON-NLS-1$
 		this.status = newStatus;
 	}
 	
@@ -178,7 +173,7 @@ public class TransportHeader {
 	 * @param newTarget the new Transport destination to set
 	 */
 	public void setTarget(String newTarget) {
-		_pcs.firePropertyChange("target", this.target, newTarget);
+		_pcs.firePropertyChange("target", this.target, newTarget); //$NON-NLS-1$
 		this.target = newTarget;
 	}
 	
@@ -194,7 +189,7 @@ public class TransportHeader {
 	 * @param newCategory the new Category to set
 	 */
 	public void setCategory(String newCategory) {
-		_pcs.firePropertyChange("category", this.category, newCategory);
+		_pcs.firePropertyChange("category", this.category, newCategory); //$NON-NLS-1$
 		this.category = newCategory;
 	}
 	
@@ -210,7 +205,7 @@ public class TransportHeader {
 	 * @param newUser the new Last changed by to set
 	 */
 	public void setUser(String newUser) {
-		_pcs.firePropertyChange("user", this.user, newUser);
+		_pcs.firePropertyChange("user", this.user, newUser); //$NON-NLS-1$
 		this.user = newUser;
 	}
 	
@@ -226,7 +221,7 @@ public class TransportHeader {
 	 * @param newLastChangeDate the new Last changed on to set
 	 */
 	public void setLastChangeDate(Date newLastChangeDate) {
-		_pcs.firePropertyChange("lastChangeDate", this.lastChangeDate, newLastChangeDate);
+		_pcs.firePropertyChange("lastChangeDate", this.lastChangeDate, newLastChangeDate); //$NON-NLS-1$
 		this.lastChangeDate = newLastChangeDate;
 	}
 	
@@ -242,7 +237,7 @@ public class TransportHeader {
 	 * @param newLastChangeTime the new Last changed at to set
 	 */
 	public void setLastChangeTime(Date newLastChangeTime) {
-		_pcs.firePropertyChange("lastChangeTime", this.lastChangeTime, newLastChangeTime);
+		_pcs.firePropertyChange("lastChangeTime", this.lastChangeTime, newLastChangeTime); //$NON-NLS-1$
 		this.lastChangeTime = newLastChangeTime;
 	}
 	
@@ -258,7 +253,7 @@ public class TransportHeader {
 	 * @param newParentID the new Higher-level request to set
 	 */
 	public void setParentID(String newParentID) {
-		_pcs.firePropertyChange("parentID", this.parentID, newParentID);
+		_pcs.firePropertyChange("parentID", this.parentID, newParentID); //$NON-NLS-1$
 		this.parentID = newParentID;
 	}
 	
