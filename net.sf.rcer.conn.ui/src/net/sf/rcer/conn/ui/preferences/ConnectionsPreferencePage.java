@@ -28,7 +28,6 @@ import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.beans.BeansObservables;
 import org.eclipse.core.databinding.conversion.NumberToStringConverter;
 import org.eclipse.core.databinding.conversion.StringToNumberConverter;
-import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.validation.IValidator;
@@ -136,7 +135,6 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 	 * A {@link ControlUpdater} that will hide or show controls depending on an {@link IObservableValue}.
 	 * @author vwegert
 	 */
-	@SuppressWarnings("restriction")
 	private class VisibilityUpdater extends ControlUpdater {
 
 		private Composite parent;
@@ -211,45 +209,45 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 		}
 	}
 
-	/**
-	 * A validator that ensures that the value is not empty if another field has a certain value.
-	 * @author vwegert
-	 */
-	private class ConditionalNotEmptyValidator implements IValidator {
-
-		private IObservableValue dependentObservable;
-		private Object observableValue;
-		private IStatus errorStatus;
-
-		/**
-		 * Standard constructor.
-		 * @param dependentObservable 
-		 * @param observableValue 
-		 * @param message the error message to return if the value is empty.
-		 */
-		public ConditionalNotEmptyValidator(IObservableValue dependentObservable, Object observableValue, String message) {
-			this.dependentObservable = dependentObservable;
-			this.observableValue = observableValue;
-			this.errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, message);
-		}
-
-		/* (non-Javadoc)
-		 * @see org.eclipse.core.databinding.validation.IValidator#validate(java.lang.Object)
-		 */
-		public IStatus validate(Object value) {
-			if (dependentObservable.getValue().equals(observableValue)) {
-				if (value == null) {
-					return errorStatus;
-				}
-				if (value instanceof String) {
-					if (((String) value).equals("")) { //$NON-NLS-1$
-						return errorStatus;
-					}
-				}
-			}
-			return Status.OK_STATUS;
-		}
-	}
+//	/**
+//	 * A validator that ensures that the value is not empty if another field has a certain value.
+//	 * @author vwegert
+//	 */
+//	private class ConditionalNotEmptyValidator implements IValidator {
+//
+//		private IObservableValue dependentObservable;
+//		private Object observableValue;
+//		private IStatus errorStatus;
+//
+//		/**
+//		 * Standard constructor.
+//		 * @param dependentObservable 
+//		 * @param observableValue 
+//		 * @param message the error message to return if the value is empty.
+//		 */
+//		public ConditionalNotEmptyValidator(IObservableValue dependentObservable, Object observableValue, String message) {
+//			this.dependentObservable = dependentObservable;
+//			this.observableValue = observableValue;
+//			this.errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, message);
+//		}
+//
+//		/* (non-Javadoc)
+//		 * @see org.eclipse.core.databinding.validation.IValidator#validate(java.lang.Object)
+//		 */
+//		public IStatus validate(Object value) {
+//			if (dependentObservable.getValue().equals(observableValue)) {
+//				if (value == null) {
+//					return errorStatus;
+//				}
+//				if (value instanceof String) {
+//					if (((String) value).equals("")) { //$NON-NLS-1$
+//						return errorStatus;
+//					}
+//				}
+//			}
+//			return Status.OK_STATUS;
+//		}
+//	}
 
 	/**
 	 * A validator that ensures that a string has a certain length.
@@ -457,7 +455,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 	private void createCommonDataControls(Composite parent) {
 		Composite common = new Composite(parent, SWT.NONE);
 		GridDataFactory.fillDefaults().span(2, 1).grab(true, false).applyTo(common);
-		GridLayoutFactory.fillDefaults().numColumns(4).applyTo(common);
+		GridLayoutFactory.swtDefaults().numColumns(4).applyTo(common);
 
 		descriptionLabel = new Label(common, SWT.NONE);
 		GridDataFactory.swtDefaults().applyTo(descriptionLabel);
@@ -487,9 +485,9 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 	 * @param parent
 	 */
 	private void createConnectionDataControls(Composite parent) {
-		connectionDataGroup = new Group(parent, SWT.BORDER);
+		connectionDataGroup = new Group(parent, SWT.SHADOW_ETCHED_IN);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(connectionDataGroup);
-		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(connectionDataGroup);
+		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(connectionDataGroup);
 		connectionDataGroup.setText(Messages.ConnectionsPreferencePage_ConnectionDataGroup);
 
 		routerLabel = new Label(connectionDataGroup, SWT.NONE);
@@ -542,7 +540,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 	private void createDefaultsDataControls(Composite parent) {
 		defaultsDataGroup = new Group(parent, SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(defaultsDataGroup);
-		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(defaultsDataGroup);
+		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(defaultsDataGroup);
 		defaultsDataGroup.setText(Messages.ConnectionsPreferencePage_LogonDefaultsGroup);
 
 		defaultClientLabel = new Label(defaultsDataGroup, SWT.NONE);
@@ -595,12 +593,12 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		// bind the description (String, may not be empty)
 		context.bindValue(SWTObservables.observeText(descriptionText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "description", String.class),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(selection, "description", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy().setBeforeSetValidator(new NotEmptyValidator(Messages.ConnectionsPreferencePage_DescriptionEmptyError)), 
 				new UpdateValueStrategy());
 
 		// bind the connection type
-		IObservableValue connectionTypeObservable = BeansObservables.observeDetailValue(Realm.getDefault(), 
+		IObservableValue connectionTypeObservable = BeansObservables.observeDetailValue(
 				selection, "connectionType", ConnectionType.class); //$NON-NLS-1$
 		context.bindValue(SWTObservables.observeSelection(connectionTypeCombo), 
 				connectionTypeObservable, 
@@ -609,19 +607,19 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		// bind the system ID
 		context.bindValue(SWTObservables.observeText(sidText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "systemID", String.class),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(selection, "systemID", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy().setBeforeSetValidator(new StringLengthValidator(Messages.ConnectionsPreferencePage_SystemIDValidator, 3, 3)), 
 				new UpdateValueStrategy());
 
 		// bind the router
 		context.bindValue(SWTObservables.observeText(routerText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "router", String.class),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(selection, "router", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 
 		// bind the application server
 		context.bindValue(SWTObservables.observeText(applicationServerText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "applicationServer", String.class),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(selection, "applicationServer", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 		new VisibilityUpdater(details, applicationServerText, applicationServerLabel,
@@ -636,7 +634,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 		//				connectionTypeObservable, ConnectionType.DIRECT, "System Number must be set for direct connections."));
 		targetToModel.setBeforeSetValidator(new IntegerRangeValidator(Messages.ConnectionsPreferencePage_SystemNumberValidator, 0, 99));
 		context.bindValue(SWTObservables.observeText(systemNumberText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "systemNumber", null),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(selection, "systemNumber", null),  //$NON-NLS-1$
 				targetToModel, 
 				new UpdateValueStrategy().setConverter(NumberToStringConverter.fromInteger(true)));
 		new VisibilityUpdater(details, systemNumberText, systemNumberLabel, 
@@ -644,7 +642,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		// bind the message server 
 		context.bindValue(SWTObservables.observeText(messageServerText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "messageServer", String.class),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(selection, "messageServer", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 		new VisibilityUpdater(details, messageServerText, messageServerLabel, 
@@ -653,7 +651,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		// bind the message server port
 		context.bindValue(SWTObservables.observeText(messageServerPortText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "messageServerPort", null),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(selection, "messageServerPort", null),  //$NON-NLS-1$
 				new UpdateValueStrategy().setConverter(StringToNumberConverter.toInteger(true)), 
 				new UpdateValueStrategy().setConverter(NumberToStringConverter.fromInteger(true)));
 		new VisibilityUpdater(details, messageServerPortText, messageServerPortLabel, 
@@ -662,7 +660,7 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		// bind the logon group 
 		context.bindValue(SWTObservables.observeText(logonGroupText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "loadBalancingGroup", String.class),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(selection, "loadBalancingGroup", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 		new VisibilityUpdater(details, logonGroupText, logonGroupLabel, 
@@ -671,19 +669,19 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 
 		// bind the default client 
 		context.bindValue(SWTObservables.observeText(defaultClientText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "defaultClient", String.class),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(selection, "defaultClient", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 
 		// bind the default user
 		context.bindValue(SWTObservables.observeText(defaultUserText, SWT.Modify), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "defaultUser", String.class),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(selection, "defaultUser", String.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(), 
 				new UpdateValueStrategy());
 
 		// bind the default locale 
 		context.bindValue(SWTObservables.observeSelection(defaultLocaleCombo), 
-				BeansObservables.observeDetailValue(Realm.getDefault(), selection, "defaultLocale", Locale.class),  //$NON-NLS-1$
+				BeansObservables.observeDetailValue(selection, "defaultLocale", Locale.class),  //$NON-NLS-1$
 				new UpdateValueStrategy().setConverter(new Locale.FromStringConverter()), 
 				new UpdateValueStrategy().setConverter(new Locale.ToStringConverter(false)));
 
