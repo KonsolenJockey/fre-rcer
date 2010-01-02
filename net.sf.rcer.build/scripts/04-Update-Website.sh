@@ -5,6 +5,11 @@
 # $Id$
 #
 
+svn_export() {
+	echo "Exporting project ${1}..."
+	svn -q export https://rcer.svn.sourceforge.net/svnroot/rcer/trunk/${1}
+}
+
 if [ "x${RCER_BUILD_HOME}" = "x" ] ; then
   echo Environment variable RCER_BUILD_HOME is not set.
   exit 1
@@ -14,6 +19,12 @@ if [ "x${RCER_SF_USER}" = "x" ] ; then
   echo Environment variable RCER_SF_USER is not set.
   exit 1
 fi 
+
+echo "Exporting static content from repository..."
+mkdir -p ${RCER_BUILD_HOME}/website/src
+rm -rf ${RCER_BUILD_HOME}/website/src/*
+cd ${RCER_BUILD_HOME}/website/src
+svn_export net.sf.rcer.website
 
 echo "Preparing the staging area..."
 mkdir ${RCER_BUILD_HOME}/website/staging

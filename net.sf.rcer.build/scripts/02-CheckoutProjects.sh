@@ -18,10 +18,8 @@ fi
 echo "Deleting old contents..."
 mkdir -p ${RCER_BUILD_HOME}/export/features
 mkdir -p ${RCER_BUILD_HOME}/export/plugins
-mkdir -p ${RCER_BUILD_HOME}/website
 rm -rf ${RCER_BUILD_HOME}/export/features/*
 rm -rf ${RCER_BUILD_HOME}/export/plugins/*
-rm -rf ${RCER_BUILD_HOME}/website/*
 
 cd ${RCER_BUILD_HOME}/export/features
 svn_export net.sf.rcer
@@ -46,9 +44,5 @@ svn_export net.sf.rcer.rfcgen.generator
 svn_export net.sf.rcer.rfcgen.ui
 svn_export net.sf.rcer.rom
 svn_export net.sf.rcer.sdk.doc
-
-mkdir ${RCER_BUILD_HOME}/website/src
-cd ${RCER_BUILD_HOME}/website/src
-svn_export net.sf.rcer.website
 
 echo "OK."
