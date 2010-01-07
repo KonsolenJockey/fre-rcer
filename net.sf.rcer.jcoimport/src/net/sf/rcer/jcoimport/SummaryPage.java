@@ -100,7 +100,7 @@ public class SummaryPage extends WizardPage {
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
 		checkboxFragmentLinux32 = new Button(top, SWT.CHECK);
-		context.bindValue(SWTObservables.observeSelection(checkboxFragmentWin64x86), 
+		context.bindValue(SWTObservables.observeSelection(checkboxFragmentLinux32), 
 				BeansObservables.observeValue(generatorSettings, "linux32FragmentSelected"), //$NON-NLS-1$
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 		
