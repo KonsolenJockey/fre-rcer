@@ -111,9 +111,11 @@ function module "«functionModuleName»" {
 «DEFINE importParameters FOR FunctionModuleInfo-»
 «FOREACH parameters.select(p|p.importing) AS p-»
 «IF p.table-»
-		import table «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		import table     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+«ELSEIF p.structure-»
+		import structure «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ELSE-»
-		import field «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		import field     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE»
@@ -123,9 +125,11 @@ function module "«functionModuleName»" {
 «DEFINE exportParameters FOR FunctionModuleInfo-»
 «FOREACH parameters.select(p|p.exporting) AS p-»
 «IF p.table-»
-		export table «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		export table     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+«ELSEIF p.structure-»
+		export structure «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ELSE-»
-		export field «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		export field     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE»
@@ -135,9 +139,11 @@ function module "«functionModuleName»" {
 «DEFINE changeParameters FOR FunctionModuleInfo-»
 «FOREACH parameters.select(p|p.changing) AS p-»
 «IF p.table-»
-		change table «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		change table     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+«ELSEIF p.structure-»
+		change structure «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ELSE-»
-		change field «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		change field     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE»
@@ -146,7 +152,7 @@ function module "«functionModuleName»" {
 
 «DEFINE tableParameters FOR FunctionModuleInfo-»
 «FOREACH parameters.select(p|p.tables) AS p-»
-		table        «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		table            «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ENDFOREACH-»
 «ENDDEFINE»
 
