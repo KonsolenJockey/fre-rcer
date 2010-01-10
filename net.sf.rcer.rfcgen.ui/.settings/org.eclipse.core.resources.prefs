@@ -1,4 +1,5 @@
-#Sun Nov 02 15:55:43 CET 2009
+#Sun Jan 10 21:49:57 CET 2010
 eclipse.preferences.version=1
-encoding/<project>=UTF-8
+encoding//src/net/sf/rcer/rfcgen/ui/wizard/RFCMappingNewProject.xpt=ISO-8859-1
 encoding//src/net/sf/rcer/ui/wizard/RFCMappingNewProject.xpt=ISO-8859-1
+encoding/<project>=UTF-8
