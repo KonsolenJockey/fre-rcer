@@ -148,9 +148,6 @@ public class ExtendedRFCMappingProjectInfo extends RFCMappingProjectInfo {
 			StructureInfo info = new StructureInfo(struct.getName(), struct.getName());
 			for (int pos = 0; pos < struct.getFieldCount(); pos++) {
 				String javaType = removeStandardPackages(struct.getClassNameOfField(pos));
-				if (javaType.equals("Integer")) {
-					javaType = "int";
-				}
 				info.addField(struct.getName(pos), javaType, struct.getName(pos), 
 						struct.getDescription(pos) == null ? "" : struct.getDescription(pos).replaceAll("\"", "'"));
 			}
@@ -175,9 +172,6 @@ public class ExtendedRFCMappingProjectInfo extends RFCMappingProjectInfo {
 					javaType = structures.get(iface.getRecordTypeName(pos)).getClassName();
 				} else {
 					javaType = removeStandardPackages(iface.getClassNameOfField(pos));
-					if (javaType.equals("Integer")) {
-						javaType = "int";
-					}
 				}
 				info.addParameter(iface.isImport(pos), iface.isExport(pos), iface.isChanging(pos), iface.isTable(pos), 
 						iface.getName(pos), javaType, iface.getName(pos), 
@@ -193,7 +187,7 @@ public class ExtendedRFCMappingProjectInfo extends RFCMappingProjectInfo {
 	 * @return the name, stripped of the standard package names
 	 */
 	private String removeStandardPackages(String className) {
-		return className.replace("java.lang.", "").replace("java.util.", "");
+		return className.replace("java.lang.", "").replace("java.util.", "").replace("java.math.", "");
 	}
 
 }

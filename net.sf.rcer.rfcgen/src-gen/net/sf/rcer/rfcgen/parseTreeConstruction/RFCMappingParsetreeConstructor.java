@@ -64,7 +64,7 @@ protected class ThisRootNode extends RootToken {
  * 	    
  * 	    
  * 
- * // ====== Structures ==============================================================================
+ * // ====== Basic Types =============================================================================
  *
  **/
 
@@ -458,13 +458,13 @@ protected class StructureMapping_StructurePOJOMappingParserRuleCall extends Rule
 /************ begin Rule StructurePOJOMapping ****************
  *
  * StructurePOJOMapping:
- *   "class" className=ID "{" fields+=StructureFieldPOJOMapping* "}"; 
+ *   "class" className=ID "{" (fields+=StructureFieldPOJOMapping ";")* "}"; 
  * 
  * // --- POJO mapping -------------------------------------------------------------------------------
  *
  **/
 
-// "class" className=ID "{" fields+=StructureFieldPOJOMapping* "}"
+// "class" className=ID "{" (fields+=StructureFieldPOJOMapping ";")* "}"
 protected class StructurePOJOMapping_Group extends GroupToken {
 	
 	public StructurePOJOMapping_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -558,15 +558,35 @@ protected class StructurePOJOMapping_LeftCurlyBracketKeyword_2 extends KeywordTo
 		
 }
 
-// fields+=StructureFieldPOJOMapping*
-protected class StructurePOJOMapping_FieldsAssignment_3 extends AssignmentToken  {
+// (fields+=StructureFieldPOJOMapping ";")*
+protected class StructurePOJOMapping_Group_3 extends GroupToken {
 	
-	public StructurePOJOMapping_FieldsAssignment_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StructurePOJOMapping_Group_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Group getGrammarElement() {
+		return grammarAccess.getStructurePOJOMappingAccess().getGroup_3();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new StructurePOJOMapping_SemicolonKeyword_3_1(parent, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+}
+
+// fields+=StructureFieldPOJOMapping
+protected class StructurePOJOMapping_FieldsAssignment_3_0 extends AssignmentToken  {
+	
+	public StructurePOJOMapping_FieldsAssignment_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getStructurePOJOMappingAccess().getFieldsAssignment_3();
+		return grammarAccess.getStructurePOJOMappingAccess().getFieldsAssignment_3_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -583,7 +603,7 @@ protected class StructurePOJOMapping_FieldsAssignment_3 extends AssignmentToken 
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getStructureFieldPOJOMappingRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getStructurePOJOMappingAccess().getFieldsStructureFieldPOJOMappingParserRuleCall_3_0(); 
+				element = grammarAccess.getStructurePOJOMappingAccess().getFieldsStructureFieldPOJOMappingParserRuleCall_3_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -594,12 +614,33 @@ protected class StructurePOJOMapping_FieldsAssignment_3 extends AssignmentToken 
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new StructurePOJOMapping_FieldsAssignment_3(parent, next, actIndex, consumed);
+			case 0: return new StructurePOJOMapping_Group_3(parent, next, actIndex, consumed);
 			case 1: return new StructurePOJOMapping_LeftCurlyBracketKeyword_2(parent, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
+
+// ";"
+protected class StructurePOJOMapping_SemicolonKeyword_3_1 extends KeywordToken  {
+	
+	public StructurePOJOMapping_SemicolonKeyword_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Keyword getGrammarElement() {
+		return grammarAccess.getStructurePOJOMappingAccess().getSemicolonKeyword_3_1();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new StructurePOJOMapping_FieldsAssignment_3_0(parent, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+}
+
 
 // "}"
 protected class StructurePOJOMapping_RightCurlyBracketKeyword_4 extends KeywordToken  {
@@ -614,7 +655,7 @@ protected class StructurePOJOMapping_RightCurlyBracketKeyword_4 extends KeywordT
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new StructurePOJOMapping_FieldsAssignment_3(parent, this, 0, inst);
+			case 0: return new StructurePOJOMapping_Group_3(parent, this, 0, inst);
 			case 1: return new StructurePOJOMapping_LeftCurlyBracketKeyword_2(parent, this, 1, inst);
 			default: return null;
 		}	
@@ -629,16 +670,20 @@ protected class StructurePOJOMapping_RightCurlyBracketKeyword_4 extends KeywordT
 /************ begin Rule StructureFieldPOJOMapping ****************
  *
  * StructureFieldPOJOMapping:
- *   "field" name=STRING "=" type=ID attribute=ID ("comment" comment=STRING)? ";"; 
- * 
- * 
- * 	              
+ *   "field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID) ("comment"
+ *   comment=STRING)?; 
+ * 	
+ *  
+ * 	   
+ * 	         
+ * 	  
  * 
  * // ====== Function Modules ========================================================================
  *
  **/
 
-// "field" name=STRING "=" type=ID attribute=ID ("comment" comment=STRING)? ";"
+// "field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID) ("comment"
+// comment=STRING)?
 protected class StructureFieldPOJOMapping_Group extends GroupToken {
 	
 	public StructureFieldPOJOMapping_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -651,7 +696,8 @@ protected class StructureFieldPOJOMapping_Group extends GroupToken {
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new StructureFieldPOJOMapping_SemicolonKeyword_6(parent, this, 0, inst);
+			case 0: return new StructureFieldPOJOMapping_Group_4(parent, this, 0, inst);
+			case 1: return new StructureFieldPOJOMapping_Alternatives_3(parent, this, 1, inst);
 			default: return null;
 		}	
 	}	
@@ -732,15 +778,87 @@ protected class StructureFieldPOJOMapping_EqualsSignKeyword_2 extends KeywordTok
 		
 }
 
-// type=ID
-protected class StructureFieldPOJOMapping_TypeAssignment_3 extends AssignmentToken  {
+// inactive?="inactive"|type=DataType attribute=ID
+protected class StructureFieldPOJOMapping_Alternatives_3 extends AlternativesToken {
+
+	public StructureFieldPOJOMapping_Alternatives_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
 	
-	public StructureFieldPOJOMapping_TypeAssignment_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Alternatives getGrammarElement() {
+		return grammarAccess.getStructureFieldPOJOMappingAccess().getAlternatives_3();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new StructureFieldPOJOMapping_InactiveAssignment_3_0(parent, this, 0, inst);
+			case 1: return new StructureFieldPOJOMapping_Group_3_1(parent, this, 1, inst);
+			default: return null;
+		}	
+	}	
+		
+}
+
+// inactive?="inactive"
+protected class StructureFieldPOJOMapping_InactiveAssignment_3_0 extends AssignmentToken  {
+	
+	public StructureFieldPOJOMapping_InactiveAssignment_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getStructureFieldPOJOMappingAccess().getTypeAssignment_3();
+		return grammarAccess.getStructureFieldPOJOMappingAccess().getInactiveAssignment_3_0();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new StructureFieldPOJOMapping_EqualsSignKeyword_2(parent, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+	protected IInstanceDescription tryConsumeVal() {
+		if((value = current.getConsumable("inactive",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("inactive");
+		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+			type = AssignmentType.KW;
+			element = grammarAccess.getStructureFieldPOJOMappingAccess().getInactiveInactiveKeyword_3_0_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+// type=DataType attribute=ID
+protected class StructureFieldPOJOMapping_Group_3_1 extends GroupToken {
+	
+	public StructureFieldPOJOMapping_Group_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Group getGrammarElement() {
+		return grammarAccess.getStructureFieldPOJOMappingAccess().getGroup_3_1();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new StructureFieldPOJOMapping_AttributeAssignment_3_1_1(parent, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+}
+
+// type=DataType
+protected class StructureFieldPOJOMapping_TypeAssignment_3_1_0 extends AssignmentToken  {
+	
+	public StructureFieldPOJOMapping_TypeAssignment_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Assignment getGrammarElement() {
+		return grammarAccess.getStructureFieldPOJOMappingAccess().getTypeAssignment_3_1_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -753,9 +871,9 @@ protected class StructureFieldPOJOMapping_TypeAssignment_3 extends AssignmentTok
 	protected IInstanceDescription tryConsumeVal() {
 		if((value = current.getConsumable("type",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("type");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
-			type = AssignmentType.LRC;
-			element = grammarAccess.getStructureFieldPOJOMappingAccess().getTypeIDTerminalRuleCall_3_0();
+		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for datatype rule
+			type = AssignmentType.ERC;
+			element = grammarAccess.getStructureFieldPOJOMappingAccess().getTypeDataTypeEnumRuleCall_3_1_0_0();
 			return obj;
 		}
 		return null;
@@ -764,19 +882,19 @@ protected class StructureFieldPOJOMapping_TypeAssignment_3 extends AssignmentTok
 }
 
 // attribute=ID
-protected class StructureFieldPOJOMapping_AttributeAssignment_4 extends AssignmentToken  {
+protected class StructureFieldPOJOMapping_AttributeAssignment_3_1_1 extends AssignmentToken  {
 	
-	public StructureFieldPOJOMapping_AttributeAssignment_4(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StructureFieldPOJOMapping_AttributeAssignment_3_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getStructureFieldPOJOMappingAccess().getAttributeAssignment_4();
+		return grammarAccess.getStructureFieldPOJOMappingAccess().getAttributeAssignment_3_1_1();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new StructureFieldPOJOMapping_TypeAssignment_3(parent, this, 0, inst);
+			case 0: return new StructureFieldPOJOMapping_TypeAssignment_3_1_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -786,7 +904,7 @@ protected class StructureFieldPOJOMapping_AttributeAssignment_4 extends Assignme
 		IInstanceDescription obj = current.cloneAndConsume("attribute");
 		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
-			element = grammarAccess.getStructureFieldPOJOMappingAccess().getAttributeIDTerminalRuleCall_4_0();
+			element = grammarAccess.getStructureFieldPOJOMappingAccess().getAttributeIDTerminalRuleCall_3_1_1_0();
 			return obj;
 		}
 		return null;
@@ -794,20 +912,22 @@ protected class StructureFieldPOJOMapping_AttributeAssignment_4 extends Assignme
 
 }
 
+
+
 // ("comment" comment=STRING)?
-protected class StructureFieldPOJOMapping_Group_5 extends GroupToken {
+protected class StructureFieldPOJOMapping_Group_4 extends GroupToken {
 	
-	public StructureFieldPOJOMapping_Group_5(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StructureFieldPOJOMapping_Group_4(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Group getGrammarElement() {
-		return grammarAccess.getStructureFieldPOJOMappingAccess().getGroup_5();
+		return grammarAccess.getStructureFieldPOJOMappingAccess().getGroup_4();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new StructureFieldPOJOMapping_CommentAssignment_5_1(parent, this, 0, inst);
+			case 0: return new StructureFieldPOJOMapping_CommentAssignment_4_1(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -815,19 +935,19 @@ protected class StructureFieldPOJOMapping_Group_5 extends GroupToken {
 }
 
 // "comment"
-protected class StructureFieldPOJOMapping_CommentKeyword_5_0 extends KeywordToken  {
+protected class StructureFieldPOJOMapping_CommentKeyword_4_0 extends KeywordToken  {
 	
-	public StructureFieldPOJOMapping_CommentKeyword_5_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StructureFieldPOJOMapping_CommentKeyword_4_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Keyword getGrammarElement() {
-		return grammarAccess.getStructureFieldPOJOMappingAccess().getCommentKeyword_5_0();
+		return grammarAccess.getStructureFieldPOJOMappingAccess().getCommentKeyword_4_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new StructureFieldPOJOMapping_AttributeAssignment_4(parent, this, 0, inst);
+			case 0: return new StructureFieldPOJOMapping_Alternatives_3(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -835,19 +955,19 @@ protected class StructureFieldPOJOMapping_CommentKeyword_5_0 extends KeywordToke
 }
 
 // comment=STRING
-protected class StructureFieldPOJOMapping_CommentAssignment_5_1 extends AssignmentToken  {
+protected class StructureFieldPOJOMapping_CommentAssignment_4_1 extends AssignmentToken  {
 	
-	public StructureFieldPOJOMapping_CommentAssignment_5_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StructureFieldPOJOMapping_CommentAssignment_4_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getStructureFieldPOJOMappingAccess().getCommentAssignment_5_1();
+		return grammarAccess.getStructureFieldPOJOMappingAccess().getCommentAssignment_4_1();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new StructureFieldPOJOMapping_CommentKeyword_5_0(parent, this, 0, inst);
+			case 0: return new StructureFieldPOJOMapping_CommentKeyword_4_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -857,7 +977,7 @@ protected class StructureFieldPOJOMapping_CommentAssignment_5_1 extends Assignme
 		IInstanceDescription obj = current.cloneAndConsume("comment");
 		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
-			element = grammarAccess.getStructureFieldPOJOMappingAccess().getCommentSTRINGTerminalRuleCall_5_1_0();
+			element = grammarAccess.getStructureFieldPOJOMappingAccess().getCommentSTRINGTerminalRuleCall_4_1_0();
 			return obj;
 		}
 		return null;
@@ -865,27 +985,6 @@ protected class StructureFieldPOJOMapping_CommentAssignment_5_1 extends Assignme
 
 }
 
-
-// ";"
-protected class StructureFieldPOJOMapping_SemicolonKeyword_6 extends KeywordToken  {
-	
-	public StructureFieldPOJOMapping_SemicolonKeyword_6(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	public Keyword getGrammarElement() {
-		return grammarAccess.getStructureFieldPOJOMappingAccess().getSemicolonKeyword_6();
-	}
-
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new StructureFieldPOJOMapping_Group_5(parent, this, 0, inst);
-			case 1: return new StructureFieldPOJOMapping_AttributeAssignment_4(parent, this, 1, inst);
-			default: return null;
-		}	
-	}	
-		
-}
 
 
 /************ end Rule StructureFieldPOJOMapping ****************/
@@ -1916,17 +2015,17 @@ protected class FunctionModulePOJOParameterMapping_FunctionModulePOJOTablesParam
 /************ begin Rule FunctionModulePOJOImportingParameter ****************
  *
  * FunctionModulePOJOImportingParameter:
- *   "import" ("field" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)|
- *   isStructure?="structure" name=STRING "=" (isInactive?="inactive"|type=ID attribute=
- *   ID)|isTable?="table" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)) (
- *   "comment" comment=STRING)? ";";
+ *   "importing" ("field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID
+ *   )|"structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=
+ *   ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
+ *   attribute=ID)) ("comment" comment=STRING)? ";";
  *
  **/
 
-// "import" ("field" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)|
-// isStructure?="structure" name=STRING "=" (isInactive?="inactive"|type=ID attribute=
-// ID)|isTable?="table" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)) (
-// "comment" comment=STRING)? ";"
+// "importing" ("field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID
+// )|"structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=
+// ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
+// attribute=ID)) ("comment" comment=STRING)? ";"
 protected class FunctionModulePOJOImportingParameter_Group extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -1950,15 +2049,15 @@ protected class FunctionModulePOJOImportingParameter_Group extends GroupToken {
 	}
 }
 
-// "import"
-protected class FunctionModulePOJOImportingParameter_ImportKeyword_0 extends KeywordToken  {
+// "importing"
+protected class FunctionModulePOJOImportingParameter_ImportingKeyword_0 extends KeywordToken  {
 	
-	public FunctionModulePOJOImportingParameter_ImportKeyword_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOImportingParameter_ImportingKeyword_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Keyword getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getImportKeyword_0();
+		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getImportingKeyword_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -1969,9 +2068,10 @@ protected class FunctionModulePOJOImportingParameter_ImportKeyword_0 extends Key
 		
 }
 
-// "field" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)|isStructure?=
-// "structure" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)|isTable?=
-// "table" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)
+// "field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID)|
+// "structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID
+// )|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
+// attribute=ID)
 protected class FunctionModulePOJOImportingParameter_Alternatives_1 extends AlternativesToken {
 
 	public FunctionModulePOJOImportingParameter_Alternatives_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -1993,7 +2093,7 @@ protected class FunctionModulePOJOImportingParameter_Alternatives_1 extends Alte
 		
 }
 
-// "field" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)
+// "field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID)
 protected class FunctionModulePOJOImportingParameter_Group_1_0 extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2026,7 +2126,7 @@ protected class FunctionModulePOJOImportingParameter_FieldKeyword_1_0_0 extends 
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOImportingParameter_ImportKeyword_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOImportingParameter_ImportingKeyword_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -2084,7 +2184,7 @@ protected class FunctionModulePOJOImportingParameter_EqualsSignKeyword_1_0_2 ext
 		
 }
 
-// isInactive?="inactive"|type=ID attribute=ID
+// inactive?="inactive"|type=DataType attribute=ID
 protected class FunctionModulePOJOImportingParameter_Alternatives_1_0_3 extends AlternativesToken {
 
 	public FunctionModulePOJOImportingParameter_Alternatives_1_0_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2097,7 +2197,7 @@ protected class FunctionModulePOJOImportingParameter_Alternatives_1_0_3 extends 
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_0_3_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOImportingParameter_InactiveAssignment_1_0_3_0(parent, this, 0, inst);
 			case 1: return new FunctionModulePOJOImportingParameter_Group_1_0_3_1(parent, this, 1, inst);
 			default: return null;
 		}	
@@ -2105,15 +2205,15 @@ protected class FunctionModulePOJOImportingParameter_Alternatives_1_0_3 extends 
 		
 }
 
-// isInactive?="inactive"
-protected class FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_0_3_0 extends AssignmentToken  {
+// inactive?="inactive"
+protected class FunctionModulePOJOImportingParameter_InactiveAssignment_1_0_3_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_0_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOImportingParameter_InactiveAssignment_1_0_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsInactiveAssignment_1_0_3_0();
+		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveAssignment_1_0_3_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -2124,11 +2224,11 @@ protected class FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_0_3_
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isInactive",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isInactive");
+		if((value = current.getConsumable("inactive",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("inactive");
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsInactiveInactiveKeyword_1_0_3_0_0();
+			element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveInactiveKeyword_1_0_3_0_0();
 			return obj;
 		}
 		return null;
@@ -2136,7 +2236,7 @@ protected class FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_0_3_
 
 }
 
-// type=ID attribute=ID
+// type=DataType attribute=ID
 protected class FunctionModulePOJOImportingParameter_Group_1_0_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group_1_0_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2156,7 +2256,7 @@ protected class FunctionModulePOJOImportingParameter_Group_1_0_3_1 extends Group
 		
 }
 
-// type=ID
+// type=DataType
 protected class FunctionModulePOJOImportingParameter_TypeAssignment_1_0_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOImportingParameter_TypeAssignment_1_0_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2177,9 +2277,9 @@ protected class FunctionModulePOJOImportingParameter_TypeAssignment_1_0_3_1_0 ex
 	protected IInstanceDescription tryConsumeVal() {
 		if((value = current.getConsumable("type",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("type");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
-			type = AssignmentType.LRC;
-			element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTypeIDTerminalRuleCall_1_0_3_1_0_0();
+		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for datatype rule
+			type = AssignmentType.ERC;
+			element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTypeDataTypeEnumRuleCall_1_0_3_1_0_0();
 			return obj;
 		}
 		return null;
@@ -2221,8 +2321,8 @@ protected class FunctionModulePOJOImportingParameter_AttributeAssignment_1_0_3_1
 
 
 
-// isStructure?="structure" name=STRING "=" (isInactive?="inactive"|type=ID attribute=
-// ID)
+// "structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID
+// )
 protected class FunctionModulePOJOImportingParameter_Group_1_1 extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2242,35 +2342,24 @@ protected class FunctionModulePOJOImportingParameter_Group_1_1 extends GroupToke
 		
 }
 
-// isStructure?="structure"
-protected class FunctionModulePOJOImportingParameter_IsStructureAssignment_1_1_0 extends AssignmentToken  {
+// "structure"
+protected class FunctionModulePOJOImportingParameter_StructureKeyword_1_1_0 extends KeywordToken  {
 	
-	public FunctionModulePOJOImportingParameter_IsStructureAssignment_1_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOImportingParameter_StructureKeyword_1_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
-	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsStructureAssignment_1_1_0();
+	public Keyword getGrammarElement() {
+		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureKeyword_1_1_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOImportingParameter_ImportKeyword_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOImportingParameter_ImportingKeyword_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
 		
-	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isStructure",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isStructure");
-		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
-			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsStructureStructureKeyword_1_1_0_0();
-			return obj;
-		}
-		return null;
-	}
-
 }
 
 // name=STRING
@@ -2286,7 +2375,7 @@ protected class FunctionModulePOJOImportingParameter_NameAssignment_1_1_1 extend
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOImportingParameter_IsStructureAssignment_1_1_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOImportingParameter_StructureKeyword_1_1_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -2324,7 +2413,7 @@ protected class FunctionModulePOJOImportingParameter_EqualsSignKeyword_1_1_2 ext
 		
 }
 
-// isInactive?="inactive"|type=ID attribute=ID
+// inactive?="inactive"|structure=[Structure] attribute=ID
 protected class FunctionModulePOJOImportingParameter_Alternatives_1_1_3 extends AlternativesToken {
 
 	public FunctionModulePOJOImportingParameter_Alternatives_1_1_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2337,7 +2426,7 @@ protected class FunctionModulePOJOImportingParameter_Alternatives_1_1_3 extends 
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_1_3_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOImportingParameter_InactiveAssignment_1_1_3_0(parent, this, 0, inst);
 			case 1: return new FunctionModulePOJOImportingParameter_Group_1_1_3_1(parent, this, 1, inst);
 			default: return null;
 		}	
@@ -2345,15 +2434,15 @@ protected class FunctionModulePOJOImportingParameter_Alternatives_1_1_3 extends 
 		
 }
 
-// isInactive?="inactive"
-protected class FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_1_3_0 extends AssignmentToken  {
+// inactive?="inactive"
+protected class FunctionModulePOJOImportingParameter_InactiveAssignment_1_1_3_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_1_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOImportingParameter_InactiveAssignment_1_1_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsInactiveAssignment_1_1_3_0();
+		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveAssignment_1_1_3_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -2364,11 +2453,11 @@ protected class FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_1_3_
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isInactive",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isInactive");
+		if((value = current.getConsumable("inactive",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("inactive");
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsInactiveInactiveKeyword_1_1_3_0_0();
+			element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveInactiveKeyword_1_1_3_0_0();
 			return obj;
 		}
 		return null;
@@ -2376,7 +2465,7 @@ protected class FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_1_3_
 
 }
 
-// type=ID attribute=ID
+// structure=[Structure] attribute=ID
 protected class FunctionModulePOJOImportingParameter_Group_1_1_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group_1_1_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2396,15 +2485,15 @@ protected class FunctionModulePOJOImportingParameter_Group_1_1_3_1 extends Group
 		
 }
 
-// type=ID
-protected class FunctionModulePOJOImportingParameter_TypeAssignment_1_1_3_1_0 extends AssignmentToken  {
+// structure=[Structure]
+protected class FunctionModulePOJOImportingParameter_StructureAssignment_1_1_3_1_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOImportingParameter_TypeAssignment_1_1_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOImportingParameter_StructureAssignment_1_1_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTypeAssignment_1_1_3_1_0();
+		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureAssignment_1_1_3_1_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -2415,12 +2504,15 @@ protected class FunctionModulePOJOImportingParameter_TypeAssignment_1_1_3_1_0 ex
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("type",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("type");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
-			type = AssignmentType.LRC;
-			element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTypeIDTerminalRuleCall_1_1_3_1_0_0();
-			return obj;
+		if((value = current.getConsumable("structure",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("structure");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
+			IInstanceDescription param = getDescr((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
+				type = AssignmentType.CR;
+				element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(); 
+				return obj;
+			}
 		}
 		return null;
 	}
@@ -2440,7 +2532,7 @@ protected class FunctionModulePOJOImportingParameter_AttributeAssignment_1_1_3_1
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOImportingParameter_TypeAssignment_1_1_3_1_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOImportingParameter_StructureAssignment_1_1_3_1_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -2461,7 +2553,8 @@ protected class FunctionModulePOJOImportingParameter_AttributeAssignment_1_1_3_1
 
 
 
-// isTable?="table" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)
+// table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute
+// =ID)
 protected class FunctionModulePOJOImportingParameter_Group_1_2 extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group_1_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2481,30 +2574,30 @@ protected class FunctionModulePOJOImportingParameter_Group_1_2 extends GroupToke
 		
 }
 
-// isTable?="table"
-protected class FunctionModulePOJOImportingParameter_IsTableAssignment_1_2_0 extends AssignmentToken  {
+// table?="table"
+protected class FunctionModulePOJOImportingParameter_TableAssignment_1_2_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOImportingParameter_IsTableAssignment_1_2_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOImportingParameter_TableAssignment_1_2_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsTableAssignment_1_2_0();
+		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTableAssignment_1_2_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOImportingParameter_ImportKeyword_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOImportingParameter_ImportingKeyword_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isTable",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isTable");
+		if((value = current.getConsumable("table",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("table");
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsTableTableKeyword_1_2_0_0();
+			element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTableTableKeyword_1_2_0_0();
 			return obj;
 		}
 		return null;
@@ -2525,7 +2618,7 @@ protected class FunctionModulePOJOImportingParameter_NameAssignment_1_2_1 extend
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOImportingParameter_IsTableAssignment_1_2_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOImportingParameter_TableAssignment_1_2_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -2563,7 +2656,7 @@ protected class FunctionModulePOJOImportingParameter_EqualsSignKeyword_1_2_2 ext
 		
 }
 
-// isInactive?="inactive"|type=ID attribute=ID
+// inactive?="inactive"|structure=[Structure] attribute=ID
 protected class FunctionModulePOJOImportingParameter_Alternatives_1_2_3 extends AlternativesToken {
 
 	public FunctionModulePOJOImportingParameter_Alternatives_1_2_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2576,7 +2669,7 @@ protected class FunctionModulePOJOImportingParameter_Alternatives_1_2_3 extends 
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_2_3_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOImportingParameter_InactiveAssignment_1_2_3_0(parent, this, 0, inst);
 			case 1: return new FunctionModulePOJOImportingParameter_Group_1_2_3_1(parent, this, 1, inst);
 			default: return null;
 		}	
@@ -2584,15 +2677,15 @@ protected class FunctionModulePOJOImportingParameter_Alternatives_1_2_3 extends 
 		
 }
 
-// isInactive?="inactive"
-protected class FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_2_3_0 extends AssignmentToken  {
+// inactive?="inactive"
+protected class FunctionModulePOJOImportingParameter_InactiveAssignment_1_2_3_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_2_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOImportingParameter_InactiveAssignment_1_2_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsInactiveAssignment_1_2_3_0();
+		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveAssignment_1_2_3_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -2603,11 +2696,11 @@ protected class FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_2_3_
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isInactive",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isInactive");
+		if((value = current.getConsumable("inactive",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("inactive");
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsInactiveInactiveKeyword_1_2_3_0_0();
+			element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveInactiveKeyword_1_2_3_0_0();
 			return obj;
 		}
 		return null;
@@ -2615,7 +2708,7 @@ protected class FunctionModulePOJOImportingParameter_IsInactiveAssignment_1_2_3_
 
 }
 
-// type=ID attribute=ID
+// structure=[Structure] attribute=ID
 protected class FunctionModulePOJOImportingParameter_Group_1_2_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group_1_2_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2635,15 +2728,15 @@ protected class FunctionModulePOJOImportingParameter_Group_1_2_3_1 extends Group
 		
 }
 
-// type=ID
-protected class FunctionModulePOJOImportingParameter_TypeAssignment_1_2_3_1_0 extends AssignmentToken  {
+// structure=[Structure]
+protected class FunctionModulePOJOImportingParameter_StructureAssignment_1_2_3_1_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOImportingParameter_TypeAssignment_1_2_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOImportingParameter_StructureAssignment_1_2_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTypeAssignment_1_2_3_1_0();
+		return grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureAssignment_1_2_3_1_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -2654,12 +2747,15 @@ protected class FunctionModulePOJOImportingParameter_TypeAssignment_1_2_3_1_0 ex
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("type",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("type");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
-			type = AssignmentType.LRC;
-			element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTypeIDTerminalRuleCall_1_2_3_1_0_0();
-			return obj;
+		if((value = current.getConsumable("structure",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("structure");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
+			IInstanceDescription param = getDescr((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
+				type = AssignmentType.CR;
+				element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(); 
+				return obj;
+			}
 		}
 		return null;
 	}
@@ -2679,7 +2775,7 @@ protected class FunctionModulePOJOImportingParameter_AttributeAssignment_1_2_3_1
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOImportingParameter_TypeAssignment_1_2_3_1_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOImportingParameter_StructureAssignment_1_2_3_1_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -2801,17 +2897,17 @@ protected class FunctionModulePOJOImportingParameter_SemicolonKeyword_3 extends 
 /************ begin Rule FunctionModulePOJOExportingParameter ****************
  *
  * FunctionModulePOJOExportingParameter:
- *   "export" ("field" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)|
- *   isStructure?="structure" name=STRING "=" (isInactive?="inactive"|type=ID attribute=
- *   ID)|isTable?="table" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)) (
- *   "comment" comment=STRING)? ";";
+ *   "exporting" ("field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID
+ *   )|"structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=
+ *   ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
+ *   attribute=ID)) ("comment" comment=STRING)? ";";
  *
  **/
 
-// "export" ("field" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)|
-// isStructure?="structure" name=STRING "=" (isInactive?="inactive"|type=ID attribute=
-// ID)|isTable?="table" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)) (
-// "comment" comment=STRING)? ";"
+// "exporting" ("field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID
+// )|"structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=
+// ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
+// attribute=ID)) ("comment" comment=STRING)? ";"
 protected class FunctionModulePOJOExportingParameter_Group extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2835,15 +2931,15 @@ protected class FunctionModulePOJOExportingParameter_Group extends GroupToken {
 	}
 }
 
-// "export"
-protected class FunctionModulePOJOExportingParameter_ExportKeyword_0 extends KeywordToken  {
+// "exporting"
+protected class FunctionModulePOJOExportingParameter_ExportingKeyword_0 extends KeywordToken  {
 	
-	public FunctionModulePOJOExportingParameter_ExportKeyword_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOExportingParameter_ExportingKeyword_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Keyword getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getExportKeyword_0();
+		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getExportingKeyword_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -2854,9 +2950,10 @@ protected class FunctionModulePOJOExportingParameter_ExportKeyword_0 extends Key
 		
 }
 
-// "field" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)|isStructure?=
-// "structure" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)|isTable?=
-// "table" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)
+// "field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID)|
+// "structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID
+// )|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
+// attribute=ID)
 protected class FunctionModulePOJOExportingParameter_Alternatives_1 extends AlternativesToken {
 
 	public FunctionModulePOJOExportingParameter_Alternatives_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2878,7 +2975,7 @@ protected class FunctionModulePOJOExportingParameter_Alternatives_1 extends Alte
 		
 }
 
-// "field" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)
+// "field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID)
 protected class FunctionModulePOJOExportingParameter_Group_1_0 extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2911,7 +3008,7 @@ protected class FunctionModulePOJOExportingParameter_FieldKeyword_1_0_0 extends 
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOExportingParameter_ExportKeyword_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOExportingParameter_ExportingKeyword_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -2969,7 +3066,7 @@ protected class FunctionModulePOJOExportingParameter_EqualsSignKeyword_1_0_2 ext
 		
 }
 
-// isInactive?="inactive"|type=ID attribute=ID
+// inactive?="inactive"|type=DataType attribute=ID
 protected class FunctionModulePOJOExportingParameter_Alternatives_1_0_3 extends AlternativesToken {
 
 	public FunctionModulePOJOExportingParameter_Alternatives_1_0_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2982,7 +3079,7 @@ protected class FunctionModulePOJOExportingParameter_Alternatives_1_0_3 extends 
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_0_3_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOExportingParameter_InactiveAssignment_1_0_3_0(parent, this, 0, inst);
 			case 1: return new FunctionModulePOJOExportingParameter_Group_1_0_3_1(parent, this, 1, inst);
 			default: return null;
 		}	
@@ -2990,15 +3087,15 @@ protected class FunctionModulePOJOExportingParameter_Alternatives_1_0_3 extends 
 		
 }
 
-// isInactive?="inactive"
-protected class FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_0_3_0 extends AssignmentToken  {
+// inactive?="inactive"
+protected class FunctionModulePOJOExportingParameter_InactiveAssignment_1_0_3_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_0_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOExportingParameter_InactiveAssignment_1_0_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsInactiveAssignment_1_0_3_0();
+		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveAssignment_1_0_3_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -3009,11 +3106,11 @@ protected class FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_0_3_
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isInactive",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isInactive");
+		if((value = current.getConsumable("inactive",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("inactive");
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsInactiveInactiveKeyword_1_0_3_0_0();
+			element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveInactiveKeyword_1_0_3_0_0();
 			return obj;
 		}
 		return null;
@@ -3021,7 +3118,7 @@ protected class FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_0_3_
 
 }
 
-// type=ID attribute=ID
+// type=DataType attribute=ID
 protected class FunctionModulePOJOExportingParameter_Group_1_0_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group_1_0_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3041,7 +3138,7 @@ protected class FunctionModulePOJOExportingParameter_Group_1_0_3_1 extends Group
 		
 }
 
-// type=ID
+// type=DataType
 protected class FunctionModulePOJOExportingParameter_TypeAssignment_1_0_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOExportingParameter_TypeAssignment_1_0_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3062,9 +3159,9 @@ protected class FunctionModulePOJOExportingParameter_TypeAssignment_1_0_3_1_0 ex
 	protected IInstanceDescription tryConsumeVal() {
 		if((value = current.getConsumable("type",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("type");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
-			type = AssignmentType.LRC;
-			element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTypeIDTerminalRuleCall_1_0_3_1_0_0();
+		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for datatype rule
+			type = AssignmentType.ERC;
+			element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTypeDataTypeEnumRuleCall_1_0_3_1_0_0();
 			return obj;
 		}
 		return null;
@@ -3106,8 +3203,8 @@ protected class FunctionModulePOJOExportingParameter_AttributeAssignment_1_0_3_1
 
 
 
-// isStructure?="structure" name=STRING "=" (isInactive?="inactive"|type=ID attribute=
-// ID)
+// "structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID
+// )
 protected class FunctionModulePOJOExportingParameter_Group_1_1 extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3127,35 +3224,24 @@ protected class FunctionModulePOJOExportingParameter_Group_1_1 extends GroupToke
 		
 }
 
-// isStructure?="structure"
-protected class FunctionModulePOJOExportingParameter_IsStructureAssignment_1_1_0 extends AssignmentToken  {
+// "structure"
+protected class FunctionModulePOJOExportingParameter_StructureKeyword_1_1_0 extends KeywordToken  {
 	
-	public FunctionModulePOJOExportingParameter_IsStructureAssignment_1_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOExportingParameter_StructureKeyword_1_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
-	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsStructureAssignment_1_1_0();
+	public Keyword getGrammarElement() {
+		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureKeyword_1_1_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOExportingParameter_ExportKeyword_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOExportingParameter_ExportingKeyword_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
 		
-	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isStructure",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isStructure");
-		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
-			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsStructureStructureKeyword_1_1_0_0();
-			return obj;
-		}
-		return null;
-	}
-
 }
 
 // name=STRING
@@ -3171,7 +3257,7 @@ protected class FunctionModulePOJOExportingParameter_NameAssignment_1_1_1 extend
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOExportingParameter_IsStructureAssignment_1_1_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOExportingParameter_StructureKeyword_1_1_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -3209,7 +3295,7 @@ protected class FunctionModulePOJOExportingParameter_EqualsSignKeyword_1_1_2 ext
 		
 }
 
-// isInactive?="inactive"|type=ID attribute=ID
+// inactive?="inactive"|structure=[Structure] attribute=ID
 protected class FunctionModulePOJOExportingParameter_Alternatives_1_1_3 extends AlternativesToken {
 
 	public FunctionModulePOJOExportingParameter_Alternatives_1_1_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3222,7 +3308,7 @@ protected class FunctionModulePOJOExportingParameter_Alternatives_1_1_3 extends 
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_1_3_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOExportingParameter_InactiveAssignment_1_1_3_0(parent, this, 0, inst);
 			case 1: return new FunctionModulePOJOExportingParameter_Group_1_1_3_1(parent, this, 1, inst);
 			default: return null;
 		}	
@@ -3230,15 +3316,15 @@ protected class FunctionModulePOJOExportingParameter_Alternatives_1_1_3 extends 
 		
 }
 
-// isInactive?="inactive"
-protected class FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_1_3_0 extends AssignmentToken  {
+// inactive?="inactive"
+protected class FunctionModulePOJOExportingParameter_InactiveAssignment_1_1_3_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_1_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOExportingParameter_InactiveAssignment_1_1_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsInactiveAssignment_1_1_3_0();
+		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveAssignment_1_1_3_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -3249,11 +3335,11 @@ protected class FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_1_3_
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isInactive",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isInactive");
+		if((value = current.getConsumable("inactive",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("inactive");
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsInactiveInactiveKeyword_1_1_3_0_0();
+			element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveInactiveKeyword_1_1_3_0_0();
 			return obj;
 		}
 		return null;
@@ -3261,7 +3347,7 @@ protected class FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_1_3_
 
 }
 
-// type=ID attribute=ID
+// structure=[Structure] attribute=ID
 protected class FunctionModulePOJOExportingParameter_Group_1_1_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group_1_1_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3281,15 +3367,15 @@ protected class FunctionModulePOJOExportingParameter_Group_1_1_3_1 extends Group
 		
 }
 
-// type=ID
-protected class FunctionModulePOJOExportingParameter_TypeAssignment_1_1_3_1_0 extends AssignmentToken  {
+// structure=[Structure]
+protected class FunctionModulePOJOExportingParameter_StructureAssignment_1_1_3_1_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOExportingParameter_TypeAssignment_1_1_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOExportingParameter_StructureAssignment_1_1_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTypeAssignment_1_1_3_1_0();
+		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureAssignment_1_1_3_1_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -3300,12 +3386,15 @@ protected class FunctionModulePOJOExportingParameter_TypeAssignment_1_1_3_1_0 ex
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("type",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("type");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
-			type = AssignmentType.LRC;
-			element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTypeIDTerminalRuleCall_1_1_3_1_0_0();
-			return obj;
+		if((value = current.getConsumable("structure",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("structure");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
+			IInstanceDescription param = getDescr((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
+				type = AssignmentType.CR;
+				element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(); 
+				return obj;
+			}
 		}
 		return null;
 	}
@@ -3325,7 +3414,7 @@ protected class FunctionModulePOJOExportingParameter_AttributeAssignment_1_1_3_1
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOExportingParameter_TypeAssignment_1_1_3_1_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOExportingParameter_StructureAssignment_1_1_3_1_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -3346,7 +3435,8 @@ protected class FunctionModulePOJOExportingParameter_AttributeAssignment_1_1_3_1
 
 
 
-// isTable?="table" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)
+// table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute
+// =ID)
 protected class FunctionModulePOJOExportingParameter_Group_1_2 extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group_1_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3366,30 +3456,30 @@ protected class FunctionModulePOJOExportingParameter_Group_1_2 extends GroupToke
 		
 }
 
-// isTable?="table"
-protected class FunctionModulePOJOExportingParameter_IsTableAssignment_1_2_0 extends AssignmentToken  {
+// table?="table"
+protected class FunctionModulePOJOExportingParameter_TableAssignment_1_2_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOExportingParameter_IsTableAssignment_1_2_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOExportingParameter_TableAssignment_1_2_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsTableAssignment_1_2_0();
+		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTableAssignment_1_2_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOExportingParameter_ExportKeyword_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOExportingParameter_ExportingKeyword_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isTable",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isTable");
+		if((value = current.getConsumable("table",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("table");
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsTableTableKeyword_1_2_0_0();
+			element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTableTableKeyword_1_2_0_0();
 			return obj;
 		}
 		return null;
@@ -3410,7 +3500,7 @@ protected class FunctionModulePOJOExportingParameter_NameAssignment_1_2_1 extend
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOExportingParameter_IsTableAssignment_1_2_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOExportingParameter_TableAssignment_1_2_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -3448,7 +3538,7 @@ protected class FunctionModulePOJOExportingParameter_EqualsSignKeyword_1_2_2 ext
 		
 }
 
-// isInactive?="inactive"|type=ID attribute=ID
+// inactive?="inactive"|structure=[Structure] attribute=ID
 protected class FunctionModulePOJOExportingParameter_Alternatives_1_2_3 extends AlternativesToken {
 
 	public FunctionModulePOJOExportingParameter_Alternatives_1_2_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3461,7 +3551,7 @@ protected class FunctionModulePOJOExportingParameter_Alternatives_1_2_3 extends 
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_2_3_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOExportingParameter_InactiveAssignment_1_2_3_0(parent, this, 0, inst);
 			case 1: return new FunctionModulePOJOExportingParameter_Group_1_2_3_1(parent, this, 1, inst);
 			default: return null;
 		}	
@@ -3469,15 +3559,15 @@ protected class FunctionModulePOJOExportingParameter_Alternatives_1_2_3 extends 
 		
 }
 
-// isInactive?="inactive"
-protected class FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_2_3_0 extends AssignmentToken  {
+// inactive?="inactive"
+protected class FunctionModulePOJOExportingParameter_InactiveAssignment_1_2_3_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_2_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOExportingParameter_InactiveAssignment_1_2_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsInactiveAssignment_1_2_3_0();
+		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveAssignment_1_2_3_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -3488,11 +3578,11 @@ protected class FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_2_3_
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isInactive",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isInactive");
+		if((value = current.getConsumable("inactive",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("inactive");
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsInactiveInactiveKeyword_1_2_3_0_0();
+			element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveInactiveKeyword_1_2_3_0_0();
 			return obj;
 		}
 		return null;
@@ -3500,7 +3590,7 @@ protected class FunctionModulePOJOExportingParameter_IsInactiveAssignment_1_2_3_
 
 }
 
-// type=ID attribute=ID
+// structure=[Structure] attribute=ID
 protected class FunctionModulePOJOExportingParameter_Group_1_2_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group_1_2_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3520,15 +3610,15 @@ protected class FunctionModulePOJOExportingParameter_Group_1_2_3_1 extends Group
 		
 }
 
-// type=ID
-protected class FunctionModulePOJOExportingParameter_TypeAssignment_1_2_3_1_0 extends AssignmentToken  {
+// structure=[Structure]
+protected class FunctionModulePOJOExportingParameter_StructureAssignment_1_2_3_1_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOExportingParameter_TypeAssignment_1_2_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOExportingParameter_StructureAssignment_1_2_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTypeAssignment_1_2_3_1_0();
+		return grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureAssignment_1_2_3_1_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -3539,12 +3629,15 @@ protected class FunctionModulePOJOExportingParameter_TypeAssignment_1_2_3_1_0 ex
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("type",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("type");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
-			type = AssignmentType.LRC;
-			element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTypeIDTerminalRuleCall_1_2_3_1_0_0();
-			return obj;
+		if((value = current.getConsumable("structure",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("structure");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
+			IInstanceDescription param = getDescr((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
+				type = AssignmentType.CR;
+				element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(); 
+				return obj;
+			}
 		}
 		return null;
 	}
@@ -3564,7 +3657,7 @@ protected class FunctionModulePOJOExportingParameter_AttributeAssignment_1_2_3_1
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOExportingParameter_TypeAssignment_1_2_3_1_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOExportingParameter_StructureAssignment_1_2_3_1_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -3686,17 +3779,17 @@ protected class FunctionModulePOJOExportingParameter_SemicolonKeyword_3 extends 
 /************ begin Rule FunctionModulePOJOChangingParameter ****************
  *
  * FunctionModulePOJOChangingParameter:
- *   "change" ("field" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)|
- *   isStructure?="structure" name=STRING "=" (isInactive?="inactive"|type=ID attribute=
- *   ID)|isTable?="table" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)) (
- *   "comment" comment=STRING)? ";";
+ *   "changing" ("field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID)
+ *   |"structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=
+ *   ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
+ *   attribute=ID)) ("comment" comment=STRING)? ";";
  *
  **/
 
-// "change" ("field" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)|
-// isStructure?="structure" name=STRING "=" (isInactive?="inactive"|type=ID attribute=
-// ID)|isTable?="table" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)) (
-// "comment" comment=STRING)? ";"
+// "changing" ("field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID)
+// |"structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=
+// ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
+// attribute=ID)) ("comment" comment=STRING)? ";"
 protected class FunctionModulePOJOChangingParameter_Group extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3720,15 +3813,15 @@ protected class FunctionModulePOJOChangingParameter_Group extends GroupToken {
 	}
 }
 
-// "change"
-protected class FunctionModulePOJOChangingParameter_ChangeKeyword_0 extends KeywordToken  {
+// "changing"
+protected class FunctionModulePOJOChangingParameter_ChangingKeyword_0 extends KeywordToken  {
 	
-	public FunctionModulePOJOChangingParameter_ChangeKeyword_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOChangingParameter_ChangingKeyword_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Keyword getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getChangeKeyword_0();
+		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getChangingKeyword_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -3739,9 +3832,10 @@ protected class FunctionModulePOJOChangingParameter_ChangeKeyword_0 extends Keyw
 		
 }
 
-// "field" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)|isStructure?=
-// "structure" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)|isTable?=
-// "table" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)
+// "field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID)|
+// "structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID
+// )|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
+// attribute=ID)
 protected class FunctionModulePOJOChangingParameter_Alternatives_1 extends AlternativesToken {
 
 	public FunctionModulePOJOChangingParameter_Alternatives_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3763,7 +3857,7 @@ protected class FunctionModulePOJOChangingParameter_Alternatives_1 extends Alter
 		
 }
 
-// "field" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)
+// "field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID)
 protected class FunctionModulePOJOChangingParameter_Group_1_0 extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3796,7 +3890,7 @@ protected class FunctionModulePOJOChangingParameter_FieldKeyword_1_0_0 extends K
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOChangingParameter_ChangeKeyword_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOChangingParameter_ChangingKeyword_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -3854,7 +3948,7 @@ protected class FunctionModulePOJOChangingParameter_EqualsSignKeyword_1_0_2 exte
 		
 }
 
-// isInactive?="inactive"|type=ID attribute=ID
+// inactive?="inactive"|type=DataType attribute=ID
 protected class FunctionModulePOJOChangingParameter_Alternatives_1_0_3 extends AlternativesToken {
 
 	public FunctionModulePOJOChangingParameter_Alternatives_1_0_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3867,7 +3961,7 @@ protected class FunctionModulePOJOChangingParameter_Alternatives_1_0_3 extends A
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_0_3_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOChangingParameter_InactiveAssignment_1_0_3_0(parent, this, 0, inst);
 			case 1: return new FunctionModulePOJOChangingParameter_Group_1_0_3_1(parent, this, 1, inst);
 			default: return null;
 		}	
@@ -3875,15 +3969,15 @@ protected class FunctionModulePOJOChangingParameter_Alternatives_1_0_3 extends A
 		
 }
 
-// isInactive?="inactive"
-protected class FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_0_3_0 extends AssignmentToken  {
+// inactive?="inactive"
+protected class FunctionModulePOJOChangingParameter_InactiveAssignment_1_0_3_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_0_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOChangingParameter_InactiveAssignment_1_0_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsInactiveAssignment_1_0_3_0();
+		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveAssignment_1_0_3_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -3894,11 +3988,11 @@ protected class FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_0_3_0
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isInactive",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isInactive");
+		if((value = current.getConsumable("inactive",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("inactive");
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsInactiveInactiveKeyword_1_0_3_0_0();
+			element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveInactiveKeyword_1_0_3_0_0();
 			return obj;
 		}
 		return null;
@@ -3906,7 +4000,7 @@ protected class FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_0_3_0
 
 }
 
-// type=ID attribute=ID
+// type=DataType attribute=ID
 protected class FunctionModulePOJOChangingParameter_Group_1_0_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group_1_0_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3926,7 +4020,7 @@ protected class FunctionModulePOJOChangingParameter_Group_1_0_3_1 extends GroupT
 		
 }
 
-// type=ID
+// type=DataType
 protected class FunctionModulePOJOChangingParameter_TypeAssignment_1_0_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOChangingParameter_TypeAssignment_1_0_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3947,9 +4041,9 @@ protected class FunctionModulePOJOChangingParameter_TypeAssignment_1_0_3_1_0 ext
 	protected IInstanceDescription tryConsumeVal() {
 		if((value = current.getConsumable("type",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("type");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
-			type = AssignmentType.LRC;
-			element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTypeIDTerminalRuleCall_1_0_3_1_0_0();
+		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for datatype rule
+			type = AssignmentType.ERC;
+			element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTypeDataTypeEnumRuleCall_1_0_3_1_0_0();
 			return obj;
 		}
 		return null;
@@ -3991,8 +4085,8 @@ protected class FunctionModulePOJOChangingParameter_AttributeAssignment_1_0_3_1_
 
 
 
-// isStructure?="structure" name=STRING "=" (isInactive?="inactive"|type=ID attribute=
-// ID)
+// "structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID
+// )
 protected class FunctionModulePOJOChangingParameter_Group_1_1 extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4012,35 +4106,24 @@ protected class FunctionModulePOJOChangingParameter_Group_1_1 extends GroupToken
 		
 }
 
-// isStructure?="structure"
-protected class FunctionModulePOJOChangingParameter_IsStructureAssignment_1_1_0 extends AssignmentToken  {
+// "structure"
+protected class FunctionModulePOJOChangingParameter_StructureKeyword_1_1_0 extends KeywordToken  {
 	
-	public FunctionModulePOJOChangingParameter_IsStructureAssignment_1_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOChangingParameter_StructureKeyword_1_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
-	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsStructureAssignment_1_1_0();
+	public Keyword getGrammarElement() {
+		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureKeyword_1_1_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOChangingParameter_ChangeKeyword_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOChangingParameter_ChangingKeyword_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
 		
-	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isStructure",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isStructure");
-		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
-			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsStructureStructureKeyword_1_1_0_0();
-			return obj;
-		}
-		return null;
-	}
-
 }
 
 // name=STRING
@@ -4056,7 +4139,7 @@ protected class FunctionModulePOJOChangingParameter_NameAssignment_1_1_1 extends
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOChangingParameter_IsStructureAssignment_1_1_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOChangingParameter_StructureKeyword_1_1_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -4094,7 +4177,7 @@ protected class FunctionModulePOJOChangingParameter_EqualsSignKeyword_1_1_2 exte
 		
 }
 
-// isInactive?="inactive"|type=ID attribute=ID
+// inactive?="inactive"|structure=[Structure] attribute=ID
 protected class FunctionModulePOJOChangingParameter_Alternatives_1_1_3 extends AlternativesToken {
 
 	public FunctionModulePOJOChangingParameter_Alternatives_1_1_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4107,7 +4190,7 @@ protected class FunctionModulePOJOChangingParameter_Alternatives_1_1_3 extends A
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_1_3_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOChangingParameter_InactiveAssignment_1_1_3_0(parent, this, 0, inst);
 			case 1: return new FunctionModulePOJOChangingParameter_Group_1_1_3_1(parent, this, 1, inst);
 			default: return null;
 		}	
@@ -4115,15 +4198,15 @@ protected class FunctionModulePOJOChangingParameter_Alternatives_1_1_3 extends A
 		
 }
 
-// isInactive?="inactive"
-protected class FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_1_3_0 extends AssignmentToken  {
+// inactive?="inactive"
+protected class FunctionModulePOJOChangingParameter_InactiveAssignment_1_1_3_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_1_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOChangingParameter_InactiveAssignment_1_1_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsInactiveAssignment_1_1_3_0();
+		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveAssignment_1_1_3_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -4134,11 +4217,11 @@ protected class FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_1_3_0
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isInactive",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isInactive");
+		if((value = current.getConsumable("inactive",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("inactive");
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsInactiveInactiveKeyword_1_1_3_0_0();
+			element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveInactiveKeyword_1_1_3_0_0();
 			return obj;
 		}
 		return null;
@@ -4146,7 +4229,7 @@ protected class FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_1_3_0
 
 }
 
-// type=ID attribute=ID
+// structure=[Structure] attribute=ID
 protected class FunctionModulePOJOChangingParameter_Group_1_1_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group_1_1_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4166,15 +4249,15 @@ protected class FunctionModulePOJOChangingParameter_Group_1_1_3_1 extends GroupT
 		
 }
 
-// type=ID
-protected class FunctionModulePOJOChangingParameter_TypeAssignment_1_1_3_1_0 extends AssignmentToken  {
+// structure=[Structure]
+protected class FunctionModulePOJOChangingParameter_StructureAssignment_1_1_3_1_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOChangingParameter_TypeAssignment_1_1_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOChangingParameter_StructureAssignment_1_1_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTypeAssignment_1_1_3_1_0();
+		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureAssignment_1_1_3_1_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -4185,12 +4268,15 @@ protected class FunctionModulePOJOChangingParameter_TypeAssignment_1_1_3_1_0 ext
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("type",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("type");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
-			type = AssignmentType.LRC;
-			element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTypeIDTerminalRuleCall_1_1_3_1_0_0();
-			return obj;
+		if((value = current.getConsumable("structure",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("structure");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
+			IInstanceDescription param = getDescr((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
+				type = AssignmentType.CR;
+				element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(); 
+				return obj;
+			}
 		}
 		return null;
 	}
@@ -4210,7 +4296,7 @@ protected class FunctionModulePOJOChangingParameter_AttributeAssignment_1_1_3_1_
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOChangingParameter_TypeAssignment_1_1_3_1_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOChangingParameter_StructureAssignment_1_1_3_1_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -4231,7 +4317,8 @@ protected class FunctionModulePOJOChangingParameter_AttributeAssignment_1_1_3_1_
 
 
 
-// isTable?="table" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID)
+// table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute
+// =ID)
 protected class FunctionModulePOJOChangingParameter_Group_1_2 extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group_1_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4251,30 +4338,30 @@ protected class FunctionModulePOJOChangingParameter_Group_1_2 extends GroupToken
 		
 }
 
-// isTable?="table"
-protected class FunctionModulePOJOChangingParameter_IsTableAssignment_1_2_0 extends AssignmentToken  {
+// table?="table"
+protected class FunctionModulePOJOChangingParameter_TableAssignment_1_2_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOChangingParameter_IsTableAssignment_1_2_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOChangingParameter_TableAssignment_1_2_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsTableAssignment_1_2_0();
+		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTableAssignment_1_2_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOChangingParameter_ChangeKeyword_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOChangingParameter_ChangingKeyword_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isTable",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isTable");
+		if((value = current.getConsumable("table",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("table");
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsTableTableKeyword_1_2_0_0();
+			element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTableTableKeyword_1_2_0_0();
 			return obj;
 		}
 		return null;
@@ -4295,7 +4382,7 @@ protected class FunctionModulePOJOChangingParameter_NameAssignment_1_2_1 extends
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOChangingParameter_IsTableAssignment_1_2_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOChangingParameter_TableAssignment_1_2_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -4333,7 +4420,7 @@ protected class FunctionModulePOJOChangingParameter_EqualsSignKeyword_1_2_2 exte
 		
 }
 
-// isInactive?="inactive"|type=ID attribute=ID
+// inactive?="inactive"|structure=[Structure] attribute=ID
 protected class FunctionModulePOJOChangingParameter_Alternatives_1_2_3 extends AlternativesToken {
 
 	public FunctionModulePOJOChangingParameter_Alternatives_1_2_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4346,7 +4433,7 @@ protected class FunctionModulePOJOChangingParameter_Alternatives_1_2_3 extends A
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_2_3_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOChangingParameter_InactiveAssignment_1_2_3_0(parent, this, 0, inst);
 			case 1: return new FunctionModulePOJOChangingParameter_Group_1_2_3_1(parent, this, 1, inst);
 			default: return null;
 		}	
@@ -4354,15 +4441,15 @@ protected class FunctionModulePOJOChangingParameter_Alternatives_1_2_3 extends A
 		
 }
 
-// isInactive?="inactive"
-protected class FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_2_3_0 extends AssignmentToken  {
+// inactive?="inactive"
+protected class FunctionModulePOJOChangingParameter_InactiveAssignment_1_2_3_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_2_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOChangingParameter_InactiveAssignment_1_2_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsInactiveAssignment_1_2_3_0();
+		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveAssignment_1_2_3_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -4373,11 +4460,11 @@ protected class FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_2_3_0
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isInactive",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isInactive");
+		if((value = current.getConsumable("inactive",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("inactive");
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsInactiveInactiveKeyword_1_2_3_0_0();
+			element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveInactiveKeyword_1_2_3_0_0();
 			return obj;
 		}
 		return null;
@@ -4385,7 +4472,7 @@ protected class FunctionModulePOJOChangingParameter_IsInactiveAssignment_1_2_3_0
 
 }
 
-// type=ID attribute=ID
+// structure=[Structure] attribute=ID
 protected class FunctionModulePOJOChangingParameter_Group_1_2_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group_1_2_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4405,15 +4492,15 @@ protected class FunctionModulePOJOChangingParameter_Group_1_2_3_1 extends GroupT
 		
 }
 
-// type=ID
-protected class FunctionModulePOJOChangingParameter_TypeAssignment_1_2_3_1_0 extends AssignmentToken  {
+// structure=[Structure]
+protected class FunctionModulePOJOChangingParameter_StructureAssignment_1_2_3_1_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOChangingParameter_TypeAssignment_1_2_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOChangingParameter_StructureAssignment_1_2_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTypeAssignment_1_2_3_1_0();
+		return grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureAssignment_1_2_3_1_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -4424,12 +4511,15 @@ protected class FunctionModulePOJOChangingParameter_TypeAssignment_1_2_3_1_0 ext
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("type",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("type");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
-			type = AssignmentType.LRC;
-			element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTypeIDTerminalRuleCall_1_2_3_1_0_0();
-			return obj;
+		if((value = current.getConsumable("structure",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("structure");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
+			IInstanceDescription param = getDescr((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
+				type = AssignmentType.CR;
+				element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(); 
+				return obj;
+			}
 		}
 		return null;
 	}
@@ -4449,7 +4539,7 @@ protected class FunctionModulePOJOChangingParameter_AttributeAssignment_1_2_3_1_
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOChangingParameter_TypeAssignment_1_2_3_1_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOChangingParameter_StructureAssignment_1_2_3_1_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -4571,13 +4661,13 @@ protected class FunctionModulePOJOChangingParameter_SemicolonKeyword_3 extends K
 /************ begin Rule FunctionModulePOJOTablesParameter ****************
  *
  * FunctionModulePOJOTablesParameter:
- *   "table" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID) ("comment"
- *   comment=STRING)? ";";
+ *   "table" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID) (
+ *   "comment" comment=STRING)? ";";
  *
  **/
 
-// "table" name=STRING "=" (isInactive?="inactive"|type=ID attribute=ID) ("comment"
-// comment=STRING)? ";"
+// "table" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID) (
+// "comment" comment=STRING)? ";"
 protected class FunctionModulePOJOTablesParameter_Group extends GroupToken {
 	
 	public FunctionModulePOJOTablesParameter_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4671,7 +4761,7 @@ protected class FunctionModulePOJOTablesParameter_EqualsSignKeyword_2 extends Ke
 		
 }
 
-// isInactive?="inactive"|type=ID attribute=ID
+// inactive?="inactive"|structure=[Structure] attribute=ID
 protected class FunctionModulePOJOTablesParameter_Alternatives_3 extends AlternativesToken {
 
 	public FunctionModulePOJOTablesParameter_Alternatives_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4684,7 +4774,7 @@ protected class FunctionModulePOJOTablesParameter_Alternatives_3 extends Alterna
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOTablesParameter_IsInactiveAssignment_3_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOTablesParameter_InactiveAssignment_3_0(parent, this, 0, inst);
 			case 1: return new FunctionModulePOJOTablesParameter_Group_3_1(parent, this, 1, inst);
 			default: return null;
 		}	
@@ -4692,15 +4782,15 @@ protected class FunctionModulePOJOTablesParameter_Alternatives_3 extends Alterna
 		
 }
 
-// isInactive?="inactive"
-protected class FunctionModulePOJOTablesParameter_IsInactiveAssignment_3_0 extends AssignmentToken  {
+// inactive?="inactive"
+protected class FunctionModulePOJOTablesParameter_InactiveAssignment_3_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOTablesParameter_IsInactiveAssignment_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOTablesParameter_InactiveAssignment_3_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOTablesParameterAccess().getIsInactiveAssignment_3_0();
+		return grammarAccess.getFunctionModulePOJOTablesParameterAccess().getInactiveAssignment_3_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -4711,11 +4801,11 @@ protected class FunctionModulePOJOTablesParameter_IsInactiveAssignment_3_0 exten
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("isInactive",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("isInactive");
+		if((value = current.getConsumable("inactive",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("inactive");
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KW;
-			element = grammarAccess.getFunctionModulePOJOTablesParameterAccess().getIsInactiveInactiveKeyword_3_0_0();
+			element = grammarAccess.getFunctionModulePOJOTablesParameterAccess().getInactiveInactiveKeyword_3_0_0();
 			return obj;
 		}
 		return null;
@@ -4723,7 +4813,7 @@ protected class FunctionModulePOJOTablesParameter_IsInactiveAssignment_3_0 exten
 
 }
 
-// type=ID attribute=ID
+// structure=[Structure] attribute=ID
 protected class FunctionModulePOJOTablesParameter_Group_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOTablesParameter_Group_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4743,15 +4833,15 @@ protected class FunctionModulePOJOTablesParameter_Group_3_1 extends GroupToken {
 		
 }
 
-// type=ID
-protected class FunctionModulePOJOTablesParameter_TypeAssignment_3_1_0 extends AssignmentToken  {
+// structure=[Structure]
+protected class FunctionModulePOJOTablesParameter_StructureAssignment_3_1_0 extends AssignmentToken  {
 	
-	public FunctionModulePOJOTablesParameter_TypeAssignment_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public FunctionModulePOJOTablesParameter_StructureAssignment_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFunctionModulePOJOTablesParameterAccess().getTypeAssignment_3_1_0();
+		return grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureAssignment_3_1_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -4762,12 +4852,15 @@ protected class FunctionModulePOJOTablesParameter_TypeAssignment_3_1_0 extends A
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("type",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("type");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
-			type = AssignmentType.LRC;
-			element = grammarAccess.getFunctionModulePOJOTablesParameterAccess().getTypeIDTerminalRuleCall_3_1_0_0();
-			return obj;
+		if((value = current.getConsumable("structure",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("structure");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
+			IInstanceDescription param = getDescr((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureCrossReference_3_1_0_0().getType().getClassifier())) {
+				type = AssignmentType.CR;
+				element = grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureCrossReference_3_1_0_0(); 
+				return obj;
+			}
 		}
 		return null;
 	}
@@ -4787,7 +4880,7 @@ protected class FunctionModulePOJOTablesParameter_AttributeAssignment_3_1_1 exte
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new FunctionModulePOJOTablesParameter_TypeAssignment_3_1_0(parent, this, 0, inst);
+			case 0: return new FunctionModulePOJOTablesParameter_StructureAssignment_3_1_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	

@@ -9,6 +9,23 @@
     editorPluginID="net.sf.rcer.rfcgen.editor">
   <genPackages prefix="Mapping" basePackage="net.sf.rcer.rfcgen" disposableProviderFactory="true"
       ecorePackage="RFCMapping.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RFCMapping.ecore#//DataType">
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/BIG_DECIMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/BIG_INTEGER"/>
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/BOOLEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/BYTE"/>
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/BYTE_ARRAY"/>
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/CHAR"/>
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/CHAR_ARRAY"/>
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/DATE"/>
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/FLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/INTEGER"/>
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/LONG"/>
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/SHORT"/>
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/STRING"/>
+      <genEnumLiterals ecoreEnumLiteral="RFCMapping.ecore#//DataType/TIME"/>
+    </genEnums>
     <genClasses ecoreClass="RFCMapping.ecore#//Model">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//Model/packageName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RFCMapping.ecore#//Model/structures"/>
@@ -25,6 +42,7 @@
     </genClasses>
     <genClasses ecoreClass="RFCMapping.ecore#//StructureFieldPOJOMapping">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//StructureFieldPOJOMapping/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//StructureFieldPOJOMapping/inactive"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//StructureFieldPOJOMapping/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//StructureFieldPOJOMapping/attribute"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//StructureFieldPOJOMapping/comment"/>
@@ -47,22 +65,22 @@
     </genClasses>
     <genClasses ecoreClass="RFCMapping.ecore#//FunctionModulePOJOParameterMapping">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOParameterMapping/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOParameterMapping/isInactive"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOParameterMapping/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOParameterMapping/inactive"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOParameterMapping/attribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RFCMapping.ecore#//FunctionModulePOJOParameterMapping/structure"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOParameterMapping/comment"/>
     </genClasses>
     <genClasses ecoreClass="RFCMapping.ecore#//FunctionModulePOJOImportingParameter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOImportingParameter/isStructure"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOImportingParameter/isTable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOImportingParameter/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOImportingParameter/table"/>
     </genClasses>
     <genClasses ecoreClass="RFCMapping.ecore#//FunctionModulePOJOExportingParameter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOExportingParameter/isStructure"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOExportingParameter/isTable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOExportingParameter/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOExportingParameter/table"/>
     </genClasses>
     <genClasses ecoreClass="RFCMapping.ecore#//FunctionModulePOJOChangingParameter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOChangingParameter/isStructure"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOChangingParameter/isTable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOChangingParameter/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//FunctionModulePOJOChangingParameter/table"/>
     </genClasses>
     <genClasses ecoreClass="RFCMapping.ecore#//FunctionModulePOJOTablesParameter"/>
   </genPackages>

@@ -7,6 +7,7 @@ package net.sf.rcer.rfcgen.mapping;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -218,13 +219,22 @@ public interface MappingPackage extends EPackage
   int STRUCTURE_FIELD_POJO_MAPPING__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Inactive</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRUCTURE_FIELD_POJO_MAPPING__INACTIVE = 1;
+
+  /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STRUCTURE_FIELD_POJO_MAPPING__TYPE = 1;
+  int STRUCTURE_FIELD_POJO_MAPPING__TYPE = 2;
 
   /**
    * The feature id for the '<em><b>Attribute</b></em>' attribute.
@@ -233,7 +243,7 @@ public interface MappingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRUCTURE_FIELD_POJO_MAPPING__ATTRIBUTE = 2;
+  int STRUCTURE_FIELD_POJO_MAPPING__ATTRIBUTE = 3;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -242,7 +252,7 @@ public interface MappingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRUCTURE_FIELD_POJO_MAPPING__COMMENT = 3;
+  int STRUCTURE_FIELD_POJO_MAPPING__COMMENT = 4;
 
   /**
    * The number of structural features of the '<em>Structure Field POJO Mapping</em>' class.
@@ -251,7 +261,7 @@ public interface MappingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRUCTURE_FIELD_POJO_MAPPING_FEATURE_COUNT = 4;
+  int STRUCTURE_FIELD_POJO_MAPPING_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModuleImpl <em>Function Module</em>}' class.
@@ -440,22 +450,13 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Is Inactive</b></em>' attribute.
+   * The feature id for the '<em><b>Inactive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__IS_INACTIVE = 1;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__TYPE = 2;
+  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE = 1;
 
   /**
    * The feature id for the '<em><b>Attribute</b></em>' attribute.
@@ -464,7 +465,16 @@ public interface MappingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE = 3;
+  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE = 2;
+
+  /**
+   * The feature id for the '<em><b>Structure</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE = 3;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -504,22 +514,13 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__NAME = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__NAME;
 
   /**
-   * The feature id for the '<em><b>Is Inactive</b></em>' attribute.
+   * The feature id for the '<em><b>Inactive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__IS_INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__IS_INACTIVE;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TYPE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__TYPE;
+  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE;
 
   /**
    * The feature id for the '<em><b>Attribute</b></em>' attribute.
@@ -531,6 +532,15 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
 
   /**
+   * The feature id for the '<em><b>Structure</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE;
+
+  /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -540,22 +550,22 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__COMMENT = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT;
 
   /**
-   * The feature id for the '<em><b>Is Structure</b></em>' attribute.
+   * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__IS_STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 0;
+  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TYPE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Is Table</b></em>' attribute.
+   * The feature id for the '<em><b>Table</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__IS_TABLE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 1;
+  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TABLE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Function Module POJO Importing Parameter</em>' class.
@@ -586,22 +596,13 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__NAME = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__NAME;
 
   /**
-   * The feature id for the '<em><b>Is Inactive</b></em>' attribute.
+   * The feature id for the '<em><b>Inactive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__IS_INACTIVE;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TYPE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__TYPE;
+  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE;
 
   /**
    * The feature id for the '<em><b>Attribute</b></em>' attribute.
@@ -613,6 +614,15 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
 
   /**
+   * The feature id for the '<em><b>Structure</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE;
+
+  /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -622,22 +632,22 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__COMMENT = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT;
 
   /**
-   * The feature id for the '<em><b>Is Structure</b></em>' attribute.
+   * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 0;
+  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TYPE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Is Table</b></em>' attribute.
+   * The feature id for the '<em><b>Table</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_TABLE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 1;
+  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TABLE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Function Module POJO Exporting Parameter</em>' class.
@@ -668,22 +678,13 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__NAME = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__NAME;
 
   /**
-   * The feature id for the '<em><b>Is Inactive</b></em>' attribute.
+   * The feature id for the '<em><b>Inactive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__IS_INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__IS_INACTIVE;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__TYPE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__TYPE;
+  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE;
 
   /**
    * The feature id for the '<em><b>Attribute</b></em>' attribute.
@@ -695,6 +696,15 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
 
   /**
+   * The feature id for the '<em><b>Structure</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE;
+
+  /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -704,22 +714,22 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__COMMENT = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT;
 
   /**
-   * The feature id for the '<em><b>Is Structure</b></em>' attribute.
+   * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__IS_STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 0;
+  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__TYPE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Is Table</b></em>' attribute.
+   * The feature id for the '<em><b>Table</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__IS_TABLE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 1;
+  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__TABLE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Function Module POJO Changing Parameter</em>' class.
@@ -750,22 +760,13 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_TABLES_PARAMETER__NAME = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__NAME;
 
   /**
-   * The feature id for the '<em><b>Is Inactive</b></em>' attribute.
+   * The feature id for the '<em><b>Inactive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_TABLES_PARAMETER__IS_INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__IS_INACTIVE;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_TABLES_PARAMETER__TYPE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__TYPE;
+  int FUNCTION_MODULE_POJO_TABLES_PARAMETER__INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE;
 
   /**
    * The feature id for the '<em><b>Attribute</b></em>' attribute.
@@ -775,6 +776,15 @@ public interface MappingPackage extends EPackage
    * @ordered
    */
   int FUNCTION_MODULE_POJO_TABLES_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
+
+  /**
+   * The feature id for the '<em><b>Structure</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_TABLES_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -793,6 +803,16 @@ public interface MappingPackage extends EPackage
    * @ordered
    */
   int FUNCTION_MODULE_POJO_TABLES_PARAMETER_FEATURE_COUNT = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link net.sf.rcer.rfcgen.mapping.DataType <em>Data Type</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see net.sf.rcer.rfcgen.mapping.DataType
+   * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getDataType()
+   * @generated
+   */
+  int DATA_TYPE = 15;
 
 
   /**
@@ -932,6 +952,17 @@ public interface MappingPackage extends EPackage
    * @generated
    */
   EAttribute getStructureFieldPOJOMapping_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.StructureFieldPOJOMapping#isInactive <em>Inactive</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Inactive</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.StructureFieldPOJOMapping#isInactive()
+   * @see #getStructureFieldPOJOMapping()
+   * @generated
+   */
+  EAttribute getStructureFieldPOJOMapping_Inactive();
 
   /**
    * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.StructureFieldPOJOMapping#getType <em>Type</em>}'.
@@ -1126,26 +1157,15 @@ public interface MappingPackage extends EPackage
   EAttribute getFunctionModulePOJOParameterMapping_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#isIsInactive <em>Is Inactive</em>}'.
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#isInactive <em>Inactive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Is Inactive</em>'.
-   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#isIsInactive()
+   * @return the meta object for the attribute '<em>Inactive</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#isInactive()
    * @see #getFunctionModulePOJOParameterMapping()
    * @generated
    */
-  EAttribute getFunctionModulePOJOParameterMapping_IsInactive();
-
-  /**
-   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Type</em>'.
-   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getType()
-   * @see #getFunctionModulePOJOParameterMapping()
-   * @generated
-   */
-  EAttribute getFunctionModulePOJOParameterMapping_Type();
+  EAttribute getFunctionModulePOJOParameterMapping_Inactive();
 
   /**
    * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getAttribute <em>Attribute</em>}'.
@@ -1157,6 +1177,17 @@ public interface MappingPackage extends EPackage
    * @generated
    */
   EAttribute getFunctionModulePOJOParameterMapping_Attribute();
+
+  /**
+   * Returns the meta object for the reference '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getStructure <em>Structure</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Structure</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getStructure()
+   * @see #getFunctionModulePOJOParameterMapping()
+   * @generated
+   */
+  EReference getFunctionModulePOJOParameterMapping_Structure();
 
   /**
    * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getComment <em>Comment</em>}'.
@@ -1180,26 +1211,26 @@ public interface MappingPackage extends EPackage
   EClass getFunctionModulePOJOImportingParameter();
 
   /**
-   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOImportingParameter#isIsStructure <em>Is Structure</em>}'.
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOImportingParameter#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Is Structure</em>'.
-   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOImportingParameter#isIsStructure()
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOImportingParameter#getType()
    * @see #getFunctionModulePOJOImportingParameter()
    * @generated
    */
-  EAttribute getFunctionModulePOJOImportingParameter_IsStructure();
+  EAttribute getFunctionModulePOJOImportingParameter_Type();
 
   /**
-   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOImportingParameter#isIsTable <em>Is Table</em>}'.
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOImportingParameter#isTable <em>Table</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Is Table</em>'.
-   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOImportingParameter#isIsTable()
+   * @return the meta object for the attribute '<em>Table</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOImportingParameter#isTable()
    * @see #getFunctionModulePOJOImportingParameter()
    * @generated
    */
-  EAttribute getFunctionModulePOJOImportingParameter_IsTable();
+  EAttribute getFunctionModulePOJOImportingParameter_Table();
 
   /**
    * Returns the meta object for class '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOExportingParameter <em>Function Module POJO Exporting Parameter</em>}'.
@@ -1212,26 +1243,26 @@ public interface MappingPackage extends EPackage
   EClass getFunctionModulePOJOExportingParameter();
 
   /**
-   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOExportingParameter#isIsStructure <em>Is Structure</em>}'.
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOExportingParameter#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Is Structure</em>'.
-   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOExportingParameter#isIsStructure()
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOExportingParameter#getType()
    * @see #getFunctionModulePOJOExportingParameter()
    * @generated
    */
-  EAttribute getFunctionModulePOJOExportingParameter_IsStructure();
+  EAttribute getFunctionModulePOJOExportingParameter_Type();
 
   /**
-   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOExportingParameter#isIsTable <em>Is Table</em>}'.
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOExportingParameter#isTable <em>Table</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Is Table</em>'.
-   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOExportingParameter#isIsTable()
+   * @return the meta object for the attribute '<em>Table</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOExportingParameter#isTable()
    * @see #getFunctionModulePOJOExportingParameter()
    * @generated
    */
-  EAttribute getFunctionModulePOJOExportingParameter_IsTable();
+  EAttribute getFunctionModulePOJOExportingParameter_Table();
 
   /**
    * Returns the meta object for class '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter <em>Function Module POJO Changing Parameter</em>}'.
@@ -1244,26 +1275,26 @@ public interface MappingPackage extends EPackage
   EClass getFunctionModulePOJOChangingParameter();
 
   /**
-   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#isIsStructure <em>Is Structure</em>}'.
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Is Structure</em>'.
-   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#isIsStructure()
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#getType()
    * @see #getFunctionModulePOJOChangingParameter()
    * @generated
    */
-  EAttribute getFunctionModulePOJOChangingParameter_IsStructure();
+  EAttribute getFunctionModulePOJOChangingParameter_Type();
 
   /**
-   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#isIsTable <em>Is Table</em>}'.
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#isTable <em>Table</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Is Table</em>'.
-   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#isIsTable()
+   * @return the meta object for the attribute '<em>Table</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#isTable()
    * @see #getFunctionModulePOJOChangingParameter()
    * @generated
    */
-  EAttribute getFunctionModulePOJOChangingParameter_IsTable();
+  EAttribute getFunctionModulePOJOChangingParameter_Table();
 
   /**
    * Returns the meta object for class '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOTablesParameter <em>Function Module POJO Tables Parameter</em>}'.
@@ -1274,6 +1305,16 @@ public interface MappingPackage extends EPackage
    * @generated
    */
   EClass getFunctionModulePOJOTablesParameter();
+
+  /**
+   * Returns the meta object for enum '{@link net.sf.rcer.rfcgen.mapping.DataType <em>Data Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Data Type</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.DataType
+   * @generated
+   */
+  EEnum getDataType();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1411,6 +1452,14 @@ public interface MappingPackage extends EPackage
      * @generated
      */
     EAttribute STRUCTURE_FIELD_POJO_MAPPING__NAME = eINSTANCE.getStructureFieldPOJOMapping_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Inactive</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STRUCTURE_FIELD_POJO_MAPPING__INACTIVE = eINSTANCE.getStructureFieldPOJOMapping_Inactive();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -1569,20 +1618,12 @@ public interface MappingPackage extends EPackage
     EAttribute FUNCTION_MODULE_POJO_PARAMETER_MAPPING__NAME = eINSTANCE.getFunctionModulePOJOParameterMapping_Name();
 
     /**
-     * The meta object literal for the '<em><b>Is Inactive</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Inactive</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FUNCTION_MODULE_POJO_PARAMETER_MAPPING__IS_INACTIVE = eINSTANCE.getFunctionModulePOJOParameterMapping_IsInactive();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FUNCTION_MODULE_POJO_PARAMETER_MAPPING__TYPE = eINSTANCE.getFunctionModulePOJOParameterMapping_Type();
+    EAttribute FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE = eINSTANCE.getFunctionModulePOJOParameterMapping_Inactive();
 
     /**
      * The meta object literal for the '<em><b>Attribute</b></em>' attribute feature.
@@ -1591,6 +1632,14 @@ public interface MappingPackage extends EPackage
      * @generated
      */
     EAttribute FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE = eINSTANCE.getFunctionModulePOJOParameterMapping_Attribute();
+
+    /**
+     * The meta object literal for the '<em><b>Structure</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE = eINSTANCE.getFunctionModulePOJOParameterMapping_Structure();
 
     /**
      * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
@@ -1611,20 +1660,20 @@ public interface MappingPackage extends EPackage
     EClass FUNCTION_MODULE_POJO_IMPORTING_PARAMETER = eINSTANCE.getFunctionModulePOJOImportingParameter();
 
     /**
-     * The meta object literal for the '<em><b>Is Structure</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__IS_STRUCTURE = eINSTANCE.getFunctionModulePOJOImportingParameter_IsStructure();
+    EAttribute FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TYPE = eINSTANCE.getFunctionModulePOJOImportingParameter_Type();
 
     /**
-     * The meta object literal for the '<em><b>Is Table</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__IS_TABLE = eINSTANCE.getFunctionModulePOJOImportingParameter_IsTable();
+    EAttribute FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TABLE = eINSTANCE.getFunctionModulePOJOImportingParameter_Table();
 
     /**
      * The meta object literal for the '{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOExportingParameterImpl <em>Function Module POJO Exporting Parameter</em>}' class.
@@ -1637,20 +1686,20 @@ public interface MappingPackage extends EPackage
     EClass FUNCTION_MODULE_POJO_EXPORTING_PARAMETER = eINSTANCE.getFunctionModulePOJOExportingParameter();
 
     /**
-     * The meta object literal for the '<em><b>Is Structure</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_STRUCTURE = eINSTANCE.getFunctionModulePOJOExportingParameter_IsStructure();
+    EAttribute FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TYPE = eINSTANCE.getFunctionModulePOJOExportingParameter_Type();
 
     /**
-     * The meta object literal for the '<em><b>Is Table</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_TABLE = eINSTANCE.getFunctionModulePOJOExportingParameter_IsTable();
+    EAttribute FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TABLE = eINSTANCE.getFunctionModulePOJOExportingParameter_Table();
 
     /**
      * The meta object literal for the '{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOChangingParameterImpl <em>Function Module POJO Changing Parameter</em>}' class.
@@ -1663,20 +1712,20 @@ public interface MappingPackage extends EPackage
     EClass FUNCTION_MODULE_POJO_CHANGING_PARAMETER = eINSTANCE.getFunctionModulePOJOChangingParameter();
 
     /**
-     * The meta object literal for the '<em><b>Is Structure</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FUNCTION_MODULE_POJO_CHANGING_PARAMETER__IS_STRUCTURE = eINSTANCE.getFunctionModulePOJOChangingParameter_IsStructure();
+    EAttribute FUNCTION_MODULE_POJO_CHANGING_PARAMETER__TYPE = eINSTANCE.getFunctionModulePOJOChangingParameter_Type();
 
     /**
-     * The meta object literal for the '<em><b>Is Table</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FUNCTION_MODULE_POJO_CHANGING_PARAMETER__IS_TABLE = eINSTANCE.getFunctionModulePOJOChangingParameter_IsTable();
+    EAttribute FUNCTION_MODULE_POJO_CHANGING_PARAMETER__TABLE = eINSTANCE.getFunctionModulePOJOChangingParameter_Table();
 
     /**
      * The meta object literal for the '{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOTablesParameterImpl <em>Function Module POJO Tables Parameter</em>}' class.
@@ -1687,6 +1736,16 @@ public interface MappingPackage extends EPackage
      * @generated
      */
     EClass FUNCTION_MODULE_POJO_TABLES_PARAMETER = eINSTANCE.getFunctionModulePOJOTablesParameter();
+
+    /**
+     * The meta object literal for the '{@link net.sf.rcer.rfcgen.mapping.DataType <em>Data Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see net.sf.rcer.rfcgen.mapping.DataType
+     * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getDataType()
+     * @generated
+     */
+    EEnum DATA_TYPE = eINSTANCE.getDataType();
 
   }
 

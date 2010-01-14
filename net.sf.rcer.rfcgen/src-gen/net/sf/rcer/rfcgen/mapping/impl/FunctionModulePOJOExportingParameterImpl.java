@@ -5,6 +5,7 @@
  */
 package net.sf.rcer.rfcgen.mapping.impl;
 
+import net.sf.rcer.rfcgen.mapping.DataType;
 import net.sf.rcer.rfcgen.mapping.FunctionModulePOJOExportingParameter;
 import net.sf.rcer.rfcgen.mapping.MappingPackage;
 
@@ -21,8 +22,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOExportingParameterImpl#isIsStructure <em>Is Structure</em>}</li>
- *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOExportingParameterImpl#isIsTable <em>Is Table</em>}</li>
+ *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOExportingParameterImpl#getType <em>Type</em>}</li>
+ *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOExportingParameterImpl#isTable <em>Table</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,44 +32,44 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class FunctionModulePOJOExportingParameterImpl extends FunctionModulePOJOParameterMappingImpl implements FunctionModulePOJOExportingParameter
 {
   /**
-   * The default value of the '{@link #isIsStructure() <em>Is Structure</em>}' attribute.
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isIsStructure()
+   * @see #getType()
    * @generated
    * @ordered
    */
-  protected static final boolean IS_STRUCTURE_EDEFAULT = false;
+  protected static final DataType TYPE_EDEFAULT = DataType.BIG_DECIMAL;
 
   /**
-   * The cached value of the '{@link #isIsStructure() <em>Is Structure</em>}' attribute.
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isIsStructure()
+   * @see #getType()
    * @generated
    * @ordered
    */
-  protected boolean isStructure = IS_STRUCTURE_EDEFAULT;
+  protected DataType type = TYPE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isIsTable() <em>Is Table</em>}' attribute.
+   * The default value of the '{@link #isTable() <em>Table</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isIsTable()
+   * @see #isTable()
    * @generated
    * @ordered
    */
-  protected static final boolean IS_TABLE_EDEFAULT = false;
+  protected static final boolean TABLE_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #isIsTable() <em>Is Table</em>}' attribute.
+   * The cached value of the '{@link #isTable() <em>Table</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isIsTable()
+   * @see #isTable()
    * @generated
    * @ordered
    */
-  protected boolean isTable = IS_TABLE_EDEFAULT;
+  protected boolean table = TABLE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -96,9 +97,9 @@ public class FunctionModulePOJOExportingParameterImpl extends FunctionModulePOJO
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isIsStructure()
+  public DataType getType()
   {
-    return isStructure;
+    return type;
   }
 
   /**
@@ -106,12 +107,12 @@ public class FunctionModulePOJOExportingParameterImpl extends FunctionModulePOJO
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIsStructure(boolean newIsStructure)
+  public void setType(DataType newType)
   {
-    boolean oldIsStructure = isStructure;
-    isStructure = newIsStructure;
+    DataType oldType = type;
+    type = newType == null ? TYPE_EDEFAULT : newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_STRUCTURE, oldIsStructure, isStructure));
+      eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TYPE, oldType, type));
   }
 
   /**
@@ -119,9 +120,9 @@ public class FunctionModulePOJOExportingParameterImpl extends FunctionModulePOJO
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isIsTable()
+  public boolean isTable()
   {
-    return isTable;
+    return table;
   }
 
   /**
@@ -129,12 +130,12 @@ public class FunctionModulePOJOExportingParameterImpl extends FunctionModulePOJO
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIsTable(boolean newIsTable)
+  public void setTable(boolean newTable)
   {
-    boolean oldIsTable = isTable;
-    isTable = newIsTable;
+    boolean oldTable = table;
+    table = newTable;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_TABLE, oldIsTable, isTable));
+      eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TABLE, oldTable, table));
   }
 
   /**
@@ -147,10 +148,10 @@ public class FunctionModulePOJOExportingParameterImpl extends FunctionModulePOJO
   {
     switch (featureID)
     {
-      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_STRUCTURE:
-        return isIsStructure();
-      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_TABLE:
-        return isIsTable();
+      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TYPE:
+        return getType();
+      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TABLE:
+        return isTable();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -165,11 +166,11 @@ public class FunctionModulePOJOExportingParameterImpl extends FunctionModulePOJO
   {
     switch (featureID)
     {
-      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_STRUCTURE:
-        setIsStructure((Boolean)newValue);
+      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TYPE:
+        setType((DataType)newValue);
         return;
-      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_TABLE:
-        setIsTable((Boolean)newValue);
+      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TABLE:
+        setTable((Boolean)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -185,11 +186,11 @@ public class FunctionModulePOJOExportingParameterImpl extends FunctionModulePOJO
   {
     switch (featureID)
     {
-      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_STRUCTURE:
-        setIsStructure(IS_STRUCTURE_EDEFAULT);
+      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TYPE:
+        setType(TYPE_EDEFAULT);
         return;
-      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_TABLE:
-        setIsTable(IS_TABLE_EDEFAULT);
+      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TABLE:
+        setTable(TABLE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -205,10 +206,10 @@ public class FunctionModulePOJOExportingParameterImpl extends FunctionModulePOJO
   {
     switch (featureID)
     {
-      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_STRUCTURE:
-        return isStructure != IS_STRUCTURE_EDEFAULT;
-      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__IS_TABLE:
-        return isTable != IS_TABLE_EDEFAULT;
+      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TYPE:
+        return type != TYPE_EDEFAULT;
+      case MappingPackage.FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TABLE:
+        return table != TABLE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -224,10 +225,10 @@ public class FunctionModulePOJOExportingParameterImpl extends FunctionModulePOJO
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (isStructure: ");
-    result.append(isStructure);
-    result.append(", isTable: ");
-    result.append(isTable);
+    result.append(" (type: ");
+    result.append(type);
+    result.append(", table: ");
+    result.append(table);
     result.append(')');
     return result.toString();
   }

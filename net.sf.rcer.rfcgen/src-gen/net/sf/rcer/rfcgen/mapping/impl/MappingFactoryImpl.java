@@ -8,6 +8,7 @@ package net.sf.rcer.rfcgen.mapping.impl;
 import net.sf.rcer.rfcgen.mapping.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -84,6 +85,40 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory
       case MappingPackage.FUNCTION_MODULE_POJO_TABLES_PARAMETER: return createFunctionModulePOJOTablesParameter();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case MappingPackage.DATA_TYPE:
+        return createDataTypeFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case MappingPackage.DATA_TYPE:
+        return convertDataTypeToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -250,6 +285,28 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory
   {
     FunctionModulePOJOTablesParameterImpl functionModulePOJOTablesParameter = new FunctionModulePOJOTablesParameterImpl();
     return functionModulePOJOTablesParameter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DataType createDataTypeFromString(EDataType eDataType, String initialValue)
+  {
+    DataType result = DataType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertDataTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

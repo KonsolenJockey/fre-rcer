@@ -12,39 +12,54 @@ T12 : 'structure' ;
 T13 : '{' ;
 T14 : '}' ;
 T15 : 'class' ;
-T16 : 'field' ;
-T17 : '=' ;
-T18 : 'comment' ;
-T19 : ';' ;
-T20 : 'function' ;
-T21 : 'module' ;
-T22 : 'request' ;
-T23 : 'response' ;
-T24 : 'import' ;
-T25 : 'inactive' ;
+T16 : ';' ;
+T17 : 'field' ;
+T18 : '=' ;
+T19 : 'inactive' ;
+T20 : 'comment' ;
+T21 : 'function' ;
+T22 : 'module' ;
+T23 : 'request' ;
+T24 : 'response' ;
+T25 : 'importing' ;
 T26 : 'table' ;
-T27 : 'export' ;
-T28 : 'change' ;
+T27 : 'exporting' ;
+T28 : 'changing' ;
+T29 : 'BigDecimal' ;
+T30 : 'BigInteger' ;
+T31 : 'Boolean' ;
+T32 : 'Byte' ;
+T33 : 'ByteArray' ;
+T34 : 'Char' ;
+T35 : 'CharArray' ;
+T36 : 'Date' ;
+T37 : 'Double' ;
+T38 : 'Float' ;
+T39 : 'Integer' ;
+T40 : 'Long' ;
+T41 : 'Short' ;
+T42 : 'String' ;
+T43 : 'Time' ;
 
-// $ANTLR src "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g" 2086
+// $ANTLR src "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g" 2133
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-// $ANTLR src "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g" 2088
+// $ANTLR src "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g" 2135
 RULE_INT : ('0'..'9')+;
 
-// $ANTLR src "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g" 2090
+// $ANTLR src "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g" 2137
 RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
 
-// $ANTLR src "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g" 2092
+// $ANTLR src "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g" 2139
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
-// $ANTLR src "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g" 2094
+// $ANTLR src "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g" 2141
 RULE_SL_COMMENT : '//' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-// $ANTLR src "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g" 2096
+// $ANTLR src "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g" 2143
 RULE_WS : (' '|'\t'|'\r'|'\n')+;
 
-// $ANTLR src "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g" 2098
+// $ANTLR src "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g" 2145
 RULE_ANY_OTHER : .;
 
 

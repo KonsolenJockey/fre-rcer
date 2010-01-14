@@ -7,10 +7,12 @@ package net.sf.rcer.rfcgen.mapping.impl;
 
 import net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping;
 import net.sf.rcer.rfcgen.mapping.MappingPackage;
+import net.sf.rcer.rfcgen.mapping.Structure;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -23,9 +25,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOParameterMappingImpl#getName <em>Name</em>}</li>
- *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOParameterMappingImpl#isIsInactive <em>Is Inactive</em>}</li>
- *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOParameterMappingImpl#getType <em>Type</em>}</li>
+ *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOParameterMappingImpl#isInactive <em>Inactive</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOParameterMappingImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOParameterMappingImpl#getStructure <em>Structure</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOParameterMappingImpl#getComment <em>Comment</em>}</li>
  * </ul>
  * </p>
@@ -55,44 +57,24 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isIsInactive() <em>Is Inactive</em>}' attribute.
+   * The default value of the '{@link #isInactive() <em>Inactive</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isIsInactive()
+   * @see #isInactive()
    * @generated
    * @ordered
    */
-  protected static final boolean IS_INACTIVE_EDEFAULT = false;
+  protected static final boolean INACTIVE_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #isIsInactive() <em>Is Inactive</em>}' attribute.
+   * The cached value of the '{@link #isInactive() <em>Inactive</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isIsInactive()
+   * @see #isInactive()
    * @generated
    * @ordered
    */
-  protected boolean isInactive = IS_INACTIVE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected static final String TYPE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected String type = TYPE_EDEFAULT;
+  protected boolean inactive = INACTIVE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
@@ -113,6 +95,16 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
    * @ordered
    */
   protected String attribute = ATTRIBUTE_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getStructure() <em>Structure</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getStructure()
+   * @generated
+   * @ordered
+   */
+  protected Structure structure;
 
   /**
    * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
@@ -183,9 +175,9 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isIsInactive()
+  public boolean isInactive()
   {
-    return isInactive;
+    return inactive;
   }
 
   /**
@@ -193,35 +185,12 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIsInactive(boolean newIsInactive)
+  public void setInactive(boolean newInactive)
   {
-    boolean oldIsInactive = isInactive;
-    isInactive = newIsInactive;
+    boolean oldInactive = inactive;
+    inactive = newInactive;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__IS_INACTIVE, oldIsInactive, isInactive));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getType()
-  {
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setType(String newType)
-  {
-    String oldType = type;
-    type = newType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE, oldInactive, inactive));
   }
 
   /**
@@ -245,6 +214,49 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
     attribute = newAttribute;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE, oldAttribute, attribute));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Structure getStructure()
+  {
+    if (structure != null && structure.eIsProxy())
+    {
+      InternalEObject oldStructure = (InternalEObject)structure;
+      structure = (Structure)eResolveProxy(oldStructure);
+      if (structure != oldStructure)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE, oldStructure, structure));
+      }
+    }
+    return structure;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Structure basicGetStructure()
+  {
+    return structure;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setStructure(Structure newStructure)
+  {
+    Structure oldStructure = structure;
+    structure = newStructure;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE, oldStructure, structure));
   }
 
   /**
@@ -282,12 +294,13 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
     {
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__NAME:
         return getName();
-      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__IS_INACTIVE:
-        return isIsInactive();
-      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__TYPE:
-        return getType();
+      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE:
+        return isInactive();
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE:
         return getAttribute();
+      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE:
+        if (resolve) return getStructure();
+        return basicGetStructure();
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT:
         return getComment();
     }
@@ -307,14 +320,14 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__NAME:
         setName((String)newValue);
         return;
-      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__IS_INACTIVE:
-        setIsInactive((Boolean)newValue);
-        return;
-      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__TYPE:
-        setType((String)newValue);
+      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE:
+        setInactive((Boolean)newValue);
         return;
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE:
         setAttribute((String)newValue);
+        return;
+      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE:
+        setStructure((Structure)newValue);
         return;
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT:
         setComment((String)newValue);
@@ -336,14 +349,14 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__IS_INACTIVE:
-        setIsInactive(IS_INACTIVE_EDEFAULT);
-        return;
-      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__TYPE:
-        setType(TYPE_EDEFAULT);
+      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE:
+        setInactive(INACTIVE_EDEFAULT);
         return;
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE:
         setAttribute(ATTRIBUTE_EDEFAULT);
+        return;
+      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE:
+        setStructure((Structure)null);
         return;
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT:
         setComment(COMMENT_EDEFAULT);
@@ -364,12 +377,12 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
     {
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__IS_INACTIVE:
-        return isInactive != IS_INACTIVE_EDEFAULT;
-      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__TYPE:
-        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE:
+        return inactive != INACTIVE_EDEFAULT;
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE:
         return ATTRIBUTE_EDEFAULT == null ? attribute != null : !ATTRIBUTE_EDEFAULT.equals(attribute);
+      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE:
+        return structure != null;
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT:
         return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
     }
@@ -389,10 +402,8 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", isInactive: ");
-    result.append(isInactive);
-    result.append(", type: ");
-    result.append(type);
+    result.append(", inactive: ");
+    result.append(inactive);
     result.append(", attribute: ");
     result.append(attribute);
     result.append(", comment: ");

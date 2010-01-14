@@ -111,11 +111,11 @@ function module "«functionModuleName»" {
 «DEFINE importParameters FOR FunctionModuleInfo-»
 «FOREACH parameters.select(p|p.importing) AS p-»
 «IF p.table-»
-		import table     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		importing table     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ELSEIF p.structure-»
-		import structure «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		importing structure «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ELSE-»
-		import field     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		importing field     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE»
@@ -125,11 +125,11 @@ function module "«functionModuleName»" {
 «DEFINE exportParameters FOR FunctionModuleInfo-»
 «FOREACH parameters.select(p|p.exporting) AS p-»
 «IF p.table-»
-		export table     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		exporting table     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ELSEIF p.structure-»
-		export structure «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		exporting structure «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ELSE-»
-		export field     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		exporting field     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE»
@@ -139,11 +139,11 @@ function module "«functionModuleName»" {
 «DEFINE changeParameters FOR FunctionModuleInfo-»
 «FOREACH parameters.select(p|p.changing) AS p-»
 «IF p.table-»
-		change table     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		changing table      «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ELSEIF p.structure-»
-		change structure «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		changing structure  «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ELSE-»
-		change field     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		changing field      «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE»
@@ -152,7 +152,7 @@ function module "«functionModuleName»" {
 
 «DEFINE tableParameters FOR FunctionModuleInfo-»
 «FOREACH parameters.select(p|p.tables) AS p-»
-		table            «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+		table               «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ENDFOREACH-»
 «ENDDEFINE»
 
@@ -161,25 +161,25 @@ function module "«functionModuleName»" {
 «DEFINE staticCallStyleMapping FOR ExtendedRFCMappingProjectInfo»
 structure "BAPISFLIST" { 
 	class FlightData { 
-		field "CARRID"   = String carrierID    comment "carrier ID";
-		field "CONNID"   = String connectionID comment "connection ID";
-		field "FLDATE"   = Date flightDate     comment "flight date";
-		field "DEPTIME"  = Date departureTime  comment "departure time";
-		field "AIRPFROM" = String origin       comment "originating airport";
-		field "AIRPTO"   = String destination  comment "destination airport";
-		field "SEATSMAX" = int maximumSeats    comment "maximum number of seats";
-		field "SEATSOCC" = int occupiedSeats   comment "number of seats occupied";
+		field "CARRID"   = String carrierID      comment "carrier ID";
+		field "CONNID"   = String connectionID   comment "connection ID";
+		field "FLDATE"   = Date flightDate       comment "flight date";
+		field "DEPTIME"  = Date departureTime    comment "departure time";
+		field "AIRPFROM" = String origin         comment "originating airport";
+		field "AIRPTO"   = String destination    comment "destination airport";
+		field "SEATSMAX" = Integer maximumSeats  comment "maximum number of seats";
+		field "SEATSOCC" = Integer occupiedSeats comment "number of seats occupied";
 	}
 }
 
 function module "BAPI_SFLIGHT_GETLIST" {
 	class GetFlightListCall {
-		import field "FROMCOUNTRYKEY" = String fromCountry comment "country code of origin";
-		import field "FROMCITY"       = String fromCity    comment "city of origin";
-		import field "TOCOUNTRYKEY"   = String toCountry   comment "country code of destination";
-		import field "TOCITY"         = String toCity      comment "destination city";
-		import field "AFTERNOON"      = boolean afternoon  comment "restrict search to afternoon flights";
-		table "FLIGHTLIST"            = FlightData flights comment "list of flights";
+		importing field "FROMCOUNTRYKEY" = String fromCountry comment "country code of origin";
+		importing field "FROMCITY"       = String fromCity    comment "city of origin";
+		importing field "TOCOUNTRYKEY"   = String toCountry   comment "country code of destination";
+		importing field "TOCITY"         = String toCity      comment "destination city";
+		importing field "AFTERNOON"      = boolean afternoon  comment "restrict search to afternoon flights";
+		table "FLIGHTLIST"               = FlightData flights comment "list of flights";
 	}
 }
 «ENDDEFINE»
@@ -189,27 +189,27 @@ function module "BAPI_SFLIGHT_GETLIST" {
 «DEFINE staticRequestReturnStyleMapping FOR ExtendedRFCMappingProjectInfo»
 structure "BAPISFLIST" {
 	class FlightData { 
-		field "CARRID"   = String carrierID    comment "carrier ID";
-		field "CONNID"   = String connectionID comment "connection ID";
-		field "FLDATE"   = Date flightDate     comment "flight date";
-		field "DEPTIME"  = Date departureTime  comment "departure time";
-		field "AIRPFROM" = String origin       comment "originating airport";
-		field "AIRPTO"   = String destination  comment "destination airport";
-		field "SEATSMAX" = int maximumSeats    comment "maximum number of seats";
-		field "SEATSOCC" = int occupiedSeats   comment "number of seats occupied";
+		field "CARRID"   = String carrierID      comment "carrier ID";
+		field "CONNID"   = String connectionID   comment "connection ID";
+		field "FLDATE"   = Date flightDate       comment "flight date";
+		field "DEPTIME"  = Date departureTime    comment "departure time";
+		field "AIRPFROM" = String origin         comment "originating airport";
+		field "AIRPTO"   = String destination    comment "destination airport";
+		field "SEATSMAX" = Integer maximumSeats  comment "maximum number of seats";
+		field "SEATSOCC" = Integer occupiedSeats comment "number of seats occupied";
 	}
 }
 
 function module "BAPI_SFLIGHT_GETLIST" {
 	request class GetFlightListRequest {
-		import field "FROMCOUNTRYKEY" = String fromCountry comment "country code of origin";
-		import field "FROMCITY"       = String fromCity    comment "city of origin";
-		import field "TOCOUNTRYKEY"   = String toCountry   comment "country code of destination";
-		import field "TOCITY"         = String toCity      comment "destination city";
-		import field "AFTERNOON"      = boolean afternoon  comment "restrict search to afternoon flights";
+		importing field "FROMCOUNTRYKEY" = String fromCountry comment "country code of origin";
+		importing field "FROMCITY"       = String fromCity    comment "city of origin";
+		importing field "TOCOUNTRYKEY"   = String toCountry   comment "country code of destination";
+		importing field "TOCITY"         = String toCity      comment "destination city";
+		importing field "AFTERNOON"      = boolean afternoon  comment "restrict search to afternoon flights";
 	}
 	response class GetFlightListResponse {
-		table "FLIGHTLIST"            = FlightData flights comment "list of flights";
+		table "FLIGHTLIST"               = FlightData flights comment "list of flights";
 	}
 }
 «ENDDEFINE»

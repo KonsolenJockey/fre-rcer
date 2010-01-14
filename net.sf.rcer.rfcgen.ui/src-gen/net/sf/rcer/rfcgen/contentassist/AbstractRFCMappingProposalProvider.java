@@ -83,6 +83,14 @@ public class AbstractRFCMappingProposalProvider extends TerminalsProposalProvide
 		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
+	public void completeStructureFieldPOJOMapping_Inactive(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("completeStructureFieldPOJOMapping_Inactive feature '" + assignment.getFeature() + "' terminal '"
+					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
+					+ context.getPrefix() + "'");
+		}
+		// subclasses may override
+	}
 	public void completeStructureFieldPOJOMapping_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("completeStructureFieldPOJOMapping_Type feature '" + assignment.getFeature() + "' terminal '"
@@ -179,9 +187,9 @@ public class AbstractRFCMappingProposalProvider extends TerminalsProposalProvide
 		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeFunctionModulePOJOImportingParameter_IsInactive(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeFunctionModulePOJOImportingParameter_Inactive(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("completeFunctionModulePOJOImportingParameter_IsInactive feature '" + assignment.getFeature() + "' terminal '"
+			logger.debug("completeFunctionModulePOJOImportingParameter_Inactive feature '" + assignment.getFeature() + "' terminal '"
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ context.getPrefix() + "'");
 		}
@@ -203,17 +211,17 @@ public class AbstractRFCMappingProposalProvider extends TerminalsProposalProvide
 		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeFunctionModulePOJOImportingParameter_IsStructure(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeFunctionModulePOJOImportingParameter_Structure(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("completeFunctionModulePOJOImportingParameter_IsStructure feature '" + assignment.getFeature() + "' terminal '"
+			logger.debug("completeFunctionModulePOJOImportingParameter_Structure feature '" + assignment.getFeature() + "' terminal '"
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ context.getPrefix() + "'");
 		}
-		// subclasses may override
+		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeFunctionModulePOJOImportingParameter_IsTable(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeFunctionModulePOJOImportingParameter_Table(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("completeFunctionModulePOJOImportingParameter_IsTable feature '" + assignment.getFeature() + "' terminal '"
+			logger.debug("completeFunctionModulePOJOImportingParameter_Table feature '" + assignment.getFeature() + "' terminal '"
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ context.getPrefix() + "'");
 		}
@@ -235,9 +243,9 @@ public class AbstractRFCMappingProposalProvider extends TerminalsProposalProvide
 		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeFunctionModulePOJOExportingParameter_IsInactive(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeFunctionModulePOJOExportingParameter_Inactive(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("completeFunctionModulePOJOExportingParameter_IsInactive feature '" + assignment.getFeature() + "' terminal '"
+			logger.debug("completeFunctionModulePOJOExportingParameter_Inactive feature '" + assignment.getFeature() + "' terminal '"
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ context.getPrefix() + "'");
 		}
@@ -259,17 +267,17 @@ public class AbstractRFCMappingProposalProvider extends TerminalsProposalProvide
 		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeFunctionModulePOJOExportingParameter_IsStructure(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeFunctionModulePOJOExportingParameter_Structure(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("completeFunctionModulePOJOExportingParameter_IsStructure feature '" + assignment.getFeature() + "' terminal '"
+			logger.debug("completeFunctionModulePOJOExportingParameter_Structure feature '" + assignment.getFeature() + "' terminal '"
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ context.getPrefix() + "'");
 		}
-		// subclasses may override
+		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeFunctionModulePOJOExportingParameter_IsTable(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeFunctionModulePOJOExportingParameter_Table(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("completeFunctionModulePOJOExportingParameter_IsTable feature '" + assignment.getFeature() + "' terminal '"
+			logger.debug("completeFunctionModulePOJOExportingParameter_Table feature '" + assignment.getFeature() + "' terminal '"
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ context.getPrefix() + "'");
 		}
@@ -291,9 +299,9 @@ public class AbstractRFCMappingProposalProvider extends TerminalsProposalProvide
 		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeFunctionModulePOJOChangingParameter_IsInactive(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeFunctionModulePOJOChangingParameter_Inactive(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("completeFunctionModulePOJOChangingParameter_IsInactive feature '" + assignment.getFeature() + "' terminal '"
+			logger.debug("completeFunctionModulePOJOChangingParameter_Inactive feature '" + assignment.getFeature() + "' terminal '"
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ context.getPrefix() + "'");
 		}
@@ -315,17 +323,17 @@ public class AbstractRFCMappingProposalProvider extends TerminalsProposalProvide
 		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeFunctionModulePOJOChangingParameter_IsStructure(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeFunctionModulePOJOChangingParameter_Structure(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("completeFunctionModulePOJOChangingParameter_IsStructure feature '" + assignment.getFeature() + "' terminal '"
+			logger.debug("completeFunctionModulePOJOChangingParameter_Structure feature '" + assignment.getFeature() + "' terminal '"
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ context.getPrefix() + "'");
 		}
-		// subclasses may override
+		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeFunctionModulePOJOChangingParameter_IsTable(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeFunctionModulePOJOChangingParameter_Table(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("completeFunctionModulePOJOChangingParameter_IsTable feature '" + assignment.getFeature() + "' terminal '"
+			logger.debug("completeFunctionModulePOJOChangingParameter_Table feature '" + assignment.getFeature() + "' terminal '"
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ context.getPrefix() + "'");
 		}
@@ -347,21 +355,21 @@ public class AbstractRFCMappingProposalProvider extends TerminalsProposalProvide
 		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeFunctionModulePOJOTablesParameter_IsInactive(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeFunctionModulePOJOTablesParameter_Inactive(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("completeFunctionModulePOJOTablesParameter_IsInactive feature '" + assignment.getFeature() + "' terminal '"
+			logger.debug("completeFunctionModulePOJOTablesParameter_Inactive feature '" + assignment.getFeature() + "' terminal '"
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ context.getPrefix() + "'");
 		}
 		// subclasses may override
 	}
-	public void completeFunctionModulePOJOTablesParameter_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeFunctionModulePOJOTablesParameter_Structure(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
-			logger.debug("completeFunctionModulePOJOTablesParameter_Type feature '" + assignment.getFeature() + "' terminal '"
+			logger.debug("completeFunctionModulePOJOTablesParameter_Structure feature '" + assignment.getFeature() + "' terminal '"
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ context.getPrefix() + "'");
 		}
-		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeFunctionModulePOJOTablesParameter_Attribute(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
@@ -383,6 +391,13 @@ public class AbstractRFCMappingProposalProvider extends TerminalsProposalProvide
 	public void complete_Model(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("complete_Model '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
+					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
+		}
+		// subclasses may override
+	}
+	public void complete_DataType(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("complete_DataType '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
 					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
 		}
 		// subclasses may override

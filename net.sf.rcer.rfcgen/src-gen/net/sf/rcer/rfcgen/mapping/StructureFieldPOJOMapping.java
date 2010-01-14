@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.StructureFieldPOJOMapping#getName <em>Name</em>}</li>
+ *   <li>{@link net.sf.rcer.rfcgen.mapping.StructureFieldPOJOMapping#isInactive <em>Inactive</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.StructureFieldPOJOMapping#getType <em>Type</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.StructureFieldPOJOMapping#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.StructureFieldPOJOMapping#getComment <em>Comment</em>}</li>
@@ -55,7 +56,34 @@ public interface StructureFieldPOJOMapping extends EObject
   void setName(String value);
 
   /**
+   * Returns the value of the '<em><b>Inactive</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Inactive</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Inactive</em>' attribute.
+   * @see #setInactive(boolean)
+   * @see net.sf.rcer.rfcgen.mapping.MappingPackage#getStructureFieldPOJOMapping_Inactive()
+   * @model
+   * @generated
+   */
+  boolean isInactive();
+
+  /**
+   * Sets the value of the '{@link net.sf.rcer.rfcgen.mapping.StructureFieldPOJOMapping#isInactive <em>Inactive</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Inactive</em>' attribute.
+   * @see #isInactive()
+   * @generated
+   */
+  void setInactive(boolean value);
+
+  /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.
+   * The literals are from the enumeration {@link net.sf.rcer.rfcgen.mapping.DataType}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Type</em>' attribute isn't clear,
@@ -63,22 +91,24 @@ public interface StructureFieldPOJOMapping extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' attribute.
-   * @see #setType(String)
+   * @see net.sf.rcer.rfcgen.mapping.DataType
+   * @see #setType(DataType)
    * @see net.sf.rcer.rfcgen.mapping.MappingPackage#getStructureFieldPOJOMapping_Type()
    * @model
    * @generated
    */
-  String getType();
+  DataType getType();
 
   /**
    * Sets the value of the '{@link net.sf.rcer.rfcgen.mapping.StructureFieldPOJOMapping#getType <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Type</em>' attribute.
+   * @see net.sf.rcer.rfcgen.mapping.DataType
    * @see #getType()
    * @generated
    */
-  void setType(String value);
+  void setType(DataType value);
 
   /**
    * Returns the value of the '<em><b>Attribute</b></em>' attribute.

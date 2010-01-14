@@ -31,6 +31,9 @@
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import java.text.MessageFormat;
 
 import java.util.ArrayList;
@@ -111,7 +114,7 @@ import com.sap.conn.jco.JCoTable;
 «REM» ============================================================================================= «ENDREM»
 
 «DEFINE StructureClass(String packageName, String functionModuleName) FOR StructureMapping»
-«ERROR "Abstract template for StructureMapping called - should not happen."»
+«ERROR "Abstract template StructureClass for StructureMapping called - should not happen."»
 «ENDDEFINE»
 
 «REM» ============================================================================================= «ENDREM»
@@ -127,8 +130,8 @@ public class «className» {
 
 	private PropertyChangeSupport _pcs;
 
-«FOREACH fields AS f-»
-	private «f.type» «f.attribute»;
+«FOREACH getActiveFields() AS f-»
+	private «f.getJavaTypeName()» «f.attribute»;
 «ENDFOREACH-»
 	
 	/**
@@ -146,11 +149,11 @@ public class «className» {
 	public «className»(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
-«FOREACH fields AS f-»
-	«IF f.isBoolean()-»
+«FOREACH getActiveFields() AS f-»
+	«IF f.type == DataType::BOOLEAN-»
 		this.«f.attribute» = source.getString("«f.name»").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
 	«ELSE-»
-		this.«f.attribute» = source.get«f.type.toFirstUpper()»("«f.name»"); //$NON-NLS-1$
+		this.«f.attribute» = source.«f.getJCoGetterName()»("«f.name»"); //$NON-NLS-1$
 	«ENDIF-»
 «ENDFOREACH-»
 	}
@@ -163,7 +166,7 @@ public class «className» {
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
 		targetStructure.clear();
-«FOREACH fields AS f-»
+«FOREACH getActiveFields() AS f-»
 		targetStructure.setValue("«f.name»", this.«f.attribute»); //$NON-NLS-1$
 «ENDFOREACH-»
 	}
@@ -208,11 +211,11 @@ public class «className» {
 		}
 	}
 	
-«FOREACH fields AS f-»
+«FOREACH getActiveFields() AS f-»
 	/**
 	 * @return the «f.comment == null ? f.attribute : f.comment» («structureName»-«f.name»)
 	 */
-	public «f.type» «f.getGetterName()»() {
+	public «f.getJavaTypeName()» «f.getGetterName()»() {
 		return this.«f.attribute»;
 	}
 	
@@ -220,7 +223,7 @@ public class «className» {
 	 * Changes the «f.comment == null ? f.attribute : f.comment» («structureName»-«f.name»).
 	 * @param new«f.attribute.toFirstUpper()» the new «f.comment == null ? f.attribute : f.comment» to set
 	 */
-	public void «f.getSetterName()»(«f.type» new«f.attribute.toFirstUpper()») {
+	public void «f.getSetterName()»(«f.getJavaTypeName()» new«f.attribute.toFirstUpper()») {
 		_pcs.firePropertyChange("«f.attribute»", this.«f.attribute», new«f.attribute.toFirstUpper()»); //$NON-NLS-1$
 		this.«f.attribute» = new«f.attribute.toFirstUpper()»;
 	}
@@ -234,7 +237,7 @@ public class «className» {
 «REM» ============================================================================================= «ENDREM»
 
 «DEFINE FunctionModuleClasses(String packageName, String functionModuleName) FOR FunctionModuleMapping»
-«ERROR "Abstract template for FunctionModuleMapping called - should not happen."»
+«ERROR "Abstract template FunctionModuleClasses for FunctionModuleMapping called - should not happen."»
 «ENDDEFINE»
 
 «REM» ============================================================================================= «ENDREM»
@@ -258,7 +261,7 @@ public class «className» {
 
 	private PropertyChangeSupport _pcs;
 
-«FOREACH parameters AS p-»
+«FOREACH getActiveParameters() AS p-»
 	«EXPAND FunctionModulePOJOParameterAttribute FOR p-»
 «ENDFOREACH-»
 	
@@ -269,23 +272,8 @@ public class «className» {
 		_pcs = new PropertyChangeSupport(this);
 	}
 
-«FOREACH parameters AS p-»
-	/**
-	 * @return the «p.comment == null ? p.attribute : p.comment» («p.name»)
-	 */
-	public «p.getJavaType()» «p.getGetterName()»() {
-		return this.«p.attribute»;
-	}
-	
-	/**
-	 * Changes the «p.comment == null ? p.attribute : p.comment» («p.name»).
-	 * @param new«p.attribute.toFirstUpper()» the new «p.comment == null ? p.attribute : p.comment» to set
-	 */
-	public void «p.getSetterName()»(«p.getJavaType()» new«p.attribute.toFirstUpper()») {
-		_pcs.firePropertyChange("«p.attribute»", this.«p.attribute», new«p.attribute.toFirstUpper()»); //$NON-NLS-1$
-		this.«p.attribute» = new«p.attribute.toFirstUpper()»;
-	}
-	
+«FOREACH getActiveParameters() AS p-»
+	«EXPAND FunctionModulePOJOParameterGetterSetter FOR p-»
 «ENDFOREACH-»
 	/**
 	 * Executes the RFC call and updates the attributes accordingly.
@@ -294,11 +282,12 @@ public class «className» {
 	 */
 	public void execute(JCoDestination destination) throws JCoException {
 		JCoFunction function = destination.getRepository().getFunction("«functionModuleName»"); //$NON-NLS-1$
-«FOREACH parameters AS p-»
+		// FIXME: set inactive parameters
+«FOREACH getActiveParameters() AS p-»
 	«EXPAND FunctionModulePOJOParameterBeforeCall FOR p-»
 «ENDFOREACH-»
 		function.execute(destination);
-«FOREACH parameters AS p-»
+«FOREACH getActiveParameters() AS p-»
 	«EXPAND FunctionModulePOJOParameterAfterCall FOR p-»
 «ENDFOREACH-»
 	}
@@ -329,7 +318,7 @@ public class «requestClassName» {
 
 	private PropertyChangeSupport _pcs;
 
-«FOREACH requestParameters AS p-»
+«FOREACH getActiveRequestParameters() AS p-»
 	«EXPAND FunctionModulePOJOParameterAttribute FOR p-»
 «ENDFOREACH-»
 	
@@ -340,23 +329,8 @@ public class «requestClassName» {
 		_pcs = new PropertyChangeSupport(this);
 	}
 	
-«FOREACH requestParameters AS p-»
-	/**
-	 * @return the «p.comment == null ? p.attribute : p.comment» («p.name»)
-	 */
-	public «p.getJavaType()» «p.getGetterName()»() {
-		return this.«p.attribute»;
-	}
-	
-	/**
-	 * Changes the «p.comment == null ? p.attribute : p.comment» («p.name»).
-	 * @param new«p.attribute.toFirstUpper()» the new «p.comment == null ? p.attribute : p.comment» to set
-	 */
-	public void «p.getSetterName()»(«p.getJavaType()» new«p.attribute.toFirstUpper()») {
-		_pcs.firePropertyChange("«p.attribute»", this.«p.attribute», new«p.attribute.toFirstUpper()»); //$NON-NLS-1$
-		this.«p.attribute» = new«p.attribute.toFirstUpper()»;
-	}
-	
+«FOREACH getActiveRequestParameters() AS p-»
+	«EXPAND FunctionModulePOJOParameterGetterSetter FOR p-»
 «ENDFOREACH-»
 	/**
 	 * Executes the RFC call and returns the response instance.
@@ -366,12 +340,13 @@ public class «requestClassName» {
 	 */
 	public «responseClassName» execute(JCoDestination destination) throws JCoException {
 		JCoFunction function = destination.getRepository().getFunction("«functionModuleName»"); //$NON-NLS-1$
-«FOREACH requestParameters AS p-»
+		// FIXME: set inactive parameters
+«FOREACH getActiveRequestParameters() AS p-»
 	«EXPAND FunctionModulePOJOParameterBeforeCall FOR p-»
 «ENDFOREACH-»
 		function.execute(destination);
 		«responseClassName» response = new «responseClassName»();
-«FOREACH responseParameters AS p-»
+«FOREACH getActiveResponseParameters() AS p-»
 	«EXPAND FunctionModulePOJOParameterAfterCallResponse FOR p-»
 «ENDFOREACH-»
 		return response;
@@ -380,7 +355,9 @@ public class «requestClassName» {
 «EXPAND PropertyChangeSupportMethods FOR this»
 }
 «ENDFILE»
+
 «REM» - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - «ENDREM»
+
 «FILE getResponseFileName(packageName)» 
 package «packageName»;
 «EXPAND Imports FOR this»
@@ -393,7 +370,7 @@ public class «responseClassName» {
 
 	private PropertyChangeSupport _pcs;
 
-«FOREACH responseParameters AS p-»
+«FOREACH getActiveResponseParameters() AS p-»
 	«EXPAND FunctionModulePOJOParameterAttribute FOR p-»
 «ENDFOREACH-»
 	
@@ -404,23 +381,8 @@ public class «responseClassName» {
 		_pcs = new PropertyChangeSupport(this);
 	}
 	
-«FOREACH responseParameters AS p-»
-	/**
-	 * @return the «p.comment == null ? p.attribute : p.comment» («p.name»)
-	 */
-	public «p.getJavaType()» «p.getGetterName()»() {
-		return this.«p.attribute»;
-	}
-	
-	/**
-	 * Changes the «p.comment == null ? p.attribute : p.comment» («p.name»).
-	 * @param new«p.attribute.toFirstUpper()» the new «p.comment == null ? p.attribute : p.comment» to set
-	 */
-	public void «p.getSetterName()»(«p.getJavaType()» new«p.attribute.toFirstUpper()») {
-		_pcs.firePropertyChange("«p.attribute»", this.«p.attribute», new«p.attribute.toFirstUpper()»); //$NON-NLS-1$
-		this.«p.attribute» = new«p.attribute.toFirstUpper()»;
-	}
-	
+«FOREACH getActiveResponseParameters() AS p-»
+	«EXPAND FunctionModulePOJOParameterGetterSetter FOR p-»
 «ENDFOREACH-»
 «EXPAND PropertyChangeSupportMethods FOR this»
 }
@@ -429,47 +391,41 @@ public class «responseClassName» {
 
 «REM» ============================================================================================= «ENDREM»
 
-«DEFINE FunctionModulePOJOParameterAttribute FOR FunctionModulePOJOParameterMapping»
-«ERROR "Abstract template called - should not happen."»
-«ENDDEFINE»
-
-«DEFINE FunctionModulePOJOParameterAttribute FOR FunctionModulePOJOImportingParameter-»
-«IF isTable-»
-	private «getJavaType()» «attribute» = new ArrayList<«type»>();
+«DEFINE FunctionModulePOJOParameterAttribute FOR FunctionModulePOJOParameterMapping-»
+«IF isTable()-»
+	private «getJavaTypeName()» «attribute» = new ArrayList<«getElementTypeName()»>();
 «ELSE-»
-	private «type» «attribute»;
+	private «getJavaTypeName()» «attribute»;
 «ENDIF-»
 «ENDDEFINE»
 
-«DEFINE FunctionModulePOJOParameterAttribute FOR FunctionModulePOJOExportingParameter-»
-«IF isTable-»
-	private «getJavaType()» «attribute» = new ArrayList<«type»>();
-«ELSE-»
-	private «type» «attribute»;
-«ENDIF-»
-«ENDDEFINE»
+«REM» ============================================================================================= «ENDREM»
 
-«DEFINE FunctionModulePOJOParameterAttribute FOR FunctionModulePOJOChangingParameter-»
-«IF isTable-»
-	private «getJavaType()» «attribute» = new ArrayList<«type»>();
-«ELSE-»
-	private «type» «attribute»;
-«ENDIF-»
-«ENDDEFINE»
-
-«DEFINE FunctionModulePOJOParameterAttribute FOR FunctionModulePOJOTablesParameter-»
-	private «getJavaType()» «attribute» = new ArrayList<«type»>();
+«DEFINE FunctionModulePOJOParameterGetterSetter FOR FunctionModulePOJOParameterMapping-»
+	/**
+	 * @return the «comment == null ? attribute : comment» («name»)
+	 */
+	public «getJavaTypeName()» «getGetterName()»() {
+		return this.«attribute»;
+	}
+	
+	/**
+	 * Changes the «comment == null ? attribute : comment» («name»).
+	 * @param new«attribute.toFirstUpper()» the new «comment == null ? attribute : comment» to set
+	 */
+	public void «getSetterName()»(«getJavaTypeName()» new«attribute.toFirstUpper()») {
+		_pcs.firePropertyChange("«attribute»", this.«attribute», new«attribute.toFirstUpper()»); //$NON-NLS-1$
+		this.«attribute» = new«attribute.toFirstUpper()»;
+	}
+	
 «ENDDEFINE»
 
 «REM» ============================================================================================= «ENDREM»
 
 «DEFINE FunctionModulePOJOParameterBeforeCall FOR FunctionModulePOJOParameterMapping-»
-«ENDDEFINE»
-
-«DEFINE FunctionModulePOJOParameterBeforeCall FOR FunctionModulePOJOImportingParameter-»
-«IF isTable-»
-		«type».toTable(function.getImportParameterList().getTable("«name»")); //$NON-NLS-1$
-«ELSEIF isStructure-»
+«IF isTable()-»
+		«getElementTypeName()».toTable(«attribute», function.getImportParameterList().getTable("«name»")); //$NON-NLS-1$
+«ELSEIF isStructure()-»
 		«attribute».toStructure(function.getImportParameterList().getStructure("«name»")); //$NON-NLS-1$
 «ELSEIF isBoolean()-»
 		function.getImportParameterList().setValue("«name»", «attribute» ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -478,85 +434,30 @@ public class «responseClassName» {
 «ENDIF-»
 «ENDDEFINE»
 
-«DEFINE FunctionModulePOJOParameterBeforeCall FOR FunctionModulePOJOChangingParameter-»
-«IF isTable-»
-		«type».toTable(function.getChangingParameterList().getTable("«name»")); //$NON-NLS-1$
-«ELSEIF isStructure-»
-		«attribute».toStructure(«attribute», function.getChangingParameterList().getStructure("«name»")); //$NON-NLS-1$
-«ELSEIF isBoolean()-» 
-		function.getChangingParameterList().setValue("«name»", «attribute» ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-«ELSE-»
-		function.getChangingParameterList().setValue("«name»", «attribute»); //$NON-NLS-1$
-«ENDIF-»
-«ENDDEFINE»
-
-«DEFINE FunctionModulePOJOParameterBeforeCall FOR FunctionModulePOJOTablesParameter-»
-		«type».toTable(«attribute», function.getTableParameterList().getTable("«name»")); //$NON-NLS-1$
-«ENDDEFINE»
-
 «REM» ============================================================================================= «ENDREM»
 
 «DEFINE FunctionModulePOJOParameterAfterCall FOR FunctionModulePOJOParameterMapping-»
-«ENDDEFINE»
-
-«DEFINE FunctionModulePOJOParameterAfterCall FOR FunctionModulePOJOExportingParameter-»
-«IF isTable-»
-		«attribute» = «type».fromTable(function.getExportParameterList().getTable("«name»")); //$NON-NLS-1$
-«ELSEIF isStructure-»
-		«attribute» = new «type»(function.getExportParameterList().getStructure("«name»")); //$NON-NLS-1$
+«IF isTable()-»
+		«attribute» = «getElementTypeName()».fromTable(function.getExportParameterList().getTable("«name»")); //$NON-NLS-1$
+«ELSEIF isStructure()-»
+		«attribute» = new «getJavaTypeName()»(function.getExportParameterList().getStructure("«name»")); //$NON-NLS-1$
 «ELSEIF isBoolean()-»
 		«attribute» = function.getExportParameterList().getString("«name»").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
 «ELSE-»
-		«attribute» = function.getExportParameterList().get«type.toFirstUpper()»("«name»"); //$NON-NLS-1$
+		«attribute» = function.getExportParameterList().«getJCoGetterName()»("«name»"); //$NON-NLS-1$
 «ENDIF-»
-«ENDDEFINE»
-
-«DEFINE FunctionModulePOJOParameterAfterCall FOR FunctionModulePOJOChangingParameter-»
-«IF isTable-»
-		«attribute» = «type».fromTable(function.getChangingParameterList().getTable("«name»")); //$NON-NLS-1$
-«ELSEIF isStructure-»
-		«attribute» = new «type»(function.getChangingParameterList().getStructure("«name»")); //$NON-NLS-1$
-«ELSEIF isBoolean()-»
-		«attribute» = function.getChangingParameterList().getString("«name»").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
-«ELSE-»
-		«attribute» = function.getChangingParameterList().get«type.toFirstUpper()»("«name»"); //$NON-NLS-1$
-«ENDIF-»
-«ENDDEFINE»
-
-«DEFINE FunctionModulePOJOParameterAfterCall FOR FunctionModulePOJOTablesParameter-»
-		«attribute» = «type».fromTable(function.getTableParameterList().getTable("«name»")); //$NON-NLS-1$
 «ENDDEFINE»
 
 «REM» ============================================================================================= «ENDREM»
 
 «DEFINE FunctionModulePOJOParameterAfterCallResponse FOR FunctionModulePOJOParameterMapping-»
-«ENDDEFINE»
-
-«DEFINE FunctionModulePOJOParameterAfterCallResponse FOR FunctionModulePOJOExportingParameter-»
-«IF isTable-»
-		response.«getSetterName()»(«type».fromTable(function.getExportParameterList().getTable("«name»"))); //$NON-NLS-1$
-«ELSEIF isStructure-»
-		response.«getSetterName()»(new «type»(function.getExportParameterList().getStructure("«name»"))); //$NON-NLS-1$
+«IF isTable()-»
+		response.«getSetterName()»(«getElementTypeName()».fromTable(function.getExportParameterList().getTable("«name»"))); //$NON-NLS-1$
+«ELSEIF isStructure()-»
+		response.«getSetterName()»(new «getJavaTypeName()»(function.getExportParameterList().getStructure("«name»"))); //$NON-NLS-1$
 «ELSEIF isBoolean()-»
 		response.«getSetterName()»(function.getExportParameterList().getString("«name»").equalsIgnoreCase("X")); //$NON-NLS-1$ //$NON-NLS-2$
 «ELSE-»
-		response.«getSetterName()»(function.getExportParameterList().get«type.toFirstUpper()»("«name»")); //$NON-NLS-1$
+		response.«getSetterName()»(function.getExportParameterList().«getJCoGetterName()»("«name»")); //$NON-NLS-1$
 «ENDIF-»
 «ENDDEFINE»
-
-«DEFINE FunctionModulePOJOParameterAfterCallResponse FOR FunctionModulePOJOChangingParameter-»
-«IF isTable-»
-		response.«getSetterName()»(«type».fromTable(function.getChangingParameterList().getTable("«name»"))); //$NON-NLS-1$
-«ELSEIF isStructure-»
-		response.«getSetterName()»(new «type»(function.getChangingParameterList().getStructure("«name»"))); //$NON-NLS-1$
-«ELSEIF isBoolean()-»
-		response.«getSetterName()»(function.getChangingParameterList().getString("«name»").equalsIgnoreCase("X")); //$NON-NLS-1$ //$NON-NLS-2$
-«ELSE-»
-		response.«getSetterName()»(function.getChangingParameterList().get«type.toFirstUpper()»("«name»")); //$NON-NLS-1$
-«ENDIF-»
-«ENDDEFINE»
-
-«DEFINE FunctionModulePOJOParameterAfterCallResponse FOR FunctionModulePOJOTablesParameter-»
-		response.«getSetterName()»(«type».fromTable(function.getTableParameterList().getTable("«name»"))); //$NON-NLS-1$
-«ENDDEFINE»
-

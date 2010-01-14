@@ -27,24 +27,136 @@ String getResponseFileName(FunctionModulePOJORequestResponseMapping mapping, Str
 	
 // --- common mapping functions -------------------------------------------------------------------
 
+/*
 String getJavaType(FunctionModulePOJOParameterMapping parameter):
 	"Object";
+*/
+
+// --- general data type mapping ------------------------------------------------------------------
+
+String getJavaTypeName(DataType type):
+	switch(type) {
+		case DataType::BIG_DECIMAL : "BigDecimal"
+		case DataType::BIG_INTEGER : "BigInteger" 
+		case DataType::BOOLEAN     : "boolean"
+		case DataType::BYTE        : "byte" 
+		case DataType::BYTE_ARRAY  : "byte[]"
+		case DataType::CHAR        : "char"
+		case DataType::CHAR_ARRAY  : "char[]"
+		case DataType::DATE        : "Date"       
+		case DataType::DOUBLE      : "double"      
+		case DataType::FLOAT       : "float"      
+		case DataType::INTEGER     : "int"     
+		case DataType::LONG        : "long"        
+		case DataType::SHORT       : "short"       
+		case DataType::STRING      : "String"      
+		case DataType::TIME        : "Date"
+		default                    : "Object"
+	};
+
+String getJCoGetterName(DataType type):
+	switch(type) {
+		case DataType::BIG_DECIMAL : "getBigDecimal"
+		case DataType::BIG_INTEGER : "getBigInteger" 
+		case DataType::BOOLEAN     : "getChar"
+		case DataType::BYTE        : "getByte" 
+		case DataType::BYTE_ARRAY  : "getByteArray"
+		case DataType::CHAR        : "getChar"
+		case DataType::CHAR_ARRAY  : "getCharArray"
+		case DataType::DATE        : "getDate"       
+		case DataType::DOUBLE      : "getDouble"      
+		case DataType::FLOAT       : "getFloat"      
+		case DataType::INTEGER     : "getInt"
+		case DataType::LONG        : "getLong"        
+		case DataType::SHORT       : "getShort"       
+		case DataType::STRING      : "getString"      
+		case DataType::TIME        : "getTime"
+		default                    : "getValue"
+	};
 
 // --- structure mapping --------------------------------------------------------------------------
 
-boolean isBoolean(StructureFieldPOJOMapping parameter):
-	parameter.type.toLowerCase() == "boolean";
+List[StructureFieldPOJOMapping] getActiveFields(StructurePOJOMapping mapping):
+	mapping.fields.select(f|!f.inactive);
 
 String getGetterName(StructureFieldPOJOMapping parameter):
-	(parameter.isBoolean() ? "is" : "get") + parameter.attribute.toFirstUpper();
+	(parameter.type == DataType::BOOLEAN ? "is" : "get") + parameter.attribute.toFirstUpper();
 
 String getSetterName(StructureFieldPOJOMapping parameter):
 	"set" + parameter.attribute.toFirstUpper();
 
-// --- function module mapping --------------------------------------------------------------------
+String getJavaTypeName(StructureFieldPOJOMapping parameter):
+	parameter.type.getJavaTypeName();
+
+String getJCoGetterName(StructureFieldPOJOMapping parameter):
+	parameter.type.getJCoGetterName();
+
+// --- common accessors for function module mapping -----------------------------------------------
 
 boolean isBoolean(FunctionModulePOJOParameterMapping parameter):
-	parameter.type.toLowerCase() == "boolean";
+	false;
+
+boolean isBoolean(FunctionModulePOJOImportingParameter parameter):
+	parameter.type == DataType::BOOLEAN;
+
+boolean isBoolean(FunctionModulePOJOExportingParameter parameter):
+	parameter.type == DataType::BOOLEAN;
+
+boolean isBoolean(FunctionModulePOJOChangingParameter parameter):
+	parameter.type == DataType::BOOLEAN;
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+boolean isStructure(FunctionModulePOJOParameterMapping parameter):
+	parameter.structure != null;
+	
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+boolean isTable(FunctionModulePOJOParameterMapping parameter):
+	false;
+	
+boolean isTable(FunctionModulePOJOImportingParameter parameter):
+	parameter.table;
+
+boolean isTable(FunctionModulePOJOExportingParameter parameter):
+	parameter.table;
+
+boolean isTable(FunctionModulePOJOChangingParameter parameter):
+	parameter.table;
+
+boolean isTable(FunctionModulePOJOTablesParameter parameter):
+	true;
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+String getElementTypeName(FunctionModulePOJOParameterMapping parameter):
+	"Object";
+
+String getElementTypeName(FunctionModulePOJOImportingParameter parameter):
+	(parameter.isStructure() ? ((StructurePOJOMapping)parameter.structure.mapping).className
+                             : parameter.type.getJavaTypeName() );
+
+String getElementTypeName(FunctionModulePOJOExportingParameter parameter):
+	(parameter.isStructure() ? ((StructurePOJOMapping)parameter.structure.mapping).className
+                             : parameter.type.getJavaTypeName() );
+
+String getElementTypeName(FunctionModulePOJOChangingParameter parameter):
+	(parameter.isStructure() ? ((StructurePOJOMapping)parameter.structure.mapping).className
+                             : parameter.type.getJavaTypeName() );
+
+String getElementTypeName(FunctionModulePOJOTablesParameter parameter):
+	((StructurePOJOMapping)parameter.structure.mapping).className;
+
+// --- function module mapping --------------------------------------------------------------------
+
+List[FunctionModulePOJOParameterMapping] getActiveParameters(FunctionModulePOJOCallMapping mapping):
+	mapping.parameters.select(p|!p.inactive);
+
+List[FunctionModulePOJOParameterMapping] getActiveRequestParameters(FunctionModulePOJORequestResponseMapping mapping):
+	mapping.requestParameters.select(p|!p.inactive);
+
+List[FunctionModulePOJOParameterMapping] getActiveResponseParameters(FunctionModulePOJORequestResponseMapping mapping):
+	mapping.responseParameters.select(p|!p.inactive);
 
 String getGetterName(FunctionModulePOJOParameterMapping parameter):
 	(parameter.isBoolean() ? "is" : "get") + parameter.attribute.toFirstUpper();
@@ -52,15 +164,20 @@ String getGetterName(FunctionModulePOJOParameterMapping parameter):
 String getSetterName(FunctionModulePOJOParameterMapping parameter):
 	"set" + parameter.attribute.toFirstUpper();
 
-String getJavaType(FunctionModulePOJOImportingParameter parameter):
-	parameter.isTable ? "List<" + parameter.type + ">" : parameter.type;
+String getJavaTypeName(FunctionModulePOJOParameterMapping parameter):
+	(parameter.isTable() ? "List<" : "") + 
+	parameter.getElementTypeName() +
+	(parameter.isTable() ? ">" : ""); 
 
-String getJavaType(FunctionModulePOJOExportingParameter parameter):
-	parameter.isTable ? "List<" + parameter.type + ">" : parameter.type;
+String getJCoGetterName(FunctionModulePOJOParameterMapping parameter):
+	"getValue";
+	
+String getJCoGetterName(FunctionModulePOJOImportingParameter parameter):
+	parameter.type.getJCoGetterName();
 
-String getJavaType(FunctionModulePOJOChangingParameter parameter):
-	parameter.isTable ? "List<" + parameter.type + ">" : parameter.type;
+String getJCoGetterName(FunctionModulePOJOExportingParameter parameter):
+	parameter.type.getJCoGetterName();
 
-String getJavaType(FunctionModulePOJOTablesParameter parameter):
-	"List<" + parameter.type + ">";
+String getJCoGetterName(FunctionModulePOJOChangingParameter parameter):
+	parameter.type.getJCoGetterName();
 

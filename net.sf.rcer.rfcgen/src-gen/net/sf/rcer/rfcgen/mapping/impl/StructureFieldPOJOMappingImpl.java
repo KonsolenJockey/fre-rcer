@@ -5,6 +5,7 @@
  */
 package net.sf.rcer.rfcgen.mapping.impl;
 
+import net.sf.rcer.rfcgen.mapping.DataType;
 import net.sf.rcer.rfcgen.mapping.MappingPackage;
 import net.sf.rcer.rfcgen.mapping.StructureFieldPOJOMapping;
 
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.StructureFieldPOJOMappingImpl#getName <em>Name</em>}</li>
+ *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.StructureFieldPOJOMappingImpl#isInactive <em>Inactive</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.StructureFieldPOJOMappingImpl#getType <em>Type</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.StructureFieldPOJOMappingImpl#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.StructureFieldPOJOMappingImpl#getComment <em>Comment</em>}</li>
@@ -54,6 +56,26 @@ public class StructureFieldPOJOMappingImpl extends MinimalEObjectImpl.Container 
   protected String name = NAME_EDEFAULT;
 
   /**
+   * The default value of the '{@link #isInactive() <em>Inactive</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isInactive()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean INACTIVE_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isInactive() <em>Inactive</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isInactive()
+   * @generated
+   * @ordered
+   */
+  protected boolean inactive = INACTIVE_EDEFAULT;
+
+  /**
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -61,7 +83,7 @@ public class StructureFieldPOJOMappingImpl extends MinimalEObjectImpl.Container 
    * @generated
    * @ordered
    */
-  protected static final String TYPE_EDEFAULT = null;
+  protected static final DataType TYPE_EDEFAULT = DataType.BIG_DECIMAL;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -71,7 +93,7 @@ public class StructureFieldPOJOMappingImpl extends MinimalEObjectImpl.Container 
    * @generated
    * @ordered
    */
-  protected String type = TYPE_EDEFAULT;
+  protected DataType type = TYPE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
@@ -162,7 +184,30 @@ public class StructureFieldPOJOMappingImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getType()
+  public boolean isInactive()
+  {
+    return inactive;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setInactive(boolean newInactive)
+  {
+    boolean oldInactive = inactive;
+    inactive = newInactive;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__INACTIVE, oldInactive, inactive));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DataType getType()
   {
     return type;
   }
@@ -172,10 +217,10 @@ public class StructureFieldPOJOMappingImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(String newType)
+  public void setType(DataType newType)
   {
-    String oldType = type;
-    type = newType;
+    DataType oldType = type;
+    type = newType == null ? TYPE_EDEFAULT : newType;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__TYPE, oldType, type));
   }
@@ -238,6 +283,8 @@ public class StructureFieldPOJOMappingImpl extends MinimalEObjectImpl.Container 
     {
       case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__NAME:
         return getName();
+      case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__INACTIVE:
+        return isInactive();
       case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__TYPE:
         return getType();
       case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__ATTRIBUTE:
@@ -261,8 +308,11 @@ public class StructureFieldPOJOMappingImpl extends MinimalEObjectImpl.Container 
       case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__NAME:
         setName((String)newValue);
         return;
+      case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__INACTIVE:
+        setInactive((Boolean)newValue);
+        return;
       case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__TYPE:
-        setType((String)newValue);
+        setType((DataType)newValue);
         return;
       case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__ATTRIBUTE:
         setAttribute((String)newValue);
@@ -286,6 +336,9 @@ public class StructureFieldPOJOMappingImpl extends MinimalEObjectImpl.Container 
     {
       case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__NAME:
         setName(NAME_EDEFAULT);
+        return;
+      case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__INACTIVE:
+        setInactive(INACTIVE_EDEFAULT);
         return;
       case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__TYPE:
         setType(TYPE_EDEFAULT);
@@ -312,8 +365,10 @@ public class StructureFieldPOJOMappingImpl extends MinimalEObjectImpl.Container 
     {
       case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__INACTIVE:
+        return inactive != INACTIVE_EDEFAULT;
       case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__TYPE:
-        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+        return type != TYPE_EDEFAULT;
       case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__ATTRIBUTE:
         return ATTRIBUTE_EDEFAULT == null ? attribute != null : !ATTRIBUTE_EDEFAULT.equals(attribute);
       case MappingPackage.STRUCTURE_FIELD_POJO_MAPPING__COMMENT:
@@ -335,6 +390,8 @@ public class StructureFieldPOJOMappingImpl extends MinimalEObjectImpl.Container 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", inactive: ");
+    result.append(inactive);
     result.append(", type: ");
     result.append(type);
     result.append(", attribute: ");

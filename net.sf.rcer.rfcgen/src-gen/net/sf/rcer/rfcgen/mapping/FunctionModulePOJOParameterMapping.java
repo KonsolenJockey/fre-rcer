@@ -16,9 +16,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getName <em>Name</em>}</li>
- *   <li>{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#isIsInactive <em>Is Inactive</em>}</li>
- *   <li>{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getType <em>Type</em>}</li>
+ *   <li>{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#isInactive <em>Inactive</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getStructure <em>Structure</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getComment <em>Comment</em>}</li>
  * </ul>
  * </p>
@@ -56,56 +56,30 @@ public interface FunctionModulePOJOParameterMapping extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Is Inactive</b></em>' attribute.
+   * Returns the value of the '<em><b>Inactive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Is Inactive</em>' attribute isn't clear,
+   * If the meaning of the '<em>Inactive</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Is Inactive</em>' attribute.
-   * @see #setIsInactive(boolean)
-   * @see net.sf.rcer.rfcgen.mapping.MappingPackage#getFunctionModulePOJOParameterMapping_IsInactive()
+   * @return the value of the '<em>Inactive</em>' attribute.
+   * @see #setInactive(boolean)
+   * @see net.sf.rcer.rfcgen.mapping.MappingPackage#getFunctionModulePOJOParameterMapping_Inactive()
    * @model
    * @generated
    */
-  boolean isIsInactive();
+  boolean isInactive();
 
   /**
-   * Sets the value of the '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#isIsInactive <em>Is Inactive</em>}' attribute.
+   * Sets the value of the '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#isInactive <em>Inactive</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Is Inactive</em>' attribute.
-   * @see #isIsInactive()
+   * @param value the new value of the '<em>Inactive</em>' attribute.
+   * @see #isInactive()
    * @generated
    */
-  void setIsInactive(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Type</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' attribute.
-   * @see #setType(String)
-   * @see net.sf.rcer.rfcgen.mapping.MappingPackage#getFunctionModulePOJOParameterMapping_Type()
-   * @model
-   * @generated
-   */
-  String getType();
-
-  /**
-   * Sets the value of the '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getType <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' attribute.
-   * @see #getType()
-   * @generated
-   */
-  void setType(String value);
+  void setInactive(boolean value);
 
   /**
    * Returns the value of the '<em><b>Attribute</b></em>' attribute.
@@ -132,6 +106,32 @@ public interface FunctionModulePOJOParameterMapping extends EObject
    * @generated
    */
   void setAttribute(String value);
+
+  /**
+   * Returns the value of the '<em><b>Structure</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Structure</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Structure</em>' reference.
+   * @see #setStructure(Structure)
+   * @see net.sf.rcer.rfcgen.mapping.MappingPackage#getFunctionModulePOJOParameterMapping_Structure()
+   * @model
+   * @generated
+   */
+  Structure getStructure();
+
+  /**
+   * Sets the value of the '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getStructure <em>Structure</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Structure</em>' reference.
+   * @see #getStructure()
+   * @generated
+   */
+  void setStructure(Structure value);
 
   /**
    * Returns the value of the '<em><b>Comment</b></em>' attribute.

@@ -4,6 +4,9 @@
     <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="mapping">
       <ePackage href="http://www.sf.net/rcer/RFCMapping#/"/>
     </metamodelDeclarations>
+    <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
+      <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
+    </metamodelDeclarations>
     <rules xsi:type="xtext:ParserRule" name="Model">
       <type metamodel="/0/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Model"/>
@@ -14,11 +17,78 @@
           <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
         </tokens>
         <tokens xsi:type="xtext:Assignment" cardinality="*" feature="structures" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.2"/>
         </tokens>
         <tokens xsi:type="xtext:Assignment" cardinality="*" feature="functionModules" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
         </tokens>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:EnumRule" name="DataType">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EEnum" href="http://www.sf.net/rcer/RFCMapping#//DataType"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/BIG_DECIMAL"/>
+          <literal value="BigDecimal"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/BIG_INTEGER"/>
+          <literal value="BigInteger"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/BOOLEAN"/>
+          <literal value="Boolean"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/BYTE"/>
+          <literal value="Byte"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/BYTE_ARRAY"/>
+          <literal value="ByteArray"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/CHAR"/>
+          <literal value="Char"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/CHAR_ARRAY"/>
+          <literal value="CharArray"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/DATE"/>
+          <literal value="Date"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/DOUBLE"/>
+          <literal value="Double"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/FLOAT"/>
+          <literal value="Float"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/INTEGER"/>
+          <literal value="Integer"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/LONG"/>
+          <literal value="Long"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/SHORT"/>
+          <literal value="Short"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/STRING"/>
+          <literal value="String"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.sf.net/rcer/RFCMapping#//DataType/TIME"/>
+          <literal value="Time"/>
+        </groups>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="Structure">
@@ -32,7 +102,7 @@
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="{"/>
         <tokens xsi:type="xtext:Assignment" feature="mapping" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.2"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.3"/>
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="}"/>
       </alternatives>
@@ -41,7 +111,7 @@
       <type metamodel="/0/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
       </type>
-      <alternatives xsi:type="xtext:RuleCall" rule="/0/@rules.3"/>
+      <alternatives xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="StructurePOJOMapping">
       <type metamodel="/0/@metamodelDeclarations.0">
@@ -53,8 +123,11 @@
           <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="{"/>
-        <tokens xsi:type="xtext:Assignment" cardinality="*" feature="fields" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
+        <tokens xsi:type="xtext:Group" cardinality="*">
+          <tokens xsi:type="xtext:Assignment" feature="fields" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+          </tokens>
+          <tokens xsi:type="xtext:Keyword" value=";"/>
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="}"/>
       </alternatives>
@@ -69,11 +142,18 @@
           <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="="/>
-        <tokens xsi:type="xtext:Assignment" feature="type" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
-        </tokens>
-        <tokens xsi:type="xtext:Assignment" feature="attribute" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+        <tokens xsi:type="xtext:Alternatives">
+          <groups xsi:type="xtext:Assignment" feature="inactive" operator="?=">
+            <terminal xsi:type="xtext:Keyword" value="inactive"/>
+          </groups>
+          <groups xsi:type="xtext:Group">
+            <tokens xsi:type="xtext:Assignment" feature="type" operator="=">
+              <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
+            </tokens>
+            <tokens xsi:type="xtext:Assignment" feature="attribute" operator="=">
+              <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+            </tokens>
+          </groups>
         </tokens>
         <tokens xsi:type="xtext:Group" cardinality="?">
           <tokens xsi:type="xtext:Keyword" value="comment"/>
@@ -81,7 +161,6 @@
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
           </tokens>
         </tokens>
-        <tokens xsi:type="xtext:Keyword" value=";"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="FunctionModule">
@@ -96,7 +175,7 @@
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="{"/>
         <tokens xsi:type="xtext:Assignment" feature="mapping" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="}"/>
       </alternatives>
@@ -105,15 +184,15 @@
       <type metamodel="/0/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//FunctionModuleMapping"/>
       </type>
-      <alternatives xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
+      <alternatives xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="FunctionModulePOJOMapping">
       <type metamodel="/0/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//FunctionModulePOJOMapping"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
-        <groups xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
         <groups xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
+        <groups xsi:type="xtext:RuleCall" rule="/0/@rules.10"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="FunctionModulePOJOCallMapping">
@@ -127,7 +206,7 @@
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="{"/>
         <tokens xsi:type="xtext:Assignment" cardinality="*" feature="parameters" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.10"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.11"/>
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="}"/>
       </alternatives>
@@ -144,7 +223,7 @@
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="{"/>
         <tokens xsi:type="xtext:Assignment" cardinality="*" feature="requestParameters" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.10"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.11"/>
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="}"/>
         <tokens xsi:type="xtext:Keyword" value="response"/>
@@ -154,7 +233,7 @@
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="{"/>
         <tokens xsi:type="xtext:Assignment" cardinality="*" feature="responseParameters" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.10"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.11"/>
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="}"/>
       </alternatives>
@@ -164,10 +243,10 @@
         <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//FunctionModulePOJOParameterMapping"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
-        <groups xsi:type="xtext:RuleCall" rule="/0/@rules.11"/>
         <groups xsi:type="xtext:RuleCall" rule="/0/@rules.12"/>
         <groups xsi:type="xtext:RuleCall" rule="/0/@rules.13"/>
         <groups xsi:type="xtext:RuleCall" rule="/0/@rules.14"/>
+        <groups xsi:type="xtext:RuleCall" rule="/0/@rules.15"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="FunctionModulePOJOImportingParameter">
@@ -175,7 +254,7 @@
         <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//FunctionModulePOJOImportingParameter"/>
       </type>
       <alternatives xsi:type="xtext:Group">
-        <tokens xsi:type="xtext:Keyword" value="import"/>
+        <tokens xsi:type="xtext:Keyword" value="importing"/>
         <tokens xsi:type="xtext:Alternatives">
           <groups xsi:type="xtext:Group">
             <tokens xsi:type="xtext:Keyword" value="field"/>
@@ -184,12 +263,12 @@
             </tokens>
             <tokens xsi:type="xtext:Keyword" value="="/>
             <tokens xsi:type="xtext:Alternatives">
-              <groups xsi:type="xtext:Assignment" feature="isInactive" operator="?=">
+              <groups xsi:type="xtext:Assignment" feature="inactive" operator="?=">
                 <terminal xsi:type="xtext:Keyword" value="inactive"/>
               </groups>
               <groups xsi:type="xtext:Group">
                 <tokens xsi:type="xtext:Assignment" feature="type" operator="=">
-                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                  <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
                 </tokens>
                 <tokens xsi:type="xtext:Assignment" feature="attribute" operator="=">
                   <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
@@ -198,20 +277,23 @@
             </tokens>
           </groups>
           <groups xsi:type="xtext:Group">
-            <tokens xsi:type="xtext:Assignment" feature="isStructure" operator="?=">
-              <terminal xsi:type="xtext:Keyword" value="structure"/>
-            </tokens>
+            <tokens xsi:type="xtext:Keyword" value="structure"/>
             <tokens xsi:type="xtext:Assignment" feature="name" operator="=">
               <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
             </tokens>
             <tokens xsi:type="xtext:Keyword" value="="/>
             <tokens xsi:type="xtext:Alternatives">
-              <groups xsi:type="xtext:Assignment" feature="isInactive" operator="?=">
+              <groups xsi:type="xtext:Assignment" feature="inactive" operator="?=">
                 <terminal xsi:type="xtext:Keyword" value="inactive"/>
               </groups>
               <groups xsi:type="xtext:Group">
-                <tokens xsi:type="xtext:Assignment" feature="type" operator="=">
-                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                <tokens xsi:type="xtext:Assignment" feature="structure" operator="=">
+                  <terminal xsi:type="xtext:CrossReference">
+                    <type metamodel="/0/@metamodelDeclarations.0">
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Structure"/>
+                    </type>
+                    <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                  </terminal>
                 </tokens>
                 <tokens xsi:type="xtext:Assignment" feature="attribute" operator="=">
                   <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
@@ -220,7 +302,7 @@
             </tokens>
           </groups>
           <groups xsi:type="xtext:Group">
-            <tokens xsi:type="xtext:Assignment" feature="isTable" operator="?=">
+            <tokens xsi:type="xtext:Assignment" feature="table" operator="?=">
               <terminal xsi:type="xtext:Keyword" value="table"/>
             </tokens>
             <tokens xsi:type="xtext:Assignment" feature="name" operator="=">
@@ -228,12 +310,17 @@
             </tokens>
             <tokens xsi:type="xtext:Keyword" value="="/>
             <tokens xsi:type="xtext:Alternatives">
-              <groups xsi:type="xtext:Assignment" feature="isInactive" operator="?=">
+              <groups xsi:type="xtext:Assignment" feature="inactive" operator="?=">
                 <terminal xsi:type="xtext:Keyword" value="inactive"/>
               </groups>
               <groups xsi:type="xtext:Group">
-                <tokens xsi:type="xtext:Assignment" feature="type" operator="=">
-                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                <tokens xsi:type="xtext:Assignment" feature="structure" operator="=">
+                  <terminal xsi:type="xtext:CrossReference">
+                    <type metamodel="/0/@metamodelDeclarations.0">
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Structure"/>
+                    </type>
+                    <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                  </terminal>
                 </tokens>
                 <tokens xsi:type="xtext:Assignment" feature="attribute" operator="=">
                   <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
@@ -256,7 +343,7 @@
         <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//FunctionModulePOJOExportingParameter"/>
       </type>
       <alternatives xsi:type="xtext:Group">
-        <tokens xsi:type="xtext:Keyword" value="export"/>
+        <tokens xsi:type="xtext:Keyword" value="exporting"/>
         <tokens xsi:type="xtext:Alternatives">
           <groups xsi:type="xtext:Group">
             <tokens xsi:type="xtext:Keyword" value="field"/>
@@ -265,12 +352,12 @@
             </tokens>
             <tokens xsi:type="xtext:Keyword" value="="/>
             <tokens xsi:type="xtext:Alternatives">
-              <groups xsi:type="xtext:Assignment" feature="isInactive" operator="?=">
+              <groups xsi:type="xtext:Assignment" feature="inactive" operator="?=">
                 <terminal xsi:type="xtext:Keyword" value="inactive"/>
               </groups>
               <groups xsi:type="xtext:Group">
                 <tokens xsi:type="xtext:Assignment" feature="type" operator="=">
-                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                  <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
                 </tokens>
                 <tokens xsi:type="xtext:Assignment" feature="attribute" operator="=">
                   <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
@@ -279,20 +366,23 @@
             </tokens>
           </groups>
           <groups xsi:type="xtext:Group">
-            <tokens xsi:type="xtext:Assignment" feature="isStructure" operator="?=">
-              <terminal xsi:type="xtext:Keyword" value="structure"/>
-            </tokens>
+            <tokens xsi:type="xtext:Keyword" value="structure"/>
             <tokens xsi:type="xtext:Assignment" feature="name" operator="=">
               <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
             </tokens>
             <tokens xsi:type="xtext:Keyword" value="="/>
             <tokens xsi:type="xtext:Alternatives">
-              <groups xsi:type="xtext:Assignment" feature="isInactive" operator="?=">
+              <groups xsi:type="xtext:Assignment" feature="inactive" operator="?=">
                 <terminal xsi:type="xtext:Keyword" value="inactive"/>
               </groups>
               <groups xsi:type="xtext:Group">
-                <tokens xsi:type="xtext:Assignment" feature="type" operator="=">
-                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                <tokens xsi:type="xtext:Assignment" feature="structure" operator="=">
+                  <terminal xsi:type="xtext:CrossReference">
+                    <type metamodel="/0/@metamodelDeclarations.0">
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Structure"/>
+                    </type>
+                    <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                  </terminal>
                 </tokens>
                 <tokens xsi:type="xtext:Assignment" feature="attribute" operator="=">
                   <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
@@ -301,7 +391,7 @@
             </tokens>
           </groups>
           <groups xsi:type="xtext:Group">
-            <tokens xsi:type="xtext:Assignment" feature="isTable" operator="?=">
+            <tokens xsi:type="xtext:Assignment" feature="table" operator="?=">
               <terminal xsi:type="xtext:Keyword" value="table"/>
             </tokens>
             <tokens xsi:type="xtext:Assignment" feature="name" operator="=">
@@ -309,12 +399,17 @@
             </tokens>
             <tokens xsi:type="xtext:Keyword" value="="/>
             <tokens xsi:type="xtext:Alternatives">
-              <groups xsi:type="xtext:Assignment" feature="isInactive" operator="?=">
+              <groups xsi:type="xtext:Assignment" feature="inactive" operator="?=">
                 <terminal xsi:type="xtext:Keyword" value="inactive"/>
               </groups>
               <groups xsi:type="xtext:Group">
-                <tokens xsi:type="xtext:Assignment" feature="type" operator="=">
-                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                <tokens xsi:type="xtext:Assignment" feature="structure" operator="=">
+                  <terminal xsi:type="xtext:CrossReference">
+                    <type metamodel="/0/@metamodelDeclarations.0">
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Structure"/>
+                    </type>
+                    <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                  </terminal>
                 </tokens>
                 <tokens xsi:type="xtext:Assignment" feature="attribute" operator="=">
                   <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
@@ -337,7 +432,7 @@
         <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//FunctionModulePOJOChangingParameter"/>
       </type>
       <alternatives xsi:type="xtext:Group">
-        <tokens xsi:type="xtext:Keyword" value="change"/>
+        <tokens xsi:type="xtext:Keyword" value="changing"/>
         <tokens xsi:type="xtext:Alternatives">
           <groups xsi:type="xtext:Group">
             <tokens xsi:type="xtext:Keyword" value="field"/>
@@ -346,12 +441,12 @@
             </tokens>
             <tokens xsi:type="xtext:Keyword" value="="/>
             <tokens xsi:type="xtext:Alternatives">
-              <groups xsi:type="xtext:Assignment" feature="isInactive" operator="?=">
+              <groups xsi:type="xtext:Assignment" feature="inactive" operator="?=">
                 <terminal xsi:type="xtext:Keyword" value="inactive"/>
               </groups>
               <groups xsi:type="xtext:Group">
                 <tokens xsi:type="xtext:Assignment" feature="type" operator="=">
-                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                  <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
                 </tokens>
                 <tokens xsi:type="xtext:Assignment" feature="attribute" operator="=">
                   <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
@@ -360,20 +455,23 @@
             </tokens>
           </groups>
           <groups xsi:type="xtext:Group">
-            <tokens xsi:type="xtext:Assignment" feature="isStructure" operator="?=">
-              <terminal xsi:type="xtext:Keyword" value="structure"/>
-            </tokens>
+            <tokens xsi:type="xtext:Keyword" value="structure"/>
             <tokens xsi:type="xtext:Assignment" feature="name" operator="=">
               <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
             </tokens>
             <tokens xsi:type="xtext:Keyword" value="="/>
             <tokens xsi:type="xtext:Alternatives">
-              <groups xsi:type="xtext:Assignment" feature="isInactive" operator="?=">
+              <groups xsi:type="xtext:Assignment" feature="inactive" operator="?=">
                 <terminal xsi:type="xtext:Keyword" value="inactive"/>
               </groups>
               <groups xsi:type="xtext:Group">
-                <tokens xsi:type="xtext:Assignment" feature="type" operator="=">
-                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                <tokens xsi:type="xtext:Assignment" feature="structure" operator="=">
+                  <terminal xsi:type="xtext:CrossReference">
+                    <type metamodel="/0/@metamodelDeclarations.0">
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Structure"/>
+                    </type>
+                    <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                  </terminal>
                 </tokens>
                 <tokens xsi:type="xtext:Assignment" feature="attribute" operator="=">
                   <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
@@ -382,7 +480,7 @@
             </tokens>
           </groups>
           <groups xsi:type="xtext:Group">
-            <tokens xsi:type="xtext:Assignment" feature="isTable" operator="?=">
+            <tokens xsi:type="xtext:Assignment" feature="table" operator="?=">
               <terminal xsi:type="xtext:Keyword" value="table"/>
             </tokens>
             <tokens xsi:type="xtext:Assignment" feature="name" operator="=">
@@ -390,12 +488,17 @@
             </tokens>
             <tokens xsi:type="xtext:Keyword" value="="/>
             <tokens xsi:type="xtext:Alternatives">
-              <groups xsi:type="xtext:Assignment" feature="isInactive" operator="?=">
+              <groups xsi:type="xtext:Assignment" feature="inactive" operator="?=">
                 <terminal xsi:type="xtext:Keyword" value="inactive"/>
               </groups>
               <groups xsi:type="xtext:Group">
-                <tokens xsi:type="xtext:Assignment" feature="type" operator="=">
-                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                <tokens xsi:type="xtext:Assignment" feature="structure" operator="=">
+                  <terminal xsi:type="xtext:CrossReference">
+                    <type metamodel="/0/@metamodelDeclarations.0">
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Structure"/>
+                    </type>
+                    <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+                  </terminal>
                 </tokens>
                 <tokens xsi:type="xtext:Assignment" feature="attribute" operator="=">
                   <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
@@ -424,12 +527,17 @@
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="="/>
         <tokens xsi:type="xtext:Alternatives">
-          <groups xsi:type="xtext:Assignment" feature="isInactive" operator="?=">
+          <groups xsi:type="xtext:Assignment" feature="inactive" operator="?=">
             <terminal xsi:type="xtext:Keyword" value="inactive"/>
           </groups>
           <groups xsi:type="xtext:Group">
-            <tokens xsi:type="xtext:Assignment" feature="type" operator="=">
-              <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+            <tokens xsi:type="xtext:Assignment" feature="structure" operator="=">
+              <terminal xsi:type="xtext:CrossReference">
+                <type metamodel="/0/@metamodelDeclarations.0">
+                  <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Structure"/>
+                </type>
+                <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+              </terminal>
             </tokens>
             <tokens xsi:type="xtext:Assignment" feature="attribute" operator="=">
               <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>

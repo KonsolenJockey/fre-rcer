@@ -26,6 +26,7 @@ import org.eclipse.xtext.parser.impl.*;
 import org.eclipse.xtext.parsetree.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
@@ -302,11 +303,11 @@ ruleStructurePOJOMapping returns [EObject current=null]
     {
         createLeafNode(grammarAccess.getStructurePOJOMappingAccess().getLeftCurlyBracketKeyword_2(), null); 
     }
-(	
+((	
 	
 	    
 	    { 
-	        currentNode=createCompositeNode(grammarAccess.getStructurePOJOMappingAccess().getFieldsStructureFieldPOJOMappingParserRuleCall_3_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getStructurePOJOMappingAccess().getFieldsStructureFieldPOJOMappingParserRuleCall_3_0_0(), currentNode); 
 	    }
 	    lv_fields_3=ruleStructureFieldPOJOMapping 
 	    {
@@ -323,6 +324,10 @@ ruleStructurePOJOMapping returns [EObject current=null]
 	        currentNode = currentNode.getParent();
 	    }
 	
+)';' 
+    {
+        createLeafNode(grammarAccess.getStructurePOJOMappingAccess().getSemicolonKeyword_3_1(), null); 
+    }
 )*'}' 
     {
         createLeafNode(grammarAccess.getStructurePOJOMappingAccess().getRightCurlyBracketKeyword_4(), null); 
@@ -376,12 +381,13 @@ ruleStructureFieldPOJOMapping returns [EObject current=null]
     {
         createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getEqualsSignKeyword_2(), null); 
     }
-(	
+((	
 	
-	    lv_type_3=	RULE_ID
-	{
-		createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getTypeIDTerminalRuleCall_3_0(), "type"); 
-	}
+	    lv_inactive_3='inactive' 
+    {
+        createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getInactiveInactiveKeyword_3_0_0(), "inactive"); 
+    }
+
  
 	    {
 	        if ($current==null) {
@@ -390,17 +396,39 @@ ruleStructureFieldPOJOMapping returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "type", lv_type_3, "ID", lastConsumedNode);
+	       		set($current, "inactive", true, "inactive", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
+	    }
+	
+)
+    |((	
+	
+	    
+	    { 
+	        currentNode=createCompositeNode(grammarAccess.getStructureFieldPOJOMappingAccess().getTypeDataTypeEnumRuleCall_3_1_0_0(), currentNode); 
+	    }
+	    lv_type_4=ruleDataType 
+	    {
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getStructureFieldPOJOMappingRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        
+	        try {
+	       		set($current, "type", lv_type_4, "DataType", lastConsumedNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
 	    }
 	
 )(	
 	
-	    lv_attribute_4=	RULE_ID
+	    lv_attribute_5=	RULE_ID
 	{
-		createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getAttributeIDTerminalRuleCall_4_0(), "attribute"); 
+		createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getAttributeIDTerminalRuleCall_3_1_1_0(), "attribute"); 
 	}
  
 	    {
@@ -410,21 +438,21 @@ ruleStructureFieldPOJOMapping returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "attribute", lv_attribute_4, "ID", lastConsumedNode);
+	       		set($current, "attribute", lv_attribute_5, "ID", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
 	    }
 	
-)('comment' 
+)))('comment' 
     {
-        createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getCommentKeyword_5_0(), null); 
+        createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getCommentKeyword_4_0(), null); 
     }
 (	
 	
-	    lv_comment_6=	RULE_STRING
+	    lv_comment_7=	RULE_STRING
 	{
-		createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getCommentSTRINGTerminalRuleCall_5_1_0(), "comment"); 
+		createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getCommentSTRINGTerminalRuleCall_4_1_0(), "comment"); 
 	}
  
 	    {
@@ -434,17 +462,13 @@ ruleStructureFieldPOJOMapping returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "comment", lv_comment_6, "STRING", lastConsumedNode);
+	       		set($current, "comment", lv_comment_7, "STRING", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
 	    }
 	
-))?';' 
-    {
-        createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getSemicolonKeyword_6(), null); 
-    }
-);
+))?);
 
 
 
@@ -882,9 +906,9 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
     @after { resetLookahead(); 
     	lastConsumedNode = currentNode;
     }:
-('import' 
+('importing' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getImportKeyword_0(), null); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getImportingKeyword_0(), null); 
     }
 (('field' 
     {
@@ -916,9 +940,9 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
     }
 ((	
 	
-	    lv_isInactive_4='inactive' 
+	    lv_inactive_4='inactive' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsInactiveInactiveKeyword_1_0_3_0_0(), "isInactive"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveInactiveKeyword_1_0_3_0_0(), "inactive"); 
     }
 
  
@@ -929,7 +953,7 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "isInactive", true, "inactive", lastConsumedNode);
+	       		set($current, "inactive", true, "inactive", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -938,22 +962,23 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
 )
     |((	
 	
-	    lv_type_5=	RULE_ID
-	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTypeIDTerminalRuleCall_1_0_3_1_0_0(), "type"); 
-	}
- 
+	    
+	    { 
+	        currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTypeDataTypeEnumRuleCall_1_0_3_1_0_0(), currentNode); 
+	    }
+	    lv_type_5=ruleDataType 
 	    {
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        
 	        try {
-	       		set($current, "type", lv_type_5, "ID", lastConsumedNode);
+	       		set($current, "type", lv_type_5, "DataType", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
+	        currentNode = currentNode.getParent();
 	    }
 	
 )(	
@@ -977,28 +1002,11 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
 	    }
 	
 ))))
-    |((	
-	
-	    lv_isStructure_7='structure' 
+    |('structure' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsStructureStructureKeyword_1_1_0_0(), "isStructure"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureKeyword_1_1_0(), null); 
     }
-
- 
-	    {
-	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
-	        }
-	        
-	        try {
-	       		set($current, "isStructure", true, "structure", lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	    }
-	
-)(	
+(	
 	
 	    lv_name_8=	RULE_STRING
 	{
@@ -1024,9 +1032,9 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
     }
 ((	
 	
-	    lv_isInactive_10='inactive' 
+	    lv_inactive_10='inactive' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsInactiveInactiveKeyword_1_1_3_0_0(), "isInactive"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveInactiveKeyword_1_1_3_0_0(), "inactive"); 
     }
 
  
@@ -1037,7 +1045,7 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "isInactive", true, "inactive", lastConsumedNode);
+	       		set($current, "inactive", true, "inactive", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -1046,23 +1054,19 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
 )
     |((	
 	
-	    lv_type_11=	RULE_ID
-	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTypeIDTerminalRuleCall_1_1_3_1_0_0(), "type"); 
-	}
- 
-	    {
-	        if ($current==null) {
+		
+		{
+			if ($current==null) {
 	            $current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
-	        
-	        try {
-	       		set($current, "type", lv_type_11, "ID", lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	    }
+        }
+	RULE_ID
+	{
+		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(), "structure"); 
+	}
+
+		// TODO assign feature to currentNode
 	
 )(	
 	
@@ -1087,9 +1091,9 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
 ))))
     |((	
 	
-	    lv_isTable_13='table' 
+	    lv_table_13='table' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsTableTableKeyword_1_2_0_0(), "isTable"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTableTableKeyword_1_2_0_0(), "table"); 
     }
 
  
@@ -1100,7 +1104,7 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "isTable", true, "table", lastConsumedNode);
+	       		set($current, "table", true, "table", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -1132,9 +1136,9 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
     }
 ((	
 	
-	    lv_isInactive_16='inactive' 
+	    lv_inactive_16='inactive' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getIsInactiveInactiveKeyword_1_2_3_0_0(), "isInactive"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveInactiveKeyword_1_2_3_0_0(), "inactive"); 
     }
 
  
@@ -1145,7 +1149,7 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "isInactive", true, "inactive", lastConsumedNode);
+	       		set($current, "inactive", true, "inactive", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -1154,23 +1158,19 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
 )
     |((	
 	
-	    lv_type_17=	RULE_ID
-	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTypeIDTerminalRuleCall_1_2_3_1_0_0(), "type"); 
-	}
- 
-	    {
-	        if ($current==null) {
+		
+		{
+			if ($current==null) {
 	            $current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
-	        
-	        try {
-	       		set($current, "type", lv_type_17, "ID", lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	    }
+        }
+	RULE_ID
+	{
+		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(), "structure"); 
+	}
+
+		// TODO assign feature to currentNode
 	
 )(	
 	
@@ -1241,9 +1241,9 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
     @after { resetLookahead(); 
     	lastConsumedNode = currentNode;
     }:
-('export' 
+('exporting' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getExportKeyword_0(), null); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getExportingKeyword_0(), null); 
     }
 (('field' 
     {
@@ -1275,9 +1275,9 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
     }
 ((	
 	
-	    lv_isInactive_4='inactive' 
+	    lv_inactive_4='inactive' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsInactiveInactiveKeyword_1_0_3_0_0(), "isInactive"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveInactiveKeyword_1_0_3_0_0(), "inactive"); 
     }
 
  
@@ -1288,7 +1288,7 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "isInactive", true, "inactive", lastConsumedNode);
+	       		set($current, "inactive", true, "inactive", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -1297,22 +1297,23 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
 )
     |((	
 	
-	    lv_type_5=	RULE_ID
-	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTypeIDTerminalRuleCall_1_0_3_1_0_0(), "type"); 
-	}
- 
+	    
+	    { 
+	        currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTypeDataTypeEnumRuleCall_1_0_3_1_0_0(), currentNode); 
+	    }
+	    lv_type_5=ruleDataType 
 	    {
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        
 	        try {
-	       		set($current, "type", lv_type_5, "ID", lastConsumedNode);
+	       		set($current, "type", lv_type_5, "DataType", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
+	        currentNode = currentNode.getParent();
 	    }
 	
 )(	
@@ -1336,28 +1337,11 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
 	    }
 	
 ))))
-    |((	
-	
-	    lv_isStructure_7='structure' 
+    |('structure' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsStructureStructureKeyword_1_1_0_0(), "isStructure"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureKeyword_1_1_0(), null); 
     }
-
- 
-	    {
-	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
-	        }
-	        
-	        try {
-	       		set($current, "isStructure", true, "structure", lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	    }
-	
-)(	
+(	
 	
 	    lv_name_8=	RULE_STRING
 	{
@@ -1383,9 +1367,9 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
     }
 ((	
 	
-	    lv_isInactive_10='inactive' 
+	    lv_inactive_10='inactive' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsInactiveInactiveKeyword_1_1_3_0_0(), "isInactive"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveInactiveKeyword_1_1_3_0_0(), "inactive"); 
     }
 
  
@@ -1396,7 +1380,7 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "isInactive", true, "inactive", lastConsumedNode);
+	       		set($current, "inactive", true, "inactive", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -1405,23 +1389,19 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
 )
     |((	
 	
-	    lv_type_11=	RULE_ID
-	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTypeIDTerminalRuleCall_1_1_3_1_0_0(), "type"); 
-	}
- 
-	    {
-	        if ($current==null) {
+		
+		{
+			if ($current==null) {
 	            $current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
-	        
-	        try {
-	       		set($current, "type", lv_type_11, "ID", lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	    }
+        }
+	RULE_ID
+	{
+		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(), "structure"); 
+	}
+
+		// TODO assign feature to currentNode
 	
 )(	
 	
@@ -1446,9 +1426,9 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
 ))))
     |((	
 	
-	    lv_isTable_13='table' 
+	    lv_table_13='table' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsTableTableKeyword_1_2_0_0(), "isTable"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTableTableKeyword_1_2_0_0(), "table"); 
     }
 
  
@@ -1459,7 +1439,7 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "isTable", true, "table", lastConsumedNode);
+	       		set($current, "table", true, "table", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -1491,9 +1471,9 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
     }
 ((	
 	
-	    lv_isInactive_16='inactive' 
+	    lv_inactive_16='inactive' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getIsInactiveInactiveKeyword_1_2_3_0_0(), "isInactive"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveInactiveKeyword_1_2_3_0_0(), "inactive"); 
     }
 
  
@@ -1504,7 +1484,7 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "isInactive", true, "inactive", lastConsumedNode);
+	       		set($current, "inactive", true, "inactive", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -1513,23 +1493,19 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
 )
     |((	
 	
-	    lv_type_17=	RULE_ID
-	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTypeIDTerminalRuleCall_1_2_3_1_0_0(), "type"); 
-	}
- 
-	    {
-	        if ($current==null) {
+		
+		{
+			if ($current==null) {
 	            $current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
-	        
-	        try {
-	       		set($current, "type", lv_type_17, "ID", lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	    }
+        }
+	RULE_ID
+	{
+		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(), "structure"); 
+	}
+
+		// TODO assign feature to currentNode
 	
 )(	
 	
@@ -1600,9 +1576,9 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
     @after { resetLookahead(); 
     	lastConsumedNode = currentNode;
     }:
-('change' 
+('changing' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getChangeKeyword_0(), null); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getChangingKeyword_0(), null); 
     }
 (('field' 
     {
@@ -1634,9 +1610,9 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
     }
 ((	
 	
-	    lv_isInactive_4='inactive' 
+	    lv_inactive_4='inactive' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsInactiveInactiveKeyword_1_0_3_0_0(), "isInactive"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveInactiveKeyword_1_0_3_0_0(), "inactive"); 
     }
 
  
@@ -1647,7 +1623,7 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "isInactive", true, "inactive", lastConsumedNode);
+	       		set($current, "inactive", true, "inactive", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -1656,22 +1632,23 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
 )
     |((	
 	
-	    lv_type_5=	RULE_ID
-	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTypeIDTerminalRuleCall_1_0_3_1_0_0(), "type"); 
-	}
- 
+	    
+	    { 
+	        currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTypeDataTypeEnumRuleCall_1_0_3_1_0_0(), currentNode); 
+	    }
+	    lv_type_5=ruleDataType 
 	    {
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        
 	        try {
-	       		set($current, "type", lv_type_5, "ID", lastConsumedNode);
+	       		set($current, "type", lv_type_5, "DataType", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
+	        currentNode = currentNode.getParent();
 	    }
 	
 )(	
@@ -1695,28 +1672,11 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
 	    }
 	
 ))))
-    |((	
-	
-	    lv_isStructure_7='structure' 
+    |('structure' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsStructureStructureKeyword_1_1_0_0(), "isStructure"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureKeyword_1_1_0(), null); 
     }
-
- 
-	    {
-	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
-	        }
-	        
-	        try {
-	       		set($current, "isStructure", true, "structure", lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	    }
-	
-)(	
+(	
 	
 	    lv_name_8=	RULE_STRING
 	{
@@ -1742,9 +1702,9 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
     }
 ((	
 	
-	    lv_isInactive_10='inactive' 
+	    lv_inactive_10='inactive' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsInactiveInactiveKeyword_1_1_3_0_0(), "isInactive"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveInactiveKeyword_1_1_3_0_0(), "inactive"); 
     }
 
  
@@ -1755,7 +1715,7 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "isInactive", true, "inactive", lastConsumedNode);
+	       		set($current, "inactive", true, "inactive", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -1764,23 +1724,19 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
 )
     |((	
 	
-	    lv_type_11=	RULE_ID
-	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTypeIDTerminalRuleCall_1_1_3_1_0_0(), "type"); 
-	}
- 
-	    {
-	        if ($current==null) {
+		
+		{
+			if ($current==null) {
 	            $current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
-	        
-	        try {
-	       		set($current, "type", lv_type_11, "ID", lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	    }
+        }
+	RULE_ID
+	{
+		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(), "structure"); 
+	}
+
+		// TODO assign feature to currentNode
 	
 )(	
 	
@@ -1805,9 +1761,9 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
 ))))
     |((	
 	
-	    lv_isTable_13='table' 
+	    lv_table_13='table' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsTableTableKeyword_1_2_0_0(), "isTable"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTableTableKeyword_1_2_0_0(), "table"); 
     }
 
  
@@ -1818,7 +1774,7 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "isTable", true, "table", lastConsumedNode);
+	       		set($current, "table", true, "table", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -1850,9 +1806,9 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
     }
 ((	
 	
-	    lv_isInactive_16='inactive' 
+	    lv_inactive_16='inactive' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getIsInactiveInactiveKeyword_1_2_3_0_0(), "isInactive"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveInactiveKeyword_1_2_3_0_0(), "inactive"); 
     }
 
  
@@ -1863,7 +1819,7 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "isInactive", true, "inactive", lastConsumedNode);
+	       		set($current, "inactive", true, "inactive", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -1872,23 +1828,19 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
 )
     |((	
 	
-	    lv_type_17=	RULE_ID
-	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTypeIDTerminalRuleCall_1_2_3_1_0_0(), "type"); 
-	}
- 
-	    {
-	        if ($current==null) {
+		
+		{
+			if ($current==null) {
 	            $current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
-	        
-	        try {
-	       		set($current, "type", lv_type_17, "ID", lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	    }
+        }
+	RULE_ID
+	{
+		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(), "structure"); 
+	}
+
+		// TODO assign feature to currentNode
 	
 )(	
 	
@@ -1989,9 +1941,9 @@ ruleFunctionModulePOJOTablesParameter returns [EObject current=null]
     }
 ((	
 	
-	    lv_isInactive_3='inactive' 
+	    lv_inactive_3='inactive' 
     {
-        createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getIsInactiveInactiveKeyword_3_0_0(), "isInactive"); 
+        createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getInactiveInactiveKeyword_3_0_0(), "inactive"); 
     }
 
  
@@ -2002,7 +1954,7 @@ ruleFunctionModulePOJOTablesParameter returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "isInactive", true, "inactive", lastConsumedNode);
+	       		set($current, "inactive", true, "inactive", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -2011,23 +1963,19 @@ ruleFunctionModulePOJOTablesParameter returns [EObject current=null]
 )
     |((	
 	
-	    lv_type_4=	RULE_ID
-	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getTypeIDTerminalRuleCall_3_1_0_0(), "type"); 
-	}
- 
-	    {
-	        if ($current==null) {
+		
+		{
+			if ($current==null) {
 	            $current = factory.create(grammarAccess.getFunctionModulePOJOTablesParameterRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
-	        
-	        try {
-	       		set($current, "type", lv_type_4, "ID", lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	    }
+        }
+	RULE_ID
+	{
+		createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureCrossReference_3_1_0_0(), "structure"); 
+	}
+
+		// TODO assign feature to currentNode
 	
 )(	
 	
@@ -2080,6 +2028,105 @@ ruleFunctionModulePOJOTablesParameter returns [EObject current=null]
 );
 
 
+
+
+
+// Rule DataType
+ruleDataType returns [Enumerator current=null] 
+    @init { setCurrentLookahead(); resetLookahead(); }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+((	'BigDecimal' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getBIG_DECIMALEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getBIG_DECIMALEnumLiteralDeclaration_0(), null); 
+    }
+)
+    |(	'BigInteger' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getBIG_INTEGEREnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getBIG_INTEGEREnumLiteralDeclaration_1(), null); 
+    }
+)
+    |(	'Boolean' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_2(), null); 
+    }
+)
+    |(	'Byte' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getBYTEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getBYTEEnumLiteralDeclaration_3(), null); 
+    }
+)
+    |(	'ByteArray' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getBYTE_ARRAYEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getBYTE_ARRAYEnumLiteralDeclaration_4(), null); 
+    }
+)
+    |(	'Char' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getCHAREnumLiteralDeclaration_5().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getCHAREnumLiteralDeclaration_5(), null); 
+    }
+)
+    |(	'CharArray' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getCHAR_ARRAYEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getCHAR_ARRAYEnumLiteralDeclaration_6(), null); 
+    }
+)
+    |(	'Date' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getDATEEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getDATEEnumLiteralDeclaration_7(), null); 
+    }
+)
+    |(	'Double' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getDOUBLEEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getDOUBLEEnumLiteralDeclaration_8(), null); 
+    }
+)
+    |(	'Float' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getFLOATEnumLiteralDeclaration_9().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getFLOATEnumLiteralDeclaration_9(), null); 
+    }
+)
+    |(	'Integer' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getINTEGEREnumLiteralDeclaration_10().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getINTEGEREnumLiteralDeclaration_10(), null); 
+    }
+)
+    |(	'Long' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getLONGEnumLiteralDeclaration_11().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getLONGEnumLiteralDeclaration_11(), null); 
+    }
+)
+    |(	'Short' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getSHORTEnumLiteralDeclaration_12().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getSHORTEnumLiteralDeclaration_12(), null); 
+    }
+)
+    |(	'String' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_13().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_13(), null); 
+    }
+)
+    |(	'Time' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getTIMEEnumLiteralDeclaration_14().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getDataTypeAccess().getTIMEEnumLiteralDeclaration_14(), null); 
+    }
+));
 
 
 
