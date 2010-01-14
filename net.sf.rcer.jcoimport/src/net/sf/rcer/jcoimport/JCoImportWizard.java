@@ -11,6 +11,7 @@
  */
 package net.sf.rcer.jcoimport;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.core.databinding.DataBindingContext;
@@ -55,7 +56,7 @@ public class JCoImportWizard extends Wizard implements IImportWizard {
 		if (Platform.getInstallLocation() != null) {
 			generatorSettings.setBundleExportSelected(true);
 			// TODO use some API to locate the dropins folder
-			generatorSettings.setExportPath(Platform.getInstallLocation().getURL().getFile() + "dropins"); //$NON-NLS-1$
+			generatorSettings.setExportPath(Platform.getInstallLocation().getURL().getFile() + "dropins" + File.pathSeparator + "sapjco"); //$NON-NLS-1$ $NON-NLS-2$
 		}
 		
 		context = new DataBindingContext();
