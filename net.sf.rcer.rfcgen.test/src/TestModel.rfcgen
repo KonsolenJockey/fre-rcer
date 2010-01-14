@@ -1,0 +1,255 @@
+//
+// Copyright (c) 2008 The RCER Development Team.
+//
+// All rights reserved. This program and the accompanying materials
+// are made available under the terms of the Eclipse Public License v1.0
+// which accompanies this distribution, and is available at
+// http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,
+// this entire header must remain intact.
+//
+// $Id$
+//
+// This is a model to try out all the parameter combinations that can be specified using the
+// mapping language. It's intended as a sort of "unit test" for the generator.
+// 
+
+package "net.sf.rcer.rfcgen.test"
+
+structure "TEST_STRUCTURE" { 
+	class TestStructure { 
+		field "BIGDECIMAL" = BigDecimal myBigDecimal comment "big decimal";
+		field "BIGINTEGER" = BigInteger myBigInteger comment "big integer";
+		field "BOOLEAN"    = Boolean    myBoolean    comment "boolean";
+		field "BYTE"       = Byte       myByte       comment "byte";
+		field "BYTE_ARRAY" = ByteArray  myByteArray  comment "byte array";
+		field "CHARACTER"  = Char       myChar       comment "character";
+		field "CHAR_ARRAY" = CharArray  myCharArray  comment "character array";
+		field "DATE"       = Date       myDate       comment "date";
+		field "DOUBLE"     = Double     myDouble     comment "double";
+		field "FLOAT"      = Float      myFloat      comment "float";
+		field "INTEGER"    = Integer    myInteger    comment "integer";
+		field "LONG"       = Long       myLong       comment "long";
+		field "SHORT"      = Short      myShort      comment "short";
+		field "STRING"     = String     myString     comment "string";
+		field "TIME"       = Time       myTime       comment "time";
+		field "NO_COMMENT" = String     myNoComment;
+		field "INACTIVE"   = inactive;
+	}
+}
+
+function module "TEST_FUNCTION_MODULE" {
+	class TestModuleCall {
+		importing field     "BIGDECIMAL" = BigDecimal     importBigDecimal comment "big decimal";
+		importing field     "BIGINTEGER" = BigInteger     importBigInteger comment "big integer";
+		importing field     "BOOLEAN"    = Boolean        importBoolean    comment "boolean";
+		importing field     "BYTE"       = Byte           importByte       comment "byte";
+		importing field     "BYTE_ARRAY" = Byte           importByteArray  comment "byte array";
+		importing field     "CHARACTER"  = Char           importChar       comment "character";
+		importing field     "CHAR_ARRAY" = CharArray      importCharArray  comment "character array";
+		importing field     "DATE"       = Date           importDate       comment "date";
+		importing field     "DOUBLE"     = Double         importDouble     comment "double";
+		importing field     "FLOAT"      = Float          importFloat      comment "float";
+		importing field     "INTEGER"    = Integer        importInteger    comment "integer";
+		importing field     "LONG"       = Long           importLong       comment "long";
+		importing field     "SHORT"      = Short          importShort      comment "short";
+		importing field     "STRING"     = String         importString     comment "string";
+		importing field     "TIME"       = Time           importTime       comment "time";
+		importing field     "NO_COMMENT" = String         importNoComment;
+		importing field     "INACTIVE"   = inactive;
+		importing structure "STRUCTURE"  = TEST_STRUCTURE importStructure  comment "structure";
+		importing structure "INACTIVE"   = inactive;
+		importing table     "TABLE"      = TEST_STRUCTURE importTable      comment "table";
+		importing table     "INACTIVE"   = inactive;
+		
+		exporting field     "BIGDECIMAL" = BigDecimal     exportBigDecimal comment "big decimal";
+		exporting field     "BIGINTEGER" = BigInteger     exportBigInteger comment "big integer";
+		exporting field     "BOOLEAN"    = Boolean        exportBoolean    comment "boolean";
+		exporting field     "BYTE"       = Byte           exportByte       comment "byte";
+		exporting field     "BYTE_ARRAY" = Byte           exportByteArray  comment "byte array";
+		exporting field     "CHARACTER"  = Char           exportChar       comment "character";
+		exporting field     "CHAR_ARRAY" = CharArray      exportCharArray  comment "character array";
+		exporting field     "DATE"       = Date           exportDate       comment "date";
+		exporting field     "DOUBLE"     = Double         exportDouble     comment "double";
+		exporting field     "FLOAT"      = Float          exportFloat      comment "float";
+		exporting field     "INTEGER"    = Integer        exportInteger    comment "integer";
+		exporting field     "LONG"       = Long           exportLong       comment "long";
+		exporting field     "SHORT"      = Short          exportShort      comment "short";
+		exporting field     "STRING"     = String         exportString     comment "string";
+		exporting field     "TIME"       = Time           exportTime       comment "time";
+		exporting field     "NO_COMMENT" = String         exportNoComment;
+		exporting field     "INACTIVE"   = inactive;
+		exporting structure "STRUCTURE"  = TEST_STRUCTURE exportStructure  comment "structure";
+		exporting structure "INACTIVE"   = inactive;
+		exporting table     "TABLE"      = TEST_STRUCTURE exportTable      comment "table";
+		exporting table     "INACTIVE"   = inactive;
+		
+		changing field     "BIGDECIMAL" = BigDecimal     changeBigDecimal comment "big decimal";
+		changing field     "BIGINTEGER" = BigInteger     changeBigInteger comment "big integer";
+		changing field     "BOOLEAN"    = Boolean        changeBoolean    comment "boolean";
+		changing field     "BYTE"       = Byte           changeByte       comment "byte";
+		changing field     "BYTE_ARRAY" = Byte           changeByteArray  comment "byte array";
+		changing field     "CHARACTER"  = Char           changeChar       comment "character";
+		changing field     "CHAR_ARRAY" = CharArray      changeCharArray  comment "character array";
+		changing field     "DATE"       = Date           changeDate       comment "date";
+		changing field     "DOUBLE"     = Double         changeDouble     comment "double";
+		changing field     "FLOAT"      = Float          changeFloat      comment "float";
+		changing field     "INTEGER"    = Integer        changeInteger    comment "integer";
+		changing field     "LONG"       = Long           changeLong       comment "long";
+		changing field     "SHORT"      = Short          changeShort      comment "short";
+		changing field     "STRING"     = String         changeString     comment "string";
+		changing field     "TIME"       = Time           changeTime       comment "time";
+		changing field     "NO_COMMENT" = String         changeNoComment;
+		changing field     "INACTIVE"   = inactive;
+		changing structure "STRUCTURE"  = TEST_STRUCTURE changeStructure  comment "structure";
+		changing structure "INACTIVE"   = inactive;
+		changing table     "TABLE"      = TEST_STRUCTURE changeTable      comment "table";
+		changing table     "INACTIVE"   = inactive;
+		
+		table            "TABLE"      = TEST_STRUCTURE myTable          comment "table";
+		table            "INACTIVE"   = inactive;
+	}
+}
+
+function module "TEST_FUNCTION_MODULE" {
+	request class TestModuleRequest {
+		importing field     "BIGDECIMAL" = BigDecimal     importBigDecimal comment "big decimal";
+		importing field     "BIGINTEGER" = BigInteger     importBigInteger comment "big integer";
+		importing field     "BOOLEAN"    = Boolean        importBoolean    comment "boolean";
+		importing field     "BYTE"       = Byte           importByte       comment "byte";
+		importing field     "BYTE_ARRAY" = Byte           importByteArray  comment "byte array";
+		importing field     "CHARACTER"  = Char           importChar       comment "character";
+		importing field     "CHAR_ARRAY" = CharArray      importCharArray  comment "character array";
+		importing field     "DATE"       = Date           importDate       comment "date";
+		importing field     "DOUBLE"     = Double         importDouble     comment "double";
+		importing field     "FLOAT"      = Float          importFloat      comment "float";
+		importing field     "INTEGER"    = Integer        importInteger    comment "integer";
+		importing field     "LONG"       = Long           importLong       comment "long";
+		importing field     "SHORT"      = Short          importShort      comment "short";
+		importing field     "STRING"     = String         importString     comment "string";
+		importing field     "TIME"       = Time           importTime       comment "time";
+		importing field     "NO_COMMENT" = String         importNoComment;
+		importing field     "INACTIVE"   = inactive;
+		importing structure "STRUCTURE"  = TEST_STRUCTURE importStructure  comment "structure";
+		importing structure "INACTIVE"   = inactive;
+		importing table     "TABLE"      = TEST_STRUCTURE importTable      comment "table";
+		importing table     "INACTIVE"   = inactive;
+		
+		exporting field     "BIGDECIMAL" = BigDecimal     exportBigDecimal comment "big decimal";
+		exporting field     "BIGINTEGER" = BigInteger     exportBigInteger comment "big integer";
+		exporting field     "BOOLEAN"    = Boolean        exportBoolean    comment "boolean";
+		exporting field     "BYTE"       = Byte           exportByte       comment "byte";
+		exporting field     "BYTE_ARRAY" = Byte           exportByteArray  comment "byte array";
+		exporting field     "CHARACTER"  = Char           exportChar       comment "character";
+		exporting field     "CHAR_ARRAY" = CharArray      exportCharArray  comment "character array";
+		exporting field     "DATE"       = Date           exportDate       comment "date";
+		exporting field     "DOUBLE"     = Double         exportDouble     comment "double";
+		exporting field     "FLOAT"      = Float          exportFloat      comment "float";
+		exporting field     "INTEGER"    = Integer        exportInteger    comment "integer";
+		exporting field     "LONG"       = Long           exportLong       comment "long";
+		exporting field     "SHORT"      = Short          exportShort      comment "short";
+		exporting field     "STRING"     = String         exportString     comment "string";
+		exporting field     "TIME"       = Time           exportTime       comment "time";
+		exporting field     "NO_COMMENT" = String         exportNoComment;
+		exporting field     "INACTIVE"   = inactive;
+		exporting structure "STRUCTURE"  = TEST_STRUCTURE exportStructure  comment "structure";
+		exporting structure "INACTIVE"   = inactive;
+		exporting table     "TABLE"      = TEST_STRUCTURE exportTable      comment "table";
+		exporting table     "INACTIVE"   = inactive;
+		
+		changing field     "BIGDECIMAL" = BigDecimal     changeBigDecimal comment "big decimal";
+		changing field     "BIGINTEGER" = BigInteger     changeBigInteger comment "big integer";
+		changing field     "BOOLEAN"    = Boolean        changeBoolean    comment "boolean";
+		changing field     "BYTE"       = Byte           changeByte       comment "byte";
+		changing field     "BYTE_ARRAY" = Byte           changeByteArray  comment "byte array";
+		changing field     "CHARACTER"  = Char           changeChar       comment "character";
+		changing field     "CHAR_ARRAY" = CharArray      changeCharArray  comment "character array";
+		changing field     "DATE"       = Date           changeDate       comment "date";
+		changing field     "DOUBLE"     = Double         changeDouble     comment "double";
+		changing field     "FLOAT"      = Float          changeFloat      comment "float";
+		changing field     "INTEGER"    = Integer        changeInteger    comment "integer";
+		changing field     "LONG"       = Long           changeLong       comment "long";
+		changing field     "SHORT"      = Short          changeShort      comment "short";
+		changing field     "STRING"     = String         changeString     comment "string";
+		changing field     "TIME"       = Time           changeTime       comment "time";
+		changing field     "NO_COMMENT" = String         changeNoComment;
+		changing field     "INACTIVE"   = inactive;
+		changing structure "STRUCTURE"  = TEST_STRUCTURE changeStructure  comment "structure";
+		changing structure "INACTIVE"   = inactive;
+		changing table     "TABLE"      = TEST_STRUCTURE changeTable      comment "table";
+		changing table     "INACTIVE"   = inactive;
+		
+		table            "TABLE"      = TEST_STRUCTURE myTable          comment "table";
+		table            "INACTIVE"   = inactive;
+	}
+
+	response class TestModuleResponse {
+		importing field     "BIGDECIMAL" = BigDecimal     importBigDecimal comment "big decimal";
+		importing field     "BIGINTEGER" = BigInteger     importBigInteger comment "big integer";
+		importing field     "BOOLEAN"    = Boolean        importBoolean    comment "boolean";
+		importing field     "BYTE"       = Byte           importByte       comment "byte";
+		importing field     "BYTE_ARRAY" = Byte           importByteArray  comment "byte array";
+		importing field     "CHARACTER"  = Char           importChar       comment "character";
+		importing field     "CHAR_ARRAY" = CharArray      importCharArray  comment "character array";
+		importing field     "DATE"       = Date           importDate       comment "date";
+		importing field     "DOUBLE"     = Double         importDouble     comment "double";
+		importing field     "FLOAT"      = Float          importFloat      comment "float";
+		importing field     "INTEGER"    = Integer        importInteger    comment "integer";
+		importing field     "LONG"       = Long           importLong       comment "long";
+		importing field     "SHORT"      = Short          importShort      comment "short";
+		importing field     "STRING"     = String         importString     comment "string";
+		importing field     "TIME"       = Time           importTime       comment "time";
+		importing field     "NO_COMMENT" = String         importNoComment;
+		importing field     "INACTIVE"   = inactive;
+		importing structure "STRUCTURE"  = TEST_STRUCTURE importStructure  comment "structure";
+		importing structure "INACTIVE"   = inactive;
+		importing table     "TABLE"      = TEST_STRUCTURE importTable      comment "table";
+		importing table     "INACTIVE"   = inactive;
+		
+		exporting field     "BIGDECIMAL" = BigDecimal     exportBigDecimal comment "big decimal";
+		exporting field     "BIGINTEGER" = BigInteger     exportBigInteger comment "big integer";
+		exporting field     "BOOLEAN"    = Boolean        exportBoolean    comment "boolean";
+		exporting field     "BYTE"       = Byte           exportByte       comment "byte";
+		exporting field     "BYTE_ARRAY" = Byte           exportByteArray  comment "byte array";
+		exporting field     "CHARACTER"  = Char           exportChar       comment "character";
+		exporting field     "CHAR_ARRAY" = CharArray      exportCharArray  comment "character array";
+		exporting field     "DATE"       = Date           exportDate       comment "date";
+		exporting field     "DOUBLE"     = Double         exportDouble     comment "double";
+		exporting field     "FLOAT"      = Float          exportFloat      comment "float";
+		exporting field     "INTEGER"    = Integer        exportInteger    comment "integer";
+		exporting field     "LONG"       = Long           exportLong       comment "long";
+		exporting field     "SHORT"      = Short          exportShort      comment "short";
+		exporting field     "STRING"     = String         exportString     comment "string";
+		exporting field     "TIME"       = Time           exportTime       comment "time";
+		exporting field     "NO_COMMENT" = String         exportNoComment;
+		exporting field     "INACTIVE"   = inactive;
+		exporting structure "STRUCTURE"  = TEST_STRUCTURE exportStructure  comment "structure";
+		exporting structure "INACTIVE"   = inactive;
+		exporting table     "TABLE"      = TEST_STRUCTURE exportTable      comment "table";
+		exporting table     "INACTIVE"   = inactive;
+		
+		changing field     "BIGDECIMAL" = BigDecimal     changeBigDecimal comment "big decimal";
+		changing field     "BIGINTEGER" = BigInteger     changeBigInteger comment "big integer";
+		changing field     "BOOLEAN"    = Boolean        changeBoolean    comment "boolean";
+		changing field     "BYTE"       = Byte           changeByte       comment "byte";
+		changing field     "BYTE_ARRAY" = Byte           changeByteArray  comment "byte array";
+		changing field     "CHARACTER"  = Char           changeChar       comment "character";
+		changing field     "CHAR_ARRAY" = CharArray      changeCharArray  comment "character array";
+		changing field     "DATE"       = Date           changeDate       comment "date";
+		changing field     "DOUBLE"     = Double         changeDouble     comment "double";
+		changing field     "FLOAT"      = Float          changeFloat      comment "float";
+		changing field     "INTEGER"    = Integer        changeInteger    comment "integer";
+		changing field     "LONG"       = Long           changeLong       comment "long";
+		changing field     "SHORT"      = Short          changeShort      comment "short";
+		changing field     "STRING"     = String         changeString     comment "string";
+		changing field     "TIME"       = Time           changeTime       comment "time";
+		changing field     "NO_COMMENT" = String         changeNoComment;
+		changing field     "INACTIVE"   = inactive;
+		changing structure "STRUCTURE"  = TEST_STRUCTURE changeStructure  comment "structure";
+		changing structure "INACTIVE"   = inactive;
+		changing table     "TABLE"      = TEST_STRUCTURE changeTable      comment "table";
+		changing table     "INACTIVE"   = inactive;
+		
+		table            "TABLE"      = TEST_STRUCTURE myTable          comment "table";
+		table            "INACTIVE"   = inactive;
+	}
+}
