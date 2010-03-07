@@ -101,7 +101,7 @@ public class RFCMappingParser extends AbstractContentAssistParser {
 					put(grammarAccess.getModelAccess().getFunctionModulesAssignment_3(), "rule__Model__FunctionModulesAssignment_3");
 					put(grammarAccess.getStructureAccess().getNameAssignment_1(), "rule__Structure__NameAssignment_1");
 					put(grammarAccess.getStructureAccess().getMappingAssignment_3(), "rule__Structure__MappingAssignment_3");
-					put(grammarAccess.getStructurePOJOMappingAccess().getClassNameAssignment_1(), "rule__StructurePOJOMapping__ClassNameAssignment_1");
+					put(grammarAccess.getStructurePOJOMappingAccess().getNameAssignment_1(), "rule__StructurePOJOMapping__NameAssignment_1");
 					put(grammarAccess.getStructurePOJOMappingAccess().getFieldsAssignment_3_0(), "rule__StructurePOJOMapping__FieldsAssignment_3_0");
 					put(grammarAccess.getStructureFieldPOJOMappingAccess().getNameAssignment_1(), "rule__StructureFieldPOJOMapping__NameAssignment_1");
 					put(grammarAccess.getStructureFieldPOJOMappingAccess().getInactiveAssignment_3_0(), "rule__StructureFieldPOJOMapping__InactiveAssignment_3_0");
