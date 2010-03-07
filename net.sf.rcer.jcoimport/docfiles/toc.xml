@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<!-- $Id: toc.xml 103 2009-02-01 15:47:29Z vwegert $ -->
+<toc link_to="../net.sf.rcer.doc/toc.xml#jco" label="SAP Java Connector Documentation">
+	<topic label="Note to RCER Users" href="html/note.html" />
+	<topic label="Introduction" href="javadoc/intro.html" />
+	<topic label="Installation" href="javadoc/installation.html" /> 
+	<topic label="Configuration" href="javadoc/useful.html" /> 
+	<topic label="API Documentation" href="javadoc/index.html" /> 
+	<topic label="Examples" href="javadoc/examples.html" /> 
+</toc>

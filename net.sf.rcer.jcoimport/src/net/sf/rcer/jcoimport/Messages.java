@@ -50,6 +50,10 @@ public class Messages extends NLS {
 	public static String JCoImportWizard_ErrorMessage;
 	public static String JCoImportWizard_ImportCancelledMessage;
 	public static String JCoImportWizard_WindowTitle;
+	public static String ProjectGenerator_CopyDocumentationTaskDescription;
+
+	public static String ProjectGenerator_CopyingFileTaskDescription;
+
 	public static String ProjectGenerator_CreateFragmentTaskDescription;
 	public static String ProjectGenerator_CreatePluginTaskDescription;
 	public static String ProjectGenerator_Darwin32Description;

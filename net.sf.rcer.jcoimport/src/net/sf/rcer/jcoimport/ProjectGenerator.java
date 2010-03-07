@@ -36,6 +36,7 @@ import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
@@ -65,7 +66,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 	 * The ID of the plug-in project nature as used by the PDE. 
 	 */
 	public static final String PLUGIN_NATURE_ID = "org.eclipse.pde.PluginNature"; //$NON-NLS-1$
-	
+
 	private ProjectGeneratorSettings settings;
 	private IWorkspaceRoot workspaceRoot;
 	private ArrayList<IPluginModelBase> exportableBundles = new ArrayList<IPluginModelBase>();
@@ -86,29 +87,48 @@ public class ProjectGenerator implements IRunnableWithProgress {
 	 */
 	public void run(IProgressMonitor monitor) throws InvocationTargetException,	InterruptedException {
 
+		String sourceArchive;
+
 		exportableBundles.clear();
-		
+
 		monitor.beginTask(Messages.ProjectGenerator_TaskDescription, getNumberOfSteps());
 
+		// choose the source file for the sapjco.jar and the documentation from the selected files
+		if (settings.getWin32FileName().length() > 0) {
+			sourceArchive = settings.getWin32FileName();
+		} else if (settings.getWin64IAFileName().length() > 0)  {
+			sourceArchive = settings.getWin64IAFileName();
+		} else if (settings.getWin64x86FileName().length() > 0)  {
+			sourceArchive = settings.getWin64x86FileName();
+		} else if (settings.getLinux32FileName().length() > 0)  {
+			sourceArchive = settings.getLinux32FileName();
+		} else if (settings.getLinux64IAFileName().length() > 0)  {
+			sourceArchive = settings.getLinux64IAFileName();
+		} else if (settings.getLinux64x86FileName().length() > 0)  {
+			sourceArchive = settings.getLinux64x86FileName();
+		} else if (settings.getDarwin32FileName().length() > 0)  {
+			sourceArchive = settings.getDarwin32FileName();
+		} else if (settings.getDarwin64FileName().length() > 0)  {
+			sourceArchive = settings.getDarwin64FileName();
+		} else {
+			sourceArchive = ""; //$NON-NLS-1$
+		}
+
 		try {
+			// generate the plug-in containing the sapjco.jar archive
 			if (settings.isPluginProjectSelected()) {
-				// choose the source file for the sapjco.jar from the selected files
-				if (settings.isWin32FragmentSelected()) {
-					createPluginProject(monitor, settings.getWin32FileName(), IProjectNames.PLUGIN_JCO);
-				} else if (settings.isWin64IAFragmentSelected())  {
-					createPluginProject(monitor, settings.getWin64IAFileName(), IProjectNames.PLUGIN_JCO);
-				} else if (settings.isWin64x86FragmentSelected())  {
-					createPluginProject(monitor, settings.getWin64x86FileName(), IProjectNames.PLUGIN_JCO);
-				} else if (settings.isLinux32FragmentSelected())  {
-					createPluginProject(monitor, settings.getLinux32FileName(), IProjectNames.PLUGIN_JCO);
-				} else if (settings.isLinux64IAFragmentSelected())  {
-					createPluginProject(monitor, settings.getLinux64IAFileName(), IProjectNames.PLUGIN_JCO);
-				} else if (settings.isLinux64x86FragmentSelected())  {
-					createPluginProject(monitor, settings.getLinux64x86FileName(), IProjectNames.PLUGIN_JCO);
-				} else if (settings.isDarwin32FragmentSelected())  {
-					createPluginProject(monitor, settings.getDarwin32FileName(), IProjectNames.PLUGIN_JCO);
-				} else if (settings.isDarwin64FragmentSelected())  {
-					createPluginProject(monitor, settings.getDarwin64FileName(), IProjectNames.PLUGIN_JCO);
+				if (sourceArchive.length() > 0) {
+					createPluginProject(monitor, sourceArchive, IProjectNames.PLUGIN_JCO);
+				} else {
+					throw new InvocationTargetException(null, Messages.ProjectGenerator_NoInputFileError);
+				}
+			}
+			if (monitor.isCanceled()) throw new InterruptedException();
+
+			// generate the plug-in containing the documentation archive
+			if (settings.isDocPluginProjectSelected()) {
+				if (sourceArchive.length() > 0) {
+					createDocPluginProject(monitor, sourceArchive, IProjectNames.PLUGIN_JCO_DOC);
 				} else {
 					throw new InvocationTargetException(null, Messages.ProjectGenerator_NoInputFileError);
 				}
@@ -119,67 +139,67 @@ public class ProjectGenerator implements IRunnableWithProgress {
 			 * See http://www.osgi.org/Specifications/Reference for a list of arch aliases
 			 * specified by OSGi.
 			 */
-			
+
 			if (settings.isWin32FragmentSelected()) {
 				createFragmentProject(monitor, settings.getWin32FileName(), 
 						IProjectNames.FRAGMENT_WINDOWS_32,
-						"sapjco3.dll", Messages.ProjectGenerator_Win32Description, "(& (osgi.os=win32) (osgi.arch=x86))"); //$NON-NLS-1$ //$NON-NLS-3$
+						"sapjco3.dll", Messages.ProjectGenerator_Win32Description, "(& (osgi.os=win32) (osgi.arch=x86))"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
 			if (settings.isWin64IAFragmentSelected())  {
 				createFragmentProject(monitor, settings.getWin64IAFileName(), 
 						IProjectNames.FRAGMENT_WINDOWS_64IA,
-						"sapjco3.dll", Messages.ProjectGenerator_Win64IADescription, "(& (osgi.os=win32) (osgi.arch=ia64n))"); //$NON-NLS-1$ //$NON-NLS-3$
+						"sapjco3.dll", Messages.ProjectGenerator_Win64IADescription, "(& (osgi.os=win32) (osgi.arch=ia64n))"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
 			if (settings.isWin64x86FragmentSelected())  {
 				createFragmentProject(monitor, settings.getWin64x86FileName(), 
 						IProjectNames.FRAGMENT_WINDOWS_64X86,
-						"sapjco3.dll", Messages.ProjectGenerator_Win64x86Description, "(& (osgi.os=win32) (osgi.arch=x86-64))"); //$NON-NLS-1$ //$NON-NLS-3$
+						"sapjco3.dll", Messages.ProjectGenerator_Win64x86Description, "(& (osgi.os=win32) (osgi.arch=x86-64))"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
 			if (settings.isLinux32FragmentSelected())  {
 				createFragmentProject(monitor, settings.getLinux32FileName(), 
 						IProjectNames.FRAGMENT_LINUX_32,
-						"libsapjco3.so", Messages.ProjectGenerator_Linux32Description, "(& (osgi.os=linux) (osgi.arch=x86))"); //$NON-NLS-1$ //$NON-NLS-3$
+						"libsapjco3.so", Messages.ProjectGenerator_Linux32Description, "(& (osgi.os=linux) (osgi.arch=x86))"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
 			if (settings.isLinux64IAFragmentSelected())  {
 				createFragmentProject(monitor, settings.getLinux64IAFileName(), 
 						IProjectNames.FRAGMENT_LINUX_64IA,
-						"libsapjco3.so", Messages.ProjectGenerator_Linux64IADescription, "(& (osgi.os=linux) (osgi.arch=ia64n))"); //$NON-NLS-1$ //$NON-NLS-3$
+						"libsapjco3.so", Messages.ProjectGenerator_Linux64IADescription, "(& (osgi.os=linux) (osgi.arch=ia64n))"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
 			if (settings.isLinux64x86FragmentSelected())  {
 				createFragmentProject(monitor, settings.getLinux64x86FileName(), 
 						IProjectNames.FRAGMENT_LINUX_64X86,
-						"libsapjco3.so", Messages.ProjectGenerator_Linux64x86Description, "(& (osgi.os=linux) (osgi.arch=x86-64))"); //$NON-NLS-1$ //$NON-NLS-3$
+						"libsapjco3.so", Messages.ProjectGenerator_Linux64x86Description, "(& (osgi.os=linux) (osgi.arch=x86-64))"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
 			if (settings.isDarwin32FragmentSelected())  {
 				createFragmentProject(monitor, settings.getDarwin32FileName(), 
 						IProjectNames.FRAGMENT_DARWIN_32,
-						"libsapjco3.jnilib", Messages.ProjectGenerator_Darwin32Description, "(& (osgi.os=macosx) (osgi.arch=x86))"); //$NON-NLS-1$ //$NON-NLS-3$
+						"libsapjco3.jnilib", Messages.ProjectGenerator_Darwin32Description, "(& (osgi.os=macosx) (osgi.arch=x86))"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
 			if (settings.isDarwin64FragmentSelected())  {
 				createFragmentProject(monitor, settings.getDarwin64FileName(), 
 						IProjectNames.FRAGMENT_DARWIN_64,
-						"libsapjco3.jnilib", Messages.ProjectGenerator_Darwin64Description, "(& (osgi.os=macosx) (osgi.arch=x86-64))"); //$NON-NLS-1$ //$NON-NLS-3$
+						"libsapjco3.jnilib", Messages.ProjectGenerator_Darwin64Description, "(& (osgi.os=macosx) (osgi.arch=x86-64))"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
-			
+
 			if (settings.isBundleExportSelected()) {
 				exportPlugins(monitor);
 			}
-			
+
 		} catch (CoreException e) {
 			throw new InvocationTargetException(e);
 		} catch (IOException e) {
@@ -199,9 +219,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 	 * @throws IOException 
 	 */
 	private void createPluginProject(IProgressMonitor monitor, String sourceFileName, String pluginName) throws CoreException, IOException {
-		
-		// TODO use EclipseResourcesUtil for this?
-		
+
 		monitor.subTask(MessageFormat.format(Messages.ProjectGenerator_CreatePluginTaskDescription, pluginName));
 
 		// read the source file                                                                              10
@@ -274,11 +292,113 @@ public class ProjectGenerator implements IRunnableWithProgress {
 		buildProperties.append("               jni/,\\\n"); //$NON-NLS-1$
 		buildProperties.append("               .\n"); //$NON-NLS-1$
 		writeTextFile(monitor, buildProperties, project.getFile("build.properties")); //$NON-NLS-1$
-		
+
 		// collect the plug-in for export
 		exportableBundles.add(modelManager.findModel(project));
 	}
 
+	/**
+	 * Creates a plug-in project for the SAP JCo documentation from the source file specified.
+	 * @param monitor
+	 * @param sourceFileName
+	 * @param pluginName
+	 * @throws CoreException 
+	 * @throws IOException 
+	 */
+	private void createDocPluginProject(IProgressMonitor monitor, String sourceFileName, String pluginName) throws CoreException, IOException {
+
+		monitor.subTask(MessageFormat.format(Messages.ProjectGenerator_CreatePluginTaskDescription, pluginName));
+
+		// read the source file                                                                              10
+		final Map<String, byte[]> files = readArchiveFile(sourceFileName);
+		monitor.worked(10);                                                
+
+		// remove the project if it exists                                                                    5
+		IProject project = workspaceRoot.getProject(pluginName);
+		if (project.exists()) {
+			project.delete(true, true, new SubProgressMonitor(monitor, 5));
+		} else {
+			monitor.worked(5);
+		}
+
+		// create and open the project                                                                       10
+		project.create(new SubProgressMonitor(monitor, 5));
+		project.open(new SubProgressMonitor(monitor, 5));
+
+		// update the project description                                                                     5
+		IProjectDescription description = project.getDescription();
+		description.setNatureIds(new String[] {	PLUGIN_NATURE_ID });
+		project.setDescription(description, new SubProgressMonitor(monitor, 5));
+
+		// copy the files from the generator to the target plug-in                                            5
+		copyPluginFile(monitor, project, "/docfiles/plugin.xml", "plugin.xml"); //$NON-NLS-1$ //$NON-NLS-2$
+		copyPluginFile(monitor, project, "/docfiles/toc.xml", "toc.xml"); //$NON-NLS-1$ //$NON-NLS-2$
+		copyPluginFile(monitor, project, "/docfiles/build.properties", "build.properties"); //$NON-NLS-1$ //$NON-NLS-2$
+		project.getFolder("html").create(true, true, null); //$NON-NLS-1$
+		copyPluginFile(monitor, project, "/docfiles/book.css", "html/book.css"); //$NON-NLS-1$ //$NON-NLS-2$
+		copyPluginFile(monitor, project, "/docfiles/note.html", "html/note.html"); //$NON-NLS-1$ //$NON-NLS-2$
+
+		// copy the documentation and example files                                                          25
+		monitor.subTask(Messages.ProjectGenerator_CopyDocumentationTaskDescription);
+		for (final String filename: files.keySet()) {
+			if ((filename.startsWith("examples") || filename.startsWith("javadoc")) && !(filename.endsWith("/"))) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				monitor.subTask(MessageFormat.format(Messages.ProjectGenerator_CopyingFileTaskDescription, filename));
+				// first ensure that the target path exists
+				IFolder currentFolder = null;
+				final String[] parts = filename.split("/"); //$NON-NLS-1$
+				for (int i = 0; i < parts.length - 1; i++) {
+					if (currentFolder == null) {
+						currentFolder = project.getFolder(parts[i]);
+					} else {
+						currentFolder = currentFolder.getFolder(parts[i]);
+					}
+					if (!currentFolder.exists()) {
+						currentFolder.create(true, true, null);
+					}
+				}
+				project.getFile("/" + filename).create(new ByteArrayInputStream(files.get(filename)),  //$NON-NLS-1$ 
+						true, null);
+			}
+		}
+		monitor.worked(25);
+
+		// create META-INF and MANIFEST.MF                                                                   10
+		// TODO use the version information from the MANIFEST.MF file in the archive
+		IFolder metaInfFolder = project.getFolder("META-INF"); //$NON-NLS-1$
+		metaInfFolder.create(true, true, new SubProgressMonitor(monitor, 5));
+		StringBuilder manifest = new StringBuilder();
+		manifest.append("Manifest-Version: 1.0\n"); //$NON-NLS-1$
+		manifest.append("Bundle-ManifestVersion: 2\n"); //$NON-NLS-1$
+		manifest.append("Bundle-Name: SAP Java Connector v3 Documentation\n");  //$NON-NLS-1$
+		manifest.append(MessageFormat.format("Bundle-SymbolicName: {0};singleton:=true\n", pluginName)); //$NON-NLS-1$
+		manifest.append("Bundle-Version: 7.11.0\n"); //$NON-NLS-1$
+		manifest.append("Bundle-Vendor: SAP AG, Walldorf (packaged using RCER)\n"); //$NON-NLS-1$
+		manifest.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n"); //$NON-NLS-1$
+		manifest.append("Bundle-ActivationPolicy: lazy\n"); //$NON-NLS-1$
+		manifest.append("Require-Bundle: net.sf.rcer.doc\n"); //$NON-NLS-1$
+		writeTextFile(monitor, manifest, metaInfFolder.getFile("MANIFEST.MF")); //$NON-NLS-1$
+
+		// collect the plug-in for export
+		exportableBundles.add(modelManager.findModel(project));
+	}
+
+	/**
+	 * Auxiliary method to copy a file from the generator plug-in to the generated plug-in. 
+	 * @param monitor
+	 * @param project
+	 * @param sourceFileName
+	 * @param targetFileName
+	 * @throws CoreException
+	 * @throws IOException
+	 */
+	private void copyPluginFile(IProgressMonitor monitor, IProject project, String sourceFileName, String targetFileName) throws CoreException, IOException {
+		monitor.subTask(MessageFormat.format(Messages.ProjectGenerator_CopyingFileTaskDescription, targetFileName));
+		project.getFile(targetFileName).create(FileLocator.openStream(Activator.getDefault().getBundle(), //$NON-NLS-1$ 
+				new Path(sourceFileName), false),  //$NON-NLS-1$ 
+				true, null);
+		monitor.worked(1);
+	}
+	
 	/**
 	 * Creates a fragment project from the source file specified.
 	 * @param monitor 
@@ -298,7 +418,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 		// read the source file                                                                              10
 		final Map<String, byte[]> files = readArchiveFile(sourceFileName);
 		monitor.worked(10);
-		
+
 		// remove the project if it exists                                                                    5
 		IProject project = workspaceRoot.getProject(fragmentName);
 		if (project.exists()) {
@@ -340,7 +460,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 		manifest.append(MessageFormat.format("Bundle-NativeCode: jni/{0}\n", nativeLibraryFilename)); //$NON-NLS-1$
 		manifest.append(MessageFormat.format("Eclipse-PlatformFilter: {0}\n", platformFilter)); //$NON-NLS-1$
 		writeTextFile(monitor, manifest, metaInfFolder.getFile("MANIFEST.MF")); //$NON-NLS-1$
-		
+
 		// create build.properties                                                                            5
 		StringBuilder buildProperties = new StringBuilder();
 		buildProperties.append("bin.includes = META-INF/,\\\n"); //$NON-NLS-1$
@@ -362,12 +482,12 @@ public class ProjectGenerator implements IRunnableWithProgress {
 		info.exportSource = false;
 		info.destinationDirectory = settings.getExportPath();
 		info.items = exportableBundles.toArray();
-		PluginExportOperation job = new PluginExportOperation(info, PDEUIMessages.PluginExportJob_name);
+		PluginExportOperation job = new PluginExportOperation(info, ""); //$NON-NLS-1$
 		job.setUser(true);
 		job.schedule();
 		job.setProperty(IProgressConstants.ICON_PROPERTY, PDEPluginImages.DESC_PLUGIN_OBJ);
 	}
-	
+
 	/**
 	 * Auxiliary method to dump a {@link StringBuilder} to a file. 
 	 * @param monitor
@@ -378,7 +498,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 	private void writeTextFile(IProgressMonitor monitor, StringBuilder source, IFile file) throws CoreException {
 		file.create(new ByteArrayInputStream(source.toString().getBytes()), true, new SubProgressMonitor(monitor, 5));	
 	}
-	
+
 	/**
 	 * @return the estimated number of steps
 	 */
@@ -387,6 +507,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 		final int FRAGMENT_STEPS = 60;
 		int steps = 0;
 		if (settings.isPluginProjectSelected())         steps += PLUGIN_STEPS;
+		if (settings.isDocPluginProjectSelected())      steps += PLUGIN_STEPS;
 		if (settings.isWin32FragmentSelected())         steps += FRAGMENT_STEPS;
 		if (settings.isWin64IAFragmentSelected())       steps += FRAGMENT_STEPS;
 		if (settings.isWin64x86FragmentSelected())      steps += FRAGMENT_STEPS;
@@ -415,7 +536,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 			throw new UnsupportedOperationException(MessageFormat.format(Messages.ProjectGenerator_UnknownFileTypeMessage, filename));
 		}
 	}
-	
+
 	/**
 	 * Reads a .tgz or .tar.gz file into memory.
 	 * @param filename
@@ -448,23 +569,23 @@ public class ProjectGenerator implements IRunnableWithProgress {
 	 */
 	private Map<String, byte[]> readZIPFile(String filename) throws IOException {
 		HashMap<String, byte[]> result = new HashMap<String, byte[]>();
-        byte[] buf = new byte[32 * 1024];
+		byte[] buf = new byte[32 * 1024];
 		ZipFile file = new ZipFile(new File(filename));
 		Enumeration<? extends ZipEntry> entries = file.entries();
 		while (entries.hasMoreElements()) {
 			ZipEntry entry = entries.nextElement();
 			InputStream is = file.getInputStream(entry);
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
-	        while (true) {
-	            int numRead = is.read(buf, 0, buf.length);
-	            if (numRead == -1) {
-	                break;
-	            }
-	            os.write(buf, 0, numRead);
-	        }
-	        is.close();
-	        os.close();
-	        result.put(entry.getName(), os.toByteArray());
+			while (true) {
+				int numRead = is.read(buf, 0, buf.length);
+				if (numRead == -1) {
+					break;
+				}
+				os.write(buf, 0, numRead);
+			}
+			is.close();
+			os.close();
+			result.put(entry.getName(), os.toByteArray());
 		}
 		file.close();
 		return result;

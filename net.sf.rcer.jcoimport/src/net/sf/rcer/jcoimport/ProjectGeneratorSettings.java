@@ -34,6 +34,7 @@ public class ProjectGeneratorSettings {
 	private String darwin64FileName = ""; //$NON-NLS-1$
 
 	private boolean pluginProjectSelected;
+	private boolean docPluginProjectSelected;
 	private boolean win32FragmentSelected;
 	private boolean win64IAFragmentSelected;
 	private boolean win64x86FragmentSelected;
@@ -217,6 +218,24 @@ public class ProjectGeneratorSettings {
 		this.pluginProjectSelected = pluginProjectSelected;
 		propertyChangeSupport.firePropertyChange("pluginProjectSelected", oldValue, //$NON-NLS-1$
 				pluginProjectSelected);
+	}
+
+	/**
+	 * @return whether the documentation plugin project is selected
+	 */
+	public boolean isDocPluginProjectSelected() {
+		return docPluginProjectSelected;
+	}
+
+	/**
+	 * @param docPluginProjectSelected
+	 *            the pluginProjectSelected to set
+	 */
+	public void setDocPluginProjectSelected(boolean docPluginProjectSelected) {
+		boolean oldValue = docPluginProjectSelected;
+		this.docPluginProjectSelected = docPluginProjectSelected;
+		propertyChangeSupport.firePropertyChange("docPluginProjectSelected", oldValue, //$NON-NLS-1$
+				docPluginProjectSelected);
 	}
 
 	/**

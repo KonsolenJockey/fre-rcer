@@ -17,3 +17,5 @@ Require-Bundle: org.eclipse.ui;bundle-version="3.5.0",
 Bundle-Vendor: %bundle.vendor
 Export-Package: net.sf.rcer.jcoimport
 Bundle-Localization: plugin
+Bundle-Activator: net.sf.rcer.jcoimport.Activator
+Bundle-ActivationPolicy: lazy
