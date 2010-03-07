@@ -51,7 +51,6 @@ import org.eclipse.pde.internal.core.PluginModelManager;
 import org.eclipse.pde.internal.core.exports.FeatureExportInfo;
 import org.eclipse.pde.internal.core.exports.PluginExportOperation;
 import org.eclipse.pde.internal.ui.PDEPluginImages;
-import org.eclipse.pde.internal.ui.PDEUIMessages;
 import org.eclipse.ui.progress.IProgressConstants;
 
 /**
@@ -118,7 +117,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 			// generate the plug-in containing the sapjco.jar archive
 			if (settings.isPluginProjectSelected()) {
 				if (sourceArchive.length() > 0) {
-					createPluginProject(monitor, sourceArchive, IProjectNames.PLUGIN_JCO);
+					createJCoPluginProject(monitor, sourceArchive, IProjectNames.PLUGIN_JCO);
 				} else {
 					throw new InvocationTargetException(null, Messages.ProjectGenerator_NoInputFileError);
 				}
@@ -196,6 +195,12 @@ public class ProjectGenerator implements IRunnableWithProgress {
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
+			// generate the plug-in containing the documentation archive
+			if (settings.isIDocPluginProjectSelected()) {
+				createIDocPluginProject(monitor, settings.getIDocFileName(), IProjectNames.PLUGIN_IDOC);
+			}
+			if (monitor.isCanceled()) throw new InterruptedException();
+
 			if (settings.isBundleExportSelected()) {
 				exportPlugins(monitor);
 			}
@@ -218,7 +223,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 	 * @throws CoreException 
 	 * @throws IOException 
 	 */
-	private void createPluginProject(IProgressMonitor monitor, String sourceFileName, String pluginName) throws CoreException, IOException {
+	private void createJCoPluginProject(IProgressMonitor monitor, String sourceFileName, String pluginName) throws CoreException, IOException {
 
 		monitor.subTask(MessageFormat.format(Messages.ProjectGenerator_CreatePluginTaskDescription, pluginName));
 
@@ -468,6 +473,90 @@ public class ProjectGenerator implements IRunnableWithProgress {
 		writeTextFile(monitor, buildProperties, project.getFile("build.properties")); //$NON-NLS-1$
 
 		// collect the fragment for export
+		exportableBundles.add(modelManager.findModel(project));
+	}
+
+	/**
+	 * Creates a plug-in project for the SAP IDoc library from the source file specified.
+	 * @param monitor
+	 * @param sourceFileName
+	 * @param pluginName
+	 * @throws CoreException 
+	 * @throws IOException 
+	 */
+	private void createIDocPluginProject(IProgressMonitor monitor, String sourceFileName, String pluginName) throws CoreException, IOException {
+
+		monitor.subTask(MessageFormat.format(Messages.ProjectGenerator_CreatePluginTaskDescription, pluginName));
+
+		// read the source file                                                                              10
+		final Map<String, byte[]> files = readArchiveFile(sourceFileName);
+		monitor.worked(10);                                                
+
+		// remove the project if it exists                                                                    5
+		IProject project = workspaceRoot.getProject(pluginName);
+		if (project.exists()) {
+			project.delete(true, true, new SubProgressMonitor(monitor, 5));
+		} else {
+			monitor.worked(5);
+		}
+
+		// create and open the project                                                                       10
+		project.create(new SubProgressMonitor(monitor, 5));
+		project.open(new SubProgressMonitor(monitor, 5));
+
+		// update the project description                                                                     5
+		IProjectDescription description = project.getDescription();
+		description.setNatureIds(new String[] {	JavaCore.NATURE_ID, PLUGIN_NATURE_ID });
+		project.setDescription(description, new SubProgressMonitor(monitor, 5));
+
+		// set the basic Java project properties                                                              5
+		IJavaProject javaProject = JavaCore.create(project);
+		IFolder binDir = project.getFolder("bin"); //$NON-NLS-1$
+		IPath binPath = binDir.getFullPath();
+		javaProject.setOutputLocation(binPath, new SubProgressMonitor(monitor, 5));
+
+		// copy sapidoc3.jar                                                                                 15
+		project.getFile("sapidoc3.jar").create(new ByteArrayInputStream(files.get("sapidoc3.jar")),  //$NON-NLS-1$ //$NON-NLS-2$
+				true, new SubProgressMonitor(monitor, 15));
+
+		// create META-INF and MANIFEST.MF                                                                   10
+		// TODO use the version information from the MANIFEST.MF file in the archive
+		IFolder metaInfFolder = project.getFolder("META-INF"); //$NON-NLS-1$
+		metaInfFolder.create(true, true, new SubProgressMonitor(monitor, 5));
+		StringBuilder manifest = new StringBuilder();
+		manifest.append("Manifest-Version: 1.0\n"); //$NON-NLS-1$
+		manifest.append("Bundle-ManifestVersion: 2\n"); //$NON-NLS-1$
+		manifest.append("Bundle-Name: SAP IDoc Library v3\n");  //$NON-NLS-1$
+		manifest.append(MessageFormat.format("Bundle-SymbolicName: {0}\n", pluginName)); //$NON-NLS-1$
+		manifest.append("Bundle-Version: 7.11.0\n"); //$NON-NLS-1$
+		manifest.append("Bundle-ClassPath: bin/,\n"); //$NON-NLS-1$
+		manifest.append(" sapidoc3.jar\n"); //$NON-NLS-1$
+		manifest.append("Bundle-Vendor: SAP AG, Walldorf (packaged using RCER)\n"); //$NON-NLS-1$
+		manifest.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n"); //$NON-NLS-1$
+		manifest.append("Export-Package: com.sap.conn.idoc,\n"); //$NON-NLS-1$
+		manifest.append(" com.sap.conn.idoc.jco,\n"); //$NON-NLS-1$
+		manifest.append(" com.sap.conn.idoc.rt.cp,\n"); //$NON-NLS-1$
+		manifest.append(" com.sap.conn.idoc.rt.record,\n"); //$NON-NLS-1$
+		manifest.append(" com.sap.conn.idoc.rt.record.impl,\n"); //$NON-NLS-1$
+		manifest.append(" com.sap.conn.idoc.rt.trace,\n"); //$NON-NLS-1$
+		manifest.append(" com.sap.conn.idoc.rt.util,\n"); //$NON-NLS-1$
+		manifest.append(" com.sap.conn.idoc.rt.xml\n"); //$NON-NLS-1$
+		manifest.append("Bundle-ActivationPolicy: lazy\n"); //$NON-NLS-1$
+		writeTextFile(monitor, manifest, metaInfFolder.getFile("MANIFEST.MF")); //$NON-NLS-1$
+
+		// set classpath                                                                                      5
+		final IPath jcoPath = new Path(MessageFormat.format("/{0}/sapidoc3.jar", pluginName)); //$NON-NLS-1$
+		IClasspathEntry jcoEntry = JavaCore.newLibraryEntry(jcoPath, Path.EMPTY, Path.EMPTY, true);
+		javaProject.setRawClasspath(new IClasspathEntry[] { jcoEntry }, new SubProgressMonitor(monitor, 5));
+
+		// create build.properties                                                                            5
+		StringBuilder buildProperties = new StringBuilder();
+		buildProperties.append("bin.includes = META-INF/,\\\n"); //$NON-NLS-1$
+		buildProperties.append("               sapidoc3.jar,\\\n"); //$NON-NLS-1$
+		buildProperties.append("               .\n"); //$NON-NLS-1$
+		writeTextFile(monitor, buildProperties, project.getFile("build.properties")); //$NON-NLS-1$
+
+		// collect the plug-in for export
 		exportableBundles.add(modelManager.findModel(project));
 	}
 

@@ -50,6 +50,7 @@ public class ArchiveFilesPage extends WizardPage {
 	private Text linux64x86FilenameText;
 	private Text darwin32FilenameText;
 	private Text darwin64FilenameText;
+	private Text iDocFilenameText;
 
 	private ModifyListener filenameModifyListener;
 
@@ -92,7 +93,8 @@ public class ArchiveFilesPage extends WizardPage {
 						(linux64IAFilenameText.getText().length() == 0) && 
 						(linux64x86FilenameText.getText().length() == 0) && 
 						(darwin32FilenameText.getText().length() == 0) && 
-						(darwin64FilenameText.getText().length() == 0)) {
+						(darwin64FilenameText.getText().length() == 0) &&
+						(iDocFilenameText.getText().length() == 0)) {
 					setErrorMessage(Messages.ArchiveFilesPage_NoFilesSpecifiedError);
 					setPageComplete(false);
 				} else {
@@ -106,6 +108,7 @@ public class ArchiveFilesPage extends WizardPage {
 					checkFile(linux64x86FilenameText.getText()); 
 					checkFile(darwin32FilenameText.getText()); 
 					checkFile(darwin64FilenameText.getText());
+					checkFile(iDocFilenameText.getText());
 				}
 			}
 
@@ -141,7 +144,10 @@ public class ArchiveFilesPage extends WizardPage {
 		darwin32FilenameText = addFileRow(top, "darwin32FileName", //$NON-NLS-1$
 				Messages.ArchiveFilesPage_Dawin32Label, "sapjco3-darwinintel-3.x.x.zip", "*.zip");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 		darwin64FilenameText = addFileRow(top, "darwin64FileName", //$NON-NLS-1$
-				Messages.ArchiveFilesPage_Darwin64Label, "sapjco3-darwinx64-3.x.x.zip", "*.zip");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+				Messages.ArchiveFilesPage_Darwin64Label, "sapjco3-darwinx64-3.x.x.zip", "*.zip");  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+
+		iDocFilenameText = addFileRow(top, "IDocFileName", //$NON-NLS-1$
+				Messages.ArchiveFilesPage_IDocLabel, "sapidoc3_3.x.x.zip", "*.zip");  //$NON-NLS-2$ //$NON-NLS-3$
 
 		setControl(top);
 		Dialog.applyDialogFont(top);

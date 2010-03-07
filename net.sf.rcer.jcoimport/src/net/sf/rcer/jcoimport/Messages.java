@@ -27,6 +27,8 @@ public class Messages extends NLS {
 	public static String ArchiveFilesPage_Dawin32Label;
 	public static String ArchiveFilesPage_FileNameHintLabel;
 	public static String ArchiveFilesPage_FileReadError;
+	public static String ArchiveFilesPage_IDocLabel;
+
 	public static String ArchiveFilesPage_InfoLabel;
 	public static String ArchiveFilesPage_Linux32Label;
 	public static String ArchiveFilesPage_Linux64IALabel;

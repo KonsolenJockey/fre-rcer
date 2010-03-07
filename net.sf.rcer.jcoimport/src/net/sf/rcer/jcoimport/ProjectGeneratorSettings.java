@@ -32,9 +32,11 @@ public class ProjectGeneratorSettings {
 	private String linux64x86FileName = ""; //$NON-NLS-1$
 	private String darwin32FileName = ""; //$NON-NLS-1$
 	private String darwin64FileName = ""; //$NON-NLS-1$
+	private String iDocFileName = ""; //$NON-NLS-1$
 
 	private boolean pluginProjectSelected;
 	private boolean docPluginProjectSelected;
+	private boolean iDocPluginProjectSelected;
 	private boolean win32FragmentSelected;
 	private boolean win64IAFragmentSelected;
 	private boolean win64x86FragmentSelected;
@@ -203,6 +205,26 @@ public class ProjectGeneratorSettings {
 	}
 
 	/**
+	 * @return the name of the archive file for the IDoc library, or an
+	 *         empty string if none was selected
+	 */
+	public String getIDocFileName() {
+		return iDocFileName;
+	}
+
+	/**
+	 * @param iDocFileName
+	 *            the file name to set
+	 * @see #getIDocFileName()
+	 */
+	public void setIDocFileName(String iDocFileName) {
+		String oldValue = iDocFileName;
+		this.iDocFileName = iDocFileName;
+		propertyChangeSupport.firePropertyChange("iDocFileName", oldValue, //$NON-NLS-1$
+				iDocFileName);
+	}
+
+	/**
 	 * @return whether the plugin project is selected
 	 */
 	public boolean isPluginProjectSelected() {
@@ -211,7 +233,7 @@ public class ProjectGeneratorSettings {
 
 	/**
 	 * @param pluginProjectSelected
-	 *            the pluginProjectSelected to set
+	 *            whether to create the plugin project
 	 */
 	public void setPluginProjectSelected(boolean pluginProjectSelected) {
 		boolean oldValue = pluginProjectSelected;
@@ -229,13 +251,31 @@ public class ProjectGeneratorSettings {
 
 	/**
 	 * @param docPluginProjectSelected
-	 *            the pluginProjectSelected to set
+	 *            whether to create the documentation plugin
 	 */
 	public void setDocPluginProjectSelected(boolean docPluginProjectSelected) {
 		boolean oldValue = docPluginProjectSelected;
 		this.docPluginProjectSelected = docPluginProjectSelected;
 		propertyChangeSupport.firePropertyChange("docPluginProjectSelected", oldValue, //$NON-NLS-1$
 				docPluginProjectSelected);
+	}
+
+	/**
+	 * @return whether the IDoc plugin project is selected
+	 */
+	public boolean isIDocPluginProjectSelected() {
+		return iDocPluginProjectSelected;
+	}
+
+	/**
+	 * @param iDocPluginProjectSelected
+	 *            whether to create the IDoc plugin project
+	 */
+	public void setIDocPluginProjectSelected(boolean iDocPluginProjectSelected) {
+		boolean oldValue = iDocPluginProjectSelected;
+		this.iDocPluginProjectSelected = iDocPluginProjectSelected;
+		propertyChangeSupport.firePropertyChange("iDocPluginProjectSelected", oldValue, //$NON-NLS-1$
+				iDocPluginProjectSelected);
 	}
 
 	/**
@@ -247,7 +287,7 @@ public class ProjectGeneratorSettings {
 
 	/**
 	 * @param win32FragmentSelected
-	 *            whether the win32 fragment is selected to set
+	 *            whether to create the win32 fragment 
 	 */
 	public void setWin32FragmentSelected(boolean win32FragmentSelected) {
 		boolean oldValue = win32FragmentSelected;
@@ -265,7 +305,7 @@ public class ProjectGeneratorSettings {
 
 	/**
 	 * @param win64IAFragmentSelected
-	 *            whether the win64IA fragment is selected to set
+	 *            whether to create the win64IA fragment
 	 */
 	public void setWin64IAFragmentSelected(boolean win64IAFragmentSelected) {
 		boolean oldValue = win64IAFragmentSelected;
@@ -283,7 +323,7 @@ public class ProjectGeneratorSettings {
 
 	/**
 	 * @param win64x86FragmentSelected
-	 *            whether the win64x86 fragment is selected to set
+	 *            whether to create the win64x86 fragment
 	 */
 	public void setWin64x86FragmentSelected(boolean win64x86FragmentSelected) {
 		boolean oldValue = win64x86FragmentSelected;
@@ -301,7 +341,7 @@ public class ProjectGeneratorSettings {
 
 	/**
 	 * @param linux32FragmentSelected
-	 *            whether the linux32 fragment is selected to set
+	 *            whether to create the linux32 fragment
 	 */
 	public void setLinux32FragmentSelected(boolean linux32FragmentSelected) {
 		boolean oldValue = linux32FragmentSelected;
@@ -319,7 +359,7 @@ public class ProjectGeneratorSettings {
 
 	/**
 	 * @param linux64IAFragmentSelected
-	 *            whether the linux64IA fragment is selected to set
+	 *            whether to create the linux64IA fragment
 	 */
 	public void setLinux64IAFragmentSelected(boolean linux64IAFragmentSelected) {
 		boolean oldValue = linux64IAFragmentSelected;
@@ -337,7 +377,7 @@ public class ProjectGeneratorSettings {
 
 	/**
 	 * @param linux64x86FragmentSelected
-	 *            whether the linux64x86 fragment is selected to set
+	 *            whether to create the linux64x86 fragment 
 	 */
 	public void setLinux64x86FragmentSelected(boolean linux64x86FragmentSelected) {
 		boolean oldValue = linux64x86FragmentSelected;
@@ -355,7 +395,7 @@ public class ProjectGeneratorSettings {
 
 	/**
 	 * @param darwin32FragmentSelected
-	 *            whether the darwin32 fragment is selected to set
+	 *            whether to create the darwin32 fragment
 	 */
 	public void setDarwin32FragmentSelected(boolean darwin32FragmentSelected) {
 		boolean oldValue = darwin32FragmentSelected;
@@ -373,7 +413,7 @@ public class ProjectGeneratorSettings {
 
 	/**
 	 * @param darwin64FragmentSelected
-	 *            whether the darwin64 fragment is selected to set
+	 *            whether to create the darwin64 fragment 
 	 */
 	public void setDarwin64FragmentSelected(boolean darwin64FragmentSelected) {
 		boolean oldValue = darwin64FragmentSelected;
@@ -390,7 +430,7 @@ public class ProjectGeneratorSettings {
 	}
 	
 	/**
-	 * @param bundleExportSelected the bundleExportSelected to set
+	 * @param bundleExportSelected whether to export the bundles to the export path
 	 */
 	public void setBundleExportSelected(boolean bundleExportSelected) {
 		boolean oldValue = bundleExportSelected;
@@ -407,7 +447,7 @@ public class ProjectGeneratorSettings {
 	}
 	
 	/**
-	 * @param exportPath the exportPath to set
+	 * @param exportPath the export path to set
 	 */
 	public void setExportPath(String exportPath) {
 		String oldValue = exportPath;

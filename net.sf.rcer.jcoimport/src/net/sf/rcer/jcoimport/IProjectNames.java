@@ -29,6 +29,11 @@ public interface IProjectNames {
 	public static final String PLUGIN_JCO_DOC = "com.sap.conn.jco.doc"; //$NON-NLS-1$
 	
 	/**
+	 * The name of the plug-in that contains the SAP IDoc library.
+	 */
+	public static final String PLUGIN_IDOC = "com.sap.conn.jco.idoc"; //$NON-NLS-1$
+	
+	/**
 	 * The name of the fragment that contains the native libraries for the Windows 32-bit platform. 
 	 */
 	public static final String FRAGMENT_WINDOWS_32 = "com.sap.conn.jco.win32.x86"; //$NON-NLS-1$

@@ -44,6 +44,7 @@ public class SummaryPage extends WizardPage {
 
 	private Button checkboxPlugin;
 	private Button checkboxDocPlugin;
+	private Button checkboxIDocPlugin;
 	private Button checkboxFragmentWin32;
 	private Button checkboxFragmentWin64IA;
 	private Button checkboxFragmentWin64x86;
@@ -94,6 +95,11 @@ public class SummaryPage extends WizardPage {
 		checkboxDocPlugin = new Button(top, SWT.CHECK);
 		context.bindValue(SWTObservables.observeSelection(checkboxDocPlugin), BeansObservables
 				.observeValue(generatorSettings, "docPluginProjectSelected"), //$NON-NLS-1$
+				new UpdateValueStrategy(), new UpdateValueStrategy());
+
+		checkboxIDocPlugin = new Button(top, SWT.CHECK);
+		context.bindValue(SWTObservables.observeSelection(checkboxIDocPlugin), BeansObservables
+				.observeValue(generatorSettings, "IDocPluginProjectSelected"), //$NON-NLS-1$
 				new UpdateValueStrategy(), new UpdateValueStrategy());
 
 		checkboxFragmentWin32 = new Button(top, SWT.CHECK);
@@ -171,8 +177,22 @@ public class SummaryPage extends WizardPage {
 	 */
 	private void updateCheckboxes() {
 		// TODO use databinding mechanisms to update the checkboxes
-		updateCheckbox(checkboxPlugin, "foo", IProjectNames.PLUGIN_JCO); //$NON-NLS-1$
-		updateCheckbox(checkboxDocPlugin, "foo", IProjectNames.PLUGIN_JCO_DOC); //$NON-NLS-1$
+		
+		final String anyJCoSourceFileName = generatorSettings.getWin32FileName() +
+											generatorSettings.getWin64IAFileName() +
+											generatorSettings.getWin64x86FileName() +
+											generatorSettings.getLinux32FileName() +
+											generatorSettings.getLinux64IAFileName() +
+											generatorSettings.getLinux64x86FileName() +
+											generatorSettings.getDarwin32FileName() +
+											generatorSettings.getDarwin64FileName();
+		
+		updateCheckbox(checkboxPlugin, anyJCoSourceFileName, 
+				IProjectNames.PLUGIN_JCO);
+		updateCheckbox(checkboxDocPlugin, anyJCoSourceFileName, 
+				IProjectNames.PLUGIN_JCO_DOC); 
+		updateCheckbox(checkboxIDocPlugin, generatorSettings.getIDocFileName(),
+				IProjectNames.PLUGIN_IDOC);
 		updateCheckbox(checkboxFragmentWin32, generatorSettings.getWin32FileName(),
 				IProjectNames.FRAGMENT_WINDOWS_32);
 		updateCheckbox(checkboxFragmentWin64IA, generatorSettings.getWin64IAFileName(),
