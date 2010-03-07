@@ -56,7 +56,7 @@ public class JCoImportWizard extends Wizard implements IImportWizard {
 		if (Platform.getInstallLocation() != null) {
 			generatorSettings.setBundleExportSelected(true);
 			// TODO use some API to locate the dropins folder
-			generatorSettings.setExportPath(Platform.getInstallLocation().getURL().getFile() + "dropins" + File.pathSeparator + "sapjco"); //$NON-NLS-1$ $NON-NLS-2$
+			generatorSettings.setExportPath(Platform.getInstallLocation().getURL().getFile() + "dropins" + File.separator + "sapjco"); //$NON-NLS-1$ $NON-NLS-2$
 		}
 		
 		context = new DataBindingContext();
