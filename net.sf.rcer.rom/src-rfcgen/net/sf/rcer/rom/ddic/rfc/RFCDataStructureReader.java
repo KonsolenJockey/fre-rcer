@@ -3,12 +3,21 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+import java.text.MessageFormat;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunction;
+import com.sap.conn.jco.JCoRecord;
+import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model a RFC call to DD_TABL_GET. Use the setters to prepare the importing parameters, 
@@ -278,28 +287,36 @@ public class RFCDataStructureReader {
 	 */
 	public void execute(JCoDestination destination) throws JCoException {
 		JCoFunction function = destination.getRepository().getFunction("DD_TABL_GET"); //$NON-NLS-1$
+		// FIXME: set inactive parameters
 		function.getImportParameterList().setValue("TABL_NAME", name); //$NON-NLS-1$
 		function.getImportParameterList().setValue("LANGU", localeID); //$NON-NLS-1$
 		function.getImportParameterList().setValue("WITHTEXT", addText ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		function.getImportParameterList().setValue("ADD_TYPEINFO", addTypeInfo ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		requestedStates.toStructure(function.getImportParameterList().getStructure("GET_STATE")); //$NON-NLS-1$
-		RFCDataStructureField.toTable(fields, function.getTableParameterList().getTable("DD03P_TAB_A")); //$NON-NLS-1$
-		RFCForeignKeyHeader.toTable(foreignKeyHeaders, function.getTableParameterList().getTable("DD08V_TAB_A")); //$NON-NLS-1$
-		RFCForeignKeyField.toTable(foreignKeyFields, function.getTableParameterList().getTable("DD05M_TAB_A")); //$NON-NLS-1$
-		RFCIndexHeader.toTable(indexHeaders, function.getTableParameterList().getTable("DD12V_TAB_A")); //$NON-NLS-1$
-		RFCIndexField.toTable(indexFields, function.getTableParameterList().getTable("DD17V_TAB_A")); //$NON-NLS-1$
-		RFCSearchHelpHeader.toTable(searchHelpHeaders, function.getTableParameterList().getTable("DD35V_TAB_A")); //$NON-NLS-1$
-		RFCSearchHelpField.toTable(searchHelpFields, function.getTableParameterList().getTable("DD36M_TAB_A")); //$NON-NLS-1$
+		header.toStructure(function.getImportParameterList().getStructure("DD02V_WA_A")); //$NON-NLS-1$
+		techSettings.toStructure(function.getImportParameterList().getStructure("DD09L_WA_A")); //$NON-NLS-1$
+		RFCDataStructureField.toTable(fields, function.getImportParameterList().getTable("DD03P_TAB_A")); //$NON-NLS-1$
+		RFCForeignKeyHeader.toTable(foreignKeyHeaders, function.getImportParameterList().getTable("DD08V_TAB_A")); //$NON-NLS-1$
+		RFCForeignKeyField.toTable(foreignKeyFields, function.getImportParameterList().getTable("DD05M_TAB_A")); //$NON-NLS-1$
+		RFCIndexHeader.toTable(indexHeaders, function.getImportParameterList().getTable("DD12V_TAB_A")); //$NON-NLS-1$
+		RFCIndexField.toTable(indexFields, function.getImportParameterList().getTable("DD17V_TAB_A")); //$NON-NLS-1$
+		RFCSearchHelpHeader.toTable(searchHelpHeaders, function.getImportParameterList().getTable("DD35V_TAB_A")); //$NON-NLS-1$
+		RFCSearchHelpField.toTable(searchHelpFields, function.getImportParameterList().getTable("DD36M_TAB_A")); //$NON-NLS-1$
 		function.execute(destination);
+		name = function.getExportParameterList().getString("TABL_NAME"); //$NON-NLS-1$
+		localeID = function.getExportParameterList().getString("LANGU"); //$NON-NLS-1$
+		addText = function.getExportParameterList().getString("WITHTEXT").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		addTypeInfo = function.getExportParameterList().getString("ADD_TYPEINFO").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		requestedStates = new RFCStructureStates(function.getExportParameterList().getStructure("GET_STATE")); //$NON-NLS-1$
 		header = new RFCDataStructureHeader(function.getExportParameterList().getStructure("DD02V_WA_A")); //$NON-NLS-1$
 		techSettings = new RFCTableTechSettings(function.getExportParameterList().getStructure("DD09L_WA_A")); //$NON-NLS-1$
-		fields = RFCDataStructureField.fromTable(function.getTableParameterList().getTable("DD03P_TAB_A")); //$NON-NLS-1$
-		foreignKeyHeaders = RFCForeignKeyHeader.fromTable(function.getTableParameterList().getTable("DD08V_TAB_A")); //$NON-NLS-1$
-		foreignKeyFields = RFCForeignKeyField.fromTable(function.getTableParameterList().getTable("DD05M_TAB_A")); //$NON-NLS-1$
-		indexHeaders = RFCIndexHeader.fromTable(function.getTableParameterList().getTable("DD12V_TAB_A")); //$NON-NLS-1$
-		indexFields = RFCIndexField.fromTable(function.getTableParameterList().getTable("DD17V_TAB_A")); //$NON-NLS-1$
-		searchHelpHeaders = RFCSearchHelpHeader.fromTable(function.getTableParameterList().getTable("DD35V_TAB_A")); //$NON-NLS-1$
-		searchHelpFields = RFCSearchHelpField.fromTable(function.getTableParameterList().getTable("DD36M_TAB_A")); //$NON-NLS-1$
+		fields = RFCDataStructureField.fromTable(function.getExportParameterList().getTable("DD03P_TAB_A")); //$NON-NLS-1$
+		foreignKeyHeaders = RFCForeignKeyHeader.fromTable(function.getExportParameterList().getTable("DD08V_TAB_A")); //$NON-NLS-1$
+		foreignKeyFields = RFCForeignKeyField.fromTable(function.getExportParameterList().getTable("DD05M_TAB_A")); //$NON-NLS-1$
+		indexHeaders = RFCIndexHeader.fromTable(function.getExportParameterList().getTable("DD12V_TAB_A")); //$NON-NLS-1$
+		indexFields = RFCIndexField.fromTable(function.getExportParameterList().getTable("DD17V_TAB_A")); //$NON-NLS-1$
+		searchHelpHeaders = RFCSearchHelpHeader.fromTable(function.getExportParameterList().getTable("DD35V_TAB_A")); //$NON-NLS-1$
+		searchHelpFields = RFCSearchHelpField.fromTable(function.getExportParameterList().getTable("DD36M_TAB_A")); //$NON-NLS-1$
 	}
 
 	/**

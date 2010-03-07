@@ -3,12 +3,21 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+import java.text.MessageFormat;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunction;
+import com.sap.conn.jco.JCoRecord;
+import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model a RFC call to DD_DTEL_GET. Use the setters to prepare the importing parameters, 
@@ -108,12 +117,16 @@ public class RFCDataElementReader {
 	 */
 	public void execute(JCoDestination destination) throws JCoException {
 		JCoFunction function = destination.getRepository().getFunction("DD_DTEL_GET"); //$NON-NLS-1$
+		// FIXME: set inactive parameters
 		function.getImportParameterList().setValue("ROLL_NAME", dataElementName); //$NON-NLS-1$
 		function.getImportParameterList().setValue("LANGU", localeID); //$NON-NLS-1$
-		RFCDataElementText.toTable(texts, function.getTableParameterList().getTable("DD04T_TAB_A")); //$NON-NLS-1$
+		dataElementData.toStructure(function.getImportParameterList().getStructure("DD04L_WA_A")); //$NON-NLS-1$
+		RFCDataElementText.toTable(texts, function.getImportParameterList().getTable("DD04T_TAB_A")); //$NON-NLS-1$
 		function.execute(destination);
+		dataElementName = function.getExportParameterList().getString("ROLL_NAME"); //$NON-NLS-1$
+		localeID = function.getExportParameterList().getString("LANGU"); //$NON-NLS-1$
 		dataElementData = new RFCDataElementData(function.getExportParameterList().getStructure("DD04L_WA_A")); //$NON-NLS-1$
-		texts = RFCDataElementText.fromTable(function.getTableParameterList().getTable("DD04T_TAB_A")); //$NON-NLS-1$
+		texts = RFCDataElementText.fromTable(function.getExportParameterList().getTable("DD04T_TAB_A")); //$NON-NLS-1$
 	}
 
 	/**

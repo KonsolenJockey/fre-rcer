@@ -3,10 +3,19 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import java.text.MessageFormat;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.sap.conn.jco.JCoDestination;
+import com.sap.conn.jco.JCoException;
+import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -18,7 +27,7 @@ public class RFCDataStructureField {
 	private PropertyChangeSupport _pcs;
 
 	private String fieldName;
-	private int position;
+	private int osition;
 	private boolean keyField;
 	private String mandatory;
 	private String dataElementName;
@@ -73,7 +82,7 @@ public class RFCDataStructureField {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
 		this.fieldName = source.getString("FIELDNAME"); //$NON-NLS-1$
-		this.position = source.getInt("POSITION"); //$NON-NLS-1$
+		this.osition = source.getInt("POSITION"); //$NON-NLS-1$
 		this.keyField = source.getString("KEYFLAG").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
 		this.mandatory = source.getString("MANDATORY"); //$NON-NLS-1$
 		this.dataElementName = source.getString("ROLLNAME"); //$NON-NLS-1$
@@ -120,9 +129,12 @@ public class RFCDataStructureField {
 	 */
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
-		targetStructure.clear();
+	    // don't call clear in case of a table because that would delete all rows.
+		if (!(targetStructure instanceof JCoTable)) {
+			targetStructure.clear();
+		}
 		targetStructure.setValue("FIELDNAME", this.fieldName); //$NON-NLS-1$
-		targetStructure.setValue("POSITION", this.position); //$NON-NLS-1$
+		targetStructure.setValue("POSITION", this.osition); //$NON-NLS-1$
 		targetStructure.setValue("KEYFLAG", this.keyField); //$NON-NLS-1$
 		targetStructure.setValue("MANDATORY", this.mandatory); //$NON-NLS-1$
 		targetStructure.setValue("ROLLNAME", this.dataElementName); //$NON-NLS-1$
@@ -221,17 +233,17 @@ public class RFCDataStructureField {
 	/**
 	 * @return the position of the field in the table (DD03P-POSITION)
 	 */
-	public int getPosition() {
-		return this.position;
+	public int getOsition() {
+		return this.osition;
 	}
 	
 	/**
 	 * Changes the position of the field in the table (DD03P-POSITION).
-	 * @param newPosition the new position of the field in the table to set
+	 * @param newOsition the new position of the field in the table to set
 	 */
-	public void setPosition(int newPosition) {
-		_pcs.firePropertyChange("position", this.position, newPosition); //$NON-NLS-1$
-		this.position = newPosition;
+	public void setOsition(int newOsition) {
+		_pcs.firePropertyChange("osition", this.osition, newOsition); //$NON-NLS-1$
+		this.osition = newOsition;
 	}
 	
 	/**

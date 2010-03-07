@@ -3,10 +3,19 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import java.text.MessageFormat;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.sap.conn.jco.JCoDestination;
+import com.sap.conn.jco.JCoException;
+import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -54,7 +63,10 @@ public class RFCDataElementText {
 	 */
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
-		targetStructure.clear();
+	    // don't call clear in case of a table because that would delete all rows.
+		if (!(targetStructure instanceof JCoTable)) {
+			targetStructure.clear();
+		}
 		targetStructure.setValue("DDLANGUAGE", this.localeID); //$NON-NLS-1$
 		targetStructure.setValue("DDTEXT", this.description); //$NON-NLS-1$
 		targetStructure.setValue("REPTEXT", this.heading); //$NON-NLS-1$

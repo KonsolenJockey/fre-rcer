@@ -3,12 +3,21 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+import java.text.MessageFormat;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunction;
+import com.sap.conn.jco.JCoRecord;
+import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model a RFC call to DD_DOMA_GET. Use the setters to prepare the importing parameters, 
@@ -108,12 +117,16 @@ public class RFCDomainReader {
 	 */
 	public void execute(JCoDestination destination) throws JCoException {
 		JCoFunction function = destination.getRepository().getFunction("DD_DOMA_GET"); //$NON-NLS-1$
+		// FIXME: set inactive parameters
 		function.getImportParameterList().setValue("DOMAIN_NAME", domainName); //$NON-NLS-1$
 		function.getImportParameterList().setValue("LANGU", localeID); //$NON-NLS-1$
-		RFCDomainValue.toTable(values, function.getTableParameterList().getTable("DD07V_TAB_A")); //$NON-NLS-1$
+		domainData.toStructure(function.getImportParameterList().getStructure("DD01V_WA_A")); //$NON-NLS-1$
+		RFCDomainValue.toTable(values, function.getImportParameterList().getTable("DD07V_TAB_A")); //$NON-NLS-1$
 		function.execute(destination);
+		domainName = function.getExportParameterList().getString("DOMAIN_NAME"); //$NON-NLS-1$
+		localeID = function.getExportParameterList().getString("LANGU"); //$NON-NLS-1$
 		domainData = new RFCDomainData(function.getExportParameterList().getStructure("DD01V_WA_A")); //$NON-NLS-1$
-		values = RFCDomainValue.fromTable(function.getTableParameterList().getTable("DD07V_TAB_A")); //$NON-NLS-1$
+		values = RFCDomainValue.fromTable(function.getExportParameterList().getTable("DD07V_TAB_A")); //$NON-NLS-1$
 	}
 
 	/**

@@ -3,10 +3,19 @@ package net.sf.rcer.rom.ddic.rfc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import java.text.MessageFormat;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.sap.conn.jco.JCoDestination;
+import com.sap.conn.jco.JCoException;
+import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -52,7 +61,10 @@ public class RFCDomainValue {
 	 */
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
-		targetStructure.clear();
+	    // don't call clear in case of a table because that would delete all rows.
+		if (!(targetStructure instanceof JCoTable)) {
+			targetStructure.clear();
+		}
 		targetStructure.setValue("VALPOS", this.position); //$NON-NLS-1$
 		targetStructure.setValue("DDLANGUAGE", this.localeID); //$NON-NLS-1$
 		targetStructure.setValue("DOMVALUE_L", this.lowerValue); //$NON-NLS-1$
