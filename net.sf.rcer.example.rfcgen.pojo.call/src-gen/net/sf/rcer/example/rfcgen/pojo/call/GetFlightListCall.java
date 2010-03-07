@@ -3,12 +3,21 @@ package net.sf.rcer.example.rfcgen.pojo.call;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+import java.text.MessageFormat;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunction;
+import com.sap.conn.jco.JCoRecord;
+import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model a RFC call to BAPI_SFLIGHT_GETLIST. Use the setters to prepare the importing parameters, 
@@ -142,14 +151,20 @@ public class GetFlightListCall {
 	 */
 	public void execute(JCoDestination destination) throws JCoException {
 		JCoFunction function = destination.getRepository().getFunction("BAPI_SFLIGHT_GETLIST"); //$NON-NLS-1$
+		// FIXME: set inactive parameters
 		function.getImportParameterList().setValue("FROMCOUNTRYKEY", fromCountry); //$NON-NLS-1$
 		function.getImportParameterList().setValue("FROMCITY", fromCity); //$NON-NLS-1$
 		function.getImportParameterList().setValue("TOCOUNTRYKEY", toCountry); //$NON-NLS-1$
 		function.getImportParameterList().setValue("TOCITY", toCity); //$NON-NLS-1$
 		function.getImportParameterList().setValue("AFTERNOON", afternoon ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		FlightData.toTable(flights, function.getTableParameterList().getTable("FLIGHTLIST")); //$NON-NLS-1$
+		FlightData.toTable(flights, function.getImportParameterList().getTable("FLIGHTLIST")); //$NON-NLS-1$
 		function.execute(destination);
-		flights = FlightData.fromTable(function.getTableParameterList().getTable("FLIGHTLIST")); //$NON-NLS-1$
+		fromCountry = function.getExportParameterList().getString("FROMCOUNTRYKEY"); //$NON-NLS-1$
+		fromCity = function.getExportParameterList().getString("FROMCITY"); //$NON-NLS-1$
+		toCountry = function.getExportParameterList().getString("TOCOUNTRYKEY"); //$NON-NLS-1$
+		toCity = function.getExportParameterList().getString("TOCITY"); //$NON-NLS-1$
+		afternoon = function.getExportParameterList().getString("AFTERNOON").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		flights = FlightData.fromTable(function.getExportParameterList().getTable("FLIGHTLIST")); //$NON-NLS-1$
 	}
 
 	/**

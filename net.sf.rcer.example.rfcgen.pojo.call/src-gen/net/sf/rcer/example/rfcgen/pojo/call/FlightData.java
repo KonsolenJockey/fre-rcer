@@ -3,11 +3,19 @@ package net.sf.rcer.example.rfcgen.pojo.call;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import java.text.MessageFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.sap.conn.jco.JCoDestination;
+import com.sap.conn.jco.JCoException;
+import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 
@@ -59,7 +67,10 @@ public class FlightData {
 	 */
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
-		targetStructure.clear();
+	    // don't call clear in case of a table because that would delete all rows.
+		if (!(targetStructure instanceof JCoTable)) {
+			targetStructure.clear();
+		}
 		targetStructure.setValue("CARRID", this.carrierID); //$NON-NLS-1$
 		targetStructure.setValue("CONNID", this.connectionID); //$NON-NLS-1$
 		targetStructure.setValue("FLDATE", this.flightDate); //$NON-NLS-1$

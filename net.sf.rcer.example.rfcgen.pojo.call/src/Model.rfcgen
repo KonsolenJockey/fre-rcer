@@ -13,24 +13,24 @@ package "net.sf.rcer.example.rfcgen.pojo.call"
 
 structure "BAPISFLIST" { 
 	class FlightData { 
-		field "CARRID"   = String carrierID    comment "carrier ID";
-		field "CONNID"   = String connectionID comment "connection ID";
-		field "FLDATE"   = Date flightDate     comment "flight date";
-		field "DEPTIME"  = Date departureTime  comment "departure time";
-		field "AIRPFROM" = String origin       comment "originating airport";
-		field "AIRPTO"   = String destination  comment "destination airport";
-		field "SEATSMAX" = int maximumSeats    comment "maximum number of seats";
-		field "SEATSOCC" = int occupiedSeats   comment "number of seats occupied";
+		field "CARRID"   = String carrierID      comment "carrier ID";
+		field "CONNID"   = String connectionID   comment "connection ID";
+		field "FLDATE"   = Date flightDate       comment "flight date";
+		field "DEPTIME"  = Date departureTime    comment "departure time";
+		field "AIRPFROM" = String origin         comment "originating airport";
+		field "AIRPTO"   = String destination    comment "destination airport";
+		field "SEATSMAX" = Integer maximumSeats  comment "maximum number of seats";
+		field "SEATSOCC" = Integer occupiedSeats comment "number of seats occupied";
 	}
 }
 
 function module "BAPI_SFLIGHT_GETLIST" {
 	class GetFlightListCall {
-		import field "FROMCOUNTRYKEY" = String fromCountry comment "country code of origin";
-		import field "FROMCITY"       = String fromCity    comment "city of origin";
-		import field "TOCOUNTRYKEY"   = String toCountry   comment "country code of destination";
-		import field "TOCITY"         = String toCity      comment "destination city";
-		import field "AFTERNOON"      = boolean afternoon  comment "restrict search to afternoon flights";
-		table "FLIGHTLIST"            = FlightData flights comment "list of flights";
+		importing field "FROMCOUNTRYKEY" = String fromCountry comment "country code of origin";
+		importing field "FROMCITY"       = String fromCity    comment "city of origin";
+		importing field "TOCOUNTRYKEY"   = String toCountry   comment "country code of destination";
+		importing field "TOCITY"         = String toCity      comment "destination city";
+		importing field "AFTERNOON"      = Boolean afternoon  comment "restrict search to afternoon flights";
+		table "FLIGHTLIST"               = FlightData flights comment "list of flights";
 	}
 }
