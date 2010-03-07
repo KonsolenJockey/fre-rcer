@@ -4,9 +4,20 @@ package net.sf.rcer.example.rfcgen.pojo.rr;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+import java.text.MessageFormat;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunction;
+import com.sap.conn.jco.JCoRecord;
+import com.sap.conn.jco.JCoTable;
 
 /**
  * A class to model the input data of a RFC call to BAPI_SFLIGHT_GETLIST. Use the setters to prepare 
@@ -124,6 +135,7 @@ public class GetFlightListRequest {
 	 */
 	public GetFlightListResponse execute(JCoDestination destination) throws JCoException {
 		JCoFunction function = destination.getRepository().getFunction("BAPI_SFLIGHT_GETLIST"); //$NON-NLS-1$
+		// FIXME: set inactive parameters
 		function.getImportParameterList().setValue("FROMCOUNTRYKEY", fromCountry); //$NON-NLS-1$
 		function.getImportParameterList().setValue("FROMCITY", fromCity); //$NON-NLS-1$
 		function.getImportParameterList().setValue("TOCOUNTRYKEY", toCountry); //$NON-NLS-1$
@@ -131,7 +143,7 @@ public class GetFlightListRequest {
 		function.getImportParameterList().setValue("AFTERNOON", afternoon ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		function.execute(destination);
 		GetFlightListResponse response = new GetFlightListResponse();
-		response.setFlights(FlightData.fromTable(function.getTableParameterList().getTable("FLIGHTLIST"))); //$NON-NLS-1$
+		response.setFlights(FlightData.fromTable(function.getExportParameterList().getTable("FLIGHTLIST"))); //$NON-NLS-1$
 		return response;
 	}
 
