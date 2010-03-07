@@ -14,7 +14,7 @@ import mapping;
 // --- file names ---------------------------------------------------------------------------------
 
 String getFileName(StructurePOJOMapping structure, String packageName):
-	packageName.replaceAll("\\.", "/") + "/" + structure.className + ".java";
+	packageName.replaceAll("\\.", "/") + "/" + structure.name + ".java";
 	
 String getFileName(FunctionModulePOJOCallMapping mapping, String packageName):
 	packageName.replaceAll("\\.", "/") + "/" + mapping.className + ".java";
@@ -133,19 +133,19 @@ String getElementTypeName(FunctionModulePOJOParameterMapping parameter):
 	"Object";
 
 String getElementTypeName(FunctionModulePOJOImportingParameter parameter):
-	(parameter.isStructure() ? ((StructurePOJOMapping)parameter.structure.mapping).className
+	(parameter.isStructure() ? ((StructurePOJOMapping)parameter.structure).name
                              : parameter.type.getJavaTypeName() );
 
 String getElementTypeName(FunctionModulePOJOExportingParameter parameter):
-	(parameter.isStructure() ? ((StructurePOJOMapping)parameter.structure.mapping).className
+	(parameter.isStructure() ? ((StructurePOJOMapping)parameter.structure).name
                              : parameter.type.getJavaTypeName() );
 
 String getElementTypeName(FunctionModulePOJOChangingParameter parameter):
-	(parameter.isStructure() ? ((StructurePOJOMapping)parameter.structure.mapping).className
+	(parameter.isStructure() ? ((StructurePOJOMapping)parameter.structure).name
                              : parameter.type.getJavaTypeName() );
 
 String getElementTypeName(FunctionModulePOJOTablesParameter parameter):
-	((StructurePOJOMapping)parameter.structure.mapping).className;
+	((StructurePOJOMapping)parameter.structure).name;
 
 // --- function module mapping --------------------------------------------------------------------
 

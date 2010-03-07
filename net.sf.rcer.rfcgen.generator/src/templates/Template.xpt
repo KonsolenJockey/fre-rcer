@@ -126,7 +126,7 @@ package «packageName»;
 /**
  * A class representing the SAP R/3 data structure «structureName».
  */
-public class «className» {
+public class «name» {
 
 	private PropertyChangeSupport _pcs;
 
@@ -137,7 +137,7 @@ public class «className» {
 	/**
 	 * Default constructor to create an instance with initial values.
 	 */
-	public «className»() {
+	public «name»() {
 		_pcs = new PropertyChangeSupport(this);
 	}
 
@@ -146,7 +146,7 @@ public class «className» {
 	 * @param source the {@link JCoRecord} to copy the values from
 	 * @throws UnsupportedOperationException if any other structure is passed as a source record
 	 */
-	public «className»(JCoRecord source) throws UnsupportedOperationException {
+	public «name»(JCoRecord source) throws UnsupportedOperationException {
 		checkStructure(source);
 		_pcs = new PropertyChangeSupport(this);
 «FOREACH getActiveFields() AS f-»
@@ -165,7 +165,10 @@ public class «className» {
 	 */
 	public void toStructure(JCoRecord targetStructure) throws UnsupportedOperationException {
 		checkStructure(targetStructure);
-		targetStructure.clear();
+	    // don't call clear in case of a table because that would delete all rows.
+		if (!(targetStructure instanceof JCoTable)) {
+			targetStructure.clear();
+		}
 «FOREACH getActiveFields() AS f-»
 		targetStructure.setValue("«f.name»", this.«f.attribute»); //$NON-NLS-1$
 «ENDFOREACH-»
@@ -176,9 +179,9 @@ public class «className» {
 	 * @param source
 	 * @param destination
 	 */
-	public static void toTable(List<«className»> source, JCoTable destination) {
+	public static void toTable(List<«name»> source, JCoTable destination) {
 		destination.deleteAllRows();
-		for («className» entry: source) {
+		for («name» entry: source) {
 			destination.appendRow();
 			entry.toStructure(destination);
 		}
@@ -189,12 +192,12 @@ public class «className» {
 	 * @param source the {@link JCoTable} to read the data from
 	 * @return a new {@link List} instance containing the data from the table
 	 */
-	public static List<«className»> fromTable(JCoTable source) {
-		List<«className»> list = new ArrayList<«className»>();
+	public static List<«name»> fromTable(JCoTable source) {
+		List<«name»> list = new ArrayList<«name»>();
 		if (!source.isEmpty()) {
 			source.firstRow();
 			do {
-				list.add(new «className»(source));
+				list.add(new «name»(source));
 			} while (source.nextRow());
 		}
 		return list;
