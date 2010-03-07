@@ -19,4 +19,7 @@
    <topic label="Samples">
       <anchor id="samples"/>
    </topic>
+   <topic label="SAP Java Connector Documentation">
+      <anchor id="jco"/>
+   </topic>
 </toc>
