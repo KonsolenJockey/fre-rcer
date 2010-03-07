@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.StructurePOJOMappingImpl#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.StructurePOJOMappingImpl#getName <em>Name</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.StructurePOJOMappingImpl#getFields <em>Fields</em>}</li>
  * </ul>
  * </p>
@@ -41,24 +41,24 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class StructurePOJOMappingImpl extends StructureMappingImpl implements StructurePOJOMapping
 {
   /**
-   * The default value of the '{@link #getClassName() <em>Class Name</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getClassName()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String CLASS_NAME_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getClassName() <em>Class Name</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getClassName()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String className = CLASS_NAME_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getFields() <em>Fields</em>}' containment reference list.
@@ -96,9 +96,9 @@ public class StructurePOJOMappingImpl extends StructureMappingImpl implements St
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getClassName()
+  public String getName()
   {
-    return className;
+    return name;
   }
 
   /**
@@ -106,12 +106,12 @@ public class StructurePOJOMappingImpl extends StructureMappingImpl implements St
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setClassName(String newClassName)
+  public void setName(String newName)
   {
-    String oldClassName = className;
-    className = newClassName;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.STRUCTURE_POJO_MAPPING__CLASS_NAME, oldClassName, className));
+      eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.STRUCTURE_POJO_MAPPING__NAME, oldName, name));
   }
 
   /**
@@ -154,8 +154,8 @@ public class StructurePOJOMappingImpl extends StructureMappingImpl implements St
   {
     switch (featureID)
     {
-      case MappingPackage.STRUCTURE_POJO_MAPPING__CLASS_NAME:
-        return getClassName();
+      case MappingPackage.STRUCTURE_POJO_MAPPING__NAME:
+        return getName();
       case MappingPackage.STRUCTURE_POJO_MAPPING__FIELDS:
         return getFields();
     }
@@ -173,8 +173,8 @@ public class StructurePOJOMappingImpl extends StructureMappingImpl implements St
   {
     switch (featureID)
     {
-      case MappingPackage.STRUCTURE_POJO_MAPPING__CLASS_NAME:
-        setClassName((String)newValue);
+      case MappingPackage.STRUCTURE_POJO_MAPPING__NAME:
+        setName((String)newValue);
         return;
       case MappingPackage.STRUCTURE_POJO_MAPPING__FIELDS:
         getFields().clear();
@@ -194,8 +194,8 @@ public class StructurePOJOMappingImpl extends StructureMappingImpl implements St
   {
     switch (featureID)
     {
-      case MappingPackage.STRUCTURE_POJO_MAPPING__CLASS_NAME:
-        setClassName(CLASS_NAME_EDEFAULT);
+      case MappingPackage.STRUCTURE_POJO_MAPPING__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case MappingPackage.STRUCTURE_POJO_MAPPING__FIELDS:
         getFields().clear();
@@ -214,8 +214,8 @@ public class StructurePOJOMappingImpl extends StructureMappingImpl implements St
   {
     switch (featureID)
     {
-      case MappingPackage.STRUCTURE_POJO_MAPPING__CLASS_NAME:
-        return CLASS_NAME_EDEFAULT == null ? className != null : !CLASS_NAME_EDEFAULT.equals(className);
+      case MappingPackage.STRUCTURE_POJO_MAPPING__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case MappingPackage.STRUCTURE_POJO_MAPPING__FIELDS:
         return fields != null && !fields.isEmpty();
     }
@@ -233,8 +233,8 @@ public class StructurePOJOMappingImpl extends StructureMappingImpl implements St
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (className: ");
-    result.append(className);
+    result.append(" (name: ");
+    result.append(name);
     result.append(')');
     return result.toString();
   }

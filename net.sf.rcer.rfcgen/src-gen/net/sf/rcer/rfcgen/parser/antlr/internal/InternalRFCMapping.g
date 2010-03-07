@@ -281,9 +281,9 @@ ruleStructurePOJOMapping returns [EObject current=null]
     }
 (	
 	
-	    lv_className_1=	RULE_ID
+	    lv_name_1=	RULE_ID
 	{
-		createLeafNode(grammarAccess.getStructurePOJOMappingAccess().getClassNameIDTerminalRuleCall_1_0(), "className"); 
+		createLeafNode(grammarAccess.getStructurePOJOMappingAccess().getNameIDTerminalRuleCall_1_0(), "name"); 
 	}
  
 	    {
@@ -293,7 +293,7 @@ ruleStructurePOJOMapping returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "className", lv_className_1, "ID", lastConsumedNode);
+	       		set($current, "name", lv_name_1, "ID", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -1063,7 +1063,7 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
         }
 	RULE_ID
 	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(), "structure"); 
+		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(), "structure"); 
 	}
 
 		// TODO assign feature to currentNode
@@ -1167,7 +1167,7 @@ ruleFunctionModulePOJOImportingParameter returns [EObject current=null]
         }
 	RULE_ID
 	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(), "structure"); 
+		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(), "structure"); 
 	}
 
 		// TODO assign feature to currentNode
@@ -1398,7 +1398,7 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
         }
 	RULE_ID
 	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(), "structure"); 
+		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(), "structure"); 
 	}
 
 		// TODO assign feature to currentNode
@@ -1502,7 +1502,7 @@ ruleFunctionModulePOJOExportingParameter returns [EObject current=null]
         }
 	RULE_ID
 	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(), "structure"); 
+		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(), "structure"); 
 	}
 
 		// TODO assign feature to currentNode
@@ -1733,7 +1733,7 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
         }
 	RULE_ID
 	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(), "structure"); 
+		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(), "structure"); 
 	}
 
 		// TODO assign feature to currentNode
@@ -1837,7 +1837,7 @@ ruleFunctionModulePOJOChangingParameter returns [EObject current=null]
         }
 	RULE_ID
 	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(), "structure"); 
+		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(), "structure"); 
 	}
 
 		// TODO assign feature to currentNode
@@ -1972,7 +1972,7 @@ ruleFunctionModulePOJOTablesParameter returns [EObject current=null]
         }
 	RULE_ID
 	{
-		createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureCrossReference_3_1_0_0(), "structure"); 
+		createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureMappingCrossReference_3_1_0_0(), "structure"); 
 	}
 
 		// TODO assign feature to currentNode

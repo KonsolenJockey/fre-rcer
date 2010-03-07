@@ -173,13 +173,13 @@ public interface MappingPackage extends EPackage
   int STRUCTURE_POJO_MAPPING = 3;
 
   /**
-   * The feature id for the '<em><b>Class Name</b></em>' attribute.
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STRUCTURE_POJO_MAPPING__CLASS_NAME = STRUCTURE_MAPPING_FEATURE_COUNT + 0;
+  int STRUCTURE_POJO_MAPPING__NAME = STRUCTURE_MAPPING_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Fields</b></em>' containment reference list.
@@ -911,15 +911,15 @@ public interface MappingPackage extends EPackage
   EClass getStructurePOJOMapping();
 
   /**
-   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.StructurePOJOMapping#getClassName <em>Class Name</em>}'.
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.StructurePOJOMapping#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Class Name</em>'.
-   * @see net.sf.rcer.rfcgen.mapping.StructurePOJOMapping#getClassName()
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.StructurePOJOMapping#getName()
    * @see #getStructurePOJOMapping()
    * @generated
    */
-  EAttribute getStructurePOJOMapping_ClassName();
+  EAttribute getStructurePOJOMapping_Name();
 
   /**
    * Returns the meta object for the containment reference list '{@link net.sf.rcer.rfcgen.mapping.StructurePOJOMapping#getFields <em>Fields</em>}'.
@@ -1420,12 +1420,12 @@ public interface MappingPackage extends EPackage
     EClass STRUCTURE_POJO_MAPPING = eINSTANCE.getStructurePOJOMapping();
 
     /**
-     * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute STRUCTURE_POJO_MAPPING__CLASS_NAME = eINSTANCE.getStructurePOJOMapping_ClassName();
+    EAttribute STRUCTURE_POJO_MAPPING__NAME = eINSTANCE.getStructurePOJOMapping_Name();
 
     /**
      * The meta object literal for the '<em><b>Fields</b></em>' containment reference list feature.

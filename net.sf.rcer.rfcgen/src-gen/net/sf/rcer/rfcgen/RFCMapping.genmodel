@@ -37,7 +37,7 @@
     </genClasses>
     <genClasses ecoreClass="RFCMapping.ecore#//StructureMapping"/>
     <genClasses ecoreClass="RFCMapping.ecore#//StructurePOJOMapping">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//StructurePOJOMapping/className"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RFCMapping.ecore#//StructurePOJOMapping/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RFCMapping.ecore#//StructurePOJOMapping/fields"/>
     </genClasses>
     <genClasses ecoreClass="RFCMapping.ecore#//StructureFieldPOJOMapping">

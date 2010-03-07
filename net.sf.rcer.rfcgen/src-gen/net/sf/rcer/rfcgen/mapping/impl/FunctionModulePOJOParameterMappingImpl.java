@@ -7,7 +7,7 @@ package net.sf.rcer.rfcgen.mapping.impl;
 
 import net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping;
 import net.sf.rcer.rfcgen.mapping.MappingPackage;
-import net.sf.rcer.rfcgen.mapping.Structure;
+import net.sf.rcer.rfcgen.mapping.StructureMapping;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -104,7 +104,7 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
    * @generated
    * @ordered
    */
-  protected Structure structure;
+  protected StructureMapping structure;
 
   /**
    * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
@@ -221,12 +221,12 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
    * <!-- end-user-doc -->
    * @generated
    */
-  public Structure getStructure()
+  public StructureMapping getStructure()
   {
     if (structure != null && structure.eIsProxy())
     {
       InternalEObject oldStructure = (InternalEObject)structure;
-      structure = (Structure)eResolveProxy(oldStructure);
+      structure = (StructureMapping)eResolveProxy(oldStructure);
       if (structure != oldStructure)
       {
         if (eNotificationRequired())
@@ -241,7 +241,7 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
    * <!-- end-user-doc -->
    * @generated
    */
-  public Structure basicGetStructure()
+  public StructureMapping basicGetStructure()
   {
     return structure;
   }
@@ -251,9 +251,9 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setStructure(Structure newStructure)
+  public void setStructure(StructureMapping newStructure)
   {
-    Structure oldStructure = structure;
+    StructureMapping oldStructure = structure;
     structure = newStructure;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE, oldStructure, structure));
@@ -327,7 +327,7 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
         setAttribute((String)newValue);
         return;
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE:
-        setStructure((Structure)newValue);
+        setStructure((StructureMapping)newValue);
         return;
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT:
         setComment((String)newValue);
@@ -356,7 +356,7 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
         setAttribute(ATTRIBUTE_EDEFAULT);
         return;
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE:
-        setStructure((Structure)null);
+        setStructure((StructureMapping)null);
         return;
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT:
         setComment(COMMENT_EDEFAULT);

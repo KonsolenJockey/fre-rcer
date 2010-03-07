@@ -510,34 +510,34 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleStructurePOJOMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:272:1: ruleStructurePOJOMapping returns [EObject current=null] : ( 'class' (lv_className_1= RULE_ID ) '{' ( (lv_fields_3= ruleStructureFieldPOJOMapping ) ';' )* '}' ) ;
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:272:1: ruleStructurePOJOMapping returns [EObject current=null] : ( 'class' (lv_name_1= RULE_ID ) '{' ( (lv_fields_3= ruleStructureFieldPOJOMapping ) ';' )* '}' ) ;
     public final EObject ruleStructurePOJOMapping() throws RecognitionException {
         EObject current = null;
 
-        Token lv_className_1=null;
+        Token lv_name_1=null;
         EObject lv_fields_3 = null;
 
 
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:277:6: ( ( 'class' (lv_className_1= RULE_ID ) '{' ( (lv_fields_3= ruleStructureFieldPOJOMapping ) ';' )* '}' ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:278:1: ( 'class' (lv_className_1= RULE_ID ) '{' ( (lv_fields_3= ruleStructureFieldPOJOMapping ) ';' )* '}' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:277:6: ( ( 'class' (lv_name_1= RULE_ID ) '{' ( (lv_fields_3= ruleStructureFieldPOJOMapping ) ';' )* '}' ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:278:1: ( 'class' (lv_name_1= RULE_ID ) '{' ( (lv_fields_3= ruleStructureFieldPOJOMapping ) ';' )* '}' )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:278:1: ( 'class' (lv_className_1= RULE_ID ) '{' ( (lv_fields_3= ruleStructureFieldPOJOMapping ) ';' )* '}' )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:278:2: 'class' (lv_className_1= RULE_ID ) '{' ( (lv_fields_3= ruleStructureFieldPOJOMapping ) ';' )* '}'
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:278:1: ( 'class' (lv_name_1= RULE_ID ) '{' ( (lv_fields_3= ruleStructureFieldPOJOMapping ) ';' )* '}' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:278:2: 'class' (lv_name_1= RULE_ID ) '{' ( (lv_fields_3= ruleStructureFieldPOJOMapping ) ';' )* '}'
             {
             match(input,15,FOLLOW_15_in_ruleStructurePOJOMapping552); 
 
                     createLeafNode(grammarAccess.getStructurePOJOMappingAccess().getClassKeyword_0(), null); 
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:282:1: (lv_className_1= RULE_ID )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:284:6: lv_className_1= RULE_ID
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:282:1: (lv_name_1= RULE_ID )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:284:6: lv_name_1= RULE_ID
             {
-            lv_className_1=(Token)input.LT(1);
+            lv_name_1=(Token)input.LT(1);
             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleStructurePOJOMapping574); 
 
-            		createLeafNode(grammarAccess.getStructurePOJOMappingAccess().getClassNameIDTerminalRuleCall_1_0(), "className"); 
+            		createLeafNode(grammarAccess.getStructurePOJOMappingAccess().getNameIDTerminalRuleCall_1_0(), "name"); 
             	
 
             	        if (current==null) {
@@ -546,7 +546,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
             	        }
             	        
             	        try {
-            	       		set(current, "className", lv_className_1, "ID", lastConsumedNode);
+            	       		set(current, "name", lv_name_1, "ID", lastConsumedNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
             	        }
@@ -2164,7 +2164,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                                     
                             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2266); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(), "structure"); 
+                            		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(), "structure"); 
                             	
 
                             }
@@ -2326,7 +2326,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                                     
                             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2446); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(), "structure"); 
+                            		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(), "structure"); 
                             	
 
                             }
@@ -2788,7 +2788,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                                     
                             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter2893); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(), "structure"); 
+                            		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(), "structure"); 
                             	
 
                             }
@@ -2950,7 +2950,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                                     
                             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3073); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(), "structure"); 
+                            		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(), "structure"); 
                             	
 
                             }
@@ -3412,7 +3412,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                                     
                             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3520); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(), "structure"); 
+                            		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(), "structure"); 
                             	
 
                             }
@@ -3574,7 +3574,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                                     
                             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3700); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(), "structure"); 
+                            		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(), "structure"); 
                             	
 
                             }
@@ -3838,7 +3838,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             
                     match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter3968); 
 
-                    		createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureCrossReference_3_1_0_0(), "structure"); 
+                    		createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureMappingCrossReference_3_1_0_0(), "structure"); 
                     	
 
                     }

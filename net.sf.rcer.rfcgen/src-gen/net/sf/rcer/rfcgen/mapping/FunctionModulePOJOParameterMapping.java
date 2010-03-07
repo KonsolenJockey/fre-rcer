@@ -116,12 +116,12 @@ public interface FunctionModulePOJOParameterMapping extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Structure</em>' reference.
-   * @see #setStructure(Structure)
+   * @see #setStructure(StructureMapping)
    * @see net.sf.rcer.rfcgen.mapping.MappingPackage#getFunctionModulePOJOParameterMapping_Structure()
    * @model
    * @generated
    */
-  Structure getStructure();
+  StructureMapping getStructure();
 
   /**
    * Sets the value of the '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getStructure <em>Structure</em>}' reference.
@@ -131,7 +131,7 @@ public interface FunctionModulePOJOParameterMapping extends EObject
    * @see #getStructure()
    * @generated
    */
-  void setStructure(Structure value);
+  void setStructure(StructureMapping value);
 
   /**
    * Returns the value of the '<em><b>Comment</b></em>' attribute.

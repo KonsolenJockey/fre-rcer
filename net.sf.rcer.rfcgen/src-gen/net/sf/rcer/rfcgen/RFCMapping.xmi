@@ -119,7 +119,7 @@
       </type>
       <alternatives xsi:type="xtext:Group">
         <tokens xsi:type="xtext:Keyword" value="class"/>
-        <tokens xsi:type="xtext:Assignment" feature="className" operator="=">
+        <tokens xsi:type="xtext:Assignment" feature="name" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="{"/>
@@ -290,7 +290,7 @@
                 <tokens xsi:type="xtext:Assignment" feature="structure" operator="=">
                   <terminal xsi:type="xtext:CrossReference">
                     <type metamodel="/0/@metamodelDeclarations.0">
-                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Structure"/>
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
                     </type>
                     <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
                   </terminal>
@@ -317,7 +317,7 @@
                 <tokens xsi:type="xtext:Assignment" feature="structure" operator="=">
                   <terminal xsi:type="xtext:CrossReference">
                     <type metamodel="/0/@metamodelDeclarations.0">
-                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Structure"/>
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
                     </type>
                     <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
                   </terminal>
@@ -379,7 +379,7 @@
                 <tokens xsi:type="xtext:Assignment" feature="structure" operator="=">
                   <terminal xsi:type="xtext:CrossReference">
                     <type metamodel="/0/@metamodelDeclarations.0">
-                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Structure"/>
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
                     </type>
                     <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
                   </terminal>
@@ -406,7 +406,7 @@
                 <tokens xsi:type="xtext:Assignment" feature="structure" operator="=">
                   <terminal xsi:type="xtext:CrossReference">
                     <type metamodel="/0/@metamodelDeclarations.0">
-                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Structure"/>
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
                     </type>
                     <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
                   </terminal>
@@ -468,7 +468,7 @@
                 <tokens xsi:type="xtext:Assignment" feature="structure" operator="=">
                   <terminal xsi:type="xtext:CrossReference">
                     <type metamodel="/0/@metamodelDeclarations.0">
-                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Structure"/>
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
                     </type>
                     <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
                   </terminal>
@@ -495,7 +495,7 @@
                 <tokens xsi:type="xtext:Assignment" feature="structure" operator="=">
                   <terminal xsi:type="xtext:CrossReference">
                     <type metamodel="/0/@metamodelDeclarations.0">
-                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Structure"/>
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
                     </type>
                     <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
                   </terminal>
@@ -534,7 +534,7 @@
             <tokens xsi:type="xtext:Assignment" feature="structure" operator="=">
               <terminal xsi:type="xtext:CrossReference">
                 <type metamodel="/0/@metamodelDeclarations.0">
-                  <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//Structure"/>
+                  <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
                 </type>
                 <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
               </terminal>

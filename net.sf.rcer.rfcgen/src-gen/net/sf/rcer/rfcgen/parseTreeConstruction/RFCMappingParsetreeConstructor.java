@@ -458,13 +458,13 @@ protected class StructureMapping_StructurePOJOMappingParserRuleCall extends Rule
 /************ begin Rule StructurePOJOMapping ****************
  *
  * StructurePOJOMapping:
- *   "class" className=ID "{" (fields+=StructureFieldPOJOMapping ";")* "}"; 
+ *   "class" name=ID "{" (fields+=StructureFieldPOJOMapping ";")* "}"; 
  * 
  * // --- POJO mapping -------------------------------------------------------------------------------
  *
  **/
 
-// "class" className=ID "{" (fields+=StructureFieldPOJOMapping ";")* "}"
+// "class" name=ID "{" (fields+=StructureFieldPOJOMapping ";")* "}"
 protected class StructurePOJOMapping_Group extends GroupToken {
 	
 	public StructurePOJOMapping_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -507,15 +507,15 @@ protected class StructurePOJOMapping_ClassKeyword_0 extends KeywordToken  {
 		
 }
 
-// className=ID
-protected class StructurePOJOMapping_ClassNameAssignment_1 extends AssignmentToken  {
+// name=ID
+protected class StructurePOJOMapping_NameAssignment_1 extends AssignmentToken  {
 	
-	public StructurePOJOMapping_ClassNameAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StructurePOJOMapping_NameAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getStructurePOJOMappingAccess().getClassNameAssignment_1();
+		return grammarAccess.getStructurePOJOMappingAccess().getNameAssignment_1();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -526,11 +526,11 @@ protected class StructurePOJOMapping_ClassNameAssignment_1 extends AssignmentTok
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("className",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("className");
+		if((value = current.getConsumable("name",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("name");
 		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
-			element = grammarAccess.getStructurePOJOMappingAccess().getClassNameIDTerminalRuleCall_1_0();
+			element = grammarAccess.getStructurePOJOMappingAccess().getNameIDTerminalRuleCall_1_0();
 			return obj;
 		}
 		return null;
@@ -551,7 +551,7 @@ protected class StructurePOJOMapping_LeftCurlyBracketKeyword_2 extends KeywordTo
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new StructurePOJOMapping_ClassNameAssignment_1(parent, this, 0, inst);
+			case 0: return new StructurePOJOMapping_NameAssignment_1(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -2016,16 +2016,16 @@ protected class FunctionModulePOJOParameterMapping_FunctionModulePOJOTablesParam
  *
  * FunctionModulePOJOImportingParameter:
  *   "importing" ("field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID
- *   )|"structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=
- *   ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
- *   attribute=ID)) ("comment" comment=STRING)? ";";
+ *   )|"structure" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+ *   attribute=ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[
+ *   StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";";
  *
  **/
 
 // "importing" ("field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID
-// )|"structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=
-// ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
-// attribute=ID)) ("comment" comment=STRING)? ";"
+// )|"structure" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+// attribute=ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[
+// StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";"
 protected class FunctionModulePOJOImportingParameter_Group extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2069,9 +2069,9 @@ protected class FunctionModulePOJOImportingParameter_ImportingKeyword_0 extends 
 }
 
 // "field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID)|
-// "structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID
-// )|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
-// attribute=ID)
+// "structure" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+// attribute=ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[
+// StructureMapping] attribute=ID)
 protected class FunctionModulePOJOImportingParameter_Alternatives_1 extends AlternativesToken {
 
 	public FunctionModulePOJOImportingParameter_Alternatives_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2321,8 +2321,8 @@ protected class FunctionModulePOJOImportingParameter_AttributeAssignment_1_0_3_1
 
 
 
-// "structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID
-// )
+// "structure" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+// attribute=ID)
 protected class FunctionModulePOJOImportingParameter_Group_1_1 extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2413,7 +2413,7 @@ protected class FunctionModulePOJOImportingParameter_EqualsSignKeyword_1_1_2 ext
 		
 }
 
-// inactive?="inactive"|structure=[Structure] attribute=ID
+// inactive?="inactive"|structure=[StructureMapping] attribute=ID
 protected class FunctionModulePOJOImportingParameter_Alternatives_1_1_3 extends AlternativesToken {
 
 	public FunctionModulePOJOImportingParameter_Alternatives_1_1_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2465,7 +2465,7 @@ protected class FunctionModulePOJOImportingParameter_InactiveAssignment_1_1_3_0 
 
 }
 
-// structure=[Structure] attribute=ID
+// structure=[StructureMapping] attribute=ID
 protected class FunctionModulePOJOImportingParameter_Group_1_1_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group_1_1_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2485,7 +2485,7 @@ protected class FunctionModulePOJOImportingParameter_Group_1_1_3_1 extends Group
 		
 }
 
-// structure=[Structure]
+// structure=[StructureMapping]
 protected class FunctionModulePOJOImportingParameter_StructureAssignment_1_1_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOImportingParameter_StructureAssignment_1_1_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2508,9 +2508,9 @@ protected class FunctionModulePOJOImportingParameter_StructureAssignment_1_1_3_1
 		IInstanceDescription obj = current.cloneAndConsume("structure");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CR;
-				element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(); 
+				element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(); 
 				return obj;
 			}
 		}
@@ -2553,8 +2553,8 @@ protected class FunctionModulePOJOImportingParameter_AttributeAssignment_1_1_3_1
 
 
 
-// table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute
-// =ID)
+// table?="table" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+// attribute=ID)
 protected class FunctionModulePOJOImportingParameter_Group_1_2 extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group_1_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2656,7 +2656,7 @@ protected class FunctionModulePOJOImportingParameter_EqualsSignKeyword_1_2_2 ext
 		
 }
 
-// inactive?="inactive"|structure=[Structure] attribute=ID
+// inactive?="inactive"|structure=[StructureMapping] attribute=ID
 protected class FunctionModulePOJOImportingParameter_Alternatives_1_2_3 extends AlternativesToken {
 
 	public FunctionModulePOJOImportingParameter_Alternatives_1_2_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2708,7 +2708,7 @@ protected class FunctionModulePOJOImportingParameter_InactiveAssignment_1_2_3_0 
 
 }
 
-// structure=[Structure] attribute=ID
+// structure=[StructureMapping] attribute=ID
 protected class FunctionModulePOJOImportingParameter_Group_1_2_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group_1_2_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2728,7 +2728,7 @@ protected class FunctionModulePOJOImportingParameter_Group_1_2_3_1 extends Group
 		
 }
 
-// structure=[Structure]
+// structure=[StructureMapping]
 protected class FunctionModulePOJOImportingParameter_StructureAssignment_1_2_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOImportingParameter_StructureAssignment_1_2_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2751,9 +2751,9 @@ protected class FunctionModulePOJOImportingParameter_StructureAssignment_1_2_3_1
 		IInstanceDescription obj = current.cloneAndConsume("structure");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CR;
-				element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(); 
+				element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(); 
 				return obj;
 			}
 		}
@@ -2898,16 +2898,16 @@ protected class FunctionModulePOJOImportingParameter_SemicolonKeyword_3 extends 
  *
  * FunctionModulePOJOExportingParameter:
  *   "exporting" ("field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID
- *   )|"structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=
- *   ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
- *   attribute=ID)) ("comment" comment=STRING)? ";";
+ *   )|"structure" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+ *   attribute=ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[
+ *   StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";";
  *
  **/
 
 // "exporting" ("field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID
-// )|"structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=
-// ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
-// attribute=ID)) ("comment" comment=STRING)? ";"
+// )|"structure" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+// attribute=ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[
+// StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";"
 protected class FunctionModulePOJOExportingParameter_Group extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2951,9 +2951,9 @@ protected class FunctionModulePOJOExportingParameter_ExportingKeyword_0 extends 
 }
 
 // "field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID)|
-// "structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID
-// )|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
-// attribute=ID)
+// "structure" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+// attribute=ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[
+// StructureMapping] attribute=ID)
 protected class FunctionModulePOJOExportingParameter_Alternatives_1 extends AlternativesToken {
 
 	public FunctionModulePOJOExportingParameter_Alternatives_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3203,8 +3203,8 @@ protected class FunctionModulePOJOExportingParameter_AttributeAssignment_1_0_3_1
 
 
 
-// "structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID
-// )
+// "structure" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+// attribute=ID)
 protected class FunctionModulePOJOExportingParameter_Group_1_1 extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3295,7 +3295,7 @@ protected class FunctionModulePOJOExportingParameter_EqualsSignKeyword_1_1_2 ext
 		
 }
 
-// inactive?="inactive"|structure=[Structure] attribute=ID
+// inactive?="inactive"|structure=[StructureMapping] attribute=ID
 protected class FunctionModulePOJOExportingParameter_Alternatives_1_1_3 extends AlternativesToken {
 
 	public FunctionModulePOJOExportingParameter_Alternatives_1_1_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3347,7 +3347,7 @@ protected class FunctionModulePOJOExportingParameter_InactiveAssignment_1_1_3_0 
 
 }
 
-// structure=[Structure] attribute=ID
+// structure=[StructureMapping] attribute=ID
 protected class FunctionModulePOJOExportingParameter_Group_1_1_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group_1_1_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3367,7 +3367,7 @@ protected class FunctionModulePOJOExportingParameter_Group_1_1_3_1 extends Group
 		
 }
 
-// structure=[Structure]
+// structure=[StructureMapping]
 protected class FunctionModulePOJOExportingParameter_StructureAssignment_1_1_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOExportingParameter_StructureAssignment_1_1_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3390,9 +3390,9 @@ protected class FunctionModulePOJOExportingParameter_StructureAssignment_1_1_3_1
 		IInstanceDescription obj = current.cloneAndConsume("structure");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CR;
-				element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(); 
+				element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(); 
 				return obj;
 			}
 		}
@@ -3435,8 +3435,8 @@ protected class FunctionModulePOJOExportingParameter_AttributeAssignment_1_1_3_1
 
 
 
-// table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute
-// =ID)
+// table?="table" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+// attribute=ID)
 protected class FunctionModulePOJOExportingParameter_Group_1_2 extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group_1_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3538,7 +3538,7 @@ protected class FunctionModulePOJOExportingParameter_EqualsSignKeyword_1_2_2 ext
 		
 }
 
-// inactive?="inactive"|structure=[Structure] attribute=ID
+// inactive?="inactive"|structure=[StructureMapping] attribute=ID
 protected class FunctionModulePOJOExportingParameter_Alternatives_1_2_3 extends AlternativesToken {
 
 	public FunctionModulePOJOExportingParameter_Alternatives_1_2_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3590,7 +3590,7 @@ protected class FunctionModulePOJOExportingParameter_InactiveAssignment_1_2_3_0 
 
 }
 
-// structure=[Structure] attribute=ID
+// structure=[StructureMapping] attribute=ID
 protected class FunctionModulePOJOExportingParameter_Group_1_2_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group_1_2_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3610,7 +3610,7 @@ protected class FunctionModulePOJOExportingParameter_Group_1_2_3_1 extends Group
 		
 }
 
-// structure=[Structure]
+// structure=[StructureMapping]
 protected class FunctionModulePOJOExportingParameter_StructureAssignment_1_2_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOExportingParameter_StructureAssignment_1_2_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3633,9 +3633,9 @@ protected class FunctionModulePOJOExportingParameter_StructureAssignment_1_2_3_1
 		IInstanceDescription obj = current.cloneAndConsume("structure");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CR;
-				element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(); 
+				element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(); 
 				return obj;
 			}
 		}
@@ -3780,16 +3780,16 @@ protected class FunctionModulePOJOExportingParameter_SemicolonKeyword_3 extends 
  *
  * FunctionModulePOJOChangingParameter:
  *   "changing" ("field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID)
- *   |"structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=
- *   ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
- *   attribute=ID)) ("comment" comment=STRING)? ";";
+ *   |"structure" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+ *   attribute=ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[
+ *   StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";";
  *
  **/
 
 // "changing" ("field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID)
-// |"structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=
-// ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
-// attribute=ID)) ("comment" comment=STRING)? ";"
+// |"structure" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+// attribute=ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[
+// StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";"
 protected class FunctionModulePOJOChangingParameter_Group extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -3833,9 +3833,9 @@ protected class FunctionModulePOJOChangingParameter_ChangingKeyword_0 extends Ke
 }
 
 // "field" name=STRING "=" (inactive?="inactive"|type=DataType attribute=ID)|
-// "structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID
-// )|table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure]
-// attribute=ID)
+// "structure" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+// attribute=ID)|table?="table" name=STRING "=" (inactive?="inactive"|structure=[
+// StructureMapping] attribute=ID)
 protected class FunctionModulePOJOChangingParameter_Alternatives_1 extends AlternativesToken {
 
 	public FunctionModulePOJOChangingParameter_Alternatives_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4085,8 +4085,8 @@ protected class FunctionModulePOJOChangingParameter_AttributeAssignment_1_0_3_1_
 
 
 
-// "structure" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID
-// )
+// "structure" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+// attribute=ID)
 protected class FunctionModulePOJOChangingParameter_Group_1_1 extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4177,7 +4177,7 @@ protected class FunctionModulePOJOChangingParameter_EqualsSignKeyword_1_1_2 exte
 		
 }
 
-// inactive?="inactive"|structure=[Structure] attribute=ID
+// inactive?="inactive"|structure=[StructureMapping] attribute=ID
 protected class FunctionModulePOJOChangingParameter_Alternatives_1_1_3 extends AlternativesToken {
 
 	public FunctionModulePOJOChangingParameter_Alternatives_1_1_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4229,7 +4229,7 @@ protected class FunctionModulePOJOChangingParameter_InactiveAssignment_1_1_3_0 e
 
 }
 
-// structure=[Structure] attribute=ID
+// structure=[StructureMapping] attribute=ID
 protected class FunctionModulePOJOChangingParameter_Group_1_1_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group_1_1_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4249,7 +4249,7 @@ protected class FunctionModulePOJOChangingParameter_Group_1_1_3_1 extends GroupT
 		
 }
 
-// structure=[Structure]
+// structure=[StructureMapping]
 protected class FunctionModulePOJOChangingParameter_StructureAssignment_1_1_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOChangingParameter_StructureAssignment_1_1_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4272,9 +4272,9 @@ protected class FunctionModulePOJOChangingParameter_StructureAssignment_1_1_3_1_
 		IInstanceDescription obj = current.cloneAndConsume("structure");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CR;
-				element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureCrossReference_1_1_3_1_0_0(); 
+				element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(); 
 				return obj;
 			}
 		}
@@ -4317,8 +4317,8 @@ protected class FunctionModulePOJOChangingParameter_AttributeAssignment_1_1_3_1_
 
 
 
-// table?="table" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute
-// =ID)
+// table?="table" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping]
+// attribute=ID)
 protected class FunctionModulePOJOChangingParameter_Group_1_2 extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group_1_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4420,7 +4420,7 @@ protected class FunctionModulePOJOChangingParameter_EqualsSignKeyword_1_2_2 exte
 		
 }
 
-// inactive?="inactive"|structure=[Structure] attribute=ID
+// inactive?="inactive"|structure=[StructureMapping] attribute=ID
 protected class FunctionModulePOJOChangingParameter_Alternatives_1_2_3 extends AlternativesToken {
 
 	public FunctionModulePOJOChangingParameter_Alternatives_1_2_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4472,7 +4472,7 @@ protected class FunctionModulePOJOChangingParameter_InactiveAssignment_1_2_3_0 e
 
 }
 
-// structure=[Structure] attribute=ID
+// structure=[StructureMapping] attribute=ID
 protected class FunctionModulePOJOChangingParameter_Group_1_2_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group_1_2_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4492,7 +4492,7 @@ protected class FunctionModulePOJOChangingParameter_Group_1_2_3_1 extends GroupT
 		
 }
 
-// structure=[Structure]
+// structure=[StructureMapping]
 protected class FunctionModulePOJOChangingParameter_StructureAssignment_1_2_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOChangingParameter_StructureAssignment_1_2_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4515,9 +4515,9 @@ protected class FunctionModulePOJOChangingParameter_StructureAssignment_1_2_3_1_
 		IInstanceDescription obj = current.cloneAndConsume("structure");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CR;
-				element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureCrossReference_1_2_3_1_0_0(); 
+				element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(); 
 				return obj;
 			}
 		}
@@ -4661,13 +4661,13 @@ protected class FunctionModulePOJOChangingParameter_SemicolonKeyword_3 extends K
 /************ begin Rule FunctionModulePOJOTablesParameter ****************
  *
  * FunctionModulePOJOTablesParameter:
- *   "table" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID) (
- *   "comment" comment=STRING)? ";";
+ *   "table" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping] attribute
+ *   =ID) ("comment" comment=STRING)? ";";
  *
  **/
 
-// "table" name=STRING "=" (inactive?="inactive"|structure=[Structure] attribute=ID) (
-// "comment" comment=STRING)? ";"
+// "table" name=STRING "=" (inactive?="inactive"|structure=[StructureMapping] attribute
+// =ID) ("comment" comment=STRING)? ";"
 protected class FunctionModulePOJOTablesParameter_Group extends GroupToken {
 	
 	public FunctionModulePOJOTablesParameter_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4761,7 +4761,7 @@ protected class FunctionModulePOJOTablesParameter_EqualsSignKeyword_2 extends Ke
 		
 }
 
-// inactive?="inactive"|structure=[Structure] attribute=ID
+// inactive?="inactive"|structure=[StructureMapping] attribute=ID
 protected class FunctionModulePOJOTablesParameter_Alternatives_3 extends AlternativesToken {
 
 	public FunctionModulePOJOTablesParameter_Alternatives_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4813,7 +4813,7 @@ protected class FunctionModulePOJOTablesParameter_InactiveAssignment_3_0 extends
 
 }
 
-// structure=[Structure] attribute=ID
+// structure=[StructureMapping] attribute=ID
 protected class FunctionModulePOJOTablesParameter_Group_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOTablesParameter_Group_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4833,7 +4833,7 @@ protected class FunctionModulePOJOTablesParameter_Group_3_1 extends GroupToken {
 		
 }
 
-// structure=[Structure]
+// structure=[StructureMapping]
 protected class FunctionModulePOJOTablesParameter_StructureAssignment_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOTablesParameter_StructureAssignment_3_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -4856,9 +4856,9 @@ protected class FunctionModulePOJOTablesParameter_StructureAssignment_3_1_0 exte
 		IInstanceDescription obj = current.cloneAndConsume("structure");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureCrossReference_3_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureMappingCrossReference_3_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CR;
-				element = grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureCrossReference_3_1_0_0(); 
+				element = grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureMappingCrossReference_3_1_0_0(); 
 				return obj;
 			}
 		}

@@ -310,7 +310,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getStructurePOJOMapping_ClassName()
+  public EAttribute getStructurePOJOMapping_Name()
   {
     return (EAttribute)structurePOJOMappingEClass.getEStructuralFeatures().get(0);
   }
@@ -727,7 +727,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
     structureMappingEClass = createEClass(STRUCTURE_MAPPING);
 
     structurePOJOMappingEClass = createEClass(STRUCTURE_POJO_MAPPING);
-    createEAttribute(structurePOJOMappingEClass, STRUCTURE_POJO_MAPPING__CLASS_NAME);
+    createEAttribute(structurePOJOMappingEClass, STRUCTURE_POJO_MAPPING__NAME);
     createEReference(structurePOJOMappingEClass, STRUCTURE_POJO_MAPPING__FIELDS);
 
     structureFieldPOJOMappingEClass = createEClass(STRUCTURE_FIELD_POJO_MAPPING);
@@ -831,7 +831,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
     initEClass(structureMappingEClass, StructureMapping.class, "StructureMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(structurePOJOMappingEClass, StructurePOJOMapping.class, "StructurePOJOMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStructurePOJOMapping_ClassName(), ecorePackage.getEString(), "className", null, 0, 1, StructurePOJOMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getStructurePOJOMapping_Name(), ecorePackage.getEString(), "name", null, 0, 1, StructurePOJOMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStructurePOJOMapping_Fields(), this.getStructureFieldPOJOMapping(), null, "fields", null, 0, -1, StructurePOJOMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(structureFieldPOJOMappingEClass, StructureFieldPOJOMapping.class, "StructureFieldPOJOMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -863,7 +863,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
     initEAttribute(getFunctionModulePOJOParameterMapping_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFunctionModulePOJOParameterMapping_Inactive(), ecorePackage.getEBoolean(), "inactive", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFunctionModulePOJOParameterMapping_Attribute(), ecorePackage.getEString(), "attribute", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getFunctionModulePOJOParameterMapping_Structure(), this.getStructure(), null, "structure", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunctionModulePOJOParameterMapping_Structure(), this.getStructureMapping(), null, "structure", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFunctionModulePOJOParameterMapping_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(functionModulePOJOImportingParameterEClass, FunctionModulePOJOImportingParameter.class, "FunctionModulePOJOImportingParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
