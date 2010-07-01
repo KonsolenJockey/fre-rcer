@@ -197,7 +197,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 
 			// generate the plug-in containing the documentation archive
 			if (settings.isIDocPluginProjectSelected()) {
-				createIDocPluginProject(monitor, settings.getIDocFileName(), IProjectNames.PLUGIN_IDOC);
+				createIDocPluginProject(monitor, settings.getIDocFileName(), IProjectNames.PLUGIN_IDOC, IProjectNames.PLUGIN_JCO);
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
@@ -279,6 +279,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 		manifest.append("Export-Package: com.sap.conn.jco,\n"); //$NON-NLS-1$
 		manifest.append(" com.sap.conn.jco.ext,\n"); //$NON-NLS-1$
 		manifest.append(" com.sap.conn.jco.monitor,\n"); //$NON-NLS-1$
+		manifest.append(" com.sap.conn.jco.rt,\n"); //$NON-NLS-1$
 		manifest.append(" com.sap.conn.jco.server\n"); //$NON-NLS-1$
 		manifest.append("Bundle-ActivationPolicy: lazy\n"); //$NON-NLS-1$
 		writeTextFile(monitor, manifest, metaInfFolder.getFile("MANIFEST.MF")); //$NON-NLS-1$
@@ -484,7 +485,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 	 * @throws CoreException 
 	 * @throws IOException 
 	 */
-	private void createIDocPluginProject(IProgressMonitor monitor, String sourceFileName, String pluginName) throws CoreException, IOException {
+	private void createIDocPluginProject(IProgressMonitor monitor, String sourceFileName, String pluginName, String pluginNameJCo) throws CoreException, IOException {
 
 		monitor.subTask(MessageFormat.format(Messages.ProjectGenerator_CreatePluginTaskDescription, pluginName));
 
@@ -542,6 +543,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 		manifest.append(" com.sap.conn.idoc.rt.util,\n"); //$NON-NLS-1$
 		manifest.append(" com.sap.conn.idoc.rt.xml\n"); //$NON-NLS-1$
 		manifest.append("Bundle-ActivationPolicy: lazy\n"); //$NON-NLS-1$
+		manifest.append(MessageFormat.format("Require-Bundle: {0}\n", pluginNameJCo)); //$NON-NLS-1$
 		writeTextFile(monitor, manifest, metaInfFolder.getFile("MANIFEST.MF")); //$NON-NLS-1$
 
 		// set classpath                                                                                      5
