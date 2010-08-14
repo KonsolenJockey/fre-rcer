@@ -188,6 +188,21 @@ public class Messages extends NLS {
 	public static String ConnectionsPreferencePage_RouterLabel;
 
 	/**
+	 * Unable to save the connection data to the preferences. Check the error log for further details.
+	 */
+	public static String ConnectionsPreferencePage_StoreDialogError;
+
+	/**
+	 * Connection Data
+	 */
+	public static String ConnectionsPreferencePage_StoreDialogTitle;
+
+	/**
+	 * Unable to save the connection data to the preferences.
+	 */
+	public static String ConnectionsPreferencePage_StoreLogError;
+
+	/**
 	 * Value is not a String
 	 */
 	public static String ConnectionsPreferencePage_StringLengthValidator_NoStringError;

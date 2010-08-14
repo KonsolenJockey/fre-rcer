@@ -36,6 +36,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
 import org.eclipse.jface.databinding.viewers.ViewersObservables;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.internal.databinding.provisional.swt.ControlUpdater;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -60,6 +61,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
+import org.osgi.service.prefs.BackingStoreException;
 
 /**
  * The preference page to edit the connection data.
@@ -707,8 +709,16 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean performOk() {
-		context.updateModels();
-		PreferencesConnectionManager.getInstance().saveConnectionData(connections);
+		try {
+			context.updateModels();
+			PreferencesConnectionManager.getInstance().saveConnectionData(connections);
+		} catch (BackingStoreException e) {
+			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
+					Messages.ConnectionsPreferencePage_StoreLogError, e);
+			Activator.getDefault().getLog().log(status);
+			ErrorDialog.openError(getShell(), Messages.ConnectionsPreferencePage_StoreDialogTitle, 
+					Messages.ConnectionsPreferencePage_StoreDialogError, status);
+		}
 		return super.performOk();
 	}
 

@@ -51,7 +51,7 @@ public class TestConnectionProvider implements IConnectionProvider {
 	 */
 	public IConnectionData getConnectionData(String connectionID) throws ConnectionNotFoundException {
 		if (!connections.containsKey(connectionID)) {
-			throw new ConnectionNotFoundException(connectionID);
+			throw new ConnectionNotFoundException(connectionID, true);
 		}
 		return connections.get(connectionID);
 	}

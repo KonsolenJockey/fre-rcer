@@ -23,7 +23,7 @@ public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "net.sf.rcer.conn.messages"; //$NON-NLS-1$
 
 	/**
-	 * Unable to register the trace listener.
+	 * Unable to register or unregister the trace listener.
 	 */
 	public static String Activator_TraceListenerError;
 
@@ -251,6 +251,11 @@ public class Messages extends NLS {
 	 * Connection {0} contains errors.
 	 */
 	public static String PreferencesConnectionManager_ConnectionContainsErrors;
+
+	/**
+	 * Unable to synchronize the preferences store. Connection data might be stale.
+	 */
+	public static String PreferencesConnectionManager_ConnectionDataStale;
 
 	/**
 	 * The connection ID {0} is not numeric.

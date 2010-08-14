@@ -55,31 +55,31 @@ public class Activator extends Plugin {
 				log.log(new Status(IStatus.INFO, PLUGIN_ID, message));
 			}			
 		}
-		
+
 	}
-	
+
 	/**
 	 * The ID of the plug-in.
 	 */
 	public static final String PLUGIN_ID = "net.sf.rcer.conn"; //$NON-NLS-1$
-	
+
 	/**
 	 * The de-facto singleton instance. 
 	 */
 	private static Activator instance;
-	
+
 	/**
 	 * A listener to 
 	 */
 	private TraceListener listener;
-	
+
 	/**
 	 * Default constructor.
 	 */
 	public Activator() {
 		// nothing to do
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
 	 */
@@ -96,18 +96,24 @@ public class Activator extends Plugin {
 					Messages.Activator_TraceListenerError, e));
 		}
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
 	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
-		JCo.removeTraceListener(listener);
+		try {
+			JCo.removeTraceListener(listener);
+		} catch (ExceptionInInitializerError e) {
+			// this happens if the JCo native library could not be loaded
+			getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
+					Messages.Activator_TraceListenerError, e));
+		}
 		listener = null;
 		instance = null;
 		super.stop(context);
 	}
-	
+
 	/**
 	 * @return the active instance
 	 */

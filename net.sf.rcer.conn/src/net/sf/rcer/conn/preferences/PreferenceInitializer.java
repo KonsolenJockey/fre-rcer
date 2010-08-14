@@ -14,6 +14,8 @@ package net.sf.rcer.conn.preferences;
 import net.sf.rcer.conn.Activator;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
+import org.eclipse.core.runtime.preferences.DefaultScope;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 
 /**
  * Class to initialize the preferences.
@@ -27,7 +29,8 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer impleme
 	 */
 	@Override
 	public void initializeDefaultPreferences() {
-		Activator.getDefault().getPluginPreferences().setDefault(CONNECTION_NUMBER, 0);
+		IEclipsePreferences preferences = new DefaultScope().getNode(Activator.PLUGIN_ID);
+		preferences.putInt(CONNECTION_NUMBER, 0);
 	}
 
 }

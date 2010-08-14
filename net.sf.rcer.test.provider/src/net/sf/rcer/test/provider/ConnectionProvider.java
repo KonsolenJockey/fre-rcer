@@ -115,7 +115,7 @@ public class ConnectionProvider implements IConnectionProvider {
 	 */
 	public IConnectionData getConnectionData(String connectionID) throws ConnectionNotFoundException {
 		if (!activeConnections.containsKey(connectionID)) {
-			throw new ConnectionNotFoundException(connectionID);
+			throw new ConnectionNotFoundException(connectionID, true);
 		}
 		return activeConnections.get(connectionID).getConnection();
 	}

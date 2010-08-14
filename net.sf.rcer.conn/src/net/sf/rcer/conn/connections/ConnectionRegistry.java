@@ -329,13 +329,13 @@ public class ConnectionRegistry implements IRegistryEventListener {
 	 */
 	public IConnectionData getConnectionData(String connectionID) throws ConnectionNotFoundException, ProviderNotFoundException {
 		if ((connectionID == null) || (connectionID.equals(""))) { //$NON-NLS-1$
-			throw new ConnectionNotFoundException(connectionID);
+			throw new ConnectionNotFoundException(connectionID, true);
 		} else if (connectionID.contains("#")) { //$NON-NLS-1$
 			String[] parts = connectionID.split("#"); //$NON-NLS-1$
 			if (parts.length != 2) {
 				logError(MessageFormat.format(Messages.ConnectionRegistry_InvalidConnectionIDError,
 						connectionID), null);
-				throw new ConnectionNotFoundException(connectionID);				
+				throw new ConnectionNotFoundException(connectionID, true);				
 			}
 			if (!connectionProviders.containsKey(parts[0])) {
 				throw new ProviderNotFoundException(parts[0]);
@@ -343,7 +343,7 @@ public class ConnectionRegistry implements IRegistryEventListener {
 			return new ProvidedConnectionData(parts[0], connectionProviders.get(parts[0]).getConnectionData(parts[1]));
 		} else {
 			if (!staticConnectionData.containsKey(connectionID)) {
-				throw new ConnectionNotFoundException(connectionID);
+				throw new ConnectionNotFoundException(connectionID, true);
 			}
 			return staticConnectionData.get(connectionID);
 		}

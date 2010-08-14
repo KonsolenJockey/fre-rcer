@@ -29,8 +29,11 @@ import net.sf.rcer.conn.locales.LocaleNotFoundException;
 import net.sf.rcer.conn.locales.LocaleRegistry;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Preferences;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.osgi.service.prefs.BackingStoreException;
 
 /**
  * A singleton class that manages the connection data entries that are stored in the preferences.
@@ -45,10 +48,15 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	private static volatile PreferencesConnectionManager instance;
 
 	/**
+	 * The cached preferences scope used to store the preferences.
+	 */
+	private IEclipsePreferences preferences;
+	
+	/**
 	 * Private constructor to prevent secondary instantiation.
 	 */
 	private PreferencesConnectionManager() {
-		// nothing to do
+		preferences = new InstanceScope().getNode(Activator.PLUGIN_ID);
 	}
 
 	/**
@@ -69,8 +77,9 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * @return a list of all connection IDs stored in the preferences
 	 */
 	public Set<String> getConnectionIDs() {
+		synchronizePreferences();
 		Set<String> connectionIDs = new HashSet<String>();
-		final int num = getPreferences().getInt(CONNECTION_NUMBER);
+		final int num = getInt(CONNECTION_NUMBER);
 		for (int i = 1; i <= num; i++) {
 			connectionIDs.add(Integer.toString(i));
 		}
@@ -90,8 +99,9 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * @return the connections stored in the preferences
 	 */
 	public Collection<ConnectionData> getConnectionData() {
+		synchronizePreferences();
 		Collection<ConnectionData> connections = new Vector<ConnectionData>();
-		final int num = getPreferences().getInt(CONNECTION_NUMBER);
+		final int num = getInt(CONNECTION_NUMBER);
 		for (int i = 1; i <= num; i++) {
 			try {
 				connections.add(getConnectionData(i));
@@ -108,6 +118,7 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * @throws ConnectionNotFoundException
 	 */
 	private ConnectionData getConnectionData(int position) throws ConnectionNotFoundException {
+		synchronizePreferences();
 		final String connectionID = Integer.toString(position);
 		ConnectionData connection;
 		if (getString(CONNECTION_TYPE, position).equals(CONNECTION_TYPE_DIRECT)) {
@@ -128,7 +139,7 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 		} else {
 			throw new ConnectionNotFoundException(MessageFormat.format(
 					Messages.PreferencesConnectionManager_InvalidConnectionType,
-					connectionID, getString(CONNECTION_TYPE, position)));			
+					connectionID, getString(CONNECTION_TYPE, position)), false);			
 		}
 		connection.setDefaultUser(getString(CONNECTION_DEFAULT_USER, position), true); 
 		connection.setDefaultClient(getString(CONNECTION_DEFAULT_CLIENT, position), true);
@@ -150,8 +161,9 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * connection IDs are not guaranteed to be stable</b> (although the registry will try to use the
 	 * connection IDs provided).
 	 * @param connections
+	 * @throws BackingStoreException 
 	 */
-	public void saveConnectionData(Collection<IConnectionData> connections) {
+	public void saveConnectionData(Collection<IConnectionData> connections) throws BackingStoreException {
 
 		// TODO add some unit tests for this method
 		
@@ -242,10 +254,21 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 		}
 
 		// ...and update the total number
-		getPreferences().setValue(CONNECTION_NUMBER, connectionMap.size());
+		preferences.putInt(CONNECTION_NUMBER, connectionMap.size());
+		preferences.flush();
 		
-		Activator.getDefault().savePluginPreferences();
+	}
 
+	/**
+	 * This method performs {@link IEclipsePreferences#sync()} with some basic error handling.
+	 */
+	private void synchronizePreferences() {
+		try {
+			preferences.sync();
+		} catch (BackingStoreException e) {
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
+					Messages.PreferencesConnectionManager_ConnectionDataStale, e));
+		}
 	}
 
 	/**
@@ -255,18 +278,18 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * @throws ConnectionNotFoundException
 	 */
 	private int getConnectionPosition(String connectionID) throws ConnectionNotFoundException {
-		int number = getPreferences().getInt(CONNECTION_NUMBER);
+		int number = getInt(CONNECTION_NUMBER);
 		int position = -1;
 		try {
 			position = Integer.parseInt(connectionID);
 		} catch (NumberFormatException e) {
 			throw new ConnectionNotFoundException(MessageFormat.format(Messages.PreferencesConnectionManager_ConnectionIDNotNumeric,
-					connectionID), e);
+					connectionID), e, false);
 		}
 		if ((position <= 0) || (position > number)) {
 			throw new ConnectionNotFoundException(MessageFormat.format(
 					Messages.PreferencesConnectionManager_ConnectionIDOutOfBounds,
-					connectionID, number));
+					connectionID, number), false);
 		}
 		return position;
 	}
@@ -287,9 +310,19 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * @return the string value
 	 */
 	private String getString(String prefix, int position) {
-		return getPreferences().getString(MessageFormat.format("{0}.{1}", prefix, position)); //$NON-NLS-1$
+		return Platform.getPreferencesService().getString(Activator.PLUGIN_ID, 
+				MessageFormat.format("{0}.{1}", prefix, position), "", null); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
+	/**
+	 * Auxiliary method to get the value of a preference.
+	 * @param key
+	 * @return the integer value
+	 */
+	private int getInt(String key) {
+		return Platform.getPreferencesService().getInt(Activator.PLUGIN_ID, key, -1, null);
+	}
+	
 	/**
 	 * Auxiliary method to get the value of a positional preference.
 	 * @param prefix
@@ -297,7 +330,8 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * @return the integer value
 	 */
 	private int getInt(String prefix, int position) {
-		return getPreferences().getInt(MessageFormat.format("{0}.{1}", prefix, position)); //$NON-NLS-1$
+		return Platform.getPreferencesService().getInt(Activator.PLUGIN_ID,
+				MessageFormat.format("{0}.{1}", prefix, position), -1, null); //$NON-NLS-1$
 	}
 	
 	/**
@@ -306,7 +340,7 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * @param position
 	 */
 	private void setToDefault(String prefix, int position) {
-		getPreferences().setToDefault(MessageFormat.format("{0}.{1}", prefix, position)); //$NON-NLS-1$
+		preferences.remove(MessageFormat.format("{0}.{1}", prefix, position)); //$NON-NLS-1$
 	}
 
 	/**
@@ -316,24 +350,17 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * @param value
 	 */
 	private void setValue(String prefix, int position, String value) {
-		getPreferences().setValue(MessageFormat.format("{0}.{1}", prefix, position), value); //$NON-NLS-1$
+		preferences.put(MessageFormat.format("{0}.{1}", prefix, position), value); //$NON-NLS-1$
 	}
 
 	/**
-	 * Auxliary method to set an integer value.
+	 * Auxiliary method to set an integer value.
 	 * @param prefix
 	 * @param position
 	 * @param value
 	 */
 	private void setValue(String prefix, int position, int value) {
-		getPreferences().setValue(MessageFormat.format("{0}.{1}", prefix, position), value); //$NON-NLS-1$
-	}
-
-	/**
-	 * @return the preferences
-	 */
-	public static Preferences getPreferences() {
-		return Activator.getDefault().getPluginPreferences();
+		preferences.putInt(MessageFormat.format("{0}.{1}", prefix, position), value); //$NON-NLS-1$
 	}
 
 }

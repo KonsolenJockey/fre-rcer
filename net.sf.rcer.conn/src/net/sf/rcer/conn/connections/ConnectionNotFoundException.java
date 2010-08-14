@@ -29,18 +29,20 @@ public class ConnectionNotFoundException extends Exception {
 	private static final long serialVersionUID = 7532339972059167377L;
 
 	/**
-	 * @param connectionID
+	 * @param message
+	 * @param defaultMessage 
 	 */
-	public ConnectionNotFoundException(String connectionID) {
-		super(MessageFormat.format(Messages.ConnectionNotFoundException_Message, connectionID));
+	public ConnectionNotFoundException(String message, boolean defaultMessage) {
+		super(defaultMessage ? MessageFormat.format(Messages.ConnectionNotFoundException_Message, message) : message);
 	}
-	
+
 	/**
-	 * @param connectionID
+	 * @param message
 	 * @param cause
+	 * @param defaultMessage 
 	 */
-	public ConnectionNotFoundException(String connectionID, Throwable cause) {
-		super(MessageFormat.format(Messages.ConnectionNotFoundException_Message, connectionID), cause);
+	public ConnectionNotFoundException(String message, Throwable cause, boolean defaultMessage) {
+		super(defaultMessage ? MessageFormat.format(Messages.ConnectionNotFoundException_Message, message) : message, cause);
 	}
-	
+
 }

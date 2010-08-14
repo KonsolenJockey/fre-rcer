@@ -20,13 +20,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Set;
 
-import net.sf.rcer.conn.Activator;
 import net.sf.rcer.conn.connections.ConnectionNotFoundException;
 import net.sf.rcer.conn.connections.ConnectionRegistry;
 import net.sf.rcer.conn.connections.IConnectionData;
 import net.sf.rcer.conn.locales.LocaleRegistry;
 
-import org.eclipse.core.runtime.Preferences;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,73 +33,14 @@ import org.junit.Test;
  * @author vwegert
  *
  */
-public class PreferencesConnectionProviderTest implements IPreferenceConstants {
+public class PreferencesConnectionProviderTest extends AbstractPreferencesConnectionTest {
 
-	private final static String DESCRIPTION     = "Connection Description";
-	private final static String SYSTEM_ID       = "SID";
-	private final static String ROUTER          = "/H/foo/H/";
-	private final static String APP_SERVER      = "appserv1";
-	private final static int    SYSTEM_NUMBER   = 1;
-	private final static String MSG_SERVER      = "msgserv1";
-	private final static int    MSG_SERVER_PORT = 3456;
-	private final static String LB_GROUP        = "PUBLIC";
-	private final static String DEFAULT_USER    = "foo";
-	private final static String DEFAULT_CLIENT  = "123";
-	private final static String DEFAULT_LOCALE  = "DE";
-	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		
-		final Preferences prefs = Activator.getDefault().getPluginPreferences();
-		
-		// remove all connection preferences
-		final String[] properties = prefs.propertyNames();
-		for (int i = 0; i < properties.length; i++) {
-			prefs.setToDefault(properties[i]);
-		}
-		
-		prefs.setValue(CONNECTION_NUMBER, 4);
-		
-		// a valid direct connection
-		prefs.setValue(CONNECTION_TYPE                 + ".1", CONNECTION_TYPE_DIRECT);
-		prefs.setValue(CONNECTION_DESCRIPTION          + ".1", DESCRIPTION);
-		prefs.setValue(CONNECTION_SYSTEM_ID            + ".1", SYSTEM_ID);
-		prefs.setValue(CONNECTION_ROUTER               + ".1", ROUTER);
-		prefs.setValue(CONNECTION_APPLICATION_SERVER   + ".1", APP_SERVER);
-		prefs.setValue(CONNECTION_SYSTEM_NUMBER        + ".1", SYSTEM_NUMBER);
-		prefs.setValue(CONNECTION_DEFAULT_USER         + ".1", DEFAULT_USER);
-		prefs.setValue(CONNECTION_DEFAULT_CLIENT       + ".1", DEFAULT_CLIENT);
-		prefs.setValue(CONNECTION_DEFAULT_LOCALE       + ".1", DEFAULT_LOCALE);
-
-		// a valid load-balancing connection 
-		prefs.setValue(CONNECTION_TYPE                 + ".2", CONNECTION_TYPE_LOAD_BALANCING);
-		prefs.setValue(CONNECTION_DESCRIPTION          + ".2", DESCRIPTION);
-		prefs.setValue(CONNECTION_SYSTEM_ID            + ".2", SYSTEM_ID);
-		prefs.setValue(CONNECTION_ROUTER               + ".2", ROUTER);
-		prefs.setValue(CONNECTION_MESSAGE_SERVER       + ".2", MSG_SERVER);
-		prefs.setValue(CONNECTION_MESSAGE_SERVER_PORT  + ".2", MSG_SERVER_PORT);
-		prefs.setValue(CONNECTION_LOAD_BALANCING_GROUP + ".2", LB_GROUP);
-		prefs.setValue(CONNECTION_DEFAULT_USER         + ".2", DEFAULT_USER);
-		prefs.setValue(CONNECTION_DEFAULT_CLIENT       + ".2", DEFAULT_CLIENT);
-		prefs.setValue(CONNECTION_DEFAULT_LOCALE       + ".2", DEFAULT_LOCALE);
-		
-		// a semi-valid connection (wrong default locale, should be ignored) 
-		prefs.setValue(CONNECTION_TYPE                 + ".3", CONNECTION_TYPE_DIRECT);
-		prefs.setValue(CONNECTION_DESCRIPTION          + ".3", DESCRIPTION);
-		prefs.setValue(CONNECTION_SYSTEM_ID            + ".3", SYSTEM_ID);
-		prefs.setValue(CONNECTION_ROUTER               + ".3", ROUTER);
-		prefs.setValue(CONNECTION_APPLICATION_SERVER   + ".3", APP_SERVER);
-		prefs.setValue(CONNECTION_SYSTEM_NUMBER        + ".3", SYSTEM_NUMBER);
-		prefs.setValue(CONNECTION_DEFAULT_USER         + ".3", DEFAULT_USER);
-		prefs.setValue(CONNECTION_DEFAULT_CLIENT       + ".3", DEFAULT_CLIENT);
-		prefs.setValue(CONNECTION_DEFAULT_LOCALE       + ".3", "ZZZ_INVALID");
-		
-		// an invalid connection (invalid type)
-		prefs.setValue(CONNECTION_TYPE                 + ".4", "foobar");
-		
+		createTestConnections();
 	}
 	
 	/**
