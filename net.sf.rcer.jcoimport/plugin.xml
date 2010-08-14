@@ -10,6 +10,7 @@
       <wizard
             category="net.sf.rcer"
             class="net.sf.rcer.jcoimport.JCoImportWizard"
+            icon="icons/rcer.gif"
             id="net.sf.rcer.jcogen.JCoImportWizard"
             name="%wizard.name">
          <description>
