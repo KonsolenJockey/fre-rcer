@@ -41,7 +41,7 @@ public abstract class AbstractTransport {
 	 * @param result the RFC call result to read the header data from
 	 * @throws TransportException 
 	 */
-	public AbstractTransport(TransportSystem transportSystem, String id, ReadTransportResponse result) throws TransportException {
+	AbstractTransport(TransportSystem transportSystem, String id, ReadTransportResponse result) throws TransportException {
 		this.transportSystem = transportSystem;
 		this.id = id;
 		this.status = TransportStatus.fromInternalString(result.getHeader().getStatus());
