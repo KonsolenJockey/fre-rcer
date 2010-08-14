@@ -63,6 +63,16 @@ public class Messages extends NLS {
 	public static String ConnectionStatusDisplay_ErrorTitle;
 
 	/**
+	 * Unable to initialize RCER connection status display.
+	 */
+	public static String ConnectionStatusDisplay_InitializationError;
+
+	/**
+	 * JCo native library is missing
+	 */
+	public static String ConnectionStatusDisplay_LibraryMissingMessage;
+
+	/**
 	 * Connect: no connections available
 	 */
 	public static String ConnectionStatusDisplay_NoConnectionsAvailableItem;

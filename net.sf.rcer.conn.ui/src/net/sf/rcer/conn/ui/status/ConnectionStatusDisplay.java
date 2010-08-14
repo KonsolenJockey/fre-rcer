@@ -55,7 +55,13 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 	 * Default constructor.
 	 */
 	public ConnectionStatusDisplay() {
-		ConnectionManager.getInstance().addConnectionStateListener(this);
+		try {
+			ConnectionManager.getInstance().addConnectionStateListener(this);
+		} catch (NoClassDefFoundError e) {
+			// this happens if the native library could not be loaded
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
+					Messages.ConnectionStatusDisplay_InitializationError, e));
+		}
 	}
 
 	/* (non-Javadoc)
@@ -89,21 +95,32 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 	public void menuDetected(MenuDetectEvent event) {
 		Menu menu = new Menu(getWorkbenchWindow().getShell());
 		menu.setLocation(event.x, event.y);
-		createConnectMenuEntries(menu);
-		createSelectPrimaryConnectionMenuEntries(menu);
-		createDisconnectMenuEntries(menu);
+		try {
+			createConnectMenuEntries(menu);
+			createSelectPrimaryConnectionMenuEntries(menu);
+			createDisconnectMenuEntries(menu);
 
-		MenuItem itemSystemStatus = new MenuItem(menu, SWT.PUSH);
-		itemSystemStatus.setText(Messages.ConnectionStatusDisplay_DisplaySystemInformationItem);
-		itemSystemStatus.setEnabled(ConnectionManager.getInstance().isConnected());
-		itemSystemStatus.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				if (e.widget.getData() instanceof IConnectionData) {
-					displaySystemInformation();
+			MenuItem itemSystemStatus = new MenuItem(menu, SWT.PUSH);
+			itemSystemStatus.setText(Messages.ConnectionStatusDisplay_DisplaySystemInformationItem);
+			itemSystemStatus.setEnabled(ConnectionManager.getInstance().isConnected());
+			itemSystemStatus.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					if (e.widget.getData() instanceof IConnectionData) {
+						displaySystemInformation();
+					}
 				}
-			}
-		});
+			});
+		} catch (NoClassDefFoundError e) {
+			// this happens if the native library could not be loaded
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
+					Messages.ConnectionStatusDisplay_InitializationError, e));
+			menu = new Menu(getWorkbenchWindow().getShell());
+			menu.setLocation(event.x, event.y);
+			MenuItem itemError = new MenuItem(menu, SWT.PUSH);
+			itemError.setText(Messages.ConnectionStatusDisplay_LibraryMissingMessage);
+			itemError.setEnabled(false);
+		}
 
 		menu.setVisible(true);
 	}
