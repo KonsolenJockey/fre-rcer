@@ -27,12 +27,11 @@ http://www.eclipse.org/legal/epl-v10.html.
    </url>
 
    <requires>
+      <import plugin="com.sap.conn.jco" version="7.11.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.runtime" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.databinding" version="1.1.0" match="greaterOrEqual"/>
       <import plugin="net.sf.rcer.conn" version="0.1.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui" version="3.5.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.core.resources"/>
-      <import plugin="com.sap.conn.jco" version="7.11.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.core.databinding" version="1.1.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jface.databinding" version="1.2.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.databinding.beans" version="1.1.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtext"/>
@@ -45,13 +44,17 @@ http://www.eclipse.org/legal/epl-v10.html.
       <import plugin="org.eclipse.emf.mwe.core"/>
       <import plugin="org.eclipse.emf.mwe.utils"/>
       <import plugin="org.eclipse.xtend.typesystem.emf"/>
+      <import plugin="org.eclipse.help" version="3.4.1" match="greaterOrEqual"/>
+      <import plugin="com.ibm.icu"/>
       <import plugin="net.sf.rcer.doc" version="0.1.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.xtext.ui.core"/>
-      <import plugin="org.eclipse.xtext.ui.common"/>
-      <import plugin="org.eclipse.xtext.log4j" version="1.2.15" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.editors" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.ide" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources"/>
       <import plugin="net.sf.rcer.conn.ui" version="0.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.osgi" version="3.5.1" match="greaterOrEqual"/>
+      <import plugin="net.sf.rcer.cts" version="0.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface" version="3.5.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtext.ui"/>
    </requires>
 
    <plugin
@@ -93,8 +96,7 @@ http://www.eclipse.org/legal/epl-v10.html.
          id="net.sf.rcer.source"
          download-size="0"
          install-size="0"
-         version="0.0.0"
-         unpack="true"/>
+         version="0.0.0"/>
 
    <plugin
          id="net.sf.rcer.doc"
