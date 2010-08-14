@@ -9,14 +9,16 @@
  *
  * $Id$
  */
-package net.sf.rcer.rfcgen.outline;
-
-import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemanticModelTransformer;
+package net.sf.rcer.rfcgen;
 
 /**
- * customization of the default outline structure
- * @author vwegert
+ * Initialization support for running Xtext languages 
+ * without equinox extension registry
  */
-public class RFCMappingTransformer extends AbstractDeclarativeSemanticModelTransformer {
-	// not required at the moment
+public class RFCMappingStandaloneSetup extends RFCMappingStandaloneSetupGenerated{
+
+	public static void doSetup() {
+		new RFCMappingStandaloneSetup().createInjectorAndDoEMFRegistration();
+	}
 }
+

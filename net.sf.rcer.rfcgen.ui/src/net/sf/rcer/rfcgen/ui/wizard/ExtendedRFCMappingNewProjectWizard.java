@@ -20,7 +20,8 @@ import net.sf.rcer.conn.connections.ConnectionManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
-import org.eclipse.xtext.ui.core.wizard.IProjectInfo;
+import org.eclipse.xtext.ui.wizard.IProjectCreator;
+import org.eclipse.xtext.ui.wizard.IProjectInfo;
 
 import com.sap.conn.jco.JCoDestination;
 
@@ -37,6 +38,14 @@ public class ExtendedRFCMappingNewProjectWizard extends	RFCMappingNewProjectWiza
 	private FunctionModuleSelectionPage functionModulePage;
 	private MappingParametersPage parametersPage;
 	private NoConnectionPage noConnectionPage;
+
+	/**
+	 * Default constructor.
+	 * @param projectCreator
+	 */
+	public ExtendedRFCMappingNewProjectWizard(IProjectCreator projectCreator) {
+		super(projectCreator);
+	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.xtext.ui.core.wizard.XtextNewProjectWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)

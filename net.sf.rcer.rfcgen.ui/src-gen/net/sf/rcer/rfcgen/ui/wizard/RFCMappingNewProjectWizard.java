@@ -1,15 +1,18 @@
 package net.sf.rcer.rfcgen.ui.wizard;
 
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
-import org.eclipse.xtext.ui.core.wizard.IProjectInfo;
-import org.eclipse.xtext.ui.core.wizard.XtextNewProjectWizard;
+import org.eclipse.xtext.ui.wizard.IProjectInfo;
+import org.eclipse.xtext.ui.wizard.XtextNewProjectWizard;
+import org.eclipse.xtext.ui.wizard.IProjectCreator;
+import com.google.inject.Inject;
 
 public class RFCMappingNewProjectWizard extends XtextNewProjectWizard {
 
 	private WizardNewProjectCreationPage mainPage;
 
-	public RFCMappingNewProjectWizard() {
-		super();
+	@Inject
+	public RFCMappingNewProjectWizard(IProjectCreator projectCreator) {
+		super(projectCreator);
 		setWindowTitle("New RFCMapping Project");
 	}
 

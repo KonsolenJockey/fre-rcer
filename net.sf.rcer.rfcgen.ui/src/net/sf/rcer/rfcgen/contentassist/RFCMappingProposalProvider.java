@@ -11,7 +11,7 @@
  */
 package net.sf.rcer.rfcgen.contentassist;
 
-
+import net.sf.rcer.rfcgen.ui.contentassist.AbstractRFCMappingProposalProvider;
 
 /**
  * see http://www.eclipse.org/Xtext/documentation/latest/xtext.html#contentAssist on how to customize content assistant

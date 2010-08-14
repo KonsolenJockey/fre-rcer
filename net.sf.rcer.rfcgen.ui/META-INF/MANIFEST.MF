@@ -7,11 +7,9 @@ Bundle-SymbolicName: net.sf.rcer.rfcgen.ui; singleton:=true
 Eclipse-RegisterBuddy: org.eclipse.xtext.log4j
 Bundle-ActivationPolicy: lazy
 Require-Bundle: net.sf.rcer.rfcgen;visibility:=reexport,
- org.eclipse.xtext.ui.core,
- org.eclipse.xtext.ui.common,
- org.eclipse.xtext.log4j;bundle-version="1.2.15",
- org.eclipse.ui.editors;bundle-version="3.5.0",
- org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.xtext.ui,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.ide,
  org.eclipse.ui,
  org.antlr.runtime,
  org.eclipse.core.runtime,
@@ -19,8 +17,12 @@ Require-Bundle: net.sf.rcer.rfcgen;visibility:=reexport,
  org.eclipse.xtend,
  org.eclipse.xpand,
  net.sf.rcer.conn;bundle-version="0.1.0",
- net.sf.rcer.conn.ui;bundle-version="0.1.0"
+ net.sf.rcer.conn.ui;bundle-version="0.1.0",
+ org.apache.log4j;bundle-version="1.2.15",
+ org.eclipse.xtext.ui.shared
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: net.sf.rcer.rfcgen.contentassist,
- net.sf.rcer.rfcgen.contentassist.antlr
+ net.sf.rcer.rfcgen.contentassist.antlr,
+ net.sf.rcer.rfcgen.ui.contentassist.antlr
 Bundle-Activator: net.sf.rcer.rfcgen.internal.RFCMappingActivator
+Import-Package: org.apache.log4j

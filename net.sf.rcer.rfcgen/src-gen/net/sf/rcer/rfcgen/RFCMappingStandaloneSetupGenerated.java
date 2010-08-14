@@ -1,3 +1,4 @@
+
 package net.sf.rcer.rfcgen;
 
 import org.eclipse.emf.ecore.EPackage;
@@ -10,11 +11,8 @@ import com.google.inject.Injector;
 /**
  * Generated from StandaloneSetup.xpt!
  */
-public class RFCMappingStandaloneSetup implements ISetup {
-
-	public static void doSetup() {
-		new RFCMappingStandaloneSetup().createInjectorAndDoEMFRegistration();
-	}
+@SuppressWarnings("all")
+public class RFCMappingStandaloneSetupGenerated implements ISetup {
 
 	public Injector createInjectorAndDoEMFRegistration() {
 		org.eclipse.xtext.common.TerminalsStandaloneSetup.doSetup();
@@ -34,7 +32,9 @@ public class RFCMappingStandaloneSetup implements ISetup {
 	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);
+		org.eclipse.xtext.resource.IResourceServiceProvider serviceProvider = injector.getInstance(org.eclipse.xtext.resource.IResourceServiceProvider.class);
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("rfcgen", resourceFactory);
+		org.eclipse.xtext.resource.IResourceServiceProvider.Registry.INSTANCE.getExtensionToFactoryMap().put("rfcgen", serviceProvider);
 		
 
 

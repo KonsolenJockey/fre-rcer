@@ -11,13 +11,24 @@
  */
 package net.sf.rcer.rfcgen;
 
-import org.eclipse.xtext.ui.core.wizard.IProjectCreator;
+import net.sf.rcer.rfcgen.ui.AbstractRFCMappingUiModule;
+
+import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.wizard.IProjectCreator;
 
 /**
  * Use this class to register components to be used within the IDE.
  * @author vwegert
  */
-public class RFCMappingUiModule extends net.sf.rcer.rfcgen.AbstractRFCMappingUiModule {
+public class RFCMappingUiModule extends AbstractRFCMappingUiModule {
+
+	/**
+	 * TODO Write documentation for constructor.
+	 * @param plugin
+	 */
+	public RFCMappingUiModule(AbstractUIPlugin plugin) {
+		super(plugin);
+	}
 
 	/* (non-Javadoc)
 	 * @see net.sf.rcer.rfcgen.AbstractRFCMappingUiModule#bindIProjectCreator()

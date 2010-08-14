@@ -1,10 +1,10 @@
 lexer grammar InternalRFCMapping;
 @header {
-package net.sf.rcer.rfcgen.contentassist.antlr.internal;
+package net.sf.rcer.rfcgen.ui.contentassist.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
 // Currently there is no other way to specify the superclass for the lexer.
-import org.eclipse.xtext.ui.common.editor.contentassist.antlr.internal.Lexer;
+import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 }
 
 T11 : 'BigDecimal' ;
@@ -41,25 +41,25 @@ T41 : 'changing' ;
 T42 : 'table' ;
 T43 : 'inactive' ;
 
-// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/contentassist/antlr/internal/InternalRFCMapping.g" 4800
+// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 6247
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/contentassist/antlr/internal/InternalRFCMapping.g" 4802
+// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 6249
 RULE_INT : ('0'..'9')+;
 
-// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/contentassist/antlr/internal/InternalRFCMapping.g" 4804
+// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 6251
 RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
 
-// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/contentassist/antlr/internal/InternalRFCMapping.g" 4806
+// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 6253
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
-// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/contentassist/antlr/internal/InternalRFCMapping.g" 4808
+// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 6255
 RULE_SL_COMMENT : '//' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/contentassist/antlr/internal/InternalRFCMapping.g" 4810
+// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 6257
 RULE_WS : (' '|'\t'|'\r'|'\n')+;
 
-// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/contentassist/antlr/internal/InternalRFCMapping.g" 4812
+// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 6259
 RULE_ANY_OTHER : .;
 
 

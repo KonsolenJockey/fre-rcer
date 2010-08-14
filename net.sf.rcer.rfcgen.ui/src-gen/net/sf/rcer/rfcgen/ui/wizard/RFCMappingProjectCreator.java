@@ -1,104 +1,62 @@
 package net.sf.rcer.rfcgen.ui.wizard;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashSet;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.internal.xtend.type.impl.java.JavaBeansMetaModel;
+import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xpand2.XpandExecutionContextImpl;
 import org.eclipse.xpand2.XpandFacade;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xpand2.output.OutputImpl;
-import org.eclipse.xtext.ui.core.util.EclipseResourceUtil;
-import org.eclipse.xtext.ui.core.wizard.DefaultProjectCreator;
+import org.eclipse.xtext.ui.wizard.AbstractPluginProjectCreator;
 
-public class RFCMappingProjectCreator extends DefaultProjectCreator {
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 
-	private static final String DSL_GENERATOR_PROJECT_NAME = "net.sf.rcer.rfcgen.generator";
+public class RFCMappingProjectCreator extends AbstractPluginProjectCreator {
 
-	private static final String SRC_ROOT = "src";
-	private static final String SRC_GEN_ROOT = "src-gen";
-	private final List<String> SRC_FOLDER_LIST = Collections
-			.unmodifiableList(Arrays.asList(SRC_ROOT, SRC_GEN_ROOT));
+	protected static final String DSL_GENERATOR_PROJECT_NAME = "net.sf.rcer.rfcgen.generator";
+
+	protected static final String SRC_ROOT = "src";
+	protected static final String SRC_GEN_ROOT = "src-gen";
+	protected final List<String> SRC_FOLDER_LIST = ImmutableList.of(SRC_ROOT, SRC_GEN_ROOT);
 
 	@Override
 	protected RFCMappingProjectInfo getProjectInfo() {
 		return (RFCMappingProjectInfo) super.getProjectInfo();
 	}
-
+	
+	protected String getModelFolderName() {
+		return SRC_ROOT;
+	}
+	
 	@Override
-	protected void execute(final IProgressMonitor monitor)
-			throws CoreException, InvocationTargetException,
-			InterruptedException {
-		monitor.beginTask("Creating model project " + getProjectInfo().getProjectName(), 3);
+	protected List<String> getAllFolders() {
+        return SRC_FOLDER_LIST;
+    }
 
-		final IProject project = createProject(monitor);
-		monitor.worked(1);
-		if (project == null)
-			return;
-
-		initializeProject(project, monitor);
-		monitor.worked(1);
-
-		IFile modelFile = getModelFile(project);
-		setResult(modelFile);
-		monitor.worked(1);
+    @Override
+	protected List<String> getRequiredBundles() {
+		List<String> result = Lists.newArrayList(super.getRequiredBundles());
+		result.add(DSL_GENERATOR_PROJECT_NAME);
+		return result;
 	}
 
-	protected IProject createProject(final IProgressMonitor monitor) {
-		final IProject project = EclipseResourceUtil.createProject(
-				getProjectInfo().getProjectName(), SRC_FOLDER_LIST, Collections
-						.<IProject> emptyList(),
-				new LinkedHashSet<String>(Arrays.asList(
-						"com.ibm.icu",
-						"org.eclipse.xtext.log4j;bundle-version=\"1.2.15\"",
-						"org.eclipse.xtext", 
-						"org.eclipse.xtext.generator",
-						"org.eclipse.xtend",
-						"org.eclipse.xtend.typesystem.emf",
-						"org.eclipse.xpand", 
-						"org.apache.commons.logging",
-						"de.itemis.xtext.antlr;resolution:=optional",
-						"org.eclipse.emf.codegen.ecore;resolution:=optional",
-						"org.eclipse.xtend.util.stdlib",
-						DSL_GENERATOR_PROJECT_NAME)), null, null, null,
-				monitor, null,
-				new String[] {"org.eclipse.jdt.core.javanature", "org.eclipse.pde.PluginNature"});
-
-		return project;
-	}
-
-	protected void initializeProject(final IProject project, final IProgressMonitor monitor) throws CoreException {
-		final String encoding = "iso-8859-1";
+	protected void enhanceProject(final IProject project, final IProgressMonitor monitor) throws CoreException {
 		OutputImpl output = new OutputImpl();
-		output.addOutlet(new Outlet(false, encoding, null, true, project.getLocation().makeAbsolute().toOSString()));
+		output.addOutlet(new Outlet(false, getEncoding(), null, true, project.getLocation().makeAbsolute().toOSString()));
 
 		XpandExecutionContextImpl execCtx = new XpandExecutionContextImpl(output, null);
-		execCtx.setFileEncoding(encoding);
+		execCtx.getResourceManager().setFileEncoding("UTF-8");
 		execCtx.registerMetaModel(new JavaBeansMetaModel());
 
 		XpandFacade facade = XpandFacade.create(execCtx);
 		facade.evaluate("net::sf::rcer::rfcgen::ui::wizard::RFCMappingNewProject::main", getProjectInfo());
 
 		project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
-	}
-
-	protected IFile getModelFile(IProject project) throws CoreException {
-		IFolder srcFolder = project.getFolder(SRC_ROOT);
-		for (IResource resource : srcFolder.members()) {
-			if (IResource.FILE == resource.getType() && "rfcgen".equals(resource.getFileExtension())) {
-				return (IFile) resource;
-			}
-		}
-		return null;
 	}
 
 }

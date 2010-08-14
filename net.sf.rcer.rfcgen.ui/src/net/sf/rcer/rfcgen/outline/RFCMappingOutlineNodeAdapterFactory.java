@@ -11,7 +11,7 @@
  */
 package net.sf.rcer.rfcgen.outline;
 
-import org.eclipse.xtext.ui.common.editor.outline.actions.DefaultContentOutlineNodeAdapterFactory;
+import org.eclipse.xtext.ui.editor.outline.actions.DefaultContentOutlineNodeAdapterFactory;
 
 /**
  * The adapter factory to add adapters to outline nodes.
