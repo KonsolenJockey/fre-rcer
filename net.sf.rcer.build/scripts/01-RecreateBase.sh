@@ -7,7 +7,8 @@
 
 export ECLIPSE="eclipse-modeling-helios-incubation-linux-gtk.tar.gz"
 export JCO="com.sap.conn.jco_7.11.0.jar"
-export MWE="emft-mwe-SDK-1.0.0.zip"                                      
+export MWE="emft-mwe-SDK-1.0.0.zip"      
+export MWE2="emft-mwe-2-SDK-1.0.0.zip"                                
 export XPAND="m2t-xpand-SDK-1.0.0.zip"                                                 
 export XTEXT="tmf-xtext-SDK-1.0.0.zip" 
 
@@ -39,12 +40,13 @@ echo "Adding JCo..."
 cp ${RCER_BUILD_HOME}/distfiles/${JCO} ${RCER_BUILD_HOME}/base/eclipse/plugins/
 
 echo "Adding MWE..."
-unzip -n ${RCER_BUILD_HOME}/distfiles/${MWE}
+unzip -n -q ${RCER_BUILD_HOME}/distfiles/${MWE}
+unzip -n -q ${RCER_BUILD_HOME}/distfiles/${MWE2}
 
 echo "Adding Xpand / Xtend..."
-unzip -n ${RCER_BUILD_HOME}/distfiles/${XPAND}
+unzip -n -q ${RCER_BUILD_HOME}/distfiles/${XPAND}
 
 echo "Adding Xtext..."
-unzip -n ${RCER_BUILD_HOME}/distfiles/${XTEXT}
+unzip -n -q ${RCER_BUILD_HOME}/distfiles/${XTEXT}
 
 echo "OK."
