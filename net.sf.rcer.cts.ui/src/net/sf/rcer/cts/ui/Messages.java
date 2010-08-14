@@ -22,13 +22,39 @@ public class Messages extends NLS {
 	
 	private static final String BUNDLE_NAME = "net.sf.rcer.cts.ui.messages"; //$NON-NLS-1$
 	
+	/**
+	 * Description
+	 */
 	public static String TransportSelectionDialog_ColumnDescription;
+
+	/**
+	 * Owner
+	 */
 	public static String TransportSelectionDialog_ColumnOwner;
+
+	/**
+	 * Select a valid transport order.
+	 */
 	public static String TransportSelectionDialog_ErrorMessageSelection;
+
+	/**
+	 * Error reading the list of transports.
+	 */
 	public static String TransportSelectionDialog_ErrorReadingTransports;
+
+	/**
+	 * Transport Order Selection
+	 */
 	public static String TransportSelectionDialog_ErrorTitle;
+
+	/**
+	 * Select Transport Order
+	 */
 	public static String TransportSelectionDialog_Title;
-	
+
+	/**
+	 * Local Change Requests
+	 */
 	public static String TreeLevelTarget_LocalChangeRequests;
 	
 	static {
