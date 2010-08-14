@@ -20,14 +20,6 @@ if [ "x${RCER_SF_USER}" = "x" ] ; then
   exit 1
 fi 
 
-echo "Creating zipped distribution package..."
-mkdir -p ${RCER_BUILD_HOME}/website/dist
-rm -rf ${RCER_BUILD_HOME}/website/dist/*
-cp -r ${RCER_BUILD_HOME}/build/site/features ${RCER_BUILD_HOME}/website/dist/
-cp -r ${RCER_BUILD_HOME}/build/site/plugins ${RCER_BUILD_HOME}/website/dist/
-cd ${RCER_BUILD_HOME}/website/dist/
-zip -r rcer-current.zip features plugins
-
 echo "Exporting static content from repository..."
 mkdir -p ${RCER_BUILD_HOME}/website/src
 rm -rf ${RCER_BUILD_HOME}/website/src/*
@@ -39,7 +31,7 @@ mkdir ${RCER_BUILD_HOME}/website/staging
 mkdir ${RCER_BUILD_HOME}/website/staging/update-site
 cp -r ${RCER_BUILD_HOME}/website/src/net.sf.rcer.website/* ${RCER_BUILD_HOME}/website/staging/
 cp -r ${RCER_BUILD_HOME}/build/site/* ${RCER_BUILD_HOME}/website/staging/update-site
-cp ${RCER_BUILD_HOME}/website/dist/rcer-current.zip ${RCER_BUILD_HOME}/website/staging/
+cp ${RCER_BUILD_HOME}/build/Complete/net.sf.rcer-Complete.zip ${RCER_BUILD_HOME}/website/staging/rcer-current.zip
 
 
 echo "Updating the website..."
