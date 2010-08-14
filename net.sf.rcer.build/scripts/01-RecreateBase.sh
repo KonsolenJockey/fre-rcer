@@ -5,7 +5,7 @@
 # $Id$
 #
 
-export ECLIPSE="eclipse-modeling-galileo-SR1-incubation-linux-gtk.tar.gz"
+export ECLIPSE="eclipse-modeling-helios-incubation-linux-gtk.tar.gz"
 export JCO="com.sap.conn.jco_7.11.0.jar"
 
 check_distfile() {
