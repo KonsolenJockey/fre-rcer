@@ -302,7 +302,7 @@ public class ConnectionManager  {
 			try {
 				return getCheckedDestination(primaryConnectionID);
 			} catch (JCoException e) {
-				throw new ConnectionException("Primary connection is invalid.", e);
+				throw new ConnectionException(Messages.ConnectionManager_PrimaryConnectionInvalid, e);
 			}
 		}
 		
@@ -334,7 +334,7 @@ public class ConnectionManager  {
 				return getCheckedDestination(credentials.getConnectionID());
 			} catch (JCoException e) {
 				removeConnectionInternal(credentials);
-				throw new ConnectionException("Unable to obtain the connection.", e);
+				throw new ConnectionException(Messages.ConnectionManager_CredentialsError, e);
 			}
 		}
 		}
@@ -361,7 +361,7 @@ public class ConnectionManager  {
 					try {
 						return getCheckedDestination(coll.iterator().next().getConnectionID());
 					} catch (JCoException e) {
-						throw new ConnectionException("The connection is invalid.", e);
+						throw new ConnectionException(Messages.ConnectionManager_ConnectionInvalid, e);
 					}
 				}
 			}
@@ -394,7 +394,7 @@ public class ConnectionManager  {
 			return getCheckedDestination(credentials.getConnectionID());
 		} catch (JCoException e) {
 			removeConnectionInternal(credentials);
-			throw new ConnectionException("The connection is invalid.", e);
+			throw new ConnectionException(Messages.ConnectionManager_ConnectionInvalid, e);
 		}
 	}
 

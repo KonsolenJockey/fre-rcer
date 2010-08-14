@@ -23,6 +23,11 @@ public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "net.sf.rcer.conn.messages"; //$NON-NLS-1$
 
 	/**
+	 * Unable to register the trace listener.
+	 */
+	public static String Activator_TraceListenerError;
+
+	/**
 	 * Unsupported structure {0} (expected BAPIRET2).
 	 */
 	public static String BAPIMessage_ErrorUnsupportedStructure;
@@ -93,6 +98,11 @@ public class Messages extends NLS {
 	public static String ConnectionManager_ConnectionIDNullError;
 
 	/**
+	 * The connection is invalid.
+	 */
+	public static String ConnectionManager_ConnectionInvalid;
+
+	/**
 	 * No connection with ID {0} is active.
 	 */
 	public static String ConnectionManager_ConnectionNotActiveError;
@@ -111,6 +121,11 @@ public class Messages extends NLS {
 	 * Exception occurred trying to select a connection and determine the credentials.
 	 */
 	public static String ConnectionManager_ConnectionSelectionException;
+
+	/**
+	 * Unable to obtain the connection.
+	 */
+	public static String ConnectionManager_CredentialsError;
 
 	/**
 	 * Unable to determine the credentials for connection {0}.
@@ -136,6 +151,11 @@ public class Messages extends NLS {
 	 * Logon canceled by the user.
 	 */
 	public static String ConnectionManager_LogonCancelled;
+
+	/**
+	 * Primary connection is invalid.
+	 */
+	public static String ConnectionManager_PrimaryConnectionInvalid;
 
 	/**
 	 * No connection with ID {0} defined.

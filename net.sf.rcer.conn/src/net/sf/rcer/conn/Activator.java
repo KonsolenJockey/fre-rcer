@@ -88,7 +88,13 @@ public class Activator extends Plugin {
 		super.start(context);
 		instance = this;
 		listener = new TraceListener(getLog());
-		JCo.addTraceListener(listener);
+		try {
+			JCo.addTraceListener(listener);
+		} catch (ExceptionInInitializerError e) {
+			// this happens if the JCo native library could not be loaded
+			getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
+					Messages.Activator_TraceListenerError, e));
+		}
 	}
 	
 	/* (non-Javadoc)
