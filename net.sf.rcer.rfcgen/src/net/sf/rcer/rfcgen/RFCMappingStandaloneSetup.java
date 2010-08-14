@@ -15,8 +15,11 @@ package net.sf.rcer.rfcgen;
  * Initialization support for running Xtext languages 
  * without equinox extension registry
  */
-public class RFCMappingStandaloneSetup extends RFCMappingStandaloneSetupGenerated{
+public class RFCMappingStandaloneSetup extends RFCMappingStandaloneSetupGenerated {
 
+	/**
+	 * TODO Write documentation for method. 
+	 */
 	public static void doSetup() {
 		new RFCMappingStandaloneSetup().createInjectorAndDoEMFRegistration();
 	}
