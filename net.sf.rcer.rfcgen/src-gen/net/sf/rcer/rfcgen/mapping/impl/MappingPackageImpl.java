@@ -550,9 +550,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFunctionModulePOJOParameterMapping_Attribute()
+  public EReference getFunctionModulePOJOParameterMapping_Structure()
   {
-    return (EAttribute)functionModulePOJOParameterMappingEClass.getEStructuralFeatures().get(2);
+    return (EReference)functionModulePOJOParameterMappingEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -560,9 +560,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFunctionModulePOJOParameterMapping_Structure()
+  public EAttribute getFunctionModulePOJOParameterMapping_Attribute()
   {
-    return (EReference)functionModulePOJOParameterMappingEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)functionModulePOJOParameterMappingEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -758,8 +758,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
     functionModulePOJOParameterMappingEClass = createEClass(FUNCTION_MODULE_POJO_PARAMETER_MAPPING);
     createEAttribute(functionModulePOJOParameterMappingEClass, FUNCTION_MODULE_POJO_PARAMETER_MAPPING__NAME);
     createEAttribute(functionModulePOJOParameterMappingEClass, FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE);
-    createEAttribute(functionModulePOJOParameterMappingEClass, FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE);
     createEReference(functionModulePOJOParameterMappingEClass, FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE);
+    createEAttribute(functionModulePOJOParameterMappingEClass, FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE);
     createEAttribute(functionModulePOJOParameterMappingEClass, FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT);
 
     functionModulePOJOImportingParameterEClass = createEClass(FUNCTION_MODULE_POJO_IMPORTING_PARAMETER);
@@ -862,8 +862,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
     initEClass(functionModulePOJOParameterMappingEClass, FunctionModulePOJOParameterMapping.class, "FunctionModulePOJOParameterMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFunctionModulePOJOParameterMapping_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFunctionModulePOJOParameterMapping_Inactive(), ecorePackage.getEBoolean(), "inactive", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunctionModulePOJOParameterMapping_Structure(), this.getStructurePOJOMapping(), null, "structure", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFunctionModulePOJOParameterMapping_Attribute(), ecorePackage.getEString(), "attribute", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getFunctionModulePOJOParameterMapping_Structure(), this.getStructureMapping(), null, "structure", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFunctionModulePOJOParameterMapping_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(functionModulePOJOImportingParameterEClass, FunctionModulePOJOImportingParameter.class, "FunctionModulePOJOImportingParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -489,8 +489,8 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInactiveInactiveKeyword_1_1_3_0_0 = (Keyword)cInactiveAssignment_1_1_3_0.eContents().get(0);
 		private final Group cGroup_1_1_3_1 = (Group)cAlternatives_1_1_3.eContents().get(1);
 		private final Assignment cStructureAssignment_1_1_3_1_0 = (Assignment)cGroup_1_1_3_1.eContents().get(0);
-		private final CrossReference cStructureStructureMappingCrossReference_1_1_3_1_0_0 = (CrossReference)cStructureAssignment_1_1_3_1_0.eContents().get(0);
-		private final RuleCall cStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1 = (RuleCall)cStructureStructureMappingCrossReference_1_1_3_1_0_0.eContents().get(1);
+		private final CrossReference cStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0 = (CrossReference)cStructureAssignment_1_1_3_1_0.eContents().get(0);
+		private final RuleCall cStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1 = (RuleCall)cStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0.eContents().get(1);
 		private final Assignment cAttributeAssignment_1_1_3_1_1 = (Assignment)cGroup_1_1_3_1.eContents().get(1);
 		private final RuleCall cAttributeIDTerminalRuleCall_1_1_3_1_1_0 = (RuleCall)cAttributeAssignment_1_1_3_1_1.eContents().get(0);
 		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
@@ -504,8 +504,8 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInactiveInactiveKeyword_1_2_3_0_0 = (Keyword)cInactiveAssignment_1_2_3_0.eContents().get(0);
 		private final Group cGroup_1_2_3_1 = (Group)cAlternatives_1_2_3.eContents().get(1);
 		private final Assignment cStructureAssignment_1_2_3_1_0 = (Assignment)cGroup_1_2_3_1.eContents().get(0);
-		private final CrossReference cStructureStructureMappingCrossReference_1_2_3_1_0_0 = (CrossReference)cStructureAssignment_1_2_3_1_0.eContents().get(0);
-		private final RuleCall cStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1 = (RuleCall)cStructureStructureMappingCrossReference_1_2_3_1_0_0.eContents().get(1);
+		private final CrossReference cStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0 = (CrossReference)cStructureAssignment_1_2_3_1_0.eContents().get(0);
+		private final RuleCall cStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1 = (RuleCall)cStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0.eContents().get(1);
 		private final Assignment cAttributeAssignment_1_2_3_1_1 = (Assignment)cGroup_1_2_3_1.eContents().get(1);
 		private final RuleCall cAttributeIDTerminalRuleCall_1_2_3_1_1_0 = (RuleCall)cAttributeAssignment_1_2_3_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
@@ -516,21 +516,21 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FunctionModulePOJOImportingParameter:
 		//	"importing" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-		//	(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-		//	(inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";";
+		//	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+		//	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";";
 		public ParserRule getRule() { return rule; }
 
 		//"importing" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-		//(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-		//(inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";"
+		//(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+		//(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//"importing"
 		public Keyword getImportingKeyword_0() { return cImportingKeyword_0; }
 
 		//"field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-		//(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-		//(inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+		//(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+		//(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//"field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID)
@@ -572,7 +572,7 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getAttributeIDTerminalRuleCall_1_0_3_1_1_0() { return cAttributeIDTerminalRuleCall_1_0_3_1_1_0; }
 
-		//"structure" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+		//"structure" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
 		//"structure"
@@ -587,7 +587,7 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_1_1_2() { return cEqualsSignKeyword_1_1_2; }
 
-		//inactive?="inactive" | structure=[StructureMapping] attribute=ID
+		//inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID
 		public Alternatives getAlternatives_1_1_3() { return cAlternatives_1_1_3; }
 
 		//inactive?="inactive"
@@ -596,17 +596,17 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//"inactive"
 		public Keyword getInactiveInactiveKeyword_1_1_3_0_0() { return cInactiveInactiveKeyword_1_1_3_0_0; }
 
-		//structure=[StructureMapping] attribute=ID
+		//structure=[StructurePOJOMapping] attribute=ID
 		public Group getGroup_1_1_3_1() { return cGroup_1_1_3_1; }
 
-		//structure=[StructureMapping]
+		//structure=[StructurePOJOMapping]
 		public Assignment getStructureAssignment_1_1_3_1_0() { return cStructureAssignment_1_1_3_1_0; }
 
-		//[StructureMapping]
-		public CrossReference getStructureStructureMappingCrossReference_1_1_3_1_0_0() { return cStructureStructureMappingCrossReference_1_1_3_1_0_0; }
+		//[StructurePOJOMapping]
+		public CrossReference getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0() { return cStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0; }
 
 		//ID
-		public RuleCall getStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1() { return cStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1; }
+		public RuleCall getStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1() { return cStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1; }
 
 		//attribute=ID
 		public Assignment getAttributeAssignment_1_1_3_1_1() { return cAttributeAssignment_1_1_3_1_1; }
@@ -614,7 +614,7 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getAttributeIDTerminalRuleCall_1_1_3_1_1_0() { return cAttributeIDTerminalRuleCall_1_1_3_1_1_0; }
 
-		//table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+		//table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 		public Group getGroup_1_2() { return cGroup_1_2; }
 
 		//table?="table"
@@ -632,7 +632,7 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_1_2_2() { return cEqualsSignKeyword_1_2_2; }
 
-		//inactive?="inactive" | structure=[StructureMapping] attribute=ID
+		//inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID
 		public Alternatives getAlternatives_1_2_3() { return cAlternatives_1_2_3; }
 
 		//inactive?="inactive"
@@ -641,17 +641,17 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//"inactive"
 		public Keyword getInactiveInactiveKeyword_1_2_3_0_0() { return cInactiveInactiveKeyword_1_2_3_0_0; }
 
-		//structure=[StructureMapping] attribute=ID
+		//structure=[StructurePOJOMapping] attribute=ID
 		public Group getGroup_1_2_3_1() { return cGroup_1_2_3_1; }
 
-		//structure=[StructureMapping]
+		//structure=[StructurePOJOMapping]
 		public Assignment getStructureAssignment_1_2_3_1_0() { return cStructureAssignment_1_2_3_1_0; }
 
-		//[StructureMapping]
-		public CrossReference getStructureStructureMappingCrossReference_1_2_3_1_0_0() { return cStructureStructureMappingCrossReference_1_2_3_1_0_0; }
+		//[StructurePOJOMapping]
+		public CrossReference getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0() { return cStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0; }
 
 		//ID
-		public RuleCall getStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1() { return cStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1; }
+		public RuleCall getStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1() { return cStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1; }
 
 		//attribute=ID
 		public Assignment getAttributeAssignment_1_2_3_1_1() { return cAttributeAssignment_1_2_3_1_1; }
@@ -703,8 +703,8 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInactiveInactiveKeyword_1_1_3_0_0 = (Keyword)cInactiveAssignment_1_1_3_0.eContents().get(0);
 		private final Group cGroup_1_1_3_1 = (Group)cAlternatives_1_1_3.eContents().get(1);
 		private final Assignment cStructureAssignment_1_1_3_1_0 = (Assignment)cGroup_1_1_3_1.eContents().get(0);
-		private final CrossReference cStructureStructureMappingCrossReference_1_1_3_1_0_0 = (CrossReference)cStructureAssignment_1_1_3_1_0.eContents().get(0);
-		private final RuleCall cStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1 = (RuleCall)cStructureStructureMappingCrossReference_1_1_3_1_0_0.eContents().get(1);
+		private final CrossReference cStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0 = (CrossReference)cStructureAssignment_1_1_3_1_0.eContents().get(0);
+		private final RuleCall cStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1 = (RuleCall)cStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0.eContents().get(1);
 		private final Assignment cAttributeAssignment_1_1_3_1_1 = (Assignment)cGroup_1_1_3_1.eContents().get(1);
 		private final RuleCall cAttributeIDTerminalRuleCall_1_1_3_1_1_0 = (RuleCall)cAttributeAssignment_1_1_3_1_1.eContents().get(0);
 		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
@@ -718,8 +718,8 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInactiveInactiveKeyword_1_2_3_0_0 = (Keyword)cInactiveAssignment_1_2_3_0.eContents().get(0);
 		private final Group cGroup_1_2_3_1 = (Group)cAlternatives_1_2_3.eContents().get(1);
 		private final Assignment cStructureAssignment_1_2_3_1_0 = (Assignment)cGroup_1_2_3_1.eContents().get(0);
-		private final CrossReference cStructureStructureMappingCrossReference_1_2_3_1_0_0 = (CrossReference)cStructureAssignment_1_2_3_1_0.eContents().get(0);
-		private final RuleCall cStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1 = (RuleCall)cStructureStructureMappingCrossReference_1_2_3_1_0_0.eContents().get(1);
+		private final CrossReference cStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0 = (CrossReference)cStructureAssignment_1_2_3_1_0.eContents().get(0);
+		private final RuleCall cStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1 = (RuleCall)cStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0.eContents().get(1);
 		private final Assignment cAttributeAssignment_1_2_3_1_1 = (Assignment)cGroup_1_2_3_1.eContents().get(1);
 		private final RuleCall cAttributeIDTerminalRuleCall_1_2_3_1_1_0 = (RuleCall)cAttributeAssignment_1_2_3_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
@@ -730,21 +730,21 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FunctionModulePOJOExportingParameter:
 		//	"exporting" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-		//	(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-		//	(inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";";
+		//	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+		//	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";";
 		public ParserRule getRule() { return rule; }
 
 		//"exporting" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-		//(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-		//(inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";"
+		//(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+		//(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//"exporting"
 		public Keyword getExportingKeyword_0() { return cExportingKeyword_0; }
 
 		//"field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-		//(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-		//(inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+		//(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+		//(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//"field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID)
@@ -786,7 +786,7 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getAttributeIDTerminalRuleCall_1_0_3_1_1_0() { return cAttributeIDTerminalRuleCall_1_0_3_1_1_0; }
 
-		//"structure" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+		//"structure" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
 		//"structure"
@@ -801,7 +801,7 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_1_1_2() { return cEqualsSignKeyword_1_1_2; }
 
-		//inactive?="inactive" | structure=[StructureMapping] attribute=ID
+		//inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID
 		public Alternatives getAlternatives_1_1_3() { return cAlternatives_1_1_3; }
 
 		//inactive?="inactive"
@@ -810,17 +810,17 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//"inactive"
 		public Keyword getInactiveInactiveKeyword_1_1_3_0_0() { return cInactiveInactiveKeyword_1_1_3_0_0; }
 
-		//structure=[StructureMapping] attribute=ID
+		//structure=[StructurePOJOMapping] attribute=ID
 		public Group getGroup_1_1_3_1() { return cGroup_1_1_3_1; }
 
-		//structure=[StructureMapping]
+		//structure=[StructurePOJOMapping]
 		public Assignment getStructureAssignment_1_1_3_1_0() { return cStructureAssignment_1_1_3_1_0; }
 
-		//[StructureMapping]
-		public CrossReference getStructureStructureMappingCrossReference_1_1_3_1_0_0() { return cStructureStructureMappingCrossReference_1_1_3_1_0_0; }
+		//[StructurePOJOMapping]
+		public CrossReference getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0() { return cStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0; }
 
 		//ID
-		public RuleCall getStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1() { return cStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1; }
+		public RuleCall getStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1() { return cStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1; }
 
 		//attribute=ID
 		public Assignment getAttributeAssignment_1_1_3_1_1() { return cAttributeAssignment_1_1_3_1_1; }
@@ -828,7 +828,7 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getAttributeIDTerminalRuleCall_1_1_3_1_1_0() { return cAttributeIDTerminalRuleCall_1_1_3_1_1_0; }
 
-		//table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+		//table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 		public Group getGroup_1_2() { return cGroup_1_2; }
 
 		//table?="table"
@@ -846,7 +846,7 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_1_2_2() { return cEqualsSignKeyword_1_2_2; }
 
-		//inactive?="inactive" | structure=[StructureMapping] attribute=ID
+		//inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID
 		public Alternatives getAlternatives_1_2_3() { return cAlternatives_1_2_3; }
 
 		//inactive?="inactive"
@@ -855,17 +855,17 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//"inactive"
 		public Keyword getInactiveInactiveKeyword_1_2_3_0_0() { return cInactiveInactiveKeyword_1_2_3_0_0; }
 
-		//structure=[StructureMapping] attribute=ID
+		//structure=[StructurePOJOMapping] attribute=ID
 		public Group getGroup_1_2_3_1() { return cGroup_1_2_3_1; }
 
-		//structure=[StructureMapping]
+		//structure=[StructurePOJOMapping]
 		public Assignment getStructureAssignment_1_2_3_1_0() { return cStructureAssignment_1_2_3_1_0; }
 
-		//[StructureMapping]
-		public CrossReference getStructureStructureMappingCrossReference_1_2_3_1_0_0() { return cStructureStructureMappingCrossReference_1_2_3_1_0_0; }
+		//[StructurePOJOMapping]
+		public CrossReference getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0() { return cStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0; }
 
 		//ID
-		public RuleCall getStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1() { return cStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1; }
+		public RuleCall getStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1() { return cStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1; }
 
 		//attribute=ID
 		public Assignment getAttributeAssignment_1_2_3_1_1() { return cAttributeAssignment_1_2_3_1_1; }
@@ -917,8 +917,8 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInactiveInactiveKeyword_1_1_3_0_0 = (Keyword)cInactiveAssignment_1_1_3_0.eContents().get(0);
 		private final Group cGroup_1_1_3_1 = (Group)cAlternatives_1_1_3.eContents().get(1);
 		private final Assignment cStructureAssignment_1_1_3_1_0 = (Assignment)cGroup_1_1_3_1.eContents().get(0);
-		private final CrossReference cStructureStructureMappingCrossReference_1_1_3_1_0_0 = (CrossReference)cStructureAssignment_1_1_3_1_0.eContents().get(0);
-		private final RuleCall cStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1 = (RuleCall)cStructureStructureMappingCrossReference_1_1_3_1_0_0.eContents().get(1);
+		private final CrossReference cStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0 = (CrossReference)cStructureAssignment_1_1_3_1_0.eContents().get(0);
+		private final RuleCall cStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1 = (RuleCall)cStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0.eContents().get(1);
 		private final Assignment cAttributeAssignment_1_1_3_1_1 = (Assignment)cGroup_1_1_3_1.eContents().get(1);
 		private final RuleCall cAttributeIDTerminalRuleCall_1_1_3_1_1_0 = (RuleCall)cAttributeAssignment_1_1_3_1_1.eContents().get(0);
 		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
@@ -932,8 +932,8 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInactiveInactiveKeyword_1_2_3_0_0 = (Keyword)cInactiveAssignment_1_2_3_0.eContents().get(0);
 		private final Group cGroup_1_2_3_1 = (Group)cAlternatives_1_2_3.eContents().get(1);
 		private final Assignment cStructureAssignment_1_2_3_1_0 = (Assignment)cGroup_1_2_3_1.eContents().get(0);
-		private final CrossReference cStructureStructureMappingCrossReference_1_2_3_1_0_0 = (CrossReference)cStructureAssignment_1_2_3_1_0.eContents().get(0);
-		private final RuleCall cStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1 = (RuleCall)cStructureStructureMappingCrossReference_1_2_3_1_0_0.eContents().get(1);
+		private final CrossReference cStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0 = (CrossReference)cStructureAssignment_1_2_3_1_0.eContents().get(0);
+		private final RuleCall cStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1 = (RuleCall)cStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0.eContents().get(1);
 		private final Assignment cAttributeAssignment_1_2_3_1_1 = (Assignment)cGroup_1_2_3_1.eContents().get(1);
 		private final RuleCall cAttributeIDTerminalRuleCall_1_2_3_1_1_0 = (RuleCall)cAttributeAssignment_1_2_3_1_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
@@ -944,21 +944,21 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FunctionModulePOJOChangingParameter:
 		//	"changing" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-		//	(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-		//	(inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";";
+		//	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+		//	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";";
 		public ParserRule getRule() { return rule; }
 
 		//"changing" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-		//(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-		//(inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";"
+		//(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+		//(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//"changing"
 		public Keyword getChangingKeyword_0() { return cChangingKeyword_0; }
 
 		//"field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-		//(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-		//(inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+		//(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+		//(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//"field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID)
@@ -1000,7 +1000,7 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getAttributeIDTerminalRuleCall_1_0_3_1_1_0() { return cAttributeIDTerminalRuleCall_1_0_3_1_1_0; }
 
-		//"structure" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+		//"structure" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
 		//"structure"
@@ -1015,7 +1015,7 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_1_1_2() { return cEqualsSignKeyword_1_1_2; }
 
-		//inactive?="inactive" | structure=[StructureMapping] attribute=ID
+		//inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID
 		public Alternatives getAlternatives_1_1_3() { return cAlternatives_1_1_3; }
 
 		//inactive?="inactive"
@@ -1024,17 +1024,17 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//"inactive"
 		public Keyword getInactiveInactiveKeyword_1_1_3_0_0() { return cInactiveInactiveKeyword_1_1_3_0_0; }
 
-		//structure=[StructureMapping] attribute=ID
+		//structure=[StructurePOJOMapping] attribute=ID
 		public Group getGroup_1_1_3_1() { return cGroup_1_1_3_1; }
 
-		//structure=[StructureMapping]
+		//structure=[StructurePOJOMapping]
 		public Assignment getStructureAssignment_1_1_3_1_0() { return cStructureAssignment_1_1_3_1_0; }
 
-		//[StructureMapping]
-		public CrossReference getStructureStructureMappingCrossReference_1_1_3_1_0_0() { return cStructureStructureMappingCrossReference_1_1_3_1_0_0; }
+		//[StructurePOJOMapping]
+		public CrossReference getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0() { return cStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0; }
 
 		//ID
-		public RuleCall getStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1() { return cStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1; }
+		public RuleCall getStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1() { return cStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1; }
 
 		//attribute=ID
 		public Assignment getAttributeAssignment_1_1_3_1_1() { return cAttributeAssignment_1_1_3_1_1; }
@@ -1042,7 +1042,7 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getAttributeIDTerminalRuleCall_1_1_3_1_1_0() { return cAttributeIDTerminalRuleCall_1_1_3_1_1_0; }
 
-		//table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+		//table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 		public Group getGroup_1_2() { return cGroup_1_2; }
 
 		//table?="table"
@@ -1060,7 +1060,7 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_1_2_2() { return cEqualsSignKeyword_1_2_2; }
 
-		//inactive?="inactive" | structure=[StructureMapping] attribute=ID
+		//inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID
 		public Alternatives getAlternatives_1_2_3() { return cAlternatives_1_2_3; }
 
 		//inactive?="inactive"
@@ -1069,17 +1069,17 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//"inactive"
 		public Keyword getInactiveInactiveKeyword_1_2_3_0_0() { return cInactiveInactiveKeyword_1_2_3_0_0; }
 
-		//structure=[StructureMapping] attribute=ID
+		//structure=[StructurePOJOMapping] attribute=ID
 		public Group getGroup_1_2_3_1() { return cGroup_1_2_3_1; }
 
-		//structure=[StructureMapping]
+		//structure=[StructurePOJOMapping]
 		public Assignment getStructureAssignment_1_2_3_1_0() { return cStructureAssignment_1_2_3_1_0; }
 
-		//[StructureMapping]
-		public CrossReference getStructureStructureMappingCrossReference_1_2_3_1_0_0() { return cStructureStructureMappingCrossReference_1_2_3_1_0_0; }
+		//[StructurePOJOMapping]
+		public CrossReference getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0() { return cStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0; }
 
 		//ID
-		public RuleCall getStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1() { return cStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1; }
+		public RuleCall getStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1() { return cStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1; }
 
 		//attribute=ID
 		public Assignment getAttributeAssignment_1_2_3_1_1() { return cAttributeAssignment_1_2_3_1_1; }
@@ -1115,8 +1115,8 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInactiveInactiveKeyword_3_0_0 = (Keyword)cInactiveAssignment_3_0.eContents().get(0);
 		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
 		private final Assignment cStructureAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
-		private final CrossReference cStructureStructureMappingCrossReference_3_1_0_0 = (CrossReference)cStructureAssignment_3_1_0.eContents().get(0);
-		private final RuleCall cStructureStructureMappingIDTerminalRuleCall_3_1_0_0_1 = (RuleCall)cStructureStructureMappingCrossReference_3_1_0_0.eContents().get(1);
+		private final CrossReference cStructureStructurePOJOMappingCrossReference_3_1_0_0 = (CrossReference)cStructureAssignment_3_1_0.eContents().get(0);
+		private final RuleCall cStructureStructurePOJOMappingIDTerminalRuleCall_3_1_0_0_1 = (RuleCall)cStructureStructurePOJOMappingCrossReference_3_1_0_0.eContents().get(1);
 		private final Assignment cAttributeAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
 		private final RuleCall cAttributeIDTerminalRuleCall_3_1_1_0 = (RuleCall)cAttributeAssignment_3_1_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
@@ -1126,12 +1126,12 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//FunctionModulePOJOTablesParameter:
-		//	"table" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID) ("comment" comment=STRING)?
-		//	";";
+		//	"table" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) ("comment"
+		//	comment=STRING)? ";";
 		public ParserRule getRule() { return rule; }
 
-		//"table" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID) ("comment" comment=STRING)?
-		//";"
+		//"table" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) ("comment"
+		//comment=STRING)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//"table"
@@ -1146,7 +1146,7 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
 
-		//inactive?="inactive" | structure=[StructureMapping] attribute=ID
+		//inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 
 		//inactive?="inactive"
@@ -1155,17 +1155,17 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 		//"inactive"
 		public Keyword getInactiveInactiveKeyword_3_0_0() { return cInactiveInactiveKeyword_3_0_0; }
 
-		//structure=[StructureMapping] attribute=ID
+		//structure=[StructurePOJOMapping] attribute=ID
 		public Group getGroup_3_1() { return cGroup_3_1; }
 
-		//structure=[StructureMapping]
+		//structure=[StructurePOJOMapping]
 		public Assignment getStructureAssignment_3_1_0() { return cStructureAssignment_3_1_0; }
 
-		//[StructureMapping]
-		public CrossReference getStructureStructureMappingCrossReference_3_1_0_0() { return cStructureStructureMappingCrossReference_3_1_0_0; }
+		//[StructurePOJOMapping]
+		public CrossReference getStructureStructurePOJOMappingCrossReference_3_1_0_0() { return cStructureStructurePOJOMappingCrossReference_3_1_0_0; }
 
 		//ID
-		public RuleCall getStructureStructureMappingIDTerminalRuleCall_3_1_0_0_1() { return cStructureStructureMappingIDTerminalRuleCall_3_1_0_0_1; }
+		public RuleCall getStructureStructurePOJOMappingIDTerminalRuleCall_3_1_0_0_1() { return cStructureStructurePOJOMappingIDTerminalRuleCall_3_1_0_0_1; }
 
 		//attribute=ID
 		public Assignment getAttributeAssignment_3_1_1() { return cAttributeAssignment_3_1_1; }
@@ -1496,8 +1496,8 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 
 	//FunctionModulePOJOImportingParameter:
 	//	"importing" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-	//	(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-	//	(inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";";
+	//	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+	//	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";";
 	public FunctionModulePOJOImportingParameterElements getFunctionModulePOJOImportingParameterAccess() {
 		return (pFunctionModulePOJOImportingParameter != null) ? pFunctionModulePOJOImportingParameter : (pFunctionModulePOJOImportingParameter = new FunctionModulePOJOImportingParameterElements());
 	}
@@ -1508,8 +1508,8 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 
 	//FunctionModulePOJOExportingParameter:
 	//	"exporting" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-	//	(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-	//	(inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";";
+	//	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+	//	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";";
 	public FunctionModulePOJOExportingParameterElements getFunctionModulePOJOExportingParameterAccess() {
 		return (pFunctionModulePOJOExportingParameter != null) ? pFunctionModulePOJOExportingParameter : (pFunctionModulePOJOExportingParameter = new FunctionModulePOJOExportingParameterElements());
 	}
@@ -1520,8 +1520,8 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 
 	//FunctionModulePOJOChangingParameter:
 	//	"changing" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-	//	(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-	//	(inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";";
+	//	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+	//	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";";
 	public FunctionModulePOJOChangingParameterElements getFunctionModulePOJOChangingParameterAccess() {
 		return (pFunctionModulePOJOChangingParameter != null) ? pFunctionModulePOJOChangingParameter : (pFunctionModulePOJOChangingParameter = new FunctionModulePOJOChangingParameterElements());
 	}
@@ -1531,8 +1531,8 @@ public class RFCMappingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FunctionModulePOJOTablesParameter:
-	//	"table" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID) ("comment" comment=STRING)?
-	//	";";
+	//	"table" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) ("comment"
+	//	comment=STRING)? ";";
 	public FunctionModulePOJOTablesParameterElements getFunctionModulePOJOTablesParameterAccess() {
 		return (pFunctionModulePOJOTablesParameter != null) ? pFunctionModulePOJOTablesParameter : (pFunctionModulePOJOTablesParameter = new FunctionModulePOJOTablesParameterElements());
 	}

@@ -39,5 +39,6 @@ public class RFCMappingStandaloneSetupGenerated implements ISetup {
 
 
 
+
 	}
 }

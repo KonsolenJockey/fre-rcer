@@ -96,22 +96,22 @@ FunctionModulePOJOParameterMapping:
 
 FunctionModulePOJOImportingParameter: 
 	"importing" ( "field"        name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) |
-	              "structure"    name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID) |
-	              table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID) )
+	              "structure"    name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) |
+	              table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) )
 	             ("comment" comment=STRING)? ";";
 
 FunctionModulePOJOExportingParameter: 
 	"exporting" ( "field"        name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) |
-	              "structure"    name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID) |
-	              table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID) )
+	              "structure"    name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) |
+	              table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) )
 	             ("comment" comment=STRING)? ";";
 	
 FunctionModulePOJOChangingParameter: 
 	"changing"  ( "field"        name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) |
-	              "structure"    name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID) |
-	              table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID) )
+	              "structure"    name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) |
+	              table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) )
 	             ("comment" comment=STRING)? ";";
 
 FunctionModulePOJOTablesParameter:
-	"table"     name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+	"table"     name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 	             ("comment" comment=STRING)? ";";

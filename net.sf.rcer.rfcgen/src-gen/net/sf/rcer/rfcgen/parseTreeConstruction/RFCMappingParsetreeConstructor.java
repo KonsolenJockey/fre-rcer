@@ -2189,14 +2189,14 @@ protected class FunctionModulePOJOParameterMapping_FunctionModulePOJOTablesParam
  *
  * FunctionModulePOJOImportingParameter:
  * 	"importing" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
- * 	(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
- * 	(inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";";
+ * 	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+ * 	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";";
  *
  **/
 
 // "importing" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-// (inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-// (inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";"
+// (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+// (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";"
 protected class FunctionModulePOJOImportingParameter_Group extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2247,8 +2247,8 @@ protected class FunctionModulePOJOImportingParameter_ImportingKeyword_0 extends 
 }
 
 // "field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-// (inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-// (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+// (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+// (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 protected class FunctionModulePOJOImportingParameter_Alternatives_1 extends AlternativesToken {
 
 	public FunctionModulePOJOImportingParameter_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2522,7 +2522,7 @@ protected class FunctionModulePOJOImportingParameter_AttributeAssignment_1_0_3_1
 
 
 
-// "structure" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+// "structure" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 protected class FunctionModulePOJOImportingParameter_Group_1_1 extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2622,7 +2622,7 @@ protected class FunctionModulePOJOImportingParameter_EqualsSignKeyword_1_1_2 ext
 
 }
 
-// inactive?="inactive" | structure=[StructureMapping] attribute=ID
+// inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID
 protected class FunctionModulePOJOImportingParameter_Alternatives_1_1_3 extends AlternativesToken {
 
 	public FunctionModulePOJOImportingParameter_Alternatives_1_1_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2679,7 +2679,7 @@ protected class FunctionModulePOJOImportingParameter_InactiveAssignment_1_1_3_0 
 
 }
 
-// structure=[StructureMapping] attribute=ID
+// structure=[StructurePOJOMapping] attribute=ID
 protected class FunctionModulePOJOImportingParameter_Group_1_1_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group_1_1_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2701,7 +2701,7 @@ protected class FunctionModulePOJOImportingParameter_Group_1_1_3_1 extends Group
 
 }
 
-// structure=[StructureMapping]
+// structure=[StructurePOJOMapping]
 protected class FunctionModulePOJOImportingParameter_StructureAssignment_1_1_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOImportingParameter_StructureAssignment_1_1_3_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2727,9 +2727,9 @@ protected class FunctionModulePOJOImportingParameter_StructureAssignment_1_1_3_1
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("structure");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(); 
+				element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0(); 
 				return obj;
 			}
 		}
@@ -2775,7 +2775,7 @@ protected class FunctionModulePOJOImportingParameter_AttributeAssignment_1_1_3_1
 
 
 
-// table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+// table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 protected class FunctionModulePOJOImportingParameter_Group_1_2 extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2887,7 +2887,7 @@ protected class FunctionModulePOJOImportingParameter_EqualsSignKeyword_1_2_2 ext
 
 }
 
-// inactive?="inactive" | structure=[StructureMapping] attribute=ID
+// inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID
 protected class FunctionModulePOJOImportingParameter_Alternatives_1_2_3 extends AlternativesToken {
 
 	public FunctionModulePOJOImportingParameter_Alternatives_1_2_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2944,7 +2944,7 @@ protected class FunctionModulePOJOImportingParameter_InactiveAssignment_1_2_3_0 
 
 }
 
-// structure=[StructureMapping] attribute=ID
+// structure=[StructurePOJOMapping] attribute=ID
 protected class FunctionModulePOJOImportingParameter_Group_1_2_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOImportingParameter_Group_1_2_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2966,7 +2966,7 @@ protected class FunctionModulePOJOImportingParameter_Group_1_2_3_1 extends Group
 
 }
 
-// structure=[StructureMapping]
+// structure=[StructurePOJOMapping]
 protected class FunctionModulePOJOImportingParameter_StructureAssignment_1_2_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOImportingParameter_StructureAssignment_1_2_3_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2992,9 +2992,9 @@ protected class FunctionModulePOJOImportingParameter_StructureAssignment_1_2_3_1
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("structure");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(); 
+				element = grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0(); 
 				return obj;
 			}
 		}
@@ -3151,14 +3151,14 @@ protected class FunctionModulePOJOImportingParameter_SemicolonKeyword_3 extends 
  *
  * FunctionModulePOJOExportingParameter:
  * 	"exporting" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
- * 	(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
- * 	(inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";";
+ * 	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+ * 	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";";
  *
  **/
 
 // "exporting" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-// (inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-// (inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";"
+// (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+// (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";"
 protected class FunctionModulePOJOExportingParameter_Group extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3209,8 +3209,8 @@ protected class FunctionModulePOJOExportingParameter_ExportingKeyword_0 extends 
 }
 
 // "field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-// (inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-// (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+// (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+// (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 protected class FunctionModulePOJOExportingParameter_Alternatives_1 extends AlternativesToken {
 
 	public FunctionModulePOJOExportingParameter_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3484,7 +3484,7 @@ protected class FunctionModulePOJOExportingParameter_AttributeAssignment_1_0_3_1
 
 
 
-// "structure" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+// "structure" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 protected class FunctionModulePOJOExportingParameter_Group_1_1 extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3584,7 +3584,7 @@ protected class FunctionModulePOJOExportingParameter_EqualsSignKeyword_1_1_2 ext
 
 }
 
-// inactive?="inactive" | structure=[StructureMapping] attribute=ID
+// inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID
 protected class FunctionModulePOJOExportingParameter_Alternatives_1_1_3 extends AlternativesToken {
 
 	public FunctionModulePOJOExportingParameter_Alternatives_1_1_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3641,7 +3641,7 @@ protected class FunctionModulePOJOExportingParameter_InactiveAssignment_1_1_3_0 
 
 }
 
-// structure=[StructureMapping] attribute=ID
+// structure=[StructurePOJOMapping] attribute=ID
 protected class FunctionModulePOJOExportingParameter_Group_1_1_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group_1_1_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3663,7 +3663,7 @@ protected class FunctionModulePOJOExportingParameter_Group_1_1_3_1 extends Group
 
 }
 
-// structure=[StructureMapping]
+// structure=[StructurePOJOMapping]
 protected class FunctionModulePOJOExportingParameter_StructureAssignment_1_1_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOExportingParameter_StructureAssignment_1_1_3_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3689,9 +3689,9 @@ protected class FunctionModulePOJOExportingParameter_StructureAssignment_1_1_3_1
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("structure");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(); 
+				element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0(); 
 				return obj;
 			}
 		}
@@ -3737,7 +3737,7 @@ protected class FunctionModulePOJOExportingParameter_AttributeAssignment_1_1_3_1
 
 
 
-// table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+// table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 protected class FunctionModulePOJOExportingParameter_Group_1_2 extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3849,7 +3849,7 @@ protected class FunctionModulePOJOExportingParameter_EqualsSignKeyword_1_2_2 ext
 
 }
 
-// inactive?="inactive" | structure=[StructureMapping] attribute=ID
+// inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID
 protected class FunctionModulePOJOExportingParameter_Alternatives_1_2_3 extends AlternativesToken {
 
 	public FunctionModulePOJOExportingParameter_Alternatives_1_2_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3906,7 +3906,7 @@ protected class FunctionModulePOJOExportingParameter_InactiveAssignment_1_2_3_0 
 
 }
 
-// structure=[StructureMapping] attribute=ID
+// structure=[StructurePOJOMapping] attribute=ID
 protected class FunctionModulePOJOExportingParameter_Group_1_2_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOExportingParameter_Group_1_2_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3928,7 +3928,7 @@ protected class FunctionModulePOJOExportingParameter_Group_1_2_3_1 extends Group
 
 }
 
-// structure=[StructureMapping]
+// structure=[StructurePOJOMapping]
 protected class FunctionModulePOJOExportingParameter_StructureAssignment_1_2_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOExportingParameter_StructureAssignment_1_2_3_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3954,9 +3954,9 @@ protected class FunctionModulePOJOExportingParameter_StructureAssignment_1_2_3_1
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("structure");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(); 
+				element = grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0(); 
 				return obj;
 			}
 		}
@@ -4113,14 +4113,14 @@ protected class FunctionModulePOJOExportingParameter_SemicolonKeyword_3 extends 
  *
  * FunctionModulePOJOChangingParameter:
  * 	"changing" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
- * 	(inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
- * 	(inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";";
+ * 	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+ * 	(inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";";
  *
  **/
 
 // "changing" ("field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-// (inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-// (inactive?="inactive" | structure=[StructureMapping] attribute=ID)) ("comment" comment=STRING)? ";"
+// (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+// (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)) ("comment" comment=STRING)? ";"
 protected class FunctionModulePOJOChangingParameter_Group extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4171,8 +4171,8 @@ protected class FunctionModulePOJOChangingParameter_ChangingKeyword_0 extends Ke
 }
 
 // "field" name=STRING "=" (inactive?="inactive" | type=DataType attribute=ID) | "structure" name=STRING "="
-// (inactive?="inactive" | structure=[StructureMapping] attribute=ID) | table?="table" name=STRING "="
-// (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+// (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) | table?="table" name=STRING "="
+// (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 protected class FunctionModulePOJOChangingParameter_Alternatives_1 extends AlternativesToken {
 
 	public FunctionModulePOJOChangingParameter_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4446,7 +4446,7 @@ protected class FunctionModulePOJOChangingParameter_AttributeAssignment_1_0_3_1_
 
 
 
-// "structure" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+// "structure" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 protected class FunctionModulePOJOChangingParameter_Group_1_1 extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4546,7 +4546,7 @@ protected class FunctionModulePOJOChangingParameter_EqualsSignKeyword_1_1_2 exte
 
 }
 
-// inactive?="inactive" | structure=[StructureMapping] attribute=ID
+// inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID
 protected class FunctionModulePOJOChangingParameter_Alternatives_1_1_3 extends AlternativesToken {
 
 	public FunctionModulePOJOChangingParameter_Alternatives_1_1_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4603,7 +4603,7 @@ protected class FunctionModulePOJOChangingParameter_InactiveAssignment_1_1_3_0 e
 
 }
 
-// structure=[StructureMapping] attribute=ID
+// structure=[StructurePOJOMapping] attribute=ID
 protected class FunctionModulePOJOChangingParameter_Group_1_1_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group_1_1_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4625,7 +4625,7 @@ protected class FunctionModulePOJOChangingParameter_Group_1_1_3_1 extends GroupT
 
 }
 
-// structure=[StructureMapping]
+// structure=[StructurePOJOMapping]
 protected class FunctionModulePOJOChangingParameter_StructureAssignment_1_1_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOChangingParameter_StructureAssignment_1_1_3_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4651,9 +4651,9 @@ protected class FunctionModulePOJOChangingParameter_StructureAssignment_1_1_3_1_
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("structure");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(); 
+				element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0(); 
 				return obj;
 			}
 		}
@@ -4699,7 +4699,7 @@ protected class FunctionModulePOJOChangingParameter_AttributeAssignment_1_1_3_1_
 
 
 
-// table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID)
+// table?="table" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID)
 protected class FunctionModulePOJOChangingParameter_Group_1_2 extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4811,7 +4811,7 @@ protected class FunctionModulePOJOChangingParameter_EqualsSignKeyword_1_2_2 exte
 
 }
 
-// inactive?="inactive" | structure=[StructureMapping] attribute=ID
+// inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID
 protected class FunctionModulePOJOChangingParameter_Alternatives_1_2_3 extends AlternativesToken {
 
 	public FunctionModulePOJOChangingParameter_Alternatives_1_2_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4868,7 +4868,7 @@ protected class FunctionModulePOJOChangingParameter_InactiveAssignment_1_2_3_0 e
 
 }
 
-// structure=[StructureMapping] attribute=ID
+// structure=[StructurePOJOMapping] attribute=ID
 protected class FunctionModulePOJOChangingParameter_Group_1_2_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOChangingParameter_Group_1_2_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4890,7 +4890,7 @@ protected class FunctionModulePOJOChangingParameter_Group_1_2_3_1 extends GroupT
 
 }
 
-// structure=[StructureMapping]
+// structure=[StructurePOJOMapping]
 protected class FunctionModulePOJOChangingParameter_StructureAssignment_1_2_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOChangingParameter_StructureAssignment_1_2_3_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4916,9 +4916,9 @@ protected class FunctionModulePOJOChangingParameter_StructureAssignment_1_2_3_1_
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("structure");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(); 
+				element = grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0(); 
 				return obj;
 			}
 		}
@@ -5074,13 +5074,13 @@ protected class FunctionModulePOJOChangingParameter_SemicolonKeyword_3 extends K
 /************ begin Rule FunctionModulePOJOTablesParameter ****************
  *
  * FunctionModulePOJOTablesParameter:
- * 	"table" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID) ("comment" comment=STRING)?
- * 	";";
+ * 	"table" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) ("comment"
+ * 	comment=STRING)? ";";
  *
  **/
 
-// "table" name=STRING "=" (inactive?="inactive" | structure=[StructureMapping] attribute=ID) ("comment" comment=STRING)?
-// ";"
+// "table" name=STRING "=" (inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID) ("comment"
+// comment=STRING)? ";"
 protected class FunctionModulePOJOTablesParameter_Group extends GroupToken {
 	
 	public FunctionModulePOJOTablesParameter_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5186,7 +5186,7 @@ protected class FunctionModulePOJOTablesParameter_EqualsSignKeyword_2 extends Ke
 
 }
 
-// inactive?="inactive" | structure=[StructureMapping] attribute=ID
+// inactive?="inactive" | structure=[StructurePOJOMapping] attribute=ID
 protected class FunctionModulePOJOTablesParameter_Alternatives_3 extends AlternativesToken {
 
 	public FunctionModulePOJOTablesParameter_Alternatives_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5243,7 +5243,7 @@ protected class FunctionModulePOJOTablesParameter_InactiveAssignment_3_0 extends
 
 }
 
-// structure=[StructureMapping] attribute=ID
+// structure=[StructurePOJOMapping] attribute=ID
 protected class FunctionModulePOJOTablesParameter_Group_3_1 extends GroupToken {
 	
 	public FunctionModulePOJOTablesParameter_Group_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5265,7 +5265,7 @@ protected class FunctionModulePOJOTablesParameter_Group_3_1 extends GroupToken {
 
 }
 
-// structure=[StructureMapping]
+// structure=[StructurePOJOMapping]
 protected class FunctionModulePOJOTablesParameter_StructureAssignment_3_1_0 extends AssignmentToken  {
 	
 	public FunctionModulePOJOTablesParameter_StructureAssignment_3_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5291,9 +5291,9 @@ protected class FunctionModulePOJOTablesParameter_StructureAssignment_3_1_0 exte
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("structure");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureMappingCrossReference_3_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructurePOJOMappingCrossReference_3_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureMappingCrossReference_3_1_0_0(); 
+				element = grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructurePOJOMappingCrossReference_3_1_0_0(); 
 				return obj;
 			}
 		}

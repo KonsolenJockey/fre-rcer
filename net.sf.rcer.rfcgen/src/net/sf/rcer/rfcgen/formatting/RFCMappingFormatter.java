@@ -31,6 +31,11 @@ public class RFCMappingFormatter extends AbstractDeclarativeFormatter {
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
 //		net.sf.rcer.services.RFCMappingGrammarAccess f = (net.sf.rcer.services.RFCMappingGrammarAccess) getGrammarAccess();
-//		...
+
+//		c.setLinewrap(0, 1, 2).before(f.getSL_COMMENTRule());
+//		c.setLinewrap(0, 1, 2).before(f.getML_COMMENTRule());
+//		c.setLinewrap(0, 1, 1).after(f.getML_COMMENTRule());
+
 	}
+	
 }

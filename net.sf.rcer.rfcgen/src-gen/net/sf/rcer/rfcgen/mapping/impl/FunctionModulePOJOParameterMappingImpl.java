@@ -7,7 +7,7 @@ package net.sf.rcer.rfcgen.mapping.impl;
 
 import net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping;
 import net.sf.rcer.rfcgen.mapping.MappingPackage;
-import net.sf.rcer.rfcgen.mapping.StructureMapping;
+import net.sf.rcer.rfcgen.mapping.StructurePOJOMapping;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOParameterMappingImpl#getName <em>Name</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOParameterMappingImpl#isInactive <em>Inactive</em>}</li>
- *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOParameterMappingImpl#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOParameterMappingImpl#getStructure <em>Structure</em>}</li>
+ *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOParameterMappingImpl#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOParameterMappingImpl#getComment <em>Comment</em>}</li>
  * </ul>
  * </p>
@@ -77,6 +77,16 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
   protected boolean inactive = INACTIVE_EDEFAULT;
 
   /**
+   * The cached value of the '{@link #getStructure() <em>Structure</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getStructure()
+   * @generated
+   * @ordered
+   */
+  protected StructurePOJOMapping structure;
+
+  /**
    * The default value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -95,16 +105,6 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
    * @ordered
    */
   protected String attribute = ATTRIBUTE_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getStructure() <em>Structure</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getStructure()
-   * @generated
-   * @ordered
-   */
-  protected StructureMapping structure;
 
   /**
    * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
@@ -198,6 +198,49 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
    * <!-- end-user-doc -->
    * @generated
    */
+  public StructurePOJOMapping getStructure()
+  {
+    if (structure != null && structure.eIsProxy())
+    {
+      InternalEObject oldStructure = (InternalEObject)structure;
+      structure = (StructurePOJOMapping)eResolveProxy(oldStructure);
+      if (structure != oldStructure)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE, oldStructure, structure));
+      }
+    }
+    return structure;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public StructurePOJOMapping basicGetStructure()
+  {
+    return structure;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setStructure(StructurePOJOMapping newStructure)
+  {
+    StructurePOJOMapping oldStructure = structure;
+    structure = newStructure;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE, oldStructure, structure));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getAttribute()
   {
     return attribute;
@@ -214,49 +257,6 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
     attribute = newAttribute;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE, oldAttribute, attribute));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public StructureMapping getStructure()
-  {
-    if (structure != null && structure.eIsProxy())
-    {
-      InternalEObject oldStructure = (InternalEObject)structure;
-      structure = (StructureMapping)eResolveProxy(oldStructure);
-      if (structure != oldStructure)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE, oldStructure, structure));
-      }
-    }
-    return structure;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public StructureMapping basicGetStructure()
-  {
-    return structure;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setStructure(StructureMapping newStructure)
-  {
-    StructureMapping oldStructure = structure;
-    structure = newStructure;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE, oldStructure, structure));
   }
 
   /**
@@ -296,11 +296,11 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
         return getName();
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE:
         return isInactive();
-      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE:
-        return getAttribute();
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE:
         if (resolve) return getStructure();
         return basicGetStructure();
+      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE:
+        return getAttribute();
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT:
         return getComment();
     }
@@ -323,11 +323,11 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE:
         setInactive((Boolean)newValue);
         return;
+      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE:
+        setStructure((StructurePOJOMapping)newValue);
+        return;
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE:
         setAttribute((String)newValue);
-        return;
-      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE:
-        setStructure((StructureMapping)newValue);
         return;
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT:
         setComment((String)newValue);
@@ -352,11 +352,11 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE:
         setInactive(INACTIVE_EDEFAULT);
         return;
+      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE:
+        setStructure((StructurePOJOMapping)null);
+        return;
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE:
         setAttribute(ATTRIBUTE_EDEFAULT);
-        return;
-      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE:
-        setStructure((StructureMapping)null);
         return;
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT:
         setComment(COMMENT_EDEFAULT);
@@ -379,10 +379,10 @@ public class FunctionModulePOJOParameterMappingImpl extends MinimalEObjectImpl.C
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE:
         return inactive != INACTIVE_EDEFAULT;
-      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE:
-        return ATTRIBUTE_EDEFAULT == null ? attribute != null : !ATTRIBUTE_EDEFAULT.equals(attribute);
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE:
         return structure != null;
+      case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE:
+        return ATTRIBUTE_EDEFAULT == null ? attribute != null : !ATTRIBUTE_EDEFAULT.equals(attribute);
       case MappingPackage.FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT:
         return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
     }

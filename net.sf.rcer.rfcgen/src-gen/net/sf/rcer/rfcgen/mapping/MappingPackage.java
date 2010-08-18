@@ -459,22 +459,22 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE = 1;
 
   /**
-   * The feature id for the '<em><b>Attribute</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE = 2;
-
-  /**
    * The feature id for the '<em><b>Structure</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE = 3;
+  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE = 2;
+
+  /**
+   * The feature id for the '<em><b>Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE = 3;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -523,15 +523,6 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE;
 
   /**
-   * The feature id for the '<em><b>Attribute</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
-
-  /**
    * The feature id for the '<em><b>Structure</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -539,6 +530,15 @@ public interface MappingPackage extends EPackage
    * @ordered
    */
   int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE;
+
+  /**
+   * The feature id for the '<em><b>Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -605,15 +605,6 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE;
 
   /**
-   * The feature id for the '<em><b>Attribute</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
-
-  /**
    * The feature id for the '<em><b>Structure</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -621,6 +612,15 @@ public interface MappingPackage extends EPackage
    * @ordered
    */
   int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE;
+
+  /**
+   * The feature id for the '<em><b>Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -687,15 +687,6 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE;
 
   /**
-   * The feature id for the '<em><b>Attribute</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
-
-  /**
    * The feature id for the '<em><b>Structure</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -703,6 +694,15 @@ public interface MappingPackage extends EPackage
    * @ordered
    */
   int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE;
+
+  /**
+   * The feature id for the '<em><b>Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -769,15 +769,6 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_TABLES_PARAMETER__INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE;
 
   /**
-   * The feature id for the '<em><b>Attribute</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_TABLES_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
-
-  /**
    * The feature id for the '<em><b>Structure</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -785,6 +776,15 @@ public interface MappingPackage extends EPackage
    * @ordered
    */
   int FUNCTION_MODULE_POJO_TABLES_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE;
+
+  /**
+   * The feature id for the '<em><b>Attribute</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_TABLES_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -1168,17 +1168,6 @@ public interface MappingPackage extends EPackage
   EAttribute getFunctionModulePOJOParameterMapping_Inactive();
 
   /**
-   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getAttribute <em>Attribute</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Attribute</em>'.
-   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getAttribute()
-   * @see #getFunctionModulePOJOParameterMapping()
-   * @generated
-   */
-  EAttribute getFunctionModulePOJOParameterMapping_Attribute();
-
-  /**
    * Returns the meta object for the reference '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getStructure <em>Structure</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1188,6 +1177,17 @@ public interface MappingPackage extends EPackage
    * @generated
    */
   EReference getFunctionModulePOJOParameterMapping_Structure();
+
+  /**
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getAttribute <em>Attribute</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Attribute</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getAttribute()
+   * @see #getFunctionModulePOJOParameterMapping()
+   * @generated
+   */
+  EAttribute getFunctionModulePOJOParameterMapping_Attribute();
 
   /**
    * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getComment <em>Comment</em>}'.
@@ -1626,20 +1626,20 @@ public interface MappingPackage extends EPackage
     EAttribute FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE = eINSTANCE.getFunctionModulePOJOParameterMapping_Inactive();
 
     /**
-     * The meta object literal for the '<em><b>Attribute</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE = eINSTANCE.getFunctionModulePOJOParameterMapping_Attribute();
-
-    /**
      * The meta object literal for the '<em><b>Structure</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE = eINSTANCE.getFunctionModulePOJOParameterMapping_Structure();
+
+    /**
+     * The meta object literal for the '<em><b>Attribute</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE = eINSTANCE.getFunctionModulePOJOParameterMapping_Attribute();
 
     /**
      * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.

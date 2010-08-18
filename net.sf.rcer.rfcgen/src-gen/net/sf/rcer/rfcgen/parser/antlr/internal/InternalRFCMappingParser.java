@@ -2421,7 +2421,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                                     
                             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2045); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(), "structure"); 
+                            		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0(), "structure"); 
                             	
 
                             }
@@ -2621,7 +2621,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                                     
                             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2197); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(), "structure"); 
+                            		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0(), "structure"); 
                             	
 
                             }
@@ -3161,7 +3161,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                                     
                             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter2584); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(), "structure"); 
+                            		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0(), "structure"); 
                             	
 
                             }
@@ -3361,7 +3361,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                                     
                             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter2736); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(), "structure"); 
+                            		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0(), "structure"); 
                             	
 
                             }
@@ -3901,7 +3901,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                                     
                             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3123); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0(), "structure"); 
+                            		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0(), "structure"); 
                             	
 
                             }
@@ -4101,7 +4101,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                                     
                             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3275); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0(), "structure"); 
+                            		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0(), "structure"); 
                             	
 
                             }
@@ -4407,7 +4407,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             
                     match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter3516); 
 
-                    		createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureMappingCrossReference_3_1_0_0(), "structure"); 
+                    		createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructurePOJOMappingCrossReference_3_1_0_0(), "structure"); 
                     	
 
                     }

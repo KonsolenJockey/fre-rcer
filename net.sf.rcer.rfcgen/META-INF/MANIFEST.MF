@@ -4,29 +4,27 @@ Bundle-Name: %bundle.name
 Bundle-Vendor: %bundle.vendor
 Bundle-Version: 0.1.0.qualifier
 Bundle-SymbolicName: net.sf.rcer.rfcgen; singleton:=true
-Eclipse-RegisterBuddy: org.eclipse.xtext.log4j
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.xtext;visibility:=reexport,
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
  org.eclipse.emf.mwe.utils;resolution:=optional,
- org.eclipse.emf.mwe.core;resolution:=optional,
- com.ibm.icu;resolution:=optional;visibility:=reexport,
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ com.ibm.icu;resolution:=optional,
  org.eclipse.xtext.xtend;resolution:=optional,
  org.eclipse.xtext.util,
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
- org.antlr.runtime,
- org.apache.log4j;bundle-version="1.2.15",
- org.eclipse.xtext.generator;bundle-version="1.0.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+ org.antlr.runtime
+Import-Package: org.apache.log4j
 Export-Package: net.sf.rcer.rfcgen,
  net.sf.rcer.rfcgen.services,
- net.sf.rcer.rfcgen.parseTreeConstruction,
- net.sf.rcer.rfcgen.parser.antlr,
- net.sf.rcer.rfcgen.validation,
  net.sf.rcer.rfcgen.mapping,
  net.sf.rcer.rfcgen.mapping.impl,
  net.sf.rcer.rfcgen.mapping.util,
- net.sf.rcer.rfcgen.parser.antlr.internal
-Import-Package: org.apache.log4j
+ net.sf.rcer.rfcgen.parseTreeConstruction,
+ net.sf.rcer.rfcgen.parser.antlr,
+ net.sf.rcer.rfcgen.parser.antlr.internal,
+ net.sf.rcer.rfcgen.validation

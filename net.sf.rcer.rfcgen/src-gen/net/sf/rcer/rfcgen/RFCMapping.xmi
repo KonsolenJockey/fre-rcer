@@ -290,7 +290,7 @@
                 <elements xsi:type="xtext:Assignment" feature="structure" operator="=">
                   <terminal xsi:type="xtext:CrossReference">
                     <type metamodel="/0/@metamodelDeclarations.0">
-                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructurePOJOMapping"/>
                     </type>
                     <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
                   </terminal>
@@ -317,7 +317,7 @@
                 <elements xsi:type="xtext:Assignment" feature="structure" operator="=">
                   <terminal xsi:type="xtext:CrossReference">
                     <type metamodel="/0/@metamodelDeclarations.0">
-                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructurePOJOMapping"/>
                     </type>
                     <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
                   </terminal>
@@ -379,7 +379,7 @@
                 <elements xsi:type="xtext:Assignment" feature="structure" operator="=">
                   <terminal xsi:type="xtext:CrossReference">
                     <type metamodel="/0/@metamodelDeclarations.0">
-                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructurePOJOMapping"/>
                     </type>
                     <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
                   </terminal>
@@ -406,7 +406,7 @@
                 <elements xsi:type="xtext:Assignment" feature="structure" operator="=">
                   <terminal xsi:type="xtext:CrossReference">
                     <type metamodel="/0/@metamodelDeclarations.0">
-                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructurePOJOMapping"/>
                     </type>
                     <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
                   </terminal>
@@ -468,7 +468,7 @@
                 <elements xsi:type="xtext:Assignment" feature="structure" operator="=">
                   <terminal xsi:type="xtext:CrossReference">
                     <type metamodel="/0/@metamodelDeclarations.0">
-                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructurePOJOMapping"/>
                     </type>
                     <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
                   </terminal>
@@ -495,7 +495,7 @@
                 <elements xsi:type="xtext:Assignment" feature="structure" operator="=">
                   <terminal xsi:type="xtext:CrossReference">
                     <type metamodel="/0/@metamodelDeclarations.0">
-                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
+                      <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructurePOJOMapping"/>
                     </type>
                     <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
                   </terminal>
@@ -534,7 +534,7 @@
             <elements xsi:type="xtext:Assignment" feature="structure" operator="=">
               <terminal xsi:type="xtext:CrossReference">
                 <type metamodel="/0/@metamodelDeclarations.0">
-                  <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructureMapping"/>
+                  <classifier xsi:type="ecore:EClass" href="http://www.sf.net/rcer/RFCMapping#//StructurePOJOMapping"/>
                 </type>
                 <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
               </terminal>
