@@ -14414,17 +14414,17 @@ public class InternalRFCMappingParser extends AbstractInternalContentAssistParse
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5520:1: ( ( RULE_ID ) )
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5521:1: ( RULE_ID )
             {
-             before(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0()); 
+             before(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0()); 
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5522:1: ( RULE_ID )
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5523:1: RULE_ID
             {
-             before(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1()); 
+             before(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1()); 
             match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FunctionModulePOJOImportingParameter__StructureAssignment_1_1_3_1_011154); 
-             after(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1()); 
+             after(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1()); 
 
             }
 
-             after(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0()); 
+             after(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0()); 
 
             }
 
@@ -14623,17 +14623,17 @@ public class InternalRFCMappingParser extends AbstractInternalContentAssistParse
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5615:1: ( ( RULE_ID ) )
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5616:1: ( RULE_ID )
             {
-             before(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0()); 
+             before(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0()); 
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5617:1: ( RULE_ID )
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5618:1: RULE_ID
             {
-             before(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1()); 
+             before(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1()); 
             match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FunctionModulePOJOImportingParameter__StructureAssignment_1_2_3_1_011343); 
-             after(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1()); 
+             after(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1()); 
 
             }
 
-             after(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0()); 
+             after(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0()); 
 
             }
 
@@ -14983,17 +14983,17 @@ public class InternalRFCMappingParser extends AbstractInternalContentAssistParse
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5770:1: ( ( RULE_ID ) )
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5771:1: ( RULE_ID )
             {
-             before(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0()); 
+             before(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0()); 
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5772:1: ( RULE_ID )
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5773:1: RULE_ID
             {
-             before(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1()); 
+             before(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1()); 
             match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FunctionModulePOJOExportingParameter__StructureAssignment_1_1_3_1_011656); 
-             after(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1()); 
+             after(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1()); 
 
             }
 
-             after(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0()); 
+             after(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0()); 
 
             }
 
@@ -15192,17 +15192,17 @@ public class InternalRFCMappingParser extends AbstractInternalContentAssistParse
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5865:1: ( ( RULE_ID ) )
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5866:1: ( RULE_ID )
             {
-             before(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0()); 
+             before(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0()); 
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5867:1: ( RULE_ID )
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:5868:1: RULE_ID
             {
-             before(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1()); 
+             before(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1()); 
             match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FunctionModulePOJOExportingParameter__StructureAssignment_1_2_3_1_011845); 
-             after(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1()); 
+             after(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1()); 
 
             }
 
-             after(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0()); 
+             after(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0()); 
 
             }
 
@@ -15552,17 +15552,17 @@ public class InternalRFCMappingParser extends AbstractInternalContentAssistParse
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:6020:1: ( ( RULE_ID ) )
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:6021:1: ( RULE_ID )
             {
-             before(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0()); 
+             before(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0()); 
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:6022:1: ( RULE_ID )
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:6023:1: RULE_ID
             {
-             before(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1()); 
+             before(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1()); 
             match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FunctionModulePOJOChangingParameter__StructureAssignment_1_1_3_1_012158); 
-             after(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingIDTerminalRuleCall_1_1_3_1_0_0_1()); 
+             after(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructurePOJOMappingIDTerminalRuleCall_1_1_3_1_0_0_1()); 
 
             }
 
-             after(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_1_3_1_0_0()); 
+             after(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_1_3_1_0_0()); 
 
             }
 
@@ -15761,17 +15761,17 @@ public class InternalRFCMappingParser extends AbstractInternalContentAssistParse
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:6115:1: ( ( RULE_ID ) )
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:6116:1: ( RULE_ID )
             {
-             before(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0()); 
+             before(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0()); 
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:6117:1: ( RULE_ID )
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:6118:1: RULE_ID
             {
-             before(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1()); 
+             before(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1()); 
             match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FunctionModulePOJOChangingParameter__StructureAssignment_1_2_3_1_012347); 
-             after(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingIDTerminalRuleCall_1_2_3_1_0_0_1()); 
+             after(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructurePOJOMappingIDTerminalRuleCall_1_2_3_1_0_0_1()); 
 
             }
 
-             after(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureMappingCrossReference_1_2_3_1_0_0()); 
+             after(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructurePOJOMappingCrossReference_1_2_3_1_0_0()); 
 
             }
 
@@ -15962,17 +15962,17 @@ public class InternalRFCMappingParser extends AbstractInternalContentAssistParse
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:6202:1: ( ( RULE_ID ) )
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:6203:1: ( RULE_ID )
             {
-             before(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureMappingCrossReference_3_1_0_0()); 
+             before(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructurePOJOMappingCrossReference_3_1_0_0()); 
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:6204:1: ( RULE_ID )
             // ../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g:6205:1: RULE_ID
             {
-             before(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureMappingIDTerminalRuleCall_3_1_0_0_1()); 
+             before(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructurePOJOMappingIDTerminalRuleCall_3_1_0_0_1()); 
             match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FunctionModulePOJOTablesParameter__StructureAssignment_3_1_012523); 
-             after(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureMappingIDTerminalRuleCall_3_1_0_0_1()); 
+             after(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructurePOJOMappingIDTerminalRuleCall_3_1_0_0_1()); 
 
             }
 
-             after(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructureMappingCrossReference_3_1_0_0()); 
+             after(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureStructurePOJOMappingCrossReference_3_1_0_0()); 
 
             }
 

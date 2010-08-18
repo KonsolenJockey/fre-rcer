@@ -1,4 +1,4 @@
-«REM»
+Â«REMÂ»
  *
  * Copyright (c) 2009 The RCER Development Team.
  *
@@ -10,155 +10,153 @@
  *
  * $Id$
  *
-«ENDREM»
-«IMPORT net::sf::rcer::ui::wizard»
+Â«ENDREMÂ»
+Â«IMPORT net::sf::rcer::ui::wizardÂ»
 
-«REM» This file has to be encoded using ISO-8859-1 - see https://bugs.eclipse.org/bugs/show_bug.cgi?id=297018. «ENDREM»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«REM» ============================================================================================= «ENDREM»
+Â«DEFINE main FOR ExtendedRFCMappingProjectInfoÂ»
+Â«EXPAND model FOR thisÂ»
+Â«EXPAND workflow FOR thisÂ»
+Â«ENDDEFINEÂ»
 
-«DEFINE main FOR ExtendedRFCMappingProjectInfo»
-«EXPAND model FOR this»
-«EXPAND workflow FOR this»
-«ENDDEFINE»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«REM» ============================================================================================= «ENDREM»
+Â«DEFINE model FOR ExtendedRFCMappingProjectInfoÂ»
+Â«FILE "src/Model.rfcgen"-Â»
+package "Â«packageNameÂ»"
+Â«IF connected-Â»
+Â«EXPAND dynamicMapping FOR this-Â»
+Â«ELSE-Â»
+Â«IF callStyleMappingSelected-Â»
+Â«EXPAND staticCallStyleMapping FOR this-Â»
+Â«ELSE-Â»
+Â«EXPAND staticRequestReturnStyleMapping FOR this-Â»
+Â«ENDIF-Â»
+Â«ENDIF-Â»
+Â«ENDFILEÂ»
+Â«ENDDEFINEÂ»
 
-«DEFINE model FOR ExtendedRFCMappingProjectInfo»
-«FILE "src/Model.rfcgen"-»
-package "«packageName»"
-«IF connected-»
-«EXPAND dynamicMapping FOR this-»
-«ELSE-»
-«IF callStyleMappingSelected-»
-«EXPAND staticCallStyleMapping FOR this-»
-«ELSE-»
-«EXPAND staticRequestReturnStyleMapping FOR this-»
-«ENDIF-»
-«ENDIF-»
-«ENDFILE»
-«ENDDEFINE»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«REM» ============================================================================================= «ENDREM»
+Â«DEFINE dynamicMapping FOR ExtendedRFCMappingProjectInfoÂ»
+Â«FOREACH structures AS s-Â»
+Â«EXPAND structure FOR sÂ»
+Â«ENDFOREACH-Â»
+Â«FOREACH functions AS f-Â»
+Â«EXPAND function(callStyleMappingSelected) FOR fÂ»
+Â«ENDFOREACHÂ»
+Â«ENDDEFINEÂ»
 
-«DEFINE dynamicMapping FOR ExtendedRFCMappingProjectInfo»
-«FOREACH structures AS s-»
-«EXPAND structure FOR s»
-«ENDFOREACH-»
-«FOREACH functions AS f-»
-«EXPAND function(callStyleMappingSelected) FOR f»
-«ENDFOREACH»
-«ENDDEFINE»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«REM» ============================================================================================= «ENDREM»
-
-«DEFINE structure FOR StructureInfo-»
-structure "«structureName»" {
-	class «className» {
-«FOREACH fields AS f-»
-«EXPAND structureField FOR f-»
-«ENDFOREACH-»
+Â«DEFINE structure FOR StructureInfo-Â»
+structure "Â«structureNameÂ»" {
+	class Â«classNameÂ» {
+Â«FOREACH fields AS f-Â»
+Â«EXPAND structureField FOR f-Â»
+Â«ENDFOREACH-Â»
 	}
 }
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«REM» ============================================================================================= «ENDREM»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«DEFINE structureField FOR StructureFieldInfo-»
-		field «paddedFieldName» = «paddedFieldType» «paddedAttributeName» comment "«comment»";
-«ENDDEFINE»
+Â«DEFINE structureField FOR StructureFieldInfo-Â»
+		field Â«paddedFieldNameÂ» = Â«paddedFieldTypeÂ» Â«paddedAttributeNameÂ» comment "Â«commentÂ»";
+Â«ENDDEFINEÂ»
 
-«REM» ============================================================================================= «ENDREM»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«DEFINE function(boolean callStyleMappingSelected) FOR FunctionModuleInfo-»
-function module "«functionModuleName»" {
-«IF callStyleMappingSelected-»
-«EXPAND functionCallStyleMapping FOR this-»
-«ELSE-»
-«EXPAND functionRequestReturnStyleMapping FOR this-»
-«ENDIF-»
+Â«DEFINE function(boolean callStyleMappingSelected) FOR FunctionModuleInfo-Â»
+function module "Â«functionModuleNameÂ»" {
+Â«IF callStyleMappingSelected-Â»
+Â«EXPAND functionCallStyleMapping FOR this-Â»
+Â«ELSE-Â»
+Â«EXPAND functionRequestReturnStyleMapping FOR this-Â»
+Â«ENDIF-Â»
 }
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«REM» ============================================================================================= «ENDREM»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«DEFINE functionCallStyleMapping FOR FunctionModuleInfo-»
-	class «callClassName» {
-«EXPAND importParameters FOR this-»
-«EXPAND exportParameters FOR this-»
-«EXPAND changeParameters FOR this-»
-«EXPAND tableParameters FOR this-»
+Â«DEFINE functionCallStyleMapping FOR FunctionModuleInfo-Â»
+	class Â«callClassNameÂ» {
+Â«EXPAND importParameters FOR this-Â»
+Â«EXPAND exportParameters FOR this-Â»
+Â«EXPAND changeParameters FOR this-Â»
+Â«EXPAND tableParameters FOR this-Â»
 	}
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«REM» ============================================================================================= «ENDREM»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«DEFINE functionRequestReturnStyleMapping FOR FunctionModuleInfo-»
-	request class «requestClassName» {
-«EXPAND importParameters FOR this-»
-«EXPAND changeParameters FOR this-»
-«EXPAND tableParameters FOR this-»
+Â«DEFINE functionRequestReturnStyleMapping FOR FunctionModuleInfo-Â»
+	request class Â«requestClassNameÂ» {
+Â«EXPAND importParameters FOR this-Â»
+Â«EXPAND changeParameters FOR this-Â»
+Â«EXPAND tableParameters FOR this-Â»
 	}
-	response class «responseClassName» {
-«EXPAND exportParameters FOR this-»
-«EXPAND changeParameters FOR this-»
-«EXPAND tableParameters FOR this-»
+	response class Â«responseClassNameÂ» {
+Â«EXPAND exportParameters FOR this-Â»
+Â«EXPAND changeParameters FOR this-Â»
+Â«EXPAND tableParameters FOR this-Â»
 	}
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«REM» ============================================================================================= «ENDREM»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«DEFINE importParameters FOR FunctionModuleInfo-»
-«FOREACH parameters.select(p|p.importing) AS p-»
-«IF p.table-»
-		importing table     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
-«ELSEIF p.structure-»
-		importing structure «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
-«ELSE-»
-		importing field     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
-«ENDIF-»
-«ENDFOREACH-»
-«ENDDEFINE»
+Â«DEFINE importParameters FOR FunctionModuleInfo-Â»
+Â«FOREACH parameters.select(p|p.importing) AS p-Â»
+Â«IF p.table-Â»
+		importing table     Â«p.paddedParameterNameÂ» = Â«p.paddedJavaTypeÂ» Â«p.paddedAttributeNameÂ» comment "Â«p.commentÂ»";
+Â«ELSEIF p.structure-Â»
+		importing structure Â«p.paddedParameterNameÂ» = Â«p.paddedJavaTypeÂ» Â«p.paddedAttributeNameÂ» comment "Â«p.commentÂ»";
+Â«ELSE-Â»
+		importing field     Â«p.paddedParameterNameÂ» = Â«p.paddedJavaTypeÂ» Â«p.paddedAttributeNameÂ» comment "Â«p.commentÂ»";
+Â«ENDIF-Â»
+Â«ENDFOREACH-Â»
+Â«ENDDEFINEÂ»
 
-«REM» ============================================================================================= «ENDREM»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«DEFINE exportParameters FOR FunctionModuleInfo-»
-«FOREACH parameters.select(p|p.exporting) AS p-»
-«IF p.table-»
-		exporting table     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
-«ELSEIF p.structure-»
-		exporting structure «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
-«ELSE-»
-		exporting field     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
-«ENDIF-»
-«ENDFOREACH-»
-«ENDDEFINE»
+Â«DEFINE exportParameters FOR FunctionModuleInfo-Â»
+Â«FOREACH parameters.select(p|p.exporting) AS p-Â»
+Â«IF p.table-Â»
+		exporting table     Â«p.paddedParameterNameÂ» = Â«p.paddedJavaTypeÂ» Â«p.paddedAttributeNameÂ» comment "Â«p.commentÂ»";
+Â«ELSEIF p.structure-Â»
+		exporting structure Â«p.paddedParameterNameÂ» = Â«p.paddedJavaTypeÂ» Â«p.paddedAttributeNameÂ» comment "Â«p.commentÂ»";
+Â«ELSE-Â»
+		exporting field     Â«p.paddedParameterNameÂ» = Â«p.paddedJavaTypeÂ» Â«p.paddedAttributeNameÂ» comment "Â«p.commentÂ»";
+Â«ENDIF-Â»
+Â«ENDFOREACH-Â»
+Â«ENDDEFINEÂ»
 
-«REM» ============================================================================================= «ENDREM»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«DEFINE changeParameters FOR FunctionModuleInfo-»
-«FOREACH parameters.select(p|p.changing) AS p-»
-«IF p.table-»
-		changing table      «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
-«ELSEIF p.structure-»
-		changing structure  «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
-«ELSE-»
-		changing field      «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
-«ENDIF-»
-«ENDFOREACH-»
-«ENDDEFINE»
+Â«DEFINE changeParameters FOR FunctionModuleInfo-Â»
+Â«FOREACH parameters.select(p|p.changing) AS p-Â»
+Â«IF p.table-Â»
+		changing table      Â«p.paddedParameterNameÂ» = Â«p.paddedJavaTypeÂ» Â«p.paddedAttributeNameÂ» comment "Â«p.commentÂ»";
+Â«ELSEIF p.structure-Â»
+		changing structure  Â«p.paddedParameterNameÂ» = Â«p.paddedJavaTypeÂ» Â«p.paddedAttributeNameÂ» comment "Â«p.commentÂ»";
+Â«ELSE-Â»
+		changing field      Â«p.paddedParameterNameÂ» = Â«p.paddedJavaTypeÂ» Â«p.paddedAttributeNameÂ» comment "Â«p.commentÂ»";
+Â«ENDIF-Â»
+Â«ENDFOREACH-Â»
+Â«ENDDEFINEÂ»
 
-«REM» ============================================================================================= «ENDREM»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«DEFINE tableParameters FOR FunctionModuleInfo-»
-«FOREACH parameters.select(p|p.tables) AS p-»
-		table               «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
-«ENDFOREACH-»
-«ENDDEFINE»
+Â«DEFINE tableParameters FOR FunctionModuleInfo-Â»
+Â«FOREACH parameters.select(p|p.tables) AS p-Â»
+		table               Â«p.paddedParameterNameÂ» = Â«p.paddedJavaTypeÂ» Â«p.paddedAttributeNameÂ» comment "Â«p.commentÂ»";
+Â«ENDFOREACH-Â»
+Â«ENDDEFINEÂ»
 
-«REM» ============================================================================================= «ENDREM»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«DEFINE staticCallStyleMapping FOR ExtendedRFCMappingProjectInfo»
+Â«DEFINE staticCallStyleMapping FOR ExtendedRFCMappingProjectInfoÂ»
 structure "BAPISFLIST" { 
 	class FlightData { 
 		field "CARRID"   = String carrierID      comment "carrier ID";
@@ -178,15 +176,15 @@ function module "BAPI_SFLIGHT_GETLIST" {
 		importing field "FROMCITY"       = String fromCity    comment "city of origin";
 		importing field "TOCOUNTRYKEY"   = String toCountry   comment "country code of destination";
 		importing field "TOCITY"         = String toCity      comment "destination city";
-		importing field "AFTERNOON"      = boolean afternoon  comment "restrict search to afternoon flights";
+		importing field "AFTERNOON"      = Boolean afternoon  comment "restrict search to afternoon flights";
 		table "FLIGHTLIST"               = FlightData flights comment "list of flights";
 	}
 }
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«REM» ============================================================================================= «ENDREM»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«DEFINE staticRequestReturnStyleMapping FOR ExtendedRFCMappingProjectInfo»
+Â«DEFINE staticRequestReturnStyleMapping FOR ExtendedRFCMappingProjectInfoÂ»
 structure "BAPISFLIST" {
 	class FlightData { 
 		field "CARRID"   = String carrierID      comment "carrier ID";
@@ -206,18 +204,18 @@ function module "BAPI_SFLIGHT_GETLIST" {
 		importing field "FROMCITY"       = String fromCity    comment "city of origin";
 		importing field "TOCOUNTRYKEY"   = String toCountry   comment "country code of destination";
 		importing field "TOCITY"         = String toCity      comment "destination city";
-		importing field "AFTERNOON"      = boolean afternoon  comment "restrict search to afternoon flights";
+		importing field "AFTERNOON"      = Boolean afternoon  comment "restrict search to afternoon flights";
 	}
 	response class GetFlightListResponse {
 		table "FLIGHTLIST"               = FlightData flights comment "list of flights";
 	}
 }
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«REM» ============================================================================================= «ENDREM»
+Â«REMÂ» ============================================================================================= Â«ENDREMÂ»
 
-«DEFINE workflow FOR ExtendedRFCMappingProjectInfo»
-«FILE "src/Generator.mwe"-»
+Â«DEFINE workflow FOR ExtendedRFCMappingProjectInfoÂ»
+Â«FILE "src/Generator.mwe"-Â»
 <workflow>
 	<property name="modelFile" value="src/Model.rfcgen"/>
 	<property name="targetDir" value="src-gen"/>
@@ -228,5 +226,5 @@ function module "BAPI_SFLIGHT_GETLIST" {
 		<targetDir value="${targetDir}"/>
 	</workflow>
 </workflow>
-«ENDFILE»
-«ENDDEFINE»
+Â«ENDFILEÂ»
+Â«ENDDEFINEÂ»

@@ -23,6 +23,7 @@ import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.xtext.ui.wizard.IProjectCreator;
 import org.eclipse.xtext.ui.wizard.IProjectInfo;
 
+import com.google.inject.Inject;
 import com.sap.conn.jco.JCoDestination;
 
 /**
@@ -43,6 +44,7 @@ public class ExtendedRFCMappingNewProjectWizard extends	RFCMappingNewProjectWiza
 	 * Default constructor.
 	 * @param projectCreator
 	 */
+	@Inject
 	public ExtendedRFCMappingNewProjectWizard(IProjectCreator projectCreator) {
 		super(projectCreator);
 	}
@@ -56,6 +58,9 @@ public class ExtendedRFCMappingNewProjectWizard extends	RFCMappingNewProjectWiza
 		try {
 			this.destination = ConnectionManager.getInstance().getDestination();
 		} catch (ConnectionException e) {
+			this.destination = null;
+		} catch (NoClassDefFoundError e) {
+			// this happens if the JNI library is missing
 			this.destination = null;
 		}
 	}
