@@ -27,3 +27,4 @@
 		<genPath value="${targetDir}"/>
 	</component>
 </workflow>
+<!-- TODO Migrate to MWE2 some day. -->
