@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?NLS TYPE="org.eclipse.help.toc"?>
+<!--
+    Copyright (c) 2010 The RCER Development Team.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+   
+    Contributors:
+        Volker Wegert <rcer@volker-wegert.de> - initial API and implementation
+ -->
 <!-- $Id: toc.xml 103 2009-02-01 15:47:29Z vwegert $ -->
 <toc link_to="../net.sf.rcer.doc/toc.xml#reference" label="Reference">
 	<topic label="API Reference" href="html/reference/index.html" /> 
