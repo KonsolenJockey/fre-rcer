@@ -11,7 +11,13 @@
  */
 package net.sf.rcer.conn.preferences;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import net.sf.rcer.conn.Activator;
+import net.sf.rcer.conn.connections.IConnectionData;
+import net.sf.rcer.conn.locales.LocaleNotFoundException;
+import net.sf.rcer.conn.locales.LocaleRegistry;
 
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
@@ -37,11 +43,21 @@ public abstract class AbstractPreferencesConnectionTest implements IPreferenceCo
 	protected final static String DEFAULT_LOCALE  = "DE";
 
 	/**
+	 * Removes all stored connections. 
+	 * @throws BackingStoreException 
+	 */
+	protected void clearConnections() throws BackingStoreException {
+		IEclipsePreferences prefs = new InstanceScope().getNode(Activator.PLUGIN_ID);
+		prefs.clear();
+		prefs.flush();
+	}
+
+	/**
 	 * Creates the connection data in the preference store to test the components operating on this data.
 	 * @throws BackingStoreException 
 	 * @throws InterruptedException 
 	 */
-	protected void createTestConnections() throws BackingStoreException, InterruptedException {
+	protected void createTestConnections() throws BackingStoreException {
 
 		IEclipsePreferences prefs = new InstanceScope().getNode(Activator.PLUGIN_ID);
 
@@ -86,8 +102,90 @@ public abstract class AbstractPreferencesConnectionTest implements IPreferenceCo
 
 		// an invalid connection (invalid type) that should not be loaded
 		prefs.put(CONNECTION_TYPE                 + ".4", "foobar");
-		
+
 		prefs.flush();
+	}
+
+	/**
+	 * Checks whether the given connection data corresponds with the testing data of a direct connection.
+	 * @param id
+	 * @param connection
+	 * @param checkUser
+	 * @throws LocaleNotFoundException
+	 */
+	protected void checkDirectConnection(final String id, IConnectionData connection, boolean checkUser) throws LocaleNotFoundException {
+		if (id != null) {
+			assertEquals("Connection ID of direct connection",      
+					id, connection.getConnectionDataID());
+		}
+		assertEquals("Description of direct connection", 
+				DESCRIPTION, connection.getDescription());
+		assertEquals("System ID of direct connection", 
+				SYSTEM_ID, connection.getSystemID());
+		assertTrue("Connection type of direct connection", 
+				connection.isDirectConnection());
+		assertEquals("Router of direct connection", 
+				ROUTER, connection.getRouter());
+		assertEquals("Application server of direct connection", 
+				APP_SERVER, connection.getApplicationServer());
+		assertEquals("System number of direct connection", 
+				SYSTEM_NUMBER, connection.getSystemNumber());
+		if (checkUser) {
+			assertEquals("Default user of direct connection", 
+					DEFAULT_USER, connection.getDefaultUser());
+			assertTrue("Default user changeability of direct connection", 
+					connection.isDefaultUserEditable());
+			assertEquals("Default client of direct connection", 
+					DEFAULT_CLIENT, connection.getDefaultClient());
+			assertTrue("Default client changeability of direct connection",         
+					connection.isDefaultClientEditable());
+			assertEquals("Default locale of direct connection",  
+					LocaleRegistry.getInstance().getLocaleByISO(DEFAULT_LOCALE), connection.getDefaultLocale());
+			assertTrue("Default locale changeability of direct connection",         
+					connection.isDefaultLocaleEditable());
+		}
+	}
+
+	/**
+	 * Checks whether the given connection data corresponds with the testing data of a load-balanced connection
+	 * @param id
+	 * @param connection
+	 * @param checkUser
+	 * @throws LocaleNotFoundException
+	 */
+	protected void checkLoadBalancedConnection(final String id, IConnectionData connection, boolean checkUser) throws LocaleNotFoundException {
+		if (id != null) {
+			assertEquals("Connection ID of load-balanced connection", 
+					id, connection.getConnectionDataID());
+		}
+		assertEquals("Description of load-balanced connection", 
+				DESCRIPTION, connection.getDescription());
+		assertEquals("System ID of load-balanced connection", 
+				SYSTEM_ID, connection.getSystemID());
+		assertFalse("Connection type of load-balanced connection", 
+				connection.isDirectConnection());
+		assertEquals("Router of load-balanced connection", 
+				ROUTER, connection.getRouter());
+		assertEquals("Message server of load-balanced connection", 
+				MSG_SERVER, connection.getMessageServer());
+		assertEquals("Message server port of load-balanced connection", 
+				MSG_SERVER_PORT, connection.getMessageServerPort());
+		assertEquals("Load-balancing group of load-balanced connection", 
+				LB_GROUP, connection.getLoadBalancingGroup());
+		if (checkUser) {
+			assertEquals("Default user of load-balanced connection", 
+					DEFAULT_USER, connection.getDefaultUser());
+			assertTrue("Default user changeability of load-balanced connection", 
+					connection.isDefaultUserEditable());
+			assertEquals("Default client of load-balanced connection", 
+					DEFAULT_CLIENT, connection.getDefaultClient());
+			assertTrue("Default client changeability of load-balanced connection",         
+					connection.isDefaultClientEditable());
+			assertEquals("Default locale of load-balanced connection",  
+					LocaleRegistry.getInstance().getLocaleByISO(DEFAULT_LOCALE), connection.getDefaultLocale());
+			assertTrue("Default locale changeability of load-balanced connection",         
+					connection.isDefaultLocaleEditable());
+		}
 	}
 
 }

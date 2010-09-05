@@ -12,8 +12,6 @@
 package net.sf.rcer.conn.preferences;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -23,7 +21,6 @@ import java.util.Set;
 import net.sf.rcer.conn.connections.ConnectionNotFoundException;
 import net.sf.rcer.conn.connections.ConnectionRegistry;
 import net.sf.rcer.conn.connections.IConnectionData;
-import net.sf.rcer.conn.locales.LocaleRegistry;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -59,35 +56,9 @@ public class PreferencesConnectionProviderTest extends AbstractPreferencesConnec
 		
 		IConnectionData conn = registry.getConnectionData(CONNECTION_DATA_ID);
 		assertNotNull("Direct connection is missing", conn);
-		assertEquals("Connection ID of direct connection",      
-				CONNECTION_DATA_ID, conn.getConnectionDataID());
-		assertEquals("Description of direct connection", 
-				DESCRIPTION, conn.getDescription());
-		assertEquals("System ID of direct connection", 
-				SYSTEM_ID, conn.getSystemID());
-		assertTrue("Connection type of direct connection", 
-				conn.isDirectConnection());
-		assertEquals("Router of direct connection", 
-				ROUTER, conn.getRouter());
-		assertEquals("Application server of direct connection", 
-				APP_SERVER, conn.getApplicationServer());
-		assertEquals("System number of direct connection", 
-				SYSTEM_NUMBER, conn.getSystemNumber());
-		assertEquals("Default user of direct connection", 
-				DEFAULT_USER, conn.getDefaultUser());
-		assertTrue("Default user changeability of direct connection", 
-				conn.isDefaultUserEditable());
-		assertEquals("Default client of direct connection", 
-				DEFAULT_CLIENT, conn.getDefaultClient());
-		assertTrue("Default client changeability of direct connection",         
-				conn.isDefaultClientEditable());
-		assertEquals("Default locale of direct connection",  
-				LocaleRegistry.getInstance().getLocaleByISO(DEFAULT_LOCALE), conn.getDefaultLocale());
-		assertTrue("Default locale changeability of direct connection",         
-				conn.isDefaultLocaleEditable());
-
+		checkDirectConnection(CONNECTION_DATA_ID, conn, true);
 	}
-	
+
 	/**
 	 * Tests the load-balancing connection.
 	 * @throws Exception
@@ -104,37 +75,9 @@ public class PreferencesConnectionProviderTest extends AbstractPreferencesConnec
 		
 		IConnectionData conn = registry.getConnectionData(CONNECTION_ID);
 		assertNotNull("Load-balanced connection is missing", conn);
-		assertEquals("Connection ID of load-balanced connection", 
-				CONNECTION_ID, conn.getConnectionDataID());
-		assertEquals("Description of load-balanced connection", 
-				DESCRIPTION, conn.getDescription());
-		assertEquals("System ID of load-balanced connection", 
-				SYSTEM_ID, conn.getSystemID());
-		assertFalse("Connection type of load-balanced connection", 
-				conn.isDirectConnection());
-		assertEquals("Router of load-balanced connection", 
-				ROUTER, conn.getRouter());
-		assertEquals("Message server of load-balanced connection", 
-				MSG_SERVER, conn.getMessageServer());
-		assertEquals("Message server port of load-balanced connection", 
-				MSG_SERVER_PORT, conn.getMessageServerPort());
-		assertEquals("Load-balancing group of load-balanced connection", 
-				LB_GROUP, conn.getLoadBalancingGroup());
-		assertEquals("Default user of load-balanced connection", 
-				DEFAULT_USER, conn.getDefaultUser());
-		assertTrue("Default user changeability of load-balanced connection", 
-				conn.isDefaultUserEditable());
-		assertEquals("Default client of load-balanced connection", 
-				DEFAULT_CLIENT, conn.getDefaultClient());
-		assertTrue("Default client changeability of load-balanced connection",         
-				conn.isDefaultClientEditable());
-		assertEquals("Default locale of load-balanced connection",  
-				LocaleRegistry.getInstance().getLocaleByISO(DEFAULT_LOCALE), conn.getDefaultLocale());
-		assertTrue("Default locale changeability of load-balanced connection",         
-				conn.isDefaultLocaleEditable());
-		
+		checkLoadBalancedConnection(CONNECTION_ID, conn, true);
 	}
-	
+
 	/**
 	 * Tests whether an invalid connection ID is handled correctly.
 	 * @throws Exception

@@ -165,8 +165,6 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 */
 	public void saveConnectionData(Collection<IConnectionData> connections) throws BackingStoreException {
 
-		// TODO add some unit tests for this method
-		
 		Map<Integer, IConnectionData> connectionMap = new TreeMap<Integer, IConnectionData>();
 		Vector<IConnectionData> remainingConnections = new Vector<IConnectionData>();
 

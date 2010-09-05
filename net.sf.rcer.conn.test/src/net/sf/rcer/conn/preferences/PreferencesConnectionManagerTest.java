@@ -13,22 +13,27 @@ package net.sf.rcer.conn.preferences;
 
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
+import net.sf.rcer.conn.Activator;
 import net.sf.rcer.conn.connections.ConnectionData;
 import net.sf.rcer.conn.connections.ConnectionNotFoundException;
 import net.sf.rcer.conn.connections.IConnectionData;
+import net.sf.rcer.conn.locales.LocaleNotFoundException;
 import net.sf.rcer.conn.locales.LocaleRegistry;
 
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.junit.Before;
 import org.junit.Test;
+import org.osgi.service.prefs.BackingStoreException;
 
 /**
  * Test case for the {@link PreferencesConnectionProvider}
@@ -61,33 +66,7 @@ public class PreferencesConnectionManagerTest extends AbstractPreferencesConnect
 
 		IConnectionData conn = manager.getConnectionData(CONNECTION_DATA_ID);
 		assertNotNull("Direct connection is missing", conn);
-		assertEquals("Connection ID of direct connection",      
-				CONNECTION_DATA_ID, conn.getConnectionDataID());
-		assertEquals("Description of direct connection", 
-				DESCRIPTION, conn.getDescription());
-		assertEquals("System ID of direct connection", 
-				SYSTEM_ID, conn.getSystemID());
-		assertTrue("Connection type of direct connection", 
-				conn.isDirectConnection());
-		assertEquals("Router of direct connection", 
-				ROUTER, conn.getRouter());
-		assertEquals("Application server of direct connection", 
-				APP_SERVER, conn.getApplicationServer());
-		assertEquals("System number of direct connection", 
-				SYSTEM_NUMBER, conn.getSystemNumber());
-		assertEquals("Default user of direct connection", 
-				DEFAULT_USER, conn.getDefaultUser());
-		assertTrue("Default user changeability of direct connection", 
-				conn.isDefaultUserEditable());
-		assertEquals("Default client of direct connection", 
-				DEFAULT_CLIENT, conn.getDefaultClient());
-		assertTrue("Default client changeability of direct connection",         
-				conn.isDefaultClientEditable());
-		assertEquals("Default locale of direct connection",  
-				LocaleRegistry.getInstance().getLocaleByISO(DEFAULT_LOCALE), conn.getDefaultLocale());
-		assertTrue("Default locale changeability of direct connection",         
-				conn.isDefaultLocaleEditable());
-
+		checkDirectConnection(CONNECTION_DATA_ID, conn, true);
 	}
 
 	/**
@@ -106,35 +85,7 @@ public class PreferencesConnectionManagerTest extends AbstractPreferencesConnect
 
 		IConnectionData conn = manager.getConnectionData(CONNECTION_DATA_ID);
 		assertNotNull("Load-balanced connection is missing", conn);
-		assertEquals("Connection ID of load-balanced connection", 
-				CONNECTION_DATA_ID, conn.getConnectionDataID());
-		assertEquals("Description of load-balanced connection", 
-				DESCRIPTION, conn.getDescription());
-		assertEquals("System ID of load-balanced connection", 
-				SYSTEM_ID, conn.getSystemID());
-		assertFalse("Connection type of load-balanced connection", 
-				conn.isDirectConnection());
-		assertEquals("Router of load-balanced connection", 
-				ROUTER, conn.getRouter());
-		assertEquals("Message server of load-balanced connection", 
-				MSG_SERVER, conn.getMessageServer());
-		assertEquals("Message server port of load-balanced connection", 
-				MSG_SERVER_PORT, conn.getMessageServerPort());
-		assertEquals("Load-balancing group of load-balanced connection", 
-				LB_GROUP, conn.getLoadBalancingGroup());
-		assertEquals("Default user of load-balanced connection", 
-				DEFAULT_USER, conn.getDefaultUser());
-		assertTrue("Default user changeability of load-balanced connection", 
-				conn.isDefaultUserEditable());
-		assertEquals("Default client of load-balanced connection", 
-				DEFAULT_CLIENT, conn.getDefaultClient());
-		assertTrue("Default client changeability of load-balanced connection",         
-				conn.isDefaultClientEditable());
-		assertEquals("Default locale of load-balanced connection",  
-				LocaleRegistry.getInstance().getLocaleByISO(DEFAULT_LOCALE), conn.getDefaultLocale());
-		assertTrue("Default locale changeability of load-balanced connection",         
-				conn.isDefaultLocaleEditable());
-
+		checkLoadBalancedConnection(CONNECTION_DATA_ID, conn, true);
 	}
 
 	/**
@@ -214,5 +165,184 @@ public class PreferencesConnectionManagerTest extends AbstractPreferencesConnect
 			assertTrue(MessageFormat.format("Connection {0} is missing.", i), ids.contains(Integer.toString(i)));
 		}
 	}
+	
+	/**
+	 * Tests whether the {@link PreferencesConnectionManager} correctly handles external changes to the 
+	 * preferences store.
+	 * @throws BackingStoreException 
+	 */
+	@Test
+	public void testPreferencesSynchronisation() throws BackingStoreException {
+		PreferencesConnectionManager pcm = PreferencesConnectionManager.getInstance();
+		assertEquals("Initial number of connections", 3, pcm.getConnectionData().size());
+		clearConnections();
+		assertEquals("Number of connections after external change", 0, pcm.getConnectionData().size());
+	}
+	
+	/**
+	 * TODO Write documentation for method. 
+	 * @throws BackingStoreException 
+	 * @throws LocaleNotFoundException 
+	 * @throws ConnectionNotFoundException 
+	 */
+	@Test
+	public void testSavePreferences() throws BackingStoreException, LocaleNotFoundException, ConnectionNotFoundException {
+		IEclipsePreferences prefs = new InstanceScope().getNode(Activator.PLUGIN_ID);
+		PreferencesConnectionManager pcm = PreferencesConnectionManager.getInstance();
+		
+		// try to save an empty list
+		pcm.saveConnectionData(new ArrayList<IConnectionData>());
+		prefs.sync();
+		assertEquals("Number of connections after saving an empty list", 0, prefs.getInt(CONNECTION_NUMBER, -1));
+		
+		// create the demo connections to store
+		ArrayList<IConnectionData> demoConnections = new ArrayList<IConnectionData>(2);
+		final String CONNECTION_ID_DIRECT = "1";
+		ConnectionData demoConnection = new ConnectionData(CONNECTION_ID_DIRECT, DESCRIPTION, 
+				SYSTEM_ID, ROUTER, APP_SERVER, SYSTEM_NUMBER);
+		demoConnection.setDefaultUser(DEFAULT_USER);
+		demoConnection.setDefaultClient(DEFAULT_CLIENT);
+		demoConnection.setDefaultLocale(LocaleRegistry.getInstance().getLocaleByISO(DEFAULT_LOCALE));
+		demoConnections.add(demoConnection);
+		final String CONNECTION_ID_LOAD_BALANCING = "2";
+		demoConnection = new ConnectionData(CONNECTION_ID_LOAD_BALANCING, DESCRIPTION, 
+				SYSTEM_ID, ROUTER, MSG_SERVER, MSG_SERVER_PORT, LB_GROUP);
+		demoConnection.setDefaultUser(DEFAULT_USER);
+		demoConnection.setDefaultClient(DEFAULT_CLIENT);
+		demoConnection.setDefaultLocale(LocaleRegistry.getInstance().getLocaleByISO(DEFAULT_LOCALE));
+		demoConnections.add(demoConnection);
+		
+		// try to save the connections
+		pcm.saveConnectionData(demoConnections);
+		prefs.sync();
+		assertEquals("Number of connections after saving two connections", 2, prefs.getInt(CONNECTION_NUMBER, -1));
 
+		// try to read the direct connection
+		IConnectionData conn = pcm.getConnectionData(CONNECTION_ID_DIRECT);
+		assertNotNull("Direct connection is missing", conn);
+		checkDirectConnection(CONNECTION_ID_DIRECT, conn, true);
+
+		// try to read the load-balanced connection
+		conn = pcm.getConnectionData(CONNECTION_ID_LOAD_BALANCING);
+		assertNotNull("Load-balanced connection is missing", conn);
+		checkLoadBalancedConnection(CONNECTION_ID_LOAD_BALANCING, conn, true);
+	}
+
+	
+	/**
+	 * Tests whether the {@link PreferencesConnectionManager} is able to handle incoming non-numeric 
+	 * connection IDs and assign a numeric id. 
+	 * @throws BackingStoreException
+	 * @throws LocaleNotFoundException
+	 * @throws ConnectionNotFoundException
+	 */
+	@Test
+	public void testConnectionIDHandlingNonNumeric() throws BackingStoreException, LocaleNotFoundException, ConnectionNotFoundException {
+		IEclipsePreferences prefs = new InstanceScope().getNode(Activator.PLUGIN_ID);
+		PreferencesConnectionManager pcm = PreferencesConnectionManager.getInstance();
+		
+		// first check what happens if a non-numeric connection ID is added
+		ArrayList<IConnectionData> demoConnections = new ArrayList<IConnectionData>(2);
+		final String CONNECTION_ID_DIRECT = "foo";
+		demoConnections.add(new ConnectionData(CONNECTION_ID_DIRECT, DESCRIPTION, SYSTEM_ID, ROUTER, APP_SERVER, SYSTEM_NUMBER));
+		
+		clearConnections();
+		pcm.saveConnectionData(demoConnections);
+
+		prefs.sync();
+		assertEquals("Number of connections after saving", 1, prefs.getInt(CONNECTION_NUMBER, -1));
+
+		// try to read the connection 
+		assertEquals("Size of connection collection", 1, pcm.getConnectionData().size());
+		IConnectionData conn = pcm.getConnectionData().iterator().next();
+		checkDirectConnection(null, conn, false);
+	}
+	
+	/**
+	 * Tests whether the {@link PreferencesConnectionManager} is able to handle incoming negative 
+	 * connection IDs and assign a numeric id. 
+	 * @throws BackingStoreException
+	 * @throws LocaleNotFoundException
+	 * @throws ConnectionNotFoundException
+	 */
+	@Test
+	public void testConnectionIDHandlingNegative() throws BackingStoreException, LocaleNotFoundException, ConnectionNotFoundException {
+		IEclipsePreferences prefs = new InstanceScope().getNode(Activator.PLUGIN_ID);
+		PreferencesConnectionManager pcm = PreferencesConnectionManager.getInstance();
+		
+		// first check what happens if a non-numeric connection ID is added
+		ArrayList<IConnectionData> demoConnections = new ArrayList<IConnectionData>(2);
+		final String CONNECTION_ID_DIRECT = "-42";
+		demoConnections.add(new ConnectionData(CONNECTION_ID_DIRECT, DESCRIPTION, SYSTEM_ID, ROUTER, APP_SERVER, SYSTEM_NUMBER));
+		
+		clearConnections();
+		pcm.saveConnectionData(demoConnections);
+
+		prefs.sync();
+		assertEquals("Number of connections after saving", 1, prefs.getInt(CONNECTION_NUMBER, -1));
+
+		// try to read the connection 
+		assertEquals("Size of connection collection", 1, pcm.getConnectionData().size());
+		IConnectionData conn = pcm.getConnectionData().iterator().next();
+		checkDirectConnection(null, conn, false);
+	}
+	
+	/**
+	 * Tests whether the {@link PreferencesConnectionManager} is able to handle incoming numeric IDs with gaps
+	 * and re-order them.
+	 * @throws BackingStoreException
+	 * @throws LocaleNotFoundException
+	 * @throws ConnectionNotFoundException
+	 */
+	@Test
+	public void testConnectionIDHandlingFragmented() throws BackingStoreException, LocaleNotFoundException, ConnectionNotFoundException {
+		IEclipsePreferences prefs = new InstanceScope().getNode(Activator.PLUGIN_ID);
+		PreferencesConnectionManager pcm = PreferencesConnectionManager.getInstance();
+		
+		ArrayList<IConnectionData> demoConnections = new ArrayList<IConnectionData>(2);
+		final String CONNECTION_ID_DIRECT = "1";
+		demoConnections.add(new ConnectionData(CONNECTION_ID_DIRECT, DESCRIPTION, SYSTEM_ID, ROUTER, APP_SERVER, SYSTEM_NUMBER));
+		final String CONNECTION_ID_LOAD_BALANCING = "3";
+		demoConnections.add(new ConnectionData(CONNECTION_ID_LOAD_BALANCING, DESCRIPTION, SYSTEM_ID, ROUTER, MSG_SERVER, MSG_SERVER_PORT, LB_GROUP));
+		clearConnections();
+		pcm.saveConnectionData(demoConnections);
+
+		prefs.sync();
+		assertEquals("Number of connections after saving", 2, prefs.getInt(CONNECTION_NUMBER, -1));
+
+		// try to read the connections 
+		assertEquals("Size of connection collection", 2, pcm.getConnectionData().size());
+		assertTrue("Connection ID 1 present", pcm.getConnectionIDs().contains("1"));
+		assertTrue("Connection ID 2 present", pcm.getConnectionIDs().contains("2"));
+	}
+	
+	/**
+	 * Tests whether the {@link PreferencesConnectionManager} is able to handle duplicate incoming numeric IDs
+	 * and re-order them.
+	 * @throws BackingStoreException
+	 * @throws LocaleNotFoundException
+	 * @throws ConnectionNotFoundException
+	 */
+	@Test
+	public void testConnectionIDHandlingDuplicate() throws BackingStoreException, LocaleNotFoundException, ConnectionNotFoundException {
+		IEclipsePreferences prefs = new InstanceScope().getNode(Activator.PLUGIN_ID);
+		PreferencesConnectionManager pcm = PreferencesConnectionManager.getInstance();
+		
+		ArrayList<IConnectionData> demoConnections = new ArrayList<IConnectionData>(2);
+		final String CONNECTION_ID_DIRECT = "42";
+		demoConnections.add(new ConnectionData(CONNECTION_ID_DIRECT, DESCRIPTION, SYSTEM_ID, ROUTER, APP_SERVER, SYSTEM_NUMBER));
+		final String CONNECTION_ID_LOAD_BALANCING = "42";
+		demoConnections.add(new ConnectionData(CONNECTION_ID_LOAD_BALANCING, DESCRIPTION, SYSTEM_ID, ROUTER, MSG_SERVER, MSG_SERVER_PORT, LB_GROUP));
+		clearConnections();
+		pcm.saveConnectionData(demoConnections);
+
+		prefs.sync();
+		assertEquals("Number of connections after saving", 2, prefs.getInt(CONNECTION_NUMBER, -1));
+
+		// try to read the connections 
+		assertEquals("Size of connection collection", 2, pcm.getConnectionData().size());
+		assertTrue("Connection ID 1 present", pcm.getConnectionIDs().contains("1"));
+		assertTrue("Connection ID 2 present", pcm.getConnectionIDs().contains("2"));
+	}
+	
 }
