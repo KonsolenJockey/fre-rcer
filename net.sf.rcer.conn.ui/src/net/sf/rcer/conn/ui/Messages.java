@@ -23,6 +23,46 @@ public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "net.sf.rcer.conn.ui.messages"; //$NON-NLS-1$
 	
 	/**
+	 * Select at least one connection from the list.
+	 */
+	public static String ConnectionDataImporter_ConnectionSelectionError;
+
+	/**
+	 * Import Connection Data
+	 */
+	public static String ConnectionDataImporter_DialogTitle;
+
+	/**
+	 * No connections to import available.
+	 */
+	public static String ConnectionDataImporter_NoConnectionsError;
+
+	/**
+	 * No sources to import data from are available.
+	 */
+	public static String ConnectionDataImporter_NoSourcesError;
+
+	/**
+	 * Select the connections you want to import.
+	 */
+	public static String ConnectionDataImporter_SelectConnectionsMessage;
+
+	/**
+	 * Select the source of the connection data you want to import.
+	 */
+	public static String ConnectionDataImporter_SelectSourceMessage;
+
+	/**
+	 * Select exactly one connection source from the list.
+	 */
+	public static String ConnectionDataImporter_SourceSelectionError;
+
+	/**
+	 * Unable to load connection data source.
+	 */
+	public static String ConnectionDataImportSourceDescriptor_SourceInstantiationError;
+
+	/**
 	 * Connect to {0}...
 	 */
 	public static String ConnectionStatusDisplay_ConnectItem;
@@ -406,6 +446,21 @@ public class Messages extends NLS {
 	 * Use the Error Log view to display the logged events. The trace levels are reset to their default values (errors and warnings only) when exiting the application.
 	 */
 	public static String TracePreferencePage_TracingHintsLabel;
+
+	/**
+	 * All Files
+	 */
+	public static String WindowsCustomSource_FilterNameAllFiles;
+
+	/**
+	 * INI Files
+	 */
+	public static String WindowsCustomSource_FilterNameIniFiles;
+
+	/**
+	 * Import SAPlogon.ini...
+	 */
+	public static String WindowsCustomSource_ImportDialogTitle;
 
 	static {
 		// initialize resource bundle

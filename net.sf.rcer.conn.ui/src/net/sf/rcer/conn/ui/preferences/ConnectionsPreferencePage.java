@@ -409,8 +409,18 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 		importButton = new Button(masterButtons, SWT.PUSH);
 		GridDataFactory.fillDefaults().applyTo(importButton);
 		importButton.setText(Messages.ConnectionsPreferencePage_ImportButton);
-		importButton.setEnabled(false);
-		// TODO #001 Support import of connection data
+		importButton.addSelectionListener(new SelectionAdapter() {
+			/* (non-Javadoc)
+			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+			 */
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				ConnectionDataImporter importer = new ConnectionDataImporter(getShell(), connections);
+				if (importer.execute()) {
+					context.updateTargets();
+				}
+			}
+		});
 
 		removeButton = new Button(masterButtons, SWT.PUSH);
 		GridDataFactory.fillDefaults().applyTo(removeButton);

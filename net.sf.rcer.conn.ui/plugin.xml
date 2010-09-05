@@ -12,6 +12,7 @@
  -->
 <!-- $Id$ -->
 <plugin>
+   <extension-point id="net.sf.rcer.conn.ui.connection_import" name="SAP R/3 Connection Data Import Source" schema="schema/net.sf.rcer.conn.ui.connection_import.exsd"/>
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
@@ -57,6 +58,17 @@
             </control>
          </toolbar>
       </menuContribution>
+   </extension>
+   <extension
+         point="net.sf.rcer.conn.ui.connection_import">
+      <source
+            description="Windows SAPlogon.ini (default location)"
+            source="net.sf.rcer.conn.ui.preferences.WindowsDefaultSource">
+      </source>
+      <source
+            description="Windows SAPlogon.ini (other location)"
+            source="net.sf.rcer.conn.ui.preferences.WindowsCustomSource">
+      </source>
    </extension>
 
 </plugin>
