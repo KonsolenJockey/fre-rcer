@@ -125,7 +125,7 @@ public class ConnectionDataTest {
 		directConnection.setConnectionType(ConnectionType.LOAD_BALANCED);
 		assertEquals("Connection Type", ConnectionType.LOAD_BALANCED, directConnection.getConnectionType());
 		assertEquals("Application Server", null, directConnection.getApplicationServer());
-		assertEquals("System Number", -1, directConnection.getSystemNumber());
+		assertEquals("System Number", 1, directConnection.getSystemNumber()); // should not be changed
 		loadBalancedConnection.setConnectionType(ConnectionType.DIRECT);
 		assertEquals("Connection Type", ConnectionType.DIRECT, loadBalancedConnection.getConnectionType());
 		assertEquals("Message Server", null, loadBalancedConnection.getMessageServer());
@@ -139,14 +139,6 @@ public class ConnectionDataTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void testSetApplicationServerInvalidMode() {
 		loadBalancedConnection.setApplicationServer(APP_SERVER);
-	}
-
-	/**
-	 * Test method for {@link net.sf.rcer.conn.connections.ConnectionData#setSystemNumber(int)}.
-	 */
-	@Test(expected=IllegalArgumentException.class)
-	public void testSetSystemNumberInvalidMode() {
-		loadBalancedConnection.setSystemNumber(SYSTEM_NUMBER);
 	}
 
 	/**

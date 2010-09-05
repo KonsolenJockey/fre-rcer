@@ -282,7 +282,6 @@ public class ConnectionData implements Cloneable, IConnectionData {
 			break;
 		case LOAD_BALANCED:
 			this.applicationServer = null;
-			this.systemNumber = -1;
 			break;
 		}
 	}
@@ -332,8 +331,6 @@ public class ConnectionData implements Cloneable, IConnectionData {
 	 * @param systemNumber the system number to set
 	 */
 	public void setSystemNumber(int systemNumber) {
-		if (connectionType != ConnectionType.DIRECT) 
-			throw new IllegalArgumentException(Messages.ConnectionData_ParameterNotSupportedForDirectError);
 		if ((systemNumber < 0) || (systemNumber > 99))
 			throw new IllegalArgumentException(Messages.ConnectionData_InvalidSystemNumberError);
 		final int oldValue = this.systemNumber;
