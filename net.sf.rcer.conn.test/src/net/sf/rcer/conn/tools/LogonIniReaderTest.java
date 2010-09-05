@@ -12,6 +12,7 @@
 package net.sf.rcer.conn.tools;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
@@ -36,8 +37,10 @@ public class LogonIniReaderTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void testExampleFile1() throws IniFileFormatException, IOException {
+	public void testExampleFile1() {
 		LogonIniReader reader = new LogonIniReader(getClass().getClassLoader().getResourceAsStream("/net/sf/rcer/conn/tools/example1.ini"));
+		
+		assertTrue("Status of reader", reader.getStatus().isOK());
 		
 		List<IConnectionData> connections = reader.getConnections();
 		
