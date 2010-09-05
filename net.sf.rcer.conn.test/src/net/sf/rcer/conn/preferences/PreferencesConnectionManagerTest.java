@@ -180,7 +180,7 @@ public class PreferencesConnectionManagerTest extends AbstractPreferencesConnect
 	}
 	
 	/**
-	 * TODO Write documentation for method. 
+	 * Tests whether saving the connection data works. 
 	 * @throws BackingStoreException 
 	 * @throws LocaleNotFoundException 
 	 * @throws ConnectionNotFoundException 

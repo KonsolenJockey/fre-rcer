@@ -24,7 +24,7 @@ import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.osgi.service.prefs.BackingStoreException;
 
 /**
- * TODO Write documentation for type AbstractPreferencesConnectionTest.
+ * Abstract superclass of {@link PreferencesConnectionManagerTest} and {@link PreferencesConnectionProviderTest}.
  * @author vwegert
  *
  */ 
