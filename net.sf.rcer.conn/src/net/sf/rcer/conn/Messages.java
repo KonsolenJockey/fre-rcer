@@ -248,6 +248,41 @@ public class Messages extends NLS {
 	public static String LocaleRegistry_NoLocaleForISOCode;
 
 	/**
+	 * (no description)
+	 */
+	public static String LogonIniReader_DefaultDescription;
+
+	/**
+	 * {0} ({1}) does not contain a valid system number ({2}).
+	 */
+	public static String LogonIniReader_InvalidSystemNumberError;
+
+	/**
+	 * {0} ({1}) does not contain a system number.
+	 */
+	public static String LogonIniReader_MissingSystemNumberError;
+
+	/**
+	 * {0} ({1}) is not a R/3 connection.
+	 */
+	public static String LogonIniReader_NoR3ConnectionError;
+
+	/**
+	 * Results of reading SAPlogon.ini
+	 */
+	public static String LogonIniReader_ResultHeaderMessage;
+
+	/**
+	 * The section ''{0}'' is missing.
+	 */
+	public static String LogonIniReader_SectionMissingError;
+
+	/**
+	 * {0} ({1}) has an unknown origin ({2})
+	 */
+	public static String LogonIniReader_UnknownOriginError;
+	
+	/**
 	 * Connection {0} contains errors.
 	 */
 	public static String PreferencesConnectionManager_ConnectionContainsErrors;
@@ -281,6 +316,21 @@ public class Messages extends NLS {
 	 * No connection provider with ID {0} defined.
 	 */
 	public static String ProviderNotFoundException_Message;
+
+	/**
+	 * Duplicate key ''{0}'' found in section ''{1}'' on line {2}
+	 */
+	public static String SimpleIniFileParser_DuplicateKeyError;
+
+	/**
+	 * Duplicate section ''{0}'' found on line {1}.
+	 */
+	public static String SimpleIniFileParser_DuplicateSectionError;
+
+	/**
+	 * Lines before the first section header are not supported.
+	 */
+	public static String SimpleIniFileParser_FirstLineNoSectionError;
 
 	/**
 	 * {0}-{1} ({2})

@@ -22,6 +22,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import net.sf.rcer.conn.Messages;
+
 /**
  * A simple parser for INI files, intended to read the contents of the file <code>saplogon.ini</code>
  * as specified by SAP note 99435. 
@@ -111,15 +113,15 @@ public class SimpleIniFileParser {
 		String section = null;
 		Map<String, String> sectionContents = null;
 		Set<String> keys = null;
-		String line = "";
+		String line = ""; //$NON-NLS-1$
 		int number = 0;
 		while (line != null) {
 			if (!line.isEmpty()) {
-				if (line.startsWith("[")) {
+				if (line.startsWith("[")) { //$NON-NLS-1$
 					section = line.substring(1, line.length() - 1);
 					if (sections.containsKey(section.toUpperCase())) {
 						throw new IniFileFormatException(MessageFormat.format(
-								"Duplicate section ''{0}'' found on line {1}.",
+								Messages.SimpleIniFileParser_DuplicateSectionError,
 								section, number));
 					}
 					sectionKeys.add(section);
@@ -129,14 +131,14 @@ public class SimpleIniFileParser {
 					sections.put(section.toUpperCase(), sectionContents);
 				} else {
 					if (sectionContents == null) {
-						throw new IniFileFormatException("Lines before the first section header are not supported.");
+						throw new IniFileFormatException(Messages.SimpleIniFileParser_FirstLineNoSectionError);
 					}
 					final int pos = line.indexOf('=');
 					final String key = line.substring(0, pos);
 					final String value = line.substring(pos + 1);
 					if (sectionContents.containsKey(key.toUpperCase())) {
 						throw new IniFileFormatException(MessageFormat
-								.format("Duplicate key ''{0}'' found in section ''{1}'' on line {2}",
+								.format(Messages.SimpleIniFileParser_DuplicateKeyError,
 										key, section, number));
 					}
 					keys.add(key);

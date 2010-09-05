@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 import net.sf.rcer.conn.Activator;
+import net.sf.rcer.conn.Messages;
 import net.sf.rcer.conn.connections.ConnectionData;
 import net.sf.rcer.conn.connections.IConnectionData;
 
@@ -42,24 +43,24 @@ public class LogonIniReader {
 	 */
 	//	private static final String SECTION_CONFIGURATON        = "Configuration";
 	//	private static final String SECTION_WINDOW_POSITION     = "MSWinPos";
-	private static final String SECTION_ROUTER              = "Router";
-	private static final String SECTION_ROUTER_2            = "Router2";
-	private static final String SECTION_ROUTER_CHOICE       = "RouterChoice";
-	private static final String SECTION_SERVER              = "Server";
-	private static final String SECTION_SYSTEM_NUMBER       = "Database";
-	private static final String SECTION_SYSTEM_TYPE         = "System";
-	private static final String SECTION_DESCRIPTION         = "Description";
+	private static final String SECTION_ROUTER              = "Router"; //$NON-NLS-1$
+	private static final String SECTION_ROUTER_2            = "Router2"; //$NON-NLS-1$
+	private static final String SECTION_ROUTER_CHOICE       = "RouterChoice"; //$NON-NLS-1$
+	private static final String SECTION_SERVER              = "Server"; //$NON-NLS-1$
+	private static final String SECTION_SYSTEM_NUMBER       = "Database"; //$NON-NLS-1$
+	private static final String SECTION_SYSTEM_TYPE         = "System"; //$NON-NLS-1$
+	private static final String SECTION_DESCRIPTION         = "Description"; //$NON-NLS-1$
 	//	private static final String SECTION_ADDRESS             = "Address";
-	private static final String SECTION_SYSTEM_ID           = "MSSysName";
-	private static final String SECTION_MSG_SERVER          = "MSSrvName";
+	private static final String SECTION_SYSTEM_ID           = "MSSysName"; //$NON-NLS-1$
+	private static final String SECTION_MSG_SERVER          = "MSSrvName"; //$NON-NLS-1$
 	//	private static final String SECTION_SESSION_MANAGER_KEY = "SessManKey";
 	//	private static final String SECTION_SNC_NAME            = "SncName";
 	//	private static final String SECTION_SNC_CHOICE          = "SncChoice";
 	//	private static final String SECTION_CODEPAGE            = "Codepage";
 	//	private static final String SECTION_CODEPAGE_INDEX      = "CodepageIndex";
-	private static final String SECTION_ORIGIN              = "Origin";
+	private static final String SECTION_ORIGIN              = "Origin"; //$NON-NLS-1$
 	//	private static final String SECTION_LAST_USED           = "MSLast";
-	private static final String SECTION_MSG_SERVER_PORT     = "MSSrvPort";
+	private static final String SECTION_MSG_SERVER_PORT     = "MSSrvPort"; //$NON-NLS-1$
 	//	private static final String SECTION_LOW_SPEED           = "LowSpeedConnection";
 	//	private static final String SECTION_UTF8_OFF            = "Utf8Off";
 	//	private static final String SECTION_ENTRY_KEY           = "EntryKey";
@@ -78,7 +79,7 @@ public class LogonIniReader {
 	 * @param stream
 	 */
 	public LogonIniReader(InputStream stream) {
-		status = new MultiStatus(Activator.PLUGIN_ID, 0, "Results of reading SAPlogon.ini", null);
+		status = new MultiStatus(Activator.PLUGIN_ID, 0, Messages.LogonIniReader_ResultHeaderMessage, null);
 
 		try {
 			parser = new SimpleIniFileParser(stream);
@@ -119,7 +120,7 @@ public class LogonIniReader {
 	 */
 	private void checkSection(String section) {
 		if (!parser.sectionExists(section)) {
-			status.add(new Status(IStatus.ERROR, Activator.PLUGIN_ID, MessageFormat.format("The section ''{0}'' is missing.", section)));
+			status.add(new Status(IStatus.ERROR, Activator.PLUGIN_ID, MessageFormat.format(Messages.LogonIniReader_SectionMissingError, section)));
 		}		
 	}
 
@@ -130,11 +131,11 @@ public class LogonIniReader {
 	 */
 	private IConnectionData readConnection(String key) {
 
-		final String description = parser.keyExists(SECTION_DESCRIPTION, key) ? parser.getValue(SECTION_DESCRIPTION, key) : "(no description)";
+		final String description = parser.keyExists(SECTION_DESCRIPTION, key) ? parser.getValue(SECTION_DESCRIPTION, key) : Messages.LogonIniReader_DefaultDescription;
 
 		// only R/3 systems are supported
-		if (!parser.getValue(SECTION_SYSTEM_TYPE, key).equals("3")) {
-			status.add(new Status(IStatus.WARNING, Activator.PLUGIN_ID, MessageFormat.format("{0} ({1}) is not a R/3 connection.", key,
+		if (!parser.getValue(SECTION_SYSTEM_TYPE, key).equals("3")) { //$NON-NLS-1$
+			status.add(new Status(IStatus.WARNING, Activator.PLUGIN_ID, MessageFormat.format(Messages.LogonIniReader_NoR3ConnectionError, key,
 					description)));
 			return null;
 		}
@@ -145,7 +146,7 @@ public class LogonIniReader {
 		int systemNumber = -1; 
 		if ((systemNumberString == null) || (systemNumberString.isEmpty())) {
 			status.add(new Status(IStatus.WARNING, Activator.PLUGIN_ID, MessageFormat.format(
-					"{0} ({1}) does not contain a system number.", key,
+					Messages.LogonIniReader_MissingSystemNumberError, key,
 					description)));
 			return null;
 		}
@@ -153,7 +154,7 @@ public class LogonIniReader {
 			systemNumber = Integer.parseInt(systemNumberString);
 		} catch (NumberFormatException e1) {
 			status.add(new Status(IStatus.WARNING, Activator.PLUGIN_ID, MessageFormat.format(
-					"{0} ({1}) does not contain a valid system number ({2}).", key,
+					Messages.LogonIniReader_InvalidSystemNumberError, key,
 					description, systemNumberString)));
 			return null;
 		}
@@ -169,7 +170,7 @@ public class LogonIniReader {
 
 		// determine the connection type
 		final String origin = parser.getValue(SECTION_ORIGIN, key);
-		if (origin.equalsIgnoreCase("MS_SEL_GROUPS")) {
+		if (origin.equalsIgnoreCase("MS_SEL_GROUPS")) { //$NON-NLS-1$
 			// load-balanced connection
 
 			// try to determine the message server port
@@ -184,18 +185,18 @@ public class LogonIniReader {
 			connection.setLoadBalancingConnection(parser.getValue(SECTION_MSG_SERVER, key), 
 					port, parser.getValue(SECTION_SERVER, key));
 
-			if (parser.getValue(SECTION_ROUTER_CHOICE, key).equals("1")) {
+			if (parser.getValue(SECTION_ROUTER_CHOICE, key).equals("1")) { //$NON-NLS-1$
 				final String router2 = parser.getValue(SECTION_ROUTER_2, key);
 				if ((router2 != null) && !(router2.isEmpty())) {
 					connection.setRouter(router2);
 				}
 			}
-		} else if (origin.equalsIgnoreCase("MS_SEL_SERVER") || origin.equalsIgnoreCase("USEREDIT")) {
+		} else if (origin.equalsIgnoreCase("MS_SEL_SERVER") || origin.equalsIgnoreCase("USEREDIT")) { //$NON-NLS-1$ //$NON-NLS-2$
 			// direct connection
 			connection.setDirectConnection(parser.getValue(SECTION_SERVER, key), systemNumber);
 		} else {
 			status.add(new Status(IStatus.WARNING, Activator.PLUGIN_ID, MessageFormat.format(
-					"{0} ({1}) has an unknown origin ({2})", key, description, origin)));
+					Messages.LogonIniReader_UnknownOriginError, key, description, origin)));
 			return null;
 		}
 
