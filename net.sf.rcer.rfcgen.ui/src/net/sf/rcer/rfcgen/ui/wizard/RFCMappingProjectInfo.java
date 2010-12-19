@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,
  * this entire header must remain intact.
  *
- * $Id: RFCMappingFormatter.java 235 2009-12-31 17:51:07Z vwegert $
+ * $Id$
  */
 package net.sf.rcer.rfcgen.ui.wizard;
 

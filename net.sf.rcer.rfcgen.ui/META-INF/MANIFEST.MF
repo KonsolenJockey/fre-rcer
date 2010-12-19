@@ -19,7 +19,8 @@ Require-Bundle: net.sf.rcer.rfcgen;visibility:=reexport,
  org.eclipse.xpand,
  net.sf.rcer.conn;bundle-version="0.1.0",
  net.sf.rcer.conn.ui;bundle-version="0.1.0",
- org.apache.log4j;bundle-version="1.2.15"
+ org.apache.log4j;bundle-version="1.2.15",
+ net.sf.rcer.rfcgen.generator;bundle-version="0.1.0";resolution:=optional
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: net.sf.rcer.rfcgen.ui.contentassist.antlr
 Bundle-Activator: net.sf.rcer.rfcgen.ui.internal.RFCMappingActivator

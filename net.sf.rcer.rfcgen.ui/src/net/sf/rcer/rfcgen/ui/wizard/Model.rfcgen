@@ -1,0 +1,33 @@
+//
+// Copyright (c) 2010 The RCER Development Team.
+//
+// All rights reserved. This program and the accompanying materials
+// are made available under the terms of the Eclipse Public License v1.0
+// which accompanies this distribution, and is available at
+// http://www.eclipse.org/legal/epl-v10.html. If redistributing this code,
+// this entire header must remain intact.
+//
+// $Id$
+//
+package "net.sf.rcer.rfcgen.ui.wizard"
+
+structure "RFCFUNC" {
+	class FunctionModuleDescription {
+		field "FUNCNAME"  = String functionName  comment "name of the function module";
+		field "GROUPNAME" = String groupName     comment "name of the function group";
+		field "APPL"      = inactive;
+		field "HOST"      = inactive;
+		field "STEXT"     = String text          comment "short text of the function module";
+	}
+}
+
+function module "RFC_FUNCTION_SEARCH" {
+	class FunctionModuleSearchCall {
+		importing field "FUNCNAME"   = String                    functionName comment "search pattern for function modules";
+		importing field "GROUPNAME"  = String                    groupName    comment "search pattern for function module groups";
+		importing field "LANGUAGE"   = String                    language     comment "language to read the short text";
+		table           "FUNCTIONS"  = FunctionModuleDescription functions    comment "list of functions retrieved";
+	}
+}
+
+

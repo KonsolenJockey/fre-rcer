@@ -23,6 +23,9 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -31,7 +34,9 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.dialogs.ListSelectionDialog;
 
+import com.sap.conn.jco.AbapException;
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunctionTemplate;
@@ -44,7 +49,7 @@ import com.sap.conn.jco.JCoFunctionTemplate;
 public class FunctionModuleSelectionPage extends WizardPage {
 
 	private static final String PLUGIN_ID = "net.sf.rcer.rfcgen.ui";
-	
+
 	private JCoDestination destination;
 	private Map<String, JCoFunctionTemplate> selectedFunctionModules = new TreeMap<String, JCoFunctionTemplate>();
 
@@ -53,11 +58,12 @@ public class FunctionModuleSelectionPage extends WizardPage {
 
 	/**
 	 * Default constructor.
+	 * @param destination the destination to use
 	 */
 	public FunctionModuleSelectionPage(JCoDestination destination) {
 		super("Select Function Modules");
 		setTitle("Select Function Modules");
-		setDescription("Select the RFC function modules you want to include in the generated mapping file.");
+		setDescription("Select the RFC function modules you want to include in the generated mapping file. You can use * as a wildcard to search for function modules.");
 		setPageComplete(false);
 		this.destination = destination;
 	}
@@ -107,20 +113,75 @@ public class FunctionModuleSelectionPage extends WizardPage {
 
 	/**
 	 * Checks a function module name for existence and adds the function module to the list. 
-	 * @param text
+	 * If the name contains a *, a wildcard search is run and a list of matching function modules is displayed.
+	 * @param name
 	 */
 	protected void addFunctionModule(String name) {
 		if (!selectedFunctionModules.containsKey(name)) {
 			try {
-				JCoFunctionTemplate functionModule = destination.getRepository().getFunctionTemplate(name);
-				if (functionModule == null) {
-					final String message = MessageFormat.format(
-							"The function module {0} does not exist.", name);
-					ErrorDialog.openError(getShell(), "RFC Mapping Wizard", message, 
-							new Status(IStatus.ERROR, PLUGIN_ID, message));
-				} else {
-				selectedFunctionModules.put(name, functionModule);
-				updateList();
+				if (name.contains("*")) {
+					// search for function modules using the pattern
+					FunctionModuleSearchCall searchCall = new FunctionModuleSearchCall();
+					searchCall.setFunctionName(name);
+					searchCall.setLanguage(destination.getLanguage());
+					searchCall.execute(destination);
+					if (searchCall.getFunctions().isEmpty()) {
+						final String message = MessageFormat.format(
+								"No function module mathching the search pattern {0} was found.", name);
+						ErrorDialog.openError(getShell(), "RFC Mapping Wizard", message, 
+								new Status(IStatus.ERROR, PLUGIN_ID, message));
+					} else {
+						ILabelProvider labelProvider = new LabelProvider() {
+							/* (non-Javadoc)
+							 * @see org.eclipse.jface.viewers.LabelProvider#getText(java.lang.Object)
+							 */
+							@Override
+							public String getText(Object element) {
+								if (element instanceof FunctionModuleDescription) {
+									FunctionModuleDescription desc = (FunctionModuleDescription) element;
+									return MessageFormat.format("{0} ({1})",
+											desc.getFunctionName(), desc.getText());
+								}
+								return super.getText(element);
+							}
+						};
+						ListSelectionDialog dlg = new ListSelectionDialog(getShell(), searchCall.getFunctions(),
+								new ArrayContentProvider(), labelProvider, "Select the function modules to add.");
+						dlg.setTitle("Add Function Modules");
+						if (dlg.open() == ListSelectionDialog.OK) {
+							for (Object obj: dlg.getResult()) {
+								if (obj instanceof FunctionModuleDescription) {
+									FunctionModuleDescription desc = (FunctionModuleDescription) obj;
+									JCoFunctionTemplate functionModule = null;
+									try {
+										functionModule = destination.getRepository().getFunctionTemplate(desc.getFunctionName());
+									} catch (AbapException e) {
+										final String message = MessageFormat.format(
+												"Unable to read the interface structure of function module {0}.", desc.getFunctionName());
+										ErrorDialog.openError(getShell(), "RFC Mapping Wizard", message, 
+												new Status(IStatus.ERROR, PLUGIN_ID, e.getMessage(), e));
+									}
+									if (functionModule != null) {
+										selectedFunctionModules.put(desc.getFunctionName(), functionModule);
+										updateList();
+									}									
+								}
+							}
+							updateList();
+						}
+					}
+				} else {			
+					// try to add the function module directly
+					JCoFunctionTemplate functionModule = destination.getRepository().getFunctionTemplate(name);
+					if (functionModule == null) {
+						final String message = MessageFormat.format(
+								"The function module {0} does not exist.", name);
+						ErrorDialog.openError(getShell(), "RFC Mapping Wizard", message, 
+								new Status(IStatus.ERROR, PLUGIN_ID, message));
+					} else {
+						selectedFunctionModules.put(name, functionModule);
+						updateList();
+					}
 				}
 			} catch (JCoException e) {
 				ErrorDialog.openError(getShell(), "RFC Mapping Wizard", e.getMessage(), 
