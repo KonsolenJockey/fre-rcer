@@ -116,7 +116,7 @@ public class SimpleIniFileParser {
 		String line = ""; //$NON-NLS-1$
 		int number = 0;
 		while (line != null) {
-			if (!line.isEmpty()) {
+			if (line.length() != 0) {
 				if (line.startsWith("[")) { //$NON-NLS-1$
 					section = line.substring(1, line.length() - 1);
 					if (sections.containsKey(section.toUpperCase())) {

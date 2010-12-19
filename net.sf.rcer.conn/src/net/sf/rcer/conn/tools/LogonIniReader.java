@@ -144,7 +144,7 @@ public class LogonIniReader {
 		// determine the system number
 		final String systemNumberString = parser.getValue(SECTION_SYSTEM_NUMBER, key);
 		int systemNumber = -1; 
-		if ((systemNumberString == null) || (systemNumberString.isEmpty())) {
+		if ((systemNumberString == null) || (systemNumberString.length() == 0)) {
 			status.add(new Status(IStatus.WARNING, Activator.PLUGIN_ID, MessageFormat.format(
 					Messages.LogonIniReader_MissingSystemNumberError, key,
 					description)));
@@ -187,7 +187,7 @@ public class LogonIniReader {
 
 			if (parser.getValue(SECTION_ROUTER_CHOICE, key).equals("1")) { //$NON-NLS-1$
 				final String router2 = parser.getValue(SECTION_ROUTER_2, key);
-				if ((router2 != null) && !(router2.isEmpty())) {
+				if ((router2 != null) && !(router2.length() == 0)) {
 					connection.setRouter(router2);
 				}
 			}

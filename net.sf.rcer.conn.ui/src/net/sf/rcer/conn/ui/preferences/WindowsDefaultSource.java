@@ -41,7 +41,7 @@ public class WindowsDefaultSource extends AbstractConnectionDataImportSource {
 		// Step 1: command line parameter /INI_FILE=... - we can't check this.
 		// Step 2: environment variable SAPLOGON_INI_FILE
 		String envVar = System.getenv("SAPLOGON_INI_FILE"); //$NON-NLS-1$
-		if ((envVar != null) && (!envVar.isEmpty())) {
+		if ((envVar != null) && !(envVar.length() == 0)) {
 			final File file = new File(envVar);
 			if (file.exists() && file.isFile()) {
 				fileName = file.getAbsolutePath();
@@ -51,7 +51,7 @@ public class WindowsDefaultSource extends AbstractConnectionDataImportSource {
 		// Step 3: SAP GUI installation directory - we don't know that...
 		// Step 4: Windows directory
 		envVar = System.getenv("SAPLOGON_INI_FILE"); //$NON-NLS-1$
-		if ((envVar != null) && (!envVar.isEmpty())) {
+		if ((envVar != null) && !(envVar.length() == 0)) {
 			final File file = new File(envVar + System.getProperty("file.separator") + "saplogon.ini"); //$NON-NLS-1$ //$NON-NLS-2$
 			if (file.exists() && file.isFile()) {
 				fileName = file.getAbsolutePath();
