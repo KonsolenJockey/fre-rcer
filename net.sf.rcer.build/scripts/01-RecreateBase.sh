@@ -5,13 +5,13 @@
 # $Id$
 #
 
-export ECLIPSE="eclipse-modeling-helios-incubation-linux-gtk.tar.gz"
+export ECLIPSE="eclipse-modeling-helios-SR1-incubation-linux-gtk.tar.gz"
 export JCO="com.sap.conn.jco_7.11.0.jar"
-export MWE="emft-mwe-SDK-1.0.0.zip"      
-export MWE2="emft-mwe-2-SDK-1.0.0.zip"        
-export MWE2LANG="emft-mwe-2-lang-SDK-1.0.0.zip"                        
-export XPAND="m2t-xpand-SDK-1.0.0.zip"                                                 
-export XTEXT="tmf-xtext-SDK-1.0.0.zip" 
+export MWE="emft-mwe-SDK-1.0.1.zip"      
+export MWE2="emft-mwe-2-SDK-1.0.1.zip"        
+export MWE2LANG="emft-mwe-2-lang-SDK-1.0.1.zip"                        
+export XPAND="m2t-xpand-SDK-1.0.1.zip"                                                 
+export XTEXT="tmf-xtext-SDK-1.0.1.zip" 
 
 check_distfile() {
 	if [ ! -f ${RCER_BUILD_HOME}/distfiles/${1} ] ; then 
