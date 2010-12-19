@@ -8,6 +8,7 @@ package net.sf.rcer.rfcgen.mapping.impl;
 import java.util.Collection;
 
 import net.sf.rcer.rfcgen.mapping.FunctionModule;
+import net.sf.rcer.rfcgen.mapping.Import;
 import net.sf.rcer.rfcgen.mapping.MappingPackage;
 import net.sf.rcer.rfcgen.mapping.Model;
 import net.sf.rcer.rfcgen.mapping.Structure;
@@ -34,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.ModelImpl#getPackageName <em>Package Name</em>}</li>
+ *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.ModelImpl#getImports <em>Imports</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.ModelImpl#getStructures <em>Structures</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.ModelImpl#getFunctionModules <em>Function Modules</em>}</li>
  * </ul>
@@ -62,6 +64,16 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @ordered
    */
   protected String packageName = PACKAGE_NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getImports()
+   * @generated
+   * @ordered
+   */
+  protected EList<Import> imports;
 
   /**
    * The cached value of the '{@link #getStructures() <em>Structures</em>}' containment reference list.
@@ -132,6 +144,20 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Import> getImports()
+  {
+    if (imports == null)
+    {
+      imports = new EObjectContainmentEList<Import>(Import.class, this, MappingPackage.MODEL__IMPORTS);
+    }
+    return imports;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<Structure> getStructures()
   {
     if (structures == null)
@@ -165,6 +191,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case MappingPackage.MODEL__IMPORTS:
+        return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
       case MappingPackage.MODEL__STRUCTURES:
         return ((InternalEList<?>)getStructures()).basicRemove(otherEnd, msgs);
       case MappingPackage.MODEL__FUNCTION_MODULES:
@@ -185,6 +213,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     {
       case MappingPackage.MODEL__PACKAGE_NAME:
         return getPackageName();
+      case MappingPackage.MODEL__IMPORTS:
+        return getImports();
       case MappingPackage.MODEL__STRUCTURES:
         return getStructures();
       case MappingPackage.MODEL__FUNCTION_MODULES:
@@ -206,6 +236,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     {
       case MappingPackage.MODEL__PACKAGE_NAME:
         setPackageName((String)newValue);
+        return;
+      case MappingPackage.MODEL__IMPORTS:
+        getImports().clear();
+        getImports().addAll((Collection<? extends Import>)newValue);
         return;
       case MappingPackage.MODEL__STRUCTURES:
         getStructures().clear();
@@ -232,6 +266,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
       case MappingPackage.MODEL__PACKAGE_NAME:
         setPackageName(PACKAGE_NAME_EDEFAULT);
         return;
+      case MappingPackage.MODEL__IMPORTS:
+        getImports().clear();
+        return;
       case MappingPackage.MODEL__STRUCTURES:
         getStructures().clear();
         return;
@@ -254,6 +291,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     {
       case MappingPackage.MODEL__PACKAGE_NAME:
         return PACKAGE_NAME_EDEFAULT == null ? packageName != null : !PACKAGE_NAME_EDEFAULT.equals(packageName);
+      case MappingPackage.MODEL__IMPORTS:
+        return imports != null && !imports.isEmpty();
       case MappingPackage.MODEL__STRUCTURES:
         return structures != null && !structures.isEmpty();
       case MappingPackage.MODEL__FUNCTION_MODULES:

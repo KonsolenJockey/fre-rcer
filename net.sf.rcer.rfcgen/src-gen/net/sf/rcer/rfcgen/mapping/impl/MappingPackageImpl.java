@@ -16,6 +16,7 @@ import net.sf.rcer.rfcgen.mapping.FunctionModulePOJOMapping;
 import net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping;
 import net.sf.rcer.rfcgen.mapping.FunctionModulePOJORequestResponseMapping;
 import net.sf.rcer.rfcgen.mapping.FunctionModulePOJOTablesParameter;
+import net.sf.rcer.rfcgen.mapping.Import;
 import net.sf.rcer.rfcgen.mapping.MappingFactory;
 import net.sf.rcer.rfcgen.mapping.MappingPackage;
 import net.sf.rcer.rfcgen.mapping.Model;
@@ -46,6 +47,13 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    * @generated
    */
   private EClass modelEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass importEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -240,7 +248,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Structures()
+  public EReference getModel_Imports()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(1);
   }
@@ -250,9 +258,49 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_FunctionModules()
+  public EReference getModel_Structures()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getModel_FunctionModules()
+  {
+    return (EReference)modelEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getImport()
+  {
+    return importEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getImport_FullName()
+  {
+    return (EAttribute)importEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getImport_Name()
+  {
+    return (EAttribute)importEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -550,9 +598,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFunctionModulePOJOParameterMapping_Structure()
+  public EAttribute getFunctionModulePOJOParameterMapping_Attribute()
   {
-    return (EReference)functionModulePOJOParameterMappingEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)functionModulePOJOParameterMappingEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -560,9 +608,29 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFunctionModulePOJOParameterMapping_Attribute()
+  public EReference getFunctionModulePOJOParameterMapping_StructureMapping()
   {
-    return (EAttribute)functionModulePOJOParameterMappingEClass.getEStructuralFeatures().get(3);
+    return (EReference)functionModulePOJOParameterMappingEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFunctionModulePOJOParameterMapping_External()
+  {
+    return (EAttribute)functionModulePOJOParameterMappingEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFunctionModulePOJOParameterMapping_ExternalClass()
+  {
+    return (EReference)functionModulePOJOParameterMappingEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -572,7 +640,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    */
   public EAttribute getFunctionModulePOJOParameterMapping_Comment()
   {
-    return (EAttribute)functionModulePOJOParameterMappingEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)functionModulePOJOParameterMappingEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -600,9 +668,19 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFunctionModulePOJOImportingParameter_Table()
+  public EAttribute getFunctionModulePOJOImportingParameter_Structure()
   {
     return (EAttribute)functionModulePOJOImportingParameterEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFunctionModulePOJOImportingParameter_Table()
+  {
+    return (EAttribute)functionModulePOJOImportingParameterEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -630,9 +708,19 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFunctionModulePOJOExportingParameter_Table()
+  public EAttribute getFunctionModulePOJOExportingParameter_Structure()
   {
     return (EAttribute)functionModulePOJOExportingParameterEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFunctionModulePOJOExportingParameter_Table()
+  {
+    return (EAttribute)functionModulePOJOExportingParameterEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -660,9 +748,19 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFunctionModulePOJOChangingParameter_Table()
+  public EAttribute getFunctionModulePOJOChangingParameter_Structure()
   {
     return (EAttribute)functionModulePOJOChangingParameterEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFunctionModulePOJOChangingParameter_Table()
+  {
+    return (EAttribute)functionModulePOJOChangingParameterEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -717,8 +815,13 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
     // Create classes and their features
     modelEClass = createEClass(MODEL);
     createEAttribute(modelEClass, MODEL__PACKAGE_NAME);
+    createEReference(modelEClass, MODEL__IMPORTS);
     createEReference(modelEClass, MODEL__STRUCTURES);
     createEReference(modelEClass, MODEL__FUNCTION_MODULES);
+
+    importEClass = createEClass(IMPORT);
+    createEAttribute(importEClass, IMPORT__FULL_NAME);
+    createEAttribute(importEClass, IMPORT__NAME);
 
     structureEClass = createEClass(STRUCTURE);
     createEAttribute(structureEClass, STRUCTURE__NAME);
@@ -758,20 +861,25 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
     functionModulePOJOParameterMappingEClass = createEClass(FUNCTION_MODULE_POJO_PARAMETER_MAPPING);
     createEAttribute(functionModulePOJOParameterMappingEClass, FUNCTION_MODULE_POJO_PARAMETER_MAPPING__NAME);
     createEAttribute(functionModulePOJOParameterMappingEClass, FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE);
-    createEReference(functionModulePOJOParameterMappingEClass, FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE);
     createEAttribute(functionModulePOJOParameterMappingEClass, FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE);
+    createEReference(functionModulePOJOParameterMappingEClass, FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE_MAPPING);
+    createEAttribute(functionModulePOJOParameterMappingEClass, FUNCTION_MODULE_POJO_PARAMETER_MAPPING__EXTERNAL);
+    createEReference(functionModulePOJOParameterMappingEClass, FUNCTION_MODULE_POJO_PARAMETER_MAPPING__EXTERNAL_CLASS);
     createEAttribute(functionModulePOJOParameterMappingEClass, FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT);
 
     functionModulePOJOImportingParameterEClass = createEClass(FUNCTION_MODULE_POJO_IMPORTING_PARAMETER);
     createEAttribute(functionModulePOJOImportingParameterEClass, FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TYPE);
+    createEAttribute(functionModulePOJOImportingParameterEClass, FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__STRUCTURE);
     createEAttribute(functionModulePOJOImportingParameterEClass, FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TABLE);
 
     functionModulePOJOExportingParameterEClass = createEClass(FUNCTION_MODULE_POJO_EXPORTING_PARAMETER);
     createEAttribute(functionModulePOJOExportingParameterEClass, FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TYPE);
+    createEAttribute(functionModulePOJOExportingParameterEClass, FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__STRUCTURE);
     createEAttribute(functionModulePOJOExportingParameterEClass, FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TABLE);
 
     functionModulePOJOChangingParameterEClass = createEClass(FUNCTION_MODULE_POJO_CHANGING_PARAMETER);
     createEAttribute(functionModulePOJOChangingParameterEClass, FUNCTION_MODULE_POJO_CHANGING_PARAMETER__TYPE);
+    createEAttribute(functionModulePOJOChangingParameterEClass, FUNCTION_MODULE_POJO_CHANGING_PARAMETER__STRUCTURE);
     createEAttribute(functionModulePOJOChangingParameterEClass, FUNCTION_MODULE_POJO_CHANGING_PARAMETER__TABLE);
 
     functionModulePOJOTablesParameterEClass = createEClass(FUNCTION_MODULE_POJO_TABLES_PARAMETER);
@@ -821,8 +929,13 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getModel_PackageName(), ecorePackage.getEString(), "packageName", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Imports(), this.getImport(), null, "imports", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Structures(), this.getStructure(), null, "structures", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_FunctionModules(), this.getFunctionModule(), null, "functionModules", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getImport_FullName(), ecorePackage.getEString(), "fullName", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getImport_Name(), ecorePackage.getEString(), "name", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(structureEClass, Structure.class, "Structure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getStructure_Name(), ecorePackage.getEString(), "name", null, 0, 1, Structure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -862,20 +975,25 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage
     initEClass(functionModulePOJOParameterMappingEClass, FunctionModulePOJOParameterMapping.class, "FunctionModulePOJOParameterMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFunctionModulePOJOParameterMapping_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFunctionModulePOJOParameterMapping_Inactive(), ecorePackage.getEBoolean(), "inactive", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getFunctionModulePOJOParameterMapping_Structure(), this.getStructurePOJOMapping(), null, "structure", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFunctionModulePOJOParameterMapping_Attribute(), ecorePackage.getEString(), "attribute", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunctionModulePOJOParameterMapping_StructureMapping(), this.getStructurePOJOMapping(), null, "structureMapping", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFunctionModulePOJOParameterMapping_External(), ecorePackage.getEBoolean(), "external", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunctionModulePOJOParameterMapping_ExternalClass(), this.getImport(), null, "externalClass", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFunctionModulePOJOParameterMapping_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, FunctionModulePOJOParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(functionModulePOJOImportingParameterEClass, FunctionModulePOJOImportingParameter.class, "FunctionModulePOJOImportingParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFunctionModulePOJOImportingParameter_Type(), this.getDataType(), "type", null, 0, 1, FunctionModulePOJOImportingParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFunctionModulePOJOImportingParameter_Structure(), ecorePackage.getEBoolean(), "structure", null, 0, 1, FunctionModulePOJOImportingParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFunctionModulePOJOImportingParameter_Table(), ecorePackage.getEBoolean(), "table", null, 0, 1, FunctionModulePOJOImportingParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(functionModulePOJOExportingParameterEClass, FunctionModulePOJOExportingParameter.class, "FunctionModulePOJOExportingParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFunctionModulePOJOExportingParameter_Type(), this.getDataType(), "type", null, 0, 1, FunctionModulePOJOExportingParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFunctionModulePOJOExportingParameter_Structure(), ecorePackage.getEBoolean(), "structure", null, 0, 1, FunctionModulePOJOExportingParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFunctionModulePOJOExportingParameter_Table(), ecorePackage.getEBoolean(), "table", null, 0, 1, FunctionModulePOJOExportingParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(functionModulePOJOChangingParameterEClass, FunctionModulePOJOChangingParameter.class, "FunctionModulePOJOChangingParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFunctionModulePOJOChangingParameter_Type(), this.getDataType(), "type", null, 0, 1, FunctionModulePOJOChangingParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFunctionModulePOJOChangingParameter_Structure(), ecorePackage.getEBoolean(), "structure", null, 0, 1, FunctionModulePOJOChangingParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFunctionModulePOJOChangingParameter_Table(), ecorePackage.getEBoolean(), "table", null, 0, 1, FunctionModulePOJOChangingParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(functionModulePOJOTablesParameterEClass, FunctionModulePOJOTablesParameter.class, "FunctionModulePOJOTablesParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

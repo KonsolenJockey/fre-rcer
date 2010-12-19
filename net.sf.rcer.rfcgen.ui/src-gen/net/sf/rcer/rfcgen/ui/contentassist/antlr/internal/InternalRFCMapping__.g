@@ -23,43 +23,47 @@ T23 : 'Short' ;
 T24 : 'String' ;
 T25 : 'Time' ;
 T26 : 'package' ;
-T27 : 'structure' ;
-T28 : '{' ;
-T29 : '}' ;
-T30 : 'class' ;
-T31 : ';' ;
-T32 : 'field' ;
-T33 : '=' ;
-T34 : 'comment' ;
-T35 : 'function' ;
-T36 : 'module' ;
-T37 : 'request' ;
-T38 : 'response' ;
-T39 : 'importing' ;
-T40 : 'exporting' ;
-T41 : 'changing' ;
-T42 : 'table' ;
-T43 : 'inactive' ;
+T27 : '.' ;
+T28 : 'import' ;
+T29 : 'as' ;
+T30 : ';' ;
+T31 : 'structure' ;
+T32 : '{' ;
+T33 : '}' ;
+T34 : 'class' ;
+T35 : 'field' ;
+T36 : '=' ;
+T37 : 'comment' ;
+T38 : 'function' ;
+T39 : 'module' ;
+T40 : 'request' ;
+T41 : 'response' ;
+T42 : 'importing' ;
+T43 : 'exporting' ;
+T44 : 'changing' ;
+T45 : 'table' ;
+T46 : 'inactive' ;
+T47 : 'external' ;
 
-// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 6247
+// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 7811
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 6249
+// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 7813
 RULE_INT : ('0'..'9')+;
 
-// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 6251
+// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 7815
 RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
 
-// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 6253
+// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 7817
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
-// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 6255
+// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 7819
 RULE_SL_COMMENT : '//' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 6257
+// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 7821
 RULE_WS : (' '|'\t'|'\r'|'\n')+;
 
-// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 6259
+// $ANTLR src "../net.sf.rcer.rfcgen.ui/src-gen/net/sf/rcer/rfcgen/ui/contentassist/antlr/internal/InternalRFCMapping.g" 7823
 RULE_ANY_OTHER : .;
 
 

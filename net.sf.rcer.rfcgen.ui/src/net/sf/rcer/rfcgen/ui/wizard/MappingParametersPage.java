@@ -11,6 +11,8 @@
  */
 package net.sf.rcer.rfcgen.ui.wizard;
 
+import net.sf.rcer.conn.tools.BAPIMessages;
+
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -34,10 +36,12 @@ public class MappingParametersPage extends WizardPage {
 
 	private String packageName = "";
 	private boolean useCallStyleMapping = true;
+	private boolean useBAPIMessages = true;
 	
 	private Text packageText;
 	private Button callMappingButton;
 	private Button requestResponseMappingButton;
+	private Button useBAPIMessagesButton;
 
 	/**
 	 * Default constructor.
@@ -99,6 +103,20 @@ public class MappingParametersPage extends WizardPage {
 			}
 		});
 		
+		useBAPIMessagesButton = new Button(top, SWT.CHECK);
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).span(2, 1).applyTo(useBAPIMessagesButton);
+		useBAPIMessagesButton.setText("Use RCER utility class for BAPIRET2 message handling");
+		useBAPIMessagesButton.setSelection(useBAPIMessages);
+		useBAPIMessagesButton.addSelectionListener(new SelectionAdapter() {
+			/* (non-Javadoc)
+			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+			 */
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				useBAPIMessages = useBAPIMessagesButton.getSelection();
+			}
+		});
+		
 		setControl(top);
 		Dialog.applyDialogFont(top);		
 	}
@@ -115,6 +133,13 @@ public class MappingParametersPage extends WizardPage {
 	 */
 	public boolean isCallStyleMappingSelected() {
 		return useCallStyleMapping;
+	}
+	
+	/**
+	 * @return whether {@link BAPIMessages} should be used
+	 */
+	public boolean isBAPIMessagesSelected() {
+		return useBAPIMessages;
 	}
 
 }

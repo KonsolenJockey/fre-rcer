@@ -28,7 +28,7 @@ public class FunctionModuleInfo extends RepositoryDataObject {
 	private List<FunctionModuleParameter> parameters = new Vector<FunctionModuleParameter>();
 	
 	private int maxParameterNameLength = 0;
-	private int maxJavaTypeNameLength = 0;
+	private int maxJavaTypeNameLength = 21; // external BAPIMessages
 	private int maxAttributeNameLength = 0;
 	
 	/**
@@ -58,12 +58,13 @@ public class FunctionModuleInfo extends RepositoryDataObject {
 	 * @param comment
 	 * @param isStructure
 	 * @param isTable
+	 * @param isBAPIMessage 
 	 */
 	public void addParameter(boolean importing, boolean exporting, boolean changing, boolean tables, 
 			String parameterName, String javaType, String attributeName, String comment,
-			boolean isStructure, boolean isTable) {
+			boolean isStructure, boolean isTable, boolean isBAPIMessage) {
 		FunctionModuleParameter param = new FunctionModuleParameter(this, importing, exporting, changing, tables, 
-				parameterName, javaType, attributeName, comment, isStructure, isTable);
+				parameterName, javaType, attributeName, comment, isStructure, isTable, isBAPIMessage);
 		parameters.add(param);
 		maxParameterNameLength = Math.max(maxParameterNameLength, parameterName.length());
 		maxJavaTypeNameLength = Math.max(maxJavaTypeNameLength, javaType.length());

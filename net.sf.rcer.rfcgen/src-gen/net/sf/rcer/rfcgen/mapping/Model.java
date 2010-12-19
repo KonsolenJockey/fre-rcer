@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.Model#getPackageName <em>Package Name</em>}</li>
+ *   <li>{@link net.sf.rcer.rfcgen.mapping.Model#getImports <em>Imports</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.Model#getStructures <em>Structures</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.Model#getFunctionModules <em>Function Modules</em>}</li>
  * </ul>
@@ -54,6 +55,22 @@ public interface Model extends EObject
    * @generated
    */
   void setPackageName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Imports</b></em>' containment reference list.
+   * The list contents are of type {@link net.sf.rcer.rfcgen.mapping.Import}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Imports</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Imports</em>' containment reference list.
+   * @see net.sf.rcer.rfcgen.mapping.MappingPackage#getModel_Imports()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Import> getImports();
 
   /**
    * Returns the value of the '<em><b>Structures</b></em>' containment reference list.

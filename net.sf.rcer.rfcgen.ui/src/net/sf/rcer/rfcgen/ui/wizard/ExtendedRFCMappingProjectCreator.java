@@ -22,12 +22,14 @@ import com.google.common.collect.Lists;
  */
 public class ExtendedRFCMappingProjectCreator extends RFCMappingProjectCreator {
 
-	private static final String JCO_PROJECT_NAME = "com.sap.conn.jco";
-	
     @Override
 	protected List<String> getRequiredBundles() {
 		List<String> result = Lists.newArrayList(super.getRequiredBundles());
-		result.add(JCO_PROJECT_NAME);
+		result.add("com.sap.conn.jco");
+		if (((ExtendedRFCMappingProjectInfo)getProjectInfo()).isBAPIMessagesEnabled()) {
+			result.add("net.sf.rcer.conn");
+			result.add("org.eclipse.core.runtime");			
+		}
 		return result;
 	}
 	

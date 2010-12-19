@@ -16,6 +16,8 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 
+import net.sf.rcer.conn.tools.BAPIMessages;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 
@@ -39,9 +41,13 @@ public class ExtendedRFCMappingProjectInfo extends RFCMappingProjectInfo {
 	private Collection<JCoFunctionTemplate> functionModules;
 	private String packageName;
 	private boolean callStyleMappingSelected;
+	private boolean useBAPIMessages;
 
 	private Map<String, StructureInfo> structures = new TreeMap<String, StructureInfo>();
 	private Map<String, FunctionModuleInfo> functions = new TreeMap<String, FunctionModuleInfo>();
+
+	private boolean foundBAPIMessageStructure = false;
+	private boolean foundBAPIMessageTable = false;
 
 	/**
 	 * @param destination the destination to set
@@ -97,12 +103,40 @@ public class ExtendedRFCMappingProjectInfo extends RFCMappingProjectInfo {
 	public boolean isCallStyleMappingSelected() {
 		return callStyleMappingSelected;
 	}
-
+	
 	/**
-	 * @param callStyleMappingSelected whether to use call-stype mapping
+	 * @param callStyleMappingSelected whether to use call-style mapping
 	 */
 	public void setCallStyleMappingSelected(boolean callStyleMappingSelected) {
 		this.callStyleMappingSelected = callStyleMappingSelected;
+	}
+
+	/**
+	 * @return whether to use {@link BAPIMessages}
+	 */
+	public boolean isBAPIMessagesEnabled() {
+		return useBAPIMessages;
+	}
+	
+	/**
+	 * @return <code>true</code> if a reference to a BAPIRET2 structure was found
+	 */
+	public boolean foundBAPIMessageStructure() {
+		return foundBAPIMessageStructure;
+	}
+	
+	/**
+	 * @return <code>true</code> if a reference to a BAPIRET2 table was found
+	 */
+	public boolean foundBAPIMessageTable() {
+		return foundBAPIMessageTable;
+	}
+	
+	/**
+	 * @param useBAPIMessages whether to use {@link BAPIMessages}
+	 */
+	public void setUseBAPIMessages(boolean useBAPIMessages) {
+		this.useBAPIMessages = useBAPIMessages;
 	}
 
 	/**
@@ -131,11 +165,21 @@ public class ExtendedRFCMappingProjectInfo extends RFCMappingProjectInfo {
 				JCoListMetaData iface = function.getFunctionInterface();
 				for (int pos = 0; pos < iface.getFieldCount(); pos++) {
 					if (iface.isStructure(pos)) {
-						addStructure(repository.getStructureDefinition(iface.getRecordTypeName(pos)));
+						final String name = iface.getRecordTypeName(pos);
+						if (useBAPIMessages && name.equals("BAPIRET2")) {
+							foundBAPIMessageStructure = true;
+						} else {
+							addStructure(repository.getStructureDefinition(name));
+						}
 					} else if (iface.isTable(pos)) {
 						final JCoRecordMetaData metadata = iface.getRecordMetaData(pos);
 						if (metadata != null) {
-							addStructure(metadata); 
+							final String name = metadata.getName();
+							if (useBAPIMessages && name.equals("BAPIRET2")) {
+								foundBAPIMessageTable = true;
+							} else {
+								addStructure(metadata);
+							}
 						} else {
 							MessageDialog.openWarning(Display.getCurrent().getActiveShell(), "RFC Mapping Wizard", 
 									MessageFormat
@@ -180,19 +224,22 @@ public class ExtendedRFCMappingProjectInfo extends RFCMappingProjectInfo {
 					function.getName() + "_Request", function.getName() + "_Response");
 			for (int pos = 0; pos < iface.getFieldCount(); pos++) {
 				String javaType = "";
+				boolean isBAPIMessage = false;
 				if (iface.isStructure(pos) || iface.isTable(pos)) {
 					final String typeName = iface.getRecordTypeName(pos);
-					if (structures.containsKey(typeName)) {
+					if (isBAPIMessagesEnabled() && typeName.equals("BAPIRET2")) {
+						isBAPIMessage = true;
+					} else if (structures.containsKey(typeName)) {
 						javaType = structures.get(typeName).getClassName();
 					}
 				} else {
 					javaType = removeStandardPackages(iface.getClassNameOfField(pos));
 				}
-				if (javaType.length() != 0) {
+				if ((javaType.length() != 0) || isBAPIMessage) {
 					info.addParameter(iface.isImport(pos), iface.isExport(pos), iface.isChanging(pos), iface.isTable(pos), 
 							iface.getName(pos), javaType, iface.getName(pos), 
 							iface.getDescription(pos) == null ? "" : iface.getDescription(pos).replaceAll("\"", "'"), 
-									iface.isStructure(pos), iface.isTable(pos)); // TODO: isTable cannot be used for importing / exporting / changing params
+									iface.isStructure(pos), iface.isTable(pos), isBAPIMessage); // TODO: isTable cannot be used for importing / exporting / changing params
 				}
 			}
 			functions.put(function.getName(), info);

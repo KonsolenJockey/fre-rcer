@@ -69,6 +69,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory
     switch (eClass.getClassifierID())
     {
       case MappingPackage.MODEL: return createModel();
+      case MappingPackage.IMPORT: return createImport();
       case MappingPackage.STRUCTURE: return createStructure();
       case MappingPackage.STRUCTURE_MAPPING: return createStructureMapping();
       case MappingPackage.STRUCTURE_POJO_MAPPING: return createStructurePOJOMapping();
@@ -131,6 +132,17 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory
   {
     ModelImpl model = new ModelImpl();
     return model;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Import createImport()
+  {
+    ImportImpl import_ = new ImportImpl();
+    return import_;
   }
 
   /**

@@ -15,6 +15,7 @@ package net.sf.rcer.rfcgen.mapping;
  * The following features are supported:
  * <ul>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#getType <em>Type</em>}</li>
+ *   <li>{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#isStructure <em>Structure</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#isTable <em>Table</em>}</li>
  * </ul>
  * </p>
@@ -53,6 +54,32 @@ public interface FunctionModulePOJOChangingParameter extends FunctionModulePOJOP
    * @generated
    */
   void setType(DataType value);
+
+  /**
+   * Returns the value of the '<em><b>Structure</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Structure</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Structure</em>' attribute.
+   * @see #setStructure(boolean)
+   * @see net.sf.rcer.rfcgen.mapping.MappingPackage#getFunctionModulePOJOChangingParameter_Structure()
+   * @model
+   * @generated
+   */
+  boolean isStructure();
+
+  /**
+   * Sets the value of the '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#isStructure <em>Structure</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Structure</em>' attribute.
+   * @see #isStructure()
+   * @generated
+   */
+  void setStructure(boolean value);
 
   /**
    * Returns the value of the '<em><b>Table</b></em>' attribute.

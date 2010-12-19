@@ -100,12 +100,13 @@ public class ExtendedRFCMappingNewProjectWizard extends	RFCMappingNewProjectWiza
 	protected IProjectInfo getProjectInfo() {
 		ExtendedRFCMappingProjectInfo projectInfo = new ExtendedRFCMappingProjectInfo();
 		projectInfo.setProjectName(getMainPage().getProjectName());
+		projectInfo.setPackageName(parametersPage.getPackageName());
+		projectInfo.setCallStyleMappingSelected(parametersPage.isCallStyleMappingSelected());
+		projectInfo.setUseBAPIMessages(parametersPage.isBAPIMessagesSelected());
 		if (destination != null) {
 			projectInfo.setDestination(destination);
 			projectInfo.setFunctionModules(functionModulePage.getSelectedFunctionModules());
 		}
-		projectInfo.setPackageName(parametersPage.getPackageName());
-		projectInfo.setCallStyleMappingSelected(parametersPage.isCallStyleMappingSelected());
 		return projectInfo;
 	}
 

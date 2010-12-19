@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOImportingParameterImpl#getType <em>Type</em>}</li>
+ *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOImportingParameterImpl#isStructure <em>Structure</em>}</li>
  *   <li>{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOImportingParameterImpl#isTable <em>Table</em>}</li>
  * </ul>
  * </p>
@@ -50,6 +51,26 @@ public class FunctionModulePOJOImportingParameterImpl extends FunctionModulePOJO
    * @ordered
    */
   protected DataType type = TYPE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isStructure() <em>Structure</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isStructure()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean STRUCTURE_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isStructure() <em>Structure</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isStructure()
+   * @generated
+   * @ordered
+   */
+  protected boolean structure = STRUCTURE_EDEFAULT;
 
   /**
    * The default value of the '{@link #isTable() <em>Table</em>}' attribute.
@@ -120,6 +141,29 @@ public class FunctionModulePOJOImportingParameterImpl extends FunctionModulePOJO
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isStructure()
+  {
+    return structure;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setStructure(boolean newStructure)
+  {
+    boolean oldStructure = structure;
+    structure = newStructure;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__STRUCTURE, oldStructure, structure));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public boolean isTable()
   {
     return table;
@@ -150,6 +194,8 @@ public class FunctionModulePOJOImportingParameterImpl extends FunctionModulePOJO
     {
       case MappingPackage.FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TYPE:
         return getType();
+      case MappingPackage.FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__STRUCTURE:
+        return isStructure();
       case MappingPackage.FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TABLE:
         return isTable();
     }
@@ -168,6 +214,9 @@ public class FunctionModulePOJOImportingParameterImpl extends FunctionModulePOJO
     {
       case MappingPackage.FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TYPE:
         setType((DataType)newValue);
+        return;
+      case MappingPackage.FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__STRUCTURE:
+        setStructure((Boolean)newValue);
         return;
       case MappingPackage.FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TABLE:
         setTable((Boolean)newValue);
@@ -189,6 +238,9 @@ public class FunctionModulePOJOImportingParameterImpl extends FunctionModulePOJO
       case MappingPackage.FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TYPE:
         setType(TYPE_EDEFAULT);
         return;
+      case MappingPackage.FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__STRUCTURE:
+        setStructure(STRUCTURE_EDEFAULT);
+        return;
       case MappingPackage.FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TABLE:
         setTable(TABLE_EDEFAULT);
         return;
@@ -208,6 +260,8 @@ public class FunctionModulePOJOImportingParameterImpl extends FunctionModulePOJO
     {
       case MappingPackage.FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TYPE:
         return type != TYPE_EDEFAULT;
+      case MappingPackage.FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__STRUCTURE:
+        return structure != STRUCTURE_EDEFAULT;
       case MappingPackage.FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TABLE:
         return table != TABLE_EDEFAULT;
     }
@@ -227,6 +281,8 @@ public class FunctionModulePOJOImportingParameterImpl extends FunctionModulePOJO
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (type: ");
     result.append(type);
+    result.append(", structure: ");
+    result.append(structure);
     result.append(", table: ");
     result.append(table);
     result.append(')');

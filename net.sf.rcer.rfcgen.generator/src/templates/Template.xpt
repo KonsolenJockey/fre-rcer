@@ -11,7 +11,7 @@
  * $Id$
  *
 «ENDREM»
-«IMPORT mapping»;
+«IMPORT mapping»
 «EXTENSION templates::Extensions»
 
 «REM» ============================================================================================= «ENDREM»
@@ -27,7 +27,7 @@
 
 «REM» ============================================================================================= «ENDREM»
 
-«DEFINE Imports FOR Object»
+«DEFINE Imports FOR Model»
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -45,6 +45,10 @@ import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
+
+«FOREACH imports AS i-»
+import «i.fullName»;
+«ENDFOREACH-»
 «ENDDEFINE»
 
 «REM» ============================================================================================= «ENDREM»
@@ -122,7 +126,7 @@ import com.sap.conn.jco.JCoTable;
 «DEFINE StructureClass(String packageName, String structureName) FOR StructurePOJOMapping»
 «FILE getFileName(packageName)» 
 package «packageName»;
-«EXPAND Imports FOR this»
+«EXPAND Imports FOR getModel()»
 /**
  * A class representing the SAP R/3 data structure «structureName».
  */
@@ -246,9 +250,9 @@ public class «name» {
 «REM» ============================================================================================= «ENDREM»
 
 «DEFINE FunctionModuleClasses(String packageName, String functionModuleName) FOR FunctionModulePOJOCallMapping»
-«FILE getFileName(packageName)» 
+«FILE getFileName(packageName)»
 package «packageName»;
-«EXPAND Imports FOR this»
+«EXPAND Imports FOR getModel()»
 /**
  * A class to model a RFC call to «functionModuleName». Use the setters to prepare the importing parameters, 
  * then invoke {@link #execute(JCoDestination)} to execute the call. The attributes of this instance 
@@ -285,12 +289,22 @@ public class «className» {
 	 */
 	public void execute(JCoDestination destination) throws JCoException {
 		JCoFunction function = destination.getRepository().getFunction("«functionModuleName»"); //$NON-NLS-1$
-		// FIXME: set inactive parameters
-«FOREACH getActiveParameters() AS p-»
+		
+		// disable the inactive parameters
+«FOREACH parameters AS p-»
+		function.«p.getJCoAccessor()».setActive("«p.name»", «!p.inactive»);
+«ENDFOREACH-»
+
+		// transfer the input parameters
+«FOREACH getActiveInputParameters() AS p-»
 	«EXPAND FunctionModulePOJOParameterBeforeCall FOR p-»
 «ENDFOREACH-»
+
+		// perform the RFC call
 		function.execute(destination);
-«FOREACH getActiveParameters() AS p-»
+		
+		// transfer the output parameters
+«FOREACH getActiveOutputParameters() AS p-»
 	«EXPAND FunctionModulePOJOParameterAfterCall FOR p-»
 «ENDFOREACH-»
 	}
@@ -305,7 +319,7 @@ public class «className» {
 «DEFINE FunctionModuleClasses(String packageName, String functionModuleName) FOR FunctionModulePOJORequestResponseMapping»
 «FILE getRequestFileName(packageName)» 
 package «packageName»;
-«EXPAND Imports FOR this»
+«EXPAND Imports FOR getModel()»
 /**
  * A class to model the input data of a RFC call to «functionModuleName». Use the setters to prepare 
  * the importing parameters, then invoke {@link #execute(JCoDestination)} to execute the call. This method
@@ -343,11 +357,18 @@ public class «requestClassName» {
 	 */
 	public «responseClassName» execute(JCoDestination destination) throws JCoException {
 		JCoFunction function = destination.getRepository().getFunction("«functionModuleName»"); //$NON-NLS-1$
-		// FIXME: set inactive parameters
+
+		// TODO enable disabling of parameters
+
+		// transfer the input parameters
 «FOREACH getActiveRequestParameters() AS p-»
 	«EXPAND FunctionModulePOJOParameterBeforeCall FOR p-»
 «ENDFOREACH-»
+
+		// perform the RFC call
 		function.execute(destination);
+
+		// create the response object and transfer the output parameters
 		«responseClassName» response = new «responseClassName»();
 «FOREACH getActiveResponseParameters() AS p-»
 	«EXPAND FunctionModulePOJOParameterAfterCallResponse FOR p-»
@@ -363,7 +384,7 @@ public class «requestClassName» {
 
 «FILE getResponseFileName(packageName)» 
 package «packageName»;
-«EXPAND Imports FOR this»
+«EXPAND Imports FOR getModel()»
 /**
  * A class to model the output data of a RFC call to «functionModuleName». See {@link «requestClassName»}
  * for instructions on how to obtain an instance of this class.
@@ -395,7 +416,9 @@ public class «responseClassName» {
 «REM» ============================================================================================= «ENDREM»
 
 «DEFINE FunctionModulePOJOParameterAttribute FOR FunctionModulePOJOParameterMapping-»
-«IF isTable()-»
+«IF external-»
+	private «externalClass.fullName» «attribute» = new «externalClass.fullName»();
+«ELSEIF isTable()-»
 	private «getJavaTypeName()» «attribute» = new ArrayList<«getElementTypeName()»>();
 «ELSE-»
 	private «getJavaTypeName()» «attribute»;
@@ -422,6 +445,7 @@ public class «responseClassName» {
 	}
 	
 «ENDDEFINE»
+
 
 «REM» ============================================================================================= «ENDREM»
 

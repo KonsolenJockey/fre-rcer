@@ -11,6 +11,27 @@
  */
 import mapping;
 
+// --- model hopping ------------------------------------------------------------------------------
+
+Structure getStructure(StructureMapping this) :
+	(Structure)eContainer;
+	
+Model getModel(Structure this) :
+	(Model)eContainer;
+	
+Model getModel(StructureMapping this) :
+	getStructure().getModel();	
+
+FunctionModule getFunctionModule(FunctionModuleMapping this) :
+	(FunctionModule)eContainer;
+	
+Model getModel(FunctionModule this) :
+	(Model)eContainer;
+	
+Model getModel(FunctionModuleMapping this) :
+	getFunctionModule().getModel();	
+
+
 // --- file names ---------------------------------------------------------------------------------
 
 String getFileName(StructurePOJOMapping structure, String packageName):
@@ -108,8 +129,20 @@ boolean isBoolean(FunctionModulePOJOChangingParameter parameter):
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 boolean isStructure(FunctionModulePOJOParameterMapping parameter):
-	parameter.structure != null;
+	false;
 	
+boolean isStructure(FunctionModulePOJOImportingParameter parameter):
+	parameter.structure;
+
+boolean isStructure(FunctionModulePOJOExportingParameter parameter):
+	parameter.structure;
+
+boolean isStructure(FunctionModulePOJOChangingParameter parameter):
+	parameter.structure;
+
+boolean isStructure(FunctionModulePOJOTablesParameter parameter):
+	false;
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 boolean isTable(FunctionModulePOJOParameterMapping parameter):
@@ -125,6 +158,40 @@ boolean isTable(FunctionModulePOJOChangingParameter parameter):
 	parameter.table;
 
 boolean isTable(FunctionModulePOJOTablesParameter parameter):
+	true;
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+boolean isInput(FunctionModulePOJOParameterMapping parameter):
+	false;
+	
+boolean isInput(FunctionModulePOJOImportingParameter parameter):
+	true;
+
+boolean isInput(FunctionModulePOJOExportingParameter parameter):
+	false;
+
+boolean isInput(FunctionModulePOJOChangingParameter parameter):
+	true;
+
+boolean isInput(FunctionModulePOJOTablesParameter parameter):
+	true;
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+boolean isOutput(FunctionModulePOJOParameterMapping parameter):
+	false;
+	
+boolean isOutput(FunctionModulePOJOImportingParameter parameter):
+	false;
+
+boolean isOutput(FunctionModulePOJOExportingParameter parameter):
+	true;
+
+boolean isOutput(FunctionModulePOJOChangingParameter parameter):
+	true;
+
+boolean isOutput(FunctionModulePOJOTablesParameter parameter):
 	true;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -150,24 +217,41 @@ String getElementTypeName(FunctionModulePOJOParameterMapping parameter):
 	"Object";
 
 String getElementTypeName(FunctionModulePOJOImportingParameter parameter):
-	(parameter.isStructure() ? ((StructurePOJOMapping)parameter.structure).name
-                             : parameter.type.getJavaTypeName() );
+	(parameter.external ? parameter.externalClass.fullName : 
+		(parameter.structure ? ((StructurePOJOMapping)parameter.structureMapping).name
+    	                         : parameter.type.getJavaTypeName() 
+    	 )
+   	);
 
 String getElementTypeName(FunctionModulePOJOExportingParameter parameter):
-	(parameter.isStructure() ? ((StructurePOJOMapping)parameter.structure).name
-                             : parameter.type.getJavaTypeName() );
+	(parameter.external ? parameter.externalClass.fullName : 
+		(parameter.structure ? ((StructurePOJOMapping)parameter.structureMapping).name
+        	                     : parameter.type.getJavaTypeName() 
+    	)
+    );    	                     
 
 String getElementTypeName(FunctionModulePOJOChangingParameter parameter):
-	(parameter.isStructure() ? ((StructurePOJOMapping)parameter.structure).name
-                             : parameter.type.getJavaTypeName() );
+	(parameter.external ? parameter.externalClass.fullName : 
+		(parameter.structure ? ((StructurePOJOMapping)parameter.structureMapping).name
+        	                     : parameter.type.getJavaTypeName() 
+		)
+	);                            
 
 String getElementTypeName(FunctionModulePOJOTablesParameter parameter):
-	((StructurePOJOMapping)parameter.structure).name;
+	(parameter.external ? parameter.externalClass.fullName : 
+		((StructurePOJOMapping)parameter.structureMapping).name
+	);
 
 // --- function module mapping --------------------------------------------------------------------
 
 List[FunctionModulePOJOParameterMapping] getActiveParameters(FunctionModulePOJOCallMapping mapping):
 	mapping.parameters.select(p|!p.inactive);
+
+List[FunctionModulePOJOParameterMapping] getActiveInputParameters(FunctionModulePOJOCallMapping mapping):
+	mapping.parameters.select(p|!p.inactive).select(p|p.isInput());
+
+List[FunctionModulePOJOParameterMapping] getActiveOutputParameters(FunctionModulePOJOCallMapping mapping):
+	mapping.parameters.select(p|!p.inactive).select(p|p.isOutput());
 
 List[FunctionModulePOJOParameterMapping] getActiveRequestParameters(FunctionModulePOJORequestResponseMapping mapping):
 	mapping.requestParameters.select(p|!p.inactive);
@@ -182,9 +266,11 @@ String getSetterName(FunctionModulePOJOParameterMapping parameter):
 	"set" + parameter.attribute.toFirstUpper();
 
 String getJavaTypeName(FunctionModulePOJOParameterMapping parameter):
-	(parameter.isTable() ? "List<" : "") + 
-	parameter.getElementTypeName() +
-	(parameter.isTable() ? ">" : ""); 
+ 	(parameter.external ? parameter.externalClass.fullName : (
+		(parameter.isTable() ? "List<" : "") + 
+		parameter.getElementTypeName() +
+		(parameter.isTable() ? ">" : "") 
+	)); 
 
 String getJCoGetterName(FunctionModulePOJOParameterMapping parameter):
 	"getValue";

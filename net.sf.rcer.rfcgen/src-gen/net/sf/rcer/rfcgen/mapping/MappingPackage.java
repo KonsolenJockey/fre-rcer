@@ -80,13 +80,22 @@ public interface MappingPackage extends EPackage
   int MODEL__PACKAGE_NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Imports</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODEL__IMPORTS = 1;
+
+  /**
    * The feature id for the '<em><b>Structures</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__STRUCTURES = 1;
+  int MODEL__STRUCTURES = 2;
 
   /**
    * The feature id for the '<em><b>Function Modules</b></em>' containment reference list.
@@ -95,7 +104,7 @@ public interface MappingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODEL__FUNCTION_MODULES = 2;
+  int MODEL__FUNCTION_MODULES = 3;
 
   /**
    * The number of structural features of the '<em>Model</em>' class.
@@ -104,7 +113,44 @@ public interface MappingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODEL_FEATURE_COUNT = 3;
+  int MODEL_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link net.sf.rcer.rfcgen.mapping.impl.ImportImpl <em>Import</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see net.sf.rcer.rfcgen.mapping.impl.ImportImpl
+   * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getImport()
+   * @generated
+   */
+  int IMPORT = 1;
+
+  /**
+   * The feature id for the '<em><b>Full Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPORT__FULL_NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPORT__NAME = 1;
+
+  /**
+   * The number of structural features of the '<em>Import</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPORT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link net.sf.rcer.rfcgen.mapping.impl.StructureImpl <em>Structure</em>}' class.
@@ -114,7 +160,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getStructure()
    * @generated
    */
-  int STRUCTURE = 1;
+  int STRUCTURE = 2;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -151,7 +197,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getStructureMapping()
    * @generated
    */
-  int STRUCTURE_MAPPING = 2;
+  int STRUCTURE_MAPPING = 3;
 
   /**
    * The number of structural features of the '<em>Structure Mapping</em>' class.
@@ -170,7 +216,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getStructurePOJOMapping()
    * @generated
    */
-  int STRUCTURE_POJO_MAPPING = 3;
+  int STRUCTURE_POJO_MAPPING = 4;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -207,7 +253,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getStructureFieldPOJOMapping()
    * @generated
    */
-  int STRUCTURE_FIELD_POJO_MAPPING = 4;
+  int STRUCTURE_FIELD_POJO_MAPPING = 5;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -271,7 +317,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getFunctionModule()
    * @generated
    */
-  int FUNCTION_MODULE = 5;
+  int FUNCTION_MODULE = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -308,7 +354,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getFunctionModuleMapping()
    * @generated
    */
-  int FUNCTION_MODULE_MAPPING = 6;
+  int FUNCTION_MODULE_MAPPING = 7;
 
   /**
    * The number of structural features of the '<em>Function Module Mapping</em>' class.
@@ -327,7 +373,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getFunctionModulePOJOMapping()
    * @generated
    */
-  int FUNCTION_MODULE_POJO_MAPPING = 7;
+  int FUNCTION_MODULE_POJO_MAPPING = 8;
 
   /**
    * The number of structural features of the '<em>Function Module POJO Mapping</em>' class.
@@ -346,7 +392,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getFunctionModulePOJOCallMapping()
    * @generated
    */
-  int FUNCTION_MODULE_POJO_CALL_MAPPING = 8;
+  int FUNCTION_MODULE_POJO_CALL_MAPPING = 9;
 
   /**
    * The feature id for the '<em><b>Class Name</b></em>' attribute.
@@ -383,7 +429,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getFunctionModulePOJORequestResponseMapping()
    * @generated
    */
-  int FUNCTION_MODULE_POJO_REQUEST_RESPONSE_MAPPING = 9;
+  int FUNCTION_MODULE_POJO_REQUEST_RESPONSE_MAPPING = 10;
 
   /**
    * The feature id for the '<em><b>Request Class Name</b></em>' attribute.
@@ -438,7 +484,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getFunctionModulePOJOParameterMapping()
    * @generated
    */
-  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING = 10;
+  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -459,22 +505,40 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE = 1;
 
   /**
-   * The feature id for the '<em><b>Structure</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE = 2;
-
-  /**
    * The feature id for the '<em><b>Attribute</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE = 3;
+  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE = 2;
+
+  /**
+   * The feature id for the '<em><b>Structure Mapping</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE_MAPPING = 3;
+
+  /**
+   * The feature id for the '<em><b>External</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__EXTERNAL = 4;
+
+  /**
+   * The feature id for the '<em><b>External Class</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__EXTERNAL_CLASS = 5;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -483,7 +547,7 @@ public interface MappingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT = 4;
+  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING__COMMENT = 6;
 
   /**
    * The number of structural features of the '<em>Function Module POJO Parameter Mapping</em>' class.
@@ -492,7 +556,7 @@ public interface MappingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT = 5;
+  int FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT = 7;
 
   /**
    * The meta object id for the '{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOImportingParameterImpl <em>Function Module POJO Importing Parameter</em>}' class.
@@ -502,7 +566,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getFunctionModulePOJOImportingParameter()
    * @generated
    */
-  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER = 11;
+  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -523,15 +587,6 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE;
 
   /**
-   * The feature id for the '<em><b>Structure</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE;
-
-  /**
    * The feature id for the '<em><b>Attribute</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -539,6 +594,33 @@ public interface MappingPackage extends EPackage
    * @ordered
    */
   int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
+
+  /**
+   * The feature id for the '<em><b>Structure Mapping</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__STRUCTURE_MAPPING = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE_MAPPING;
+
+  /**
+   * The feature id for the '<em><b>External</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__EXTERNAL = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__EXTERNAL;
+
+  /**
+   * The feature id for the '<em><b>External Class</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__EXTERNAL_CLASS = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__EXTERNAL_CLASS;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -559,13 +641,22 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TYPE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Structure</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 1;
+
+  /**
    * The feature id for the '<em><b>Table</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TABLE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 1;
+  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TABLE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Function Module POJO Importing Parameter</em>' class.
@@ -574,7 +665,7 @@ public interface MappingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER_FEATURE_COUNT = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 2;
+  int FUNCTION_MODULE_POJO_IMPORTING_PARAMETER_FEATURE_COUNT = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOExportingParameterImpl <em>Function Module POJO Exporting Parameter</em>}' class.
@@ -584,7 +675,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getFunctionModulePOJOExportingParameter()
    * @generated
    */
-  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER = 12;
+  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER = 13;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -605,15 +696,6 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE;
 
   /**
-   * The feature id for the '<em><b>Structure</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE;
-
-  /**
    * The feature id for the '<em><b>Attribute</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -621,6 +703,33 @@ public interface MappingPackage extends EPackage
    * @ordered
    */
   int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
+
+  /**
+   * The feature id for the '<em><b>Structure Mapping</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__STRUCTURE_MAPPING = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE_MAPPING;
+
+  /**
+   * The feature id for the '<em><b>External</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__EXTERNAL = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__EXTERNAL;
+
+  /**
+   * The feature id for the '<em><b>External Class</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__EXTERNAL_CLASS = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__EXTERNAL_CLASS;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -641,13 +750,22 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TYPE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Structure</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 1;
+
+  /**
    * The feature id for the '<em><b>Table</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TABLE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 1;
+  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TABLE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Function Module POJO Exporting Parameter</em>' class.
@@ -656,7 +774,7 @@ public interface MappingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER_FEATURE_COUNT = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 2;
+  int FUNCTION_MODULE_POJO_EXPORTING_PARAMETER_FEATURE_COUNT = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOChangingParameterImpl <em>Function Module POJO Changing Parameter</em>}' class.
@@ -666,7 +784,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getFunctionModulePOJOChangingParameter()
    * @generated
    */
-  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER = 13;
+  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER = 14;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -687,15 +805,6 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE;
 
   /**
-   * The feature id for the '<em><b>Structure</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE;
-
-  /**
    * The feature id for the '<em><b>Attribute</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -703,6 +812,33 @@ public interface MappingPackage extends EPackage
    * @ordered
    */
   int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
+
+  /**
+   * The feature id for the '<em><b>Structure Mapping</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__STRUCTURE_MAPPING = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE_MAPPING;
+
+  /**
+   * The feature id for the '<em><b>External</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__EXTERNAL = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__EXTERNAL;
+
+  /**
+   * The feature id for the '<em><b>External Class</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__EXTERNAL_CLASS = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__EXTERNAL_CLASS;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -723,13 +859,22 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__TYPE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Structure</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 1;
+
+  /**
    * The feature id for the '<em><b>Table</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__TABLE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 1;
+  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER__TABLE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Function Module POJO Changing Parameter</em>' class.
@@ -738,7 +883,7 @@ public interface MappingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER_FEATURE_COUNT = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 2;
+  int FUNCTION_MODULE_POJO_CHANGING_PARAMETER_FEATURE_COUNT = FUNCTION_MODULE_POJO_PARAMETER_MAPPING_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link net.sf.rcer.rfcgen.mapping.impl.FunctionModulePOJOTablesParameterImpl <em>Function Module POJO Tables Parameter</em>}' class.
@@ -748,7 +893,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getFunctionModulePOJOTablesParameter()
    * @generated
    */
-  int FUNCTION_MODULE_POJO_TABLES_PARAMETER = 14;
+  int FUNCTION_MODULE_POJO_TABLES_PARAMETER = 15;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -769,15 +914,6 @@ public interface MappingPackage extends EPackage
   int FUNCTION_MODULE_POJO_TABLES_PARAMETER__INACTIVE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE;
 
   /**
-   * The feature id for the '<em><b>Structure</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_MODULE_POJO_TABLES_PARAMETER__STRUCTURE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE;
-
-  /**
    * The feature id for the '<em><b>Attribute</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -785,6 +921,33 @@ public interface MappingPackage extends EPackage
    * @ordered
    */
   int FUNCTION_MODULE_POJO_TABLES_PARAMETER__ATTRIBUTE = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE;
+
+  /**
+   * The feature id for the '<em><b>Structure Mapping</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_TABLES_PARAMETER__STRUCTURE_MAPPING = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE_MAPPING;
+
+  /**
+   * The feature id for the '<em><b>External</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_TABLES_PARAMETER__EXTERNAL = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__EXTERNAL;
+
+  /**
+   * The feature id for the '<em><b>External Class</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_MODULE_POJO_TABLES_PARAMETER__EXTERNAL_CLASS = FUNCTION_MODULE_POJO_PARAMETER_MAPPING__EXTERNAL_CLASS;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -812,7 +975,7 @@ public interface MappingPackage extends EPackage
    * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getDataType()
    * @generated
    */
-  int DATA_TYPE = 15;
+  int DATA_TYPE = 16;
 
 
   /**
@@ -837,6 +1000,17 @@ public interface MappingPackage extends EPackage
   EAttribute getModel_PackageName();
 
   /**
+   * Returns the meta object for the containment reference list '{@link net.sf.rcer.rfcgen.mapping.Model#getImports <em>Imports</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Imports</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.Model#getImports()
+   * @see #getModel()
+   * @generated
+   */
+  EReference getModel_Imports();
+
+  /**
    * Returns the meta object for the containment reference list '{@link net.sf.rcer.rfcgen.mapping.Model#getStructures <em>Structures</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -857,6 +1031,38 @@ public interface MappingPackage extends EPackage
    * @generated
    */
   EReference getModel_FunctionModules();
+
+  /**
+   * Returns the meta object for class '{@link net.sf.rcer.rfcgen.mapping.Import <em>Import</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Import</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.Import
+   * @generated
+   */
+  EClass getImport();
+
+  /**
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.Import#getFullName <em>Full Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Full Name</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.Import#getFullName()
+   * @see #getImport()
+   * @generated
+   */
+  EAttribute getImport_FullName();
+
+  /**
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.Import#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.Import#getName()
+   * @see #getImport()
+   * @generated
+   */
+  EAttribute getImport_Name();
 
   /**
    * Returns the meta object for class '{@link net.sf.rcer.rfcgen.mapping.Structure <em>Structure</em>}'.
@@ -1168,17 +1374,6 @@ public interface MappingPackage extends EPackage
   EAttribute getFunctionModulePOJOParameterMapping_Inactive();
 
   /**
-   * Returns the meta object for the reference '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getStructure <em>Structure</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Structure</em>'.
-   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getStructure()
-   * @see #getFunctionModulePOJOParameterMapping()
-   * @generated
-   */
-  EReference getFunctionModulePOJOParameterMapping_Structure();
-
-  /**
    * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getAttribute <em>Attribute</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1188,6 +1383,39 @@ public interface MappingPackage extends EPackage
    * @generated
    */
   EAttribute getFunctionModulePOJOParameterMapping_Attribute();
+
+  /**
+   * Returns the meta object for the reference '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getStructureMapping <em>Structure Mapping</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Structure Mapping</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getStructureMapping()
+   * @see #getFunctionModulePOJOParameterMapping()
+   * @generated
+   */
+  EReference getFunctionModulePOJOParameterMapping_StructureMapping();
+
+  /**
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#isExternal <em>External</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>External</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#isExternal()
+   * @see #getFunctionModulePOJOParameterMapping()
+   * @generated
+   */
+  EAttribute getFunctionModulePOJOParameterMapping_External();
+
+  /**
+   * Returns the meta object for the reference '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getExternalClass <em>External Class</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>External Class</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getExternalClass()
+   * @see #getFunctionModulePOJOParameterMapping()
+   * @generated
+   */
+  EReference getFunctionModulePOJOParameterMapping_ExternalClass();
 
   /**
    * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOParameterMapping#getComment <em>Comment</em>}'.
@@ -1222,6 +1450,17 @@ public interface MappingPackage extends EPackage
   EAttribute getFunctionModulePOJOImportingParameter_Type();
 
   /**
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOImportingParameter#isStructure <em>Structure</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Structure</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOImportingParameter#isStructure()
+   * @see #getFunctionModulePOJOImportingParameter()
+   * @generated
+   */
+  EAttribute getFunctionModulePOJOImportingParameter_Structure();
+
+  /**
    * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOImportingParameter#isTable <em>Table</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1254,6 +1493,17 @@ public interface MappingPackage extends EPackage
   EAttribute getFunctionModulePOJOExportingParameter_Type();
 
   /**
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOExportingParameter#isStructure <em>Structure</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Structure</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOExportingParameter#isStructure()
+   * @see #getFunctionModulePOJOExportingParameter()
+   * @generated
+   */
+  EAttribute getFunctionModulePOJOExportingParameter_Structure();
+
+  /**
    * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOExportingParameter#isTable <em>Table</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1284,6 +1534,17 @@ public interface MappingPackage extends EPackage
    * @generated
    */
   EAttribute getFunctionModulePOJOChangingParameter_Type();
+
+  /**
+   * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#isStructure <em>Structure</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Structure</em>'.
+   * @see net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#isStructure()
+   * @see #getFunctionModulePOJOChangingParameter()
+   * @generated
+   */
+  EAttribute getFunctionModulePOJOChangingParameter_Structure();
 
   /**
    * Returns the meta object for the attribute '{@link net.sf.rcer.rfcgen.mapping.FunctionModulePOJOChangingParameter#isTable <em>Table</em>}'.
@@ -1358,6 +1619,14 @@ public interface MappingPackage extends EPackage
     EAttribute MODEL__PACKAGE_NAME = eINSTANCE.getModel_PackageName();
 
     /**
+     * The meta object literal for the '<em><b>Imports</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MODEL__IMPORTS = eINSTANCE.getModel_Imports();
+
+    /**
      * The meta object literal for the '<em><b>Structures</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1372,6 +1641,32 @@ public interface MappingPackage extends EPackage
      * @generated
      */
     EReference MODEL__FUNCTION_MODULES = eINSTANCE.getModel_FunctionModules();
+
+    /**
+     * The meta object literal for the '{@link net.sf.rcer.rfcgen.mapping.impl.ImportImpl <em>Import</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see net.sf.rcer.rfcgen.mapping.impl.ImportImpl
+     * @see net.sf.rcer.rfcgen.mapping.impl.MappingPackageImpl#getImport()
+     * @generated
+     */
+    EClass IMPORT = eINSTANCE.getImport();
+
+    /**
+     * The meta object literal for the '<em><b>Full Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IMPORT__FULL_NAME = eINSTANCE.getImport_FullName();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IMPORT__NAME = eINSTANCE.getImport_Name();
 
     /**
      * The meta object literal for the '{@link net.sf.rcer.rfcgen.mapping.impl.StructureImpl <em>Structure</em>}' class.
@@ -1626,20 +1921,36 @@ public interface MappingPackage extends EPackage
     EAttribute FUNCTION_MODULE_POJO_PARAMETER_MAPPING__INACTIVE = eINSTANCE.getFunctionModulePOJOParameterMapping_Inactive();
 
     /**
-     * The meta object literal for the '<em><b>Structure</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE = eINSTANCE.getFunctionModulePOJOParameterMapping_Structure();
-
-    /**
      * The meta object literal for the '<em><b>Attribute</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute FUNCTION_MODULE_POJO_PARAMETER_MAPPING__ATTRIBUTE = eINSTANCE.getFunctionModulePOJOParameterMapping_Attribute();
+
+    /**
+     * The meta object literal for the '<em><b>Structure Mapping</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION_MODULE_POJO_PARAMETER_MAPPING__STRUCTURE_MAPPING = eINSTANCE.getFunctionModulePOJOParameterMapping_StructureMapping();
+
+    /**
+     * The meta object literal for the '<em><b>External</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FUNCTION_MODULE_POJO_PARAMETER_MAPPING__EXTERNAL = eINSTANCE.getFunctionModulePOJOParameterMapping_External();
+
+    /**
+     * The meta object literal for the '<em><b>External Class</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION_MODULE_POJO_PARAMETER_MAPPING__EXTERNAL_CLASS = eINSTANCE.getFunctionModulePOJOParameterMapping_ExternalClass();
 
     /**
      * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
@@ -1668,6 +1979,14 @@ public interface MappingPackage extends EPackage
     EAttribute FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__TYPE = eINSTANCE.getFunctionModulePOJOImportingParameter_Type();
 
     /**
+     * The meta object literal for the '<em><b>Structure</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FUNCTION_MODULE_POJO_IMPORTING_PARAMETER__STRUCTURE = eINSTANCE.getFunctionModulePOJOImportingParameter_Structure();
+
+    /**
      * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1694,6 +2013,14 @@ public interface MappingPackage extends EPackage
     EAttribute FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__TYPE = eINSTANCE.getFunctionModulePOJOExportingParameter_Type();
 
     /**
+     * The meta object literal for the '<em><b>Structure</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FUNCTION_MODULE_POJO_EXPORTING_PARAMETER__STRUCTURE = eINSTANCE.getFunctionModulePOJOExportingParameter_Structure();
+
+    /**
      * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1718,6 +2045,14 @@ public interface MappingPackage extends EPackage
      * @generated
      */
     EAttribute FUNCTION_MODULE_POJO_CHANGING_PARAMETER__TYPE = eINSTANCE.getFunctionModulePOJOChangingParameter_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Structure</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FUNCTION_MODULE_POJO_CHANGING_PARAMETER__STRUCTURE = eINSTANCE.getFunctionModulePOJOChangingParameter_Structure();
 
     /**
      * The meta object literal for the '<em><b>Table</b></em>' attribute feature.

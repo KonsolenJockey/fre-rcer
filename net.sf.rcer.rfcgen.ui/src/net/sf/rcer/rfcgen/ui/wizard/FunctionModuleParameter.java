@@ -31,6 +31,7 @@ public class FunctionModuleParameter extends RepositoryDataObject {
 	private String comment;
 	private boolean isStructure;
 	private boolean isTable;
+	private boolean isMessage;
 	
 	/**
 	 * Default constructor.
@@ -45,12 +46,13 @@ public class FunctionModuleParameter extends RepositoryDataObject {
 	 * @param comment
 	 * @param isStructure
 	 * @param isTable
+	 * @param isBAPIMessage 
 	 */
 	public FunctionModuleParameter(FunctionModuleInfo functionModule,
 			boolean importing, boolean exporting, boolean changing,
 			boolean tables, String parameterName, String javaType,
 			String attributeName, String comment, boolean isStructure,
-			boolean isTable) {
+			boolean isTable, boolean isBAPIMessage) {
 		super();
 		this.functionModule = functionModule;
 		this.importing = importing;
@@ -63,6 +65,7 @@ public class FunctionModuleParameter extends RepositoryDataObject {
 		this.comment = comment;
 		this.isStructure = isStructure;
 		this.isTable = isTable;
+		this.isMessage = isBAPIMessage;
 	}
 
 	/**
@@ -141,6 +144,13 @@ public class FunctionModuleParameter extends RepositoryDataObject {
 	 */
 	public boolean isTable() {
 		return isTable;
+	}
+	
+	/**
+	 * @return whether the parameter is a BAPIRET2 parameter
+	 */
+	public boolean isMessage() {
+		return isMessage;
 	}
 	
 	/**

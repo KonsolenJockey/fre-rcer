@@ -40,6 +40,15 @@ package "«packageName»"
 «REM» ============================================================================================= «ENDREM»
 
 «DEFINE dynamicMapping FOR ExtendedRFCMappingProjectInfo»
+«IF foundBAPIMessageStructure()-»
+import net.sf.rcer.conn.tools.BAPIMessage as BAPIMessage;
+«ENDIF-»
+«IF foundBAPIMessageTable()-»
+import net.sf.rcer.conn.tools.BAPIMessages as BAPIMessages;
+«ENDIF-»
+«IF foundBAPIMessageStructure() || foundBAPIMessageTable()-»
+
+«ENDIF-»
 «FOREACH structures AS s-»
 «EXPAND structure FOR s»
 «ENDFOREACH-»
@@ -108,7 +117,11 @@ function module "«functionModuleName»" {
 
 «DEFINE importParameters FOR FunctionModuleInfo-»
 «FOREACH parameters.select(p|p.importing) AS p-»
-«IF p.table-»
+«IF p.message && p.table-»
+		importing table     «p.paddedParameterName» = external BAPIMessages «p.paddedAttributeName» comment "«p.comment»";
+«ELSEIF p.message && p.structure-»
+		importing structure «p.paddedParameterName» = external BAPIMessage «p.paddedAttributeName» comment "«p.comment»";
+«ELSEIF p.table-»
 		importing table     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ELSEIF p.structure-»
 		importing structure «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
@@ -122,7 +135,11 @@ function module "«functionModuleName»" {
 
 «DEFINE exportParameters FOR FunctionModuleInfo-»
 «FOREACH parameters.select(p|p.exporting) AS p-»
-«IF p.table-»
+«IF p.message && p.table-»
+		exporting table     «p.paddedParameterName» = external BAPIMessages «p.paddedAttributeName» comment "«p.comment»";
+«ELSEIF p.message && p.structure-»
+		exporting structure «p.paddedParameterName» = external BAPIMessage «p.paddedAttributeName» comment "«p.comment»";
+«ELSEIF p.table-»
 		exporting table     «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ELSEIF p.structure-»
 		exporting structure «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
@@ -136,7 +153,11 @@ function module "«functionModuleName»" {
 
 «DEFINE changeParameters FOR FunctionModuleInfo-»
 «FOREACH parameters.select(p|p.changing) AS p-»
-«IF p.table-»
+«IF p.message && p.table-»
+		changing table      «p.paddedParameterName» = external BAPIMessages «p.paddedAttributeName» comment "«p.comment»";
+«ELSEIF p.message && p.structure-»
+		changing structure  «p.paddedParameterName» = external BAPIMessage «p.paddedAttributeName» comment "«p.comment»";
+«ELSEIF p.table-»
 		changing table      «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
 «ELSEIF p.structure-»
 		changing structure  «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
@@ -150,7 +171,11 @@ function module "«functionModuleName»" {
 
 «DEFINE tableParameters FOR FunctionModuleInfo-»
 «FOREACH parameters.select(p|p.tables) AS p-»
+«IF p.message-»
+		table               «p.paddedParameterName» = external BAPIMessages «p.paddedAttributeName» comment "«p.comment»";
+«ELSE-»
 		table               «p.paddedParameterName» = «p.paddedJavaType» «p.paddedAttributeName» comment "«p.comment»";
+«ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE»
 
