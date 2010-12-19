@@ -1,6 +1,6 @@
 «REM»
  *
- * Copyright (c) 2009 The RCER Development Team.
+ * Copyright (c) 2009, 2010 The RCER Development Team.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -427,13 +427,13 @@ public class «responseClassName» {
 
 «DEFINE FunctionModulePOJOParameterBeforeCall FOR FunctionModulePOJOParameterMapping-»
 «IF isTable()-»
-		«getElementTypeName()».toTable(«attribute», function.getImportParameterList().getTable("«name»")); //$NON-NLS-1$
+		«getElementTypeName()».toTable(«attribute», function.«getJCoAccessor()».getTable("«name»")); //$NON-NLS-1$
 «ELSEIF isStructure()-»
-		«attribute».toStructure(function.getImportParameterList().getStructure("«name»")); //$NON-NLS-1$
+		«attribute».toStructure(function.«getJCoAccessor()».getStructure("«name»")); //$NON-NLS-1$
 «ELSEIF isBoolean()-»
-		function.getImportParameterList().setValue("«name»", «attribute» ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		function.«getJCoAccessor()».setValue("«name»", «attribute» ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 «ELSE-»
-		function.getImportParameterList().setValue("«name»", «attribute»); //$NON-NLS-1$
+		function.«getJCoAccessor()».setValue("«name»", «attribute»); //$NON-NLS-1$
 «ENDIF-»
 «ENDDEFINE»
 
@@ -441,13 +441,13 @@ public class «responseClassName» {
 
 «DEFINE FunctionModulePOJOParameterAfterCall FOR FunctionModulePOJOParameterMapping-»
 «IF isTable()-»
-		«attribute» = «getElementTypeName()».fromTable(function.getExportParameterList().getTable("«name»")); //$NON-NLS-1$
+		«attribute» = «getElementTypeName()».fromTable(function.«getJCoAccessor()».getTable("«name»")); //$NON-NLS-1$
 «ELSEIF isStructure()-»
-		«attribute» = new «getJavaTypeName()»(function.getExportParameterList().getStructure("«name»")); //$NON-NLS-1$
+		«attribute» = new «getJavaTypeName()»(function.«getJCoAccessor()».getStructure("«name»")); //$NON-NLS-1$
 «ELSEIF isBoolean()-»
-		«attribute» = function.getExportParameterList().getString("«name»").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
+		«attribute» = function.«getJCoAccessor()».getString("«name»").equalsIgnoreCase("X"); //$NON-NLS-1$ //$NON-NLS-2$
 «ELSE-»
-		«attribute» = function.getExportParameterList().«getJCoGetterName()»("«name»"); //$NON-NLS-1$
+		«attribute» = function.«getJCoAccessor()».«getJCoGetterName()»("«name»"); //$NON-NLS-1$
 «ENDIF-»
 «ENDDEFINE»
 
@@ -455,12 +455,12 @@ public class «responseClassName» {
 
 «DEFINE FunctionModulePOJOParameterAfterCallResponse FOR FunctionModulePOJOParameterMapping-»
 «IF isTable()-»
-		response.«getSetterName()»(«getElementTypeName()».fromTable(function.getExportParameterList().getTable("«name»"))); //$NON-NLS-1$
+		response.«getSetterName()»(«getElementTypeName()».fromTable(function.«getJCoAccessor()».getTable("«name»"))); //$NON-NLS-1$
 «ELSEIF isStructure()-»
-		response.«getSetterName()»(new «getJavaTypeName()»(function.getExportParameterList().getStructure("«name»"))); //$NON-NLS-1$
+		response.«getSetterName()»(new «getJavaTypeName()»(function.«getJCoAccessor()».getStructure("«name»"))); //$NON-NLS-1$
 «ELSEIF isBoolean()-»
-		response.«getSetterName()»(function.getExportParameterList().getString("«name»").equalsIgnoreCase("X")); //$NON-NLS-1$ //$NON-NLS-2$
+		response.«getSetterName()»(function.«getJCoAccessor()».getString("«name»").equalsIgnoreCase("X")); //$NON-NLS-1$ //$NON-NLS-2$
 «ELSE-»
-		response.«getSetterName()»(function.getExportParameterList().«getJCoGetterName()»("«name»")); //$NON-NLS-1$
+		response.«getSetterName()»(function.«getJCoAccessor()».«getJCoGetterName()»("«name»")); //$NON-NLS-1$
 «ENDIF-»
 «ENDDEFINE»
