@@ -3,19 +3,10 @@ package net.sf.rcer.rfcgen.ui.wizard;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
 import java.text.MessageFormat;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoException;
-import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoTable;
 

@@ -4,8 +4,8 @@
  */
 package net.sf.rcer.rfcgen.ui;
 
-import org.eclipse.xtext.ui.DefaultUiModule;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.DefaultUiModule;
 
 /**
  * Manual modifications go to {net.sf.rcer.rfcgen.ui.RFCMappingUiModule}

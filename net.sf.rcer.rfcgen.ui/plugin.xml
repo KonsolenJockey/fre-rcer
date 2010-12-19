@@ -64,7 +64,7 @@
             class="net.sf.rcer.rfcgen.ui.RFCMappingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="net.sf.rcer.rfcgen.RFCMapping"
             name="%preferences.root.name"
-            category="net.sf.rcer.rfcgen.conn.ui.preferences.TopLevelPreferencePage">
+            category="net.sf.rcer.conn.ui.preferences.TopLevelPreferencePage">
             <keywordReference id="net.sf.rcer.rfcgen.ui.keyword_RFCMapping"/>
         </page>
         <page
