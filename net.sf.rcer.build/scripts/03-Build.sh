@@ -28,10 +28,12 @@ export ECLIPSE_HOME=${RCER_BUILD_HOME}/base/eclipse
 ant -buildfile javadoc.xml 
 
 echo "Launching antRunner..."
+export LAUNCHER=`ls ${RCER_BUILD_HOME}/base/eclipse/plugins/org.eclipse.equinox.launcher_*.jar`
+export BUILDFILEDIR=`ls -d ${RCER_BUILD_HOME}/base/eclipse/plugins/org.eclipse.pde.build_*`
 cd ${RCER_BUILD_HOME}/build
-java -jar ${RCER_BUILD_HOME}/base/eclipse/plugins/org.eclipse.equinox.launcher_1.1.0.v20100507.jar \
+java -jar ${LAUNCHER} \
      -application org.eclipse.ant.core.antRunner \
-     -buildfile ${RCER_BUILD_HOME}/base/eclipse/plugins/org.eclipse.pde.build_3.6.0.v20100603/scripts/build.xml \
+     -buildfile ${BUILDFILEDIR}/scripts/build.xml \
      -Dbuilder=${RCER_BUILD_HOME}/config \
      -Dbase=${RCER_BUILD_HOME}/base \
      -DbuildDirectory=${RCER_BUILD_HOME}/build \
