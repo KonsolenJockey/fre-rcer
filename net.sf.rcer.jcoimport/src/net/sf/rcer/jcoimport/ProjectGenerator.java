@@ -156,7 +156,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 			if (settings.isWin64x86FragmentSelected())  {
 				createFragmentProject(monitor, settings.getWin64x86FileName(), 
 						IProjectNames.FRAGMENT_WINDOWS_64X86,
-						"sapjco3.dll", Messages.ProjectGenerator_Win64x86Description, "(& (osgi.os=win32) (osgi.arch=x86-64))"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						"sapjco3.dll", Messages.ProjectGenerator_Win64x86Description, "(& (osgi.os=win32) (osgi.arch=x86_64))"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
@@ -177,7 +177,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 			if (settings.isLinux64x86FragmentSelected())  {
 				createFragmentProject(monitor, settings.getLinux64x86FileName(), 
 						IProjectNames.FRAGMENT_LINUX_64X86,
-						"libsapjco3.so", Messages.ProjectGenerator_Linux64x86Description, "(& (osgi.os=linux) (osgi.arch=x86-64))"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						"libsapjco3.so", Messages.ProjectGenerator_Linux64x86Description, "(& (osgi.os=linux) (osgi.arch=x86_64))"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
@@ -191,7 +191,7 @@ public class ProjectGenerator implements IRunnableWithProgress {
 			if (settings.isDarwin64FragmentSelected())  {
 				createFragmentProject(monitor, settings.getDarwin64FileName(), 
 						IProjectNames.FRAGMENT_DARWIN_64,
-						"libsapjco3.jnilib", Messages.ProjectGenerator_Darwin64Description, "(& (osgi.os=macosx) (osgi.arch=x86-64))"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						"libsapjco3.jnilib", Messages.ProjectGenerator_Darwin64Description, "(& (osgi.os=macosx) (osgi.arch=x86_64))"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 			if (monitor.isCanceled()) throw new InterruptedException();
 
