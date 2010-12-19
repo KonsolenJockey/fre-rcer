@@ -11,18 +11,21 @@
  */
 package net.sf.rcer.rfcgen.ui.wizard;
 
+import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -36,7 +39,6 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ListSelectionDialog;
 
-import com.sap.conn.jco.AbapException;
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoFunctionTemplate;
@@ -121,10 +123,24 @@ public class FunctionModuleSelectionPage extends WizardPage {
 			try {
 				if (name.contains("*")) {
 					// search for function modules using the pattern
-					FunctionModuleSearchCall searchCall = new FunctionModuleSearchCall();
+					// This might take more than a few seconds, so show a progress bar...
+					final FunctionModuleSearchCall searchCall = new FunctionModuleSearchCall();
 					searchCall.setFunctionName(name);
 					searchCall.setLanguage(destination.getLanguage());
-					searchCall.execute(destination);
+					
+					getContainer().run(true, false, new IRunnableWithProgress() {
+						public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+							monitor.beginTask("Searching for function modules...", IProgressMonitor.UNKNOWN);
+							try {
+								searchCall.execute(destination);
+							} catch (JCoException e) {
+								throw new InvocationTargetException(e);
+							} finally {
+							monitor.done();
+							}
+						}
+					});
+					
 					if (searchCall.getFunctions().isEmpty()) {
 						final String message = MessageFormat.format(
 								"No function module mathching the search pattern {0} was found.", name);
@@ -149,24 +165,40 @@ public class FunctionModuleSelectionPage extends WizardPage {
 								new ArrayContentProvider(), labelProvider, "Select the function modules to add.");
 						dlg.setTitle("Add Function Modules");
 						if (dlg.open() == ListSelectionDialog.OK) {
-							for (Object obj: dlg.getResult()) {
-								if (obj instanceof FunctionModuleDescription) {
-									FunctionModuleDescription desc = (FunctionModuleDescription) obj;
-									JCoFunctionTemplate functionModule = null;
-									try {
-										functionModule = destination.getRepository().getFunctionTemplate(desc.getFunctionName());
-									} catch (AbapException e) {
-										final String message = MessageFormat.format(
-												"Unable to read the interface structure of function module {0}.", desc.getFunctionName());
-										ErrorDialog.openError(getShell(), "RFC Mapping Wizard", message, 
-												new Status(IStatus.ERROR, PLUGIN_ID, e.getMessage(), e));
+							final Object[] res = dlg.getResult();
+							getContainer().run(true, true, new IRunnableWithProgress() {
+								public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+									monitor.beginTask("Reading interface of function module:", res.length);
+									for (Object obj: res) {
+										if (monitor.isCanceled()) {
+											throw new InterruptedException();
+										}
+										if (obj instanceof FunctionModuleDescription) {
+											final FunctionModuleDescription desc = (FunctionModuleDescription) obj;
+											monitor.subTask(desc.getFunctionName());
+											JCoFunctionTemplate functionModule = null;
+											try {
+												functionModule = destination.getRepository().getFunctionTemplate(desc.getFunctionName());
+											} catch (final JCoException e) {
+												getShell().getDisplay().syncExec(new Runnable() {
+													public void run() {
+														final String message = MessageFormat.format(
+																"Unable to read the interface structure of function module {0}.", desc.getFunctionName());
+														ErrorDialog.openError(getShell(), "RFC Mapping Wizard", message, 
+																new Status(IStatus.ERROR, PLUGIN_ID, e.getMessage(), e));
+													}
+												});
+											}
+											if (functionModule != null) {
+												selectedFunctionModules.put(desc.getFunctionName(), functionModule);
+												monitor.worked(1);
+											}									
+										}
 									}
-									if (functionModule != null) {
-										selectedFunctionModules.put(desc.getFunctionName(), functionModule);
-										updateList();
-									}									
+									monitor.done();
 								}
-							}
+							});
+
 							updateList();
 						}
 					}
@@ -184,6 +216,12 @@ public class FunctionModuleSelectionPage extends WizardPage {
 					}
 				}
 			} catch (JCoException e) {
+				ErrorDialog.openError(getShell(), "RFC Mapping Wizard", e.getMessage(), 
+						new Status(IStatus.ERROR, PLUGIN_ID, e.getMessage(), e));
+			} catch (InvocationTargetException e) {
+				ErrorDialog.openError(getShell(), "RFC Mapping Wizard", e.getCause().getMessage(), 
+						new Status(IStatus.ERROR, PLUGIN_ID, e.getCause().getMessage(), e.getCause()));
+			} catch (InterruptedException e) {
 				ErrorDialog.openError(getShell(), "RFC Mapping Wizard", e.getMessage(), 
 						new Status(IStatus.ERROR, PLUGIN_ID, e.getMessage(), e));
 			}

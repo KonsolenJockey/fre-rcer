@@ -11,9 +11,13 @@
  */
 package net.sf.rcer.rfcgen.ui.wizard;
 
+import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
+
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Display;
 
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
@@ -129,7 +133,15 @@ public class ExtendedRFCMappingProjectInfo extends RFCMappingProjectInfo {
 					if (iface.isStructure(pos)) {
 						addStructure(repository.getStructureDefinition(iface.getRecordTypeName(pos)));
 					} else if (iface.isTable(pos)) {
-						addStructure(iface.getRecordMetaData(pos));
+						final JCoRecordMetaData metadata = iface.getRecordMetaData(pos);
+						if (metadata != null) {
+							addStructure(metadata); 
+						} else {
+							MessageDialog.openWarning(Display.getCurrent().getActiveShell(), "RFC Mapping Wizard", 
+									MessageFormat
+									.format("The parameter {0} of the function module {1} seems to an importing, exporting or changing parameter that is be based on a table type. This is not supported at the moment. This parameter will be skipped.",
+											iface.getName(pos), function.getName()));
+						}
 					}
 				}
 				addFunctionModule(function, iface);
@@ -169,14 +181,19 @@ public class ExtendedRFCMappingProjectInfo extends RFCMappingProjectInfo {
 			for (int pos = 0; pos < iface.getFieldCount(); pos++) {
 				String javaType = "";
 				if (iface.isStructure(pos) || iface.isTable(pos)) {
-					javaType = structures.get(iface.getRecordTypeName(pos)).getClassName();
+					final String typeName = iface.getRecordTypeName(pos);
+					if (structures.containsKey(typeName)) {
+						javaType = structures.get(typeName).getClassName();
+					}
 				} else {
 					javaType = removeStandardPackages(iface.getClassNameOfField(pos));
 				}
-				info.addParameter(iface.isImport(pos), iface.isExport(pos), iface.isChanging(pos), iface.isTable(pos), 
-						iface.getName(pos), javaType, iface.getName(pos), 
-						iface.getDescription(pos) == null ? "" : iface.getDescription(pos).replaceAll("\"", "'"), 
-								iface.isStructure(pos), iface.isTable(pos)); // TODO: isTable cannot be used for importing / exporting / changing params
+				if (javaType.length() != 0) {
+					info.addParameter(iface.isImport(pos), iface.isExport(pos), iface.isChanging(pos), iface.isTable(pos), 
+							iface.getName(pos), javaType, iface.getName(pos), 
+							iface.getDescription(pos) == null ? "" : iface.getDescription(pos).replaceAll("\"", "'"), 
+									iface.isStructure(pos), iface.isTable(pos)); // TODO: isTable cannot be used for importing / exporting / changing params
+				}
 			}
 			functions.put(function.getName(), info);
 		}
