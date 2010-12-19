@@ -46,9 +46,29 @@ public class BAPIMessage implements IStatus {
 	private BigInteger rowNumber;
 	private String fieldName;
 	private String logicalSystem;
-	
-	private int severity;
 
+	private int severity;
+	
+	/**
+	 * Default constructor.
+	 */
+	public BAPIMessage() {
+		this.type = "S";
+		this.messageID = "";
+		this.messageNumber = 0;
+		this.messageText = "";
+		this.logNumber = "";
+		this.logMessageNumber = BigInteger.ZERO;
+		this.messageVariable1 = "";
+		this.messageVariable2 = "";
+		this.messageVariable3 = "";
+		this.messageVariable4 = "";
+		this.parameter = "";
+		this.rowNumber = BigInteger.ZERO;
+		this.fieldName = "";
+		this.logicalSystem = "";
+	}
+	
 	/**
 	 * Creates an instance based on a BAPIRET2 table line.
 	 * @param record
@@ -91,7 +111,7 @@ public class BAPIMessage implements IStatus {
 			// default severity to warnings to catch all unknown messages
 			this.severity = WARNING;
 		}
-		
+
 	}
 
 	/**
@@ -255,6 +275,51 @@ public class BAPIMessage implements IStatus {
 	 */
 	public boolean matches(int severityMask) {
 		return (severity & severityMask) != 0;
+	}
+
+	/**
+	 * Writes the contents of this message back into a BAPIRET2 record.
+	 * @param record
+	 */
+	public void toStructure(JCoRecord record) {
+		// ensure this is a BAPIRET2 structure
+		final String structureName = record.getMetaData().getName(); 
+		if (!structureName.equals("BAPIRET2")) { //$NON-NLS-1$
+			throw new UnsupportedOperationException(
+					MessageFormat.format(Messages.BAPIMessage_ErrorUnsupportedStructure, structureName));
+		}
+
+		// determine the severity
+		switch (this.severity) {
+		case ERROR:
+			this.type = "E";
+			break;
+		case WARNING:
+			this.type = "W";
+			break;
+		case INFO:
+			this.type = "I";
+			break;
+		case OK:
+			this.type = "S";
+			break;
+		}
+
+		// copy the data to the structure
+		record.setValue("TYPE", this.type); //$NON-NLS-1$
+		record.setValue("ID", this.messageID); //$NON-NLS-1$
+		record.setValue("NUMBER", this.messageNumber); //$NON-NLS-1$
+		record.setValue("MESSAGE", this.messageText); //$NON-NLS-1$
+		record.setValue("LOG_NO", this.logNumber); //$NON-NLS-1$
+		record.setValue("LOG_MSG_NO", this.logMessageNumber); //$NON-NLS-1$
+		record.setValue("MESSAGE_V1", this.messageVariable1); //$NON-NLS-1$
+		record.setValue("MESSAGE_V2", this.messageVariable2); //$NON-NLS-1$
+		record.setValue("MESSAGE_V3", this.messageVariable3); //$NON-NLS-1$
+		record.setValue("MESSAGE_V4", this.messageVariable4); //$NON-NLS-1$
+		record.setValue("PARAMETER", this.parameter); //$NON-NLS-1$
+		record.setValue("ROW", this.rowNumber); //$NON-NLS-1$
+		record.setValue("FIELD", this.fieldName); //$NON-NLS-1$
+		record.setValue("SYSTEM", this.logicalSystem); //$NON-NLS-1$
 	}
 
 }

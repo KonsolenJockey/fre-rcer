@@ -15,6 +15,7 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.Vector;
 
+import net.sf.rcer.conn.Activator;
 import net.sf.rcer.conn.Messages;
 
 import org.eclipse.core.runtime.IStatus;
@@ -36,6 +37,13 @@ public class BAPIMessages extends MultiStatus {
 
 	private List<BAPIMessage> messages = new Vector<BAPIMessage>();
 
+	/**
+	 * Default constructor to create an empty message list.
+	 */
+	public BAPIMessages() {
+		super(Activator.PLUGIN_ID, 0, "", null);
+	}
+	
 	/**
 	 * Constructor to create BAPIMessages instance from a table of BAPIRET2 lines.
 	 * @param pluginId the unique identifier of the relevant plug-in
@@ -70,4 +78,27 @@ public class BAPIMessages extends MultiStatus {
 		return messages;
 	}
 	
+	/**
+	 * Creates a {@link BAPIMessages} instance from a JCo table. This method is used by the
+	 * generated RFC mapping classes. 
+	 * @param messageTable a {@link JCoTable} containing BAPIRET2 messages
+	 * @return the corresponding {@link BAPIMessages} instance
+	 */
+	public static BAPIMessages fromTable(JCoTable messageTable) {
+		return new BAPIMessages(Activator.PLUGIN_ID, 0, "", messageTable);
+	}
+	
+	/**
+	 * Transfers the contents of the message list to the JCo table. This method is used by the
+	 * generated RFC mapping classes.
+	 * @param messages the {@link BAPIMessages} instance containing the messages
+	 * @param messageTable the {@link JCoTable} to fill
+	 */
+	public static void toTable(BAPIMessages messages, JCoTable messageTable) {
+		messageTable.clear();
+		for (final BAPIMessage message: messages.getMessages()) {
+			messageTable.appendRow();
+			message.toStructure(messageTable);
+		}
+	}
 }
