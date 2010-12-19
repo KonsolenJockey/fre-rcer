@@ -12,7 +12,11 @@
 package net.sf.rcer.conn.ui.status;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 
 import net.sf.rcer.conn.connections.ConnectionException;
@@ -160,7 +164,20 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 			MenuItem itemConnect = new MenuItem(menu, SWT.CASCADE);
 			itemConnect.setText(Messages.ConnectionStatusDisplay_ConnectMenu);
 			Menu menuConnect = new Menu(getWorkbenchWindow().getShell(), SWT.DROP_DOWN);
-			for (IConnectionData connectionData: registeredConnections) {
+			
+			// create a sorted list of connections to be a bit more user friendly
+			List<IConnectionData> sortedConnections = new ArrayList<IConnectionData>(registeredConnections.size());
+			sortedConnections.addAll(registeredConnections);
+			Collections.sort(sortedConnections, new Comparator<IConnectionData>() {
+				/* (non-Javadoc)
+				 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+				 */
+				public int compare(IConnectionData arg0, IConnectionData arg1) {
+					return arg0.getSystemID().compareTo(arg1.getSystemID());
+				}
+			});
+			
+			for (IConnectionData connectionData: sortedConnections) {
 				MenuItem item = new MenuItem(menuConnect, SWT.PUSH);
 				item.setText(connectionData.toString());
 				item.setData(connectionData);
@@ -190,7 +207,20 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 			MenuItem itemSelectPrimary = new MenuItem(menu, SWT.CASCADE);
 			itemSelectPrimary.setText(Messages.ConnectionStatusDisplay_SelectPrimaryConnectionItem);
 			Menu menuSelectPrimary = new Menu(getWorkbenchWindow().getShell(), SWT.DROP_DOWN);
-			for (IConnection connection: activeConnections) {
+			
+			// create a sorted list of connections to be a bit more user friendly
+			List<IConnection> sortedConnections = new ArrayList<IConnection>(activeConnections.size());
+			sortedConnections.addAll(activeConnections);
+			Collections.sort(sortedConnections, new Comparator<IConnection>() {
+				/* (non-Javadoc)
+				 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+				 */
+				public int compare(IConnection arg0, IConnection arg1) {
+					return arg0.getSystemID().compareTo(arg1.getSystemID());
+				}
+			});
+			
+			for (IConnection connection: sortedConnections) {
 				if (!ConnectionManager.getInstance().isPrimaryConnection(connection)) { 
 					MenuItem itemConnectSingle = new MenuItem(menuSelectPrimary, SWT.PUSH);
 					itemConnectSingle.setText(connection.toString());
@@ -239,7 +269,20 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 			MenuItem itemDisconnectMultiple = new MenuItem(menu, SWT.CASCADE);
 			itemDisconnectMultiple.setText(Messages.ConnectionStatusDisplay_DisconnectMenu);
 			Menu menuDisconnectMultiple = new Menu(getWorkbenchWindow().getShell(), SWT.DROP_DOWN);
-			for (IConnectionData connection: activeConnections) {
+			
+			// create a sorted list of connections to be a bit more user friendly
+			List<IConnectionData> sortedConnections = new ArrayList<IConnectionData>(activeConnections.size());
+			sortedConnections.addAll(activeConnections);
+			Collections.sort(sortedConnections, new Comparator<IConnectionData>() {
+				/* (non-Javadoc)
+				 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+				 */
+				public int compare(IConnectionData arg0, IConnectionData arg1) {
+					return arg0.getSystemID().compareTo(arg1.getSystemID());
+				}
+			});
+			
+			for (IConnectionData connection: sortedConnections) {
 				MenuItem itemDisconnectSingle = new MenuItem(menuDisconnectMultiple, SWT.PUSH);
 				itemDisconnectSingle.setText(connection.toString());
 				itemDisconnectSingle.setData(connection);
