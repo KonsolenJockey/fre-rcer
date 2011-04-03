@@ -174,7 +174,11 @@ public class «name» {
 			targetStructure.clear();
 		}
 «FOREACH getActiveFields() AS f-»
+	«IF f.type == DataType::BOOLEAN-»
+		targetStructure.setValue("«f.name»", this.«f.attribute» ? "X" : " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	«ELSE-»
 		targetStructure.setValue("«f.name»", this.«f.attribute»); //$NON-NLS-1$
+	«ENDIF-»
 «ENDFOREACH-»
 	}
 
