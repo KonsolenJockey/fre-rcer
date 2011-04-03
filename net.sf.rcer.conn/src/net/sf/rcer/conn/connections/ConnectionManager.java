@@ -442,6 +442,18 @@ public class ConnectionManager  {
 	}
 
 	/**
+	 * @return the connection object of the primary connection, or <code>null</code> 
+	 * if no connection is active
+	 */
+	public IConnection getPrimaryConnection() {
+		if (primaryConnectionID == null) {
+			return null;
+		}
+		ICredentials credentials = connections.get(primaryConnectionID);
+		return credentials == null ? null : credentials.getConnection();
+	}
+
+	/**
 	 * @return the connection ID (destination name) of the primary connection, or <code>null</code> 
 	 * if no connection is active
 	 */
