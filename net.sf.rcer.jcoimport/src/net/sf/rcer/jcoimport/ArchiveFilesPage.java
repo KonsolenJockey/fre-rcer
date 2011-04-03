@@ -41,7 +41,7 @@ import org.eclipse.swt.widgets.Text;
 public class ArchiveFilesPage extends WizardPage {
 
 	private ProjectGeneratorSettings generatorSettings;
-	
+
 	private Text win32FilenameText;
 	private Text win64IAFilenameText;
 	private Text win64x86FilenameText;
@@ -86,7 +86,17 @@ public class ArchiveFilesPage extends WizardPage {
 			 * @see org.eclipse.swt.events.ModifyListener#modifyText(org.eclipse.swt.events.ModifyEvent)
 			 */
 			public void modifyText(ModifyEvent e) {
-				if ((win32FilenameText.getText().length() == 0) && 
+				if ((win32FilenameText == null) || 
+						(win64IAFilenameText == null) || 
+						(win64x86FilenameText == null) || 
+						(linux32FilenameText == null) || 
+						(linux64IAFilenameText == null) || 
+						(linux64x86FilenameText == null) || 
+						(darwin32FilenameText == null) || 
+						(darwin64FilenameText == null) ||
+						(iDocFilenameText == null)) {
+					setPageComplete(false);
+				} else if ((win32FilenameText.getText().length() == 0) && 
 						(win64IAFilenameText.getText().length() == 0) && 
 						(win64x86FilenameText.getText().length() == 0) && 
 						(linux32FilenameText.getText().length() == 0) && 
@@ -126,7 +136,7 @@ public class ArchiveFilesPage extends WizardPage {
 				}
 			}
 		};
-		
+
 		win32FilenameText = addFileRow(top, "win32FileName", Messages.ArchiveFilesPage_Win32Label, //$NON-NLS-1$
 				"sapjco3-ntintel-3.x.x.zip", "*.zip"); //$NON-NLS-1$ //$NON-NLS-2$
 		win64IAFilenameText = addFileRow(top, "win64IAFileName", //$NON-NLS-1$
@@ -164,7 +174,7 @@ public class ArchiveFilesPage extends WizardPage {
 	 */
 	private Text addFileRow(Composite parent, String property, 
 			String platform, String filenameHint, final String filenameFilter) {
-		
+
 		Label rowLabel = new Label(parent, SWT.NONE);
 		rowLabel.setText(MessageFormat.format("{0}:", platform)); //$NON-NLS-1$
 		GridDataFactory.swtDefaults().applyTo(rowLabel);
@@ -188,7 +198,7 @@ public class ArchiveFilesPage extends WizardPage {
 			public void widgetSelected(SelectionEvent e) {
 				FileDialog dialog = new FileDialog(getShell(), SWT.OPEN);
 				dialog.setText(Messages.ArchiveFilesPage_OpenDialogTitle);
-				dialog.setFilterExtensions(new String[] { filenameFilter });
+				dialog.setFilterExtensions(new String[] { filenameFilter, "*.*" });
 				String result = dialog.open();
 				if (result != null) {
 					filenameText.setText(result);

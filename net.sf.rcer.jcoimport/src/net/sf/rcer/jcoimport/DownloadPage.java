@@ -89,6 +89,10 @@ public class DownloadPage extends WizardPage {
 		notes.setText(Messages.DownloadPage_Notes);
 		GridDataFactory.swtDefaults().hint(parent.getSize().x, SWT.DEFAULT).applyTo(notes);
 		
+		Label extract = new Label(top, SWT.WRAP);
+		extract.setText(Messages.DownloadPage_Extract);
+		GridDataFactory.swtDefaults().hint(parent.getSize().x, SWT.DEFAULT).applyTo(extract);
+		
 		Label cont = new Label(top, SWT.WRAP);
 		cont.setText(Messages.DownloadPage_Continue);
 		GridDataFactory.swtDefaults().hint(parent.getSize().x, SWT.DEFAULT).applyTo(cont);

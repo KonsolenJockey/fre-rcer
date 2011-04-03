@@ -21,7 +21,7 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
 	
 	private static final String BUNDLE_NAME = "net.sf.rcer.jcoimport.messages"; //$NON-NLS-1$
-	
+
 	/**
 	 * Browse...
 	 */
@@ -117,6 +117,11 @@ public class Messages extends NLS {
 	 */
 	public static String DownloadPage_DialogTitle;
 
+	/**
+	 * Be aware that SAP has started to deliver the JCo as a zipped zipped file. This is not a typo, you get to download a zipped file that only contains a single zipped file. This import wizard can't handle this construct, so you need to unzip the "outer" file first, until you get to the real contents. This does NOT apply to the iDOC library. 
+	 */
+	public static String DownloadPage_Extract;
+	
 	/**
 	 * Due to license restrictions, the SAP Java Connector (JCo) may not be delivered as part of the connector package. 
 	 * Please visit the following URL and download the packages for the operating systems you want to support. You can 
