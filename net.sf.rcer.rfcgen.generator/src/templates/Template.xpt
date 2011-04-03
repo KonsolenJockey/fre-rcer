@@ -215,7 +215,14 @@ public class «name» {
 	 * @throws UnsupportedOperationException if any structure other than «structureName» is passed
 	 */
 	private void checkStructure(JCoRecord structure) throws UnsupportedOperationException {
-		final String structureName = structure.getMetaData().getName(); 
+		String structureName = structure.getMetaData().getName();
+		// if a table type (TYPE t_foo) is used instead of a structure (LIKE foo), unwrap the type
+		if (structure.getMetaData() instanceof JCoRecordMetaData) {
+			final JCoRecordMetaData recordMetaData = (JCoRecordMetaData) structure.getMetaData();
+			if (recordMetaData.getLineType() != null) {
+				structureName = recordMetaData.getLineType();
+			}
+		}
 		if (!structureName.equals("«structureName»")) { //$NON-NLS-1$
 			throw new UnsupportedOperationException(
 				MessageFormat.format("Unsupported structure {0} (expected «structureName»).", structureName));
