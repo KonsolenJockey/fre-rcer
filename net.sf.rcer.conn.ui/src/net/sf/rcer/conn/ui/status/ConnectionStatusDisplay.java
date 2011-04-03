@@ -31,12 +31,14 @@ import net.sf.rcer.conn.ui.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MenuDetectEvent;
 import org.eclipse.swt.events.MenuDetectListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -55,6 +57,12 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 	private Composite composite;
 	private Label label;
 
+	private Color backgroundDisconnected;
+	private Color backgroundConnected;
+	private Color foregroundDisconnected;
+	private Color foregroundConnected;
+	
+	
 	/**
 	 * Default constructor.
 	 */
@@ -73,19 +81,28 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 	 */
 	@Override
 	protected Control createControl(Composite parent) {
+
+		// cache the colors used for the display
+		final Display display = getWorkbenchWindow().getShell().getDisplay();
+		backgroundDisconnected = display.getSystemColor(SWT.COLOR_GRAY);
+		backgroundConnected    = display.getSystemColor(SWT.COLOR_DARK_GREEN);
+		foregroundDisconnected = display.getSystemColor(SWT.COLOR_WHITE);
+		foregroundConnected    = display.getSystemColor(SWT.COLOR_WHITE);
+		
 		composite = new Composite(parent, SWT.NONE);
 
 		// Give some room around the control
-		FillLayout layout = new FillLayout();
-		layout.marginHeight = 4;
-		layout.marginWidth = 2;
-		composite.setLayout(layout);
+		GridLayoutFactory.fillDefaults().margins(2, 2).applyTo(composite);
 
 		label = new Label(composite, SWT.BORDER | SWT.CENTER);
-		label.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_GRAY));
-		label.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_WHITE));
-		label.setText(Messages.ConnectionStatusDisplay_NotConnectedText);
-		label.setToolTipText(Messages.ConnectionStatusDisplay_NotConnectedTooltip);
+		
+		// determine the maximum sensible width and set it as the minimum size
+		label.setText("MMM.MMM");
+		composite.layout();
+		int textWidth = label.getSize().x;
+		GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.CENTER).grab(true, true).minSize(textWidth + 4, SWT.DEFAULT).applyTo(label);
+		
+		adjustLabel(ConnectionManager.getInstance().getPrimaryConnection());
 
 		composite.addMenuDetectListener(this);
 		label.addMenuDetectListener(this);
@@ -362,28 +379,36 @@ public class ConnectionStatusDisplay extends WorkbenchWindowControlContribution 
 	 */
 	public void primaryConnectionChanged(final IConnection newPrimaryConnection) {
 		if (label != null && !label.isDisposed()) {
-			final Display display = getWorkbenchWindow().getShell().getDisplay();
-			display.asyncExec(new Runnable() {
+			getWorkbenchWindow().getShell().getDisplay().asyncExec(new Runnable() {
 				/* (non-Javadoc)
 				 * @see java.lang.Runnable#run()
 				 */
 				public void run() {
-					if (newPrimaryConnection == null) {
-						label.setBackground(display.getSystemColor(SWT.COLOR_GRAY));
-						label.setForeground(display.getSystemColor(SWT.COLOR_WHITE));
-						label.setText(Messages.ConnectionStatusDisplay_NotConnectedText);
-						label.setToolTipText(Messages.ConnectionStatusDisplay_NotConnectedTooltip);
-					} else {
-						label.setBackground(display.getSystemColor(SWT.COLOR_DARK_GREEN));
-						label.setForeground(display.getSystemColor(SWT.COLOR_WHITE));
-						label.setText(MessageFormat.format(Messages.ConnectionStatusDisplay_DisplayFormat, 
-								newPrimaryConnection.getSystemID(), newPrimaryConnection.getClient()));
-						label.setToolTipText(newPrimaryConnection.toString());
-					}
+					adjustLabel(newPrimaryConnection);
 				}
 			});
 
 		}
+	}
+	
+	/**
+	 * Adjusts the properties of the label to match the connection status. 
+	 * @param connection
+	 */
+	protected void adjustLabel(final IConnection connection) {
+		if (connection == null) {
+			label.setBackground(backgroundDisconnected);
+			label.setForeground(foregroundDisconnected);
+			label.setText(Messages.ConnectionStatusDisplay_NotConnectedText);
+			label.setToolTipText(Messages.ConnectionStatusDisplay_NotConnectedTooltip);
+		} else {
+			label.setBackground(backgroundConnected);
+			label.setForeground(foregroundConnected);
+			label.setText(MessageFormat.format(Messages.ConnectionStatusDisplay_DisplayFormat, 
+					connection.getSystemID(), connection.getClient()));
+			label.setToolTipText(connection.toString());
+		}
+		
 	}
 
 }
