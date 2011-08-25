@@ -23,8 +23,9 @@ import net.sf.rcer.conn.connections.IConnectionData;
 import net.sf.rcer.conn.connections.ICredentials;
 import net.sf.rcer.conn.locales.Locale;
 import net.sf.rcer.conn.locales.LocaleRegistry;
-import net.sf.rcer.conn.locales.Locale.ToStringConverter;
 import net.sf.rcer.conn.ui.Messages;
+import net.sf.rcer.conn.ui.converters.LocaleFromStringConverter;
+import net.sf.rcer.conn.ui.converters.LocaleToStringConverter;
 
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
@@ -218,7 +219,7 @@ public class LoginDialog extends TitleAreaDialog {
 		// set the values of the locales combo
 		final Collection<Locale> locales = LocaleRegistry.getInstance().getLocales();
 		final Iterator<Locale> it = locales.iterator();
-		final ToStringConverter converter = new Locale.ToStringConverter(true);
+		final LocaleToStringConverter converter = new LocaleToStringConverter(true);
 		String[] entries = new String[locales.size() + 1];
 		for (int i = 0; i < locales.size(); i++) {
 			entries[i] = (String) converter.convert(it.next());
@@ -262,8 +263,8 @@ public class LoginDialog extends TitleAreaDialog {
 		// bind the locale 
 		context.bindValue(SWTObservables.observeSelection(localeCombo), 
 				BeansObservables.observeDetailValue(connection, "locale", Locale.class),  //$NON-NLS-1$
-				new UpdateValueStrategy().setConverter(new Locale.FromStringConverter()), 
-				new UpdateValueStrategy().setConverter(new Locale.ToStringConverter(true)));
+				new UpdateValueStrategy().setConverter(new LocaleFromStringConverter()), 
+				new UpdateValueStrategy().setConverter(new LocaleToStringConverter(true)));
 		context.bindValue(SWTObservables.observeEnabled(localeCombo), 
 				BeansObservables.observeDetailValue(connection, "localeEditable", boolean.class),  //$NON-NLS-1$
 				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), 

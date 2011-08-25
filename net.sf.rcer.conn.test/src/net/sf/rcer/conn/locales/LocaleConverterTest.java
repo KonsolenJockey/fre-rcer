@@ -15,8 +15,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import net.sf.rcer.conn.locales.Locale.FromStringConverter;
-import net.sf.rcer.conn.locales.Locale.ToStringConverter;
+
+import net.sf.rcer.conn.ui.converters.LocaleFromStringConverter;
+import net.sf.rcer.conn.ui.converters.LocaleToStringConverter;
 
 import org.junit.After;
 import org.junit.Before;
@@ -48,11 +49,11 @@ public class LocaleConverterTest {
 	}
 	
 	/**
-	 * Test method for the {@link ToStringConverter}.
+	 * Test method for the {@link LocaleToStringConverter}.
 	 */
 	@Test
 	public void testFromStringConverter() {
-		final FromStringConverter converter = new Locale.FromStringConverter();
+		final LocaleFromStringConverter converter = new LocaleFromStringConverter();
 		final String iso = locale.getISOCode();
 		final String string = locale.toString();
 		assertNull("Conversion of null value", converter.convert(null));
@@ -62,11 +63,11 @@ public class LocaleConverterTest {
 	}
 
 	/**
-	 * Test method for the {@link FromStringConverter}.
+	 * Test method for the {@link LocaleFromStringConverter}.
 	 */
 	@Test
 	public void testToStringConverterWithDescription() {
-		final ToStringConverter converter = new Locale.ToStringConverter(true);
+		final LocaleToStringConverter converter = new LocaleToStringConverter(true);
 		final String result = (String) converter.convert(locale);
 		assertEquals("Conversion of null value", "", converter.convert(null));
 		assertTrue("Converted string does not contain the ISO code", result.contains(locale.getISOCode()));
@@ -74,11 +75,11 @@ public class LocaleConverterTest {
 	}
 
 	/**
-	 * Test method for the {@link FromStringConverter}.
+	 * Test method for the {@link LocaleFromStringConverter}.
 	 */
 	@Test
 	public void testToStringConverterWithoutDescription() {
-		final ToStringConverter converter = new Locale.ToStringConverter(false);
+		final LocaleToStringConverter converter = new LocaleToStringConverter(false);
 		final String result = (String) converter.convert(locale);
 		assertEquals("Conversion of null value", "", converter.convert(null));
 		assertTrue("Converted string does not contain the ISO code", result.contains(locale.getISOCode()));

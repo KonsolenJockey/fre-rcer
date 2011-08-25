@@ -14,8 +14,9 @@ package net.sf.rcer.conn.connections;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import net.sf.rcer.conn.connections.ConnectionType.FromStringConverter;
-import net.sf.rcer.conn.connections.ConnectionType.ToStringConverter;
+
+import net.sf.rcer.conn.ui.converters.ConnectionTypeFromStringConverter;
+import net.sf.rcer.conn.ui.converters.ConnectionTypeToStringConverter;
 
 import org.junit.Test;
 
@@ -57,11 +58,11 @@ public class ConnectionTypeTest {
 	}
 	
 	/**
-	 * Test method for the {@link ToStringConverter}.
+	 * Test method for the {@link ConnectionTypeToStringConverter}.
 	 */
 	@Test
 	public void testFromStringConverter() {
-		final FromStringConverter converter = new ConnectionType.FromStringConverter();
+		final ConnectionTypeFromStringConverter converter = new ConnectionTypeFromStringConverter();
 		assertNull("Conversion of null value", converter.convert(null));
 		assertNull("Conversion of empty string", converter.convert(""));
 		assertEquals("Conversion of DIRECT from string", 
@@ -71,11 +72,11 @@ public class ConnectionTypeTest {
 	}
 
 	/**
-	 * Test method for the {@link FromStringConverter}.
+	 * Test method for the {@link ConnectionTypeFromStringConverter}.
 	 */
 	@Test
 	public void testToStringConverter() {
-		final ToStringConverter converter = new ConnectionType.ToStringConverter();
+		final ConnectionTypeToStringConverter converter = new ConnectionTypeToStringConverter();
 		assertEquals("Conversion of null value", "", converter.convert(null));
 		assertEquals("Conversion of DIRECT to string", 
 				ConnectionType.DIRECT.toString(), converter.convert(ConnectionType.DIRECT));

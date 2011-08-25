@@ -11,11 +11,8 @@
  */
 package net.sf.rcer.conn.connections;
 
-import java.text.MessageFormat;
 
 import net.sf.rcer.conn.Messages;
-
-import org.eclipse.core.databinding.conversion.Converter;
 
 /**
  * The connection type (direct or load balanced).
@@ -61,63 +58,5 @@ public enum ConnectionType {
 	 */
 	public static String[] getStrings() {
 		return new String[] { DIRECT.toString(), LOAD_BALANCED.toString() };
-	}
-
-	/**
-	 * A {@link Converter} that implements the {@link String} to {@link ConnectionType} conversion.
-	 * @author vwegert
-	 */
-	public static class FromStringConverter extends Converter {
-
-		/**
-		 * Default constructor.
-		 */
-		public FromStringConverter() {
-			super(String.class, ConnectionType.class);
-		}
-
-		/* (non-Javadoc)
-		 * @see org.eclipse.core.databinding.conversion.IConverter#convert(java.lang.Object)
-		 */
-		public Object convert(Object fromObject) {
-			if ((fromObject == null) || ("".equals(fromObject))) { //$NON-NLS-1$
-				return null;
-			} else if (ConnectionType.DIRECT.toString().equals(fromObject)) {
-				return ConnectionType.DIRECT;
-			} else if (ConnectionType.LOAD_BALANCED.toString().equals(fromObject)) {
-				return ConnectionType.LOAD_BALANCED;
-			} else {
-				throw new IllegalArgumentException(MessageFormat.format(Messages.ConnectionType_UnsupportedValue, fromObject));
-			}
-		}
-	}
-
-	/**
-	 * A {@link Converter} that implements the {@link ConnectionType} to {@link String} conversion.
-	 * @author vwegert
-	 *
-	 */
-	public static class ToStringConverter extends Converter  {
-
-		/**
-		 * Default constructor.
-		 */
-		public ToStringConverter() {
-			super(ConnectionType.class, String.class);
-		}
-
-		/* (non-Javadoc)
-		 * @see org.eclipse.core.databinding.conversion.IConverter#convert(java.lang.Object)
-		 */
-		public Object convert(Object fromObject) {
-			if (fromObject == null) {
-				return ""; //$NON-NLS-1$
-			} else if (fromObject instanceof ConnectionType) {
-				return fromObject.toString();
-			} else {
-				throw new IllegalArgumentException(MessageFormat.format(Messages.ConnectionType_UnsupportedValue, fromObject));
-			}
-		}
-
 	}
 }

@@ -21,6 +21,10 @@ import net.sf.rcer.conn.locales.Locale;
 import net.sf.rcer.conn.locales.LocaleRegistry;
 import net.sf.rcer.conn.preferences.PreferencesConnectionManager;
 import net.sf.rcer.conn.ui.Messages;
+import net.sf.rcer.conn.ui.converters.ConnectionTypeFromStringConverter;
+import net.sf.rcer.conn.ui.converters.ConnectionTypeToStringConverter;
+import net.sf.rcer.conn.ui.converters.LocaleFromStringConverter;
+import net.sf.rcer.conn.ui.converters.LocaleToStringConverter;
 
 import org.eclipse.core.databinding.AggregateValidationStatus;
 import org.eclipse.core.databinding.DataBindingContext;
@@ -614,8 +618,8 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 				selection, "connectionType", ConnectionType.class); //$NON-NLS-1$
 		context.bindValue(SWTObservables.observeSelection(connectionTypeCombo), 
 				connectionTypeObservable, 
-				new UpdateValueStrategy().setConverter(new ConnectionType.FromStringConverter()), 
-				new UpdateValueStrategy().setConverter(new ConnectionType.ToStringConverter()));
+				new UpdateValueStrategy().setConverter(new ConnectionTypeFromStringConverter()), 
+				new UpdateValueStrategy().setConverter(new ConnectionTypeToStringConverter()));
 
 		// bind the system ID
 		context.bindValue(SWTObservables.observeText(sidText, SWT.Modify), 
@@ -694,8 +698,8 @@ public class ConnectionsPreferencePage extends PreferencePage implements IWorkbe
 		// bind the default locale 
 		context.bindValue(SWTObservables.observeSelection(defaultLocaleCombo), 
 				BeansObservables.observeDetailValue(selection, "defaultLocale", Locale.class),  //$NON-NLS-1$
-				new UpdateValueStrategy().setConverter(new Locale.FromStringConverter()), 
-				new UpdateValueStrategy().setConverter(new Locale.ToStringConverter(false)));
+				new UpdateValueStrategy().setConverter(new LocaleFromStringConverter()), 
+				new UpdateValueStrategy().setConverter(new LocaleToStringConverter(false)));
 
 		// supply the error label with the aggregated status
 		context.bindValue(SWTObservables.observeText(errorDisplayLabel),

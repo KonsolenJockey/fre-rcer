@@ -15,8 +15,6 @@ import java.text.MessageFormat;
 
 import net.sf.rcer.conn.Messages;
 
-import org.eclipse.core.databinding.conversion.Converter;
-
 /**
  * A single SAP Locale as defined by a <tt>locale</tt> element of the extension point 
  * <tt>net.sf.rcer.conn.saplocales</tt>. Use the {@link LocaleRegistry} to obtain instances of this class.
@@ -102,82 +100,5 @@ public class Locale {
 	public String toString() {
 		return MessageFormat.format(Messages.Locale_StringFormat, getISOCode(), getDescription());
 	}
-
-
-	/**
-	 * A {@link Converter} that implements the {@link String} to {@link Locale} conversion.
-	 * @author vwegert
-	 */
-	public static class FromStringConverter extends Converter {
-
-		/**
-		 * Default constructor.
-		 */
-		public FromStringConverter() {
-			super(String.class, Locale.class);
-		}
-
-		/* (non-Javadoc)
-		 * @see org.eclipse.core.databinding.conversion.IConverter#convert(java.lang.Object)
-		 */
-		public Object convert(Object fromObject) {
-			if (fromObject == null) {
-				return null;
-			} else if (fromObject instanceof String) {
-				String isoCode = (String) fromObject;
-				if (isoCode.equals("")) { //$NON-NLS-1$
-					return null;
-				}
-				try {
-					return LocaleRegistry.getInstance().getLocaleByISO(isoCode);
-				} catch (LocaleNotFoundException e1) {
-					// maybe this was a string that begins with the locale code (see ToStringConverter)
-					try {
-						return LocaleRegistry.getInstance().getLocaleByISO(isoCode.substring(0, isoCode.indexOf(' ')));
-					} catch (LocaleNotFoundException e) {
-						throw new IllegalArgumentException(e);
-					}
-				}
-			}
-			throw new IllegalArgumentException(MessageFormat.format(Messages.Locale_UnsupportedStringValue, fromObject));
-		}
-	}
-
-	/**
-	 * A {@link Converter} that implements the {@link Locale} to {@link String} conversion.
-	 * @author vwegert
-	 *
-	 */
-	public static class ToStringConverter extends Converter  {
-
-		private boolean includeDescription;
-
-		/**
-		 * Default constructor.
-		 * @param includeDescription whether to include the description in the output text. 
-		 */
-		public ToStringConverter(boolean includeDescription) {
-			super(Locale.class, String.class);
-			this.includeDescription = includeDescription;
-		}
-
-		/* (non-Javadoc)
-		 * @see org.eclipse.core.databinding.conversion.IConverter#convert(java.lang.Object)
-		 */
-		public Object convert(Object fromObject) {
-			if (fromObject == null) {
-				return ""; //$NON-NLS-1$
-			} else if (fromObject instanceof Locale) {
-				if (includeDescription) {
-					final Locale locale = (Locale) fromObject; 
-					return MessageFormat.format(Messages.Locale_StringFormat, locale.getISOCode(), locale.getDescription());
-				}
-				return ((Locale) fromObject).getISOCode();
-			}
-			throw new IllegalArgumentException(MessageFormat.format(Messages.Locale_UnsupportedClass, fromObject.getClass().getName()));
-		}
-
-	}
-
 
 }
