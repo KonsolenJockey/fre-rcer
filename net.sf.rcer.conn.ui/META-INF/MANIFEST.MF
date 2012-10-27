@@ -14,6 +14,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-Activator: net.sf.rcer.conn.ui.Activator
 Bundle-Vendor: %bundle.vendor
 Export-Package: net.sf.rcer.conn.ui,
+ net.sf.rcer.conn.ui.converters,
  net.sf.rcer.conn.ui.login,
  net.sf.rcer.conn.ui.preferences,
  net.sf.rcer.conn.ui.status
