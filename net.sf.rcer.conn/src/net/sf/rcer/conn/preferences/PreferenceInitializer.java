@@ -29,7 +29,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer impleme
 	 */
 	@Override
 	public void initializeDefaultPreferences() {
-		IEclipsePreferences preferences = DefaultScope.INSTANCE.getNode(Activator.PLUGIN_ID);
+		IEclipsePreferences preferences = new DefaultScope().getNode(Activator.PLUGIN_ID);
 		preferences.putInt(CONNECTION_NUMBER, 0);
 	}
 

@@ -56,7 +56,7 @@ public class PreferencesConnectionManager implements IPreferenceConstants {
 	 * Private constructor to prevent secondary instantiation.
 	 */
 	private PreferencesConnectionManager() {
-		preferences = InstanceScope.INSTANCE.getNode(Activator.PLUGIN_ID);
+		preferences = new InstanceScope().getNode(Activator.PLUGIN_ID);
 	}
 
 	/**

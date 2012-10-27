@@ -16,6 +16,8 @@ import java.text.MessageFormat;
 import net.sf.rcer.conn.Messages;
 import net.sf.rcer.conn.connections.ConnectionType;
 
+import org.eclipse.core.databinding.conversion.Converter;
+
 /**
  * A {@link Converter} that implements the {@link String} to {@link ConnectionType} conversion.
  * @author vwegert

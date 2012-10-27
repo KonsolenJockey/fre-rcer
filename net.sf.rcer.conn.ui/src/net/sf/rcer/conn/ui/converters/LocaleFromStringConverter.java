@@ -18,6 +18,8 @@ import net.sf.rcer.conn.locales.Locale;
 import net.sf.rcer.conn.locales.LocaleNotFoundException;
 import net.sf.rcer.conn.locales.LocaleRegistry;
 
+import org.eclipse.core.databinding.conversion.Converter;
+
 /**
  * A {@link Converter} that implements the {@link String} to {@link Locale} conversion.
  * @author vwegert
