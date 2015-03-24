@@ -3,14 +3,9 @@
 */
 package net.sf.rcer.rfcgen.parser.antlr;
 
-import org.antlr.runtime.CharStream;
-import org.antlr.runtime.TokenSource;
-import org.eclipse.xtext.parser.IParseResult;
-import org.eclipse.xtext.parser.ParseException;
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
-
 import com.google.inject.Inject;
 
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import net.sf.rcer.rfcgen.services.RFCMappingGrammarAccess;
 
 public class RFCMappingParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
@@ -19,25 +14,13 @@ public class RFCMappingParser extends org.eclipse.xtext.parser.antlr.AbstractAnt
 	private RFCMappingGrammarAccess grammarAccess;
 	
 	@Override
-	protected IParseResult parse(String ruleName, CharStream in) {
-		TokenSource tokenSource = createLexer(in);
-		XtextTokenStream tokenStream = createTokenStream(tokenSource);
+	protected void setInitialHiddenTokens(XtextTokenStream tokenStream) {
 		tokenStream.setInitialHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
-		net.sf.rcer.rfcgen.parser.antlr.internal.InternalRFCMappingParser parser = createParser(tokenStream);
-		parser.setTokenTypeMap(getTokenDefProvider().getTokenDefMap());
-		parser.setSyntaxErrorProvider(getSyntaxErrorProvider());
-		parser.setUnorderedGroupHelper(getUnorderedGroupHelper().get());
-		try {
-			if(ruleName != null)
-				return parser.parse(ruleName);
-			return parser.parse();
-		} catch (Exception re) {
-			throw new ParseException(re.getMessage(),re);
-		}
 	}
 	
+	@Override
 	protected net.sf.rcer.rfcgen.parser.antlr.internal.InternalRFCMappingParser createParser(XtextTokenStream stream) {
-		return new net.sf.rcer.rfcgen.parser.antlr.internal.InternalRFCMappingParser(stream, getElementFactory(), getGrammarAccess());
+		return new net.sf.rcer.rfcgen.parser.antlr.internal.InternalRFCMappingParser(stream, getGrammarAccess());
 	}
 	
 	@Override 

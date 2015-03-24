@@ -1,7 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
  */
 package net.sf.rcer.rfcgen.mapping.util;
 

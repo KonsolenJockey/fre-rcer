@@ -47,7 +47,7 @@ public class RFCMappingScopeProvider extends AbstractDeclarativeScopeProvider {
 			StructureMapping mapping = structure.getMapping();
 			if (mapping instanceof StructurePOJOMapping) {
 				StructurePOJOMapping pmapping = (StructurePOJOMapping) mapping;
-				mappings.add(new EObjectDescription(pmapping.getName(), pmapping, null));
+				mappings.add(EObjectDescription.create(pmapping.getName(), pmapping, null));
 			}
 		}
 		return new SimpleScope(mappings);

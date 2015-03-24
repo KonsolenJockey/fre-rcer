@@ -4,10 +4,8 @@
 package net.sf.rcer.rfcgen.ui.contentassist.antlr;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
-
-import net.sf.rcer.rfcgen.services.RFCMappingGrammarAccess;
+import java.util.HashMap;
 
 import org.antlr.runtime.RecognitionException;
 import org.eclipse.xtext.AbstractElement;
@@ -16,6 +14,8 @@ import org.eclipse.xtext.ui.editor.contentassist.antlr.FollowElement;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
 
 import com.google.inject.Inject;
+
+import net.sf.rcer.rfcgen.services.RFCMappingGrammarAccess;
 
 public class RFCMappingParser extends AbstractContentAssistParser {
 	

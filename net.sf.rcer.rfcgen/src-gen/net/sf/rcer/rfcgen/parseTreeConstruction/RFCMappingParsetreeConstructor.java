@@ -6,14 +6,13 @@ package net.sf.rcer.rfcgen.parseTreeConstruction;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parsetree.reconstr.IEObjectConsumer;
-import org.eclipse.xtext.parsetree.reconstr.impl.AbstractParseTreeConstructor;
 
 import net.sf.rcer.rfcgen.services.RFCMappingGrammarAccess;
 
 import com.google.inject.Inject;
 
 @SuppressWarnings("all")
-public class RFCMappingParsetreeConstructor extends AbstractParseTreeConstructor {
+public class RFCMappingParsetreeConstructor extends org.eclipse.xtext.parsetree.reconstr.impl.AbstractParseTreeConstructor {
 		
 	@Inject
 	private RFCMappingGrammarAccess grammarAccess;
@@ -299,7 +298,7 @@ protected class Model_FunctionModulesAssignment_4 extends AssignmentToken  {
 /************ begin Rule Import ****************
  *
  * // ====== Imports =================================================================================
- * Import:
+ *  Import:
  * 	"import" fullName=QualifiedName "as" name=ID ";";
  *
  **/
@@ -473,7 +472,7 @@ protected class Import_SemicolonKeyword_4 extends KeywordToken  {
 /************ begin Rule Structure ****************
  *
  * // ====== Structures ==============================================================================
- * Structure:
+ *  Structure:
  * 	"structure" name=STRING "{" mapping=StructureMapping "}";
  *
  **/
@@ -705,6 +704,7 @@ protected class StructureMapping_StructurePOJOMappingParserRuleCall extends Rule
 /************ begin Rule StructurePOJOMapping ****************
  *
  * // --- POJO mapping -------------------------------------------------------------------------------
+ * 
  * StructurePOJOMapping:
  * 	"class" name=ID "{" (fields+=StructureFieldPOJOMapping ";")* "}";
  *
@@ -1284,7 +1284,7 @@ protected class StructureFieldPOJOMapping_CommentAssignment_4_1 extends Assignme
 /************ begin Rule FunctionModule ****************
  *
  * // ====== Function Modules ========================================================================
- * FunctionModule:
+ *  FunctionModule:
  * 	"function" "module" name=STRING "{" mapping=FunctionModuleMapping "}";
  *
  **/
@@ -1539,6 +1539,7 @@ protected class FunctionModuleMapping_FunctionModulePOJOMappingParserRuleCall ex
 /************ begin Rule FunctionModulePOJOMapping ****************
  *
  * // --- POJO mapping -------------------------------------------------------------------------------
+ * 
  * FunctionModulePOJOMapping:
  * 	FunctionModulePOJOCallMapping | FunctionModulePOJORequestResponseMapping;
  *

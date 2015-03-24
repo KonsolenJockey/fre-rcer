@@ -1,10 +1,8 @@
 package net.sf.rcer.rfcgen.parser.antlr.internal; 
 
-import java.io.InputStream;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parser.*;
 import org.eclipse.xtext.parser.impl.*;
-import org.eclipse.xtext.parsetree.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.common.util.Enumerator;
@@ -12,7 +10,6 @@ import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
-import org.eclipse.xtext.conversion.ValueConverterException;
 import net.sf.rcer.rfcgen.services.RFCMappingGrammarAccess;
 
 
@@ -28,37 +25,75 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'package'", "'.'", "'import'", "'as'", "';'", "'structure'", "'{'", "'}'", "'class'", "'field'", "'='", "'inactive'", "'comment'", "'function'", "'module'", "'request'", "'response'", "'importing'", "'external'", "'table'", "'exporting'", "'changing'", "'BigDecimal'", "'BigInteger'", "'Boolean'", "'Byte'", "'ByteArray'", "'Char'", "'CharArray'", "'Date'", "'Double'", "'Float'", "'Integer'", "'Long'", "'Short'", "'String'", "'Time'"
     };
     public static final int RULE_ID=5;
-    public static final int RULE_STRING=4;
+    public static final int T__29=29;
+    public static final int T__28=28;
+    public static final int T__27=27;
+    public static final int T__26=26;
+    public static final int T__25=25;
+    public static final int T__24=24;
+    public static final int T__23=23;
+    public static final int T__22=22;
     public static final int RULE_ANY_OTHER=10;
-    public static final int RULE_INT=6;
-    public static final int RULE_WS=9;
-    public static final int RULE_SL_COMMENT=8;
+    public static final int T__21=21;
+    public static final int T__20=20;
     public static final int EOF=-1;
+    public static final int T__19=19;
+    public static final int T__16=16;
+    public static final int T__15=15;
+    public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int T__12=12;
+    public static final int T__11=11;
+    public static final int T__14=14;
+    public static final int T__13=13;
+    public static final int RULE_INT=6;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int T__46=46;
+    public static final int T__47=47;
+    public static final int T__44=44;
+    public static final int T__45=45;
+    public static final int RULE_SL_COMMENT=8;
     public static final int RULE_ML_COMMENT=7;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int T__32=32;
+    public static final int RULE_STRING=4;
+    public static final int T__33=33;
+    public static final int T__34=34;
+    public static final int T__35=35;
+    public static final int T__36=36;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
+    public static final int RULE_WS=9;
+
+    // delegates
+    // delegators
+
 
         public InternalRFCMappingParser(TokenStream input) {
-            super(input);
+            this(input, new RecognizerSharedState());
+        }
+        public InternalRFCMappingParser(TokenStream input, RecognizerSharedState state) {
+            super(input, state);
+             
         }
         
 
-    public String[] getTokenNames() { return tokenNames; }
+    public String[] getTokenNames() { return InternalRFCMappingParser.tokenNames; }
     public String getGrammarFileName() { return "../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g"; }
 
 
 
      	private RFCMappingGrammarAccess grammarAccess;
      	
-        public InternalRFCMappingParser(TokenStream input, IAstFactory factory, RFCMappingGrammarAccess grammarAccess) {
+        public InternalRFCMappingParser(TokenStream input, RFCMappingGrammarAccess grammarAccess) {
             this(input);
-            this.factory = factory;
-            registerRules(grammarAccess.getGrammar());
             this.grammarAccess = grammarAccess;
-        }
-        
-        @Override
-        protected InputStream getTokenFile() {
-        	ClassLoader classLoader = getClass().getClassLoader();
-        	return classLoader.getResourceAsStream("net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.tokens");
+            registerRules(grammarAccess.getGrammar());
         }
         
         @Override
@@ -73,8 +108,8 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
 
-    // $ANTLR start entryRuleModel
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:78:1: entryRuleModel returns [EObject current=null] : iv_ruleModel= ruleModel EOF ;
+    // $ANTLR start "entryRuleModel"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:68:1: entryRuleModel returns [EObject current=null] : iv_ruleModel= ruleModel EOF ;
     public final EObject entryRuleModel() throws RecognitionException {
         EObject current = null;
 
@@ -82,13 +117,14 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:79:2: (iv_ruleModel= ruleModel EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:80:2: iv_ruleModel= ruleModel EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:69:2: (iv_ruleModel= ruleModel EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:70:2: iv_ruleModel= ruleModel EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getModelRule(), currentNode); 
+             newCompositeNode(grammarAccess.getModelRule()); 
             pushFollow(FOLLOW_ruleModel_in_entryRuleModel75);
             iv_ruleModel=ruleModel();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleModel; 
             match(input,EOF,FOLLOW_EOF_in_entryRuleModel85); 
@@ -105,14 +141,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleModel
+    // $ANTLR end "entryRuleModel"
 
 
-    // $ANTLR start ruleModel
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:87:1: ruleModel returns [EObject current=null] : ( 'package' ( (lv_packageName_1_0= RULE_STRING ) ) ( (lv_imports_2_0= ruleImport ) )* ( (lv_structures_3_0= ruleStructure ) )* ( (lv_functionModules_4_0= ruleFunctionModule ) )* ) ;
+    // $ANTLR start "ruleModel"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:77:1: ruleModel returns [EObject current=null] : (otherlv_0= 'package' ( (lv_packageName_1_0= RULE_STRING ) ) ( (lv_imports_2_0= ruleImport ) )* ( (lv_structures_3_0= ruleStructure ) )* ( (lv_functionModules_4_0= ruleFunctionModule ) )* ) ;
     public final EObject ruleModel() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
         Token lv_packageName_1_0=null;
         EObject lv_imports_2_0 = null;
 
@@ -121,45 +158,38 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         EObject lv_functionModules_4_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:92:6: ( ( 'package' ( (lv_packageName_1_0= RULE_STRING ) ) ( (lv_imports_2_0= ruleImport ) )* ( (lv_structures_3_0= ruleStructure ) )* ( (lv_functionModules_4_0= ruleFunctionModule ) )* ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:93:1: ( 'package' ( (lv_packageName_1_0= RULE_STRING ) ) ( (lv_imports_2_0= ruleImport ) )* ( (lv_structures_3_0= ruleStructure ) )* ( (lv_functionModules_4_0= ruleFunctionModule ) )* )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:80:28: ( (otherlv_0= 'package' ( (lv_packageName_1_0= RULE_STRING ) ) ( (lv_imports_2_0= ruleImport ) )* ( (lv_structures_3_0= ruleStructure ) )* ( (lv_functionModules_4_0= ruleFunctionModule ) )* ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:81:1: (otherlv_0= 'package' ( (lv_packageName_1_0= RULE_STRING ) ) ( (lv_imports_2_0= ruleImport ) )* ( (lv_structures_3_0= ruleStructure ) )* ( (lv_functionModules_4_0= ruleFunctionModule ) )* )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:93:1: ( 'package' ( (lv_packageName_1_0= RULE_STRING ) ) ( (lv_imports_2_0= ruleImport ) )* ( (lv_structures_3_0= ruleStructure ) )* ( (lv_functionModules_4_0= ruleFunctionModule ) )* )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:93:3: 'package' ( (lv_packageName_1_0= RULE_STRING ) ) ( (lv_imports_2_0= ruleImport ) )* ( (lv_structures_3_0= ruleStructure ) )* ( (lv_functionModules_4_0= ruleFunctionModule ) )*
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:81:1: (otherlv_0= 'package' ( (lv_packageName_1_0= RULE_STRING ) ) ( (lv_imports_2_0= ruleImport ) )* ( (lv_structures_3_0= ruleStructure ) )* ( (lv_functionModules_4_0= ruleFunctionModule ) )* )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:81:3: otherlv_0= 'package' ( (lv_packageName_1_0= RULE_STRING ) ) ( (lv_imports_2_0= ruleImport ) )* ( (lv_structures_3_0= ruleStructure ) )* ( (lv_functionModules_4_0= ruleFunctionModule ) )*
             {
-            match(input,11,FOLLOW_11_in_ruleModel120); 
+            otherlv_0=(Token)match(input,11,FOLLOW_11_in_ruleModel122); 
 
-                    createLeafNode(grammarAccess.getModelAccess().getPackageKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getModelAccess().getPackageKeyword_0());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:97:1: ( (lv_packageName_1_0= RULE_STRING ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:98:1: (lv_packageName_1_0= RULE_STRING )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:85:1: ( (lv_packageName_1_0= RULE_STRING ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:86:1: (lv_packageName_1_0= RULE_STRING )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:98:1: (lv_packageName_1_0= RULE_STRING )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:99:3: lv_packageName_1_0= RULE_STRING
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:86:1: (lv_packageName_1_0= RULE_STRING )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:87:3: lv_packageName_1_0= RULE_STRING
             {
-            lv_packageName_1_0=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleModel137); 
+            lv_packageName_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleModel139); 
 
-            			createLeafNode(grammarAccess.getModelAccess().getPackageNameSTRINGTerminalRuleCall_1_0(), "packageName"); 
+            			newLeafNode(lv_packageName_1_0, grammarAccess.getModelAccess().getPackageNameSTRINGTerminalRuleCall_1_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getModelRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"packageName",
-            	        		lv_packageName_1_0, 
-            	        		"STRING", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"packageName",
+                    		lv_packageName_1_0, 
+                    		"STRING");
             	    
 
             }
@@ -167,7 +197,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:121:2: ( (lv_imports_2_0= ruleImport ) )*
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:103:2: ( (lv_imports_2_0= ruleImport ) )*
             loop1:
             do {
                 int alt1=2;
@@ -180,34 +210,29 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:122:1: (lv_imports_2_0= ruleImport )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:104:1: (lv_imports_2_0= ruleImport )
             	    {
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:122:1: (lv_imports_2_0= ruleImport )
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:123:3: lv_imports_2_0= ruleImport
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:104:1: (lv_imports_2_0= ruleImport )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:105:3: lv_imports_2_0= ruleImport
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getImportsImportParserRuleCall_2_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getModelAccess().getImportsImportParserRuleCall_2_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleImport_in_ruleModel163);
+            	    pushFollow(FOLLOW_ruleImport_in_ruleModel165);
             	    lv_imports_2_0=ruleImport();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getModelRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"imports",
-            	    	        		lv_imports_2_0, 
-            	    	        		"Import", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"imports",
+            	            		lv_imports_2_0, 
+            	            		"Import");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -221,7 +246,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:145:3: ( (lv_structures_3_0= ruleStructure ) )*
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:121:3: ( (lv_structures_3_0= ruleStructure ) )*
             loop2:
             do {
                 int alt2=2;
@@ -234,34 +259,29 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:146:1: (lv_structures_3_0= ruleStructure )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:122:1: (lv_structures_3_0= ruleStructure )
             	    {
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:146:1: (lv_structures_3_0= ruleStructure )
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:147:3: lv_structures_3_0= ruleStructure
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:122:1: (lv_structures_3_0= ruleStructure )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:123:3: lv_structures_3_0= ruleStructure
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getStructuresStructureParserRuleCall_3_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getModelAccess().getStructuresStructureParserRuleCall_3_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleStructure_in_ruleModel185);
+            	    pushFollow(FOLLOW_ruleStructure_in_ruleModel187);
             	    lv_structures_3_0=ruleStructure();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getModelRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"structures",
-            	    	        		lv_structures_3_0, 
-            	    	        		"Structure", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"structures",
+            	            		lv_structures_3_0, 
+            	            		"Structure");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -275,7 +295,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:169:3: ( (lv_functionModules_4_0= ruleFunctionModule ) )*
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:139:3: ( (lv_functionModules_4_0= ruleFunctionModule ) )*
             loop3:
             do {
                 int alt3=2;
@@ -288,34 +308,29 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:170:1: (lv_functionModules_4_0= ruleFunctionModule )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:140:1: (lv_functionModules_4_0= ruleFunctionModule )
             	    {
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:170:1: (lv_functionModules_4_0= ruleFunctionModule )
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:171:3: lv_functionModules_4_0= ruleFunctionModule
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:140:1: (lv_functionModules_4_0= ruleFunctionModule )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:141:3: lv_functionModules_4_0= ruleFunctionModule
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getFunctionModulesFunctionModuleParserRuleCall_4_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getModelAccess().getFunctionModulesFunctionModuleParserRuleCall_4_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleFunctionModule_in_ruleModel207);
+            	    pushFollow(FOLLOW_ruleFunctionModule_in_ruleModel209);
             	    lv_functionModules_4_0=ruleFunctionModule();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getModelRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"functionModules",
-            	    	        		lv_functionModules_4_0, 
-            	    	        		"FunctionModule", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"functionModules",
+            	            		lv_functionModules_4_0, 
+            	            		"FunctionModule");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -335,9 +350,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -348,11 +361,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleModel
+    // $ANTLR end "ruleModel"
 
 
-    // $ANTLR start entryRuleQualifiedName
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:201:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
+    // $ANTLR start "entryRuleQualifiedName"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:165:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
     public final String entryRuleQualifiedName() throws RecognitionException {
         String current = null;
 
@@ -360,16 +373,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:202:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:203:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:166:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:167:2: iv_ruleQualifiedName= ruleQualifiedName EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getQualifiedNameRule(), currentNode); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName245);
+             newCompositeNode(grammarAccess.getQualifiedNameRule()); 
+            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName247);
             iv_ruleQualifiedName=ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleQualifiedName.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName256); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName258); 
 
             }
 
@@ -383,11 +397,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleQualifiedName
+    // $ANTLR end "entryRuleQualifiedName"
 
 
-    // $ANTLR start ruleQualifiedName
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:210:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) ;
+    // $ANTLR start "ruleQualifiedName"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:174:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) ;
     public final AntlrDatatypeRuleToken ruleQualifiedName() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -395,24 +409,23 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         Token kw=null;
         Token this_ID_2=null;
 
-         setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:215:6: ( (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:216:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:177:28: ( (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:178:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:216:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:216:6: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:178:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:178:6: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
             {
-            this_ID_0=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName296); 
+            this_ID_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName298); 
 
             		current.merge(this_ID_0);
                 
              
-                createLeafNode(grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_0(), null); 
+                newLeafNode(this_ID_0, grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_0()); 
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:223:1: (kw= '.' this_ID_2= RULE_ID )*
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:185:1: (kw= '.' this_ID_2= RULE_ID )*
             loop4:
             do {
                 int alt4=2;
@@ -425,21 +438,19 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:224:2: kw= '.' this_ID_2= RULE_ID
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:186:2: kw= '.' this_ID_2= RULE_ID
             	    {
-            	    kw=(Token)input.LT(1);
-            	    match(input,12,FOLLOW_12_in_ruleQualifiedName315); 
+            	    kw=(Token)match(input,12,FOLLOW_12_in_ruleQualifiedName317); 
 
             	            current.merge(kw);
-            	            createLeafNode(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0(), null); 
+            	            newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
             	        
-            	    this_ID_2=(Token)input.LT(1);
-            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName330); 
+            	    this_ID_2=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName332); 
 
             	    		current.merge(this_ID_2);
             	        
             	     
-            	        createLeafNode(grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_1_1(), null); 
+            	        newLeafNode(this_ID_2, grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_1_1()); 
             	        
 
             	    }
@@ -456,9 +467,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-            	    lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -469,11 +478,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleQualifiedName
+    // $ANTLR end "ruleQualifiedName"
 
 
-    // $ANTLR start entryRuleImport
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:244:1: entryRuleImport returns [EObject current=null] : iv_ruleImport= ruleImport EOF ;
+    // $ANTLR start "entryRuleImport"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:206:1: entryRuleImport returns [EObject current=null] : iv_ruleImport= ruleImport EOF ;
     public final EObject entryRuleImport() throws RecognitionException {
         EObject current = null;
 
@@ -481,16 +490,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:245:2: (iv_ruleImport= ruleImport EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:246:2: iv_ruleImport= ruleImport EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:207:2: (iv_ruleImport= ruleImport EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:208:2: iv_ruleImport= ruleImport EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getImportRule(), currentNode); 
-            pushFollow(FOLLOW_ruleImport_in_entryRuleImport377);
+             newCompositeNode(grammarAccess.getImportRule()); 
+            pushFollow(FOLLOW_ruleImport_in_entryRuleImport379);
             iv_ruleImport=ruleImport();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleImport; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleImport387); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleImport389); 
 
             }
 
@@ -504,60 +514,58 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleImport
+    // $ANTLR end "entryRuleImport"
 
 
-    // $ANTLR start ruleImport
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:253:1: ruleImport returns [EObject current=null] : ( 'import' ( (lv_fullName_1_0= ruleQualifiedName ) ) 'as' ( (lv_name_3_0= RULE_ID ) ) ';' ) ;
+    // $ANTLR start "ruleImport"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:215:1: ruleImport returns [EObject current=null] : (otherlv_0= 'import' ( (lv_fullName_1_0= ruleQualifiedName ) ) otherlv_2= 'as' ( (lv_name_3_0= RULE_ID ) ) otherlv_4= ';' ) ;
     public final EObject ruleImport() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_2=null;
         Token lv_name_3_0=null;
+        Token otherlv_4=null;
         AntlrDatatypeRuleToken lv_fullName_1_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:258:6: ( ( 'import' ( (lv_fullName_1_0= ruleQualifiedName ) ) 'as' ( (lv_name_3_0= RULE_ID ) ) ';' ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:259:1: ( 'import' ( (lv_fullName_1_0= ruleQualifiedName ) ) 'as' ( (lv_name_3_0= RULE_ID ) ) ';' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:218:28: ( (otherlv_0= 'import' ( (lv_fullName_1_0= ruleQualifiedName ) ) otherlv_2= 'as' ( (lv_name_3_0= RULE_ID ) ) otherlv_4= ';' ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:219:1: (otherlv_0= 'import' ( (lv_fullName_1_0= ruleQualifiedName ) ) otherlv_2= 'as' ( (lv_name_3_0= RULE_ID ) ) otherlv_4= ';' )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:259:1: ( 'import' ( (lv_fullName_1_0= ruleQualifiedName ) ) 'as' ( (lv_name_3_0= RULE_ID ) ) ';' )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:259:3: 'import' ( (lv_fullName_1_0= ruleQualifiedName ) ) 'as' ( (lv_name_3_0= RULE_ID ) ) ';'
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:219:1: (otherlv_0= 'import' ( (lv_fullName_1_0= ruleQualifiedName ) ) otherlv_2= 'as' ( (lv_name_3_0= RULE_ID ) ) otherlv_4= ';' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:219:3: otherlv_0= 'import' ( (lv_fullName_1_0= ruleQualifiedName ) ) otherlv_2= 'as' ( (lv_name_3_0= RULE_ID ) ) otherlv_4= ';'
             {
-            match(input,13,FOLLOW_13_in_ruleImport422); 
+            otherlv_0=(Token)match(input,13,FOLLOW_13_in_ruleImport426); 
 
-                    createLeafNode(grammarAccess.getImportAccess().getImportKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getImportAccess().getImportKeyword_0());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:263:1: ( (lv_fullName_1_0= ruleQualifiedName ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:264:1: (lv_fullName_1_0= ruleQualifiedName )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:223:1: ( (lv_fullName_1_0= ruleQualifiedName ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:224:1: (lv_fullName_1_0= ruleQualifiedName )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:264:1: (lv_fullName_1_0= ruleQualifiedName )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:265:3: lv_fullName_1_0= ruleQualifiedName
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:224:1: (lv_fullName_1_0= ruleQualifiedName )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:225:3: lv_fullName_1_0= ruleQualifiedName
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getImportAccess().getFullNameQualifiedNameParserRuleCall_1_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getImportAccess().getFullNameQualifiedNameParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleImport443);
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleImport447);
             lv_fullName_1_0=ruleQualifiedName();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getImportRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getImportRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"fullName",
-            	        		lv_fullName_1_0, 
-            	        		"QualifiedName", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"fullName",
+                    		lv_fullName_1_0, 
+                    		"QualifiedName");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -565,36 +573,29 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,14,FOLLOW_14_in_ruleImport453); 
+            otherlv_2=(Token)match(input,14,FOLLOW_14_in_ruleImport459); 
 
-                    createLeafNode(grammarAccess.getImportAccess().getAsKeyword_2(), null); 
+                	newLeafNode(otherlv_2, grammarAccess.getImportAccess().getAsKeyword_2());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:291:1: ( (lv_name_3_0= RULE_ID ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:292:1: (lv_name_3_0= RULE_ID )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:245:1: ( (lv_name_3_0= RULE_ID ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:246:1: (lv_name_3_0= RULE_ID )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:292:1: (lv_name_3_0= RULE_ID )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:293:3: lv_name_3_0= RULE_ID
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:246:1: (lv_name_3_0= RULE_ID )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:247:3: lv_name_3_0= RULE_ID
             {
-            lv_name_3_0=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleImport470); 
+            lv_name_3_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleImport476); 
 
-            			createLeafNode(grammarAccess.getImportAccess().getNameIDTerminalRuleCall_3_0(), "name"); 
+            			newLeafNode(lv_name_3_0, grammarAccess.getImportAccess().getNameIDTerminalRuleCall_3_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getImportRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getImportRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"name",
-            	        		lv_name_3_0, 
-            	        		"ID", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"name",
+                    		lv_name_3_0, 
+                    		"ID");
             	    
 
             }
@@ -602,9 +603,9 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,15,FOLLOW_15_in_ruleImport485); 
+            otherlv_4=(Token)match(input,15,FOLLOW_15_in_ruleImport493); 
 
-                    createLeafNode(grammarAccess.getImportAccess().getSemicolonKeyword_4(), null); 
+                	newLeafNode(otherlv_4, grammarAccess.getImportAccess().getSemicolonKeyword_4());
                 
 
             }
@@ -612,9 +613,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -625,11 +624,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleImport
+    // $ANTLR end "ruleImport"
 
 
-    // $ANTLR start entryRuleStructure
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:327:1: entryRuleStructure returns [EObject current=null] : iv_ruleStructure= ruleStructure EOF ;
+    // $ANTLR start "entryRuleStructure"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:275:1: entryRuleStructure returns [EObject current=null] : iv_ruleStructure= ruleStructure EOF ;
     public final EObject entryRuleStructure() throws RecognitionException {
         EObject current = null;
 
@@ -637,16 +636,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:328:2: (iv_ruleStructure= ruleStructure EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:329:2: iv_ruleStructure= ruleStructure EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:276:2: (iv_ruleStructure= ruleStructure EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:277:2: iv_ruleStructure= ruleStructure EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getStructureRule(), currentNode); 
-            pushFollow(FOLLOW_ruleStructure_in_entryRuleStructure521);
+             newCompositeNode(grammarAccess.getStructureRule()); 
+            pushFollow(FOLLOW_ruleStructure_in_entryRuleStructure529);
             iv_ruleStructure=ruleStructure();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleStructure; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStructure531); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStructure539); 
 
             }
 
@@ -660,57 +660,53 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleStructure
+    // $ANTLR end "entryRuleStructure"
 
 
-    // $ANTLR start ruleStructure
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:336:1: ruleStructure returns [EObject current=null] : ( 'structure' ( (lv_name_1_0= RULE_STRING ) ) '{' ( (lv_mapping_3_0= ruleStructureMapping ) ) '}' ) ;
+    // $ANTLR start "ruleStructure"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:284:1: ruleStructure returns [EObject current=null] : (otherlv_0= 'structure' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_mapping_3_0= ruleStructureMapping ) ) otherlv_4= '}' ) ;
     public final EObject ruleStructure() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
         Token lv_name_1_0=null;
+        Token otherlv_2=null;
+        Token otherlv_4=null;
         EObject lv_mapping_3_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:341:6: ( ( 'structure' ( (lv_name_1_0= RULE_STRING ) ) '{' ( (lv_mapping_3_0= ruleStructureMapping ) ) '}' ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:342:1: ( 'structure' ( (lv_name_1_0= RULE_STRING ) ) '{' ( (lv_mapping_3_0= ruleStructureMapping ) ) '}' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:287:28: ( (otherlv_0= 'structure' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_mapping_3_0= ruleStructureMapping ) ) otherlv_4= '}' ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:288:1: (otherlv_0= 'structure' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_mapping_3_0= ruleStructureMapping ) ) otherlv_4= '}' )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:342:1: ( 'structure' ( (lv_name_1_0= RULE_STRING ) ) '{' ( (lv_mapping_3_0= ruleStructureMapping ) ) '}' )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:342:3: 'structure' ( (lv_name_1_0= RULE_STRING ) ) '{' ( (lv_mapping_3_0= ruleStructureMapping ) ) '}'
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:288:1: (otherlv_0= 'structure' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_mapping_3_0= ruleStructureMapping ) ) otherlv_4= '}' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:288:3: otherlv_0= 'structure' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '{' ( (lv_mapping_3_0= ruleStructureMapping ) ) otherlv_4= '}'
             {
-            match(input,16,FOLLOW_16_in_ruleStructure566); 
+            otherlv_0=(Token)match(input,16,FOLLOW_16_in_ruleStructure576); 
 
-                    createLeafNode(grammarAccess.getStructureAccess().getStructureKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getStructureAccess().getStructureKeyword_0());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:346:1: ( (lv_name_1_0= RULE_STRING ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:347:1: (lv_name_1_0= RULE_STRING )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:292:1: ( (lv_name_1_0= RULE_STRING ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:293:1: (lv_name_1_0= RULE_STRING )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:347:1: (lv_name_1_0= RULE_STRING )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:348:3: lv_name_1_0= RULE_STRING
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:293:1: (lv_name_1_0= RULE_STRING )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:294:3: lv_name_1_0= RULE_STRING
             {
-            lv_name_1_0=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStructure583); 
+            lv_name_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStructure593); 
 
-            			createLeafNode(grammarAccess.getStructureAccess().getNameSTRINGTerminalRuleCall_1_0(), "name"); 
+            			newLeafNode(lv_name_1_0, grammarAccess.getStructureAccess().getNameSTRINGTerminalRuleCall_1_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getStructureRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getStructureRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"name",
-            	        		lv_name_1_0, 
-            	        		"STRING", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"name",
+                    		lv_name_1_0, 
+                    		"STRING");
             	    
 
             }
@@ -718,39 +714,34 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,17,FOLLOW_17_in_ruleStructure598); 
+            otherlv_2=(Token)match(input,17,FOLLOW_17_in_ruleStructure610); 
 
-                    createLeafNode(grammarAccess.getStructureAccess().getLeftCurlyBracketKeyword_2(), null); 
+                	newLeafNode(otherlv_2, grammarAccess.getStructureAccess().getLeftCurlyBracketKeyword_2());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:374:1: ( (lv_mapping_3_0= ruleStructureMapping ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:375:1: (lv_mapping_3_0= ruleStructureMapping )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:314:1: ( (lv_mapping_3_0= ruleStructureMapping ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:315:1: (lv_mapping_3_0= ruleStructureMapping )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:375:1: (lv_mapping_3_0= ruleStructureMapping )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:376:3: lv_mapping_3_0= ruleStructureMapping
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:315:1: (lv_mapping_3_0= ruleStructureMapping )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:316:3: lv_mapping_3_0= ruleStructureMapping
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getStructureAccess().getMappingStructureMappingParserRuleCall_3_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getStructureAccess().getMappingStructureMappingParserRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_ruleStructureMapping_in_ruleStructure619);
+            pushFollow(FOLLOW_ruleStructureMapping_in_ruleStructure631);
             lv_mapping_3_0=ruleStructureMapping();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getStructureRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getStructureRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"mapping",
-            	        		lv_mapping_3_0, 
-            	        		"StructureMapping", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"mapping",
+                    		lv_mapping_3_0, 
+                    		"StructureMapping");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -758,9 +749,9 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,18,FOLLOW_18_in_ruleStructure629); 
+            otherlv_4=(Token)match(input,18,FOLLOW_18_in_ruleStructure643); 
 
-                    createLeafNode(grammarAccess.getStructureAccess().getRightCurlyBracketKeyword_4(), null); 
+                	newLeafNode(otherlv_4, grammarAccess.getStructureAccess().getRightCurlyBracketKeyword_4());
                 
 
             }
@@ -768,9 +759,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -781,11 +770,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleStructure
+    // $ANTLR end "ruleStructure"
 
 
-    // $ANTLR start entryRuleStructureMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:410:1: entryRuleStructureMapping returns [EObject current=null] : iv_ruleStructureMapping= ruleStructureMapping EOF ;
+    // $ANTLR start "entryRuleStructureMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:344:1: entryRuleStructureMapping returns [EObject current=null] : iv_ruleStructureMapping= ruleStructureMapping EOF ;
     public final EObject entryRuleStructureMapping() throws RecognitionException {
         EObject current = null;
 
@@ -793,16 +782,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:411:2: (iv_ruleStructureMapping= ruleStructureMapping EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:412:2: iv_ruleStructureMapping= ruleStructureMapping EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:345:2: (iv_ruleStructureMapping= ruleStructureMapping EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:346:2: iv_ruleStructureMapping= ruleStructureMapping EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getStructureMappingRule(), currentNode); 
-            pushFollow(FOLLOW_ruleStructureMapping_in_entryRuleStructureMapping665);
+             newCompositeNode(grammarAccess.getStructureMappingRule()); 
+            pushFollow(FOLLOW_ruleStructureMapping_in_entryRuleStructureMapping679);
             iv_ruleStructureMapping=ruleStructureMapping();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleStructureMapping; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStructureMapping675); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStructureMapping689); 
 
             }
 
@@ -816,40 +806,39 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleStructureMapping
+    // $ANTLR end "entryRuleStructureMapping"
 
 
-    // $ANTLR start ruleStructureMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:419:1: ruleStructureMapping returns [EObject current=null] : this_StructurePOJOMapping_0= ruleStructurePOJOMapping ;
+    // $ANTLR start "ruleStructureMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:353:1: ruleStructureMapping returns [EObject current=null] : this_StructurePOJOMapping_0= ruleStructurePOJOMapping ;
     public final EObject ruleStructureMapping() throws RecognitionException {
         EObject current = null;
 
         EObject this_StructurePOJOMapping_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:424:6: (this_StructurePOJOMapping_0= ruleStructurePOJOMapping )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:426:5: this_StructurePOJOMapping_0= ruleStructurePOJOMapping
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:356:28: (this_StructurePOJOMapping_0= ruleStructurePOJOMapping )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:358:5: this_StructurePOJOMapping_0= ruleStructurePOJOMapping
             {
              
-                    currentNode=createCompositeNode(grammarAccess.getStructureMappingAccess().getStructurePOJOMappingParserRuleCall(), currentNode); 
+                    newCompositeNode(grammarAccess.getStructureMappingAccess().getStructurePOJOMappingParserRuleCall()); 
                 
-            pushFollow(FOLLOW_ruleStructurePOJOMapping_in_ruleStructureMapping721);
+            pushFollow(FOLLOW_ruleStructurePOJOMapping_in_ruleStructureMapping735);
             this_StructurePOJOMapping_0=ruleStructurePOJOMapping();
-            _fsp--;
+
+            state._fsp--;
 
              
                     current = this_StructurePOJOMapping_0; 
-                    currentNode = currentNode.getParent();
+                    afterParserOrEnumRuleCall();
                 
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -860,11 +849,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleStructureMapping
+    // $ANTLR end "ruleStructureMapping"
 
 
-    // $ANTLR start entryRuleStructurePOJOMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:442:1: entryRuleStructurePOJOMapping returns [EObject current=null] : iv_ruleStructurePOJOMapping= ruleStructurePOJOMapping EOF ;
+    // $ANTLR start "entryRuleStructurePOJOMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:374:1: entryRuleStructurePOJOMapping returns [EObject current=null] : iv_ruleStructurePOJOMapping= ruleStructurePOJOMapping EOF ;
     public final EObject entryRuleStructurePOJOMapping() throws RecognitionException {
         EObject current = null;
 
@@ -872,16 +861,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:443:2: (iv_ruleStructurePOJOMapping= ruleStructurePOJOMapping EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:444:2: iv_ruleStructurePOJOMapping= ruleStructurePOJOMapping EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:375:2: (iv_ruleStructurePOJOMapping= ruleStructurePOJOMapping EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:376:2: iv_ruleStructurePOJOMapping= ruleStructurePOJOMapping EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getStructurePOJOMappingRule(), currentNode); 
-            pushFollow(FOLLOW_ruleStructurePOJOMapping_in_entryRuleStructurePOJOMapping755);
+             newCompositeNode(grammarAccess.getStructurePOJOMappingRule()); 
+            pushFollow(FOLLOW_ruleStructurePOJOMapping_in_entryRuleStructurePOJOMapping769);
             iv_ruleStructurePOJOMapping=ruleStructurePOJOMapping();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleStructurePOJOMapping; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStructurePOJOMapping765); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStructurePOJOMapping779); 
 
             }
 
@@ -895,57 +885,54 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleStructurePOJOMapping
+    // $ANTLR end "entryRuleStructurePOJOMapping"
 
 
-    // $ANTLR start ruleStructurePOJOMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:451:1: ruleStructurePOJOMapping returns [EObject current=null] : ( 'class' ( (lv_name_1_0= RULE_ID ) ) '{' ( ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) ) ';' )* '}' ) ;
+    // $ANTLR start "ruleStructurePOJOMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:383:1: ruleStructurePOJOMapping returns [EObject current=null] : (otherlv_0= 'class' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) ) otherlv_4= ';' )* otherlv_5= '}' ) ;
     public final EObject ruleStructurePOJOMapping() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
         Token lv_name_1_0=null;
+        Token otherlv_2=null;
+        Token otherlv_4=null;
+        Token otherlv_5=null;
         EObject lv_fields_3_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:456:6: ( ( 'class' ( (lv_name_1_0= RULE_ID ) ) '{' ( ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) ) ';' )* '}' ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:457:1: ( 'class' ( (lv_name_1_0= RULE_ID ) ) '{' ( ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) ) ';' )* '}' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:386:28: ( (otherlv_0= 'class' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) ) otherlv_4= ';' )* otherlv_5= '}' ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:387:1: (otherlv_0= 'class' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) ) otherlv_4= ';' )* otherlv_5= '}' )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:457:1: ( 'class' ( (lv_name_1_0= RULE_ID ) ) '{' ( ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) ) ';' )* '}' )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:457:3: 'class' ( (lv_name_1_0= RULE_ID ) ) '{' ( ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) ) ';' )* '}'
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:387:1: (otherlv_0= 'class' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) ) otherlv_4= ';' )* otherlv_5= '}' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:387:3: otherlv_0= 'class' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) ) otherlv_4= ';' )* otherlv_5= '}'
             {
-            match(input,19,FOLLOW_19_in_ruleStructurePOJOMapping800); 
+            otherlv_0=(Token)match(input,19,FOLLOW_19_in_ruleStructurePOJOMapping816); 
 
-                    createLeafNode(grammarAccess.getStructurePOJOMappingAccess().getClassKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getStructurePOJOMappingAccess().getClassKeyword_0());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:461:1: ( (lv_name_1_0= RULE_ID ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:462:1: (lv_name_1_0= RULE_ID )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:391:1: ( (lv_name_1_0= RULE_ID ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:392:1: (lv_name_1_0= RULE_ID )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:462:1: (lv_name_1_0= RULE_ID )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:463:3: lv_name_1_0= RULE_ID
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:392:1: (lv_name_1_0= RULE_ID )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:393:3: lv_name_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleStructurePOJOMapping817); 
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleStructurePOJOMapping833); 
 
-            			createLeafNode(grammarAccess.getStructurePOJOMappingAccess().getNameIDTerminalRuleCall_1_0(), "name"); 
+            			newLeafNode(lv_name_1_0, grammarAccess.getStructurePOJOMappingAccess().getNameIDTerminalRuleCall_1_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getStructurePOJOMappingRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getStructurePOJOMappingRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"name",
-            	        		lv_name_1_0, 
-            	        		"ID", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"name",
+                    		lv_name_1_0, 
+                    		"ID");
             	    
 
             }
@@ -953,11 +940,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,17,FOLLOW_17_in_ruleStructurePOJOMapping832); 
+            otherlv_2=(Token)match(input,17,FOLLOW_17_in_ruleStructurePOJOMapping850); 
 
-                    createLeafNode(grammarAccess.getStructurePOJOMappingAccess().getLeftCurlyBracketKeyword_2(), null); 
+                	newLeafNode(otherlv_2, grammarAccess.getStructurePOJOMappingAccess().getLeftCurlyBracketKeyword_2());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:489:1: ( ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) ) ';' )*
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:413:1: ( ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) ) otherlv_4= ';' )*
             loop5:
             do {
                 int alt5=2;
@@ -970,37 +957,32 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:489:2: ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) ) ';'
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:413:2: ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) ) otherlv_4= ';'
             	    {
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:489:2: ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) )
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:490:1: (lv_fields_3_0= ruleStructureFieldPOJOMapping )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:413:2: ( (lv_fields_3_0= ruleStructureFieldPOJOMapping ) )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:414:1: (lv_fields_3_0= ruleStructureFieldPOJOMapping )
             	    {
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:490:1: (lv_fields_3_0= ruleStructureFieldPOJOMapping )
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:491:3: lv_fields_3_0= ruleStructureFieldPOJOMapping
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:414:1: (lv_fields_3_0= ruleStructureFieldPOJOMapping )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:415:3: lv_fields_3_0= ruleStructureFieldPOJOMapping
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getStructurePOJOMappingAccess().getFieldsStructureFieldPOJOMappingParserRuleCall_3_0_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getStructurePOJOMappingAccess().getFieldsStructureFieldPOJOMappingParserRuleCall_3_0_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleStructureFieldPOJOMapping_in_ruleStructurePOJOMapping854);
+            	    pushFollow(FOLLOW_ruleStructureFieldPOJOMapping_in_ruleStructurePOJOMapping872);
             	    lv_fields_3_0=ruleStructureFieldPOJOMapping();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getStructurePOJOMappingRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getStructurePOJOMappingRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"fields",
-            	    	        		lv_fields_3_0, 
-            	    	        		"StructureFieldPOJOMapping", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"fields",
+            	            		lv_fields_3_0, 
+            	            		"StructureFieldPOJOMapping");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -1008,9 +990,9 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    match(input,15,FOLLOW_15_in_ruleStructurePOJOMapping864); 
+            	    otherlv_4=(Token)match(input,15,FOLLOW_15_in_ruleStructurePOJOMapping884); 
 
-            	            createLeafNode(grammarAccess.getStructurePOJOMappingAccess().getSemicolonKeyword_3_1(), null); 
+            	        	newLeafNode(otherlv_4, grammarAccess.getStructurePOJOMappingAccess().getSemicolonKeyword_3_1());
             	        
 
             	    }
@@ -1021,9 +1003,9 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            match(input,18,FOLLOW_18_in_ruleStructurePOJOMapping876); 
+            otherlv_5=(Token)match(input,18,FOLLOW_18_in_ruleStructurePOJOMapping898); 
 
-                    createLeafNode(grammarAccess.getStructurePOJOMappingAccess().getRightCurlyBracketKeyword_4(), null); 
+                	newLeafNode(otherlv_5, grammarAccess.getStructurePOJOMappingAccess().getRightCurlyBracketKeyword_4());
                 
 
             }
@@ -1031,9 +1013,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1044,11 +1024,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleStructurePOJOMapping
+    // $ANTLR end "ruleStructurePOJOMapping"
 
 
-    // $ANTLR start entryRuleStructureFieldPOJOMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:529:1: entryRuleStructureFieldPOJOMapping returns [EObject current=null] : iv_ruleStructureFieldPOJOMapping= ruleStructureFieldPOJOMapping EOF ;
+    // $ANTLR start "entryRuleStructureFieldPOJOMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:447:1: entryRuleStructureFieldPOJOMapping returns [EObject current=null] : iv_ruleStructureFieldPOJOMapping= ruleStructureFieldPOJOMapping EOF ;
     public final EObject entryRuleStructureFieldPOJOMapping() throws RecognitionException {
         EObject current = null;
 
@@ -1056,16 +1036,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:530:2: (iv_ruleStructureFieldPOJOMapping= ruleStructureFieldPOJOMapping EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:531:2: iv_ruleStructureFieldPOJOMapping= ruleStructureFieldPOJOMapping EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:448:2: (iv_ruleStructureFieldPOJOMapping= ruleStructureFieldPOJOMapping EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:449:2: iv_ruleStructureFieldPOJOMapping= ruleStructureFieldPOJOMapping EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getStructureFieldPOJOMappingRule(), currentNode); 
-            pushFollow(FOLLOW_ruleStructureFieldPOJOMapping_in_entryRuleStructureFieldPOJOMapping912);
+             newCompositeNode(grammarAccess.getStructureFieldPOJOMappingRule()); 
+            pushFollow(FOLLOW_ruleStructureFieldPOJOMapping_in_entryRuleStructureFieldPOJOMapping934);
             iv_ruleStructureFieldPOJOMapping=ruleStructureFieldPOJOMapping();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleStructureFieldPOJOMapping; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStructureFieldPOJOMapping922); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStructureFieldPOJOMapping944); 
 
             }
 
@@ -1079,60 +1060,56 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleStructureFieldPOJOMapping
+    // $ANTLR end "entryRuleStructureFieldPOJOMapping"
 
 
-    // $ANTLR start ruleStructureFieldPOJOMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:538:1: ruleStructureFieldPOJOMapping returns [EObject current=null] : ( 'field' ( (lv_name_1_0= RULE_STRING ) ) '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) ) ( 'comment' ( (lv_comment_7_0= RULE_STRING ) ) )? ) ;
+    // $ANTLR start "ruleStructureFieldPOJOMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:456:1: ruleStructureFieldPOJOMapping returns [EObject current=null] : (otherlv_0= 'field' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) ) (otherlv_6= 'comment' ( (lv_comment_7_0= RULE_STRING ) ) )? ) ;
     public final EObject ruleStructureFieldPOJOMapping() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
         Token lv_name_1_0=null;
+        Token otherlv_2=null;
         Token lv_inactive_3_0=null;
         Token lv_attribute_5_0=null;
+        Token otherlv_6=null;
         Token lv_comment_7_0=null;
         Enumerator lv_type_4_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:543:6: ( ( 'field' ( (lv_name_1_0= RULE_STRING ) ) '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) ) ( 'comment' ( (lv_comment_7_0= RULE_STRING ) ) )? ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:544:1: ( 'field' ( (lv_name_1_0= RULE_STRING ) ) '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) ) ( 'comment' ( (lv_comment_7_0= RULE_STRING ) ) )? )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:459:28: ( (otherlv_0= 'field' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) ) (otherlv_6= 'comment' ( (lv_comment_7_0= RULE_STRING ) ) )? ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:460:1: (otherlv_0= 'field' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) ) (otherlv_6= 'comment' ( (lv_comment_7_0= RULE_STRING ) ) )? )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:544:1: ( 'field' ( (lv_name_1_0= RULE_STRING ) ) '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) ) ( 'comment' ( (lv_comment_7_0= RULE_STRING ) ) )? )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:544:3: 'field' ( (lv_name_1_0= RULE_STRING ) ) '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) ) ( 'comment' ( (lv_comment_7_0= RULE_STRING ) ) )?
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:460:1: (otherlv_0= 'field' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) ) (otherlv_6= 'comment' ( (lv_comment_7_0= RULE_STRING ) ) )? )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:460:3: otherlv_0= 'field' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) ) (otherlv_6= 'comment' ( (lv_comment_7_0= RULE_STRING ) ) )?
             {
-            match(input,20,FOLLOW_20_in_ruleStructureFieldPOJOMapping957); 
+            otherlv_0=(Token)match(input,20,FOLLOW_20_in_ruleStructureFieldPOJOMapping981); 
 
-                    createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getFieldKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getStructureFieldPOJOMappingAccess().getFieldKeyword_0());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:548:1: ( (lv_name_1_0= RULE_STRING ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:549:1: (lv_name_1_0= RULE_STRING )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:464:1: ( (lv_name_1_0= RULE_STRING ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:465:1: (lv_name_1_0= RULE_STRING )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:549:1: (lv_name_1_0= RULE_STRING )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:550:3: lv_name_1_0= RULE_STRING
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:465:1: (lv_name_1_0= RULE_STRING )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:466:3: lv_name_1_0= RULE_STRING
             {
-            lv_name_1_0=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStructureFieldPOJOMapping974); 
+            lv_name_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStructureFieldPOJOMapping998); 
 
-            			createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getNameSTRINGTerminalRuleCall_1_0(), "name"); 
+            			newLeafNode(lv_name_1_0, grammarAccess.getStructureFieldPOJOMappingAccess().getNameSTRINGTerminalRuleCall_1_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getStructureFieldPOJOMappingRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getStructureFieldPOJOMappingRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"name",
-            	        		lv_name_1_0, 
-            	        		"STRING", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"name",
+                    		lv_name_1_0, 
+                    		"STRING");
             	    
 
             }
@@ -1140,11 +1117,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,21,FOLLOW_21_in_ruleStructureFieldPOJOMapping989); 
+            otherlv_2=(Token)match(input,21,FOLLOW_21_in_ruleStructureFieldPOJOMapping1015); 
 
-                    createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getEqualsSignKeyword_2(), null); 
+                	newLeafNode(otherlv_2, grammarAccess.getStructureFieldPOJOMappingAccess().getEqualsSignKeyword_2());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:576:1: ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:486:1: ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1156,36 +1133,29 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("576:1: ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) )", 6, 0, input);
+                    new NoViableAltException("", 6, 0, input);
 
                 throw nvae;
             }
             switch (alt6) {
                 case 1 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:576:2: ( (lv_inactive_3_0= 'inactive' ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:486:2: ( (lv_inactive_3_0= 'inactive' ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:576:2: ( (lv_inactive_3_0= 'inactive' ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:577:1: (lv_inactive_3_0= 'inactive' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:486:2: ( (lv_inactive_3_0= 'inactive' ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:487:1: (lv_inactive_3_0= 'inactive' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:577:1: (lv_inactive_3_0= 'inactive' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:578:3: lv_inactive_3_0= 'inactive'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:487:1: (lv_inactive_3_0= 'inactive' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:488:3: lv_inactive_3_0= 'inactive'
                     {
-                    lv_inactive_3_0=(Token)input.LT(1);
-                    match(input,22,FOLLOW_22_in_ruleStructureFieldPOJOMapping1008); 
+                    lv_inactive_3_0=(Token)match(input,22,FOLLOW_22_in_ruleStructureFieldPOJOMapping1034); 
 
-                            createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getInactiveInactiveKeyword_3_0_0(), "inactive"); 
+                            newLeafNode(lv_inactive_3_0, grammarAccess.getStructureFieldPOJOMappingAccess().getInactiveInactiveKeyword_3_0_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getStructureFieldPOJOMappingRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getStructureFieldPOJOMappingRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		set(current, "inactive", true, "inactive", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(current, "inactive", true, "inactive");
                     	    
 
                     }
@@ -1197,40 +1167,35 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:598:6: ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:502:6: ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:598:6: ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:598:7: ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:502:6: ( ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:502:7: ( (lv_type_4_0= ruleDataType ) ) ( (lv_attribute_5_0= RULE_ID ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:598:7: ( (lv_type_4_0= ruleDataType ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:599:1: (lv_type_4_0= ruleDataType )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:502:7: ( (lv_type_4_0= ruleDataType ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:503:1: (lv_type_4_0= ruleDataType )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:599:1: (lv_type_4_0= ruleDataType )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:600:3: lv_type_4_0= ruleDataType
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:503:1: (lv_type_4_0= ruleDataType )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:504:3: lv_type_4_0= ruleDataType
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getStructureFieldPOJOMappingAccess().getTypeDataTypeEnumRuleCall_3_1_0_0(), currentNode); 
+                    	        newCompositeNode(grammarAccess.getStructureFieldPOJOMappingAccess().getTypeDataTypeEnumRuleCall_3_1_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleDataType_in_ruleStructureFieldPOJOMapping1049);
+                    pushFollow(FOLLOW_ruleDataType_in_ruleStructureFieldPOJOMapping1075);
                     lv_type_4_0=ruleDataType();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getStructureFieldPOJOMappingRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	            current = createModelElementForParent(grammarAccess.getStructureFieldPOJOMappingRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"type",
-                    	        		lv_type_4_0, 
-                    	        		"DataType", 
-                    	        		currentNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
-                    	        currentNode = currentNode.getParent();
+                           		set(
+                           			current, 
+                           			"type",
+                            		lv_type_4_0, 
+                            		"DataType");
+                    	        afterParserOrEnumRuleCall();
                     	    
 
                     }
@@ -1238,32 +1203,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:622:2: ( (lv_attribute_5_0= RULE_ID ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:623:1: (lv_attribute_5_0= RULE_ID )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:520:2: ( (lv_attribute_5_0= RULE_ID ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:521:1: (lv_attribute_5_0= RULE_ID )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:623:1: (lv_attribute_5_0= RULE_ID )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:624:3: lv_attribute_5_0= RULE_ID
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:521:1: (lv_attribute_5_0= RULE_ID )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:522:3: lv_attribute_5_0= RULE_ID
                     {
-                    lv_attribute_5_0=(Token)input.LT(1);
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleStructureFieldPOJOMapping1066); 
+                    lv_attribute_5_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleStructureFieldPOJOMapping1092); 
 
-                    			createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getAttributeIDTerminalRuleCall_3_1_1_0(), "attribute"); 
+                    			newLeafNode(lv_attribute_5_0, grammarAccess.getStructureFieldPOJOMappingAccess().getAttributeIDTerminalRuleCall_3_1_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getStructureFieldPOJOMappingRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getStructureFieldPOJOMappingRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"attribute",
-                    	        		lv_attribute_5_0, 
-                    	        		"ID", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"attribute",
+                            		lv_attribute_5_0, 
+                            		"ID");
                     	    
 
                     }
@@ -1280,7 +1238,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:646:4: ( 'comment' ( (lv_comment_7_0= RULE_STRING ) ) )?
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:538:4: (otherlv_6= 'comment' ( (lv_comment_7_0= RULE_STRING ) ) )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1289,38 +1247,31 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
             }
             switch (alt7) {
                 case 1 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:646:6: 'comment' ( (lv_comment_7_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:538:6: otherlv_6= 'comment' ( (lv_comment_7_0= RULE_STRING ) )
                     {
-                    match(input,23,FOLLOW_23_in_ruleStructureFieldPOJOMapping1084); 
+                    otherlv_6=(Token)match(input,23,FOLLOW_23_in_ruleStructureFieldPOJOMapping1112); 
 
-                            createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getCommentKeyword_4_0(), null); 
+                        	newLeafNode(otherlv_6, grammarAccess.getStructureFieldPOJOMappingAccess().getCommentKeyword_4_0());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:650:1: ( (lv_comment_7_0= RULE_STRING ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:651:1: (lv_comment_7_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:542:1: ( (lv_comment_7_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:543:1: (lv_comment_7_0= RULE_STRING )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:651:1: (lv_comment_7_0= RULE_STRING )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:652:3: lv_comment_7_0= RULE_STRING
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:543:1: (lv_comment_7_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:544:3: lv_comment_7_0= RULE_STRING
                     {
-                    lv_comment_7_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStructureFieldPOJOMapping1101); 
+                    lv_comment_7_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStructureFieldPOJOMapping1129); 
 
-                    			createLeafNode(grammarAccess.getStructureFieldPOJOMappingAccess().getCommentSTRINGTerminalRuleCall_4_1_0(), "comment"); 
+                    			newLeafNode(lv_comment_7_0, grammarAccess.getStructureFieldPOJOMappingAccess().getCommentSTRINGTerminalRuleCall_4_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getStructureFieldPOJOMappingRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getStructureFieldPOJOMappingRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"comment",
-                    	        		lv_comment_7_0, 
-                    	        		"STRING", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"comment",
+                            		lv_comment_7_0, 
+                            		"STRING");
                     	    
 
                     }
@@ -1340,9 +1291,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1353,11 +1302,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleStructureFieldPOJOMapping
+    // $ANTLR end "ruleStructureFieldPOJOMapping"
 
 
-    // $ANTLR start entryRuleFunctionModule
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:682:1: entryRuleFunctionModule returns [EObject current=null] : iv_ruleFunctionModule= ruleFunctionModule EOF ;
+    // $ANTLR start "entryRuleFunctionModule"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:568:1: entryRuleFunctionModule returns [EObject current=null] : iv_ruleFunctionModule= ruleFunctionModule EOF ;
     public final EObject entryRuleFunctionModule() throws RecognitionException {
         EObject current = null;
 
@@ -1365,16 +1314,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:683:2: (iv_ruleFunctionModule= ruleFunctionModule EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:684:2: iv_ruleFunctionModule= ruleFunctionModule EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:569:2: (iv_ruleFunctionModule= ruleFunctionModule EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:570:2: iv_ruleFunctionModule= ruleFunctionModule EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getFunctionModuleRule(), currentNode); 
-            pushFollow(FOLLOW_ruleFunctionModule_in_entryRuleFunctionModule1144);
+             newCompositeNode(grammarAccess.getFunctionModuleRule()); 
+            pushFollow(FOLLOW_ruleFunctionModule_in_entryRuleFunctionModule1172);
             iv_ruleFunctionModule=ruleFunctionModule();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleFunctionModule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModule1154); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModule1182); 
 
             }
 
@@ -1388,61 +1338,58 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleFunctionModule
+    // $ANTLR end "entryRuleFunctionModule"
 
 
-    // $ANTLR start ruleFunctionModule
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:691:1: ruleFunctionModule returns [EObject current=null] : ( 'function' 'module' ( (lv_name_2_0= RULE_STRING ) ) '{' ( (lv_mapping_4_0= ruleFunctionModuleMapping ) ) '}' ) ;
+    // $ANTLR start "ruleFunctionModule"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:577:1: ruleFunctionModule returns [EObject current=null] : (otherlv_0= 'function' otherlv_1= 'module' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_mapping_4_0= ruleFunctionModuleMapping ) ) otherlv_5= '}' ) ;
     public final EObject ruleFunctionModule() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
         Token lv_name_2_0=null;
+        Token otherlv_3=null;
+        Token otherlv_5=null;
         EObject lv_mapping_4_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:696:6: ( ( 'function' 'module' ( (lv_name_2_0= RULE_STRING ) ) '{' ( (lv_mapping_4_0= ruleFunctionModuleMapping ) ) '}' ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:697:1: ( 'function' 'module' ( (lv_name_2_0= RULE_STRING ) ) '{' ( (lv_mapping_4_0= ruleFunctionModuleMapping ) ) '}' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:580:28: ( (otherlv_0= 'function' otherlv_1= 'module' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_mapping_4_0= ruleFunctionModuleMapping ) ) otherlv_5= '}' ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:581:1: (otherlv_0= 'function' otherlv_1= 'module' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_mapping_4_0= ruleFunctionModuleMapping ) ) otherlv_5= '}' )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:697:1: ( 'function' 'module' ( (lv_name_2_0= RULE_STRING ) ) '{' ( (lv_mapping_4_0= ruleFunctionModuleMapping ) ) '}' )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:697:3: 'function' 'module' ( (lv_name_2_0= RULE_STRING ) ) '{' ( (lv_mapping_4_0= ruleFunctionModuleMapping ) ) '}'
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:581:1: (otherlv_0= 'function' otherlv_1= 'module' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_mapping_4_0= ruleFunctionModuleMapping ) ) otherlv_5= '}' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:581:3: otherlv_0= 'function' otherlv_1= 'module' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '{' ( (lv_mapping_4_0= ruleFunctionModuleMapping ) ) otherlv_5= '}'
             {
-            match(input,24,FOLLOW_24_in_ruleFunctionModule1189); 
+            otherlv_0=(Token)match(input,24,FOLLOW_24_in_ruleFunctionModule1219); 
 
-                    createLeafNode(grammarAccess.getFunctionModuleAccess().getFunctionKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getFunctionModuleAccess().getFunctionKeyword_0());
                 
-            match(input,25,FOLLOW_25_in_ruleFunctionModule1199); 
+            otherlv_1=(Token)match(input,25,FOLLOW_25_in_ruleFunctionModule1231); 
 
-                    createLeafNode(grammarAccess.getFunctionModuleAccess().getModuleKeyword_1(), null); 
+                	newLeafNode(otherlv_1, grammarAccess.getFunctionModuleAccess().getModuleKeyword_1());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:705:1: ( (lv_name_2_0= RULE_STRING ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:706:1: (lv_name_2_0= RULE_STRING )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:589:1: ( (lv_name_2_0= RULE_STRING ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:590:1: (lv_name_2_0= RULE_STRING )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:706:1: (lv_name_2_0= RULE_STRING )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:707:3: lv_name_2_0= RULE_STRING
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:590:1: (lv_name_2_0= RULE_STRING )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:591:3: lv_name_2_0= RULE_STRING
             {
-            lv_name_2_0=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModule1216); 
+            lv_name_2_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModule1248); 
 
-            			createLeafNode(grammarAccess.getFunctionModuleAccess().getNameSTRINGTerminalRuleCall_2_0(), "name"); 
+            			newLeafNode(lv_name_2_0, grammarAccess.getFunctionModuleAccess().getNameSTRINGTerminalRuleCall_2_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getFunctionModuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getFunctionModuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"name",
-            	        		lv_name_2_0, 
-            	        		"STRING", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"name",
+                    		lv_name_2_0, 
+                    		"STRING");
             	    
 
             }
@@ -1450,39 +1397,34 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,17,FOLLOW_17_in_ruleFunctionModule1231); 
+            otherlv_3=(Token)match(input,17,FOLLOW_17_in_ruleFunctionModule1265); 
 
-                    createLeafNode(grammarAccess.getFunctionModuleAccess().getLeftCurlyBracketKeyword_3(), null); 
+                	newLeafNode(otherlv_3, grammarAccess.getFunctionModuleAccess().getLeftCurlyBracketKeyword_3());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:733:1: ( (lv_mapping_4_0= ruleFunctionModuleMapping ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:734:1: (lv_mapping_4_0= ruleFunctionModuleMapping )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:611:1: ( (lv_mapping_4_0= ruleFunctionModuleMapping ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:612:1: (lv_mapping_4_0= ruleFunctionModuleMapping )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:734:1: (lv_mapping_4_0= ruleFunctionModuleMapping )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:735:3: lv_mapping_4_0= ruleFunctionModuleMapping
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:612:1: (lv_mapping_4_0= ruleFunctionModuleMapping )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:613:3: lv_mapping_4_0= ruleFunctionModuleMapping
             {
              
-            	        currentNode=createCompositeNode(grammarAccess.getFunctionModuleAccess().getMappingFunctionModuleMappingParserRuleCall_4_0(), currentNode); 
+            	        newCompositeNode(grammarAccess.getFunctionModuleAccess().getMappingFunctionModuleMappingParserRuleCall_4_0()); 
             	    
-            pushFollow(FOLLOW_ruleFunctionModuleMapping_in_ruleFunctionModule1252);
+            pushFollow(FOLLOW_ruleFunctionModuleMapping_in_ruleFunctionModule1286);
             lv_mapping_4_0=ruleFunctionModuleMapping();
-            _fsp--;
+
+            state._fsp--;
 
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getFunctionModuleRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	            current = createModelElementForParent(grammarAccess.getFunctionModuleRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"mapping",
-            	        		lv_mapping_4_0, 
-            	        		"FunctionModuleMapping", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
+                   		set(
+                   			current, 
+                   			"mapping",
+                    		lv_mapping_4_0, 
+                    		"FunctionModuleMapping");
+            	        afterParserOrEnumRuleCall();
             	    
 
             }
@@ -1490,9 +1432,9 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,18,FOLLOW_18_in_ruleFunctionModule1262); 
+            otherlv_5=(Token)match(input,18,FOLLOW_18_in_ruleFunctionModule1298); 
 
-                    createLeafNode(grammarAccess.getFunctionModuleAccess().getRightCurlyBracketKeyword_5(), null); 
+                	newLeafNode(otherlv_5, grammarAccess.getFunctionModuleAccess().getRightCurlyBracketKeyword_5());
                 
 
             }
@@ -1500,9 +1442,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1513,11 +1453,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleFunctionModule
+    // $ANTLR end "ruleFunctionModule"
 
 
-    // $ANTLR start entryRuleFunctionModuleMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:769:1: entryRuleFunctionModuleMapping returns [EObject current=null] : iv_ruleFunctionModuleMapping= ruleFunctionModuleMapping EOF ;
+    // $ANTLR start "entryRuleFunctionModuleMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:641:1: entryRuleFunctionModuleMapping returns [EObject current=null] : iv_ruleFunctionModuleMapping= ruleFunctionModuleMapping EOF ;
     public final EObject entryRuleFunctionModuleMapping() throws RecognitionException {
         EObject current = null;
 
@@ -1525,16 +1465,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:770:2: (iv_ruleFunctionModuleMapping= ruleFunctionModuleMapping EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:771:2: iv_ruleFunctionModuleMapping= ruleFunctionModuleMapping EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:642:2: (iv_ruleFunctionModuleMapping= ruleFunctionModuleMapping EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:643:2: iv_ruleFunctionModuleMapping= ruleFunctionModuleMapping EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getFunctionModuleMappingRule(), currentNode); 
-            pushFollow(FOLLOW_ruleFunctionModuleMapping_in_entryRuleFunctionModuleMapping1298);
+             newCompositeNode(grammarAccess.getFunctionModuleMappingRule()); 
+            pushFollow(FOLLOW_ruleFunctionModuleMapping_in_entryRuleFunctionModuleMapping1334);
             iv_ruleFunctionModuleMapping=ruleFunctionModuleMapping();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleFunctionModuleMapping; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModuleMapping1308); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModuleMapping1344); 
 
             }
 
@@ -1548,40 +1489,39 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleFunctionModuleMapping
+    // $ANTLR end "entryRuleFunctionModuleMapping"
 
 
-    // $ANTLR start ruleFunctionModuleMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:778:1: ruleFunctionModuleMapping returns [EObject current=null] : this_FunctionModulePOJOMapping_0= ruleFunctionModulePOJOMapping ;
+    // $ANTLR start "ruleFunctionModuleMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:650:1: ruleFunctionModuleMapping returns [EObject current=null] : this_FunctionModulePOJOMapping_0= ruleFunctionModulePOJOMapping ;
     public final EObject ruleFunctionModuleMapping() throws RecognitionException {
         EObject current = null;
 
         EObject this_FunctionModulePOJOMapping_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:783:6: (this_FunctionModulePOJOMapping_0= ruleFunctionModulePOJOMapping )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:785:5: this_FunctionModulePOJOMapping_0= ruleFunctionModulePOJOMapping
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:653:28: (this_FunctionModulePOJOMapping_0= ruleFunctionModulePOJOMapping )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:655:5: this_FunctionModulePOJOMapping_0= ruleFunctionModulePOJOMapping
             {
              
-                    currentNode=createCompositeNode(grammarAccess.getFunctionModuleMappingAccess().getFunctionModulePOJOMappingParserRuleCall(), currentNode); 
+                    newCompositeNode(grammarAccess.getFunctionModuleMappingAccess().getFunctionModulePOJOMappingParserRuleCall()); 
                 
-            pushFollow(FOLLOW_ruleFunctionModulePOJOMapping_in_ruleFunctionModuleMapping1354);
+            pushFollow(FOLLOW_ruleFunctionModulePOJOMapping_in_ruleFunctionModuleMapping1390);
             this_FunctionModulePOJOMapping_0=ruleFunctionModulePOJOMapping();
-            _fsp--;
+
+            state._fsp--;
 
              
                     current = this_FunctionModulePOJOMapping_0; 
-                    currentNode = currentNode.getParent();
+                    afterParserOrEnumRuleCall();
                 
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1592,11 +1532,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleFunctionModuleMapping
+    // $ANTLR end "ruleFunctionModuleMapping"
 
 
-    // $ANTLR start entryRuleFunctionModulePOJOMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:801:1: entryRuleFunctionModulePOJOMapping returns [EObject current=null] : iv_ruleFunctionModulePOJOMapping= ruleFunctionModulePOJOMapping EOF ;
+    // $ANTLR start "entryRuleFunctionModulePOJOMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:671:1: entryRuleFunctionModulePOJOMapping returns [EObject current=null] : iv_ruleFunctionModulePOJOMapping= ruleFunctionModulePOJOMapping EOF ;
     public final EObject entryRuleFunctionModulePOJOMapping() throws RecognitionException {
         EObject current = null;
 
@@ -1604,16 +1544,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:802:2: (iv_ruleFunctionModulePOJOMapping= ruleFunctionModulePOJOMapping EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:803:2: iv_ruleFunctionModulePOJOMapping= ruleFunctionModulePOJOMapping EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:672:2: (iv_ruleFunctionModulePOJOMapping= ruleFunctionModulePOJOMapping EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:673:2: iv_ruleFunctionModulePOJOMapping= ruleFunctionModulePOJOMapping EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getFunctionModulePOJOMappingRule(), currentNode); 
-            pushFollow(FOLLOW_ruleFunctionModulePOJOMapping_in_entryRuleFunctionModulePOJOMapping1388);
+             newCompositeNode(grammarAccess.getFunctionModulePOJOMappingRule()); 
+            pushFollow(FOLLOW_ruleFunctionModulePOJOMapping_in_entryRuleFunctionModulePOJOMapping1424);
             iv_ruleFunctionModulePOJOMapping=ruleFunctionModulePOJOMapping();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleFunctionModulePOJOMapping; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJOMapping1398); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJOMapping1434); 
 
             }
 
@@ -1627,11 +1568,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleFunctionModulePOJOMapping
+    // $ANTLR end "entryRuleFunctionModulePOJOMapping"
 
 
-    // $ANTLR start ruleFunctionModulePOJOMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:810:1: ruleFunctionModulePOJOMapping returns [EObject current=null] : (this_FunctionModulePOJOCallMapping_0= ruleFunctionModulePOJOCallMapping | this_FunctionModulePOJORequestResponseMapping_1= ruleFunctionModulePOJORequestResponseMapping ) ;
+    // $ANTLR start "ruleFunctionModulePOJOMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:680:1: ruleFunctionModulePOJOMapping returns [EObject current=null] : (this_FunctionModulePOJOCallMapping_0= ruleFunctionModulePOJOCallMapping | this_FunctionModulePOJORequestResponseMapping_1= ruleFunctionModulePOJORequestResponseMapping ) ;
     public final EObject ruleFunctionModulePOJOMapping() throws RecognitionException {
         EObject current = null;
 
@@ -1640,13 +1581,13 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         EObject this_FunctionModulePOJORequestResponseMapping_1 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:815:6: ( (this_FunctionModulePOJOCallMapping_0= ruleFunctionModulePOJOCallMapping | this_FunctionModulePOJORequestResponseMapping_1= ruleFunctionModulePOJORequestResponseMapping ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:816:1: (this_FunctionModulePOJOCallMapping_0= ruleFunctionModulePOJOCallMapping | this_FunctionModulePOJORequestResponseMapping_1= ruleFunctionModulePOJORequestResponseMapping )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:683:28: ( (this_FunctionModulePOJOCallMapping_0= ruleFunctionModulePOJOCallMapping | this_FunctionModulePOJORequestResponseMapping_1= ruleFunctionModulePOJORequestResponseMapping ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:684:1: (this_FunctionModulePOJOCallMapping_0= ruleFunctionModulePOJOCallMapping | this_FunctionModulePOJORequestResponseMapping_1= ruleFunctionModulePOJORequestResponseMapping )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:816:1: (this_FunctionModulePOJOCallMapping_0= ruleFunctionModulePOJOCallMapping | this_FunctionModulePOJORequestResponseMapping_1= ruleFunctionModulePOJORequestResponseMapping )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:684:1: (this_FunctionModulePOJOCallMapping_0= ruleFunctionModulePOJOCallMapping | this_FunctionModulePOJORequestResponseMapping_1= ruleFunctionModulePOJORequestResponseMapping )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1658,41 +1599,43 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("816:1: (this_FunctionModulePOJOCallMapping_0= ruleFunctionModulePOJOCallMapping | this_FunctionModulePOJORequestResponseMapping_1= ruleFunctionModulePOJORequestResponseMapping )", 8, 0, input);
+                    new NoViableAltException("", 8, 0, input);
 
                 throw nvae;
             }
             switch (alt8) {
                 case 1 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:817:5: this_FunctionModulePOJOCallMapping_0= ruleFunctionModulePOJOCallMapping
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:685:5: this_FunctionModulePOJOCallMapping_0= ruleFunctionModulePOJOCallMapping
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJOMappingAccess().getFunctionModulePOJOCallMappingParserRuleCall_0(), currentNode); 
+                            newCompositeNode(grammarAccess.getFunctionModulePOJOMappingAccess().getFunctionModulePOJOCallMappingParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleFunctionModulePOJOCallMapping_in_ruleFunctionModulePOJOMapping1445);
+                    pushFollow(FOLLOW_ruleFunctionModulePOJOCallMapping_in_ruleFunctionModulePOJOMapping1481);
                     this_FunctionModulePOJOCallMapping_0=ruleFunctionModulePOJOCallMapping();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_FunctionModulePOJOCallMapping_0; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 2 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:827:5: this_FunctionModulePOJORequestResponseMapping_1= ruleFunctionModulePOJORequestResponseMapping
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:695:5: this_FunctionModulePOJORequestResponseMapping_1= ruleFunctionModulePOJORequestResponseMapping
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJOMappingAccess().getFunctionModulePOJORequestResponseMappingParserRuleCall_1(), currentNode); 
+                            newCompositeNode(grammarAccess.getFunctionModulePOJOMappingAccess().getFunctionModulePOJORequestResponseMappingParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleFunctionModulePOJORequestResponseMapping_in_ruleFunctionModulePOJOMapping1472);
+                    pushFollow(FOLLOW_ruleFunctionModulePOJORequestResponseMapping_in_ruleFunctionModulePOJOMapping1508);
                     this_FunctionModulePOJORequestResponseMapping_1=ruleFunctionModulePOJORequestResponseMapping();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_FunctionModulePOJORequestResponseMapping_1; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
@@ -1703,9 +1646,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1716,11 +1657,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleFunctionModulePOJOMapping
+    // $ANTLR end "ruleFunctionModulePOJOMapping"
 
 
-    // $ANTLR start entryRuleFunctionModulePOJOCallMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:843:1: entryRuleFunctionModulePOJOCallMapping returns [EObject current=null] : iv_ruleFunctionModulePOJOCallMapping= ruleFunctionModulePOJOCallMapping EOF ;
+    // $ANTLR start "entryRuleFunctionModulePOJOCallMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:711:1: entryRuleFunctionModulePOJOCallMapping returns [EObject current=null] : iv_ruleFunctionModulePOJOCallMapping= ruleFunctionModulePOJOCallMapping EOF ;
     public final EObject entryRuleFunctionModulePOJOCallMapping() throws RecognitionException {
         EObject current = null;
 
@@ -1728,16 +1669,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:844:2: (iv_ruleFunctionModulePOJOCallMapping= ruleFunctionModulePOJOCallMapping EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:845:2: iv_ruleFunctionModulePOJOCallMapping= ruleFunctionModulePOJOCallMapping EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:712:2: (iv_ruleFunctionModulePOJOCallMapping= ruleFunctionModulePOJOCallMapping EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:713:2: iv_ruleFunctionModulePOJOCallMapping= ruleFunctionModulePOJOCallMapping EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getFunctionModulePOJOCallMappingRule(), currentNode); 
-            pushFollow(FOLLOW_ruleFunctionModulePOJOCallMapping_in_entryRuleFunctionModulePOJOCallMapping1507);
+             newCompositeNode(grammarAccess.getFunctionModulePOJOCallMappingRule()); 
+            pushFollow(FOLLOW_ruleFunctionModulePOJOCallMapping_in_entryRuleFunctionModulePOJOCallMapping1543);
             iv_ruleFunctionModulePOJOCallMapping=ruleFunctionModulePOJOCallMapping();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleFunctionModulePOJOCallMapping; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJOCallMapping1517); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJOCallMapping1553); 
 
             }
 
@@ -1751,57 +1693,53 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleFunctionModulePOJOCallMapping
+    // $ANTLR end "entryRuleFunctionModulePOJOCallMapping"
 
 
-    // $ANTLR start ruleFunctionModulePOJOCallMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:852:1: ruleFunctionModulePOJOCallMapping returns [EObject current=null] : ( 'class' ( (lv_className_1_0= RULE_ID ) ) '{' ( (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping ) )* '}' ) ;
+    // $ANTLR start "ruleFunctionModulePOJOCallMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:720:1: ruleFunctionModulePOJOCallMapping returns [EObject current=null] : (otherlv_0= 'class' ( (lv_className_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_4= '}' ) ;
     public final EObject ruleFunctionModulePOJOCallMapping() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
         Token lv_className_1_0=null;
+        Token otherlv_2=null;
+        Token otherlv_4=null;
         EObject lv_parameters_3_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:857:6: ( ( 'class' ( (lv_className_1_0= RULE_ID ) ) '{' ( (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping ) )* '}' ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:858:1: ( 'class' ( (lv_className_1_0= RULE_ID ) ) '{' ( (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping ) )* '}' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:723:28: ( (otherlv_0= 'class' ( (lv_className_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_4= '}' ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:724:1: (otherlv_0= 'class' ( (lv_className_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_4= '}' )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:858:1: ( 'class' ( (lv_className_1_0= RULE_ID ) ) '{' ( (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping ) )* '}' )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:858:3: 'class' ( (lv_className_1_0= RULE_ID ) ) '{' ( (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping ) )* '}'
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:724:1: (otherlv_0= 'class' ( (lv_className_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_4= '}' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:724:3: otherlv_0= 'class' ( (lv_className_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_4= '}'
             {
-            match(input,19,FOLLOW_19_in_ruleFunctionModulePOJOCallMapping1552); 
+            otherlv_0=(Token)match(input,19,FOLLOW_19_in_ruleFunctionModulePOJOCallMapping1590); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJOCallMappingAccess().getClassKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getFunctionModulePOJOCallMappingAccess().getClassKeyword_0());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:862:1: ( (lv_className_1_0= RULE_ID ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:863:1: (lv_className_1_0= RULE_ID )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:728:1: ( (lv_className_1_0= RULE_ID ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:729:1: (lv_className_1_0= RULE_ID )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:863:1: (lv_className_1_0= RULE_ID )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:864:3: lv_className_1_0= RULE_ID
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:729:1: (lv_className_1_0= RULE_ID )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:730:3: lv_className_1_0= RULE_ID
             {
-            lv_className_1_0=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOCallMapping1569); 
+            lv_className_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOCallMapping1607); 
 
-            			createLeafNode(grammarAccess.getFunctionModulePOJOCallMappingAccess().getClassNameIDTerminalRuleCall_1_0(), "className"); 
+            			newLeafNode(lv_className_1_0, grammarAccess.getFunctionModulePOJOCallMappingAccess().getClassNameIDTerminalRuleCall_1_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getFunctionModulePOJOCallMappingRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getFunctionModulePOJOCallMappingRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"className",
-            	        		lv_className_1_0, 
-            	        		"ID", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"className",
+                    		lv_className_1_0, 
+                    		"ID");
             	    
 
             }
@@ -1809,11 +1747,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,17,FOLLOW_17_in_ruleFunctionModulePOJOCallMapping1584); 
+            otherlv_2=(Token)match(input,17,FOLLOW_17_in_ruleFunctionModulePOJOCallMapping1624); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJOCallMappingAccess().getLeftCurlyBracketKeyword_2(), null); 
+                	newLeafNode(otherlv_2, grammarAccess.getFunctionModulePOJOCallMappingAccess().getLeftCurlyBracketKeyword_2());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:890:1: ( (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping ) )*
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:750:1: ( (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping ) )*
             loop9:
             do {
                 int alt9=2;
@@ -1826,34 +1764,29 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                 switch (alt9) {
             	case 1 :
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:891:1: (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:751:1: (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping )
             	    {
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:891:1: (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping )
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:892:3: lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:751:1: (lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:752:3: lv_parameters_3_0= ruleFunctionModulePOJOParameterMapping
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJOCallMappingAccess().getParametersFunctionModulePOJOParameterMappingParserRuleCall_3_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getFunctionModulePOJOCallMappingAccess().getParametersFunctionModulePOJOParameterMappingParserRuleCall_3_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleFunctionModulePOJOParameterMapping_in_ruleFunctionModulePOJOCallMapping1605);
+            	    pushFollow(FOLLOW_ruleFunctionModulePOJOParameterMapping_in_ruleFunctionModulePOJOCallMapping1645);
             	    lv_parameters_3_0=ruleFunctionModulePOJOParameterMapping();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getFunctionModulePOJOCallMappingRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getFunctionModulePOJOCallMappingRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"parameters",
-            	    	        		lv_parameters_3_0, 
-            	    	        		"FunctionModulePOJOParameterMapping", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"parameters",
+            	            		lv_parameters_3_0, 
+            	            		"FunctionModulePOJOParameterMapping");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -1867,9 +1800,9 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            match(input,18,FOLLOW_18_in_ruleFunctionModulePOJOCallMapping1616); 
+            otherlv_4=(Token)match(input,18,FOLLOW_18_in_ruleFunctionModulePOJOCallMapping1658); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJOCallMappingAccess().getRightCurlyBracketKeyword_4(), null); 
+                	newLeafNode(otherlv_4, grammarAccess.getFunctionModulePOJOCallMappingAccess().getRightCurlyBracketKeyword_4());
                 
 
             }
@@ -1877,9 +1810,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -1890,11 +1821,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleFunctionModulePOJOCallMapping
+    // $ANTLR end "ruleFunctionModulePOJOCallMapping"
 
 
-    // $ANTLR start entryRuleFunctionModulePOJORequestResponseMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:926:1: entryRuleFunctionModulePOJORequestResponseMapping returns [EObject current=null] : iv_ruleFunctionModulePOJORequestResponseMapping= ruleFunctionModulePOJORequestResponseMapping EOF ;
+    // $ANTLR start "entryRuleFunctionModulePOJORequestResponseMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:780:1: entryRuleFunctionModulePOJORequestResponseMapping returns [EObject current=null] : iv_ruleFunctionModulePOJORequestResponseMapping= ruleFunctionModulePOJORequestResponseMapping EOF ;
     public final EObject entryRuleFunctionModulePOJORequestResponseMapping() throws RecognitionException {
         EObject current = null;
 
@@ -1902,16 +1833,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:927:2: (iv_ruleFunctionModulePOJORequestResponseMapping= ruleFunctionModulePOJORequestResponseMapping EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:928:2: iv_ruleFunctionModulePOJORequestResponseMapping= ruleFunctionModulePOJORequestResponseMapping EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:781:2: (iv_ruleFunctionModulePOJORequestResponseMapping= ruleFunctionModulePOJORequestResponseMapping EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:782:2: iv_ruleFunctionModulePOJORequestResponseMapping= ruleFunctionModulePOJORequestResponseMapping EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getFunctionModulePOJORequestResponseMappingRule(), currentNode); 
-            pushFollow(FOLLOW_ruleFunctionModulePOJORequestResponseMapping_in_entryRuleFunctionModulePOJORequestResponseMapping1652);
+             newCompositeNode(grammarAccess.getFunctionModulePOJORequestResponseMappingRule()); 
+            pushFollow(FOLLOW_ruleFunctionModulePOJORequestResponseMapping_in_entryRuleFunctionModulePOJORequestResponseMapping1694);
             iv_ruleFunctionModulePOJORequestResponseMapping=ruleFunctionModulePOJORequestResponseMapping();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleFunctionModulePOJORequestResponseMapping; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJORequestResponseMapping1662); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJORequestResponseMapping1704); 
 
             }
 
@@ -1925,64 +1857,65 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleFunctionModulePOJORequestResponseMapping
+    // $ANTLR end "entryRuleFunctionModulePOJORequestResponseMapping"
 
 
-    // $ANTLR start ruleFunctionModulePOJORequestResponseMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:935:1: ruleFunctionModulePOJORequestResponseMapping returns [EObject current=null] : ( 'request' 'class' ( (lv_requestClassName_2_0= RULE_ID ) ) '{' ( (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping ) )* '}' 'response' 'class' ( (lv_responseClassName_8_0= RULE_ID ) ) '{' ( (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping ) )* '}' ) ;
+    // $ANTLR start "ruleFunctionModulePOJORequestResponseMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:789:1: ruleFunctionModulePOJORequestResponseMapping returns [EObject current=null] : (otherlv_0= 'request' otherlv_1= 'class' ( (lv_requestClassName_2_0= RULE_ID ) ) otherlv_3= '{' ( (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_5= '}' otherlv_6= 'response' otherlv_7= 'class' ( (lv_responseClassName_8_0= RULE_ID ) ) otherlv_9= '{' ( (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_11= '}' ) ;
     public final EObject ruleFunctionModulePOJORequestResponseMapping() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
         Token lv_requestClassName_2_0=null;
+        Token otherlv_3=null;
+        Token otherlv_5=null;
+        Token otherlv_6=null;
+        Token otherlv_7=null;
         Token lv_responseClassName_8_0=null;
+        Token otherlv_9=null;
+        Token otherlv_11=null;
         EObject lv_requestParameters_4_0 = null;
 
         EObject lv_responseParameters_10_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:940:6: ( ( 'request' 'class' ( (lv_requestClassName_2_0= RULE_ID ) ) '{' ( (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping ) )* '}' 'response' 'class' ( (lv_responseClassName_8_0= RULE_ID ) ) '{' ( (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping ) )* '}' ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:941:1: ( 'request' 'class' ( (lv_requestClassName_2_0= RULE_ID ) ) '{' ( (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping ) )* '}' 'response' 'class' ( (lv_responseClassName_8_0= RULE_ID ) ) '{' ( (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping ) )* '}' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:792:28: ( (otherlv_0= 'request' otherlv_1= 'class' ( (lv_requestClassName_2_0= RULE_ID ) ) otherlv_3= '{' ( (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_5= '}' otherlv_6= 'response' otherlv_7= 'class' ( (lv_responseClassName_8_0= RULE_ID ) ) otherlv_9= '{' ( (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_11= '}' ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:793:1: (otherlv_0= 'request' otherlv_1= 'class' ( (lv_requestClassName_2_0= RULE_ID ) ) otherlv_3= '{' ( (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_5= '}' otherlv_6= 'response' otherlv_7= 'class' ( (lv_responseClassName_8_0= RULE_ID ) ) otherlv_9= '{' ( (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_11= '}' )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:941:1: ( 'request' 'class' ( (lv_requestClassName_2_0= RULE_ID ) ) '{' ( (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping ) )* '}' 'response' 'class' ( (lv_responseClassName_8_0= RULE_ID ) ) '{' ( (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping ) )* '}' )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:941:3: 'request' 'class' ( (lv_requestClassName_2_0= RULE_ID ) ) '{' ( (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping ) )* '}' 'response' 'class' ( (lv_responseClassName_8_0= RULE_ID ) ) '{' ( (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping ) )* '}'
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:793:1: (otherlv_0= 'request' otherlv_1= 'class' ( (lv_requestClassName_2_0= RULE_ID ) ) otherlv_3= '{' ( (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_5= '}' otherlv_6= 'response' otherlv_7= 'class' ( (lv_responseClassName_8_0= RULE_ID ) ) otherlv_9= '{' ( (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_11= '}' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:793:3: otherlv_0= 'request' otherlv_1= 'class' ( (lv_requestClassName_2_0= RULE_ID ) ) otherlv_3= '{' ( (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_5= '}' otherlv_6= 'response' otherlv_7= 'class' ( (lv_responseClassName_8_0= RULE_ID ) ) otherlv_9= '{' ( (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping ) )* otherlv_11= '}'
             {
-            match(input,26,FOLLOW_26_in_ruleFunctionModulePOJORequestResponseMapping1697); 
+            otherlv_0=(Token)match(input,26,FOLLOW_26_in_ruleFunctionModulePOJORequestResponseMapping1741); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getRequestKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getRequestKeyword_0());
                 
-            match(input,19,FOLLOW_19_in_ruleFunctionModulePOJORequestResponseMapping1707); 
+            otherlv_1=(Token)match(input,19,FOLLOW_19_in_ruleFunctionModulePOJORequestResponseMapping1753); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getClassKeyword_1(), null); 
+                	newLeafNode(otherlv_1, grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getClassKeyword_1());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:949:1: ( (lv_requestClassName_2_0= RULE_ID ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:950:1: (lv_requestClassName_2_0= RULE_ID )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:801:1: ( (lv_requestClassName_2_0= RULE_ID ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:802:1: (lv_requestClassName_2_0= RULE_ID )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:950:1: (lv_requestClassName_2_0= RULE_ID )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:951:3: lv_requestClassName_2_0= RULE_ID
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:802:1: (lv_requestClassName_2_0= RULE_ID )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:803:3: lv_requestClassName_2_0= RULE_ID
             {
-            lv_requestClassName_2_0=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJORequestResponseMapping1724); 
+            lv_requestClassName_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJORequestResponseMapping1770); 
 
-            			createLeafNode(grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getRequestClassNameIDTerminalRuleCall_2_0(), "requestClassName"); 
+            			newLeafNode(lv_requestClassName_2_0, grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getRequestClassNameIDTerminalRuleCall_2_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getFunctionModulePOJORequestResponseMappingRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getFunctionModulePOJORequestResponseMappingRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"requestClassName",
-            	        		lv_requestClassName_2_0, 
-            	        		"ID", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"requestClassName",
+                    		lv_requestClassName_2_0, 
+                    		"ID");
             	    
 
             }
@@ -1990,11 +1923,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,17,FOLLOW_17_in_ruleFunctionModulePOJORequestResponseMapping1739); 
+            otherlv_3=(Token)match(input,17,FOLLOW_17_in_ruleFunctionModulePOJORequestResponseMapping1787); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getLeftCurlyBracketKeyword_3(), null); 
+                	newLeafNode(otherlv_3, grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getLeftCurlyBracketKeyword_3());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:977:1: ( (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping ) )*
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:823:1: ( (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping ) )*
             loop10:
             do {
                 int alt10=2;
@@ -2007,34 +1940,29 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                 switch (alt10) {
             	case 1 :
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:978:1: (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:824:1: (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping )
             	    {
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:978:1: (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping )
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:979:3: lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:824:1: (lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:825:3: lv_requestParameters_4_0= ruleFunctionModulePOJOParameterMapping
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getRequestParametersFunctionModulePOJOParameterMappingParserRuleCall_4_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getRequestParametersFunctionModulePOJOParameterMappingParserRuleCall_4_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleFunctionModulePOJOParameterMapping_in_ruleFunctionModulePOJORequestResponseMapping1760);
+            	    pushFollow(FOLLOW_ruleFunctionModulePOJOParameterMapping_in_ruleFunctionModulePOJORequestResponseMapping1808);
             	    lv_requestParameters_4_0=ruleFunctionModulePOJOParameterMapping();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getFunctionModulePOJORequestResponseMappingRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getFunctionModulePOJORequestResponseMappingRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"requestParameters",
-            	    	        		lv_requestParameters_4_0, 
-            	    	        		"FunctionModulePOJOParameterMapping", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"requestParameters",
+            	            		lv_requestParameters_4_0, 
+            	            		"FunctionModulePOJOParameterMapping");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -2048,44 +1976,37 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            match(input,18,FOLLOW_18_in_ruleFunctionModulePOJORequestResponseMapping1771); 
+            otherlv_5=(Token)match(input,18,FOLLOW_18_in_ruleFunctionModulePOJORequestResponseMapping1821); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getRightCurlyBracketKeyword_5(), null); 
+                	newLeafNode(otherlv_5, grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getRightCurlyBracketKeyword_5());
                 
-            match(input,27,FOLLOW_27_in_ruleFunctionModulePOJORequestResponseMapping1781); 
+            otherlv_6=(Token)match(input,27,FOLLOW_27_in_ruleFunctionModulePOJORequestResponseMapping1833); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getResponseKeyword_6(), null); 
+                	newLeafNode(otherlv_6, grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getResponseKeyword_6());
                 
-            match(input,19,FOLLOW_19_in_ruleFunctionModulePOJORequestResponseMapping1791); 
+            otherlv_7=(Token)match(input,19,FOLLOW_19_in_ruleFunctionModulePOJORequestResponseMapping1845); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getClassKeyword_7(), null); 
+                	newLeafNode(otherlv_7, grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getClassKeyword_7());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1013:1: ( (lv_responseClassName_8_0= RULE_ID ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1014:1: (lv_responseClassName_8_0= RULE_ID )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:853:1: ( (lv_responseClassName_8_0= RULE_ID ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:854:1: (lv_responseClassName_8_0= RULE_ID )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1014:1: (lv_responseClassName_8_0= RULE_ID )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1015:3: lv_responseClassName_8_0= RULE_ID
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:854:1: (lv_responseClassName_8_0= RULE_ID )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:855:3: lv_responseClassName_8_0= RULE_ID
             {
-            lv_responseClassName_8_0=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJORequestResponseMapping1808); 
+            lv_responseClassName_8_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJORequestResponseMapping1862); 
 
-            			createLeafNode(grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getResponseClassNameIDTerminalRuleCall_8_0(), "responseClassName"); 
+            			newLeafNode(lv_responseClassName_8_0, grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getResponseClassNameIDTerminalRuleCall_8_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getFunctionModulePOJORequestResponseMappingRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getFunctionModulePOJORequestResponseMappingRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"responseClassName",
-            	        		lv_responseClassName_8_0, 
-            	        		"ID", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"responseClassName",
+                    		lv_responseClassName_8_0, 
+                    		"ID");
             	    
 
             }
@@ -2093,11 +2014,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,17,FOLLOW_17_in_ruleFunctionModulePOJORequestResponseMapping1823); 
+            otherlv_9=(Token)match(input,17,FOLLOW_17_in_ruleFunctionModulePOJORequestResponseMapping1879); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getLeftCurlyBracketKeyword_9(), null); 
+                	newLeafNode(otherlv_9, grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getLeftCurlyBracketKeyword_9());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1041:1: ( (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping ) )*
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:875:1: ( (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping ) )*
             loop11:
             do {
                 int alt11=2;
@@ -2110,34 +2031,29 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                 switch (alt11) {
             	case 1 :
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1042:1: (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:876:1: (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping )
             	    {
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1042:1: (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping )
-            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1043:3: lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:876:1: (lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping )
+            	    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:877:3: lv_responseParameters_10_0= ruleFunctionModulePOJOParameterMapping
             	    {
             	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getResponseParametersFunctionModulePOJOParameterMappingParserRuleCall_10_0(), currentNode); 
+            	    	        newCompositeNode(grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getResponseParametersFunctionModulePOJOParameterMappingParserRuleCall_10_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleFunctionModulePOJOParameterMapping_in_ruleFunctionModulePOJORequestResponseMapping1844);
+            	    pushFollow(FOLLOW_ruleFunctionModulePOJOParameterMapping_in_ruleFunctionModulePOJORequestResponseMapping1900);
             	    lv_responseParameters_10_0=ruleFunctionModulePOJOParameterMapping();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getFunctionModulePOJORequestResponseMappingRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	            current = createModelElementForParent(grammarAccess.getFunctionModulePOJORequestResponseMappingRule());
             	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"responseParameters",
-            	    	        		lv_responseParameters_10_0, 
-            	    	        		"FunctionModulePOJOParameterMapping", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
+            	           		add(
+            	           			current, 
+            	           			"responseParameters",
+            	            		lv_responseParameters_10_0, 
+            	            		"FunctionModulePOJOParameterMapping");
+            	    	        afterParserOrEnumRuleCall();
             	    	    
 
             	    }
@@ -2151,9 +2067,9 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            match(input,18,FOLLOW_18_in_ruleFunctionModulePOJORequestResponseMapping1855); 
+            otherlv_11=(Token)match(input,18,FOLLOW_18_in_ruleFunctionModulePOJORequestResponseMapping1913); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getRightCurlyBracketKeyword_11(), null); 
+                	newLeafNode(otherlv_11, grammarAccess.getFunctionModulePOJORequestResponseMappingAccess().getRightCurlyBracketKeyword_11());
                 
 
             }
@@ -2161,9 +2077,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -2174,11 +2088,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleFunctionModulePOJORequestResponseMapping
+    // $ANTLR end "ruleFunctionModulePOJORequestResponseMapping"
 
 
-    // $ANTLR start entryRuleFunctionModulePOJOParameterMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1077:1: entryRuleFunctionModulePOJOParameterMapping returns [EObject current=null] : iv_ruleFunctionModulePOJOParameterMapping= ruleFunctionModulePOJOParameterMapping EOF ;
+    // $ANTLR start "entryRuleFunctionModulePOJOParameterMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:905:1: entryRuleFunctionModulePOJOParameterMapping returns [EObject current=null] : iv_ruleFunctionModulePOJOParameterMapping= ruleFunctionModulePOJOParameterMapping EOF ;
     public final EObject entryRuleFunctionModulePOJOParameterMapping() throws RecognitionException {
         EObject current = null;
 
@@ -2186,16 +2100,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1078:2: (iv_ruleFunctionModulePOJOParameterMapping= ruleFunctionModulePOJOParameterMapping EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1079:2: iv_ruleFunctionModulePOJOParameterMapping= ruleFunctionModulePOJOParameterMapping EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:906:2: (iv_ruleFunctionModulePOJOParameterMapping= ruleFunctionModulePOJOParameterMapping EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:907:2: iv_ruleFunctionModulePOJOParameterMapping= ruleFunctionModulePOJOParameterMapping EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getFunctionModulePOJOParameterMappingRule(), currentNode); 
-            pushFollow(FOLLOW_ruleFunctionModulePOJOParameterMapping_in_entryRuleFunctionModulePOJOParameterMapping1891);
+             newCompositeNode(grammarAccess.getFunctionModulePOJOParameterMappingRule()); 
+            pushFollow(FOLLOW_ruleFunctionModulePOJOParameterMapping_in_entryRuleFunctionModulePOJOParameterMapping1949);
             iv_ruleFunctionModulePOJOParameterMapping=ruleFunctionModulePOJOParameterMapping();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleFunctionModulePOJOParameterMapping; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJOParameterMapping1901); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJOParameterMapping1959); 
 
             }
 
@@ -2209,11 +2124,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleFunctionModulePOJOParameterMapping
+    // $ANTLR end "entryRuleFunctionModulePOJOParameterMapping"
 
 
-    // $ANTLR start ruleFunctionModulePOJOParameterMapping
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1086:1: ruleFunctionModulePOJOParameterMapping returns [EObject current=null] : (this_FunctionModulePOJOImportingParameter_0= ruleFunctionModulePOJOImportingParameter | this_FunctionModulePOJOExportingParameter_1= ruleFunctionModulePOJOExportingParameter | this_FunctionModulePOJOChangingParameter_2= ruleFunctionModulePOJOChangingParameter | this_FunctionModulePOJOTablesParameter_3= ruleFunctionModulePOJOTablesParameter ) ;
+    // $ANTLR start "ruleFunctionModulePOJOParameterMapping"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:914:1: ruleFunctionModulePOJOParameterMapping returns [EObject current=null] : (this_FunctionModulePOJOImportingParameter_0= ruleFunctionModulePOJOImportingParameter | this_FunctionModulePOJOExportingParameter_1= ruleFunctionModulePOJOExportingParameter | this_FunctionModulePOJOChangingParameter_2= ruleFunctionModulePOJOChangingParameter | this_FunctionModulePOJOTablesParameter_3= ruleFunctionModulePOJOTablesParameter ) ;
     public final EObject ruleFunctionModulePOJOParameterMapping() throws RecognitionException {
         EObject current = null;
 
@@ -2226,13 +2141,13 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         EObject this_FunctionModulePOJOTablesParameter_3 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1091:6: ( (this_FunctionModulePOJOImportingParameter_0= ruleFunctionModulePOJOImportingParameter | this_FunctionModulePOJOExportingParameter_1= ruleFunctionModulePOJOExportingParameter | this_FunctionModulePOJOChangingParameter_2= ruleFunctionModulePOJOChangingParameter | this_FunctionModulePOJOTablesParameter_3= ruleFunctionModulePOJOTablesParameter ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1092:1: (this_FunctionModulePOJOImportingParameter_0= ruleFunctionModulePOJOImportingParameter | this_FunctionModulePOJOExportingParameter_1= ruleFunctionModulePOJOExportingParameter | this_FunctionModulePOJOChangingParameter_2= ruleFunctionModulePOJOChangingParameter | this_FunctionModulePOJOTablesParameter_3= ruleFunctionModulePOJOTablesParameter )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:917:28: ( (this_FunctionModulePOJOImportingParameter_0= ruleFunctionModulePOJOImportingParameter | this_FunctionModulePOJOExportingParameter_1= ruleFunctionModulePOJOExportingParameter | this_FunctionModulePOJOChangingParameter_2= ruleFunctionModulePOJOChangingParameter | this_FunctionModulePOJOTablesParameter_3= ruleFunctionModulePOJOTablesParameter ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:918:1: (this_FunctionModulePOJOImportingParameter_0= ruleFunctionModulePOJOImportingParameter | this_FunctionModulePOJOExportingParameter_1= ruleFunctionModulePOJOExportingParameter | this_FunctionModulePOJOChangingParameter_2= ruleFunctionModulePOJOChangingParameter | this_FunctionModulePOJOTablesParameter_3= ruleFunctionModulePOJOTablesParameter )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1092:1: (this_FunctionModulePOJOImportingParameter_0= ruleFunctionModulePOJOImportingParameter | this_FunctionModulePOJOExportingParameter_1= ruleFunctionModulePOJOExportingParameter | this_FunctionModulePOJOChangingParameter_2= ruleFunctionModulePOJOChangingParameter | this_FunctionModulePOJOTablesParameter_3= ruleFunctionModulePOJOTablesParameter )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:918:1: (this_FunctionModulePOJOImportingParameter_0= ruleFunctionModulePOJOImportingParameter | this_FunctionModulePOJOExportingParameter_1= ruleFunctionModulePOJOExportingParameter | this_FunctionModulePOJOChangingParameter_2= ruleFunctionModulePOJOChangingParameter | this_FunctionModulePOJOTablesParameter_3= ruleFunctionModulePOJOTablesParameter )
             int alt12=4;
             switch ( input.LA(1) ) {
             case 28:
@@ -2257,76 +2172,80 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1092:1: (this_FunctionModulePOJOImportingParameter_0= ruleFunctionModulePOJOImportingParameter | this_FunctionModulePOJOExportingParameter_1= ruleFunctionModulePOJOExportingParameter | this_FunctionModulePOJOChangingParameter_2= ruleFunctionModulePOJOChangingParameter | this_FunctionModulePOJOTablesParameter_3= ruleFunctionModulePOJOTablesParameter )", 12, 0, input);
+                    new NoViableAltException("", 12, 0, input);
 
                 throw nvae;
             }
 
             switch (alt12) {
                 case 1 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1093:5: this_FunctionModulePOJOImportingParameter_0= ruleFunctionModulePOJOImportingParameter
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:919:5: this_FunctionModulePOJOImportingParameter_0= ruleFunctionModulePOJOImportingParameter
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJOParameterMappingAccess().getFunctionModulePOJOImportingParameterParserRuleCall_0(), currentNode); 
+                            newCompositeNode(grammarAccess.getFunctionModulePOJOParameterMappingAccess().getFunctionModulePOJOImportingParameterParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleFunctionModulePOJOImportingParameter_in_ruleFunctionModulePOJOParameterMapping1948);
+                    pushFollow(FOLLOW_ruleFunctionModulePOJOImportingParameter_in_ruleFunctionModulePOJOParameterMapping2006);
                     this_FunctionModulePOJOImportingParameter_0=ruleFunctionModulePOJOImportingParameter();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_FunctionModulePOJOImportingParameter_0; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 2 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1103:5: this_FunctionModulePOJOExportingParameter_1= ruleFunctionModulePOJOExportingParameter
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:929:5: this_FunctionModulePOJOExportingParameter_1= ruleFunctionModulePOJOExportingParameter
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJOParameterMappingAccess().getFunctionModulePOJOExportingParameterParserRuleCall_1(), currentNode); 
+                            newCompositeNode(grammarAccess.getFunctionModulePOJOParameterMappingAccess().getFunctionModulePOJOExportingParameterParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleFunctionModulePOJOExportingParameter_in_ruleFunctionModulePOJOParameterMapping1975);
+                    pushFollow(FOLLOW_ruleFunctionModulePOJOExportingParameter_in_ruleFunctionModulePOJOParameterMapping2033);
                     this_FunctionModulePOJOExportingParameter_1=ruleFunctionModulePOJOExportingParameter();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_FunctionModulePOJOExportingParameter_1; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 3 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1113:5: this_FunctionModulePOJOChangingParameter_2= ruleFunctionModulePOJOChangingParameter
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:939:5: this_FunctionModulePOJOChangingParameter_2= ruleFunctionModulePOJOChangingParameter
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJOParameterMappingAccess().getFunctionModulePOJOChangingParameterParserRuleCall_2(), currentNode); 
+                            newCompositeNode(grammarAccess.getFunctionModulePOJOParameterMappingAccess().getFunctionModulePOJOChangingParameterParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleFunctionModulePOJOChangingParameter_in_ruleFunctionModulePOJOParameterMapping2002);
+                    pushFollow(FOLLOW_ruleFunctionModulePOJOChangingParameter_in_ruleFunctionModulePOJOParameterMapping2060);
                     this_FunctionModulePOJOChangingParameter_2=ruleFunctionModulePOJOChangingParameter();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_FunctionModulePOJOChangingParameter_2; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
                     break;
                 case 4 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1123:5: this_FunctionModulePOJOTablesParameter_3= ruleFunctionModulePOJOTablesParameter
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:949:5: this_FunctionModulePOJOTablesParameter_3= ruleFunctionModulePOJOTablesParameter
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJOParameterMappingAccess().getFunctionModulePOJOTablesParameterParserRuleCall_3(), currentNode); 
+                            newCompositeNode(grammarAccess.getFunctionModulePOJOParameterMappingAccess().getFunctionModulePOJOTablesParameterParserRuleCall_3()); 
                         
-                    pushFollow(FOLLOW_ruleFunctionModulePOJOTablesParameter_in_ruleFunctionModulePOJOParameterMapping2029);
+                    pushFollow(FOLLOW_ruleFunctionModulePOJOTablesParameter_in_ruleFunctionModulePOJOParameterMapping2087);
                     this_FunctionModulePOJOTablesParameter_3=ruleFunctionModulePOJOTablesParameter();
-                    _fsp--;
+
+                    state._fsp--;
 
                      
                             current = this_FunctionModulePOJOTablesParameter_3; 
-                            currentNode = currentNode.getParent();
+                            afterParserOrEnumRuleCall();
                         
 
                     }
@@ -2337,9 +2256,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -2350,11 +2267,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleFunctionModulePOJOParameterMapping
+    // $ANTLR end "ruleFunctionModulePOJOParameterMapping"
 
 
-    // $ANTLR start entryRuleFunctionModulePOJOImportingParameter
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1139:1: entryRuleFunctionModulePOJOImportingParameter returns [EObject current=null] : iv_ruleFunctionModulePOJOImportingParameter= ruleFunctionModulePOJOImportingParameter EOF ;
+    // $ANTLR start "entryRuleFunctionModulePOJOImportingParameter"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:965:1: entryRuleFunctionModulePOJOImportingParameter returns [EObject current=null] : iv_ruleFunctionModulePOJOImportingParameter= ruleFunctionModulePOJOImportingParameter EOF ;
     public final EObject entryRuleFunctionModulePOJOImportingParameter() throws RecognitionException {
         EObject current = null;
 
@@ -2362,16 +2279,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1140:2: (iv_ruleFunctionModulePOJOImportingParameter= ruleFunctionModulePOJOImportingParameter EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1141:2: iv_ruleFunctionModulePOJOImportingParameter= ruleFunctionModulePOJOImportingParameter EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:966:2: (iv_ruleFunctionModulePOJOImportingParameter= ruleFunctionModulePOJOImportingParameter EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:967:2: iv_ruleFunctionModulePOJOImportingParameter= ruleFunctionModulePOJOImportingParameter EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getFunctionModulePOJOImportingParameterRule(), currentNode); 
-            pushFollow(FOLLOW_ruleFunctionModulePOJOImportingParameter_in_entryRuleFunctionModulePOJOImportingParameter2064);
+             newCompositeNode(grammarAccess.getFunctionModulePOJOImportingParameterRule()); 
+            pushFollow(FOLLOW_ruleFunctionModulePOJOImportingParameter_in_entryRuleFunctionModulePOJOImportingParameter2122);
             iv_ruleFunctionModulePOJOImportingParameter=ruleFunctionModulePOJOImportingParameter();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleFunctionModulePOJOImportingParameter; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJOImportingParameter2074); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJOImportingParameter2132); 
 
             }
 
@@ -2385,47 +2303,58 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleFunctionModulePOJOImportingParameter
+    // $ANTLR end "entryRuleFunctionModulePOJOImportingParameter"
 
 
-    // $ANTLR start ruleFunctionModulePOJOImportingParameter
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1148:1: ruleFunctionModulePOJOImportingParameter returns [EObject current=null] : ( 'importing' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';' ) ;
+    // $ANTLR start "ruleFunctionModulePOJOImportingParameter"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:974:1: ruleFunctionModulePOJOImportingParameter returns [EObject current=null] : (otherlv_0= 'importing' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';' ) ;
     public final EObject ruleFunctionModulePOJOImportingParameter() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
         Token lv_name_2_0=null;
+        Token otherlv_3=null;
         Token lv_inactive_4_0=null;
         Token lv_attribute_6_0=null;
         Token lv_structure_7_0=null;
         Token lv_name_8_0=null;
+        Token otherlv_9=null;
         Token lv_inactive_10_0=null;
+        Token otherlv_11=null;
         Token lv_attribute_12_0=null;
         Token lv_external_13_0=null;
+        Token otherlv_14=null;
         Token lv_attribute_15_0=null;
         Token lv_table_16_0=null;
         Token lv_name_17_0=null;
+        Token otherlv_18=null;
         Token lv_inactive_19_0=null;
+        Token otherlv_20=null;
         Token lv_attribute_21_0=null;
         Token lv_external_22_0=null;
+        Token otherlv_23=null;
         Token lv_attribute_24_0=null;
+        Token otherlv_25=null;
         Token lv_comment_26_0=null;
+        Token otherlv_27=null;
         Enumerator lv_type_5_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1153:6: ( ( 'importing' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';' ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1154:1: ( 'importing' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:977:28: ( (otherlv_0= 'importing' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';' ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:978:1: (otherlv_0= 'importing' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';' )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1154:1: ( 'importing' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';' )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1154:3: 'importing' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';'
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:978:1: (otherlv_0= 'importing' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:978:3: otherlv_0= 'importing' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';'
             {
-            match(input,28,FOLLOW_28_in_ruleFunctionModulePOJOImportingParameter2109); 
+            otherlv_0=(Token)match(input,28,FOLLOW_28_in_ruleFunctionModulePOJOImportingParameter2169); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getImportingKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getImportingKeyword_0());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1158:1: ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:982:1: ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) )
             int alt16=3;
             switch ( input.LA(1) ) {
             case 20:
@@ -2445,48 +2374,41 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1158:1: ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) )", 16, 0, input);
+                    new NoViableAltException("", 16, 0, input);
 
                 throw nvae;
             }
 
             switch (alt16) {
                 case 1 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1158:2: ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:982:2: (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1158:2: ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1158:4: 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:982:2: (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:982:4: otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )
                     {
-                    match(input,20,FOLLOW_20_in_ruleFunctionModulePOJOImportingParameter2121); 
+                    otherlv_1=(Token)match(input,20,FOLLOW_20_in_ruleFunctionModulePOJOImportingParameter2183); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getFieldKeyword_1_0_0(), null); 
+                        	newLeafNode(otherlv_1, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getFieldKeyword_1_0_0());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1162:1: ( (lv_name_2_0= RULE_STRING ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1163:1: (lv_name_2_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:986:1: ( (lv_name_2_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:987:1: (lv_name_2_0= RULE_STRING )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1163:1: (lv_name_2_0= RULE_STRING )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1164:3: lv_name_2_0= RULE_STRING
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:987:1: (lv_name_2_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:988:3: lv_name_2_0= RULE_STRING
                     {
-                    lv_name_2_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2138); 
+                    lv_name_2_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2200); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getNameSTRINGTerminalRuleCall_1_0_1_0(), "name"); 
+                    			newLeafNode(lv_name_2_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getNameSTRINGTerminalRuleCall_1_0_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"name",
-                    	        		lv_name_2_0, 
-                    	        		"STRING", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"name",
+                            		lv_name_2_0, 
+                            		"STRING");
                     	    
 
                     }
@@ -2494,11 +2416,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOImportingParameter2153); 
+                    otherlv_3=(Token)match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOImportingParameter2217); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getEqualsSignKeyword_1_0_2(), null); 
+                        	newLeafNode(otherlv_3, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getEqualsSignKeyword_1_0_2());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1190:1: ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1008:1: ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -2510,36 +2432,29 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("1190:1: ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )", 13, 0, input);
+                            new NoViableAltException("", 13, 0, input);
 
                         throw nvae;
                     }
                     switch (alt13) {
                         case 1 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1190:2: ( (lv_inactive_4_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1008:2: ( (lv_inactive_4_0= 'inactive' ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1190:2: ( (lv_inactive_4_0= 'inactive' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1191:1: (lv_inactive_4_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1008:2: ( (lv_inactive_4_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1009:1: (lv_inactive_4_0= 'inactive' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1191:1: (lv_inactive_4_0= 'inactive' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1192:3: lv_inactive_4_0= 'inactive'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1009:1: (lv_inactive_4_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1010:3: lv_inactive_4_0= 'inactive'
                             {
-                            lv_inactive_4_0=(Token)input.LT(1);
-                            match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOImportingParameter2172); 
+                            lv_inactive_4_0=(Token)match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOImportingParameter2236); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveInactiveKeyword_1_0_3_0_0(), "inactive"); 
+                                    newLeafNode(lv_inactive_4_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveInactiveKeyword_1_0_3_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "inactive", true, "inactive", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "inactive", true, "inactive");
                             	    
 
                             }
@@ -2551,40 +2466,35 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1212:6: ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1024:6: ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1212:6: ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1212:7: ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1024:6: ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1024:7: ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1212:7: ( (lv_type_5_0= ruleDataType ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1213:1: (lv_type_5_0= ruleDataType )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1024:7: ( (lv_type_5_0= ruleDataType ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1025:1: (lv_type_5_0= ruleDataType )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1213:1: (lv_type_5_0= ruleDataType )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1214:3: lv_type_5_0= ruleDataType
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1025:1: (lv_type_5_0= ruleDataType )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1026:3: lv_type_5_0= ruleDataType
                             {
                              
-                            	        currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTypeDataTypeEnumRuleCall_1_0_3_1_0_0(), currentNode); 
+                            	        newCompositeNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTypeDataTypeEnumRuleCall_1_0_3_1_0_0()); 
                             	    
-                            pushFollow(FOLLOW_ruleDataType_in_ruleFunctionModulePOJOImportingParameter2213);
+                            pushFollow(FOLLOW_ruleDataType_in_ruleFunctionModulePOJOImportingParameter2277);
                             lv_type_5_0=ruleDataType();
-                            _fsp--;
+
+                            state._fsp--;
 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode.getParent(), current);
+                            	            current = createModelElementForParent(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"type",
-                            	        		lv_type_5_0, 
-                            	        		"DataType", 
-                            	        		currentNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
-                            	        currentNode = currentNode.getParent();
+                                   		set(
+                                   			current, 
+                                   			"type",
+                                    		lv_type_5_0, 
+                                    		"DataType");
+                            	        afterParserOrEnumRuleCall();
                             	    
 
                             }
@@ -2592,32 +2502,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1236:2: ( (lv_attribute_6_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1237:1: (lv_attribute_6_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1042:2: ( (lv_attribute_6_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1043:1: (lv_attribute_6_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1237:1: (lv_attribute_6_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1238:3: lv_attribute_6_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1043:1: (lv_attribute_6_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1044:3: lv_attribute_6_0= RULE_ID
                             {
-                            lv_attribute_6_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2230); 
+                            lv_attribute_6_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2294); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getAttributeIDTerminalRuleCall_1_0_3_1_1_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_6_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getAttributeIDTerminalRuleCall_1_0_3_1_1_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_6_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_6_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -2641,33 +2544,26 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1261:6: ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1061:6: ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1261:6: ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1261:7: ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1061:6: ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1061:7: ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1261:7: ( (lv_structure_7_0= 'structure' ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1262:1: (lv_structure_7_0= 'structure' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1061:7: ( (lv_structure_7_0= 'structure' ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1062:1: (lv_structure_7_0= 'structure' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1262:1: (lv_structure_7_0= 'structure' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1263:3: lv_structure_7_0= 'structure'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1062:1: (lv_structure_7_0= 'structure' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1063:3: lv_structure_7_0= 'structure'
                     {
-                    lv_structure_7_0=(Token)input.LT(1);
-                    match(input,16,FOLLOW_16_in_ruleFunctionModulePOJOImportingParameter2263); 
+                    lv_structure_7_0=(Token)match(input,16,FOLLOW_16_in_ruleFunctionModulePOJOImportingParameter2327); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureKeyword_1_1_0_0(), "structure"); 
+                            newLeafNode(lv_structure_7_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureStructureKeyword_1_1_0_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		set(current, "structure", true, "structure", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(current, "structure", true, "structure");
                     	    
 
                     }
@@ -2675,32 +2571,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1282:2: ( (lv_name_8_0= RULE_STRING ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1283:1: (lv_name_8_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1076:2: ( (lv_name_8_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1077:1: (lv_name_8_0= RULE_STRING )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1283:1: (lv_name_8_0= RULE_STRING )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1284:3: lv_name_8_0= RULE_STRING
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1077:1: (lv_name_8_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1078:3: lv_name_8_0= RULE_STRING
                     {
-                    lv_name_8_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2293); 
+                    lv_name_8_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2357); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getNameSTRINGTerminalRuleCall_1_1_1_0(), "name"); 
+                    			newLeafNode(lv_name_8_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getNameSTRINGTerminalRuleCall_1_1_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"name",
-                    	        		lv_name_8_0, 
-                    	        		"STRING", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"name",
+                            		lv_name_8_0, 
+                            		"STRING");
                     	    
 
                     }
@@ -2708,11 +2597,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOImportingParameter2308); 
+                    otherlv_9=(Token)match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOImportingParameter2374); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getEqualsSignKeyword_1_1_2(), null); 
+                        	newLeafNode(otherlv_9, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getEqualsSignKeyword_1_1_2());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1310:1: ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1098:1: ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )
                     int alt14=3;
                     switch ( input.LA(1) ) {
                     case 22:
@@ -2732,37 +2621,30 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("1310:1: ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )", 14, 0, input);
+                            new NoViableAltException("", 14, 0, input);
 
                         throw nvae;
                     }
 
                     switch (alt14) {
                         case 1 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1310:2: ( (lv_inactive_10_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1098:2: ( (lv_inactive_10_0= 'inactive' ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1310:2: ( (lv_inactive_10_0= 'inactive' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1311:1: (lv_inactive_10_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1098:2: ( (lv_inactive_10_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1099:1: (lv_inactive_10_0= 'inactive' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1311:1: (lv_inactive_10_0= 'inactive' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1312:3: lv_inactive_10_0= 'inactive'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1099:1: (lv_inactive_10_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1100:3: lv_inactive_10_0= 'inactive'
                             {
-                            lv_inactive_10_0=(Token)input.LT(1);
-                            match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOImportingParameter2327); 
+                            lv_inactive_10_0=(Token)match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOImportingParameter2393); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveInactiveKeyword_1_1_3_0_0(), "inactive"); 
+                                    newLeafNode(lv_inactive_10_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveInactiveKeyword_1_1_3_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "inactive", true, "inactive", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "inactive", true, "inactive");
                             	    
 
                             }
@@ -2774,26 +2656,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1332:6: ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1114:6: ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1332:6: ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1332:7: ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1114:6: ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1114:7: ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1332:7: ( ( RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1333:1: ( RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1114:7: ( (otherlv_11= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1115:1: (otherlv_11= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1333:1: ( RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1334:3: RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1115:1: (otherlv_11= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1116:3: otherlv_11= RULE_ID
                             {
 
                             			if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
                                     
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2365); 
+                            otherlv_11=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2433); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureMappingStructurePOJOMappingCrossReference_1_1_3_1_0_0(), "structureMapping"); 
+                            		newLeafNode(otherlv_11, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureMappingStructurePOJOMappingCrossReference_1_1_3_1_0_0()); 
                             	
 
                             }
@@ -2801,32 +2682,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1346:2: ( (lv_attribute_12_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1347:1: (lv_attribute_12_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1127:2: ( (lv_attribute_12_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1128:1: (lv_attribute_12_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1347:1: (lv_attribute_12_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1348:3: lv_attribute_12_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1128:1: (lv_attribute_12_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1129:3: lv_attribute_12_0= RULE_ID
                             {
-                            lv_attribute_12_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2382); 
+                            lv_attribute_12_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2450); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getAttributeIDTerminalRuleCall_1_1_3_1_1_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_12_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getAttributeIDTerminalRuleCall_1_1_3_1_1_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_12_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_12_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -2841,33 +2715,26 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 3 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1371:6: ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1146:6: ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1371:6: ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1371:7: ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1146:6: ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1146:7: ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1371:7: ( (lv_external_13_0= 'external' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1372:1: (lv_external_13_0= 'external' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1146:7: ( (lv_external_13_0= 'external' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1147:1: (lv_external_13_0= 'external' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1372:1: (lv_external_13_0= 'external' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1373:3: lv_external_13_0= 'external'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1147:1: (lv_external_13_0= 'external' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1148:3: lv_external_13_0= 'external'
                             {
-                            lv_external_13_0=(Token)input.LT(1);
-                            match(input,29,FOLLOW_29_in_ruleFunctionModulePOJOImportingParameter2413); 
+                            lv_external_13_0=(Token)match(input,29,FOLLOW_29_in_ruleFunctionModulePOJOImportingParameter2481); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getExternalExternalKeyword_1_1_3_2_0_0(), "external"); 
+                                    newLeafNode(lv_external_13_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getExternalExternalKeyword_1_1_3_2_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "external", true, "external", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "external", true, "external");
                             	    
 
                             }
@@ -2875,21 +2742,20 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1392:2: ( ( RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1393:1: ( RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1161:2: ( (otherlv_14= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1162:1: (otherlv_14= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1393:1: ( RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1394:3: RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1162:1: (otherlv_14= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1163:3: otherlv_14= RULE_ID
                             {
 
                             			if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
                                     
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2444); 
+                            otherlv_14=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2514); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getExternalClassImportCrossReference_1_1_3_2_1_0(), "externalClass"); 
+                            		newLeafNode(otherlv_14, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getExternalClassImportCrossReference_1_1_3_2_1_0()); 
                             	
 
                             }
@@ -2897,32 +2763,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1406:2: ( (lv_attribute_15_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1407:1: (lv_attribute_15_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1174:2: ( (lv_attribute_15_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1175:1: (lv_attribute_15_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1407:1: (lv_attribute_15_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1408:3: lv_attribute_15_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1175:1: (lv_attribute_15_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1176:3: lv_attribute_15_0= RULE_ID
                             {
-                            lv_attribute_15_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2461); 
+                            lv_attribute_15_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2531); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getAttributeIDTerminalRuleCall_1_1_3_2_2_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_15_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getAttributeIDTerminalRuleCall_1_1_3_2_2_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_15_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_15_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -2946,33 +2805,26 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1431:6: ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1193:6: ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1431:6: ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1431:7: ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1193:6: ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1193:7: ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1431:7: ( (lv_table_16_0= 'table' ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1432:1: (lv_table_16_0= 'table' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1193:7: ( (lv_table_16_0= 'table' ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1194:1: (lv_table_16_0= 'table' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1432:1: (lv_table_16_0= 'table' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1433:3: lv_table_16_0= 'table'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1194:1: (lv_table_16_0= 'table' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1195:3: lv_table_16_0= 'table'
                     {
-                    lv_table_16_0=(Token)input.LT(1);
-                    match(input,30,FOLLOW_30_in_ruleFunctionModulePOJOImportingParameter2494); 
+                    lv_table_16_0=(Token)match(input,30,FOLLOW_30_in_ruleFunctionModulePOJOImportingParameter2564); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTableTableKeyword_1_2_0_0(), "table"); 
+                            newLeafNode(lv_table_16_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getTableTableKeyword_1_2_0_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		set(current, "table", true, "table", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(current, "table", true, "table");
                     	    
 
                     }
@@ -2980,32 +2832,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1452:2: ( (lv_name_17_0= RULE_STRING ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1453:1: (lv_name_17_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1208:2: ( (lv_name_17_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1209:1: (lv_name_17_0= RULE_STRING )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1453:1: (lv_name_17_0= RULE_STRING )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1454:3: lv_name_17_0= RULE_STRING
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1209:1: (lv_name_17_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1210:3: lv_name_17_0= RULE_STRING
                     {
-                    lv_name_17_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2524); 
+                    lv_name_17_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2594); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getNameSTRINGTerminalRuleCall_1_2_1_0(), "name"); 
+                    			newLeafNode(lv_name_17_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getNameSTRINGTerminalRuleCall_1_2_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"name",
-                    	        		lv_name_17_0, 
-                    	        		"STRING", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"name",
+                            		lv_name_17_0, 
+                            		"STRING");
                     	    
 
                     }
@@ -3013,11 +2858,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOImportingParameter2539); 
+                    otherlv_18=(Token)match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOImportingParameter2611); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getEqualsSignKeyword_1_2_2(), null); 
+                        	newLeafNode(otherlv_18, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getEqualsSignKeyword_1_2_2());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1480:1: ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1230:1: ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )
                     int alt15=3;
                     switch ( input.LA(1) ) {
                     case 22:
@@ -3037,37 +2882,30 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("1480:1: ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )", 15, 0, input);
+                            new NoViableAltException("", 15, 0, input);
 
                         throw nvae;
                     }
 
                     switch (alt15) {
                         case 1 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1480:2: ( (lv_inactive_19_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1230:2: ( (lv_inactive_19_0= 'inactive' ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1480:2: ( (lv_inactive_19_0= 'inactive' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1481:1: (lv_inactive_19_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1230:2: ( (lv_inactive_19_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1231:1: (lv_inactive_19_0= 'inactive' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1481:1: (lv_inactive_19_0= 'inactive' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1482:3: lv_inactive_19_0= 'inactive'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1231:1: (lv_inactive_19_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1232:3: lv_inactive_19_0= 'inactive'
                             {
-                            lv_inactive_19_0=(Token)input.LT(1);
-                            match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOImportingParameter2558); 
+                            lv_inactive_19_0=(Token)match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOImportingParameter2630); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveInactiveKeyword_1_2_3_0_0(), "inactive"); 
+                                    newLeafNode(lv_inactive_19_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getInactiveInactiveKeyword_1_2_3_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "inactive", true, "inactive", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "inactive", true, "inactive");
                             	    
 
                             }
@@ -3079,26 +2917,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1502:6: ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1246:6: ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1502:6: ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1502:7: ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1246:6: ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1246:7: ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1502:7: ( ( RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1503:1: ( RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1246:7: ( (otherlv_20= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1247:1: (otherlv_20= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1503:1: ( RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1504:3: RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1247:1: (otherlv_20= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1248:3: otherlv_20= RULE_ID
                             {
 
                             			if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
                                     
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2596); 
+                            otherlv_20=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2670); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureMappingStructurePOJOMappingCrossReference_1_2_3_1_0_0(), "structureMapping"); 
+                            		newLeafNode(otherlv_20, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getStructureMappingStructurePOJOMappingCrossReference_1_2_3_1_0_0()); 
                             	
 
                             }
@@ -3106,32 +2943,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1516:2: ( (lv_attribute_21_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1517:1: (lv_attribute_21_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1259:2: ( (lv_attribute_21_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1260:1: (lv_attribute_21_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1517:1: (lv_attribute_21_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1518:3: lv_attribute_21_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1260:1: (lv_attribute_21_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1261:3: lv_attribute_21_0= RULE_ID
                             {
-                            lv_attribute_21_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2613); 
+                            lv_attribute_21_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2687); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getAttributeIDTerminalRuleCall_1_2_3_1_1_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_21_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getAttributeIDTerminalRuleCall_1_2_3_1_1_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_21_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_21_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -3146,33 +2976,26 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 3 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1541:6: ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1278:6: ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1541:6: ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1541:7: ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1278:6: ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1278:7: ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1541:7: ( (lv_external_22_0= 'external' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1542:1: (lv_external_22_0= 'external' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1278:7: ( (lv_external_22_0= 'external' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1279:1: (lv_external_22_0= 'external' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1542:1: (lv_external_22_0= 'external' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1543:3: lv_external_22_0= 'external'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1279:1: (lv_external_22_0= 'external' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1280:3: lv_external_22_0= 'external'
                             {
-                            lv_external_22_0=(Token)input.LT(1);
-                            match(input,29,FOLLOW_29_in_ruleFunctionModulePOJOImportingParameter2644); 
+                            lv_external_22_0=(Token)match(input,29,FOLLOW_29_in_ruleFunctionModulePOJOImportingParameter2718); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getExternalExternalKeyword_1_2_3_2_0_0(), "external"); 
+                                    newLeafNode(lv_external_22_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getExternalExternalKeyword_1_2_3_2_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "external", true, "external", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "external", true, "external");
                             	    
 
                             }
@@ -3180,21 +3003,20 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1562:2: ( ( RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1563:1: ( RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1293:2: ( (otherlv_23= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1294:1: (otherlv_23= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1563:1: ( RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1564:3: RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1294:1: (otherlv_23= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1295:3: otherlv_23= RULE_ID
                             {
 
                             			if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
                                     
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2675); 
+                            otherlv_23=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2751); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getExternalClassImportCrossReference_1_2_3_2_1_0(), "externalClass"); 
+                            		newLeafNode(otherlv_23, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getExternalClassImportCrossReference_1_2_3_2_1_0()); 
                             	
 
                             }
@@ -3202,32 +3024,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1576:2: ( (lv_attribute_24_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1577:1: (lv_attribute_24_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1306:2: ( (lv_attribute_24_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1307:1: (lv_attribute_24_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1577:1: (lv_attribute_24_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1578:3: lv_attribute_24_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1307:1: (lv_attribute_24_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1308:3: lv_attribute_24_0= RULE_ID
                             {
-                            lv_attribute_24_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2692); 
+                            lv_attribute_24_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2768); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getAttributeIDTerminalRuleCall_1_2_3_2_2_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_24_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getAttributeIDTerminalRuleCall_1_2_3_2_2_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_24_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_24_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -3253,7 +3068,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1600:6: ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )?
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1324:6: (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -3262,38 +3077,31 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
             }
             switch (alt17) {
                 case 1 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1600:8: 'comment' ( (lv_comment_26_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1324:8: otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) )
                     {
-                    match(input,23,FOLLOW_23_in_ruleFunctionModulePOJOImportingParameter2712); 
+                    otherlv_25=(Token)match(input,23,FOLLOW_23_in_ruleFunctionModulePOJOImportingParameter2790); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getCommentKeyword_2_0(), null); 
+                        	newLeafNode(otherlv_25, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getCommentKeyword_2_0());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1604:1: ( (lv_comment_26_0= RULE_STRING ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1605:1: (lv_comment_26_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1328:1: ( (lv_comment_26_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1329:1: (lv_comment_26_0= RULE_STRING )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1605:1: (lv_comment_26_0= RULE_STRING )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1606:3: lv_comment_26_0= RULE_STRING
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1329:1: (lv_comment_26_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1330:3: lv_comment_26_0= RULE_STRING
                     {
-                    lv_comment_26_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2729); 
+                    lv_comment_26_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2807); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getCommentSTRINGTerminalRuleCall_2_1_0(), "comment"); 
+                    			newLeafNode(lv_comment_26_0, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getCommentSTRINGTerminalRuleCall_2_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOImportingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOImportingParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"comment",
-                    	        		lv_comment_26_0, 
-                    	        		"STRING", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"comment",
+                            		lv_comment_26_0, 
+                            		"STRING");
                     	    
 
                     }
@@ -3307,9 +3115,9 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,15,FOLLOW_15_in_ruleFunctionModulePOJOImportingParameter2746); 
+            otherlv_27=(Token)match(input,15,FOLLOW_15_in_ruleFunctionModulePOJOImportingParameter2826); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJOImportingParameterAccess().getSemicolonKeyword_3(), null); 
+                	newLeafNode(otherlv_27, grammarAccess.getFunctionModulePOJOImportingParameterAccess().getSemicolonKeyword_3());
                 
 
             }
@@ -3317,9 +3125,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -3330,11 +3136,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleFunctionModulePOJOImportingParameter
+    // $ANTLR end "ruleFunctionModulePOJOImportingParameter"
 
 
-    // $ANTLR start entryRuleFunctionModulePOJOExportingParameter
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1640:1: entryRuleFunctionModulePOJOExportingParameter returns [EObject current=null] : iv_ruleFunctionModulePOJOExportingParameter= ruleFunctionModulePOJOExportingParameter EOF ;
+    // $ANTLR start "entryRuleFunctionModulePOJOExportingParameter"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1358:1: entryRuleFunctionModulePOJOExportingParameter returns [EObject current=null] : iv_ruleFunctionModulePOJOExportingParameter= ruleFunctionModulePOJOExportingParameter EOF ;
     public final EObject entryRuleFunctionModulePOJOExportingParameter() throws RecognitionException {
         EObject current = null;
 
@@ -3342,16 +3148,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1641:2: (iv_ruleFunctionModulePOJOExportingParameter= ruleFunctionModulePOJOExportingParameter EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1642:2: iv_ruleFunctionModulePOJOExportingParameter= ruleFunctionModulePOJOExportingParameter EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1359:2: (iv_ruleFunctionModulePOJOExportingParameter= ruleFunctionModulePOJOExportingParameter EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1360:2: iv_ruleFunctionModulePOJOExportingParameter= ruleFunctionModulePOJOExportingParameter EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getFunctionModulePOJOExportingParameterRule(), currentNode); 
-            pushFollow(FOLLOW_ruleFunctionModulePOJOExportingParameter_in_entryRuleFunctionModulePOJOExportingParameter2782);
+             newCompositeNode(grammarAccess.getFunctionModulePOJOExportingParameterRule()); 
+            pushFollow(FOLLOW_ruleFunctionModulePOJOExportingParameter_in_entryRuleFunctionModulePOJOExportingParameter2862);
             iv_ruleFunctionModulePOJOExportingParameter=ruleFunctionModulePOJOExportingParameter();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleFunctionModulePOJOExportingParameter; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJOExportingParameter2792); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJOExportingParameter2872); 
 
             }
 
@@ -3365,47 +3172,58 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleFunctionModulePOJOExportingParameter
+    // $ANTLR end "entryRuleFunctionModulePOJOExportingParameter"
 
 
-    // $ANTLR start ruleFunctionModulePOJOExportingParameter
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1649:1: ruleFunctionModulePOJOExportingParameter returns [EObject current=null] : ( 'exporting' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';' ) ;
+    // $ANTLR start "ruleFunctionModulePOJOExportingParameter"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1367:1: ruleFunctionModulePOJOExportingParameter returns [EObject current=null] : (otherlv_0= 'exporting' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';' ) ;
     public final EObject ruleFunctionModulePOJOExportingParameter() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
         Token lv_name_2_0=null;
+        Token otherlv_3=null;
         Token lv_inactive_4_0=null;
         Token lv_attribute_6_0=null;
         Token lv_structure_7_0=null;
         Token lv_name_8_0=null;
+        Token otherlv_9=null;
         Token lv_inactive_10_0=null;
+        Token otherlv_11=null;
         Token lv_attribute_12_0=null;
         Token lv_external_13_0=null;
+        Token otherlv_14=null;
         Token lv_attribute_15_0=null;
         Token lv_table_16_0=null;
         Token lv_name_17_0=null;
+        Token otherlv_18=null;
         Token lv_inactive_19_0=null;
+        Token otherlv_20=null;
         Token lv_attribute_21_0=null;
         Token lv_external_22_0=null;
+        Token otherlv_23=null;
         Token lv_attribute_24_0=null;
+        Token otherlv_25=null;
         Token lv_comment_26_0=null;
+        Token otherlv_27=null;
         Enumerator lv_type_5_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1654:6: ( ( 'exporting' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';' ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1655:1: ( 'exporting' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1370:28: ( (otherlv_0= 'exporting' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';' ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1371:1: (otherlv_0= 'exporting' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';' )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1655:1: ( 'exporting' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';' )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1655:3: 'exporting' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';'
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1371:1: (otherlv_0= 'exporting' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1371:3: otherlv_0= 'exporting' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';'
             {
-            match(input,31,FOLLOW_31_in_ruleFunctionModulePOJOExportingParameter2827); 
+            otherlv_0=(Token)match(input,31,FOLLOW_31_in_ruleFunctionModulePOJOExportingParameter2909); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getExportingKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getExportingKeyword_0());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1659:1: ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1375:1: ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) )
             int alt21=3;
             switch ( input.LA(1) ) {
             case 20:
@@ -3425,48 +3243,41 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1659:1: ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) )", 21, 0, input);
+                    new NoViableAltException("", 21, 0, input);
 
                 throw nvae;
             }
 
             switch (alt21) {
                 case 1 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1659:2: ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1375:2: (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1659:2: ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1659:4: 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1375:2: (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1375:4: otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )
                     {
-                    match(input,20,FOLLOW_20_in_ruleFunctionModulePOJOExportingParameter2839); 
+                    otherlv_1=(Token)match(input,20,FOLLOW_20_in_ruleFunctionModulePOJOExportingParameter2923); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getFieldKeyword_1_0_0(), null); 
+                        	newLeafNode(otherlv_1, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getFieldKeyword_1_0_0());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1663:1: ( (lv_name_2_0= RULE_STRING ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1664:1: (lv_name_2_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1379:1: ( (lv_name_2_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1380:1: (lv_name_2_0= RULE_STRING )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1664:1: (lv_name_2_0= RULE_STRING )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1665:3: lv_name_2_0= RULE_STRING
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1380:1: (lv_name_2_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1381:3: lv_name_2_0= RULE_STRING
                     {
-                    lv_name_2_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter2856); 
+                    lv_name_2_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter2940); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getNameSTRINGTerminalRuleCall_1_0_1_0(), "name"); 
+                    			newLeafNode(lv_name_2_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getNameSTRINGTerminalRuleCall_1_0_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"name",
-                    	        		lv_name_2_0, 
-                    	        		"STRING", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"name",
+                            		lv_name_2_0, 
+                            		"STRING");
                     	    
 
                     }
@@ -3474,11 +3285,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOExportingParameter2871); 
+                    otherlv_3=(Token)match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOExportingParameter2957); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getEqualsSignKeyword_1_0_2(), null); 
+                        	newLeafNode(otherlv_3, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getEqualsSignKeyword_1_0_2());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1691:1: ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1401:1: ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -3490,36 +3301,29 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("1691:1: ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )", 18, 0, input);
+                            new NoViableAltException("", 18, 0, input);
 
                         throw nvae;
                     }
                     switch (alt18) {
                         case 1 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1691:2: ( (lv_inactive_4_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1401:2: ( (lv_inactive_4_0= 'inactive' ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1691:2: ( (lv_inactive_4_0= 'inactive' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1692:1: (lv_inactive_4_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1401:2: ( (lv_inactive_4_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1402:1: (lv_inactive_4_0= 'inactive' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1692:1: (lv_inactive_4_0= 'inactive' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1693:3: lv_inactive_4_0= 'inactive'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1402:1: (lv_inactive_4_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1403:3: lv_inactive_4_0= 'inactive'
                             {
-                            lv_inactive_4_0=(Token)input.LT(1);
-                            match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOExportingParameter2890); 
+                            lv_inactive_4_0=(Token)match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOExportingParameter2976); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveInactiveKeyword_1_0_3_0_0(), "inactive"); 
+                                    newLeafNode(lv_inactive_4_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveInactiveKeyword_1_0_3_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "inactive", true, "inactive", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "inactive", true, "inactive");
                             	    
 
                             }
@@ -3531,40 +3335,35 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1713:6: ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1417:6: ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1713:6: ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1713:7: ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1417:6: ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1417:7: ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1713:7: ( (lv_type_5_0= ruleDataType ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1714:1: (lv_type_5_0= ruleDataType )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1417:7: ( (lv_type_5_0= ruleDataType ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1418:1: (lv_type_5_0= ruleDataType )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1714:1: (lv_type_5_0= ruleDataType )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1715:3: lv_type_5_0= ruleDataType
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1418:1: (lv_type_5_0= ruleDataType )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1419:3: lv_type_5_0= ruleDataType
                             {
                              
-                            	        currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTypeDataTypeEnumRuleCall_1_0_3_1_0_0(), currentNode); 
+                            	        newCompositeNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTypeDataTypeEnumRuleCall_1_0_3_1_0_0()); 
                             	    
-                            pushFollow(FOLLOW_ruleDataType_in_ruleFunctionModulePOJOExportingParameter2931);
+                            pushFollow(FOLLOW_ruleDataType_in_ruleFunctionModulePOJOExportingParameter3017);
                             lv_type_5_0=ruleDataType();
-                            _fsp--;
+
+                            state._fsp--;
 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode.getParent(), current);
+                            	            current = createModelElementForParent(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"type",
-                            	        		lv_type_5_0, 
-                            	        		"DataType", 
-                            	        		currentNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
-                            	        currentNode = currentNode.getParent();
+                                   		set(
+                                   			current, 
+                                   			"type",
+                                    		lv_type_5_0, 
+                                    		"DataType");
+                            	        afterParserOrEnumRuleCall();
                             	    
 
                             }
@@ -3572,32 +3371,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1737:2: ( (lv_attribute_6_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1738:1: (lv_attribute_6_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1435:2: ( (lv_attribute_6_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1436:1: (lv_attribute_6_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1738:1: (lv_attribute_6_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1739:3: lv_attribute_6_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1436:1: (lv_attribute_6_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1437:3: lv_attribute_6_0= RULE_ID
                             {
-                            lv_attribute_6_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter2948); 
+                            lv_attribute_6_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3034); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getAttributeIDTerminalRuleCall_1_0_3_1_1_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_6_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getAttributeIDTerminalRuleCall_1_0_3_1_1_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_6_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_6_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -3621,33 +3413,26 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1762:6: ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1454:6: ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1762:6: ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1762:7: ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1454:6: ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1454:7: ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1762:7: ( (lv_structure_7_0= 'structure' ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1763:1: (lv_structure_7_0= 'structure' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1454:7: ( (lv_structure_7_0= 'structure' ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1455:1: (lv_structure_7_0= 'structure' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1763:1: (lv_structure_7_0= 'structure' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1764:3: lv_structure_7_0= 'structure'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1455:1: (lv_structure_7_0= 'structure' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1456:3: lv_structure_7_0= 'structure'
                     {
-                    lv_structure_7_0=(Token)input.LT(1);
-                    match(input,16,FOLLOW_16_in_ruleFunctionModulePOJOExportingParameter2981); 
+                    lv_structure_7_0=(Token)match(input,16,FOLLOW_16_in_ruleFunctionModulePOJOExportingParameter3067); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureKeyword_1_1_0_0(), "structure"); 
+                            newLeafNode(lv_structure_7_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureStructureKeyword_1_1_0_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		set(current, "structure", true, "structure", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(current, "structure", true, "structure");
                     	    
 
                     }
@@ -3655,32 +3440,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1783:2: ( (lv_name_8_0= RULE_STRING ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1784:1: (lv_name_8_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1469:2: ( (lv_name_8_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1470:1: (lv_name_8_0= RULE_STRING )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1784:1: (lv_name_8_0= RULE_STRING )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1785:3: lv_name_8_0= RULE_STRING
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1470:1: (lv_name_8_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1471:3: lv_name_8_0= RULE_STRING
                     {
-                    lv_name_8_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter3011); 
+                    lv_name_8_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter3097); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getNameSTRINGTerminalRuleCall_1_1_1_0(), "name"); 
+                    			newLeafNode(lv_name_8_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getNameSTRINGTerminalRuleCall_1_1_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"name",
-                    	        		lv_name_8_0, 
-                    	        		"STRING", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"name",
+                            		lv_name_8_0, 
+                            		"STRING");
                     	    
 
                     }
@@ -3688,11 +3466,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOExportingParameter3026); 
+                    otherlv_9=(Token)match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOExportingParameter3114); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getEqualsSignKeyword_1_1_2(), null); 
+                        	newLeafNode(otherlv_9, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getEqualsSignKeyword_1_1_2());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1811:1: ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1491:1: ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )
                     int alt19=3;
                     switch ( input.LA(1) ) {
                     case 22:
@@ -3712,37 +3490,30 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("1811:1: ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )", 19, 0, input);
+                            new NoViableAltException("", 19, 0, input);
 
                         throw nvae;
                     }
 
                     switch (alt19) {
                         case 1 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1811:2: ( (lv_inactive_10_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1491:2: ( (lv_inactive_10_0= 'inactive' ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1811:2: ( (lv_inactive_10_0= 'inactive' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1812:1: (lv_inactive_10_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1491:2: ( (lv_inactive_10_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1492:1: (lv_inactive_10_0= 'inactive' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1812:1: (lv_inactive_10_0= 'inactive' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1813:3: lv_inactive_10_0= 'inactive'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1492:1: (lv_inactive_10_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1493:3: lv_inactive_10_0= 'inactive'
                             {
-                            lv_inactive_10_0=(Token)input.LT(1);
-                            match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOExportingParameter3045); 
+                            lv_inactive_10_0=(Token)match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOExportingParameter3133); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveInactiveKeyword_1_1_3_0_0(), "inactive"); 
+                                    newLeafNode(lv_inactive_10_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveInactiveKeyword_1_1_3_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "inactive", true, "inactive", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "inactive", true, "inactive");
                             	    
 
                             }
@@ -3754,26 +3525,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1833:6: ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1507:6: ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1833:6: ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1833:7: ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1507:6: ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1507:7: ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1833:7: ( ( RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1834:1: ( RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1507:7: ( (otherlv_11= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1508:1: (otherlv_11= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1834:1: ( RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1835:3: RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1508:1: (otherlv_11= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1509:3: otherlv_11= RULE_ID
                             {
 
                             			if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
                                     
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3083); 
+                            otherlv_11=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3173); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureMappingStructurePOJOMappingCrossReference_1_1_3_1_0_0(), "structureMapping"); 
+                            		newLeafNode(otherlv_11, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureMappingStructurePOJOMappingCrossReference_1_1_3_1_0_0()); 
                             	
 
                             }
@@ -3781,32 +3551,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1847:2: ( (lv_attribute_12_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1848:1: (lv_attribute_12_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1520:2: ( (lv_attribute_12_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1521:1: (lv_attribute_12_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1848:1: (lv_attribute_12_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1849:3: lv_attribute_12_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1521:1: (lv_attribute_12_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1522:3: lv_attribute_12_0= RULE_ID
                             {
-                            lv_attribute_12_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3100); 
+                            lv_attribute_12_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3190); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getAttributeIDTerminalRuleCall_1_1_3_1_1_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_12_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getAttributeIDTerminalRuleCall_1_1_3_1_1_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_12_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_12_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -3821,33 +3584,26 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 3 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1872:6: ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1539:6: ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1872:6: ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1872:7: ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1539:6: ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1539:7: ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1872:7: ( (lv_external_13_0= 'external' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1873:1: (lv_external_13_0= 'external' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1539:7: ( (lv_external_13_0= 'external' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1540:1: (lv_external_13_0= 'external' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1873:1: (lv_external_13_0= 'external' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1874:3: lv_external_13_0= 'external'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1540:1: (lv_external_13_0= 'external' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1541:3: lv_external_13_0= 'external'
                             {
-                            lv_external_13_0=(Token)input.LT(1);
-                            match(input,29,FOLLOW_29_in_ruleFunctionModulePOJOExportingParameter3131); 
+                            lv_external_13_0=(Token)match(input,29,FOLLOW_29_in_ruleFunctionModulePOJOExportingParameter3221); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getExternalExternalKeyword_1_1_3_2_0_0(), "external"); 
+                                    newLeafNode(lv_external_13_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getExternalExternalKeyword_1_1_3_2_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "external", true, "external", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "external", true, "external");
                             	    
 
                             }
@@ -3855,21 +3611,20 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1893:2: ( ( RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1894:1: ( RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1554:2: ( (otherlv_14= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1555:1: (otherlv_14= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1894:1: ( RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1895:3: RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1555:1: (otherlv_14= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1556:3: otherlv_14= RULE_ID
                             {
 
                             			if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
                                     
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3162); 
+                            otherlv_14=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3254); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getExternalClassImportCrossReference_1_1_3_2_1_0(), "externalClass"); 
+                            		newLeafNode(otherlv_14, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getExternalClassImportCrossReference_1_1_3_2_1_0()); 
                             	
 
                             }
@@ -3877,32 +3632,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1907:2: ( (lv_attribute_15_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1908:1: (lv_attribute_15_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1567:2: ( (lv_attribute_15_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1568:1: (lv_attribute_15_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1908:1: (lv_attribute_15_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1909:3: lv_attribute_15_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1568:1: (lv_attribute_15_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1569:3: lv_attribute_15_0= RULE_ID
                             {
-                            lv_attribute_15_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3179); 
+                            lv_attribute_15_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3271); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getAttributeIDTerminalRuleCall_1_1_3_2_2_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_15_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getAttributeIDTerminalRuleCall_1_1_3_2_2_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_15_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_15_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -3926,33 +3674,26 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1932:6: ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1586:6: ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1932:6: ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1932:7: ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1586:6: ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1586:7: ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1932:7: ( (lv_table_16_0= 'table' ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1933:1: (lv_table_16_0= 'table' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1586:7: ( (lv_table_16_0= 'table' ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1587:1: (lv_table_16_0= 'table' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1933:1: (lv_table_16_0= 'table' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1934:3: lv_table_16_0= 'table'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1587:1: (lv_table_16_0= 'table' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1588:3: lv_table_16_0= 'table'
                     {
-                    lv_table_16_0=(Token)input.LT(1);
-                    match(input,30,FOLLOW_30_in_ruleFunctionModulePOJOExportingParameter3212); 
+                    lv_table_16_0=(Token)match(input,30,FOLLOW_30_in_ruleFunctionModulePOJOExportingParameter3304); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTableTableKeyword_1_2_0_0(), "table"); 
+                            newLeafNode(lv_table_16_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getTableTableKeyword_1_2_0_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		set(current, "table", true, "table", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(current, "table", true, "table");
                     	    
 
                     }
@@ -3960,32 +3701,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1953:2: ( (lv_name_17_0= RULE_STRING ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1954:1: (lv_name_17_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1601:2: ( (lv_name_17_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1602:1: (lv_name_17_0= RULE_STRING )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1954:1: (lv_name_17_0= RULE_STRING )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1955:3: lv_name_17_0= RULE_STRING
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1602:1: (lv_name_17_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1603:3: lv_name_17_0= RULE_STRING
                     {
-                    lv_name_17_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter3242); 
+                    lv_name_17_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter3334); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getNameSTRINGTerminalRuleCall_1_2_1_0(), "name"); 
+                    			newLeafNode(lv_name_17_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getNameSTRINGTerminalRuleCall_1_2_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"name",
-                    	        		lv_name_17_0, 
-                    	        		"STRING", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"name",
+                            		lv_name_17_0, 
+                            		"STRING");
                     	    
 
                     }
@@ -3993,11 +3727,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOExportingParameter3257); 
+                    otherlv_18=(Token)match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOExportingParameter3351); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getEqualsSignKeyword_1_2_2(), null); 
+                        	newLeafNode(otherlv_18, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getEqualsSignKeyword_1_2_2());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1981:1: ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1623:1: ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )
                     int alt20=3;
                     switch ( input.LA(1) ) {
                     case 22:
@@ -4017,37 +3751,30 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("1981:1: ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )", 20, 0, input);
+                            new NoViableAltException("", 20, 0, input);
 
                         throw nvae;
                     }
 
                     switch (alt20) {
                         case 1 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1981:2: ( (lv_inactive_19_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1623:2: ( (lv_inactive_19_0= 'inactive' ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1981:2: ( (lv_inactive_19_0= 'inactive' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1982:1: (lv_inactive_19_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1623:2: ( (lv_inactive_19_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1624:1: (lv_inactive_19_0= 'inactive' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1982:1: (lv_inactive_19_0= 'inactive' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1983:3: lv_inactive_19_0= 'inactive'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1624:1: (lv_inactive_19_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1625:3: lv_inactive_19_0= 'inactive'
                             {
-                            lv_inactive_19_0=(Token)input.LT(1);
-                            match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOExportingParameter3276); 
+                            lv_inactive_19_0=(Token)match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOExportingParameter3370); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveInactiveKeyword_1_2_3_0_0(), "inactive"); 
+                                    newLeafNode(lv_inactive_19_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getInactiveInactiveKeyword_1_2_3_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "inactive", true, "inactive", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "inactive", true, "inactive");
                             	    
 
                             }
@@ -4059,26 +3786,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2003:6: ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1639:6: ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2003:6: ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2003:7: ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1639:6: ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1639:7: ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2003:7: ( ( RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2004:1: ( RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1639:7: ( (otherlv_20= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1640:1: (otherlv_20= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2004:1: ( RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2005:3: RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1640:1: (otherlv_20= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1641:3: otherlv_20= RULE_ID
                             {
 
                             			if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
                                     
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3314); 
+                            otherlv_20=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3410); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureMappingStructurePOJOMappingCrossReference_1_2_3_1_0_0(), "structureMapping"); 
+                            		newLeafNode(otherlv_20, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getStructureMappingStructurePOJOMappingCrossReference_1_2_3_1_0_0()); 
                             	
 
                             }
@@ -4086,32 +3812,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2017:2: ( (lv_attribute_21_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2018:1: (lv_attribute_21_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1652:2: ( (lv_attribute_21_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1653:1: (lv_attribute_21_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2018:1: (lv_attribute_21_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2019:3: lv_attribute_21_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1653:1: (lv_attribute_21_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1654:3: lv_attribute_21_0= RULE_ID
                             {
-                            lv_attribute_21_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3331); 
+                            lv_attribute_21_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3427); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getAttributeIDTerminalRuleCall_1_2_3_1_1_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_21_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getAttributeIDTerminalRuleCall_1_2_3_1_1_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_21_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_21_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -4126,33 +3845,26 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 3 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2042:6: ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1671:6: ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2042:6: ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2042:7: ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1671:6: ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1671:7: ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2042:7: ( (lv_external_22_0= 'external' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2043:1: (lv_external_22_0= 'external' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1671:7: ( (lv_external_22_0= 'external' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1672:1: (lv_external_22_0= 'external' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2043:1: (lv_external_22_0= 'external' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2044:3: lv_external_22_0= 'external'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1672:1: (lv_external_22_0= 'external' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1673:3: lv_external_22_0= 'external'
                             {
-                            lv_external_22_0=(Token)input.LT(1);
-                            match(input,29,FOLLOW_29_in_ruleFunctionModulePOJOExportingParameter3362); 
+                            lv_external_22_0=(Token)match(input,29,FOLLOW_29_in_ruleFunctionModulePOJOExportingParameter3458); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getExternalExternalKeyword_1_2_3_2_0_0(), "external"); 
+                                    newLeafNode(lv_external_22_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getExternalExternalKeyword_1_2_3_2_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "external", true, "external", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "external", true, "external");
                             	    
 
                             }
@@ -4160,21 +3872,20 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2063:2: ( ( RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2064:1: ( RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1686:2: ( (otherlv_23= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1687:1: (otherlv_23= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2064:1: ( RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2065:3: RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1687:1: (otherlv_23= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1688:3: otherlv_23= RULE_ID
                             {
 
                             			if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
                                     
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3393); 
+                            otherlv_23=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3491); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getExternalClassImportCrossReference_1_2_3_2_1_0(), "externalClass"); 
+                            		newLeafNode(otherlv_23, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getExternalClassImportCrossReference_1_2_3_2_1_0()); 
                             	
 
                             }
@@ -4182,32 +3893,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2077:2: ( (lv_attribute_24_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2078:1: (lv_attribute_24_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1699:2: ( (lv_attribute_24_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1700:1: (lv_attribute_24_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2078:1: (lv_attribute_24_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2079:3: lv_attribute_24_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1700:1: (lv_attribute_24_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1701:3: lv_attribute_24_0= RULE_ID
                             {
-                            lv_attribute_24_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3410); 
+                            lv_attribute_24_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3508); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getAttributeIDTerminalRuleCall_1_2_3_2_2_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_24_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getAttributeIDTerminalRuleCall_1_2_3_2_2_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_24_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_24_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -4233,7 +3937,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2101:6: ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )?
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1717:6: (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )?
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -4242,38 +3946,31 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
             }
             switch (alt22) {
                 case 1 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2101:8: 'comment' ( (lv_comment_26_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1717:8: otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) )
                     {
-                    match(input,23,FOLLOW_23_in_ruleFunctionModulePOJOExportingParameter3430); 
+                    otherlv_25=(Token)match(input,23,FOLLOW_23_in_ruleFunctionModulePOJOExportingParameter3530); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getCommentKeyword_2_0(), null); 
+                        	newLeafNode(otherlv_25, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getCommentKeyword_2_0());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2105:1: ( (lv_comment_26_0= RULE_STRING ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2106:1: (lv_comment_26_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1721:1: ( (lv_comment_26_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1722:1: (lv_comment_26_0= RULE_STRING )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2106:1: (lv_comment_26_0= RULE_STRING )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2107:3: lv_comment_26_0= RULE_STRING
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1722:1: (lv_comment_26_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1723:3: lv_comment_26_0= RULE_STRING
                     {
-                    lv_comment_26_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter3447); 
+                    lv_comment_26_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter3547); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getCommentSTRINGTerminalRuleCall_2_1_0(), "comment"); 
+                    			newLeafNode(lv_comment_26_0, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getCommentSTRINGTerminalRuleCall_2_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOExportingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOExportingParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"comment",
-                    	        		lv_comment_26_0, 
-                    	        		"STRING", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"comment",
+                            		lv_comment_26_0, 
+                            		"STRING");
                     	    
 
                     }
@@ -4287,9 +3984,9 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,15,FOLLOW_15_in_ruleFunctionModulePOJOExportingParameter3464); 
+            otherlv_27=(Token)match(input,15,FOLLOW_15_in_ruleFunctionModulePOJOExportingParameter3566); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJOExportingParameterAccess().getSemicolonKeyword_3(), null); 
+                	newLeafNode(otherlv_27, grammarAccess.getFunctionModulePOJOExportingParameterAccess().getSemicolonKeyword_3());
                 
 
             }
@@ -4297,9 +3994,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -4310,11 +4005,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleFunctionModulePOJOExportingParameter
+    // $ANTLR end "ruleFunctionModulePOJOExportingParameter"
 
 
-    // $ANTLR start entryRuleFunctionModulePOJOChangingParameter
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2141:1: entryRuleFunctionModulePOJOChangingParameter returns [EObject current=null] : iv_ruleFunctionModulePOJOChangingParameter= ruleFunctionModulePOJOChangingParameter EOF ;
+    // $ANTLR start "entryRuleFunctionModulePOJOChangingParameter"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1751:1: entryRuleFunctionModulePOJOChangingParameter returns [EObject current=null] : iv_ruleFunctionModulePOJOChangingParameter= ruleFunctionModulePOJOChangingParameter EOF ;
     public final EObject entryRuleFunctionModulePOJOChangingParameter() throws RecognitionException {
         EObject current = null;
 
@@ -4322,16 +4017,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2142:2: (iv_ruleFunctionModulePOJOChangingParameter= ruleFunctionModulePOJOChangingParameter EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2143:2: iv_ruleFunctionModulePOJOChangingParameter= ruleFunctionModulePOJOChangingParameter EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1752:2: (iv_ruleFunctionModulePOJOChangingParameter= ruleFunctionModulePOJOChangingParameter EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1753:2: iv_ruleFunctionModulePOJOChangingParameter= ruleFunctionModulePOJOChangingParameter EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getFunctionModulePOJOChangingParameterRule(), currentNode); 
-            pushFollow(FOLLOW_ruleFunctionModulePOJOChangingParameter_in_entryRuleFunctionModulePOJOChangingParameter3500);
+             newCompositeNode(grammarAccess.getFunctionModulePOJOChangingParameterRule()); 
+            pushFollow(FOLLOW_ruleFunctionModulePOJOChangingParameter_in_entryRuleFunctionModulePOJOChangingParameter3602);
             iv_ruleFunctionModulePOJOChangingParameter=ruleFunctionModulePOJOChangingParameter();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleFunctionModulePOJOChangingParameter; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJOChangingParameter3510); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJOChangingParameter3612); 
 
             }
 
@@ -4345,47 +4041,58 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleFunctionModulePOJOChangingParameter
+    // $ANTLR end "entryRuleFunctionModulePOJOChangingParameter"
 
 
-    // $ANTLR start ruleFunctionModulePOJOChangingParameter
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2150:1: ruleFunctionModulePOJOChangingParameter returns [EObject current=null] : ( 'changing' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';' ) ;
+    // $ANTLR start "ruleFunctionModulePOJOChangingParameter"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1760:1: ruleFunctionModulePOJOChangingParameter returns [EObject current=null] : (otherlv_0= 'changing' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';' ) ;
     public final EObject ruleFunctionModulePOJOChangingParameter() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
         Token lv_name_2_0=null;
+        Token otherlv_3=null;
         Token lv_inactive_4_0=null;
         Token lv_attribute_6_0=null;
         Token lv_structure_7_0=null;
         Token lv_name_8_0=null;
+        Token otherlv_9=null;
         Token lv_inactive_10_0=null;
+        Token otherlv_11=null;
         Token lv_attribute_12_0=null;
         Token lv_external_13_0=null;
+        Token otherlv_14=null;
         Token lv_attribute_15_0=null;
         Token lv_table_16_0=null;
         Token lv_name_17_0=null;
+        Token otherlv_18=null;
         Token lv_inactive_19_0=null;
+        Token otherlv_20=null;
         Token lv_attribute_21_0=null;
         Token lv_external_22_0=null;
+        Token otherlv_23=null;
         Token lv_attribute_24_0=null;
+        Token otherlv_25=null;
         Token lv_comment_26_0=null;
+        Token otherlv_27=null;
         Enumerator lv_type_5_0 = null;
 
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2155:6: ( ( 'changing' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';' ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2156:1: ( 'changing' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1763:28: ( (otherlv_0= 'changing' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';' ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1764:1: (otherlv_0= 'changing' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';' )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2156:1: ( 'changing' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';' )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2156:3: 'changing' ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? ';'
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1764:1: (otherlv_0= 'changing' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1764:3: otherlv_0= 'changing' ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) ) (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )? otherlv_27= ';'
             {
-            match(input,32,FOLLOW_32_in_ruleFunctionModulePOJOChangingParameter3545); 
+            otherlv_0=(Token)match(input,32,FOLLOW_32_in_ruleFunctionModulePOJOChangingParameter3649); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getChangingKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getChangingKeyword_0());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2160:1: ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1768:1: ( (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) )
             int alt26=3;
             switch ( input.LA(1) ) {
             case 20:
@@ -4405,48 +4112,41 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("2160:1: ( ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) ) | ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) ) | ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) ) )", 26, 0, input);
+                    new NoViableAltException("", 26, 0, input);
 
                 throw nvae;
             }
 
             switch (alt26) {
                 case 1 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2160:2: ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1768:2: (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2160:2: ( 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2160:4: 'field' ( (lv_name_2_0= RULE_STRING ) ) '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1768:2: (otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1768:4: otherlv_1= 'field' ( (lv_name_2_0= RULE_STRING ) ) otherlv_3= '=' ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )
                     {
-                    match(input,20,FOLLOW_20_in_ruleFunctionModulePOJOChangingParameter3557); 
+                    otherlv_1=(Token)match(input,20,FOLLOW_20_in_ruleFunctionModulePOJOChangingParameter3663); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getFieldKeyword_1_0_0(), null); 
+                        	newLeafNode(otherlv_1, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getFieldKeyword_1_0_0());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2164:1: ( (lv_name_2_0= RULE_STRING ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2165:1: (lv_name_2_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1772:1: ( (lv_name_2_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1773:1: (lv_name_2_0= RULE_STRING )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2165:1: (lv_name_2_0= RULE_STRING )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2166:3: lv_name_2_0= RULE_STRING
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1773:1: (lv_name_2_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1774:3: lv_name_2_0= RULE_STRING
                     {
-                    lv_name_2_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter3574); 
+                    lv_name_2_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter3680); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getNameSTRINGTerminalRuleCall_1_0_1_0(), "name"); 
+                    			newLeafNode(lv_name_2_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getNameSTRINGTerminalRuleCall_1_0_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"name",
-                    	        		lv_name_2_0, 
-                    	        		"STRING", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"name",
+                            		lv_name_2_0, 
+                            		"STRING");
                     	    
 
                     }
@@ -4454,11 +4154,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOChangingParameter3589); 
+                    otherlv_3=(Token)match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOChangingParameter3697); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getEqualsSignKeyword_1_0_2(), null); 
+                        	newLeafNode(otherlv_3, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getEqualsSignKeyword_1_0_2());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2192:1: ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1794:1: ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )
                     int alt23=2;
                     int LA23_0 = input.LA(1);
 
@@ -4470,36 +4170,29 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("2192:1: ( ( (lv_inactive_4_0= 'inactive' ) ) | ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) ) )", 23, 0, input);
+                            new NoViableAltException("", 23, 0, input);
 
                         throw nvae;
                     }
                     switch (alt23) {
                         case 1 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2192:2: ( (lv_inactive_4_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1794:2: ( (lv_inactive_4_0= 'inactive' ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2192:2: ( (lv_inactive_4_0= 'inactive' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2193:1: (lv_inactive_4_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1794:2: ( (lv_inactive_4_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1795:1: (lv_inactive_4_0= 'inactive' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2193:1: (lv_inactive_4_0= 'inactive' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2194:3: lv_inactive_4_0= 'inactive'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1795:1: (lv_inactive_4_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1796:3: lv_inactive_4_0= 'inactive'
                             {
-                            lv_inactive_4_0=(Token)input.LT(1);
-                            match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOChangingParameter3608); 
+                            lv_inactive_4_0=(Token)match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOChangingParameter3716); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveInactiveKeyword_1_0_3_0_0(), "inactive"); 
+                                    newLeafNode(lv_inactive_4_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveInactiveKeyword_1_0_3_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "inactive", true, "inactive", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "inactive", true, "inactive");
                             	    
 
                             }
@@ -4511,40 +4204,35 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2214:6: ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1810:6: ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2214:6: ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2214:7: ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1810:6: ( ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1810:7: ( (lv_type_5_0= ruleDataType ) ) ( (lv_attribute_6_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2214:7: ( (lv_type_5_0= ruleDataType ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2215:1: (lv_type_5_0= ruleDataType )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1810:7: ( (lv_type_5_0= ruleDataType ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1811:1: (lv_type_5_0= ruleDataType )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2215:1: (lv_type_5_0= ruleDataType )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2216:3: lv_type_5_0= ruleDataType
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1811:1: (lv_type_5_0= ruleDataType )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1812:3: lv_type_5_0= ruleDataType
                             {
                              
-                            	        currentNode=createCompositeNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTypeDataTypeEnumRuleCall_1_0_3_1_0_0(), currentNode); 
+                            	        newCompositeNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTypeDataTypeEnumRuleCall_1_0_3_1_0_0()); 
                             	    
-                            pushFollow(FOLLOW_ruleDataType_in_ruleFunctionModulePOJOChangingParameter3649);
+                            pushFollow(FOLLOW_ruleDataType_in_ruleFunctionModulePOJOChangingParameter3757);
                             lv_type_5_0=ruleDataType();
-                            _fsp--;
+
+                            state._fsp--;
 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode.getParent(), current);
+                            	            current = createModelElementForParent(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"type",
-                            	        		lv_type_5_0, 
-                            	        		"DataType", 
-                            	        		currentNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
-                            	        currentNode = currentNode.getParent();
+                                   		set(
+                                   			current, 
+                                   			"type",
+                                    		lv_type_5_0, 
+                                    		"DataType");
+                            	        afterParserOrEnumRuleCall();
                             	    
 
                             }
@@ -4552,32 +4240,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2238:2: ( (lv_attribute_6_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2239:1: (lv_attribute_6_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1828:2: ( (lv_attribute_6_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1829:1: (lv_attribute_6_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2239:1: (lv_attribute_6_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2240:3: lv_attribute_6_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1829:1: (lv_attribute_6_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1830:3: lv_attribute_6_0= RULE_ID
                             {
-                            lv_attribute_6_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3666); 
+                            lv_attribute_6_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3774); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getAttributeIDTerminalRuleCall_1_0_3_1_1_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_6_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getAttributeIDTerminalRuleCall_1_0_3_1_1_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_6_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_6_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -4601,33 +4282,26 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2263:6: ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1847:6: ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2263:6: ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2263:7: ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1847:6: ( ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1847:7: ( (lv_structure_7_0= 'structure' ) ) ( (lv_name_8_0= RULE_STRING ) ) otherlv_9= '=' ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2263:7: ( (lv_structure_7_0= 'structure' ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2264:1: (lv_structure_7_0= 'structure' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1847:7: ( (lv_structure_7_0= 'structure' ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1848:1: (lv_structure_7_0= 'structure' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2264:1: (lv_structure_7_0= 'structure' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2265:3: lv_structure_7_0= 'structure'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1848:1: (lv_structure_7_0= 'structure' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1849:3: lv_structure_7_0= 'structure'
                     {
-                    lv_structure_7_0=(Token)input.LT(1);
-                    match(input,16,FOLLOW_16_in_ruleFunctionModulePOJOChangingParameter3699); 
+                    lv_structure_7_0=(Token)match(input,16,FOLLOW_16_in_ruleFunctionModulePOJOChangingParameter3807); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureKeyword_1_1_0_0(), "structure"); 
+                            newLeafNode(lv_structure_7_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureStructureKeyword_1_1_0_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		set(current, "structure", true, "structure", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(current, "structure", true, "structure");
                     	    
 
                     }
@@ -4635,32 +4309,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2284:2: ( (lv_name_8_0= RULE_STRING ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2285:1: (lv_name_8_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1862:2: ( (lv_name_8_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1863:1: (lv_name_8_0= RULE_STRING )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2285:1: (lv_name_8_0= RULE_STRING )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2286:3: lv_name_8_0= RULE_STRING
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1863:1: (lv_name_8_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1864:3: lv_name_8_0= RULE_STRING
                     {
-                    lv_name_8_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter3729); 
+                    lv_name_8_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter3837); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getNameSTRINGTerminalRuleCall_1_1_1_0(), "name"); 
+                    			newLeafNode(lv_name_8_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getNameSTRINGTerminalRuleCall_1_1_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"name",
-                    	        		lv_name_8_0, 
-                    	        		"STRING", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"name",
+                            		lv_name_8_0, 
+                            		"STRING");
                     	    
 
                     }
@@ -4668,11 +4335,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOChangingParameter3744); 
+                    otherlv_9=(Token)match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOChangingParameter3854); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getEqualsSignKeyword_1_1_2(), null); 
+                        	newLeafNode(otherlv_9, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getEqualsSignKeyword_1_1_2());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2312:1: ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1884:1: ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )
                     int alt24=3;
                     switch ( input.LA(1) ) {
                     case 22:
@@ -4692,37 +4359,30 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("2312:1: ( ( (lv_inactive_10_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) ) | ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) ) )", 24, 0, input);
+                            new NoViableAltException("", 24, 0, input);
 
                         throw nvae;
                     }
 
                     switch (alt24) {
                         case 1 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2312:2: ( (lv_inactive_10_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1884:2: ( (lv_inactive_10_0= 'inactive' ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2312:2: ( (lv_inactive_10_0= 'inactive' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2313:1: (lv_inactive_10_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1884:2: ( (lv_inactive_10_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1885:1: (lv_inactive_10_0= 'inactive' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2313:1: (lv_inactive_10_0= 'inactive' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2314:3: lv_inactive_10_0= 'inactive'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1885:1: (lv_inactive_10_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1886:3: lv_inactive_10_0= 'inactive'
                             {
-                            lv_inactive_10_0=(Token)input.LT(1);
-                            match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOChangingParameter3763); 
+                            lv_inactive_10_0=(Token)match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOChangingParameter3873); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveInactiveKeyword_1_1_3_0_0(), "inactive"); 
+                                    newLeafNode(lv_inactive_10_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveInactiveKeyword_1_1_3_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "inactive", true, "inactive", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "inactive", true, "inactive");
                             	    
 
                             }
@@ -4734,26 +4394,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2334:6: ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1900:6: ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2334:6: ( ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2334:7: ( ( RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1900:6: ( ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1900:7: ( (otherlv_11= RULE_ID ) ) ( (lv_attribute_12_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2334:7: ( ( RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2335:1: ( RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1900:7: ( (otherlv_11= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1901:1: (otherlv_11= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2335:1: ( RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2336:3: RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1901:1: (otherlv_11= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1902:3: otherlv_11= RULE_ID
                             {
 
                             			if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
                                     
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3801); 
+                            otherlv_11=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3913); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureMappingStructurePOJOMappingCrossReference_1_1_3_1_0_0(), "structureMapping"); 
+                            		newLeafNode(otherlv_11, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureMappingStructurePOJOMappingCrossReference_1_1_3_1_0_0()); 
                             	
 
                             }
@@ -4761,32 +4420,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2348:2: ( (lv_attribute_12_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2349:1: (lv_attribute_12_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1913:2: ( (lv_attribute_12_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1914:1: (lv_attribute_12_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2349:1: (lv_attribute_12_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2350:3: lv_attribute_12_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1914:1: (lv_attribute_12_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1915:3: lv_attribute_12_0= RULE_ID
                             {
-                            lv_attribute_12_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3818); 
+                            lv_attribute_12_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3930); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getAttributeIDTerminalRuleCall_1_1_3_1_1_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_12_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getAttributeIDTerminalRuleCall_1_1_3_1_1_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_12_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_12_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -4801,33 +4453,26 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 3 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2373:6: ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1932:6: ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2373:6: ( ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2373:7: ( (lv_external_13_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1932:6: ( ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1932:7: ( (lv_external_13_0= 'external' ) ) ( (otherlv_14= RULE_ID ) ) ( (lv_attribute_15_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2373:7: ( (lv_external_13_0= 'external' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2374:1: (lv_external_13_0= 'external' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1932:7: ( (lv_external_13_0= 'external' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1933:1: (lv_external_13_0= 'external' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2374:1: (lv_external_13_0= 'external' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2375:3: lv_external_13_0= 'external'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1933:1: (lv_external_13_0= 'external' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1934:3: lv_external_13_0= 'external'
                             {
-                            lv_external_13_0=(Token)input.LT(1);
-                            match(input,29,FOLLOW_29_in_ruleFunctionModulePOJOChangingParameter3849); 
+                            lv_external_13_0=(Token)match(input,29,FOLLOW_29_in_ruleFunctionModulePOJOChangingParameter3961); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getExternalExternalKeyword_1_1_3_2_0_0(), "external"); 
+                                    newLeafNode(lv_external_13_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getExternalExternalKeyword_1_1_3_2_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "external", true, "external", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "external", true, "external");
                             	    
 
                             }
@@ -4835,21 +4480,20 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2394:2: ( ( RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2395:1: ( RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1947:2: ( (otherlv_14= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1948:1: (otherlv_14= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2395:1: ( RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2396:3: RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1948:1: (otherlv_14= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1949:3: otherlv_14= RULE_ID
                             {
 
                             			if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
                                     
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3880); 
+                            otherlv_14=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3994); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getExternalClassImportCrossReference_1_1_3_2_1_0(), "externalClass"); 
+                            		newLeafNode(otherlv_14, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getExternalClassImportCrossReference_1_1_3_2_1_0()); 
                             	
 
                             }
@@ -4857,32 +4501,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2408:2: ( (lv_attribute_15_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2409:1: (lv_attribute_15_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1960:2: ( (lv_attribute_15_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1961:1: (lv_attribute_15_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2409:1: (lv_attribute_15_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2410:3: lv_attribute_15_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1961:1: (lv_attribute_15_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1962:3: lv_attribute_15_0= RULE_ID
                             {
-                            lv_attribute_15_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3897); 
+                            lv_attribute_15_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4011); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getAttributeIDTerminalRuleCall_1_1_3_2_2_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_15_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getAttributeIDTerminalRuleCall_1_1_3_2_2_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_15_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_15_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -4906,33 +4543,26 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2433:6: ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1979:6: ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2433:6: ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2433:7: ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1979:6: ( ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1979:7: ( (lv_table_16_0= 'table' ) ) ( (lv_name_17_0= RULE_STRING ) ) otherlv_18= '=' ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2433:7: ( (lv_table_16_0= 'table' ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2434:1: (lv_table_16_0= 'table' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1979:7: ( (lv_table_16_0= 'table' ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1980:1: (lv_table_16_0= 'table' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2434:1: (lv_table_16_0= 'table' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2435:3: lv_table_16_0= 'table'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1980:1: (lv_table_16_0= 'table' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1981:3: lv_table_16_0= 'table'
                     {
-                    lv_table_16_0=(Token)input.LT(1);
-                    match(input,30,FOLLOW_30_in_ruleFunctionModulePOJOChangingParameter3930); 
+                    lv_table_16_0=(Token)match(input,30,FOLLOW_30_in_ruleFunctionModulePOJOChangingParameter4044); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTableTableKeyword_1_2_0_0(), "table"); 
+                            newLeafNode(lv_table_16_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getTableTableKeyword_1_2_0_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		set(current, "table", true, "table", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(current, "table", true, "table");
                     	    
 
                     }
@@ -4940,32 +4570,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2454:2: ( (lv_name_17_0= RULE_STRING ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2455:1: (lv_name_17_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1994:2: ( (lv_name_17_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1995:1: (lv_name_17_0= RULE_STRING )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2455:1: (lv_name_17_0= RULE_STRING )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2456:3: lv_name_17_0= RULE_STRING
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1995:1: (lv_name_17_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:1996:3: lv_name_17_0= RULE_STRING
                     {
-                    lv_name_17_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter3960); 
+                    lv_name_17_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter4074); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getNameSTRINGTerminalRuleCall_1_2_1_0(), "name"); 
+                    			newLeafNode(lv_name_17_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getNameSTRINGTerminalRuleCall_1_2_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"name",
-                    	        		lv_name_17_0, 
-                    	        		"STRING", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"name",
+                            		lv_name_17_0, 
+                            		"STRING");
                     	    
 
                     }
@@ -4973,11 +4596,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOChangingParameter3975); 
+                    otherlv_18=(Token)match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOChangingParameter4091); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getEqualsSignKeyword_1_2_2(), null); 
+                        	newLeafNode(otherlv_18, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getEqualsSignKeyword_1_2_2());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2482:1: ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2016:1: ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )
                     int alt25=3;
                     switch ( input.LA(1) ) {
                     case 22:
@@ -4997,37 +4620,30 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("2482:1: ( ( (lv_inactive_19_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) ) | ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) ) )", 25, 0, input);
+                            new NoViableAltException("", 25, 0, input);
 
                         throw nvae;
                     }
 
                     switch (alt25) {
                         case 1 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2482:2: ( (lv_inactive_19_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2016:2: ( (lv_inactive_19_0= 'inactive' ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2482:2: ( (lv_inactive_19_0= 'inactive' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2483:1: (lv_inactive_19_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2016:2: ( (lv_inactive_19_0= 'inactive' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2017:1: (lv_inactive_19_0= 'inactive' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2483:1: (lv_inactive_19_0= 'inactive' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2484:3: lv_inactive_19_0= 'inactive'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2017:1: (lv_inactive_19_0= 'inactive' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2018:3: lv_inactive_19_0= 'inactive'
                             {
-                            lv_inactive_19_0=(Token)input.LT(1);
-                            match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOChangingParameter3994); 
+                            lv_inactive_19_0=(Token)match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOChangingParameter4110); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveInactiveKeyword_1_2_3_0_0(), "inactive"); 
+                                    newLeafNode(lv_inactive_19_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getInactiveInactiveKeyword_1_2_3_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "inactive", true, "inactive", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "inactive", true, "inactive");
                             	    
 
                             }
@@ -5039,26 +4655,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2504:6: ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2032:6: ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2504:6: ( ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2504:7: ( ( RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2032:6: ( ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2032:7: ( (otherlv_20= RULE_ID ) ) ( (lv_attribute_21_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2504:7: ( ( RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2505:1: ( RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2032:7: ( (otherlv_20= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2033:1: (otherlv_20= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2505:1: ( RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2506:3: RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2033:1: (otherlv_20= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2034:3: otherlv_20= RULE_ID
                             {
 
                             			if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
                                     
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4032); 
+                            otherlv_20=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4150); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureMappingStructurePOJOMappingCrossReference_1_2_3_1_0_0(), "structureMapping"); 
+                            		newLeafNode(otherlv_20, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getStructureMappingStructurePOJOMappingCrossReference_1_2_3_1_0_0()); 
                             	
 
                             }
@@ -5066,32 +4681,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2518:2: ( (lv_attribute_21_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2519:1: (lv_attribute_21_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2045:2: ( (lv_attribute_21_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2046:1: (lv_attribute_21_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2519:1: (lv_attribute_21_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2520:3: lv_attribute_21_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2046:1: (lv_attribute_21_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2047:3: lv_attribute_21_0= RULE_ID
                             {
-                            lv_attribute_21_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4049); 
+                            lv_attribute_21_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4167); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getAttributeIDTerminalRuleCall_1_2_3_1_1_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_21_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getAttributeIDTerminalRuleCall_1_2_3_1_1_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_21_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_21_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -5106,33 +4714,26 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 3 :
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2543:6: ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2064:6: ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2543:6: ( ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2543:7: ( (lv_external_22_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2064:6: ( ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2064:7: ( (lv_external_22_0= 'external' ) ) ( (otherlv_23= RULE_ID ) ) ( (lv_attribute_24_0= RULE_ID ) )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2543:7: ( (lv_external_22_0= 'external' ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2544:1: (lv_external_22_0= 'external' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2064:7: ( (lv_external_22_0= 'external' ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2065:1: (lv_external_22_0= 'external' )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2544:1: (lv_external_22_0= 'external' )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2545:3: lv_external_22_0= 'external'
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2065:1: (lv_external_22_0= 'external' )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2066:3: lv_external_22_0= 'external'
                             {
-                            lv_external_22_0=(Token)input.LT(1);
-                            match(input,29,FOLLOW_29_in_ruleFunctionModulePOJOChangingParameter4080); 
+                            lv_external_22_0=(Token)match(input,29,FOLLOW_29_in_ruleFunctionModulePOJOChangingParameter4198); 
 
-                                    createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getExternalExternalKeyword_1_2_3_2_0_0(), "external"); 
+                                    newLeafNode(lv_external_22_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getExternalExternalKeyword_1_2_3_2_0_0());
                                 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
-                            	        
-                            	        try {
-                            	       		set(current, "external", true, "external", lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(current, "external", true, "external");
                             	    
 
                             }
@@ -5140,21 +4741,20 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2564:2: ( ( RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2565:1: ( RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2079:2: ( (otherlv_23= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2080:1: (otherlv_23= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2565:1: ( RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2566:3: RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2080:1: (otherlv_23= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2081:3: otherlv_23= RULE_ID
                             {
 
                             			if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
                                     
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4111); 
+                            otherlv_23=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4231); 
 
-                            		createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getExternalClassImportCrossReference_1_2_3_2_1_0(), "externalClass"); 
+                            		newLeafNode(otherlv_23, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getExternalClassImportCrossReference_1_2_3_2_1_0()); 
                             	
 
                             }
@@ -5162,32 +4762,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2578:2: ( (lv_attribute_24_0= RULE_ID ) )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2579:1: (lv_attribute_24_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2092:2: ( (lv_attribute_24_0= RULE_ID ) )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2093:1: (lv_attribute_24_0= RULE_ID )
                             {
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2579:1: (lv_attribute_24_0= RULE_ID )
-                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2580:3: lv_attribute_24_0= RULE_ID
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2093:1: (lv_attribute_24_0= RULE_ID )
+                            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2094:3: lv_attribute_24_0= RULE_ID
                             {
-                            lv_attribute_24_0=(Token)input.LT(1);
-                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4128); 
+                            lv_attribute_24_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4248); 
 
-                            			createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getAttributeIDTerminalRuleCall_1_2_3_2_2_0(), "attribute"); 
+                            			newLeafNode(lv_attribute_24_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getAttributeIDTerminalRuleCall_1_2_3_2_2_0()); 
                             		
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                            	            associateNodeWithAstElement(currentNode, current);
+                            	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                             	        }
-                            	        try {
-                            	       		set(
-                            	       			current, 
-                            	       			"attribute",
-                            	        		lv_attribute_24_0, 
-                            	        		"ID", 
-                            	        		lastConsumedNode);
-                            	        } catch (ValueConverterException vce) {
-                            				handleValueConverterException(vce);
-                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"attribute",
+                                    		lv_attribute_24_0, 
+                                    		"ID");
                             	    
 
                             }
@@ -5213,7 +4806,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2602:6: ( 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )?
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2110:6: (otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) ) )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -5222,38 +4815,31 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
             }
             switch (alt27) {
                 case 1 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2602:8: 'comment' ( (lv_comment_26_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2110:8: otherlv_25= 'comment' ( (lv_comment_26_0= RULE_STRING ) )
                     {
-                    match(input,23,FOLLOW_23_in_ruleFunctionModulePOJOChangingParameter4148); 
+                    otherlv_25=(Token)match(input,23,FOLLOW_23_in_ruleFunctionModulePOJOChangingParameter4270); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getCommentKeyword_2_0(), null); 
+                        	newLeafNode(otherlv_25, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getCommentKeyword_2_0());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2606:1: ( (lv_comment_26_0= RULE_STRING ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2607:1: (lv_comment_26_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2114:1: ( (lv_comment_26_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2115:1: (lv_comment_26_0= RULE_STRING )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2607:1: (lv_comment_26_0= RULE_STRING )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2608:3: lv_comment_26_0= RULE_STRING
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2115:1: (lv_comment_26_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2116:3: lv_comment_26_0= RULE_STRING
                     {
-                    lv_comment_26_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter4165); 
+                    lv_comment_26_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter4287); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getCommentSTRINGTerminalRuleCall_2_1_0(), "comment"); 
+                    			newLeafNode(lv_comment_26_0, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getCommentSTRINGTerminalRuleCall_2_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOChangingParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOChangingParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"comment",
-                    	        		lv_comment_26_0, 
-                    	        		"STRING", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"comment",
+                            		lv_comment_26_0, 
+                            		"STRING");
                     	    
 
                     }
@@ -5267,9 +4853,9 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,15,FOLLOW_15_in_ruleFunctionModulePOJOChangingParameter4182); 
+            otherlv_27=(Token)match(input,15,FOLLOW_15_in_ruleFunctionModulePOJOChangingParameter4306); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJOChangingParameterAccess().getSemicolonKeyword_3(), null); 
+                	newLeafNode(otherlv_27, grammarAccess.getFunctionModulePOJOChangingParameterAccess().getSemicolonKeyword_3());
                 
 
             }
@@ -5277,9 +4863,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -5290,11 +4874,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleFunctionModulePOJOChangingParameter
+    // $ANTLR end "ruleFunctionModulePOJOChangingParameter"
 
 
-    // $ANTLR start entryRuleFunctionModulePOJOTablesParameter
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2642:1: entryRuleFunctionModulePOJOTablesParameter returns [EObject current=null] : iv_ruleFunctionModulePOJOTablesParameter= ruleFunctionModulePOJOTablesParameter EOF ;
+    // $ANTLR start "entryRuleFunctionModulePOJOTablesParameter"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2144:1: entryRuleFunctionModulePOJOTablesParameter returns [EObject current=null] : iv_ruleFunctionModulePOJOTablesParameter= ruleFunctionModulePOJOTablesParameter EOF ;
     public final EObject entryRuleFunctionModulePOJOTablesParameter() throws RecognitionException {
         EObject current = null;
 
@@ -5302,16 +4886,17 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2643:2: (iv_ruleFunctionModulePOJOTablesParameter= ruleFunctionModulePOJOTablesParameter EOF )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2644:2: iv_ruleFunctionModulePOJOTablesParameter= ruleFunctionModulePOJOTablesParameter EOF
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2145:2: (iv_ruleFunctionModulePOJOTablesParameter= ruleFunctionModulePOJOTablesParameter EOF )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2146:2: iv_ruleFunctionModulePOJOTablesParameter= ruleFunctionModulePOJOTablesParameter EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getFunctionModulePOJOTablesParameterRule(), currentNode); 
-            pushFollow(FOLLOW_ruleFunctionModulePOJOTablesParameter_in_entryRuleFunctionModulePOJOTablesParameter4218);
+             newCompositeNode(grammarAccess.getFunctionModulePOJOTablesParameterRule()); 
+            pushFollow(FOLLOW_ruleFunctionModulePOJOTablesParameter_in_entryRuleFunctionModulePOJOTablesParameter4342);
             iv_ruleFunctionModulePOJOTablesParameter=ruleFunctionModulePOJOTablesParameter();
-            _fsp--;
+
+            state._fsp--;
 
              current =iv_ruleFunctionModulePOJOTablesParameter; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJOTablesParameter4228); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionModulePOJOTablesParameter4352); 
 
             }
 
@@ -5325,60 +4910,59 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleFunctionModulePOJOTablesParameter
+    // $ANTLR end "entryRuleFunctionModulePOJOTablesParameter"
 
 
-    // $ANTLR start ruleFunctionModulePOJOTablesParameter
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2651:1: ruleFunctionModulePOJOTablesParameter returns [EObject current=null] : ( 'table' ( (lv_name_1_0= RULE_STRING ) ) '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) | ( ( (lv_external_6_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) ) ) ( 'comment' ( (lv_comment_10_0= RULE_STRING ) ) )? ';' ) ;
+    // $ANTLR start "ruleFunctionModulePOJOTablesParameter"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2153:1: ruleFunctionModulePOJOTablesParameter returns [EObject current=null] : (otherlv_0= 'table' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (otherlv_4= RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) | ( ( (lv_external_6_0= 'external' ) ) ( (otherlv_7= RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) ) ) (otherlv_9= 'comment' ( (lv_comment_10_0= RULE_STRING ) ) )? otherlv_11= ';' ) ;
     public final EObject ruleFunctionModulePOJOTablesParameter() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
         Token lv_name_1_0=null;
+        Token otherlv_2=null;
         Token lv_inactive_3_0=null;
+        Token otherlv_4=null;
         Token lv_attribute_5_0=null;
         Token lv_external_6_0=null;
+        Token otherlv_7=null;
         Token lv_attribute_8_0=null;
+        Token otherlv_9=null;
         Token lv_comment_10_0=null;
+        Token otherlv_11=null;
 
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         enterRule(); 
             
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2656:6: ( ( 'table' ( (lv_name_1_0= RULE_STRING ) ) '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) | ( ( (lv_external_6_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) ) ) ( 'comment' ( (lv_comment_10_0= RULE_STRING ) ) )? ';' ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2657:1: ( 'table' ( (lv_name_1_0= RULE_STRING ) ) '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) | ( ( (lv_external_6_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) ) ) ( 'comment' ( (lv_comment_10_0= RULE_STRING ) ) )? ';' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2156:28: ( (otherlv_0= 'table' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (otherlv_4= RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) | ( ( (lv_external_6_0= 'external' ) ) ( (otherlv_7= RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) ) ) (otherlv_9= 'comment' ( (lv_comment_10_0= RULE_STRING ) ) )? otherlv_11= ';' ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2157:1: (otherlv_0= 'table' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (otherlv_4= RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) | ( ( (lv_external_6_0= 'external' ) ) ( (otherlv_7= RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) ) ) (otherlv_9= 'comment' ( (lv_comment_10_0= RULE_STRING ) ) )? otherlv_11= ';' )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2657:1: ( 'table' ( (lv_name_1_0= RULE_STRING ) ) '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) | ( ( (lv_external_6_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) ) ) ( 'comment' ( (lv_comment_10_0= RULE_STRING ) ) )? ';' )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2657:3: 'table' ( (lv_name_1_0= RULE_STRING ) ) '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) | ( ( (lv_external_6_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) ) ) ( 'comment' ( (lv_comment_10_0= RULE_STRING ) ) )? ';'
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2157:1: (otherlv_0= 'table' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (otherlv_4= RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) | ( ( (lv_external_6_0= 'external' ) ) ( (otherlv_7= RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) ) ) (otherlv_9= 'comment' ( (lv_comment_10_0= RULE_STRING ) ) )? otherlv_11= ';' )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2157:3: otherlv_0= 'table' ( (lv_name_1_0= RULE_STRING ) ) otherlv_2= '=' ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (otherlv_4= RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) | ( ( (lv_external_6_0= 'external' ) ) ( (otherlv_7= RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) ) ) (otherlv_9= 'comment' ( (lv_comment_10_0= RULE_STRING ) ) )? otherlv_11= ';'
             {
-            match(input,30,FOLLOW_30_in_ruleFunctionModulePOJOTablesParameter4263); 
+            otherlv_0=(Token)match(input,30,FOLLOW_30_in_ruleFunctionModulePOJOTablesParameter4389); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getTableKeyword_0(), null); 
+                	newLeafNode(otherlv_0, grammarAccess.getFunctionModulePOJOTablesParameterAccess().getTableKeyword_0());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2661:1: ( (lv_name_1_0= RULE_STRING ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2662:1: (lv_name_1_0= RULE_STRING )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2161:1: ( (lv_name_1_0= RULE_STRING ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2162:1: (lv_name_1_0= RULE_STRING )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2662:1: (lv_name_1_0= RULE_STRING )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2663:3: lv_name_1_0= RULE_STRING
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2162:1: (lv_name_1_0= RULE_STRING )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2163:3: lv_name_1_0= RULE_STRING
             {
-            lv_name_1_0=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOTablesParameter4280); 
+            lv_name_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOTablesParameter4406); 
 
-            			createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getNameSTRINGTerminalRuleCall_1_0(), "name"); 
+            			newLeafNode(lv_name_1_0, grammarAccess.getFunctionModulePOJOTablesParameterAccess().getNameSTRINGTerminalRuleCall_1_0()); 
             		
 
             	        if (current==null) {
-            	            current = factory.create(grammarAccess.getFunctionModulePOJOTablesParameterRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode, current);
+            	            current = createModelElement(grammarAccess.getFunctionModulePOJOTablesParameterRule());
             	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"name",
-            	        		lv_name_1_0, 
-            	        		"STRING", 
-            	        		lastConsumedNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"name",
+                    		lv_name_1_0, 
+                    		"STRING");
             	    
 
             }
@@ -5386,11 +4970,11 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOTablesParameter4295); 
+            otherlv_2=(Token)match(input,21,FOLLOW_21_in_ruleFunctionModulePOJOTablesParameter4423); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getEqualsSignKeyword_2(), null); 
+                	newLeafNode(otherlv_2, grammarAccess.getFunctionModulePOJOTablesParameterAccess().getEqualsSignKeyword_2());
                 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2689:1: ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) | ( ( (lv_external_6_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2183:1: ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( (otherlv_4= RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) | ( ( (lv_external_6_0= 'external' ) ) ( (otherlv_7= RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) ) )
             int alt28=3;
             switch ( input.LA(1) ) {
             case 22:
@@ -5410,37 +4994,30 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("2689:1: ( ( (lv_inactive_3_0= 'inactive' ) ) | ( ( ( RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) ) | ( ( (lv_external_6_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) ) )", 28, 0, input);
+                    new NoViableAltException("", 28, 0, input);
 
                 throw nvae;
             }
 
             switch (alt28) {
                 case 1 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2689:2: ( (lv_inactive_3_0= 'inactive' ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2183:2: ( (lv_inactive_3_0= 'inactive' ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2689:2: ( (lv_inactive_3_0= 'inactive' ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2690:1: (lv_inactive_3_0= 'inactive' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2183:2: ( (lv_inactive_3_0= 'inactive' ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2184:1: (lv_inactive_3_0= 'inactive' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2690:1: (lv_inactive_3_0= 'inactive' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2691:3: lv_inactive_3_0= 'inactive'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2184:1: (lv_inactive_3_0= 'inactive' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2185:3: lv_inactive_3_0= 'inactive'
                     {
-                    lv_inactive_3_0=(Token)input.LT(1);
-                    match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOTablesParameter4314); 
+                    lv_inactive_3_0=(Token)match(input,22,FOLLOW_22_in_ruleFunctionModulePOJOTablesParameter4442); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getInactiveInactiveKeyword_3_0_0(), "inactive"); 
+                            newLeafNode(lv_inactive_3_0, grammarAccess.getFunctionModulePOJOTablesParameterAccess().getInactiveInactiveKeyword_3_0_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOTablesParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOTablesParameterRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		set(current, "inactive", true, "inactive", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(current, "inactive", true, "inactive");
                     	    
 
                     }
@@ -5452,26 +5029,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2711:6: ( ( ( RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2199:6: ( ( (otherlv_4= RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2711:6: ( ( ( RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2711:7: ( ( RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2199:6: ( ( (otherlv_4= RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2199:7: ( (otherlv_4= RULE_ID ) ) ( (lv_attribute_5_0= RULE_ID ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2711:7: ( ( RULE_ID ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2712:1: ( RULE_ID )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2199:7: ( (otherlv_4= RULE_ID ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2200:1: (otherlv_4= RULE_ID )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2712:1: ( RULE_ID )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2713:3: RULE_ID
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2200:1: (otherlv_4= RULE_ID )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2201:3: otherlv_4= RULE_ID
                     {
 
                     			if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOTablesParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOTablesParameterRule());
                     	        }
                             
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4352); 
+                    otherlv_4=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4482); 
 
-                    		createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureMappingStructurePOJOMappingCrossReference_3_1_0_0(), "structureMapping"); 
+                    		newLeafNode(otherlv_4, grammarAccess.getFunctionModulePOJOTablesParameterAccess().getStructureMappingStructurePOJOMappingCrossReference_3_1_0_0()); 
                     	
 
                     }
@@ -5479,32 +5055,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2725:2: ( (lv_attribute_5_0= RULE_ID ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2726:1: (lv_attribute_5_0= RULE_ID )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2212:2: ( (lv_attribute_5_0= RULE_ID ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2213:1: (lv_attribute_5_0= RULE_ID )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2726:1: (lv_attribute_5_0= RULE_ID )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2727:3: lv_attribute_5_0= RULE_ID
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2213:1: (lv_attribute_5_0= RULE_ID )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2214:3: lv_attribute_5_0= RULE_ID
                     {
-                    lv_attribute_5_0=(Token)input.LT(1);
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4369); 
+                    lv_attribute_5_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4499); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getAttributeIDTerminalRuleCall_3_1_1_0(), "attribute"); 
+                    			newLeafNode(lv_attribute_5_0, grammarAccess.getFunctionModulePOJOTablesParameterAccess().getAttributeIDTerminalRuleCall_3_1_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOTablesParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOTablesParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"attribute",
-                    	        		lv_attribute_5_0, 
-                    	        		"ID", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"attribute",
+                            		lv_attribute_5_0, 
+                            		"ID");
                     	    
 
                     }
@@ -5519,33 +5088,26 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2750:6: ( ( (lv_external_6_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2231:6: ( ( (lv_external_6_0= 'external' ) ) ( (otherlv_7= RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2750:6: ( ( (lv_external_6_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2750:7: ( (lv_external_6_0= 'external' ) ) ( ( RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2231:6: ( ( (lv_external_6_0= 'external' ) ) ( (otherlv_7= RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2231:7: ( (lv_external_6_0= 'external' ) ) ( (otherlv_7= RULE_ID ) ) ( (lv_attribute_8_0= RULE_ID ) )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2750:7: ( (lv_external_6_0= 'external' ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2751:1: (lv_external_6_0= 'external' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2231:7: ( (lv_external_6_0= 'external' ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2232:1: (lv_external_6_0= 'external' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2751:1: (lv_external_6_0= 'external' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2752:3: lv_external_6_0= 'external'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2232:1: (lv_external_6_0= 'external' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2233:3: lv_external_6_0= 'external'
                     {
-                    lv_external_6_0=(Token)input.LT(1);
-                    match(input,29,FOLLOW_29_in_ruleFunctionModulePOJOTablesParameter4400); 
+                    lv_external_6_0=(Token)match(input,29,FOLLOW_29_in_ruleFunctionModulePOJOTablesParameter4530); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getExternalExternalKeyword_3_2_0_0(), "external"); 
+                            newLeafNode(lv_external_6_0, grammarAccess.getFunctionModulePOJOTablesParameterAccess().getExternalExternalKeyword_3_2_0_0());
                         
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOTablesParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOTablesParameterRule());
                     	        }
-                    	        
-                    	        try {
-                    	       		set(current, "external", true, "external", lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(current, "external", true, "external");
                     	    
 
                     }
@@ -5553,21 +5115,20 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2771:2: ( ( RULE_ID ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2772:1: ( RULE_ID )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2246:2: ( (otherlv_7= RULE_ID ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2247:1: (otherlv_7= RULE_ID )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2772:1: ( RULE_ID )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2773:3: RULE_ID
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2247:1: (otherlv_7= RULE_ID )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2248:3: otherlv_7= RULE_ID
                     {
 
                     			if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOTablesParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOTablesParameterRule());
                     	        }
                             
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4431); 
+                    otherlv_7=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4563); 
 
-                    		createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getExternalClassImportCrossReference_3_2_1_0(), "externalClass"); 
+                    		newLeafNode(otherlv_7, grammarAccess.getFunctionModulePOJOTablesParameterAccess().getExternalClassImportCrossReference_3_2_1_0()); 
                     	
 
                     }
@@ -5575,32 +5136,25 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2785:2: ( (lv_attribute_8_0= RULE_ID ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2786:1: (lv_attribute_8_0= RULE_ID )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2259:2: ( (lv_attribute_8_0= RULE_ID ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2260:1: (lv_attribute_8_0= RULE_ID )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2786:1: (lv_attribute_8_0= RULE_ID )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2787:3: lv_attribute_8_0= RULE_ID
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2260:1: (lv_attribute_8_0= RULE_ID )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2261:3: lv_attribute_8_0= RULE_ID
                     {
-                    lv_attribute_8_0=(Token)input.LT(1);
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4448); 
+                    lv_attribute_8_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4580); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getAttributeIDTerminalRuleCall_3_2_2_0(), "attribute"); 
+                    			newLeafNode(lv_attribute_8_0, grammarAccess.getFunctionModulePOJOTablesParameterAccess().getAttributeIDTerminalRuleCall_3_2_2_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOTablesParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOTablesParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"attribute",
-                    	        		lv_attribute_8_0, 
-                    	        		"ID", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"attribute",
+                            		lv_attribute_8_0, 
+                            		"ID");
                     	    
 
                     }
@@ -5617,7 +5171,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2809:4: ( 'comment' ( (lv_comment_10_0= RULE_STRING ) ) )?
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2277:4: (otherlv_9= 'comment' ( (lv_comment_10_0= RULE_STRING ) ) )?
             int alt29=2;
             int LA29_0 = input.LA(1);
 
@@ -5626,38 +5180,31 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
             }
             switch (alt29) {
                 case 1 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2809:6: 'comment' ( (lv_comment_10_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2277:6: otherlv_9= 'comment' ( (lv_comment_10_0= RULE_STRING ) )
                     {
-                    match(input,23,FOLLOW_23_in_ruleFunctionModulePOJOTablesParameter4466); 
+                    otherlv_9=(Token)match(input,23,FOLLOW_23_in_ruleFunctionModulePOJOTablesParameter4600); 
 
-                            createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getCommentKeyword_4_0(), null); 
+                        	newLeafNode(otherlv_9, grammarAccess.getFunctionModulePOJOTablesParameterAccess().getCommentKeyword_4_0());
                         
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2813:1: ( (lv_comment_10_0= RULE_STRING ) )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2814:1: (lv_comment_10_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2281:1: ( (lv_comment_10_0= RULE_STRING ) )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2282:1: (lv_comment_10_0= RULE_STRING )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2814:1: (lv_comment_10_0= RULE_STRING )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2815:3: lv_comment_10_0= RULE_STRING
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2282:1: (lv_comment_10_0= RULE_STRING )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2283:3: lv_comment_10_0= RULE_STRING
                     {
-                    lv_comment_10_0=(Token)input.LT(1);
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOTablesParameter4483); 
+                    lv_comment_10_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOTablesParameter4617); 
 
-                    			createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getCommentSTRINGTerminalRuleCall_4_1_0(), "comment"); 
+                    			newLeafNode(lv_comment_10_0, grammarAccess.getFunctionModulePOJOTablesParameterAccess().getCommentSTRINGTerminalRuleCall_4_1_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getFunctionModulePOJOTablesParameterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            current = createModelElement(grammarAccess.getFunctionModulePOJOTablesParameterRule());
                     	        }
-                    	        try {
-                    	       		set(
-                    	       			current, 
-                    	       			"comment",
-                    	        		lv_comment_10_0, 
-                    	        		"STRING", 
-                    	        		lastConsumedNode);
-                    	        } catch (ValueConverterException vce) {
-                    				handleValueConverterException(vce);
-                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"comment",
+                            		lv_comment_10_0, 
+                            		"STRING");
                     	    
 
                     }
@@ -5671,9 +5218,9 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,15,FOLLOW_15_in_ruleFunctionModulePOJOTablesParameter4500); 
+            otherlv_11=(Token)match(input,15,FOLLOW_15_in_ruleFunctionModulePOJOTablesParameter4636); 
 
-                    createLeafNode(grammarAccess.getFunctionModulePOJOTablesParameterAccess().getSemicolonKeyword_5(), null); 
+                	newLeafNode(otherlv_11, grammarAccess.getFunctionModulePOJOTablesParameterAccess().getSemicolonKeyword_5());
                 
 
             }
@@ -5681,9 +5228,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -5694,20 +5239,36 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleFunctionModulePOJOTablesParameter
+    // $ANTLR end "ruleFunctionModulePOJOTablesParameter"
 
 
-    // $ANTLR start ruleDataType
-    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2849:1: ruleDataType returns [Enumerator current=null] : ( ( 'BigDecimal' ) | ( 'BigInteger' ) | ( 'Boolean' ) | ( 'Byte' ) | ( 'ByteArray' ) | ( 'Char' ) | ( 'CharArray' ) | ( 'Date' ) | ( 'Double' ) | ( 'Float' ) | ( 'Integer' ) | ( 'Long' ) | ( 'Short' ) | ( 'String' ) | ( 'Time' ) ) ;
+    // $ANTLR start "ruleDataType"
+    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2311:1: ruleDataType returns [Enumerator current=null] : ( (enumLiteral_0= 'BigDecimal' ) | (enumLiteral_1= 'BigInteger' ) | (enumLiteral_2= 'Boolean' ) | (enumLiteral_3= 'Byte' ) | (enumLiteral_4= 'ByteArray' ) | (enumLiteral_5= 'Char' ) | (enumLiteral_6= 'CharArray' ) | (enumLiteral_7= 'Date' ) | (enumLiteral_8= 'Double' ) | (enumLiteral_9= 'Float' ) | (enumLiteral_10= 'Integer' ) | (enumLiteral_11= 'Long' ) | (enumLiteral_12= 'Short' ) | (enumLiteral_13= 'String' ) | (enumLiteral_14= 'Time' ) ) ;
     public final Enumerator ruleDataType() throws RecognitionException {
         Enumerator current = null;
 
-         setCurrentLookahead(); resetLookahead(); 
+        Token enumLiteral_0=null;
+        Token enumLiteral_1=null;
+        Token enumLiteral_2=null;
+        Token enumLiteral_3=null;
+        Token enumLiteral_4=null;
+        Token enumLiteral_5=null;
+        Token enumLiteral_6=null;
+        Token enumLiteral_7=null;
+        Token enumLiteral_8=null;
+        Token enumLiteral_9=null;
+        Token enumLiteral_10=null;
+        Token enumLiteral_11=null;
+        Token enumLiteral_12=null;
+        Token enumLiteral_13=null;
+        Token enumLiteral_14=null;
+
+         enterRule(); 
         try {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2853:6: ( ( ( 'BigDecimal' ) | ( 'BigInteger' ) | ( 'Boolean' ) | ( 'Byte' ) | ( 'ByteArray' ) | ( 'Char' ) | ( 'CharArray' ) | ( 'Date' ) | ( 'Double' ) | ( 'Float' ) | ( 'Integer' ) | ( 'Long' ) | ( 'Short' ) | ( 'String' ) | ( 'Time' ) ) )
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2854:1: ( ( 'BigDecimal' ) | ( 'BigInteger' ) | ( 'Boolean' ) | ( 'Byte' ) | ( 'ByteArray' ) | ( 'Char' ) | ( 'CharArray' ) | ( 'Date' ) | ( 'Double' ) | ( 'Float' ) | ( 'Integer' ) | ( 'Long' ) | ( 'Short' ) | ( 'String' ) | ( 'Time' ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2313:28: ( ( (enumLiteral_0= 'BigDecimal' ) | (enumLiteral_1= 'BigInteger' ) | (enumLiteral_2= 'Boolean' ) | (enumLiteral_3= 'Byte' ) | (enumLiteral_4= 'ByteArray' ) | (enumLiteral_5= 'Char' ) | (enumLiteral_6= 'CharArray' ) | (enumLiteral_7= 'Date' ) | (enumLiteral_8= 'Double' ) | (enumLiteral_9= 'Float' ) | (enumLiteral_10= 'Integer' ) | (enumLiteral_11= 'Long' ) | (enumLiteral_12= 'Short' ) | (enumLiteral_13= 'String' ) | (enumLiteral_14= 'Time' ) ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2314:1: ( (enumLiteral_0= 'BigDecimal' ) | (enumLiteral_1= 'BigInteger' ) | (enumLiteral_2= 'Boolean' ) | (enumLiteral_3= 'Byte' ) | (enumLiteral_4= 'ByteArray' ) | (enumLiteral_5= 'Char' ) | (enumLiteral_6= 'CharArray' ) | (enumLiteral_7= 'Date' ) | (enumLiteral_8= 'Double' ) | (enumLiteral_9= 'Float' ) | (enumLiteral_10= 'Integer' ) | (enumLiteral_11= 'Long' ) | (enumLiteral_12= 'Short' ) | (enumLiteral_13= 'String' ) | (enumLiteral_14= 'Time' ) )
             {
-            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2854:1: ( ( 'BigDecimal' ) | ( 'BigInteger' ) | ( 'Boolean' ) | ( 'Byte' ) | ( 'ByteArray' ) | ( 'Char' ) | ( 'CharArray' ) | ( 'Date' ) | ( 'Double' ) | ( 'Float' ) | ( 'Integer' ) | ( 'Long' ) | ( 'Short' ) | ( 'String' ) | ( 'Time' ) )
+            // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2314:1: ( (enumLiteral_0= 'BigDecimal' ) | (enumLiteral_1= 'BigInteger' ) | (enumLiteral_2= 'Boolean' ) | (enumLiteral_3= 'Byte' ) | (enumLiteral_4= 'ByteArray' ) | (enumLiteral_5= 'Char' ) | (enumLiteral_6= 'CharArray' ) | (enumLiteral_7= 'Date' ) | (enumLiteral_8= 'Double' ) | (enumLiteral_9= 'Float' ) | (enumLiteral_10= 'Integer' ) | (enumLiteral_11= 'Long' ) | (enumLiteral_12= 'Short' ) | (enumLiteral_13= 'String' ) | (enumLiteral_14= 'Time' ) )
             int alt30=15;
             switch ( input.LA(1) ) {
             case 33:
@@ -5787,22 +5348,22 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("2854:1: ( ( 'BigDecimal' ) | ( 'BigInteger' ) | ( 'Boolean' ) | ( 'Byte' ) | ( 'ByteArray' ) | ( 'Char' ) | ( 'CharArray' ) | ( 'Date' ) | ( 'Double' ) | ( 'Float' ) | ( 'Integer' ) | ( 'Long' ) | ( 'Short' ) | ( 'String' ) | ( 'Time' ) )", 30, 0, input);
+                    new NoViableAltException("", 30, 0, input);
 
                 throw nvae;
             }
 
             switch (alt30) {
                 case 1 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2854:2: ( 'BigDecimal' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2314:2: (enumLiteral_0= 'BigDecimal' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2854:2: ( 'BigDecimal' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2854:4: 'BigDecimal'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2314:2: (enumLiteral_0= 'BigDecimal' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2314:4: enumLiteral_0= 'BigDecimal'
                     {
-                    match(input,33,FOLLOW_33_in_ruleDataType4548); 
+                    enumLiteral_0=(Token)match(input,33,FOLLOW_33_in_ruleDataType4686); 
 
                             current = grammarAccess.getDataTypeAccess().getBIG_DECIMALEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getBIG_DECIMALEnumLiteralDeclaration_0(), null); 
+                            newLeafNode(enumLiteral_0, grammarAccess.getDataTypeAccess().getBIG_DECIMALEnumLiteralDeclaration_0()); 
                         
 
                     }
@@ -5811,15 +5372,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2860:6: ( 'BigInteger' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2320:6: (enumLiteral_1= 'BigInteger' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2860:6: ( 'BigInteger' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2860:8: 'BigInteger'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2320:6: (enumLiteral_1= 'BigInteger' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2320:8: enumLiteral_1= 'BigInteger'
                     {
-                    match(input,34,FOLLOW_34_in_ruleDataType4563); 
+                    enumLiteral_1=(Token)match(input,34,FOLLOW_34_in_ruleDataType4703); 
 
                             current = grammarAccess.getDataTypeAccess().getBIG_INTEGEREnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getBIG_INTEGEREnumLiteralDeclaration_1(), null); 
+                            newLeafNode(enumLiteral_1, grammarAccess.getDataTypeAccess().getBIG_INTEGEREnumLiteralDeclaration_1()); 
                         
 
                     }
@@ -5828,15 +5389,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2866:6: ( 'Boolean' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2326:6: (enumLiteral_2= 'Boolean' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2866:6: ( 'Boolean' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2866:8: 'Boolean'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2326:6: (enumLiteral_2= 'Boolean' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2326:8: enumLiteral_2= 'Boolean'
                     {
-                    match(input,35,FOLLOW_35_in_ruleDataType4578); 
+                    enumLiteral_2=(Token)match(input,35,FOLLOW_35_in_ruleDataType4720); 
 
                             current = grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_2(), null); 
+                            newLeafNode(enumLiteral_2, grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_2()); 
                         
 
                     }
@@ -5845,15 +5406,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2872:6: ( 'Byte' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2332:6: (enumLiteral_3= 'Byte' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2872:6: ( 'Byte' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2872:8: 'Byte'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2332:6: (enumLiteral_3= 'Byte' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2332:8: enumLiteral_3= 'Byte'
                     {
-                    match(input,36,FOLLOW_36_in_ruleDataType4593); 
+                    enumLiteral_3=(Token)match(input,36,FOLLOW_36_in_ruleDataType4737); 
 
                             current = grammarAccess.getDataTypeAccess().getBYTEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getBYTEEnumLiteralDeclaration_3(), null); 
+                            newLeafNode(enumLiteral_3, grammarAccess.getDataTypeAccess().getBYTEEnumLiteralDeclaration_3()); 
                         
 
                     }
@@ -5862,15 +5423,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2878:6: ( 'ByteArray' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2338:6: (enumLiteral_4= 'ByteArray' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2878:6: ( 'ByteArray' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2878:8: 'ByteArray'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2338:6: (enumLiteral_4= 'ByteArray' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2338:8: enumLiteral_4= 'ByteArray'
                     {
-                    match(input,37,FOLLOW_37_in_ruleDataType4608); 
+                    enumLiteral_4=(Token)match(input,37,FOLLOW_37_in_ruleDataType4754); 
 
                             current = grammarAccess.getDataTypeAccess().getBYTE_ARRAYEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getBYTE_ARRAYEnumLiteralDeclaration_4(), null); 
+                            newLeafNode(enumLiteral_4, grammarAccess.getDataTypeAccess().getBYTE_ARRAYEnumLiteralDeclaration_4()); 
                         
 
                     }
@@ -5879,15 +5440,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2884:6: ( 'Char' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2344:6: (enumLiteral_5= 'Char' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2884:6: ( 'Char' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2884:8: 'Char'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2344:6: (enumLiteral_5= 'Char' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2344:8: enumLiteral_5= 'Char'
                     {
-                    match(input,38,FOLLOW_38_in_ruleDataType4623); 
+                    enumLiteral_5=(Token)match(input,38,FOLLOW_38_in_ruleDataType4771); 
 
                             current = grammarAccess.getDataTypeAccess().getCHAREnumLiteralDeclaration_5().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getCHAREnumLiteralDeclaration_5(), null); 
+                            newLeafNode(enumLiteral_5, grammarAccess.getDataTypeAccess().getCHAREnumLiteralDeclaration_5()); 
                         
 
                     }
@@ -5896,15 +5457,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2890:6: ( 'CharArray' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2350:6: (enumLiteral_6= 'CharArray' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2890:6: ( 'CharArray' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2890:8: 'CharArray'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2350:6: (enumLiteral_6= 'CharArray' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2350:8: enumLiteral_6= 'CharArray'
                     {
-                    match(input,39,FOLLOW_39_in_ruleDataType4638); 
+                    enumLiteral_6=(Token)match(input,39,FOLLOW_39_in_ruleDataType4788); 
 
                             current = grammarAccess.getDataTypeAccess().getCHAR_ARRAYEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getCHAR_ARRAYEnumLiteralDeclaration_6(), null); 
+                            newLeafNode(enumLiteral_6, grammarAccess.getDataTypeAccess().getCHAR_ARRAYEnumLiteralDeclaration_6()); 
                         
 
                     }
@@ -5913,15 +5474,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2896:6: ( 'Date' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2356:6: (enumLiteral_7= 'Date' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2896:6: ( 'Date' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2896:8: 'Date'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2356:6: (enumLiteral_7= 'Date' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2356:8: enumLiteral_7= 'Date'
                     {
-                    match(input,40,FOLLOW_40_in_ruleDataType4653); 
+                    enumLiteral_7=(Token)match(input,40,FOLLOW_40_in_ruleDataType4805); 
 
                             current = grammarAccess.getDataTypeAccess().getDATEEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getDATEEnumLiteralDeclaration_7(), null); 
+                            newLeafNode(enumLiteral_7, grammarAccess.getDataTypeAccess().getDATEEnumLiteralDeclaration_7()); 
                         
 
                     }
@@ -5930,15 +5491,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2902:6: ( 'Double' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2362:6: (enumLiteral_8= 'Double' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2902:6: ( 'Double' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2902:8: 'Double'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2362:6: (enumLiteral_8= 'Double' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2362:8: enumLiteral_8= 'Double'
                     {
-                    match(input,41,FOLLOW_41_in_ruleDataType4668); 
+                    enumLiteral_8=(Token)match(input,41,FOLLOW_41_in_ruleDataType4822); 
 
                             current = grammarAccess.getDataTypeAccess().getDOUBLEEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getDOUBLEEnumLiteralDeclaration_8(), null); 
+                            newLeafNode(enumLiteral_8, grammarAccess.getDataTypeAccess().getDOUBLEEnumLiteralDeclaration_8()); 
                         
 
                     }
@@ -5947,15 +5508,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 10 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2908:6: ( 'Float' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2368:6: (enumLiteral_9= 'Float' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2908:6: ( 'Float' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2908:8: 'Float'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2368:6: (enumLiteral_9= 'Float' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2368:8: enumLiteral_9= 'Float'
                     {
-                    match(input,42,FOLLOW_42_in_ruleDataType4683); 
+                    enumLiteral_9=(Token)match(input,42,FOLLOW_42_in_ruleDataType4839); 
 
                             current = grammarAccess.getDataTypeAccess().getFLOATEnumLiteralDeclaration_9().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getFLOATEnumLiteralDeclaration_9(), null); 
+                            newLeafNode(enumLiteral_9, grammarAccess.getDataTypeAccess().getFLOATEnumLiteralDeclaration_9()); 
                         
 
                     }
@@ -5964,15 +5525,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 11 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2914:6: ( 'Integer' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2374:6: (enumLiteral_10= 'Integer' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2914:6: ( 'Integer' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2914:8: 'Integer'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2374:6: (enumLiteral_10= 'Integer' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2374:8: enumLiteral_10= 'Integer'
                     {
-                    match(input,43,FOLLOW_43_in_ruleDataType4698); 
+                    enumLiteral_10=(Token)match(input,43,FOLLOW_43_in_ruleDataType4856); 
 
                             current = grammarAccess.getDataTypeAccess().getINTEGEREnumLiteralDeclaration_10().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getINTEGEREnumLiteralDeclaration_10(), null); 
+                            newLeafNode(enumLiteral_10, grammarAccess.getDataTypeAccess().getINTEGEREnumLiteralDeclaration_10()); 
                         
 
                     }
@@ -5981,15 +5542,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 12 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2920:6: ( 'Long' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2380:6: (enumLiteral_11= 'Long' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2920:6: ( 'Long' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2920:8: 'Long'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2380:6: (enumLiteral_11= 'Long' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2380:8: enumLiteral_11= 'Long'
                     {
-                    match(input,44,FOLLOW_44_in_ruleDataType4713); 
+                    enumLiteral_11=(Token)match(input,44,FOLLOW_44_in_ruleDataType4873); 
 
                             current = grammarAccess.getDataTypeAccess().getLONGEnumLiteralDeclaration_11().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getLONGEnumLiteralDeclaration_11(), null); 
+                            newLeafNode(enumLiteral_11, grammarAccess.getDataTypeAccess().getLONGEnumLiteralDeclaration_11()); 
                         
 
                     }
@@ -5998,15 +5559,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 13 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2926:6: ( 'Short' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2386:6: (enumLiteral_12= 'Short' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2926:6: ( 'Short' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2926:8: 'Short'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2386:6: (enumLiteral_12= 'Short' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2386:8: enumLiteral_12= 'Short'
                     {
-                    match(input,45,FOLLOW_45_in_ruleDataType4728); 
+                    enumLiteral_12=(Token)match(input,45,FOLLOW_45_in_ruleDataType4890); 
 
                             current = grammarAccess.getDataTypeAccess().getSHORTEnumLiteralDeclaration_12().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getSHORTEnumLiteralDeclaration_12(), null); 
+                            newLeafNode(enumLiteral_12, grammarAccess.getDataTypeAccess().getSHORTEnumLiteralDeclaration_12()); 
                         
 
                     }
@@ -6015,15 +5576,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 14 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2932:6: ( 'String' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2392:6: (enumLiteral_13= 'String' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2932:6: ( 'String' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2932:8: 'String'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2392:6: (enumLiteral_13= 'String' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2392:8: enumLiteral_13= 'String'
                     {
-                    match(input,46,FOLLOW_46_in_ruleDataType4743); 
+                    enumLiteral_13=(Token)match(input,46,FOLLOW_46_in_ruleDataType4907); 
 
                             current = grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_13().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_13(), null); 
+                            newLeafNode(enumLiteral_13, grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_13()); 
                         
 
                     }
@@ -6032,15 +5593,15 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 15 :
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2938:6: ( 'Time' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2398:6: (enumLiteral_14= 'Time' )
                     {
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2938:6: ( 'Time' )
-                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2938:8: 'Time'
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2398:6: (enumLiteral_14= 'Time' )
+                    // ../net.sf.rcer.rfcgen/src-gen/net/sf/rcer/rfcgen/parser/antlr/internal/InternalRFCMapping.g:2398:8: enumLiteral_14= 'Time'
                     {
-                    match(input,47,FOLLOW_47_in_ruleDataType4758); 
+                    enumLiteral_14=(Token)match(input,47,FOLLOW_47_in_ruleDataType4924); 
 
                             current = grammarAccess.getDataTypeAccess().getTIMEEnumLiteralDeclaration_14().getEnumLiteral().getInstance();
-                            createLeafNode(grammarAccess.getDataTypeAccess().getTIMEEnumLiteralDeclaration_14(), null); 
+                            newLeafNode(enumLiteral_14, grammarAccess.getDataTypeAccess().getTIMEEnumLiteralDeclaration_14()); 
                         
 
                     }
@@ -6054,9 +5615,7 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
 
             }
 
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
+             leaveRule(); 
         }
          
             catch (RecognitionException re) { 
@@ -6067,218 +5626,220 @@ public class InternalRFCMappingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleDataType
+    // $ANTLR end "ruleDataType"
+
+    // Delegated rules
 
 
  
 
     public static final BitSet FOLLOW_ruleModel_in_entryRuleModel75 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleModel85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_ruleModel120 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleModel137 = new BitSet(new long[]{0x0000000001012002L});
-    public static final BitSet FOLLOW_ruleImport_in_ruleModel163 = new BitSet(new long[]{0x0000000001012002L});
-    public static final BitSet FOLLOW_ruleStructure_in_ruleModel185 = new BitSet(new long[]{0x0000000001010002L});
-    public static final BitSet FOLLOW_ruleFunctionModule_in_ruleModel207 = new BitSet(new long[]{0x0000000001000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName245 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName296 = new BitSet(new long[]{0x0000000000001002L});
-    public static final BitSet FOLLOW_12_in_ruleQualifiedName315 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName330 = new BitSet(new long[]{0x0000000000001002L});
-    public static final BitSet FOLLOW_ruleImport_in_entryRuleImport377 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleImport387 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_ruleImport422 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleImport443 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleImport453 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleImport470 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_ruleImport485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructure_in_entryRuleStructure521 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStructure531 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_ruleStructure566 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleStructure583 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleStructure598 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_ruleStructureMapping_in_ruleStructure619 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleStructure629 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructureMapping_in_entryRuleStructureMapping665 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStructureMapping675 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructurePOJOMapping_in_ruleStructureMapping721 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructurePOJOMapping_in_entryRuleStructurePOJOMapping755 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStructurePOJOMapping765 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_ruleStructurePOJOMapping800 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleStructurePOJOMapping817 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleStructurePOJOMapping832 = new BitSet(new long[]{0x0000000000140000L});
-    public static final BitSet FOLLOW_ruleStructureFieldPOJOMapping_in_ruleStructurePOJOMapping854 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_ruleStructurePOJOMapping864 = new BitSet(new long[]{0x0000000000140000L});
-    public static final BitSet FOLLOW_18_in_ruleStructurePOJOMapping876 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructureFieldPOJOMapping_in_entryRuleStructureFieldPOJOMapping912 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStructureFieldPOJOMapping922 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_ruleStructureFieldPOJOMapping957 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleStructureFieldPOJOMapping974 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_ruleStructureFieldPOJOMapping989 = new BitSet(new long[]{0x0000FFFE00400000L});
-    public static final BitSet FOLLOW_22_in_ruleStructureFieldPOJOMapping1008 = new BitSet(new long[]{0x0000000000800002L});
-    public static final BitSet FOLLOW_ruleDataType_in_ruleStructureFieldPOJOMapping1049 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleStructureFieldPOJOMapping1066 = new BitSet(new long[]{0x0000000000800002L});
-    public static final BitSet FOLLOW_23_in_ruleStructureFieldPOJOMapping1084 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleStructureFieldPOJOMapping1101 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModule_in_entryRuleFunctionModule1144 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModule1154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_ruleFunctionModule1189 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_ruleFunctionModule1199 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModule1216 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleFunctionModule1231 = new BitSet(new long[]{0x0000000004080000L});
-    public static final BitSet FOLLOW_ruleFunctionModuleMapping_in_ruleFunctionModule1252 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleFunctionModule1262 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModuleMapping_in_entryRuleFunctionModuleMapping1298 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModuleMapping1308 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOMapping_in_ruleFunctionModuleMapping1354 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOMapping_in_entryRuleFunctionModulePOJOMapping1388 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJOMapping1398 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOCallMapping_in_ruleFunctionModulePOJOMapping1445 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJORequestResponseMapping_in_ruleFunctionModulePOJOMapping1472 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOCallMapping_in_entryRuleFunctionModulePOJOCallMapping1507 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJOCallMapping1517 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_ruleFunctionModulePOJOCallMapping1552 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOCallMapping1569 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleFunctionModulePOJOCallMapping1584 = new BitSet(new long[]{0x00000001D0040000L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOParameterMapping_in_ruleFunctionModulePOJOCallMapping1605 = new BitSet(new long[]{0x00000001D0040000L});
-    public static final BitSet FOLLOW_18_in_ruleFunctionModulePOJOCallMapping1616 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJORequestResponseMapping_in_entryRuleFunctionModulePOJORequestResponseMapping1652 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJORequestResponseMapping1662 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_ruleFunctionModulePOJORequestResponseMapping1697 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleFunctionModulePOJORequestResponseMapping1707 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJORequestResponseMapping1724 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleFunctionModulePOJORequestResponseMapping1739 = new BitSet(new long[]{0x00000001D0040000L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOParameterMapping_in_ruleFunctionModulePOJORequestResponseMapping1760 = new BitSet(new long[]{0x00000001D0040000L});
-    public static final BitSet FOLLOW_18_in_ruleFunctionModulePOJORequestResponseMapping1771 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_ruleFunctionModulePOJORequestResponseMapping1781 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleFunctionModulePOJORequestResponseMapping1791 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJORequestResponseMapping1808 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleFunctionModulePOJORequestResponseMapping1823 = new BitSet(new long[]{0x00000001D0040000L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOParameterMapping_in_ruleFunctionModulePOJORequestResponseMapping1844 = new BitSet(new long[]{0x00000001D0040000L});
-    public static final BitSet FOLLOW_18_in_ruleFunctionModulePOJORequestResponseMapping1855 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOParameterMapping_in_entryRuleFunctionModulePOJOParameterMapping1891 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJOParameterMapping1901 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOImportingParameter_in_ruleFunctionModulePOJOParameterMapping1948 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOExportingParameter_in_ruleFunctionModulePOJOParameterMapping1975 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOChangingParameter_in_ruleFunctionModulePOJOParameterMapping2002 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOTablesParameter_in_ruleFunctionModulePOJOParameterMapping2029 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOImportingParameter_in_entryRuleFunctionModulePOJOImportingParameter2064 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJOImportingParameter2074 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_ruleFunctionModulePOJOImportingParameter2109 = new BitSet(new long[]{0x0000000040110000L});
-    public static final BitSet FOLLOW_20_in_ruleFunctionModulePOJOImportingParameter2121 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2138 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOImportingParameter2153 = new BitSet(new long[]{0x0000FFFE00400000L});
-    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOImportingParameter2172 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_ruleDataType_in_ruleFunctionModulePOJOImportingParameter2213 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2230 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_16_in_ruleFunctionModulePOJOImportingParameter2263 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2293 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOImportingParameter2308 = new BitSet(new long[]{0x0000000020400020L});
-    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOImportingParameter2327 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2365 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2382 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_29_in_ruleFunctionModulePOJOImportingParameter2413 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2444 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2461 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_30_in_ruleFunctionModulePOJOImportingParameter2494 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2524 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOImportingParameter2539 = new BitSet(new long[]{0x0000000020400020L});
-    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOImportingParameter2558 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2596 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2613 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_29_in_ruleFunctionModulePOJOImportingParameter2644 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2675 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2692 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_23_in_ruleFunctionModulePOJOImportingParameter2712 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2729 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_ruleFunctionModulePOJOImportingParameter2746 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOExportingParameter_in_entryRuleFunctionModulePOJOExportingParameter2782 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJOExportingParameter2792 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_ruleFunctionModulePOJOExportingParameter2827 = new BitSet(new long[]{0x0000000040110000L});
-    public static final BitSet FOLLOW_20_in_ruleFunctionModulePOJOExportingParameter2839 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter2856 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOExportingParameter2871 = new BitSet(new long[]{0x0000FFFE00400000L});
-    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOExportingParameter2890 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_ruleDataType_in_ruleFunctionModulePOJOExportingParameter2931 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter2948 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_16_in_ruleFunctionModulePOJOExportingParameter2981 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter3011 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOExportingParameter3026 = new BitSet(new long[]{0x0000000020400020L});
-    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOExportingParameter3045 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3083 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3100 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_29_in_ruleFunctionModulePOJOExportingParameter3131 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3162 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3179 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_30_in_ruleFunctionModulePOJOExportingParameter3212 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter3242 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOExportingParameter3257 = new BitSet(new long[]{0x0000000020400020L});
-    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOExportingParameter3276 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3314 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3331 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_29_in_ruleFunctionModulePOJOExportingParameter3362 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3393 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3410 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_23_in_ruleFunctionModulePOJOExportingParameter3430 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter3447 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_ruleFunctionModulePOJOExportingParameter3464 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOChangingParameter_in_entryRuleFunctionModulePOJOChangingParameter3500 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJOChangingParameter3510 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_ruleFunctionModulePOJOChangingParameter3545 = new BitSet(new long[]{0x0000000040110000L});
-    public static final BitSet FOLLOW_20_in_ruleFunctionModulePOJOChangingParameter3557 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter3574 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOChangingParameter3589 = new BitSet(new long[]{0x0000FFFE00400000L});
-    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOChangingParameter3608 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_ruleDataType_in_ruleFunctionModulePOJOChangingParameter3649 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3666 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_16_in_ruleFunctionModulePOJOChangingParameter3699 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter3729 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOChangingParameter3744 = new BitSet(new long[]{0x0000000020400020L});
-    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOChangingParameter3763 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3801 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3818 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_29_in_ruleFunctionModulePOJOChangingParameter3849 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3880 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3897 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_30_in_ruleFunctionModulePOJOChangingParameter3930 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter3960 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOChangingParameter3975 = new BitSet(new long[]{0x0000000020400020L});
-    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOChangingParameter3994 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4032 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4049 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_29_in_ruleFunctionModulePOJOChangingParameter4080 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4111 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4128 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_23_in_ruleFunctionModulePOJOChangingParameter4148 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter4165 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_ruleFunctionModulePOJOChangingParameter4182 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionModulePOJOTablesParameter_in_entryRuleFunctionModulePOJOTablesParameter4218 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJOTablesParameter4228 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleFunctionModulePOJOTablesParameter4263 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOTablesParameter4280 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOTablesParameter4295 = new BitSet(new long[]{0x0000000020400020L});
-    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOTablesParameter4314 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4352 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4369 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_29_in_ruleFunctionModulePOJOTablesParameter4400 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4431 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4448 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_23_in_ruleFunctionModulePOJOTablesParameter4466 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOTablesParameter4483 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_ruleFunctionModulePOJOTablesParameter4500 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_ruleDataType4548 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleDataType4563 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_ruleDataType4578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_ruleDataType4593 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_ruleDataType4608 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_ruleDataType4623 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_ruleDataType4638 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_ruleDataType4653 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_ruleDataType4668 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_ruleDataType4683 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_ruleDataType4698 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_ruleDataType4713 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_ruleDataType4728 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_ruleDataType4743 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_ruleDataType4758 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_11_in_ruleModel122 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleModel139 = new BitSet(new long[]{0x0000000001012002L});
+    public static final BitSet FOLLOW_ruleImport_in_ruleModel165 = new BitSet(new long[]{0x0000000001012002L});
+    public static final BitSet FOLLOW_ruleStructure_in_ruleModel187 = new BitSet(new long[]{0x0000000001010002L});
+    public static final BitSet FOLLOW_ruleFunctionModule_in_ruleModel209 = new BitSet(new long[]{0x0000000001000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName247 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName258 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName298 = new BitSet(new long[]{0x0000000000001002L});
+    public static final BitSet FOLLOW_12_in_ruleQualifiedName317 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName332 = new BitSet(new long[]{0x0000000000001002L});
+    public static final BitSet FOLLOW_ruleImport_in_entryRuleImport379 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleImport389 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_ruleImport426 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleImport447 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_ruleImport459 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleImport476 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleImport493 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructure_in_entryRuleStructure529 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStructure539 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_ruleStructure576 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleStructure593 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleStructure610 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_ruleStructureMapping_in_ruleStructure631 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleStructure643 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructureMapping_in_entryRuleStructureMapping679 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStructureMapping689 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructurePOJOMapping_in_ruleStructureMapping735 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructurePOJOMapping_in_entryRuleStructurePOJOMapping769 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStructurePOJOMapping779 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_ruleStructurePOJOMapping816 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleStructurePOJOMapping833 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleStructurePOJOMapping850 = new BitSet(new long[]{0x0000000000140000L});
+    public static final BitSet FOLLOW_ruleStructureFieldPOJOMapping_in_ruleStructurePOJOMapping872 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleStructurePOJOMapping884 = new BitSet(new long[]{0x0000000000140000L});
+    public static final BitSet FOLLOW_18_in_ruleStructurePOJOMapping898 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructureFieldPOJOMapping_in_entryRuleStructureFieldPOJOMapping934 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStructureFieldPOJOMapping944 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_ruleStructureFieldPOJOMapping981 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleStructureFieldPOJOMapping998 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleStructureFieldPOJOMapping1015 = new BitSet(new long[]{0x0000FFFE00400000L});
+    public static final BitSet FOLLOW_22_in_ruleStructureFieldPOJOMapping1034 = new BitSet(new long[]{0x0000000000800002L});
+    public static final BitSet FOLLOW_ruleDataType_in_ruleStructureFieldPOJOMapping1075 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleStructureFieldPOJOMapping1092 = new BitSet(new long[]{0x0000000000800002L});
+    public static final BitSet FOLLOW_23_in_ruleStructureFieldPOJOMapping1112 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleStructureFieldPOJOMapping1129 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModule_in_entryRuleFunctionModule1172 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModule1182 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_ruleFunctionModule1219 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_ruleFunctionModule1231 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModule1248 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleFunctionModule1265 = new BitSet(new long[]{0x0000000004080000L});
+    public static final BitSet FOLLOW_ruleFunctionModuleMapping_in_ruleFunctionModule1286 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleFunctionModule1298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModuleMapping_in_entryRuleFunctionModuleMapping1334 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModuleMapping1344 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOMapping_in_ruleFunctionModuleMapping1390 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOMapping_in_entryRuleFunctionModulePOJOMapping1424 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJOMapping1434 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOCallMapping_in_ruleFunctionModulePOJOMapping1481 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJORequestResponseMapping_in_ruleFunctionModulePOJOMapping1508 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOCallMapping_in_entryRuleFunctionModulePOJOCallMapping1543 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJOCallMapping1553 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_ruleFunctionModulePOJOCallMapping1590 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOCallMapping1607 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleFunctionModulePOJOCallMapping1624 = new BitSet(new long[]{0x00000001D0040000L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOParameterMapping_in_ruleFunctionModulePOJOCallMapping1645 = new BitSet(new long[]{0x00000001D0040000L});
+    public static final BitSet FOLLOW_18_in_ruleFunctionModulePOJOCallMapping1658 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJORequestResponseMapping_in_entryRuleFunctionModulePOJORequestResponseMapping1694 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJORequestResponseMapping1704 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_ruleFunctionModulePOJORequestResponseMapping1741 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_ruleFunctionModulePOJORequestResponseMapping1753 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJORequestResponseMapping1770 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleFunctionModulePOJORequestResponseMapping1787 = new BitSet(new long[]{0x00000001D0040000L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOParameterMapping_in_ruleFunctionModulePOJORequestResponseMapping1808 = new BitSet(new long[]{0x00000001D0040000L});
+    public static final BitSet FOLLOW_18_in_ruleFunctionModulePOJORequestResponseMapping1821 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_ruleFunctionModulePOJORequestResponseMapping1833 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_ruleFunctionModulePOJORequestResponseMapping1845 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJORequestResponseMapping1862 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleFunctionModulePOJORequestResponseMapping1879 = new BitSet(new long[]{0x00000001D0040000L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOParameterMapping_in_ruleFunctionModulePOJORequestResponseMapping1900 = new BitSet(new long[]{0x00000001D0040000L});
+    public static final BitSet FOLLOW_18_in_ruleFunctionModulePOJORequestResponseMapping1913 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOParameterMapping_in_entryRuleFunctionModulePOJOParameterMapping1949 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJOParameterMapping1959 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOImportingParameter_in_ruleFunctionModulePOJOParameterMapping2006 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOExportingParameter_in_ruleFunctionModulePOJOParameterMapping2033 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOChangingParameter_in_ruleFunctionModulePOJOParameterMapping2060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOTablesParameter_in_ruleFunctionModulePOJOParameterMapping2087 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOImportingParameter_in_entryRuleFunctionModulePOJOImportingParameter2122 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJOImportingParameter2132 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_ruleFunctionModulePOJOImportingParameter2169 = new BitSet(new long[]{0x0000000040110000L});
+    public static final BitSet FOLLOW_20_in_ruleFunctionModulePOJOImportingParameter2183 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2200 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOImportingParameter2217 = new BitSet(new long[]{0x0000FFFE00400000L});
+    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOImportingParameter2236 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_ruleDataType_in_ruleFunctionModulePOJOImportingParameter2277 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2294 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_16_in_ruleFunctionModulePOJOImportingParameter2327 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2357 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOImportingParameter2374 = new BitSet(new long[]{0x0000000020400020L});
+    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOImportingParameter2393 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2433 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2450 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_29_in_ruleFunctionModulePOJOImportingParameter2481 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2514 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2531 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_30_in_ruleFunctionModulePOJOImportingParameter2564 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2594 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOImportingParameter2611 = new BitSet(new long[]{0x0000000020400020L});
+    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOImportingParameter2630 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2670 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2687 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_29_in_ruleFunctionModulePOJOImportingParameter2718 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2751 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOImportingParameter2768 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_23_in_ruleFunctionModulePOJOImportingParameter2790 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOImportingParameter2807 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleFunctionModulePOJOImportingParameter2826 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOExportingParameter_in_entryRuleFunctionModulePOJOExportingParameter2862 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJOExportingParameter2872 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_ruleFunctionModulePOJOExportingParameter2909 = new BitSet(new long[]{0x0000000040110000L});
+    public static final BitSet FOLLOW_20_in_ruleFunctionModulePOJOExportingParameter2923 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter2940 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOExportingParameter2957 = new BitSet(new long[]{0x0000FFFE00400000L});
+    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOExportingParameter2976 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_ruleDataType_in_ruleFunctionModulePOJOExportingParameter3017 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3034 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_16_in_ruleFunctionModulePOJOExportingParameter3067 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter3097 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOExportingParameter3114 = new BitSet(new long[]{0x0000000020400020L});
+    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOExportingParameter3133 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3173 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3190 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_29_in_ruleFunctionModulePOJOExportingParameter3221 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3254 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3271 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_30_in_ruleFunctionModulePOJOExportingParameter3304 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter3334 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOExportingParameter3351 = new BitSet(new long[]{0x0000000020400020L});
+    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOExportingParameter3370 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3410 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3427 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_29_in_ruleFunctionModulePOJOExportingParameter3458 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3491 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOExportingParameter3508 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_23_in_ruleFunctionModulePOJOExportingParameter3530 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOExportingParameter3547 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleFunctionModulePOJOExportingParameter3566 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOChangingParameter_in_entryRuleFunctionModulePOJOChangingParameter3602 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJOChangingParameter3612 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_ruleFunctionModulePOJOChangingParameter3649 = new BitSet(new long[]{0x0000000040110000L});
+    public static final BitSet FOLLOW_20_in_ruleFunctionModulePOJOChangingParameter3663 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter3680 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOChangingParameter3697 = new BitSet(new long[]{0x0000FFFE00400000L});
+    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOChangingParameter3716 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_ruleDataType_in_ruleFunctionModulePOJOChangingParameter3757 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3774 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_16_in_ruleFunctionModulePOJOChangingParameter3807 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter3837 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOChangingParameter3854 = new BitSet(new long[]{0x0000000020400020L});
+    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOChangingParameter3873 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3913 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3930 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_29_in_ruleFunctionModulePOJOChangingParameter3961 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter3994 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4011 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_30_in_ruleFunctionModulePOJOChangingParameter4044 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter4074 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOChangingParameter4091 = new BitSet(new long[]{0x0000000020400020L});
+    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOChangingParameter4110 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4150 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4167 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_29_in_ruleFunctionModulePOJOChangingParameter4198 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4231 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOChangingParameter4248 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_23_in_ruleFunctionModulePOJOChangingParameter4270 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOChangingParameter4287 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleFunctionModulePOJOChangingParameter4306 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionModulePOJOTablesParameter_in_entryRuleFunctionModulePOJOTablesParameter4342 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionModulePOJOTablesParameter4352 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleFunctionModulePOJOTablesParameter4389 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOTablesParameter4406 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleFunctionModulePOJOTablesParameter4423 = new BitSet(new long[]{0x0000000020400020L});
+    public static final BitSet FOLLOW_22_in_ruleFunctionModulePOJOTablesParameter4442 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4482 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4499 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_29_in_ruleFunctionModulePOJOTablesParameter4530 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4563 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFunctionModulePOJOTablesParameter4580 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_23_in_ruleFunctionModulePOJOTablesParameter4600 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFunctionModulePOJOTablesParameter4617 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleFunctionModulePOJOTablesParameter4636 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_ruleDataType4686 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleDataType4703 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_ruleDataType4720 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_ruleDataType4737 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_ruleDataType4754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_ruleDataType4771 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_ruleDataType4788 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_ruleDataType4805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_ruleDataType4822 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_ruleDataType4839 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_ruleDataType4856 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_ruleDataType4873 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_ruleDataType4890 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_ruleDataType4907 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_ruleDataType4924 = new BitSet(new long[]{0x0000000000000002L});
 
 }
