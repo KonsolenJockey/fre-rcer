@@ -5,7 +5,7 @@ Bundle-Vendor: %bundle.vendor
 Bundle-Version: 0.1.0.qualifier
 Bundle-SymbolicName: net.sf.rcer.rfcgen; singleton:=true
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -27,4 +27,6 @@ Export-Package: net.sf.rcer.rfcgen,
  net.sf.rcer.rfcgen.parseTreeConstruction,
  net.sf.rcer.rfcgen.parser.antlr,
  net.sf.rcer.rfcgen.parser.antlr.internal,
- net.sf.rcer.rfcgen.validation
+ net.sf.rcer.rfcgen.validation,
+ net.sf.rcer.rfcgen.scoping,
+ net.sf.rcer.rfcgen.formatting

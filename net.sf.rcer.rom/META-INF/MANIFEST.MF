@@ -19,6 +19,5 @@ Export-Package: net.sf.rcer.rom,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  net.sf.rcer.conn;bundle-version="0.1.0",
- net.sf.rcer.rfcgen;bundle-version="0.1.0";resolution:=optional,
- net.sf.rcer.rfcgen.generator;bundle-version="0.1.0";resolution:=optional
+ net.sf.rcer.rfcgen;bundle-version="0.1.0";resolution:=optional
 Bundle-ActivationPolicy: lazy

@@ -6,6 +6,6 @@ Bundle-Version: 0.1.0.qualifier
 Fragment-Host: net.sf.rcer.conn;bundle-version="0.1.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %bundle.vendor
-Require-Bundle: org.junit4;bundle-version="4.3.1",
- net.sf.rcer.test.provider;bundle-version="0.1.0"
+Require-Bundle: net.sf.rcer.test.provider;bundle-version="0.1.0",
+ org.junit;bundle-version="4.11.0"
 Bundle-Localization: plugin
