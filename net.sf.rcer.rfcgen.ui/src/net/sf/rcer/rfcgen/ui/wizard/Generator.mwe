@@ -14,7 +14,7 @@
 	<property name="targetDir" value="src-gen-rfc"/>
 
 	<component class="org.eclipse.emf.mwe.utils.DirectoryCleaner" directory="${targetDir}"/>
-	<workflow file="workflow/RFCMappingGenerator.mwe">
+	<workflow file="../net.sf.rcer.rfcgen.generator/src/workflow/RFCMappingGenerator.mwe">
 		<modelFile value="${modelFile}"/>
 		<targetDir value="${targetDir}"/>
 	</workflow>

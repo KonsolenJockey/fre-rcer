@@ -12,15 +12,15 @@
 <workflow>
 	<property name="targetDir" value="src-rfcgen"/>
 	<component class="org.eclipse.emf.mwe.utils.DirectoryCleaner" directory="${targetDir}"/>
-	<workflow file="workflow/RFCMappingGenerator.mwe">
+	<workflow file="../net.sf.rcer.rfcgen.generator/src/workflow/RFCMappingGenerator.mwe">
 		<modelFile value="rfcgen/Domain.rfcgen"/>
 		<targetDir value="${targetDir}"/>
 	</workflow>
-	<workflow file="workflow/RFCMappingGenerator.mwe">
+	<workflow file="../net.sf.rcer.rfcgen.generator/src/workflow/RFCMappingGenerator.mwe">
 		<modelFile value="rfcgen/DataElement.rfcgen"/>
 		<targetDir value="${targetDir}"/>
 	</workflow>
-	<workflow file="workflow/RFCMappingGenerator.mwe">
+	<workflow file="../net.sf.rcer.rfcgen.generator/src/workflow/RFCMappingGenerator.mwe">
 		<modelFile value="rfcgen/DataStructure.rfcgen"/>
 		<targetDir value="${targetDir}"/>
 	</workflow>
