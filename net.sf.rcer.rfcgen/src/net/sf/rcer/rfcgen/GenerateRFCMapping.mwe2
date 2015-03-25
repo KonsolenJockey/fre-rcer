@@ -46,12 +46,12 @@ Workflow {
 			fragment = grammarAccess.GrammarAccessFragment {}
 
 			// generates Java API for the generated EPackages 
-			fragment = ecore.EcoreGeneratorFragment {
-			// referencedGenModels = "uri to genmodel, uri to next genmodel"
+			fragment = ecore.EMFGeneratorFragment {
+				xmiModelDirectory = "src-gen/net/sf/rcer/rfcgen"
 			}
 
 			// the serialization component
-			fragment = parseTreeConstructor.ParseTreeConstructorFragment {}
+			fragment = serializer.SerializerFragment {}
 
 			// a custom ResourceFactory for use with EMF 
 			fragment = resourceFactory.ResourceFactoryFragment {
@@ -59,22 +59,13 @@ Workflow {
 			}
 
 			// The antlr parser generator fragment.
-			fragment = parser.antlr.XtextAntlrGeneratorFragment {
-			//  options = {
-			//		backtrack = true
-			//	}
-			}
+			fragment = parser.antlr.XtextAntlrGeneratorFragment {}
 
 			// java-based API for validation 
 			fragment = validation.JavaValidatorFragment {
 				composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
 				composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
-				// registerForImportedPackages = true
 			}
-
-			// scoping and exporting API
-			// fragment = scoping.ImportURIScopingFragment {}
-			// fragment = exporting.SimpleNamesFragment {}
 
 			// scoping and exporting API 
 			fragment = scoping.ImportNamespacesScopingFragment {}
@@ -103,7 +94,7 @@ Workflow {
 			// project wizard (optional) 
 			fragment = projectWizard.SimpleProjectWizardFragment {
 					generatorProjectName = "${projectName}.generator" 
-					modelFileExtension = file.extensions
+					fileExtension = file.extensions
 			}
 		}
 	}
