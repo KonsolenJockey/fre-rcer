@@ -17,5 +17,6 @@ Require-Bundle: com.ibm.icu,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
  org.eclipse.xtend.util.stdlib,
  net.sf.rcer.rfcgen.generator,
- org.apache.log4j;bundle-version="1.2.15"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+ org.apache.log4j;bundle-version="1.2.15",
+ net.sf.rcer.rfcgen;bundle-version="0.1.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
