@@ -7,7 +7,7 @@
     <package 
        uri = "http://www.sf.net/rcer/RFCMapping" 
        class = "net.sf.rcer.rfcgen.mapping.MappingPackage"
-       genModel = "net/sf/rcer/rfcgen/RFCMapping.genmodel" /> 
+       genModel = "src-gen/net/sf/rcer/rfcgen/RFCMapping.genmodel" /> 
 	
   </extension>
 

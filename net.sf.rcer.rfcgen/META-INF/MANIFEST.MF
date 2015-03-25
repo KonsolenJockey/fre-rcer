@@ -24,9 +24,9 @@ Export-Package: net.sf.rcer.rfcgen,
  net.sf.rcer.rfcgen.mapping,
  net.sf.rcer.rfcgen.mapping.impl,
  net.sf.rcer.rfcgen.mapping.util,
- net.sf.rcer.rfcgen.parseTreeConstruction,
  net.sf.rcer.rfcgen.parser.antlr,
  net.sf.rcer.rfcgen.parser.antlr.internal,
  net.sf.rcer.rfcgen.validation,
  net.sf.rcer.rfcgen.scoping,
- net.sf.rcer.rfcgen.formatting
+ net.sf.rcer.rfcgen.formatting,
+ net.sf.rcer.rfcgen.serializer
