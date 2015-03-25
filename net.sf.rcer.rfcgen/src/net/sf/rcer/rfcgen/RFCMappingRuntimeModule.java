@@ -11,6 +11,8 @@
  */
 package net.sf.rcer.rfcgen;
 
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
+
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -18,4 +20,12 @@ package net.sf.rcer.rfcgen;
  */
 public class RFCMappingRuntimeModule extends net.sf.rcer.rfcgen.AbstractRFCMappingRuntimeModule {
 	// not required at the moment
+	
+	/* (non-Javadoc)
+	 * @see net.sf.rcer.rfcgen.AbstractRFCMappingRuntimeModule#bindIQualifiedNameProvider()
+	 */
+	@Override
+	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return RFCMappingQualifiedNameProvider.class;
+	}
 }
