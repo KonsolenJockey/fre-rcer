@@ -244,9 +244,9 @@ public class DirectFieldImpl extends SingleFieldImpl implements DirectField {
 			case DDICPackage.DIRECT_FIELD__DICTIONARY_DATA_TYPE:
 				return getDictionaryDataType();
 			case DDICPackage.DIRECT_FIELD__LENGTH:
-				return new Integer(getLength());
+				return getLength();
 			case DDICPackage.DIRECT_FIELD__DECIMALS:
-				return new Integer(getDecimals());
+				return getDecimals();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -263,10 +263,10 @@ public class DirectFieldImpl extends SingleFieldImpl implements DirectField {
 				setDictionaryDataType((DictionaryDataType)newValue);
 				return;
 			case DDICPackage.DIRECT_FIELD__LENGTH:
-				setLength(((Integer)newValue).intValue());
+				setLength((Integer)newValue);
 				return;
 			case DDICPackage.DIRECT_FIELD__DECIMALS:
-				setDecimals(((Integer)newValue).intValue());
+				setDecimals((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

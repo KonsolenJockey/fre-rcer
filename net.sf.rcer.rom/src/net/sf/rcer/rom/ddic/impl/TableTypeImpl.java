@@ -62,8 +62,8 @@ public class TableTypeImpl extends RepositoryObjectImpl implements TableType {
 	 * @generated
 	 */
 	public RepositoryObjectCollection getCollection() {
-		if (eContainerFeatureID != DDICPackage.TABLE_TYPE__COLLECTION) return null;
-		return (RepositoryObjectCollection)eContainer();
+		if (eContainerFeatureID() != DDICPackage.TABLE_TYPE__COLLECTION) return null;
+		return (RepositoryObjectCollection)eInternalContainer();
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class TableTypeImpl extends RepositoryObjectImpl implements TableType {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case DDICPackage.TABLE_TYPE__COLLECTION:
 				return eInternalContainer().eInverseRemove(this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__TABLE_TYPES, RepositoryObjectCollection.class, msgs);
 		}

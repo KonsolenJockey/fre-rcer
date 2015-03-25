@@ -519,13 +519,13 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 			case ROMPackage.REPOSITORY_OBJECT__NAME:
 				return getName();
 			case ROMPackage.REPOSITORY_OBJECT__LOADED:
-				return isLoaded() ? Boolean.TRUE : Boolean.FALSE;
+				return isLoaded();
 			case ROMPackage.REPOSITORY_OBJECT__SOURCE_SYSTEM:
 				return getSourceSystem();
 			case ROMPackage.REPOSITORY_OBJECT__AUTHOR:
 				return getAuthor();
 			case ROMPackage.REPOSITORY_OBJECT__GENERATED:
-				return isGenerated() ? Boolean.TRUE : Boolean.FALSE;
+				return isGenerated();
 			case ROMPackage.REPOSITORY_OBJECT__ORIGINAL_LOCALE:
 				return getOriginalLocale();
 			case ROMPackage.REPOSITORY_OBJECT__SOFTWARE_COMPONENT:
@@ -550,7 +550,7 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 				setName((String)newValue);
 				return;
 			case ROMPackage.REPOSITORY_OBJECT__LOADED:
-				setLoaded(((Boolean)newValue).booleanValue());
+				setLoaded((Boolean)newValue);
 				return;
 			case ROMPackage.REPOSITORY_OBJECT__SOURCE_SYSTEM:
 				setSourceSystem((String)newValue);
@@ -559,7 +559,7 @@ public abstract class RepositoryObjectImpl extends EObjectImpl implements Reposi
 				setAuthor((String)newValue);
 				return;
 			case ROMPackage.REPOSITORY_OBJECT__GENERATED:
-				setGenerated(((Boolean)newValue).booleanValue());
+				setGenerated((Boolean)newValue);
 				return;
 			case ROMPackage.REPOSITORY_OBJECT__ORIGINAL_LOCALE:
 				setOriginalLocale((Locale)newValue);

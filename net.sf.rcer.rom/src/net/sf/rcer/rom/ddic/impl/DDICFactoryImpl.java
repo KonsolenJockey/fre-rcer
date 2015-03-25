@@ -38,7 +38,7 @@ public class DDICFactoryImpl extends EFactoryImpl implements DDICFactory {
 	 */
 	public static DDICFactory init() {
 		try {
-			DDICFactory theDDICFactory = (DDICFactory)EPackage.Registry.INSTANCE.getEFactory("http://rcer.sf.net/rom/ddic"); //$NON-NLS-1$ 
+			DDICFactory theDDICFactory = (DDICFactory)EPackage.Registry.INSTANCE.getEFactory(DDICPackage.eNS_URI);
 			if (theDDICFactory != null) {
 				return theDDICFactory;
 			}

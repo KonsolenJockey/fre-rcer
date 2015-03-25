@@ -335,7 +335,7 @@ public class EventParameterImpl extends EObjectImpl implements EventParameter {
 			case ABAPObjectsPackage.EVENT_PARAMETER__DEFAULT_VALUE:
 				return getDefaultValue();
 			case ABAPObjectsPackage.EVENT_PARAMETER__OPTIONAL:
-				return isOptional() ? Boolean.TRUE : Boolean.FALSE;
+				return isOptional();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -361,7 +361,7 @@ public class EventParameterImpl extends EObjectImpl implements EventParameter {
 				setDefaultValue((String)newValue);
 				return;
 			case ABAPObjectsPackage.EVENT_PARAMETER__OPTIONAL:
-				setOptional(((Boolean)newValue).booleanValue());
+				setOptional((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

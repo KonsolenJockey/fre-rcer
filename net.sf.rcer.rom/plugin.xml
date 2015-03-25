@@ -12,9 +12,25 @@
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated rom -->
+      <package
+            uri="http://rcer.sf.net/rom/ddic"
+            class="net.sf.rcer.rom.ddic.DDICPackage"
+            genModel="model/rom.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://rcer.sf.net/rom"
             class="net.sf.rcer.rom.ROMPackage"
+            genModel="model/rom.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated rom -->
+      <package
+            uri="http://rcer.sf.net/rom/abapobj"
+            class="net.sf.rcer.rom.abapobj.ABAPObjectsPackage"
             genModel="model/rom.genmodel"/>
    </extension>
 

@@ -112,8 +112,8 @@ public abstract class DomainValueImpl extends EObjectImpl implements DomainValue
 	 * @generated
 	 */
 	public Domain getDomain() {
-		if (eContainerFeatureID != DDICPackage.DOMAIN_VALUE__DOMAIN) return null;
-		return (Domain)eContainer();
+		if (eContainerFeatureID() != DDICPackage.DOMAIN_VALUE__DOMAIN) return null;
+		return (Domain)eInternalContainer();
 	}
 
 	/**
@@ -132,7 +132,7 @@ public abstract class DomainValueImpl extends EObjectImpl implements DomainValue
 	 * @generated
 	 */
 	public void setDomain(Domain newDomain) {
-		if (newDomain != eInternalContainer() || (eContainerFeatureID != DDICPackage.DOMAIN_VALUE__DOMAIN && newDomain != null)) {
+		if (newDomain != eInternalContainer() || (eContainerFeatureID() != DDICPackage.DOMAIN_VALUE__DOMAIN && newDomain != null)) {
 			if (EcoreUtil.isAncestor(this, newDomain))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -226,7 +226,7 @@ public abstract class DomainValueImpl extends EObjectImpl implements DomainValue
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case DDICPackage.DOMAIN_VALUE__DOMAIN:
 				return eInternalContainer().eInverseRemove(this, DDICPackage.DOMAIN__VALUES, Domain.class, msgs);
 		}
@@ -244,9 +244,9 @@ public abstract class DomainValueImpl extends EObjectImpl implements DomainValue
 			case DDICPackage.DOMAIN_VALUE__DOMAIN:
 				return getDomain();
 			case DDICPackage.DOMAIN_VALUE__POSITION:
-				return new Integer(getPosition());
+				return getPosition();
 			case DDICPackage.DOMAIN_VALUE__RANGE:
-				return isRange() ? Boolean.TRUE : Boolean.FALSE;
+				return isRange();
 			case DDICPackage.DOMAIN_VALUE__DESCRIPTION:
 				if (coreType) return getDescription();
 				else return getDescription().map();
@@ -266,7 +266,7 @@ public abstract class DomainValueImpl extends EObjectImpl implements DomainValue
 				setDomain((Domain)newValue);
 				return;
 			case DDICPackage.DOMAIN_VALUE__POSITION:
-				setPosition(((Integer)newValue).intValue());
+				setPosition((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

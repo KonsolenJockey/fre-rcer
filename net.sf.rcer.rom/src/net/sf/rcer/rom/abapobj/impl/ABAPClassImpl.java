@@ -575,11 +575,11 @@ public class ABAPClassImpl extends RepositoryObjectImpl implements ABAPClass {
 			case ABAPObjectsPackage.ABAP_CLASS__CREATION_SCOPE:
 				return getCreationScope();
 			case ABAPObjectsPackage.ABAP_CLASS__FINAL:
-				return isFinal() ? Boolean.TRUE : Boolean.FALSE;
+				return isFinal();
 			case ABAPObjectsPackage.ABAP_CLASS__FIXED_POINT_ARITHMETICS:
-				return isFixedPointArithmetics() ? Boolean.TRUE : Boolean.FALSE;
+				return isFixedPointArithmetics();
 			case ABAPObjectsPackage.ABAP_CLASS__UNICODE_CHECKED:
-				return isUnicodeChecked() ? Boolean.TRUE : Boolean.FALSE;
+				return isUnicodeChecked();
 			case ABAPObjectsPackage.ABAP_CLASS__INTERFACES:
 				return getInterfaces();
 			case ABAPObjectsPackage.ABAP_CLASS__FRIEND_CLASS_NAMES:
@@ -622,13 +622,13 @@ public class ABAPClassImpl extends RepositoryObjectImpl implements ABAPClass {
 				setCreationScope((ClassCreationScope)newValue);
 				return;
 			case ABAPObjectsPackage.ABAP_CLASS__FINAL:
-				setFinal(((Boolean)newValue).booleanValue());
+				setFinal((Boolean)newValue);
 				return;
 			case ABAPObjectsPackage.ABAP_CLASS__FIXED_POINT_ARITHMETICS:
-				setFixedPointArithmetics(((Boolean)newValue).booleanValue());
+				setFixedPointArithmetics((Boolean)newValue);
 				return;
 			case ABAPObjectsPackage.ABAP_CLASS__UNICODE_CHECKED:
-				setUnicodeChecked(((Boolean)newValue).booleanValue());
+				setUnicodeChecked((Boolean)newValue);
 				return;
 			case ABAPObjectsPackage.ABAP_CLASS__INTERFACES:
 				getInterfaces().clear();

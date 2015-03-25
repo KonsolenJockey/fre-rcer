@@ -91,8 +91,8 @@ public class StructureImpl extends RepositoryObjectImpl implements Structure {
 	 * @generated
 	 */
 	public RepositoryObjectCollection getCollection() {
-		if (eContainerFeatureID != DDICPackage.STRUCTURE__COLLECTION) return null;
-		return (RepositoryObjectCollection)eContainer();
+		if (eContainerFeatureID() != DDICPackage.STRUCTURE__COLLECTION) return null;
+		return (RepositoryObjectCollection)eInternalContainer();
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class StructureImpl extends RepositoryObjectImpl implements Structure {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case DDICPackage.STRUCTURE__COLLECTION:
 				return eInternalContainer().eInverseRemove(this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__STRUCTURES, RepositoryObjectCollection.class, msgs);
 		}

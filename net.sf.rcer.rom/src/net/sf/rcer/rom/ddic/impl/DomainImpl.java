@@ -287,8 +287,8 @@ public class DomainImpl extends RepositoryObjectImpl implements Domain {
 	 */
 	@Override
 	public RepositoryObjectCollection getCollection() {
-		if (eContainerFeatureID != DDICPackage.DOMAIN__COLLECTION) return null;
-		return (RepositoryObjectCollection)eContainer();
+		if (eContainerFeatureID() != DDICPackage.DOMAIN__COLLECTION) return null;
+		return (RepositoryObjectCollection)eInternalContainer();
 	}
 
 	/**
@@ -548,7 +548,7 @@ public class DomainImpl extends RepositoryObjectImpl implements Domain {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case DDICPackage.DOMAIN__COLLECTION:
 				return eInternalContainer().eInverseRemove(this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__DOMAINS, RepositoryObjectCollection.class, msgs);
 		}
@@ -571,17 +571,17 @@ public class DomainImpl extends RepositoryObjectImpl implements Domain {
 			case DDICPackage.DOMAIN__DICTIONARY_DATA_TYPE:
 				return getDictionaryDataType();
 			case DDICPackage.DOMAIN__LENGTH:
-				return new Integer(getLength());
+				return getLength();
 			case DDICPackage.DOMAIN__OUTPUT_LENGTH:
-				return new Integer(getOutputLength());
+				return getOutputLength();
 			case DDICPackage.DOMAIN__DECIMALS:
-				return new Integer(getDecimals());
+				return getDecimals();
 			case DDICPackage.DOMAIN__CASE_SENSITIVE:
-				return isCaseSensitive() ? Boolean.TRUE : Boolean.FALSE;
+				return isCaseSensitive();
 			case DDICPackage.DOMAIN__SIGNED:
-				return isSigned() ? Boolean.TRUE : Boolean.FALSE;
+				return isSigned();
 			case DDICPackage.DOMAIN__VALUE_LIST_FIXED:
-				return isValueListFixed() ? Boolean.TRUE : Boolean.FALSE;
+				return isValueListFixed();
 			case DDICPackage.DOMAIN__VALUE_TABLE_NAME:
 				return getValueTableName();
 			case DDICPackage.DOMAIN__CONVERSION_EXIT:
@@ -605,22 +605,22 @@ public class DomainImpl extends RepositoryObjectImpl implements Domain {
 				setDictionaryDataType((DictionaryDataType)newValue);
 				return;
 			case DDICPackage.DOMAIN__LENGTH:
-				setLength(((Integer)newValue).intValue());
+				setLength((Integer)newValue);
 				return;
 			case DDICPackage.DOMAIN__OUTPUT_LENGTH:
-				setOutputLength(((Integer)newValue).intValue());
+				setOutputLength((Integer)newValue);
 				return;
 			case DDICPackage.DOMAIN__DECIMALS:
-				setDecimals(((Integer)newValue).intValue());
+				setDecimals((Integer)newValue);
 				return;
 			case DDICPackage.DOMAIN__CASE_SENSITIVE:
-				setCaseSensitive(((Boolean)newValue).booleanValue());
+				setCaseSensitive((Boolean)newValue);
 				return;
 			case DDICPackage.DOMAIN__SIGNED:
-				setSigned(((Boolean)newValue).booleanValue());
+				setSigned((Boolean)newValue);
 				return;
 			case DDICPackage.DOMAIN__VALUE_LIST_FIXED:
-				setValueListFixed(((Boolean)newValue).booleanValue());
+				setValueListFixed((Boolean)newValue);
 				return;
 			case DDICPackage.DOMAIN__VALUE_TABLE_NAME:
 				setValueTableName((String)newValue);

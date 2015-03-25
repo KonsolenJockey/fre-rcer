@@ -416,9 +416,9 @@ public class ABAPInterfaceImpl extends RepositoryObjectImpl implements ABAPInter
 				if (resolve) return getCollection();
 				return basicGetCollection();
 			case ABAPObjectsPackage.ABAP_INTERFACE__EXIT_INTERFACE:
-				return isExitInterface() ? Boolean.TRUE : Boolean.FALSE;
+				return isExitInterface();
 			case ABAPObjectsPackage.ABAP_INTERFACE__UNICODE_CHECKED:
-				return isUnicodeChecked() ? Boolean.TRUE : Boolean.FALSE;
+				return isUnicodeChecked();
 			case ABAPObjectsPackage.ABAP_INTERFACE__METHODS:
 				return getMethods();
 			case ABAPObjectsPackage.ABAP_INTERFACE__INTERFACES:
@@ -453,10 +453,10 @@ public class ABAPInterfaceImpl extends RepositoryObjectImpl implements ABAPInter
 				getClassForwardDefinitions().addAll((Collection<? extends String>)newValue);
 				return;
 			case ABAPObjectsPackage.ABAP_INTERFACE__EXIT_INTERFACE:
-				setExitInterface(((Boolean)newValue).booleanValue());
+				setExitInterface((Boolean)newValue);
 				return;
 			case ABAPObjectsPackage.ABAP_INTERFACE__UNICODE_CHECKED:
-				setUnicodeChecked(((Boolean)newValue).booleanValue());
+				setUnicodeChecked((Boolean)newValue);
 				return;
 			case ABAPObjectsPackage.ABAP_INTERFACE__METHODS:
 				getMethods().clear();

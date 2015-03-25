@@ -569,8 +569,8 @@ public class DataElementImpl extends RepositoryObjectImpl implements DataElement
 	 */
 	@Override
 	public RepositoryObjectCollection getCollection() {
-		if (eContainerFeatureID != DDICPackage.DATA_ELEMENT__COLLECTION) return null;
-		return (RepositoryObjectCollection)eContainer();
+		if (eContainerFeatureID() != DDICPackage.DATA_ELEMENT__COLLECTION) return null;
+		return (RepositoryObjectCollection)eInternalContainer();
 	}
 
 	/**
@@ -1121,7 +1121,7 @@ public class DataElementImpl extends RepositoryObjectImpl implements DataElement
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case DDICPackage.DATA_ELEMENT__COLLECTION:
 				return eInternalContainer().eInverseRemove(this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__DATA_ELEMENTS, RepositoryObjectCollection.class, msgs);
 		}
@@ -1145,28 +1145,28 @@ public class DataElementImpl extends RepositoryObjectImpl implements DataElement
 				if (coreType) return getHeading();
 				else return getHeading().map();
 			case DDICPackage.DATA_ELEMENT__MAX_HEADING_LENGTH:
-				return new Integer(getMaxHeadingLength());
+				return getMaxHeadingLength();
 			case DDICPackage.DATA_ELEMENT__SHORT_TEXT:
 				if (coreType) return getShortText();
 				else return getShortText().map();
 			case DDICPackage.DATA_ELEMENT__MAX_SHORT_TEXT_LENGTH:
-				return new Integer(getMaxShortTextLength());
+				return getMaxShortTextLength();
 			case DDICPackage.DATA_ELEMENT__MEDIUM_TEXT:
 				if (coreType) return getMediumText();
 				else return getMediumText().map();
 			case DDICPackage.DATA_ELEMENT__MAX_MEDIUM_TEXT_LENGTH:
-				return new Integer(getMaxMediumTextLength());
+				return getMaxMediumTextLength();
 			case DDICPackage.DATA_ELEMENT__LONG_TEXT:
 				if (coreType) return getLongText();
 				else return getLongText().map();
 			case DDICPackage.DATA_ELEMENT__MAX_LONG_TEXT_LENGTH:
-				return new Integer(getMaxLongTextLength());
+				return getMaxLongTextLength();
 			case DDICPackage.DATA_ELEMENT__TYPE_NAME:
 				return getTypeName();
 			case DDICPackage.DATA_ELEMENT__PARAMETER_ID:
 				return getParameterID();
 			case DDICPackage.DATA_ELEMENT__LOGGED:
-				return isLogged() ? Boolean.TRUE : Boolean.FALSE;
+				return isLogged();
 			case DDICPackage.DATA_ELEMENT__VALUE_HELP_NAME:
 				return getValueHelpName();
 			case DDICPackage.DATA_ELEMENT__VALUE_HELP_FIELD_NAME:
@@ -1176,17 +1176,17 @@ public class DataElementImpl extends RepositoryObjectImpl implements DataElement
 			case DDICPackage.DATA_ELEMENT__DICTIONARY_DATA_TYPE:
 				return getDictionaryDataType();
 			case DDICPackage.DATA_ELEMENT__LENGTH:
-				return new Integer(getLength());
+				return getLength();
 			case DDICPackage.DATA_ELEMENT__OUTPUT_LENGTH:
-				return new Integer(getOutputLength());
+				return getOutputLength();
 			case DDICPackage.DATA_ELEMENT__DECIMALS:
-				return new Integer(getDecimals());
+				return getDecimals();
 			case DDICPackage.DATA_ELEMENT__CASE_SENSITIVE:
-				return isCaseSensitive() ? Boolean.TRUE : Boolean.FALSE;
+				return isCaseSensitive();
 			case DDICPackage.DATA_ELEMENT__SIGNED:
-				return isSigned() ? Boolean.TRUE : Boolean.FALSE;
+				return isSigned();
 			case DDICPackage.DATA_ELEMENT__VALUE_LIST_FIXED:
-				return isValueListFixed() ? Boolean.TRUE : Boolean.FALSE;
+				return isValueListFixed();
 			case DDICPackage.DATA_ELEMENT__VALUE_TABLE_NAME:
 				return getValueTableName();
 			case DDICPackage.DATA_ELEMENT__CONVERSION_EXIT:
@@ -1208,16 +1208,16 @@ public class DataElementImpl extends RepositoryObjectImpl implements DataElement
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DDICPackage.DATA_ELEMENT__MAX_HEADING_LENGTH:
-				setMaxHeadingLength(((Integer)newValue).intValue());
+				setMaxHeadingLength((Integer)newValue);
 				return;
 			case DDICPackage.DATA_ELEMENT__MAX_SHORT_TEXT_LENGTH:
-				setMaxShortTextLength(((Integer)newValue).intValue());
+				setMaxShortTextLength((Integer)newValue);
 				return;
 			case DDICPackage.DATA_ELEMENT__MAX_MEDIUM_TEXT_LENGTH:
-				setMaxMediumTextLength(((Integer)newValue).intValue());
+				setMaxMediumTextLength((Integer)newValue);
 				return;
 			case DDICPackage.DATA_ELEMENT__MAX_LONG_TEXT_LENGTH:
-				setMaxLongTextLength(((Integer)newValue).intValue());
+				setMaxLongTextLength((Integer)newValue);
 				return;
 			case DDICPackage.DATA_ELEMENT__TYPE_NAME:
 				setTypeName((String)newValue);
@@ -1226,7 +1226,7 @@ public class DataElementImpl extends RepositoryObjectImpl implements DataElement
 				setParameterID((String)newValue);
 				return;
 			case DDICPackage.DATA_ELEMENT__LOGGED:
-				setLogged(((Boolean)newValue).booleanValue());
+				setLogged((Boolean)newValue);
 				return;
 			case DDICPackage.DATA_ELEMENT__VALUE_HELP_NAME:
 				setValueHelpName((String)newValue);
@@ -1241,22 +1241,22 @@ public class DataElementImpl extends RepositoryObjectImpl implements DataElement
 				setDictionaryDataType((DictionaryDataType)newValue);
 				return;
 			case DDICPackage.DATA_ELEMENT__LENGTH:
-				setLength(((Integer)newValue).intValue());
+				setLength((Integer)newValue);
 				return;
 			case DDICPackage.DATA_ELEMENT__OUTPUT_LENGTH:
-				setOutputLength(((Integer)newValue).intValue());
+				setOutputLength((Integer)newValue);
 				return;
 			case DDICPackage.DATA_ELEMENT__DECIMALS:
-				setDecimals(((Integer)newValue).intValue());
+				setDecimals((Integer)newValue);
 				return;
 			case DDICPackage.DATA_ELEMENT__CASE_SENSITIVE:
-				setCaseSensitive(((Boolean)newValue).booleanValue());
+				setCaseSensitive((Boolean)newValue);
 				return;
 			case DDICPackage.DATA_ELEMENT__SIGNED:
-				setSigned(((Boolean)newValue).booleanValue());
+				setSigned((Boolean)newValue);
 				return;
 			case DDICPackage.DATA_ELEMENT__VALUE_LIST_FIXED:
-				setValueListFixed(((Boolean)newValue).booleanValue());
+				setValueListFixed((Boolean)newValue);
 				return;
 			case DDICPackage.DATA_ELEMENT__VALUE_TABLE_NAME:
 				setValueTableName((String)newValue);

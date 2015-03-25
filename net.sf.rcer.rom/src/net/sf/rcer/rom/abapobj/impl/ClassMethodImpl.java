@@ -191,9 +191,9 @@ public class ClassMethodImpl extends InterfaceMethodImpl implements ClassMethod 
 			case ABAPObjectsPackage.CLASS_METHOD__VISIBILITY:
 				return getVisibility();
 			case ABAPObjectsPackage.CLASS_METHOD__ABSTRACT:
-				return isAbstract() ? Boolean.TRUE : Boolean.FALSE;
+				return isAbstract();
 			case ABAPObjectsPackage.CLASS_METHOD__FINAL:
-				return isFinal() ? Boolean.TRUE : Boolean.FALSE;
+				return isFinal();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -210,10 +210,10 @@ public class ClassMethodImpl extends InterfaceMethodImpl implements ClassMethod 
 				setVisibility((Visibility)newValue);
 				return;
 			case ABAPObjectsPackage.CLASS_METHOD__ABSTRACT:
-				setAbstract(((Boolean)newValue).booleanValue());
+				setAbstract((Boolean)newValue);
 				return;
 			case ABAPObjectsPackage.CLASS_METHOD__FINAL:
-				setFinal(((Boolean)newValue).booleanValue());
+				setFinal((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

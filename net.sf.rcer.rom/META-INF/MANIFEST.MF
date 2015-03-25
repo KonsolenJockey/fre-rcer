@@ -12,9 +12,12 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: net.sf.rcer.rom,
  net.sf.rcer.rom.abapobj,
+ net.sf.rcer.rom.abapobj.impl,
  net.sf.rcer.rom.abapobj.util,
  net.sf.rcer.rom.ddic,
+ net.sf.rcer.rom.ddic.impl,
  net.sf.rcer.rom.ddic.util,
+ net.sf.rcer.rom.impl,
  net.sf.rcer.rom.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

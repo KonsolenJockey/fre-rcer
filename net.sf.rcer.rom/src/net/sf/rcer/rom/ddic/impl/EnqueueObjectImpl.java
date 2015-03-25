@@ -62,8 +62,8 @@ public class EnqueueObjectImpl extends RepositoryObjectImpl implements EnqueueOb
 	 * @generated
 	 */
 	public RepositoryObjectCollection getCollection() {
-		if (eContainerFeatureID != DDICPackage.ENQUEUE_OBJECT__COLLECTION) return null;
-		return (RepositoryObjectCollection)eContainer();
+		if (eContainerFeatureID() != DDICPackage.ENQUEUE_OBJECT__COLLECTION) return null;
+		return (RepositoryObjectCollection)eInternalContainer();
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class EnqueueObjectImpl extends RepositoryObjectImpl implements EnqueueOb
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case DDICPackage.ENQUEUE_OBJECT__COLLECTION:
 				return eInternalContainer().eInverseRemove(this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__ENQUEUE_OBJECTS, RepositoryObjectCollection.class, msgs);
 		}

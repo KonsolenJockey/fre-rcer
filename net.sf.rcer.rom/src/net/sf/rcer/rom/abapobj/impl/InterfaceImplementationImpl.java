@@ -191,9 +191,9 @@ public class InterfaceImplementationImpl extends EObjectImpl implements Interfac
 			case ABAPObjectsPackage.INTERFACE_IMPLEMENTATION__INTERFACE_NAME:
 				return getInterfaceName();
 			case ABAPObjectsPackage.INTERFACE_IMPLEMENTATION__ABSTRACT:
-				return isAbstract() ? Boolean.TRUE : Boolean.FALSE;
+				return isAbstract();
 			case ABAPObjectsPackage.INTERFACE_IMPLEMENTATION__FINAL:
-				return isFinal() ? Boolean.TRUE : Boolean.FALSE;
+				return isFinal();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -210,10 +210,10 @@ public class InterfaceImplementationImpl extends EObjectImpl implements Interfac
 				setInterfaceName((String)newValue);
 				return;
 			case ABAPObjectsPackage.INTERFACE_IMPLEMENTATION__ABSTRACT:
-				setAbstract(((Boolean)newValue).booleanValue());
+				setAbstract((Boolean)newValue);
 				return;
 			case ABAPObjectsPackage.INTERFACE_IMPLEMENTATION__FINAL:
-				setFinal(((Boolean)newValue).booleanValue());
+				setFinal((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

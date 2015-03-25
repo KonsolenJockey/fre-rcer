@@ -44,7 +44,7 @@ public class ROMFactoryImpl extends EFactoryImpl implements ROMFactory {
 	 */
 	public static ROMFactory init() {
 		try {
-			ROMFactory theROMFactory = (ROMFactory)EPackage.Registry.INSTANCE.getEFactory("http://rcer.sf.net/rom"); //$NON-NLS-1$ 
+			ROMFactory theROMFactory = (ROMFactory)EPackage.Registry.INSTANCE.getEFactory(ROMPackage.eNS_URI);
 			if (theROMFactory != null) {
 				return theROMFactory;
 			}

@@ -38,7 +38,7 @@ public class ABAPObjectsFactoryImpl extends EFactoryImpl implements ABAPObjectsF
 	 */
 	public static ABAPObjectsFactory init() {
 		try {
-			ABAPObjectsFactory theABAPObjectsFactory = (ABAPObjectsFactory)EPackage.Registry.INSTANCE.getEFactory("http://rcer.sf.net/rom/abapobj"); //$NON-NLS-1$ 
+			ABAPObjectsFactory theABAPObjectsFactory = (ABAPObjectsFactory)EPackage.Registry.INSTANCE.getEFactory(ABAPObjectsPackage.eNS_URI);
 			if (theABAPObjectsFactory != null) {
 				return theABAPObjectsFactory;
 			}

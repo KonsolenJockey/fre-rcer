@@ -425,13 +425,13 @@ public class InterfaceMethodImpl extends EObjectImpl implements InterfaceMethod 
 			case ABAPObjectsPackage.INTERFACE_METHOD__SCOPE:
 				return getScope();
 			case ABAPObjectsPackage.INTERFACE_METHOD__EVENT_HANDLER:
-				return isEventHandler() ? Boolean.TRUE : Boolean.FALSE;
+				return isEventHandler();
 			case ABAPObjectsPackage.INTERFACE_METHOD__EVENT_CLASS:
 				return getEventClass();
 			case ABAPObjectsPackage.INTERFACE_METHOD__EVENT_NAME:
 				return getEventName();
 			case ABAPObjectsPackage.INTERFACE_METHOD__CLASS_BASED_EXCEPTIONS:
-				return isClassBasedExceptions() ? Boolean.TRUE : Boolean.FALSE;
+				return isClassBasedExceptions();
 			case ABAPObjectsPackage.INTERFACE_METHOD__PARAMETERS:
 				return getParameters();
 			case ABAPObjectsPackage.INTERFACE_METHOD__EXCEPTIONS:
@@ -456,7 +456,7 @@ public class InterfaceMethodImpl extends EObjectImpl implements InterfaceMethod 
 				setScope((MethodScope)newValue);
 				return;
 			case ABAPObjectsPackage.INTERFACE_METHOD__EVENT_HANDLER:
-				setEventHandler(((Boolean)newValue).booleanValue());
+				setEventHandler((Boolean)newValue);
 				return;
 			case ABAPObjectsPackage.INTERFACE_METHOD__EVENT_CLASS:
 				setEventClass((String)newValue);
@@ -465,7 +465,7 @@ public class InterfaceMethodImpl extends EObjectImpl implements InterfaceMethod 
 				setEventName((String)newValue);
 				return;
 			case ABAPObjectsPackage.INTERFACE_METHOD__CLASS_BASED_EXCEPTIONS:
-				setClassBasedExceptions(((Boolean)newValue).booleanValue());
+				setClassBasedExceptions((Boolean)newValue);
 				return;
 			case ABAPObjectsPackage.INTERFACE_METHOD__PARAMETERS:
 				getParameters().clear();

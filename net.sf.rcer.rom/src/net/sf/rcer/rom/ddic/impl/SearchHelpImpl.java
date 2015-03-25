@@ -62,8 +62,8 @@ public class SearchHelpImpl extends RepositoryObjectImpl implements SearchHelp {
 	 * @generated
 	 */
 	public RepositoryObjectCollection getCollection() {
-		if (eContainerFeatureID != DDICPackage.SEARCH_HELP__COLLECTION) return null;
-		return (RepositoryObjectCollection)eContainer();
+		if (eContainerFeatureID() != DDICPackage.SEARCH_HELP__COLLECTION) return null;
+		return (RepositoryObjectCollection)eInternalContainer();
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class SearchHelpImpl extends RepositoryObjectImpl implements SearchHelp {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case DDICPackage.SEARCH_HELP__COLLECTION:
 				return eInternalContainer().eInverseRemove(this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__SEACH_HELPS, RepositoryObjectCollection.class, msgs);
 		}

@@ -378,7 +378,7 @@ public class InterfaceAttributeImpl extends EObjectImpl implements InterfaceAttr
 			case ABAPObjectsPackage.INTERFACE_ATTRIBUTE__SCOPE:
 				return getScope();
 			case ABAPObjectsPackage.INTERFACE_ATTRIBUTE__READ_ONLY:
-				return isReadOnly() ? Boolean.TRUE : Boolean.FALSE;
+				return isReadOnly();
 			case ABAPObjectsPackage.INTERFACE_ATTRIBUTE__DEFAULT_VALUE:
 				return getDefaultValue();
 		}
@@ -406,7 +406,7 @@ public class InterfaceAttributeImpl extends EObjectImpl implements InterfaceAttr
 				setScope((AttributeScope)newValue);
 				return;
 			case ABAPObjectsPackage.INTERFACE_ATTRIBUTE__READ_ONLY:
-				setReadOnly(((Boolean)newValue).booleanValue());
+				setReadOnly((Boolean)newValue);
 				return;
 			case ABAPObjectsPackage.INTERFACE_ATTRIBUTE__DEFAULT_VALUE:
 				setDefaultValue((String)newValue);

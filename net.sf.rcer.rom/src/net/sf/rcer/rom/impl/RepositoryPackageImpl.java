@@ -613,8 +613,8 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	 */
 	@Override
 	public RepositoryObjectCollection getCollection() {
-		if (eContainerFeatureID != ROMPackage.REPOSITORY_PACKAGE__COLLECTION) return null;
-		return (RepositoryObjectCollection)eContainer();
+		if (eContainerFeatureID() != ROMPackage.REPOSITORY_PACKAGE__COLLECTION) return null;
+		return (RepositoryObjectCollection)eInternalContainer();
 	}
 
 	/**
@@ -701,7 +701,7 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case ROMPackage.REPOSITORY_PACKAGE__COLLECTION:
 				return eInternalContainer().eInverseRemove(this, ROMPackage.REPOSITORY_OBJECT_COLLECTION__PACKAGES, RepositoryObjectCollection.class, msgs);
 		}
@@ -726,7 +726,7 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 			case ROMPackage.REPOSITORY_PACKAGE__SUB_PACKAGE_NAMES:
 				return getSubPackageNames();
 			case ROMPackage.REPOSITORY_PACKAGE__CHANGE_RECODING_ENABLED:
-				return isChangeRecodingEnabled() ? Boolean.TRUE : Boolean.FALSE;
+				return isChangeRecodingEnabled();
 			case ROMPackage.REPOSITORY_PACKAGE__RESPONSIBLE_USER:
 				return getResponsibleUser();
 			case ROMPackage.REPOSITORY_PACKAGE__TRANSPORT_LAYER:
@@ -738,17 +738,17 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 			case ROMPackage.REPOSITORY_PACKAGE__PERMITTED_OBJECT_TYPES:
 				return getPermittedObjectTypes();
 			case ROMPackage.REPOSITORY_PACKAGE__OBJECT_CREATION_RESTRICTED:
-				return isObjectCreationRestricted() ? Boolean.TRUE : Boolean.FALSE;
+				return isObjectCreationRestricted();
 			case ROMPackage.REPOSITORY_PACKAGE__TYPE:
 				return getType();
 			case ROMPackage.REPOSITORY_PACKAGE__CHECKED_AS_SERVER:
-				return isCheckedAsServer() ? Boolean.TRUE : Boolean.FALSE;
+				return isCheckedAsServer();
 			case ROMPackage.REPOSITORY_PACKAGE__CHECKED_AS_CLIENT:
-				return isCheckedAsClient() ? Boolean.TRUE : Boolean.FALSE;
+				return isCheckedAsClient();
 			case ROMPackage.REPOSITORY_PACKAGE__COLLECTION:
 				return getCollection();
 			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS_LOADED:
-				return isObjectsLoaded() ? Boolean.TRUE : Boolean.FALSE;
+				return isObjectsLoaded();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -775,7 +775,7 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 				getSubPackageNames().addAll((Collection<? extends String>)newValue);
 				return;
 			case ROMPackage.REPOSITORY_PACKAGE__CHANGE_RECODING_ENABLED:
-				setChangeRecodingEnabled(((Boolean)newValue).booleanValue());
+				setChangeRecodingEnabled((Boolean)newValue);
 				return;
 			case ROMPackage.REPOSITORY_PACKAGE__RESPONSIBLE_USER:
 				setResponsibleUser((String)newValue);
@@ -793,19 +793,19 @@ public class RepositoryPackageImpl extends RepositoryObjectImpl implements Repos
 				setPermittedObjectTypes((PackagePermittedObjectTypes)newValue);
 				return;
 			case ROMPackage.REPOSITORY_PACKAGE__OBJECT_CREATION_RESTRICTED:
-				setObjectCreationRestricted(((Boolean)newValue).booleanValue());
+				setObjectCreationRestricted((Boolean)newValue);
 				return;
 			case ROMPackage.REPOSITORY_PACKAGE__TYPE:
 				setType((PackageType)newValue);
 				return;
 			case ROMPackage.REPOSITORY_PACKAGE__CHECKED_AS_SERVER:
-				setCheckedAsServer(((Boolean)newValue).booleanValue());
+				setCheckedAsServer((Boolean)newValue);
 				return;
 			case ROMPackage.REPOSITORY_PACKAGE__CHECKED_AS_CLIENT:
-				setCheckedAsClient(((Boolean)newValue).booleanValue());
+				setCheckedAsClient((Boolean)newValue);
 				return;
 			case ROMPackage.REPOSITORY_PACKAGE__OBJECTS_LOADED:
-				setObjectsLoaded(((Boolean)newValue).booleanValue());
+				setObjectsLoaded((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

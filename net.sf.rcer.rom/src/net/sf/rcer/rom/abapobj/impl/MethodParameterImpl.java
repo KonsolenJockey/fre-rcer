@@ -416,7 +416,7 @@ public class MethodParameterImpl extends EObjectImpl implements MethodParameter 
 			case ABAPObjectsPackage.METHOD_PARAMETER__DECLARATION_TYPE:
 				return getDeclarationType();
 			case ABAPObjectsPackage.METHOD_PARAMETER__CALL_BY_VALUE:
-				return isCallByValue() ? Boolean.TRUE : Boolean.FALSE;
+				return isCallByValue();
 			case ABAPObjectsPackage.METHOD_PARAMETER__TYPING:
 				return getTyping();
 			case ABAPObjectsPackage.METHOD_PARAMETER__TYPE_NAME:
@@ -424,7 +424,7 @@ public class MethodParameterImpl extends EObjectImpl implements MethodParameter 
 			case ABAPObjectsPackage.METHOD_PARAMETER__DEFAULT_VALUE:
 				return getDefaultValue();
 			case ABAPObjectsPackage.METHOD_PARAMETER__OPTIONAL:
-				return isOptional() ? Boolean.TRUE : Boolean.FALSE;
+				return isOptional();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -444,7 +444,7 @@ public class MethodParameterImpl extends EObjectImpl implements MethodParameter 
 				setDeclarationType((MethodParameterDeclarationType)newValue);
 				return;
 			case ABAPObjectsPackage.METHOD_PARAMETER__CALL_BY_VALUE:
-				setCallByValue(((Boolean)newValue).booleanValue());
+				setCallByValue((Boolean)newValue);
 				return;
 			case ABAPObjectsPackage.METHOD_PARAMETER__TYPING:
 				setTyping((AttributeTypingType)newValue);
@@ -456,7 +456,7 @@ public class MethodParameterImpl extends EObjectImpl implements MethodParameter 
 				setDefaultValue((String)newValue);
 				return;
 			case ABAPObjectsPackage.METHOD_PARAMETER__OPTIONAL:
-				setOptional(((Boolean)newValue).booleanValue());
+				setOptional((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
