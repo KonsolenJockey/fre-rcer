@@ -1,0 +1,53 @@
+module sample.SampleGenerator
+ 
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.emf.mwe.utils.Reader
+import org.eclipse.emf.mwe.utils.StandaloneSetup
+import org.eclipse.emf.mwe.utils.DirectoryCleaner
+import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel
+import org.eclipse.xtend.check.CheckComponent
+import org.eclipse.xpand2.Generator
+import org.eclipse.xpand2.output.JavaBeautifier
+import org.eclipse.xtend.expression.ResourceManagerDefaultImpl
+ 
+ 
+var targetDir = "src-gen"
+var modelPath = "model"
+ 
+Workflow {
+ 
+    bean = StandaloneSetup {
+        registerGeneratedEPackage = "net.sf.rcer.rfcgen.mapping.MappingPackage"
+    }
+    
+    /** instantiate metamodel */
+	bean = EmfRegistryMetaModel : mm_emf { }
+
+	bean = JavaBeautifier : formatter_java { }
+ 
+    component = DirectoryCleaner {
+        directory = targetDir
+    }
+ 
+    component = org.eclipse.xtext.mwe.Reader {
+        path = modelPath
+        register = net.sf.rcer.rfcgen.RFCMappingStandaloneSetup{}
+        loadResource = {
+            slot = "model"
+        }
+    }
+ 
+	component = Generator {
+		metaModel = mm_emf
+		expand = "template::Template::main FOR model"
+		outlet = {
+			path = targetDir
+			postprocessor = formatter_java
+			fileEncoding = "ISO-8859-1" // this is the encoding for files written the outlet
+		}
+		// configure Xpand resource encoding (check project resource setting)
+		resourceManager = ResourceManagerDefaultImpl {
+			fileEncoding = "ISO-8859-1"
+		}
+	}
+}
